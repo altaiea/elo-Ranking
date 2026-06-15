@@ -110,10 +110,10 @@ function getPlayerName(id) {
         5: "NAGI",
         6: "AKEEB",
         7: "USMAAN",
-        8: "AMAAN",
+        8: "SUBŽER0",
         9: "PARVEZ",
         10: "HAZZA",
-        11: "HAIDERI",
+        11: "TOJI",
         12: "NABEEL",
         13: "SAFY",
         14: "Unknown_14"

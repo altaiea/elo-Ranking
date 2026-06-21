@@ -9,7 +9,33 @@
     <link rel="preload" href="CDLcardUse.png" as="image">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* 🔥 Ensures ALL dropdowns are hidden on page load */
+        .rank-dropdown,
+        .elo-dropdown,
+        .wl-dropdown {
+            display: none;
+            position: absolute;
+            background: #15151a;
+            padding: 6px 10px;
+            border: 1px solid #222;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+            border-radius: 4px;
+            margin-top: 4px;
+            white-space: nowrap;
+            z-index: 999;
+        }
+
+        /* So dropdowns don't break table layout */
+        .rank-container,
+        .elo-container,
+        .wl-container {
+            position: relative;
+        }
+    </style>
 </head>
+
 <body>
 
 <h1>RANKINGS</h1>
@@ -111,6 +137,9 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
+
 
 
 

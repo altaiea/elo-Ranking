@@ -52,9 +52,9 @@ tr:hover {
     color: #ffffff;
 }
 
-tr:nth-child(1) .rank { color: #ffd700; text-shadow: 0 0 10px gold; }
-tr:nth-child(2) .rank { color: #c0c0c0; text-shadow: 0 0 10px silver; }
-tr:nth-child(3) .rank { color: #cd7f32; text-shadow: 0 0 10px #cd7f32; }
+tr:nth-child(1) .rank { color: #ffe500; text-shadow: 0 0 10px #f1ce01; }
+tr:nth-child(2) .rank { color: #c0c0c0; text-shadow: 0 0 10px #ffffff; }
+tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
 
 .player-name {
     color: #00eaff;
@@ -124,6 +124,121 @@ input:checked + .small-slider:before {
     font-weight: 600;
 }
 
+/* ============================
+   DROPDOWNS (HIDDEN BY DEFAULT)
+   ============================ */
+.rank-container,
+.elo-container,
+.wl-container {
+    position: relative;
+    display: inline-block;
+}
+
+.rank-dropdown,
+.elo-dropdown,
+.wl-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #15151a;
+    padding: 6px 10px;
+    border: 1px solid #222;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 999;
+}
+
+/* Thin arrow colours */
+.arrow-up { color: limegreen; }
+.arrow-down { color: red; }
+.arrow-none { color: grey; }
+
+/* ============================
+   W/L DROPDOWN
+   ============================ */
+.wl-win {
+    color: #00ff00;
+    font-weight: 900;
+}
+
+.wl-loss {
+    color: #ff3c3c;
+    font-weight: 900;
+}
+
+.wl-dropdown div {
+    padding: 2px 0;
+}
+
+/* ============================
+   ELO
+   ============================ */
+.elo-gold {
+    color: #fafafa;
+    font-weight: 800;
+}
+
+/* ============================
+   TEAM BUILDER
+   ============================ */
+.player-select-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.team-player {
+    padding: 6px;
+    background: #111;
+    color: #e6e6e6;
+    border: 1px solid #00eaff;
+}
+
+.teams-toggle {
+    width: 60%;
+    margin: 20px auto;
+    display: block;
+    padding: 10px;
+    background: #00eaff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.teams-section {
+    transition: all 0.3s ease;
+}
+
+#teamOutput {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+#team-builder {
+    width: 90%;
+}
+
+@media (max-width: 600px) {
+    #team-builder {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .teams-toggle {
+        width: 95%;
+    }
+}
+
+/* ============================
+   MODALS
+   ============================ */
 .modal {
     display: none;
     position: fixed;
@@ -145,11 +260,14 @@ input:checked + .small-slider:before {
     position: relative;
 }
 
-/* HIDE THE X BUTTON */
+/* Hide X button */
 #closeModal {
     display: none !important;
 }
 
+/* ============================
+   CARD STYLING
+   ============================ */
 .container {
     width: 350px;
     height: 500px;
@@ -271,99 +389,9 @@ input:checked + .small-slider:before {
 .col2.row2 { left: 130px; top: 374px; }
 .col3.row2 { left: 210px; top: 363px; }
 
-.wl-win {
-    color: #00ff00;
-    font-weight: 900;
-}
-
-.wl-loss {
-    color: #ff3c3c;
-    font-weight: 900;
-}
-
-.wl-container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.wl-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    padding: 6px 10px;
-    border: 1px solid #00eaff;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-    z-index: 10;
-}
-
-.wl-dropdown div {
-    display: block;
-    white-space: nowrap;
-    padding: 2px 0;
-}
-
-.elo-gold {
-    color: #fafafa;
-    font-weight: 800;
-}
-
-.player-select-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.team-player {
-    padding: 6px;
-    background: #111;
-    color: #e6e6e6;
-    border: 1px solid #00eaff;
-}
-
-.teams-toggle {
-    width: 60%;
-    margin: 20px auto;
-    display: block;
-    padding: 10px;
-    background: #00eaff;
-    color: #000;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.teams-section {
-    transition: all 0.3s ease;
-}
-
-#teamOutput {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
-#team-builder {
-    width: 90%;
-}
-
-@media (max-width: 600px) {
-    #team-builder {
-        width: 95%;
-        padding: 10px;
-    }
-
-    .teams-toggle {
-        width: 95%;
-    }
-}
-
-/* SECOND MODAL (MODE STATS) */
+/* ============================
+   MODE MODAL
+   ============================ */
 .mode-modal-box {
     width: 200px !important;
     height: auto !important;
@@ -373,6 +401,8 @@ input:checked + .small-slider:before {
     box-shadow: 0 0 20px rgba(0,255,255,0.4);
     border-radius: 6px;
 }
+
+
 
 
 

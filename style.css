@@ -1,3 +1,6 @@
+/* ============================
+   ORIGINAL CSS — UNTOUCHED
+============================ */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: #0d0d0f;
@@ -47,15 +50,33 @@ tr:hover {
     transition: 0.15s;
 }
 
+/* ============================
+   RANK + EMOJI MEDALS
+============================ */
 .rank {
     font-weight: 900;
     color: #ffffff;
+}
+
+tbody tr:nth-child(1) .rank::before { content: "🏆 "; }
+tbody tr:nth-child(2) .rank::before { content: "🥈 "; }
+tbody tr:nth-child(3) .rank::before { content: "🥉 "; }
+
+tbody tr:nth-child(1) .rank::before,
+tbody tr:nth-child(2) .rank::before,
+tbody tr:nth-child(3) .rank::before {
+    font-size: 22px;
+    text-shadow: none !important;
+    line-height: 1;
 }
 
 tr:nth-child(1) .rank { color: #ffe500; text-shadow: 0 0 10px #f1ce01; }
 tr:nth-child(2) .rank { color: #c0c0c0; text-shadow: 0 0 10px #ffffff; }
 tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
 
+/* ============================
+   PLAYER NAME
+============================ */
 .player-name {
     color: #00eaff;
     cursor: pointer;
@@ -65,6 +86,9 @@ tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
     text-shadow: 0 0 10px #00eaff;
 }
 
+/* ============================
+   TOGGLE
+============================ */
 .toggle-container {
     width: 95%;
     margin: 0 auto 20px auto;
@@ -75,19 +99,9 @@ tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
     font-size: 16px;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-}
-
-.small-switch {
-    width: 36px;
-    height: 18px;
-}
-
-.switch input {
-    display: none;
-}
+.switch { position: relative; display: inline-block; }
+.small-switch { width: 36px; height: 18px; }
+.switch input { display: none; }
 
 .slider {
     position: absolute;
@@ -98,9 +112,7 @@ tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
     transition: .3s;
 }
 
-.small-slider {
-    border-radius: 18px;
-}
+.small-slider { border-radius: 18px; }
 
 .small-slider:before {
     position: absolute;
@@ -112,21 +124,14 @@ tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
     border-radius: 50%;
 }
 
-input:checked + .small-slider {
-    background-color: #00eaff;
-}
+input:checked + .small-slider { background-color: #00eaff; }
+input:checked + .small-slider:before { transform: translateX(18px); }
 
-input:checked + .small-slider:before {
-    transform: translateX(18px);
-}
-
-.toggle-label {
-    font-weight: 600;
-}
+.toggle-label { font-weight: 600; }
 
 /* ============================
-   DROPDOWNS (HIDDEN BY DEFAULT)
-   ============================ */
+   DROPDOWNS
+============================ */
 .rank-container,
 .elo-container,
 .wl-container {
@@ -151,39 +156,25 @@ input:checked + .small-slider:before {
     z-index: 999;
 }
 
-/* Thin arrow colours */
 .arrow-up { color: limegreen; }
 .arrow-down { color: red; }
 .arrow-none { color: grey; }
 
 /* ============================
-   W/L DROPDOWN
-   ============================ */
-.wl-win {
-    color: #00ff00;
-    font-weight: 900;
-}
-
-.wl-loss {
-    color: #ff3c3c;
-    font-weight: 900;
-}
-
-.wl-dropdown div {
-    padding: 2px 0;
-}
+   W/L
+============================ */
+.wl-win { color: #00ff00; font-weight: 900; }
+.wl-loss { color: #ff3c3c; font-weight: 900; }
+.wl-dropdown div { padding: 2px 0; }
 
 /* ============================
    ELO
-   ============================ */
-.elo-gold {
-    color: #fafafa;
-    font-weight: 800;
-}
+============================ */
+.elo-gold { color: #fafafa; font-weight: 800; }
 
 /* ============================
    TEAM BUILDER
-   ============================ */
+============================ */
 .player-select-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -211,9 +202,7 @@ input:checked + .small-slider:before {
     text-align: center;
 }
 
-.teams-section {
-    transition: all 0.3s ease;
-}
+.teams-section { transition: all 0.3s ease; }
 
 #teamOutput {
     word-wrap: break-word;
@@ -221,24 +210,16 @@ input:checked + .small-slider:before {
     white-space: normal;
 }
 
-#team-builder {
-    width: 90%;
-}
+#team-builder { width: 90%; }
 
 @media (max-width: 600px) {
-    #team-builder {
-        width: 95%;
-        padding: 10px;
-    }
-
-    .teams-toggle {
-        width: 95%;
-    }
+    #team-builder { width: 95%; padding: 10px; }
+    .teams-toggle { width: 95%; }
 }
 
 /* ============================
-   MODALS
-   ============================ */
+   MODALS (GLOBAL)
+============================ */
 .modal {
     display: none;
     position: fixed;
@@ -248,6 +229,7 @@ input:checked + .small-slider:before {
     background: rgba(0,0,0,0.7);
 }
 
+/* PLAYER MODAL ONLY — KEEP THIS */
 .modal-content {
     background: #1a1a20;
     margin: 4% auto;
@@ -260,14 +242,11 @@ input:checked + .small-slider:before {
     position: relative;
 }
 
-/* Hide X button */
-#closeModal {
-    display: none !important;
-}
+#closeModal { display: none !important; }
 
 /* ============================
    CARD STYLING
-   ============================ */
+============================ */
 .container {
     width: 350px;
     height: 500px;
@@ -283,9 +262,7 @@ input:checked + .small-slider:before {
     transform-style: preserve-3d;
 }
 
-.card.flipped {
-    transform: rotateY(180deg);
-}
+.card.flipped { transform: rotateY(180deg); }
 
 .front,
 .back {
@@ -312,9 +289,7 @@ input:checked + .small-slider:before {
     position: relative;
 }
 
-.card.flipped .back {
-    opacity: 1;
-}
+.card.flipped .back { opacity: 1; }
 
 .date-box {
     position: absolute;
@@ -390,17 +365,272 @@ input:checked + .small-slider:before {
 .col3.row2 { left: 210px; top: 363px; }
 
 /* ============================
-   MODE MODAL
-   ============================ */
-.mode-modal-box {
-    width: 200px !important;
-    height: auto !important;
-    padding: 15px !important;
-    border: 2px solid #00eaff;
-    background: #1a1a20;
-    box-shadow: 0 0 20px rgba(0,255,255,0.4);
-    border-radius: 6px;
+   MODE MODAL — PROFESSIONAL CDL THEME
+============================ */
+
+#modeModal .modal-content {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
+
+/* Shield container */
+.shield-container {
+    width: 300px;
+    height: 360px;
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%) scale(0.75); /* ← add scale here */
+    transform-origin: center;                /* ← add this line */
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.25));
+}
+
+
+
+
+/* Base shield layer */
+.shield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* OUTER SHIELD — metallic cyan frame (kept) */
+.outer-shield {
+    background: linear-gradient(135deg, #00eaff, #006b8a 40%, #00eaff 100%);
+    clip-path: path('M30 10 H270 Q290 10 292 30 C300 120 300 240 270 330 Q240 360 150 358 Q60 360 30 330 C0 240 0 120 8 30 Q10 10 30 10');
+    box-shadow:
+            0 0 20px rgba(0, 255, 255, 0.45),
+            inset 0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+/* INNER SHIELD — clean black gradient */
+.inner-shield {
+    background: linear-gradient(
+            180deg,
+            #0b0b0d 0%,
+            #111216 40%,
+            #0b0b0d 100%
+    );
+    clip-path: path('M35 15 H265 Q283 15 285 33 C292 120 292 235 265 325 Q237 353 150 351 Q63 353 35 325 C8 235 8 120 15 33 Q17 15 35 15');
+    box-shadow:
+            inset 0 0 16px rgba(0, 0, 0, 0.7),
+            inset 0 0 22px rgba(0, 255, 255, 0.08);
+}
+
+/* MID SHIELD — subtle inner accent */
+.gold-shield {
+    background: linear-gradient(180deg, #101217, #181b22);
+    clip-path: path('M40 20 H260 Q276 20 278 36 C284 120 284 230 260 320 Q234 346 150 344 Q66 346 40 320 C16 230 16 120 22 36 Q24 20 40 20');
+    box-shadow:
+            inset 0 0 12px rgba(0, 0, 0, 0.5),
+            inset 0 0 16px rgba(0, 255, 255, 0.1);
+}
+
+/* Stats inside shield */
+.mode-stats {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Mode title */
+.mode-stats h2 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #00eaff;
+    text-shadow:
+            0 0 10px rgba(0, 255, 255, 0.5),
+            0 0 18px rgba(0, 255, 255, 0.25);
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+
+/* Stats text */
+.mode-stats p {
+    font-size: 18px;
+    margin: 8px 0;
+    color: #d8d8d8;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
+}
+
+/* ============================
+   MODE MODAL — INFO BOXES
+============================ */
+
+/* Title bar */
+.mode-title-box {
+    background: linear-gradient(90deg, #00eaff33, #003b4a55);
+    border: 1px solid #00eaff;
+    padding: 8px 0;
+    width: 75%;
+    margin: 0 auto 18px auto;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+}
+
+/* Stat boxes */
+.stat-box {
+    background: linear-gradient(180deg, #0f1114, #0a0b0d);
+    border: 1px solid #00eaff55;
+    padding: 6px 12px;
+    width: fit-content;
+    margin: 8px auto;
+    border-radius: 6px;
+    box-shadow:
+            0 0 10px rgba(0, 255, 255, 0.15),
+            inset 0 0 8px rgba(0, 255, 255, 0.08);
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #d8d8d8;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.25);
+}
+
+/* Circular stat value badge */
+.stat-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 18px;
+    margin-left: 10px;
+    box-shadow:
+            0 0 10px rgba(0,255,255,0.25),
+            inset 0 0 6px rgba(255,255,255,0.15);
+}
+
+/* Row layout for each stat */
+.stat-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+
+
+
+/* ============================
+   SERIES HISTORY (UNCHANGED)
+============================ */
+
+#tabs {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.nav-tab {
+    background: #15151a;
+    color: #00eaff;
+    border: 1px solid #00eaff;
+    padding: 8px 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.nav-tab:hover {
+    background: #00eaff;
+    color: #000;
+}
+
+.tab-page { display: none; }
+#leaderboardPage { display: block; }
+
+#seriesList {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.series-entry {
+    background: #15151a;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: #00eaff;
+    transition: 0.2s;
+}
+
+.series-entry:hover {
+    background: #00eaff;
+    color: #000;
+}
+
+#seriesViewer {
+    width: 95%;
+    margin: 30px auto;
+    display: none;
+}
+
+.series-back-btn {
+    background: #00eaff;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.series-scoreboard {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.series-scoreboard th {
+    background: #111;
+    color: #00eaff;
+    padding: 10px;
+    border-bottom: 2px solid #00eaff;
+}
+
+.series-scoreboard td {
+    padding: 10px;
+    border-bottom: 1px solid #222;
+}
+
+.series-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.series-mini-card {
+    background: #15151a;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+
+
+
+
+
 
 
 

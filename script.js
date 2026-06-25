@@ -88,7 +88,7 @@ function renderTable() {
         const tr = document.createElement("tr");
 
         // ===============================
-        // RANK CELL
+        // RANK ARROWS
         // ===============================
         const thickRankArrow = p.rankChange > 0 ? "▲" :
             p.rankChange < 0 ? "▼" : "—";
@@ -100,15 +100,28 @@ function renderTable() {
             p.rankChange < 0 ? `↓ ${Math.abs(p.rankChange)}` :
                 "– 0";
 
+        // ===============================
+        // UPDATED RANK CELL (MEDALS ONLY FOR 1–3)
+        // ===============================
         tr.innerHTML += `
 <td class="rank">
     <div class="rank-container">
-        <span class="rank-number">${p.currentRank}</span>
-        <span class="rank-arrow ${rankArrowClass} rank-arrow-btn">${thickRankArrow}</span>
+
+        ${
+            p.currentRank <= 3
+                ? ""
+                : `<span class="rank-number" style="margin-right:6px;">${p.currentRank}</span>`
+        }
+
+
+        <span class="rank-arrow ${rankArrowClass} rank-arrow-btn" style="margin-left:6px;">
+            ${thickRankArrow}
+        </span>
 
         <div class="rank-dropdown">
             <div class="${rankArrowClass}">${thinRankArrow}</div>
         </div>
+
     </div>
 </td>
 `;
@@ -250,7 +263,6 @@ function enableWLDrops() {
 function populateTeamDropdowns() {
     const selects = document.querySelectorAll(".team-player");
 
-    // Fill each dropdown with ONLY names (no Elo)
     selects.forEach(sel => {
         sel.innerHTML = `<option value="">-- Select Player --</option>`;
         allPlayers.forEach(p => {
@@ -258,7 +270,6 @@ function populateTeamDropdowns() {
         });
     });
 
-    // Enable duplicate‑prevention logic
     lockTeamSelections();
 }
 
@@ -272,19 +283,16 @@ function lockTeamSelections() {
     selects.forEach(sel => {
         sel.addEventListener("change", () => {
 
-            // Get all chosen player IDs
             const chosen = Array.from(selects)
                 .map(s => s.value)
                 .filter(v => v !== "");
 
-            // Update each dropdown
             selects.forEach(s => {
                 const currentValue = s.value;
 
                 Array.from(s.options).forEach(opt => {
                     if (opt.value === "") return;
 
-                    // Disable if chosen in another dropdown
                     if (chosen.includes(opt.value) && opt.value !== currentValue) {
                         opt.disabled = true;
                     } else {
@@ -295,7 +303,6 @@ function lockTeamSelections() {
         });
     });
 }
-
 
 
 // ===============================
@@ -337,16 +344,13 @@ function percentile(value, array) {
 }
 
 function computeModeRating(kdPct, wrPct, marginPct, slayerWeighted, gamesPlayed) {
-    // New weighted formula
     const weighted =
         0.6 * slayerWeighted +
         0.25 * marginPct +
         0.15 * wrPct;
 
-    // Convert 0–1 → 57–99
     let rating = Math.round(57 + weighted * 42);
 
-    // Low-games cap
     if (gamesPlayed < 5 && rating > 95) {
         rating = 95;
     }
@@ -368,47 +372,37 @@ function computeMode(prefix, p, players) {
     const marginCount = p[prefix + "MarginCount"];
     const dmgShare = p[prefix + "DamageShare"] || 0;
 
-    // Base stats
     const kd = deaths === 0 ? kills : kills / deaths;
     const wr = (wins + losses) === 0 ? 0 : wins / (wins + losses);
     const margin = marginCount === 0 ? 0 : marginTotal / marginCount;
 
-    // KD percentile
     const kdArr = players
         .filter(x => x[prefix + "Deaths"] + x[prefix + "Kills"] > 0)
         .map(x => x[prefix + "Kills"] / x[prefix + "Deaths"]);
     const kdPct = percentile(kd, kdArr);
 
-    // WR percentile
     const wrArr = players
         .filter(x => x[prefix + "Wins"] + x[prefix + "Losses"] > 0)
         .map(x => x[prefix + "Wins"] / (x[prefix + "Wins"] + x[prefix + "Losses"]));
     const wrPct = percentile(wr, wrArr);
 
-    // Margin percentile
     const marginArr = players
         .filter(x => x[prefix + "MarginCount"] > 0)
         .map(x => x[prefix + "MarginTotal"] / x[prefix + "MarginCount"]);
     const marginPct = percentile(margin, marginArr);
 
-    // Damage share percentile
     const dmgArr = players
         .filter(x => x[prefix + "DamageShare"] > 0)
         .map(x => x[prefix + "DamageShare"]);
     const dmgPct = percentile(dmgShare, dmgArr);
 
-    // Slayer metric
     const slayerWeighted = 0.7 * dmgPct + 0.3 * kdPct;
 
-    // Slayer mapped to 57–99 (for display only)
     const slayerRating = Math.round(57 + slayerWeighted * 42);
 
-
-    // Final rating
     const gamesPlayed = wins + losses;
     const rating = computeModeRating(kdPct, wrPct, marginPct, slayerWeighted, gamesPlayed);
 
-    // DEBUG: log for a specific player + mode
     if (p.name === "AKEEB" && prefix === "snd") {
         console.log("=== DEBUG AKEEB SND ===");
         console.log("Kills:", kills, "Deaths:", deaths);
@@ -425,7 +419,6 @@ function computeMode(prefix, p, players) {
         console.log("Rating:", rating);
         console.log("=======================");
     }
-
 
     return {
         kd,
@@ -482,7 +475,6 @@ function enableModal(players) {
             setRatingColor(sndEl, snd.rating);
             sndEl.textContent = snd.rating;
 
-            // Mode stats modal triggers
             hpEl.onclick = () => openModeModal("Hardpoint", hp);
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
@@ -495,11 +487,11 @@ function enableModal(players) {
         });
     });
 
-    // FIXED: independent close handler
     document.addEventListener("click", e => {
         if (e.target === modal) modal.style.display = "none";
     });
 }
+
 
 /* ---------------------------
    MODE STATS MODAL
@@ -508,61 +500,88 @@ function enableModal(players) {
 function openModeModal(modeName, modeStats) {
     const modal = document.getElementById("modeModal");
 
-    document.getElementById("modeTitle").textContent = modeName;
+    // Target shield + stats area
+    const shieldContainer = modal.querySelector(".shield-container");
+    const modalBox = shieldContainer.querySelector(".mode-stats");
 
-    // K/D
-    const kdEl = document.getElementById("modeKD");
-    kdEl.textContent = "K/D: " + modeStats.kd.toFixed(2);
-    setKDColor(kdEl, modeStats.kd);
-
-    // Margin (converted)
+    // Convert margin based on mode
     let convertedMargin = modeStats.margin;
-
     if (modeName === "Hardpoint") convertedMargin *= 250;
     if (modeName === "Overload") convertedMargin *= 8;
     if (modeName === "Search & Destroy") convertedMargin *= 6;
 
-    const marginEl = document.getElementById("modeMargin");
-    marginEl.textContent = "AvgM: " + convertedMargin.toFixed(2);
-    setMarginColor(marginEl, convertedMargin);
-
-    //Slayer Score (57-99)
+    const kd = modeStats.kd;
     const slayerScore = modeStats.slayerRating;
 
-    console.log("=== MODE MODAL DEBUG ===");
-    console.log("Mode:", modeName);
-    console.log("KD:", modeStats.kd);
-    console.log("Margin:", modeStats.margin);
-    console.log("SlayerWeighted:", modeStats.slayerWeighted);
-    console.log("SlayerScore (displayed):", slayerScore);
-    console.log("========================");
+    // NEW: structured layout with title + stat boxes + circular badges
+    modalBox.innerHTML = `
+    <div class="mode-title-box">
+        <h2 id="modeTitle">${modeName}</h2>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-row">
+            <span class="stat-label">K/D</span>
+            <span class="stat-value" id="modeKD">${kd.toFixed(2)}</span>
+        </div>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-row">
+            <span class="stat-label">AvgM</span>
+            <span class="stat-value" id="modeMargin">${convertedMargin.toFixed(2)}</span>
+        </div>
+    </div>
+
+    <div class="stat-box">
+        <div class="stat-row">
+            <span class="stat-label">Slayer</span>
+            <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
+        </div>
+    </div>
+`;
 
 
-    let slayerEl = document.getElementById("modeSlayer");
-    if (!slayerEl) {
-        slayerEl = document.createElement("p");
-        slayerEl.id = "modeSlayer";
-        slayerEl.style.fontSize = "20px";
-        slayerEl.style.fontWeight = "700";
-        slayerEl.style.textAlign = "center";
-        modal.querySelector(".modal-content").appendChild(slayerEl);
+    // Apply KD colour
+    const kdEl = document.getElementById("modeKD");
+    setKDColor(kdEl, kd);
+
+    // Apply Margin colour
+    const marginEl = document.getElementById("modeMargin");
+    setMarginColor(marginEl, convertedMargin);
+
+    // Slayer colour logic
+    const slayerEl = document.getElementById("modeSlayer");
+
+    if (slayerScore < 40) {
+        slayerEl.style.color = "#FF4444";
+        slayerEl.style.borderColor = "#FF4444";
+    }
+    else if (slayerScore < 60) {
+        slayerEl.style.color = "white";
+        slayerEl.style.borderColor = "white";
+    }
+    else if (slayerScore < 80) {
+        slayerEl.style.color = "#FFE066";
+        slayerEl.style.borderColor = "#FFE066";
+    }
+    else if (slayerScore < 98) {
+        slayerEl.style.color = "#00FF66";
+        slayerEl.style.borderColor = "#00FF66";
+    }
+    else if (slayerScore === 99) {
+        slayerEl.style.color = "#7A00C8";
+        slayerEl.style.borderColor = "#7A00C8";
     }
 
-    slayerEl.textContent = "Slayer: " + slayerScore;
-
-    // Slayer color coding
-    if (slayerScore < 40) slayerEl.style.color = "#FF4444";
-    else if (slayerScore < 60) slayerEl.style.color = "white";
-    else if (slayerScore < 80) slayerEl.style.color = "#FFE066";
-    else slayerEl.style.color = "#00FF66";
-
+    // Show modal
     modal.style.display = "block";
 
+    // Close when clicking outside
     document.addEventListener("click", e => {
         if (e.target === modal) modal.style.display = "none";
     });
 }
-
 
 /* ---------------------------
    COLOR HELPERS
@@ -599,6 +618,7 @@ function setKDColor(el, kd) {
 function setMarginColor(el, margin) {
     el.style.color = margin < 0 ? "#FF4444" : "#00FF66";
 }
+
 
 /* ---------------------------
    TEAM BUILDER
@@ -686,6 +706,218 @@ document.getElementById("generateTeams").addEventListener("click", () => {
 
     alert(out);
 });
+
+
+// ======================================================
+// TABS + SERIES HISTORY (ADDED BELOW YOUR ORIGINAL CODE)
+// ======================================================
+
+
+// ---------------------------
+// TAB SYSTEM
+// ---------------------------
+function initTabs() {
+    const tabs = document.querySelectorAll(".nav-tab");
+    const pages = document.querySelectorAll(".tab-page");
+    const title = document.getElementById("pageTitle");
+
+    tabs.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = btn.dataset.tab;
+
+            // Show correct page
+            pages.forEach(p => {
+                p.style.display = (p.id === target) ? "block" : "none";
+            });
+
+            // Update title text
+            if (target === "leaderboardPage") title.textContent = "LEADERBOARD";
+            if (target === "teamsPage") title.textContent = "TEAMS";
+            if (target === "seriesHistoryPage") title.textContent = "9 MAPS";
+        });
+    });
+}
+
+
+
+// ---------------------------
+// SERIES CONFIG
+// ---------------------------
+const seriesIndex = [
+    {
+        id: 1,
+        file: "series_1.json"
+    }
+];
+
+
+// ---------------------------
+// SERIES LIST RENDER
+// ---------------------------
+function renderSeriesList() {
+    const listEl = document.getElementById("seriesList");
+    const viewerEl = document.getElementById("seriesViewer");
+
+    listEl.innerHTML = "";
+    viewerEl.style.display = "none";
+
+    seriesIndex.forEach(s => {
+        fetch(s.file)
+            .then(r => r.json())
+            .then(data => {
+                const series = data.seriesList.find(x => x.seriesId === s.id);
+
+                const div = document.createElement("div");
+                div.className = "series-entry";
+
+                // Show team names instead of "Series 1"
+                div.textContent = `${series.teamAName} vs ${series.teamBName}`;
+
+                div.addEventListener("click", () => loadSeries(s));
+                listEl.appendChild(div);
+            });
+    });
+}
+
+
+// ---------------------------
+// LOAD ONE SERIES
+// ---------------------------
+function loadSeries(seriesMeta) {
+    fetch(seriesMeta.file)
+        .then(r => r.json())
+        .then(data => {
+            const series = data.seriesList.find(x => x.seriesId === seriesMeta.id);
+            renderSeriesViewer(series);
+        })
+        .catch(err => console.error("Error loading series:", err));
+}
+
+
+// ---------------------------
+// RENDER SERIES VIEWER
+// ---------------------------
+function renderSeriesViewer(series) {
+    const viewerEl = document.getElementById("seriesViewer");
+    viewerEl.style.display = "block";
+    viewerEl.innerHTML = "";
+
+    // Back button
+    const backBtn = document.createElement("button");
+    backBtn.className = "series-back-btn";
+    backBtn.textContent = "← Back to Series List";
+    backBtn.addEventListener("click", renderSeriesList);
+    viewerEl.appendChild(backBtn);
+
+    // Title with final score
+    const title = document.createElement("h2");
+    title.textContent = `${series.teamAName} vs ${series.teamBName} — ${series.finalScore}`;
+    viewerEl.appendChild(title);
+
+    // MVP badge
+    const mvp = document.createElement("p");
+    mvp.style.fontSize = "18px";
+    mvp.style.fontWeight = "700";
+    mvp.style.color = "#00eaff";
+    mvp.innerHTML = `MVP: <span style="color:#FFD700;">⭐ ${series.mvpPlayerName}</span>`;
+    viewerEl.appendChild(mvp);
+
+    // Remove players who did not play
+    const played = series.leaderboard.filter(p => !(p.kills === 0 && p.deaths === 0));
+
+    // Split into Team A and Team B using JSON field
+    const teamAPlayers = played.filter(p => p.team === "A");
+    const teamBPlayers = played.filter(p => p.team === "B");
+
+    // ---------------------------
+    // TEAM A TABLE
+    // ---------------------------
+    const tableA = document.createElement("table");
+    tableA.className = "series-scoreboard";
+    tableA.innerHTML = `
+        <thead>
+            <tr><th colspan="6" style="color:#00eaff;">${series.teamAName}</th></tr>
+            <tr>
+                <th>Player</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>K/D</th>
+                <th>Damage</th>
+                <th>MVP Score</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    `;
+    const tbodyA = tableA.querySelector("tbody");
+
+    teamAPlayers.forEach(p => {
+        const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
+        const isMVP = p.playerId === series.mvpPlayerId;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${isMVP ? "⭐ " : ""}${p.playerName}</td>
+            <td>${p.kills}</td>
+            <td>${p.deaths}</td>
+            <td>${kd}</td>
+            <td>${p.damage.toLocaleString()}</td>
+            <td>${p.mvpScore.toFixed(2)}</td>
+        `;
+        tbodyA.appendChild(tr);
+    });
+
+    viewerEl.appendChild(tableA);
+
+    // ---------------------------
+    // TEAM B TABLE
+    // ---------------------------
+    const tableB = document.createElement("table");
+    tableB.className = "series-scoreboard";
+    tableB.innerHTML = `
+        <thead>
+            <tr><th colspan="6" style="color:#00eaff;">${series.teamBName}</th></tr>
+            <tr>
+                <th>Player</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>K/D</th>
+                <th>Damage</th>
+                <th>MVP Score</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    `;
+    const tbodyB = tableB.querySelector("tbody");
+
+    teamBPlayers.forEach(p => {
+        const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
+        const isMVP = p.playerId === series.mvpPlayerId;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${isMVP ? "⭐ " : ""}${p.playerName}</td>
+            <td>${p.kills}</td>
+            <td>${p.deaths}</td>
+            <td>${kd}</td>
+            <td>${p.damage.toLocaleString()}</td>
+            <td>${p.mvpScore.toFixed(2)}</td>
+        `;
+        tbodyB.appendChild(tr);
+    });
+
+    viewerEl.appendChild(tableB);
+}
+
+
+// ---------------------------
+// INITIALISE TABS + SERIES
+// ---------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    initTabs();
+    renderSeriesList();
+});
+
+
 
 
 

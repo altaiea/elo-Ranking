@@ -9,89 +9,98 @@
     <link rel="preload" href="CDLcardUse.png" as="image">
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* 🔥 Ensures ALL dropdowns are hidden on page load */
-        .rank-dropdown,
-        .elo-dropdown,
-        .wl-dropdown {
-            display: none;
-            position: absolute;
-            background: #15151a;
-            padding: 6px 10px;
-            border: 1px solid #222;
-            box-shadow: 0 0 10px rgba(0,0,0,0.4);
-            border-radius: 4px;
-            margin-top: 4px;
-            white-space: nowrap;
-            z-index: 999;
-        }
-
-        /* So dropdowns don't break table layout */
-        .rank-container,
-        .elo-container,
-        .wl-container {
-            position: relative;
-        }
-    </style>
 </head>
 
 <body>
 
-<h1>RANKINGS</h1>
+<h1 id="pageTitle">RANKINGS</h1>
 
-<div class="toggle-container">
-    <label class="switch small-switch">
-        <input type="checkbox" id="toggleInactive">
-        <span class="slider small-slider"></span>
-    </label>
-    <span class="toggle-label">Show Inactive Players</span>
+<!-- ============================
+     TAB BAR
+============================ -->
+<div id="tabs">
+    <button class="nav-tab" data-tab="leaderboardPage">Leaderboard</button>
+    <button class="nav-tab" data-tab="teamsPage">Teams</button>
+    <button class="nav-tab" data-tab="seriesHistoryPage">History</button>
 </div>
 
-<table id="leaderboard">
-    <thead>
-    <tr>
-        <th>Rank</th>
-        <th>Player</th>
-        <th>Elo</th>
-        <th>W/L</th>
-        <th>TOTAL K/D</th>
-    </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-</table>
+<!-- ============================
+     LEADERBOARD TAB
+============================ -->
+<div id="leaderboardPage" class="tab-page">
 
-<h2 style="text-align:center; margin-top:40px;">Teams</h2>
-<button id="toggleTeams" class="teams-toggle">Show Team Builder ▼</button>
-
-<div id="teamsSection" class="teams-section" style="display:none;">
-    <div id="team-builder" style="width:95%; margin:0 auto; background:#15151a; padding:20px; border:1px solid #222; box-shadow:0 0 25px rgba(0,255,255,0.08);">
-        <p>Select 8 players:</p>
-
-        <div class="player-select-grid">
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-            <select class="team-player"></select>
-        </div>
-
-        <button id="generateTeams" style="margin-top:20px; padding:10px 20px; cursor:pointer;">
-            Generate Balanced Teams
-        </button>
-
-        <div id="teamOutput" style="margin-top:20px; font-size:16px;"></div>
+    <div class="toggle-container">
+        <label class="switch small-switch">
+            <input type="checkbox" id="toggleInactive">
+            <span class="slider small-slider"></span>
+        </label>
+        <span class="toggle-label">Show Inactive Players</span>
     </div>
+
+    <table id="leaderboard">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Elo</th>
+            <th>W/L</th>
+            <th>Total K/D</th>
+        </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
 </div>
 
-<!-- MAIN PLAYER MODAL -->
+<!-- ============================
+     TEAMS TAB
+============================ -->
+<div id="teamsPage" class="tab-page">
+
+    <button id="toggleTeams" class="teams-toggle">Show Team Builder ▼</button>
+
+    <div id="teamsSection" class="teams-section">
+        <div id="team-builder">
+            <p>Select 8 players:</p>
+
+            <div class="player-select-grid">
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+                <select class="team-player"></select>
+            </div>
+
+            <button id="generateTeams" class="generate-teams-btn">
+                Generate Balanced Teams
+            </button>
+
+            <div id="teamOutput"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================
+     SERIES HISTORY TAB
+============================ -->
+<div id="seriesHistoryPage" class="tab-page">
+
+    <div id="seriesList"></div>
+    <div id="seriesViewer" class="series-viewer"></div>
+
+</div>
+
+<!-- ============================
+     MAIN PLAYER MODAL
+============================ -->
 <div id="playerModal" class="modal">
     <div class="modal-content">
 
-        <span id="closeModal" class="close">&times;</span>
+        <span id="closeModal" class="close"></span>
 
         <div class="card-contents-wrapper">
             <div class="container">
@@ -124,19 +133,33 @@
     </div>
 </div>
 
-<!-- SECOND MODAL: MODE STATS -->
+<!-- ============================
+     MODE STATS MODAL (UPDATED)
+============================ -->
 <div id="modeModal" class="modal">
-    <div class="modal-content mode-modal-box">
-        <h2 id="modeTitle" style="text-align:center; margin-bottom:15px;"></h2>
+    <div class="shield-container">
 
-        <p id="modeKD" style="font-size:20px; font-weight:700; text-align:center;"></p>
-        <p id="modeMargin" style="font-size:20px; font-weight:700; text-align:center;"></p>
+        <div class="shield outer-shield"></div>
+        <div class="shield inner-shield"></div>
+        <div class="shield gold-shield"></div>
+
+        <div class="mode-stats">
+            <h2 id="modeTitle"></h2>
+            <p id="modeKD"></p>
+            <p id="modeMargin"></p>
+            <p id="modeSlayer"></p>
+        </div>
+
     </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 

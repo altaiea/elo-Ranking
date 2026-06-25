@@ -1,0 +1,149 @@
+{
+  "seriesList": [
+    {
+      "seriesId": 1,
+      "teamAName": "NAGI",
+      "teamBName": "AKEEB",
+      "finalScore": "5-0",
+      "winningTeam": 1,
+      "mvpPlayerId": 5,
+      "mvpPlayerName": "NAGI",
+      "leaderboard": [
+        {
+          "playerId": 2,
+          "playerName": "KAZZI",
+          "team": "A",
+          "kills": 161,
+          "deaths": 77,
+          "damage": 16100.0,
+          "damageShare": 0.1684100418410042,
+          "mvpScore": 1.7672789022972288
+        },
+        {
+          "playerId": 5,
+          "playerName": "NAGI",
+          "team": "A",
+          "kills": 158,
+          "deaths": 81,
+          "damage": 15800.0,
+          "damageShare": 0.16527196652719664,
+          "mvpScore": 1.8719024172577277
+        },
+        {
+          "playerId": 9,
+          "playerName": "PARVEZ",
+          "team": "A",
+          "kills": 130,
+          "deaths": 80,
+          "damage": 13000.0,
+          "damageShare": 0.13598326359832635,
+          "mvpScore": 1.3365711621024063
+        },
+        {
+          "playerId": 1,
+          "playerName": "OBEY",
+          "team": "B",
+          "kills": 129,
+          "deaths": 97,
+          "damage": 12900.0,
+          "damageShare": 0.13493723849372385,
+          "mvpScore": 1.3899329661133353
+        },
+        {
+          "playerId": 8,
+          "playerName": "SUBŽERO",
+          "team": "B",
+          "kills": 107,
+          "deaths": 104,
+          "damage": 10700.0,
+          "damageShare": 0.11192468619246862,
+          "mvpScore": 0.8410433650294155
+        },
+        {
+          "playerId": 6,
+          "playerName": "AKEEB",
+          "team": "B",
+          "kills": 95,
+          "deaths": 92,
+          "damage": 9500.0,
+          "damageShare": 0.09937238493723849,
+          "mvpScore": 0.8934514725177088
+        },
+        {
+          "playerId": 12,
+          "playerName": "NABEEL",
+          "team": "B",
+          "kills": 89,
+          "deaths": 100,
+          "damage": 8900.0,
+          "damageShare": 0.09309623430962342,
+          "mvpScore": 0.8620716395692742
+        },
+        {
+          "playerId": 11,
+          "playerName": "TOJI",
+          "team": "A",
+          "kills": 87,
+          "deaths": 75,
+          "damage": 8700.0,
+          "damageShare": 0.09100418410041841,
+          "mvpScore": 1.0377480751129033
+        },
+        {
+          "playerId": 3,
+          "playerName": "SYMBRR",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        },
+        {
+          "playerId": 4,
+          "playerName": "EES",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        },
+        {
+          "playerId": 7,
+          "playerName": "USMAAN",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        },
+        {
+          "playerId": 10,
+          "playerName": "HAZZA",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        },
+        {
+          "playerId": 13,
+          "playerName": "SAFY",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        },
+        {
+          "playerId": 14,
+          "playerName": "Unknown_14",
+          "kills": 0,
+          "deaths": 0,
+          "damage": 0.0,
+          "damageShare": 0.0,
+          "mvpScore": 0.0
+        }
+      ]
+    }
+  ]
+}

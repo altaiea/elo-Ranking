@@ -52,6 +52,10 @@ function mergeStats(prevPlayersObj, currPlayersObj) {
     renderTable();
     setupToggle();
     populateTeamDropdowns();
+
+    populateAutoDropdowns();
+    populateManualDropdowns();
+
 }
 
 
@@ -621,7 +625,7 @@ function setMarginColor(el, margin) {
 
 
 /* ---------------------------
-   TEAM BUILDER
+   TEAM BUILDER (AUTO)
 ---------------------------- */
 
 document.getElementById("toggleTeams").addEventListener("click", () => {
@@ -633,6 +637,18 @@ document.getElementById("toggleTeams").addEventListener("click", () => {
     sec.style.display = isOpen ? "none" : "block";
     btn.textContent = isOpen ? "Show Team Builder ▼" : "Hide Team Builder ▲";
 });
+
+// Populate AUTO team builder dropdowns
+function populateAutoDropdowns() {
+    const selects = document.querySelectorAll(".team-player");
+    selects.forEach(sel => {
+        sel.innerHTML = `<option value="">Select Player</option>`;
+        allPlayers.forEach(p => {
+            sel.innerHTML += `<option value="${p.id}">${p.name}</option>`;
+        });
+    });
+}
+populateAutoDropdowns();
 
 document.getElementById("generateTeams").addEventListener("click", () => {
     const selects = document.querySelectorAll(".team-player");
@@ -705,6 +721,91 @@ document.getElementById("generateTeams").addEventListener("click", () => {
         "==============================";
 
     alert(out);
+});
+
+
+/* ---------------------------
+   MANUAL TEAM BUILDER
+---------------------------- */
+
+// Populate MANUAL team builder dropdowns
+function populateManualDropdowns() {
+    const selects = document.querySelectorAll(".manual-select");
+    selects.forEach(sel => {
+        sel.innerHTML = `<option value="">Select Player</option>`;
+        allPlayers.forEach(p => {
+            sel.innerHTML += `<option value="${p.id}">${p.name}</option>`;
+        });
+    });
+}
+populateManualDropdowns();
+
+// Show simulate button when all 8 players selected
+function checkManualReady() {
+    const teamA = [...document.querySelectorAll(".manualA")].map(s => s.value).filter(v => v);
+    const teamB = [...document.querySelectorAll(".manualB")].map(s => s.value).filter(v => v);
+
+    if (teamA.length === 4 && teamB.length === 4) {
+        document.getElementById("simulateMatchBtn").style.display = "inline-block";
+    }
+}
+document.querySelectorAll(".manual-select").forEach(sel => {
+    sel.addEventListener("change", checkManualReady);
+});
+
+// SIMULATE MATCH (FULL OUTPUT FORMAT)
+document.getElementById("simulateMatchBtn").addEventListener("click", () => {
+
+    const teamAIds = [...document.querySelectorAll(".manualA")].map(s => Number(s.value));
+    const teamBIds = [...document.querySelectorAll(".manualB")].map(s => Number(s.value));
+
+    const teamA = teamAIds.map(id => allPlayers.find(p => p.id === id));
+    const teamB = teamBIds.map(id => allPlayers.find(p => p.id === id));
+
+    const eloA = teamA.reduce((s, p) => s + p.elo, 0);
+    const eloB = teamB.reduce((s, p) => s + p.elo, 0);
+
+    const probA = 1 / (1 + Math.pow(10, (eloB - eloA) / 400));
+    const probB = 1 - probA;
+
+    const K = 20;
+
+    const baseA_win = K * (1 - probA);
+    const baseA_loss = -baseA_win;
+
+    const baseB_win = K * (1 - probB);
+    const baseB_loss = -baseB_win;
+
+    const out =
+        `==============================
+     MATCH SIMULATION
+==============================
+
+------------ TEAM A ------------
+${teamA.map(p => " • " + p.name).join("\n")}
+
+------------ TEAM B ------------
+${teamB.map(p => " • " + p.name).join("\n")}
+==============================
+
+ Team A ELO: ${eloA.toFixed(2)}
+ Team B ELO: ${eloB.toFixed(2)}
+
+------ WIN PROBABILITY ------
+ Team A: ${(probA * 100).toFixed(1)}%
+ Team B: ${(probB * 100).toFixed(1)}%
+
+------ BASE ELO (IF TEAM A WINS) ------
+ Team A gain: +${baseA_win.toFixed(2)}
+ Team B loss: -${Math.abs(baseA_loss).toFixed(2)}
+
+------ BASE ELO (IF TEAM B WINS) ------
+ Team B gain: +${baseB_win.toFixed(2)}
+ Team A loss: -${Math.abs(baseB_loss).toFixed(2)}
+==============================`;
+
+
+    document.getElementById("simulationOutput").textContent = out;
 });
 
 

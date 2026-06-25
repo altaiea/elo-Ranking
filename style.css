@@ -1,5 +1,5 @@
 /* ============================
-   ORIGINAL CSS — UNTOUCHED
+   ORIGINAL CSS
 ============================ */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -186,6 +186,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     background: #111;
     color: #e6e6e6;
     border: 1px solid #00eaff;
+    width: 100%;
 }
 
 .teams-toggle {
@@ -210,12 +211,65 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     white-space: normal;
 }
 
-#team-builder { width: 90%; }
-
-@media (max-width: 600px) {
-    #team-builder { width: 95%; padding: 10px; }
-    .teams-toggle { width: 95%; }
+/* unified wrapper */
+#team-builder-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
+
+.generate-teams-btn {
+    width: fit-content;     /* button only as wide as text */
+    padding: 8px 14px;      /* tighter, cleaner */
+    background: #00eaff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-block;  /* allows left alignment */
+}
+
+
+/* ============================
+   MANUAL TEAM BUILDER
+============================ */
+.manual-select {
+    all: unset;
+    box-sizing: border-box; /* ← FIXES overflow */
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    background: #111;
+    border: 1px solid #00eaff;
+    border-radius: 1px;
+    color: #e6e6e6;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+}
+
+
+.manual-select:hover,
+.manual-select:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00eaff;
+}
+
+.manual-select::after {
+    content: "▼";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00eaff;
+    pointer-events: none;
+}
+
 
 /* ============================
    MODALS (GLOBAL)
@@ -626,6 +680,62 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     padding: 12px;
 }
 
+/* Manual Team Builder Styling */
+.team-builder-section {
+    margin-top: 40px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+}
+
+
+.teams-subtitle {
+    color: #00eaff;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px #00eaff;
+}
+
+.manual-team-block {
+    margin-bottom: 25px;
+}
+
+.team-label {
+    color: #00eaff;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+/* Match your existing dropdown theme */
+.themed-select {
+    background: #0a0f14;
+    border: 1px solid #00eaff;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+.themed-select:hover,
+.themed-select:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00eaff;
+}
+
+/* Output boxes */
+.teams-output {
+    background: #0a0f14;
+    border: 1px solid #00eaff;
+    padding: 15px;
+    margin-top: 15px;
+    white-space: pre-wrap;
+    border-radius: 8px;
+    color: #e0faff;
+    font-family: monospace;
+}
 
 
 

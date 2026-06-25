@@ -60,29 +60,80 @@
     <button id="toggleTeams" class="teams-toggle">Show Team Builder ▼</button>
 
     <div id="teamsSection" class="teams-section">
-        <div id="team-builder">
-            <p>Select 8 players:</p>
 
-            <div class="player-select-grid">
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
-                <select class="team-player"></select>
+        <div id="team-builder-wrapper">
+
+            <!-- ============================
+                 AUTO TEAM BUILDER
+            ============================= -->
+            <div id="team-builder">
+                <p>Select 8 players:</p>
+
+                <div class="player-select-grid">
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                    <select class="team-player"></select>
+                </div>
+
+                <button id="generateTeams" class="generate-teams-btn">
+                    Generate Balanced Teams
+                </button>
+
+                <div id="teamOutput"></div>
             </div>
 
-            <button id="generateTeams" class="generate-teams-btn">
-                Generate Balanced Teams
-            </button>
 
-            <div id="teamOutput"></div>
+            <!-- ============================
+                 MANUAL TEAM BUILDER
+            ============================= -->
+            <div id="manual-team-builder" class="team-builder-section">
+
+                <!-- REMOVED TITLE -->
+
+                <!-- TEAM A -->
+                <div class="manual-team-block">
+                    <h4 class="team-label">Team A</h4>
+                    <div class="player-select-grid">
+                        <select class="manualA manual-select"></select>
+                        <select class="manualA manual-select"></select>
+                        <select class="manualA manual-select"></select>
+                        <select class="manualA manual-select"></select>
+                    </div>
+                </div>
+
+                <!-- TEAM B -->
+                <div class="manual-team-block">
+                    <h4 class="team-label">Team B</h4>
+                    <div class="player-select-grid">
+                        <select class="manualB manual-select"></select>
+                        <select class="manualB manual-select"></select>
+                        <select class="manualB manual-select"></select>
+                        <select class="manualB manual-select"></select>
+                    </div>
+                </div>
+
+                <!-- REMOVED CALCULATE MANUAL TEAMS BUTTON -->
+                <!-- REMOVED manualOutput -->
+
+                <button id="simulateMatchBtn" class="generate-teams-btn" style="display:none;">
+                    Simulate Match
+                </button>
+
+                <pre id="simulationOutput" class="teams-output"></pre>
+
+            </div>
+
         </div>
+
     </div>
 
 </div>
+
 
 <!-- ============================
      SERIES HISTORY TAB
@@ -156,6 +207,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

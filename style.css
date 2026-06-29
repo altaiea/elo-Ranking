@@ -286,8 +286,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER MODAL ONLY — KEEP THIS */
 .modal-content {
     background: #1a1a20;
-    margin: 4% auto;
-    padding: 20px;
+    margin: 10% auto;
+    padding: 2px;
     width: 350px;
     height: 500px;
     border: 2px solid #00eaff;
@@ -347,18 +347,17 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 .date-box {
     position: absolute;
-    top: 115px;
-    left: 64px;
     height: 75px;
-    width: 40px;
+    width: 41px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .date-box .rating {
-    font-size: 35px;
-    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 900;
 }
 
 .name-box {
@@ -398,7 +397,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: 0px solid rgb(184 161 8 / 0.56);
     background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(3px);
     font-size: 20px;
@@ -410,9 +409,9 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     overflow: hidden;
 }
 
-.col1.row1 { left: 69px; top: 308px; }
-.col2.row1 { left: 150px; top: 315px; }
-.col3.row1 { left: 230px; top: 308px; }
+.col1.row1 { left: 35px; top: 347px; }
+.col2.row1 { left: 153px; top: 347px; }
+.col3.row1 { left: 270px; top: 347px; }
 
 .col1.row2 { left: 50px; top: 363px; }
 .col2.row2 { left: 130px; top: 374px; }
@@ -736,6 +735,29 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     color: #e0faff;
     font-family: monospace;
 }
+
+.codletic-article {
+    width: 90%;
+    margin: 0 auto;
+    background: #15151a;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.15);
+}
+
+.codletic-article h2 {
+    color: #00eaff;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0,255,255,0.4);
+}
+
+.codletic-article p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e6e6e6;
+}
+
 
 
 

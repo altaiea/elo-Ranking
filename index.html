@@ -22,6 +22,9 @@
     <button class="nav-tab" data-tab="leaderboardPage">Leaderboard</button>
     <button class="nav-tab" data-tab="teamsPage">Teams</button>
     <button class="nav-tab" data-tab="seriesHistoryPage">History</button>
+
+    <!--  NEW CODLETIC TAB BUTTON -->
+    <button class="nav-tab" data-tab="codleticPage">Codletic</button>
 </div>
 
 <!-- ============================
@@ -93,8 +96,6 @@
             ============================= -->
             <div id="manual-team-builder" class="team-builder-section">
 
-                <!-- REMOVED TITLE -->
-
                 <!-- TEAM A -->
                 <div class="manual-team-block">
                     <h4 class="team-label">Team A</h4>
@@ -116,9 +117,6 @@
                         <select class="manualB manual-select"></select>
                     </div>
                 </div>
-
-                <!-- REMOVED CALCULATE MANUAL TEAMS BUTTON -->
-                <!-- REMOVED manualOutput -->
 
                 <button id="simulateMatchBtn" class="generate-teams-btn" style="display:none;">
                     Simulate Match
@@ -146,6 +144,17 @@
 </div>
 
 <!-- ============================
+      NEW CODLETIC TAB PAGE
+============================ -->
+<div id="codleticPage" class="tab-page">
+    <article class="codletic-article">
+        <h2>Codletic</h2>
+        <p>
+            Article Pending.
+        </p>
+    </article>
+</div>
+<!-- ============================
      MAIN PLAYER MODAL
 ============================ -->
 <div id="playerModal" class="modal">
@@ -156,24 +165,34 @@
         <div class="card-contents-wrapper">
             <div class="container">
                 <div class="card">
+
+                    <!-- FRONT ALWAYS WINGS -->
                     <div class="front"></div>
 
+                    <!-- BACK CARD + 11 LAYERS -->
                     <div class="back">
+
+                        <!-- 11 optional PNG layers -->
+                        <img class="card-layer layer1">
+                        <img class="card-layer layer2">
+                        <img class="card-layer layer3">
+                        <img class="card-layer layer4">
+                        <img class="card-layer layer5">
+                        <img class="card-layer layer6">
+                        <img class="card-layer layer7">
+                        <img class="card-layer layer8">
+                        <img class="card-layer layer9">
+                        <img class="card-layer layer10">
+                        <img class="card-layer layer11">
+
+                        <!-- 3 rating circles ONLY -->
                         <span class="col1 row1 circle-row1"></span>
-                        <span class="col1 row2">HP</span>
-
                         <span class="col2 row1 circle-row1"></span>
-                        <span class="col2 row2">OVL</span>
-
                         <span class="col3 row1 circle-row1"></span>
-                        <span class="col3 row2">SND</span>
 
+                        <!-- OVERALL RATING ONLY -->
                         <div class="date-box">
                             <div class="rating"></div>
-                        </div>
-
-                        <div class="name-box">
-                            <div class="name"></div>
                         </div>
 
                     </div>
@@ -185,7 +204,7 @@
 </div>
 
 <!-- ============================
-     MODE STATS MODAL (UPDATED)
+     MODE STATS MODAL
 ============================ -->
 <div id="modeModal" class="modal">
     <div class="shield-container">
@@ -207,6 +226,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

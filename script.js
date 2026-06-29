@@ -327,7 +327,7 @@ function getPlayerName(id) {
         11: "TOJI",
         12: "NABEEL",
         13: "SAFY",
-        14: "MASEEH"
+        14: "Unknown_14"
     };
     return names[id] || "Player " + id;
 }
@@ -439,11 +439,29 @@ function computeMode(prefix, p, players) {
         slayerRating
     };
 }
-
-
 /* ---------------------------
    MAIN PLAYER MODAL
 ---------------------------- */
+
+// ===============================
+// CUSTOM BACK CARDS PER PLAYER
+// ===============================
+const customBackCards = {
+    1: "cards/1_back.png",
+    2: "cards/2_back.png",
+    3: "cards/3_back.png",
+    4: "cards/4_back.png",
+    5: "cards/5_back.png",
+    6: "cards/6_back.png",
+    7: "cards/7_back.png",
+    8: "cards/8_back.png",
+    9: "cards/9_back.png",
+    10: "cards/10_back.png",
+    11: "cards/11_back.png",
+    12: "cards/12_back.png",
+    13: "cards/13_back.png",
+    14: "cards/14_back.png"
+};
 
 function enableModal(players) {
     const modal = document.getElementById("playerModal");
@@ -460,12 +478,33 @@ function enableModal(players) {
 
             const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
 
+            // ===============================
+            // OVERALL RATING ONLY
+            // ===============================
             const ratingEl = document.querySelector(".rating");
             ratingEl.textContent = avg;
             setRatingColor(ratingEl, avg);
 
-            document.querySelector(".name").textContent = p.name;
+            // ===============================
+            // DATE-BOX RIGHT-SIDE EXCEPTIONS
+            // ===============================
+            const dateBox = document.querySelector(".date-box");
+            const dateBoxRightSide = [1, 11]; // IDs that need right-side placement
 
+            if (dateBoxRightSide.includes(p.id)) {
+                dateBox.style.left = "auto";
+                dateBox.style.right = "40px";
+                dateBox.style.top = "28px";
+            } else {
+                dateBox.style.right = "auto";
+                dateBox.style.left = "36px";
+                dateBox.style.top = "28px";
+            }
+
+
+            // ===============================
+            // 3 RATING CIRCLES ONLY
+            // ===============================
             const hpEl = document.querySelector(".col1.row1");
             const ovlEl = document.querySelector(".col2.row1");
             const sndEl = document.querySelector(".col3.row1");
@@ -483,6 +522,20 @@ function enableModal(players) {
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
+            // ===============================
+            // SET BACK CARD PNG  ★ NEW ★
+            // ===============================
+            const backEl = document.querySelector(".back");
+
+            if (customBackCards[p.id]) {
+                backEl.style.backgroundImage = `url('${customBackCards[p.id]}')`;
+            } else {
+                backEl.style.backgroundImage = "url('CDLcardUse.png')";
+            }
+
+            // ===============================
+            // CARD FLIP
+            // ===============================
             const card = document.querySelector(".card");
             card.classList.remove("flipped");
             setTimeout(() => card.classList.add("flipped"), 1000);
@@ -504,11 +557,9 @@ function enableModal(players) {
 function openModeModal(modeName, modeStats) {
     const modal = document.getElementById("modeModal");
 
-    // Target shield + stats area
     const shieldContainer = modal.querySelector(".shield-container");
     const modalBox = shieldContainer.querySelector(".mode-stats");
 
-    // Convert margin based on mode
     let convertedMargin = modeStats.margin;
     if (modeName === "Hardpoint") convertedMargin *= 250;
     if (modeName === "Overload") convertedMargin *= 8;
@@ -517,7 +568,6 @@ function openModeModal(modeName, modeStats) {
     const kd = modeStats.kd;
     const slayerScore = modeStats.slayerRating;
 
-    // NEW: structured layout with title + stat boxes + circular badges
     modalBox.innerHTML = `
     <div class="mode-title-box">
         <h2 id="modeTitle">${modeName}</h2>
@@ -543,18 +593,14 @@ function openModeModal(modeName, modeStats) {
             <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
         </div>
     </div>
-`;
+    `;
 
-
-    // Apply KD colour
     const kdEl = document.getElementById("modeKD");
     setKDColor(kdEl, kd);
 
-    // Apply Margin colour
     const marginEl = document.getElementById("modeMargin");
     setMarginColor(marginEl, convertedMargin);
 
-    // Slayer colour logic
     const slayerEl = document.getElementById("modeSlayer");
 
     if (slayerScore < 40) {
@@ -578,14 +624,14 @@ function openModeModal(modeName, modeStats) {
         slayerEl.style.borderColor = "#7A00C8";
     }
 
-    // Show modal
     modal.style.display = "block";
 
-    // Close when clicking outside
     document.addEventListener("click", e => {
         if (e.target === modal) modal.style.display = "none";
     });
 }
+
+
 
 /* ---------------------------
    COLOR HELPERS

@@ -615,7 +615,7 @@ function openModeModal(modeName, modeStats) {
         slayerEl.style.color = "#FFE066";
         slayerEl.style.borderColor = "#FFE066";
     }
-    else if (slayerScore < 98) {
+    else if (slayerScore <= 98) {
         slayerEl.style.color = "#00FF66";
         slayerEl.style.borderColor = "#00FF66";
     }

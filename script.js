@@ -489,7 +489,7 @@ function enableModal(players) {
             // DATE-BOX RIGHT-SIDE EXCEPTIONS
             // ===============================
             const dateBox = document.querySelector(".date-box");
-            const dateBoxRightSide = [1, 11]; // IDs that need right-side placement
+            const dateBoxRightSide = [1, 11];
 
             if (dateBoxRightSide.includes(p.id)) {
                 dateBox.style.left = "auto";
@@ -500,7 +500,6 @@ function enableModal(players) {
                 dateBox.style.left = "36px";
                 dateBox.style.top = "28px";
             }
-
 
             // ===============================
             // 3 RATING CIRCLES ONLY
@@ -523,7 +522,25 @@ function enableModal(players) {
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
             // ===============================
-            // SET BACK CARD PNG  ★ NEW ★
+            // ⭐ SPECIAL POSITION OVERRIDES ⭐
+            // ONLY FOR PLAYERS 4 AND 13
+            // ===============================
+
+            const card = document.querySelector(".card");
+
+            // Remove previous overrides
+            card.classList.remove("player4-adjust", "player13-adjust");
+
+            // Apply overrides only for players 4 and 13
+            if (p.id === 4) {
+                card.classList.add("player4-adjust");
+            }
+            if (p.id === 13) {
+                card.classList.add("player13-adjust");
+            }
+
+            // ===============================
+            // SET BACK CARD PNG
             // ===============================
             const backEl = document.querySelector(".back");
 
@@ -536,7 +553,6 @@ function enableModal(players) {
             // ===============================
             // CARD FLIP
             // ===============================
-            const card = document.querySelector(".card");
             card.classList.remove("flipped");
             setTimeout(() => card.classList.add("flipped"), 1000);
 

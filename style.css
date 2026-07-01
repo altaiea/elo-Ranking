@@ -413,9 +413,49 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .col2.row1 { left: 153px; top: 347px; }
 .col3.row1 { left: 270px; top: 347px; }
 
-.col1.row2 { left: 50px; top: 363px; }
-.col2.row2 { left: 130px; top: 374px; }
-.col3.row2 { left: 210px; top: 363px; }
+/* ============================
+   SPECIAL POSITION OVERRIDES
+   ONLY FOR PLAYERS 4 AND 13
+============================ */
+
+.player4-adjust .rating {
+    position: absolute;
+    top: 8px !important;
+    right: 2px !important;
+}
+
+.player4-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-5px, -9px) !important;
+}
+.player4-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-1px, -9px) !important;
+}
+.player4-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(4px, -9px) !important;
+}
+
+.player13-adjust .rating {
+    position: absolute;
+    top: 5px !important;
+    right: 2px !important;
+}
+
+.player13-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-6px, -11px) !important;
+}
+.player13-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-2px, -13px) !important;
+}
+.player13-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(3px, -11px) !important;
+}
+
 
 /* ============================
    MODE MODAL — PROFESSIONAL CDL THEME

@@ -22,9 +22,10 @@
     <button class="nav-tab" data-tab="leaderboardPage">Leaderboard</button>
     <button class="nav-tab" data-tab="teamsPage">Teams</button>
     <button class="nav-tab" data-tab="seriesHistoryPage">History</button>
-
-    <!--  NEW CODLETIC TAB BUTTON -->
     <button class="nav-tab" data-tab="codleticPage">Codletic</button>
+
+    <!-- ⭐ CARDS TAB -->
+    <button class="nav-tab" data-tab="carouselPage">Cards</button>
 </div>
 
 <!-- ============================
@@ -66,9 +67,7 @@
 
         <div id="team-builder-wrapper">
 
-            <!-- ============================
-                 AUTO TEAM BUILDER
-            ============================= -->
+            <!-- AUTO TEAM BUILDER -->
             <div id="team-builder">
                 <p>Select 8 players:</p>
 
@@ -90,13 +89,9 @@
                 <div id="teamOutput"></div>
             </div>
 
-
-            <!-- ============================
-                 MANUAL TEAM BUILDER
-            ============================= -->
+            <!-- MANUAL TEAM BUILDER -->
             <div id="manual-team-builder" class="team-builder-section">
 
-                <!-- TEAM A -->
                 <div class="manual-team-block">
                     <h4 class="team-label">Team A</h4>
                     <div class="player-select-grid">
@@ -107,7 +102,6 @@
                     </div>
                 </div>
 
-                <!-- TEAM B -->
                 <div class="manual-team-block">
                     <h4 class="team-label">Team B</h4>
                     <div class="player-select-grid">
@@ -132,7 +126,6 @@
 
 </div>
 
-
 <!-- ============================
      SERIES HISTORY TAB
 ============================ -->
@@ -144,7 +137,7 @@
 </div>
 
 <!-- ============================
-      NEW CODLETIC TAB PAGE
+      CODLETIC TAB
 ============================ -->
 <div id="codleticPage" class="tab-page">
     <article class="codletic-article">
@@ -154,6 +147,100 @@
         </p>
     </article>
 </div>
+
+<!-- ============================
+      ⭐ CARDS TAB PAGE (CAROUSEL)
+============================ -->
+<div id="carouselPage" class="tab-page">
+    <h2 style="text-align:center; color:#00eaff;">Cards</h2>
+
+    <div id="carouselContainer">
+
+        <div class="banner">
+            <div class="slider" style="--quantity: 14;">
+
+                <!-- 14 CARDS -->
+                <!-- Updated to use carousel-front / carousel-back -->
+                <!-- Card 1 -->
+                <div class="item" style="--position: 1">
+                    <div class="card-face carousel-front"><img src="cards/1_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 2">
+                    <div class="card-face carousel-front"><img src="cards/2_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 3">
+                    <div class="card-face carousel-front"><img src="cards/3_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 4">
+                    <div class="card-face carousel-front"><img src="cards/4_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 5">
+                    <div class="card-face carousel-front"><img src="cards/5_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 6">
+                    <div class="card-face carousel-front"><img src="cards/6_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 7">
+                    <div class="card-face carousel-front"><img src="cards/7_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 8">
+                    <div class="card-face carousel-front"><img src="cards/8_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 9">
+                    <div class="card-face carousel-front"><img src="cards/9_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 10">
+                    <div class="card-face carousel-front"><img src="cards/10_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 11">
+                    <div class="card-face carousel-front"><img src="cards/11_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 12">
+                    <div class="card-face carousel-front"><img src="cards/12_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 13">
+                    <div class="card-face carousel-front"><img src="cards/13_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+                <div class="item" style="--position: 14">
+                    <div class="card-face carousel-front"><img src="cards/14_back.png" alt=""></div>
+                    <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
+                </div>
+
+            </div>
+
+            <div class="content">
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <!-- ============================
      MAIN PLAYER MODAL
 ============================ -->
@@ -166,13 +253,12 @@
             <div class="container">
                 <div class="card">
 
-                    <!-- FRONT ALWAYS WINGS -->
+                    <!-- These remain .front / .back -->
+                    <!-- They now no longer collide with carousel CSS -->
                     <div class="front"></div>
 
-                    <!-- BACK CARD + 11 LAYERS -->
                     <div class="back">
 
-                        <!-- 11 optional PNG layers -->
                         <img class="card-layer layer1">
                         <img class="card-layer layer2">
                         <img class="card-layer layer3">
@@ -185,12 +271,10 @@
                         <img class="card-layer layer10">
                         <img class="card-layer layer11">
 
-                        <!-- 3 rating circles ONLY -->
                         <span class="col1 row1 circle-row1"></span>
                         <span class="col2 row1 circle-row1"></span>
                         <span class="col3 row1 circle-row1"></span>
 
-                        <!-- OVERALL RATING ONLY -->
                         <div class="date-box">
                             <div class="rating"></div>
                         </div>
@@ -226,6 +310,8 @@
 <script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 

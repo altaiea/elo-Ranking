@@ -437,6 +437,27 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     transform: translate(4px, -9px) !important;
 }
 
+.player11-adjust .rating {
+    position: absolute;
+    top: 4px !important;
+    right: 234px !important;
+}
+
+.player11-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-4px, -9px) !important;
+}
+.player11-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-3px, -9px) !important;
+}
+.player11-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(1px, -9px) !important;
+}
+
+
+
 .player13-adjust .rating {
     position: absolute;
     top: 5px !important;

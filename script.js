@@ -521,23 +521,29 @@ function enableModal(players) {
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
-            // ===============================
-            // ⭐ SPECIAL POSITION OVERRIDES ⭐
-            // ONLY FOR PLAYERS 4 AND 13
+           // ===============================
+            //  SPECIAL POSITION OVERRIDES 
+          // ONLY FOR PLAYERS 4, 11 AND 13
             // ===============================
 
             const card = document.querySelector(".card");
 
             // Remove previous overrides
-            card.classList.remove("player4-adjust", "player13-adjust");
+            card.classList.remove("player4-adjust", "player11-adjust", "player13-adjust");
 
-            // Apply overrides only for players 4 and 13
+            // Apply overrides only for players 4, 11, and 13
             if (p.id === 4) {
                 card.classList.add("player4-adjust");
             }
+
+            if (p.id === 11) {
+                card.classList.add("player11-adjust");
+            }
+
             if (p.id === 13) {
                 card.classList.add("player13-adjust");
             }
+
 
             // ===============================
             // SET BACK CARD PNG

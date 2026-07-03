@@ -931,6 +931,308 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 
+/* ============================
+   MAPS TAB — MAP BUILDER
+============================ */
+
+#mapsPage {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.maps-container {
+    margin-top: 25px;
+    background: #15151a;
+    border: 1px solid #00eaff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.12);
+}
+
+.maps-mode-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.maps-mode-label {
+    color: #00eaff;
+    font-weight: 700;
+}
+
+.maps-mode-select {
+    background: #0a0f14;
+    border: 1px solid #00eaff;
+    color: #e6e6e6;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.maps-mode-select:hover,
+.maps-mode-select:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 8px #00eaff;
+}
+
+.map-series-block {
+    margin-top: 18px;
+    padding: 12px 14px;
+    background: #111218;
+    border-radius: 6px;
+    border: 1px solid #00eaff33;
+}
+
+.map-series-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.map-series-title {
+    color: #00eaff;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.map-series-btn {
+    padding: 6px 14px;
+    background: #00eaff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.map-series-btn:hover {
+    background: #00ffff;
+}
+
+.map-series-output {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.map-card {
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 8px;
+    border: 1px solid #00eaff;
+    color: #e6e6e6;
+    font-size: 0.95rem;
+    text-align: center;
+    box-shadow:
+            0 0 12px rgba(0,255,255,0.35),
+            inset 0 0 8px rgba(0,255,255,0.18);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.map-card span {
+    display: block;
+    font-weight: 700;
+    color: #00eaff;
+    margin-bottom: 4px;
+}
+
+/* ============================
+   TEAM PANELS
+============================ */
+
+.team-panel {
+    margin-top: 20px;
+    padding: 12px;
+    background: #111218;
+    border-radius: 6px;
+    border: 1px solid #00eaff33;
+    text-align: center;
+}
+
+/* ============================
+   TEAM TOGGLE BUTTON
+============================ */
+
+.team-toggle {
+    display: inline-block;
+    width: auto;
+    background: #00eaff;
+    color: #000;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.team-toggle:hover {
+    background: #00ffff;
+}
+
+/* ============================
+   COLLAPSIBLE SLIDE ANIMATION
+============================ */
+
+.team-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    margin-top: 12px;
+    transition:
+            max-height 0.45s ease,
+            opacity 0.35s ease;
+}
+
+.team-content.open {
+    max-height: 800px;
+    opacity: 1;
+}
+
+/* ============================
+   TEAM STRENGTH BARS
+============================ */
+
+.team-strength-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.team-strength span {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: block;
+    text-align: left;
+}
+
+.strength-bar {
+    width: 50%;
+    height: 22px;
+    background: #0a0f14;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,255,255,0.2);
+}
+
+/* ============================
+   BAR FILL + TEXT
+============================ */
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    position: relative;
+    transition: width 0.6s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.strength-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    color: #000;
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+/* ============================
+   COLOUR CODING (WIN PROBABILITY)
+============================ */
+
+.strength-high {
+    background: linear-gradient(90deg, #00ff66, #00cc55);
+    box-shadow: 0 0 12px rgba(0,255,102,0.6);
+}
+
+.strength-medium {
+    background: linear-gradient(90deg, #ffe066, #ffcc33);
+    box-shadow: 0 0 12px rgba(255,224,102,0.6);
+}
+
+.strength-low {
+    background: linear-gradient(90deg, #ff4444, #ff2222);
+    box-shadow: 0 0 12px rgba(255,68,68,0.6);
+}
+
+/* ============================
+   POPUP CARD (TEAM BUILDER)
+============================ */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: none;
+    z-index: 999;
+}
+
+.popup-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0b0e13;
+    border: 1px solid #00eaff;
+    border-radius: 10px;
+    padding: 25px;
+    width: 480px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 0 25px rgba(0,255,255,0.4);
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: #00eaff;
+    font-size: 1.4rem;
+    float: right;
+    cursor: pointer;
+}
+
+.popup-card h2 {
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+.popup-section {
+    margin-bottom: 15px;
+}
+
+.popup-section h3 {
+    color: #00eaff;
+    margin-bottom: 6px;
+}
+
+.popup-section p {
+    color: #ccefff;
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+
+
+
+
+
 
 
 

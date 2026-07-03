@@ -521,9 +521,9 @@ function enableModal(players) {
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
-           // ===============================
-            //  SPECIAL POSITION OVERRIDES 
-          // ONLY FOR PLAYERS 4, 11 AND 13
+            // ===============================
+            //  SPECIAL POSITION OVERRIDES
+            // ONLY FOR PLAYERS 4, 11 AND 13
             // ===============================
 
             const card = document.querySelector(".card");
@@ -692,21 +692,52 @@ function setMarginColor(el, margin) {
 }
 
 
-/* ---------------------------
-   TEAM BUILDER (AUTO)
----------------------------- */
+/* ======================================================
+   POPUP CARD SYSTEM
+====================================================== */
 
-document.getElementById("toggleTeams").addEventListener("click", () => {
-    const sec = document.getElementById("teamsSection");
-    const btn = document.getElementById("toggleTeams");
+function showPopup(html) {
+    document.getElementById("popupContent").innerHTML = html;
+    document.getElementById("popupOverlay").style.display = "block";
+    document.getElementById("popupCard").style.display = "block";
+}
 
-    const isOpen = sec.style.display === "block";
-
-    sec.style.display = isOpen ? "none" : "block";
-    btn.textContent = isOpen ? "Show Team Builder ▼" : "Hide Team Builder ▲";
+document.getElementById("popupClose").addEventListener("click", () => {
+    document.getElementById("popupOverlay").style.display = "none";
+    document.getElementById("popupCard").style.display = "none";
 });
 
-// Populate AUTO team builder dropdowns
+
+/* ======================================================
+   TEAM BUILDER — COLLAPSIBLE PANELS
+====================================================== */
+
+function setupTeamCollapsibles() {
+    const toggles = document.querySelectorAll(".team-toggle");
+
+    toggles.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const targetId = btn.dataset.target;
+            const panel = document.getElementById(targetId);
+
+            const isOpen = panel.classList.contains("open");
+
+            if (isOpen) {
+                panel.classList.remove("open");
+                btn.textContent = btn.textContent.replace("▲", "▼");
+            } else {
+                panel.classList.add("open");
+                btn.textContent = btn.textContent.replace("▼", "▲");
+            }
+        });
+    });
+}
+
+
+/* ======================================================
+   TEAM BUILDER — AUTO BUILDER
+====================================================== */
+
 function populateAutoDropdowns() {
     const selects = document.querySelectorAll(".team-player");
     selects.forEach(sel => {
@@ -716,9 +747,9 @@ function populateAutoDropdowns() {
         });
     });
 }
-populateAutoDropdowns();
 
 document.getElementById("generateTeams").addEventListener("click", () => {
+
     const selects = document.querySelectorAll(".team-player");
     const chosen = [];
 
@@ -727,8 +758,7 @@ document.getElementById("generateTeams").addEventListener("click", () => {
     });
 
     if (chosen.length !== 8 || new Set(chosen).size !== 8) {
-        document.getElementById("teamOutput").textContent =
-            "Please select 8 unique players.";
+        showPopup("<h2>Error</h2><p>Please select 8 unique players.</p>");
         return;
     }
 
@@ -769,34 +799,78 @@ document.getElementById("generateTeams").addEventListener("click", () => {
         }
     });
 
-    if (!best) {
-        document.getElementById("teamOutput").textContent =
-            "Could not generate teams. Check selections.";
-        return;
+    /* ===============================
+       WIN PROBABILITY
+    =============================== */
+
+    const probA = 1 / (1 + Math.pow(10, (best.eloB - best.eloA) / 400));
+    const probB = 1 - probA;
+
+    const strengthA = probA * 100;
+    const strengthB = probB * 100;
+
+    const barA = document.getElementById("strengthA");
+    const barB = document.getElementById("strengthB");
+
+    const textA = document.getElementById("strengthAText");
+    const textB = document.getElementById("strengthBText");
+
+    barA.classList.remove("strength-high", "strength-medium", "strength-low");
+    barB.classList.remove("strength-high", "strength-medium", "strength-low");
+
+    barA.style.width = strengthA + "%";
+    barB.style.width = strengthB + "%";
+
+    textA.textContent = strengthA.toFixed(1) + "%";
+    textB.textContent = strengthB.toFixed(1) + "%";
+
+    function applyColour(bar, value) {
+        if (value >= 47) bar.classList.add("strength-high");
+        else if (value >= 35) bar.classList.add("strength-medium");
+        else bar.classList.add("strength-low");
     }
 
-    const out =
-        "==============================\n" +
-        "   CLOSEST MATCH-UP FOUND\n" +
-        "==============================\n\n" +
-        " Elo: " + best.eloA.toFixed(2) + "  vs  " + best.eloB.toFixed(2) + "\n\n" +
-        "------------ TEAM A ------------\n" +
-        best.teamA.map(p => " • " + p.name).join("\n") +
-        "\n\n" +
-        "------------ TEAM B ------------\n" +
-        best.teamB.map(p => " • " + p.name).join("\n") +
-        "\n" +
-        "==============================";
+    applyColour(barA, strengthA);
+    applyColour(barB, strengthB);
 
-    alert(out);
+    /* ===============================
+       POPUP CARD OUTPUT
+    =============================== */
+
+    const html = `
+        <h2>Auto Team Builder</h2>
+
+        <div class="popup-section">
+            <h3>Team A</h3>
+            <p>${best.teamA.map(p => `• ${p.name}`).join("<br>")}</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>Team B</h3>
+            <p>${best.teamB.map(p => `• ${p.name}`).join("<br>")}</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>ELO Totals</h3>
+            <p>Team A: ${best.eloA.toFixed(2)}<br>
+               Team B: ${best.eloB.toFixed(2)}</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>Win Probability</h3>
+            <p>Team A: ${(probA * 100).toFixed(1)}%<br>
+               Team B: ${(probB * 100).toFixed(1)}%</p>
+        </div>
+    `;
+
+    showPopup(html);
 });
 
 
-/* ---------------------------
-   MANUAL TEAM BUILDER
----------------------------- */
+/* ======================================================
+   TEAM BUILDER — MANUAL BUILDER
+====================================================== */
 
-// Populate MANUAL team builder dropdowns
 function populateManualDropdowns() {
     const selects = document.querySelectorAll(".manual-select");
     selects.forEach(sel => {
@@ -806,9 +880,7 @@ function populateManualDropdowns() {
         });
     });
 }
-populateManualDropdowns();
 
-// Show simulate button when all 8 players selected
 function checkManualReady() {
     const teamA = [...document.querySelectorAll(".manualA")].map(s => s.value).filter(v => v);
     const teamB = [...document.querySelectorAll(".manualB")].map(s => s.value).filter(v => v);
@@ -817,11 +889,11 @@ function checkManualReady() {
         document.getElementById("simulateMatchBtn").style.display = "inline-block";
     }
 }
+
 document.querySelectorAll(".manual-select").forEach(sel => {
     sel.addEventListener("change", checkManualReady);
 });
 
-// SIMULATE MATCH (FULL OUTPUT FORMAT)
 document.getElementById("simulateMatchBtn").addEventListener("click", () => {
 
     const teamAIds = [...document.querySelectorAll(".manualA")].map(s => Number(s.value));
@@ -836,45 +908,78 @@ document.getElementById("simulateMatchBtn").addEventListener("click", () => {
     const probA = 1 / (1 + Math.pow(10, (eloB - eloA) / 400));
     const probB = 1 - probA;
 
-    const K = 20;
+    const strengthA = probA * 100;
+    const strengthB = probB * 100;
 
-    const baseA_win = K * (1 - probA);
-    const baseA_loss = -baseA_win;
+    const barA = document.getElementById("manualStrengthA");
+    const barB = document.getElementById("manualStrengthB");
 
-    const baseB_win = K * (1 - probB);
-    const baseB_loss = -baseB_win;
+    const textA = document.getElementById("manualStrengthAText");
+    const textB = document.getElementById("manualStrengthBText");
 
-    const out =
-        `==============================
-     MATCH SIMULATION
-==============================
+    barA.classList.remove("strength-high", "strength-medium", "strength-low");
+    barB.classList.remove("strength-high", "strength-medium", "strength-low");
 
------------- TEAM A ------------
-${teamA.map(p => " • " + p.name).join("\n")}
+    barA.style.width = strengthA + "%";
+    barB.style.width = strengthB + "%";
 
------------- TEAM B ------------
-${teamB.map(p => " • " + p.name).join("\n")}
-==============================
+    textA.textContent = strengthA.toFixed(1) + "%";
+    textB.textContent = strengthB.toFixed(1) + "%";
 
- Team A ELO: ${eloA.toFixed(2)}
- Team B ELO: ${eloB.toFixed(2)}
+    function applyColour(bar, value) {
+        if (value >= 47) bar.classList.add("strength-high");
+        else if (value >= 35) bar.classList.add("strength-medium");
+        else bar.classList.add("strength-low");
+    }
 
------- WIN PROBABILITY ------
- Team A: ${(probA * 100).toFixed(1)}%
- Team B: ${(probB * 100).toFixed(1)}%
+    applyColour(barA, strengthA);
+    applyColour(barB, strengthB);
 
------- BASE ELO (IF TEAM A WINS) ------
- Team A gain: +${baseA_win.toFixed(2)}
- Team B loss: -${Math.abs(baseA_loss).toFixed(2)}
+    /* ===============================
+       POPUP CARD OUTPUT
+    =============================== */
 
------- BASE ELO (IF TEAM B WINS) ------
- Team B gain: +${baseB_win.toFixed(2)}
- Team A loss: -${Math.abs(baseB_loss).toFixed(2)}
-==============================`;
+    const html = `
+        <h2>Match Simulation</h2>
 
+        <div class="popup-section">
+            <h3>Team A</h3>
+            <p>${teamA.map(p => `• ${p.name}`).join("<br>")}</p>
+        </div>
 
-    document.getElementById("simulationOutput").textContent = out;
+        <div class="popup-section">
+            <h3>Team B</h3>
+            <p>${teamB.map(p => `• ${p.name}`).join("<br>")}</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>ELO Totals</h3>
+            <p>Team A: ${eloA.toFixed(2)}<br>
+               Team B: ${eloB.toFixed(2)}</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>Win Probability</h3>
+            <p>Team A: ${(probA * 100).toFixed(1)}%<br>
+               Team B: ${(probB * 100).toFixed(1)}%</p>
+        </div>
+    `;
+
+    showPopup(html);
 });
+
+
+/* ======================================================
+   INITIALIZER
+====================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupTeamCollapsibles();
+    populateAutoDropdowns();
+    populateManualDropdowns();
+});
+
+
 
 
 // ======================================================
@@ -1085,6 +1190,121 @@ document.addEventListener("DOMContentLoaded", () => {
     initTabs();
     renderSeriesList();
 });
+// ===============================
+// MAP POOL (BY MODE)
+// ===============================
+const mapPool = {
+    hardpoint: ["SAKE", "COLOSSUS", "DEN", "SCAR", "GRIDLOCK", "HACIENDA"],
+    snd: ["DEN", "GRIDLOCK", "RAID", "FRINGE", "SAKE", "HACIENDA"],
+    overload: ["DEN", "EXPOSURE", "SCAR", "GRIDLOCK"]
+};
+
+// ===============================
+// SERIES MODE PATTERNS
+// ===============================
+function getSeriesPattern(count) {
+    if (count === 5) {
+        return ["hardpoint", "snd", "overload", "hardpoint", "snd"];
+    }
+    if (count === 7) {
+        return ["hardpoint", "snd", "overload", "hardpoint", "snd", "overload", "snd"];
+    }
+    if (count === 9) {
+        return ["hardpoint", "snd", "overload", "hardpoint", "snd", "hardpoint", "snd", "overload", "hardpoint"];
+    }
+    return [];
+}
+
+// ===============================
+// GENERATE SERIES (NO REPEAT MAP PER MODE)
+// ===============================
+function generateSeries(count) {
+    const pattern = getSeriesPattern(count);
+    const usedByMode = {
+        hardpoint: new Set(),
+        snd: new Set(),
+        overload: new Set()
+    };
+
+    const result = [];
+
+    pattern.forEach(modeKey => {
+        const pool = mapPool[modeKey];
+        if (!pool || pool.length === 0) {
+            result.push({ mode: modeKey, map: "NO MAPS IN POOL" });
+            return;
+        }
+
+        // filter out maps already used for this mode
+        const available = pool.filter(m => !usedByMode[modeKey].has(m));
+
+        if (available.length === 0) {
+            // if we run out, just show a warning
+            result.push({ mode: modeKey, map: "POOL EXHAUSTED" });
+            return;
+        }
+
+        const idx = Math.floor(Math.random() * available.length);
+        const chosen = available[idx];
+
+        usedByMode[modeKey].add(chosen);
+        result.push({ mode: modeKey, map: chosen });
+    });
+
+    return result;
+}
+
+// ===============================
+// RENDER SERIES TO UI
+// ===============================
+function renderSeries(count) {
+    const series = generateSeries(count);
+    const output = document.getElementById(`mapSeries${count}`);
+    if (!output) return;
+
+    output.innerHTML = series
+        .map((entry, i) => `
+            <div class="map-card">
+                <span>MAP ${i + 1} — ${entry.mode.toUpperCase()}</span>
+                ${entry.map}
+            </div>
+        `)
+        .join("");
+}
+
+// ===============================
+// MAP BUILDER EVENT WIRING
+// ===============================
+function setupMapBuilder() {
+    const buttons = document.querySelectorAll(".map-series-btn");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const count = parseInt(btn.dataset.count, 10);
+            renderSeries(count);
+        });
+    });
+}
+
+// ===============================
+// INITIALISE MAP BUILDER
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+    setupMapBuilder();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -307,8 +307,6 @@ function lockTeamSelections() {
         });
     });
 }
-
-
 // ===============================
 // NAME LOOKUP
 // ===============================
@@ -374,7 +372,14 @@ function computeMode(prefix, p, players) {
     const losses = p[prefix + "Losses"];
     const marginTotal = p[prefix + "MarginTotal"];
     const marginCount = p[prefix + "MarginCount"];
-    const dmgShare = p[prefix + "DamageShare"] || 0;
+
+    // NEW — lifetime damage share
+    const lifetimeDamage = p[prefix + "LifetimeDamage"] || 0;
+    const lifetimeTeamDamage = p[prefix + "LifetimeTeamDamage"] || 0;
+
+    const dmgShare = lifetimeTeamDamage === 0
+        ? 0
+        : lifetimeDamage / lifetimeTeamDamage;
 
     const kd = deaths === 0 ? kills : kills / deaths;
     const wr = (wins + losses) === 0 ? 0 : wins / (wins + losses);
@@ -395,9 +400,15 @@ function computeMode(prefix, p, players) {
         .map(x => x[prefix + "MarginTotal"] / x[prefix + "MarginCount"]);
     const marginPct = percentile(margin, marginArr);
 
+    // NEW — percentile array for lifetime damage share
     const dmgArr = players
-        .filter(x => x[prefix + "DamageShare"] > 0)
-        .map(x => x[prefix + "DamageShare"]);
+        .filter(x => (x[prefix + "LifetimeTeamDamage"] || 0) > 0)
+        .map(x => {
+            const ld = x[prefix + "LifetimeDamage"] || 0;
+            const ltd = x[prefix + "LifetimeTeamDamage"] || 0;
+            return ltd === 0 ? 0 : ld / ltd;
+        });
+
     const dmgPct = percentile(dmgShare, dmgArr);
 
     const slayerWeighted = 0.7 * dmgPct + 0.3 * kdPct;
@@ -414,7 +425,9 @@ function computeMode(prefix, p, players) {
         console.log("Wins:", wins, "Losses:", losses);
         console.log("WR:", wr);
         console.log("MarginTotal:", marginTotal, "MarginCount:", marginCount, "Margin:", margin);
-        console.log("DamageShare:", dmgShare);
+        console.log("LifetimeDamage:", lifetimeDamage);
+        console.log("LifetimeTeamDamage:", lifetimeTeamDamage);
+        console.log("dmgShare:", dmgShare);
         console.log("kdPct:", kdPct);
         console.log("wrPct:", wrPct);
         console.log("marginPct:", marginPct);
@@ -439,6 +452,7 @@ function computeMode(prefix, p, players) {
         slayerRating
     };
 }
+
 /* ---------------------------
    MAIN PLAYER MODAL
 ---------------------------- */
@@ -1292,7 +1306,6 @@ function setupMapBuilder() {
 document.addEventListener("DOMContentLoaded", () => {
     setupMapBuilder();
 });
-
 
 
 

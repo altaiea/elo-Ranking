@@ -1224,7 +1224,7 @@ function getSeriesPattern(count) {
         return ["hardpoint", "snd", "overload", "hardpoint", "snd", "overload", "snd"];
     }
     if (count === 9) {
-        return ["hardpoint", "snd", "overload", "hardpoint", "snd", "hardpoint", "snd", "overload", "hardpoint"];
+        return ["hardpoint", "snd", "overload", "hardpoint", "snd", "overload", "snd", "hardpoint", "snd"];
     }
     return [];
 }

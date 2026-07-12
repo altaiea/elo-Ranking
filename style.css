@@ -477,116 +477,96 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     transform: translate(3px, -11px) !important;
 }
 
-
 /* ============================
-   MODE MODAL — PROFESSIONAL CDL THEME
+   MODE MODAL — PNG VERSION
 ============================ */
 
-#modeModal .modal-content {
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
+#modeModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
 }
 
-/* Shield container */
-.shield-container {
-    width: 300px;
-    height: 360px;
-    position: relative;
-    margin: auto;
+/* Modal box */
+.mode-modal-content {
+    position: absolute;
     top: 50%;
-    transform: translateY(-50%) scale(0.75); /* ← add scale here */
-    transform-origin: center;                /* ← add this line */
-    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.25));
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: auto;
+    pointer-events: auto;
 }
 
-
-
-
-/* Base shield layer */
-.shield {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Shield PNG */
+.mode-shield {
     width: 100%;
-    height: 100%;
-}
-
-/* OUTER SHIELD — metallic cyan frame (kept) */
-.outer-shield {
-    background: linear-gradient(135deg, #00eaff, #006b8a 40%, #00eaff 100%);
-    clip-path: path('M30 10 H270 Q290 10 292 30 C300 120 300 240 270 330 Q240 360 150 358 Q60 360 30 330 C0 240 0 120 8 30 Q10 10 30 10');
-    box-shadow:
-            0 0 20px rgba(0, 255, 255, 0.45),
-            inset 0 0 10px rgba(255, 255, 255, 0.12);
-}
-
-/* INNER SHIELD — clean black gradient */
-.inner-shield {
-    background: linear-gradient(
-            180deg,
-            #0b0b0d 0%,
-            #111216 40%,
-            #0b0b0d 100%
-    );
-    clip-path: path('M35 15 H265 Q283 15 285 33 C292 120 292 235 265 325 Q237 353 150 351 Q63 353 35 325 C8 235 8 120 15 33 Q17 15 35 15');
-    box-shadow:
-            inset 0 0 16px rgba(0, 0, 0, 0.7),
-            inset 0 0 22px rgba(0, 255, 255, 0.08);
-}
-
-/* MID SHIELD — subtle inner accent */
-.gold-shield {
-    background: linear-gradient(180deg, #101217, #181b22);
-    clip-path: path('M40 20 H260 Q276 20 278 36 C284 120 284 230 260 320 Q234 346 150 344 Q66 346 40 320 C16 230 16 120 22 36 Q24 20 40 20');
-    box-shadow:
-            inset 0 0 12px rgba(0, 0, 0, 0.5),
-            inset 0 0 16px rgba(0, 255, 255, 0.1);
-}
-
-/* Stats inside shield */
-.mode-stats {
-    position: absolute;
-    top: 55px;
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-weight: 700;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
-/* Mode title */
-.mode-stats h2 {
-    font-size: 24px;
-    font-weight: 900;
-    color: #00eaff;
-    text-shadow:
-            0 0 10px rgba(0, 255, 255, 0.5),
-            0 0 18px rgba(0, 255, 255, 0.25);
-    margin-bottom: 14px;
-    letter-spacing: 1px;
-}
-
-/* Stats text */
-.mode-stats p {
-    font-size: 18px;
-    margin: 8px 0;
-    color: #d8d8d8;
-    text-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0,255,255,0.35));
 }
 
 /* ============================
-   MODE MODAL — INFO BOXES
+   MODE MODAL — POSITION CONTROL
+============================ */
+
+/* Each stat element is independently positionable */
+#modeTitleBox,
+#modeKDBox,
+#modeMarginBox,
+#modeSlayerBox {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    pointer-events: none; /* stats don't block clicks */
+
+    /* Shared text styling */
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0,255,255,0.25);
+}
+
+/* DEFAULT POSITIONS — CHANGE THESE VALUES */
+
+/* Title centered */
+#modeTitleBox {
+    top: 175px;
+}
+
+/* KD number — centered horizontally */
+#modeKDBox {
+    top: 56px;
+    left: 28px;
+
+}
+
+/* AvgM number — centered horizontally */
+#modeMarginBox {
+    top: 93px;
+    left: 30px;
+
+}
+
+/* Slayer circle — centered horizontally */
+#modeSlayerBox {
+    top: 245px;
+    left: 151px;
+}
+
+
+/* ============================
+   MODE MODAL — ELEMENT STYLING
 ============================ */
 
 /* Title bar */
 .mode-title-box {
     background: linear-gradient(90deg, #00eaff33, #003b4a55);
-    border: 1px solid #00eaff;
     padding: 8px 0;
-    width: 75%;
-    margin: 0 auto 18px auto;
+    width: 55%;
+    margin: 0 auto;
     border-radius: 6px;
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
 }
@@ -597,39 +577,13 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     border: 1px solid #00eaff55;
     padding: 6px 12px;
     width: fit-content;
-    margin: 8px auto;
+    margin: 0 auto;
     border-radius: 6px;
     box-shadow:
             0 0 10px rgba(0, 255, 255, 0.15),
             inset 0 0 8px rgba(0, 255, 255, 0.08);
 }
 
-.stat-box p {
-    margin: 0;
-    font-size: 18px;
-    color: #d8d8d8;
-    text-shadow: 0 0 6px rgba(0, 255, 255, 0.25);
-}
-
-/* Circular stat value badge */
-.stat-circle {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,255,255,0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 900;
-    font-size: 18px;
-    margin-left: 10px;
-    box-shadow:
-            0 0 10px rgba(0,255,255,0.25),
-            inset 0 0 6px rgba(255,255,255,0.15);
-}
-
-/* Row layout for each stat */
 .stat-row {
     display: flex;
     justify-content: center;
@@ -637,7 +591,22 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     gap: 12px;
 }
 
-
+.stat-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 14px;
+    margin-left: 10px;
+    box-shadow:
+            0 0 10px rgba(0,255,255,0.25),
+            inset 0 0 6px rgba(255,255,255,0.15);
+}
 
 
 /* ============================
@@ -949,6 +918,26 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     box-shadow: 0 0 20px rgba(0,255,255,0.12);
 }
 
+/* Loading Spinner */
+.map-loading {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #00eaff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 .maps-mode-row {
     display: flex;
     align-items: center;
@@ -1042,6 +1031,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     color: #00eaff;
     margin-bottom: 4px;
 }
+
+
 
 /* ============================
    TEAM PANELS

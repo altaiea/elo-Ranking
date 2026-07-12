@@ -587,14 +587,11 @@ function enableModal(players) {
 
 
 /* ---------------------------
-   MODE STATS MODAL
+   MODE STATS MODAL (PNG VERSION)
 ---------------------------- */
 
 function openModeModal(modeName, modeStats) {
     const modal = document.getElementById("modeModal");
-
-    const shieldContainer = modal.querySelector(".shield-container");
-    const modalBox = shieldContainer.querySelector(".mode-stats");
 
     let convertedMargin = modeStats.margin;
     if (modeName === "Hardpoint") convertedMargin *= 250;
@@ -604,61 +601,36 @@ function openModeModal(modeName, modeStats) {
     const kd = modeStats.kd;
     const slayerScore = modeStats.slayerRating;
 
-    modalBox.innerHTML = `
-    <div class="mode-title-box">
-        <h2 id="modeTitle">${modeName}</h2>
-    </div>
-
-    <div class="stat-box">
-        <div class="stat-row">
-            <span class="stat-label">K/D</span>
-            <span class="stat-value" id="modeKD">${kd.toFixed(2)}</span>
-        </div>
-    </div>
-
-    <div class="stat-box">
-        <div class="stat-row">
-            <span class="stat-label">AvgM</span>
-            <span class="stat-value" id="modeMargin">${convertedMargin.toFixed(2)}</span>
-        </div>
-    </div>
-
-    <div class="stat-box">
-        <div class="stat-row">
-            <span class="stat-label">Slayer</span>
-            <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
-        </div>
-    </div>
+    // Title stays the same
+    document.getElementById("modeTitleBox").innerHTML = `
+        <div class="mode-title-box">${modeName}</div>
     `;
 
-    const kdEl = document.getElementById("modeKD");
-    setKDColor(kdEl, kd);
+    // ⭐ KD — box removed
+    document.getElementById("modeKDBox").innerHTML = `
+        <span class="stat-value" id="modeKD">${kd.toFixed(2)}</span>
+    `;
 
-    const marginEl = document.getElementById("modeMargin");
-    setMarginColor(marginEl, convertedMargin);
+    // ⭐ AvgM — box removed
+    document.getElementById("modeMarginBox").innerHTML = `
+        <span class="stat-value" id="modeMargin">${convertedMargin.toFixed(2)}</span>
+    `;
+
+    // ⭐ Slayer — box removed, circle kept
+    document.getElementById("modeSlayerBox").innerHTML = `
+        <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
+    `;
+
+    // Colors
+    setKDColor(document.getElementById("modeKD"), kd);
+    setMarginColor(document.getElementById("modeMargin"), convertedMargin);
 
     const slayerEl = document.getElementById("modeSlayer");
-
-    if (slayerScore < 40) {
-        slayerEl.style.color = "#FF4444";
-        slayerEl.style.borderColor = "#FF4444";
-    }
-    else if (slayerScore < 60) {
-        slayerEl.style.color = "white";
-        slayerEl.style.borderColor = "white";
-    }
-    else if (slayerScore < 80) {
-        slayerEl.style.color = "#FFE066";
-        slayerEl.style.borderColor = "#FFE066";
-    }
-    else if (slayerScore <= 98) {
-        slayerEl.style.color = "#00FF66";
-        slayerEl.style.borderColor = "#00FF66";
-    }
-    else if (slayerScore === 99) {
-        slayerEl.style.color = "#7A00C8";
-        slayerEl.style.borderColor = "#7A00C8";
-    }
+    if (slayerScore < 40) slayerEl.style.color = slayerEl.style.borderColor = "#FF4444";
+    else if (slayerScore < 60) slayerEl.style.color = slayerEl.style.borderColor = "white";
+    else if (slayerScore < 80) slayerEl.style.color = slayerEl.style.borderColor = "#FFE066";
+    else if (slayerScore <= 98) slayerEl.style.color = slayerEl.style.borderColor = "#00FF66";
+    else if (slayerScore === 99) slayerEl.style.color = slayerEl.style.borderColor = "#7A00C8";
 
     modal.style.display = "block";
 
@@ -1001,9 +973,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // ======================================================
 
 
-// ---------------------------
-// TAB SYSTEM
-// ---------------------------
 function initTabs() {
     const tabs = document.querySelectorAll(".nav-tab");
     const pages = document.querySelectorAll(".tab-page");
@@ -1018,14 +987,16 @@ function initTabs() {
                 p.style.display = (p.id === target) ? "block" : "none";
             });
 
-            // Update title text
-            if (target === "leaderboardPage") title.textContent = "LEADERBOARD";
-            if (target === "teamsPage") title.textContent = "TEAMS";
-            if (target === "seriesHistoryPage") title.textContent = "9 MAPS";
+            // Update title text for ALL tabs
+            if (target === "leaderboardPage")      title.textContent = "LEADERBOARD";
+            else if (target === "teamsPage")       title.textContent = "TEAMS";
+            else if (target === "seriesHistoryPage") title.textContent = "9 MAPS";
+            else if (target === "codleticPage")    title.textContent = "CODLETIC";
+            else if (target === "mapsPage")        title.textContent = "MAPS";
+            else if (target === "carouselPage")    title.textContent = "CARDS";
         });
     });
 }
-
 
 
 // ---------------------------
@@ -1203,7 +1174,9 @@ function renderSeriesViewer(series) {
 document.addEventListener("DOMContentLoaded", () => {
     initTabs();
     renderSeriesList();
+    setupMapBuilder();
 });
+
 // ===============================
 // MAP POOL (BY MODE)
 // ===============================
@@ -1230,15 +1203,21 @@ function getSeriesPattern(count) {
 }
 
 // ===============================
-// GENERATE SERIES (NO REPEAT MAP PER MODE)
+// GENERATE SERIES
+// 5 maps → no repeats globally
+// 7/9 maps → no repeats per mode (original behaviour)
 // ===============================
 function generateSeries(count) {
     const pattern = getSeriesPattern(count);
+
     const usedByMode = {
         hardpoint: new Set(),
         snd: new Set(),
         overload: new Set()
     };
+
+    // NEW: global uniqueness for 5‑map series
+    const usedGlobal = new Set();
 
     const result = [];
 
@@ -1249,11 +1228,17 @@ function generateSeries(count) {
             return;
         }
 
-        // filter out maps already used for this mode
-        const available = pool.filter(m => !usedByMode[modeKey].has(m));
+        let available;
+
+        if (count === 5) {
+            // GLOBAL uniqueness
+            available = pool.filter(m => !usedGlobal.has(m));
+        } else {
+            // ORIGINAL behaviour
+            available = pool.filter(m => !usedByMode[modeKey].has(m));
+        }
 
         if (available.length === 0) {
-            // if we run out, just show a warning
             result.push({ mode: modeKey, map: "POOL EXHAUSTED" });
             return;
         }
@@ -1262,6 +1247,8 @@ function generateSeries(count) {
         const chosen = available[idx];
 
         usedByMode[modeKey].add(chosen);
+        if (count === 5) usedGlobal.add(chosen);
+
         result.push({ mode: modeKey, map: chosen });
     });
 
@@ -1288,6 +1275,7 @@ function renderSeries(count) {
 
 // ===============================
 // MAP BUILDER EVENT WIRING
+// + loading spinner + delay
 // ===============================
 function setupMapBuilder() {
     const buttons = document.querySelectorAll(".map-series-btn");
@@ -1295,17 +1283,21 @@ function setupMapBuilder() {
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
             const count = parseInt(btn.dataset.count, 10);
-            renderSeries(count);
+
+            const loader = document.getElementById("mapLoading");
+            loader.style.display = "block";
+
+            const output = document.getElementById(`mapSeries${count}`);
+            if (output) output.innerHTML = "";
+
+            setTimeout(() => {
+                loader.style.display = "none";
+                renderSeries(count);
+            }, 600); // smooth delay
         });
     });
 }
 
-// ===============================
-// INITIALISE MAP BUILDER
-// ===============================
-document.addEventListener("DOMContentLoaded", () => {
-    setupMapBuilder();
-});
 
 
 

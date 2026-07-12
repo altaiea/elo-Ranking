@@ -171,6 +171,11 @@
 
     <h2 style="text-align:center; color:#00eaff;">Maps</h2>
 
+    <!--loading spinner -->
+    <div id="mapLoading" class="map-loading" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+
     <div class="maps-container">
 
         <div class="map-series-block">
@@ -200,6 +205,7 @@
     </div>
 
 </div>
+
 
 <!-- ============================
      SERIES HISTORY TAB
@@ -332,22 +338,21 @@
 </div>
 
 <!-- ============================
-     MODE STATS MODAL
+     MODE STATS MODAL (PNG VERSION)
 ============================ -->
 <div id="modeModal" class="modal">
-    <div class="shield-container">
-        <div class="shield outer-shield"></div>
-        <div class="shield inner-shield"></div>
-        <div class="shield gold-shield"></div>
+    <div class="mode-modal-content">
+        <img class="mode-shield" src="circleC.png" alt="">
 
-        <div class="mode-stats">
-            <h2 id="modeTitle"></h2>
-            <p id="modeKD"></p>
-            <p id="modeMargin"></p>
-            <p id="modeSlayer"></p>
-        </div>
+        <!-- INDIVIDUAL POSITIONABLE ELEMENTS -->
+        <div id="modeTitleBox"></div>
+        <div id="modeKDBox"></div>
+        <div id="modeMarginBox"></div>
+        <div id="modeSlayerBox"></div>
     </div>
 </div>
+
+
 
 
 

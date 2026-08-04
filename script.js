@@ -606,17 +606,17 @@ function openModeModal(modeName, modeStats) {
         <div class="mode-title-box">${modeName}</div>
     `;
 
-    // ⭐ KD — box removed
+    //  KD — box removed
     document.getElementById("modeKDBox").innerHTML = `
         <span class="stat-value" id="modeKD">${kd.toFixed(2)}</span>
     `;
 
-    // ⭐ AvgM — box removed
+    //  AvgM — box removed
     document.getElementById("modeMarginBox").innerHTML = `
         <span class="stat-value" id="modeMargin">${convertedMargin.toFixed(2)}</span>
     `;
 
-    // ⭐ Slayer — box removed, circle kept
+    //  Slayer — box removed, circle kept
     document.getElementById("modeSlayerBox").innerHTML = `
         <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
     `;
@@ -1003,13 +1003,10 @@ function initTabs() {
 // SERIES CONFIG
 // ---------------------------
 const seriesIndex = [
-    {
-        id: 1,
-        file: "series_1.json"
-        id:2,
-        file: "series_2.json"
-    }
+    { id: 1, file: "series_1.json" },
+    { id: 2, file: "series_2.json" }
 ];
+
 
 
 // ---------------------------

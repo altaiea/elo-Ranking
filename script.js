@@ -1006,6 +1006,8 @@ const seriesIndex = [
     {
         id: 1,
         file: "series_1.json"
+        id:2,
+        file: "series_2.json"
     }
 ];
 

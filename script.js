@@ -1005,7 +1005,7 @@ function initTabs() {
 const seriesIndex = [
     { id: 1, file: "series_1.json" },
     { id: 2, file: "series_2.json" },
-    { id: 3, file: "series_3.json")
+    { id: 3, file: "series_3.json" }
 ];
 
 

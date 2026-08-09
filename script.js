@@ -1181,7 +1181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // MAP POOL (BY MODE)
 // ===============================
 const mapPool = {
-    hardpoint: ["SAKE", "COLOSSUS", "DEN", "SCAR", "GRIDLOCK", "HACIENDA","FREQUENCY],
+    hardpoint: ["SAKE", "COLOSSUS", "DEN", "SCAR", "GRIDLOCK", "HACIENDA","FREQUENCY"],
     snd: ["DEN", "GRIDLOCK", "RAID", "FRINGE", "SAKE", "HACIENDA"],
     overload: ["DEN", "EXPOSURE", "SCAR", "GRIDLOCK"]
 };

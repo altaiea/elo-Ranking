@@ -1319,6 +1319,13 @@ function setupMapBuilder() {
         });
     });
 }
+window.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("cardBackVideo");
+    video.load();   //  forces preload of 3_intro.mp4
+});
+
+
+
 
 
 

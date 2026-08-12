@@ -303,13 +303,28 @@
      MAIN PLAYER MODAL
 ============================ -->
 <div id="playerModal" class="modal">
+
     <div class="modal-content">
         <span id="closeModal" class="close"></span>
+
         <div class="card-contents-wrapper">
             <div class="container">
+
+                <!-- ⭐ THIS IS NOW THE SAME CARD USED BY ALL PLAYERS ⭐ -->
                 <div class="card">
+
+                    <!-- FRONT FACE -->
                     <div class="front"></div>
+
+                    <!-- BACK FACE (NOW SAME FOR ALL PLAYERS) -->
                     <div class="back">
+
+                        <!-- ⭐ VIDEO NOW LIVES HERE WITH ALL OTHER BACK CONTENT ⭐ -->
+                        <video id="cardBackVideo" class="card-back-video" preload="auto">
+                            <source src="cards/3_intro.mp4" type="video/mp4">
+                        </video>
+
+                        <!-- CARD LAYERS -->
                         <img class="card-layer layer1">
                         <img class="card-layer layer2">
                         <img class="card-layer layer3">
@@ -322,20 +337,27 @@
                         <img class="card-layer layer10">
                         <img class="card-layer layer11">
 
+                        <!-- CIRCLES -->
                         <span class="col1 row1 circle-row1"></span>
                         <span class="col2 row1 circle-row1"></span>
                         <span class="col3 row1 circle-row1"></span>
 
+                        <!-- RATING -->
                         <div class="date-box">
                             <div class="rating"></div>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    </div> <!-- end back -->
+
+                </div> <!-- end card -->
+
+            </div> <!-- end container -->
+        </div> <!-- end card-contents-wrapper -->
+
+    </div> <!-- end modal-content -->
+
+</div> <!-- end playerModal -->
+
 
 <!-- ============================
      MODE STATS MODAL (PNG VERSION)

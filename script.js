@@ -479,6 +479,7 @@ const customBackCards = {
 
 function enableModal(players) {
     const modal = document.getElementById("playerModal");
+    const closeModal = document.getElementById("closeModal");
 
     document.querySelectorAll(".player-name").forEach(el => {
         el.addEventListener("click", () => {
@@ -486,22 +487,31 @@ function enableModal(players) {
             const id = Number(el.dataset.id);
             const p = players.find(x => x.id === id);
 
+            modal.style.display = "block";
+
+            const card = modal.querySelector(".card");
+            const cardBackVideo = document.getElementById("cardBackVideo");
+
+            // reset video
+            cardBackVideo.pause();
+            cardBackVideo.currentTime = 0;
+            cardBackVideo.style.display = "none";
+
+            // ===============================
+            // MODE RATINGS
+            // ===============================
             const hp = computeMode("hp", p, players);
             const snd = computeMode("snd", p, players);
             const ovl = computeMode("overload", p, players);
 
             const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
 
-            // ===============================
-            // OVERALL RATING ONLY
-            // ===============================
+            // OVERALL RATING
             const ratingEl = document.querySelector(".rating");
             ratingEl.textContent = avg;
             setRatingColor(ratingEl, avg);
 
-            // ===============================
-            // DATE-BOX RIGHT-SIDE EXCEPTIONS
-            // ===============================
+            // DATE BOX POSITION
             const dateBox = document.querySelector(".date-box");
             const dateBoxRightSide = [1, 11];
 
@@ -515,9 +525,7 @@ function enableModal(players) {
                 dateBox.style.top = "28px";
             }
 
-            // ===============================
-            // 3 RATING CIRCLES ONLY
-            // ===============================
+            // 3 CIRCLES
             const hpEl = document.querySelector(".col1.row1");
             const ovlEl = document.querySelector(".col2.row1");
             const sndEl = document.querySelector(".col3.row1");
@@ -535,33 +543,21 @@ function enableModal(players) {
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
-            // ===============================
-            //  SPECIAL POSITION OVERRIDES
-            // ONLY FOR PLAYERS 4, 11 AND 13
-            // ===============================
 
-            const card = document.querySelector(".card");
+            // SPECIAL POSITION OVERRIDES (ALL PLAYERS, SAME CARD)
+            card.classList.remove(
+                "player4-adjust",
+                "player11-adjust",
+                "player13-adjust",
+                "player3-adjust"
+            );
 
-            // Remove previous overrides
-            card.classList.remove("player4-adjust", "player11-adjust", "player13-adjust");
+            if (p.id === 4) card.classList.add("player4-adjust");
+            if (p.id === 11) card.classList.add("player11-adjust");
+            if (p.id === 13) card.classList.add("player13-adjust");
+            if (p.id === 3) card.classList.add("player3-adjust");
 
-            // Apply overrides only for players 4, 11, and 13
-            if (p.id === 4) {
-                card.classList.add("player4-adjust");
-            }
-
-            if (p.id === 11) {
-                card.classList.add("player11-adjust");
-            }
-
-            if (p.id === 13) {
-                card.classList.add("player13-adjust");
-            }
-
-
-            // ===============================
             // SET BACK CARD PNG
-            // ===============================
             const backEl = document.querySelector(".back");
 
             if (customBackCards[p.id]) {
@@ -571,20 +567,46 @@ function enableModal(players) {
             }
 
             // ===============================
-            // CARD FLIP
+            // CARD FLIP (YOUR ORIGINAL)
             // ===============================
             card.classList.remove("flipped");
             setTimeout(() => card.classList.add("flipped"), 1000);
 
-            modal.style.display = "block";
+            // ===============================
+            // VIDEO ONLY FOR PLAYER 3
+            // ===============================
+            if (p.id === 3) {
+                setTimeout(() => {
+                    cardBackVideo.style.display = "block";
+                    cardBackVideo.play();
+                }, 1000);
+
+                cardBackVideo.onended = () => {
+                    cardBackVideo.style.display = "none";
+                };
+            }
+
         });
     });
 
+    // CLOSE MODAL
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+        const cardBackVideo = document.getElementById("cardBackVideo");
+        cardBackVideo.pause();
+        cardBackVideo.style.display = "none";
+    });
+
+    // CLICK OUTSIDE MODAL
     document.addEventListener("click", e => {
-        if (e.target === modal) modal.style.display = "none";
+        if (e.target === modal) {
+            modal.style.display = "none";
+            const cardBackVideo = document.getElementById("cardBackVideo");
+            cardBackVideo.pause();
+            cardBackVideo.style.display = "none";
+        }
     });
 }
-
 
 /* ---------------------------
    MODE STATS MODAL (PNG VERSION)
@@ -1297,6 +1319,8 @@ function setupMapBuilder() {
         });
     });
 }
+
+
 
 
 

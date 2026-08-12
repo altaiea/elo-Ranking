@@ -283,6 +283,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     background: rgba(0,0,0,0.7);
 }
 
+
 /* PLAYER MODAL ONLY — KEEP THIS */
 .modal-content {
     background: #1a1a20;
@@ -343,7 +344,26 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     position: relative;
 }
 
+/* ⭐ SHOW BACK WHEN FLIPPED (your original behavior) */
 .card.flipped .back { opacity: 1; }
+
+/* ⭐ INSERTED VIDEO — NOTHING ELSE CHANGED */
+.card-back-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    /* your trimming + zoom */
+    clip-path: inset(12px 10px 15px 10px);
+    transform: scale(1.05);
+
+    display: none;      /* JS will show it */
+    z-index: 0;         /* behind your rating/name/circles */
+    border-radius: 6px;
+}
 
 .date-box {
     position: absolute;
@@ -417,6 +437,21 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    SPECIAL POSITION OVERRIDES
    ONLY FOR PLAYERS 4 AND 13
 ============================ */
+
+.player3-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(0px, 4px) !important;
+}
+
+.player3-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(1px, 2px) !important;
+}
+
+.player3-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(1px, 4px) !important;
+}
 
 .player4-adjust .rating {
     position: absolute;
@@ -1217,6 +1252,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     margin: 0;
     line-height: 1.4;
 }
+
 
 
 

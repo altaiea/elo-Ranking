@@ -344,10 +344,13 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     position: relative;
 }
 
-/* ⭐ SHOW BACK WHEN FLIPPED (your original behavior) */
+/*  SHOW BACK WHEN FLIPPED (your original behavior) */
 .card.flipped .back { opacity: 1; }
 
-/* ⭐ INSERTED VIDEO — NOTHING ELSE CHANGED */
+/* INSERTED VIDEO — NOTHING ELSE CHANGED */
+/* ============================
+   DEFAULT VIDEO STYLE (ALL PLAYERS)
+============================ */
 .card-back-video {
     position: absolute;
     inset: 0;
@@ -356,14 +359,30 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     object-fit: cover;
     object-position: center;
 
-    /* your trimming + zoom */
     clip-path: inset(12px 10px 15px 10px);
     transform: scale(1.05);
 
-    display: none;      /* JS will show it */
-    z-index: 0;         /* behind your rating/name/circles */
+    display: none;
+    z-index: 0;
     border-radius: 6px;
 }
+
+/* ============================
+   PLAYER 3 OVERRIDE (optional)
+============================ */
+.card-back-video.video-3 {
+    /* nothing needed — base already matches player 3 */
+}
+
+/* ============================
+   PLAYER 5 OVERRIDE
+============================ */
+.card-back-video.video-5 {
+    clip-path: inset(3px 2px 3px 2px);
+    transform: scale(1.05);
+    object-position: center;
+}
+
 
 .date-box {
     position: absolute;
@@ -437,6 +456,26 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    SPECIAL POSITION OVERRIDES
    ONLY FOR PLAYERS 4 AND 13
 ============================ */
+.player5-adjust .rating {
+    position: absolute;
+    top: 13px !important;
+    left: -4px !important;
+}
+
+.player5-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(2px, 8px) !important;
+}
+
+.player5-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(3px, 6px) !important;
+}
+
+.player5-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(1px, 8px) !important;
+}
 
 .player3-adjust .col1.row1 {
     position: absolute !important;

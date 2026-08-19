@@ -492,10 +492,13 @@ function enableModal(players) {
             const card = modal.querySelector(".card");
             const cardBackVideo = document.getElementById("cardBackVideo");
 
-            // reset video
+            // ===============================
+            // RESET VIDEO + REMOVE OLD CLASSES
+            // ===============================
             cardBackVideo.pause();
             cardBackVideo.currentTime = 0;
             cardBackVideo.style.display = "none";
+            cardBackVideo.classList.remove("video-3", "video-5");
 
             // ===============================
             // MODE RATINGS
@@ -543,15 +546,16 @@ function enableModal(players) {
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
 
-
-            // SPECIAL POSITION OVERRIDES (ALL PLAYERS, SAME CARD)
+            // SPECIAL POSITION OVERRIDES
             card.classList.remove(
+                "player5-adjust",
                 "player4-adjust",
                 "player11-adjust",
                 "player13-adjust",
                 "player3-adjust"
             );
 
+            if (p.id === 5) card.classList.add("player5-adjust");
             if (p.id === 4) card.classList.add("player4-adjust");
             if (p.id === 11) card.classList.add("player11-adjust");
             if (p.id === 13) card.classList.add("player13-adjust");
@@ -567,15 +571,35 @@ function enableModal(players) {
             }
 
             // ===============================
-            // CARD FLIP (YOUR ORIGINAL)
+            // CARD FLIP
             // ===============================
             card.classList.remove("flipped");
             setTimeout(() => card.classList.add("flipped"), 1000);
 
             // ===============================
-            // VIDEO ONLY FOR PLAYER 3
+            // VIDEO FOR PLAYER 3
             // ===============================
             if (p.id === 3) {
+                cardBackVideo.src = "cards/3_intro.mp4";
+                cardBackVideo.classList.add("video-3");
+
+                setTimeout(() => {
+                    cardBackVideo.style.display = "block";
+                    cardBackVideo.play();
+                }, 1000);
+
+                cardBackVideo.onended = () => {
+                    cardBackVideo.style.display = "none";
+                };
+            }
+
+            // ===============================
+            // VIDEO FOR PLAYER 5
+            // ===============================
+            if (p.id === 5) {
+                cardBackVideo.src = "cards/5_intro.mp4";
+                cardBackVideo.classList.add("video-5");
+
                 setTimeout(() => {
                     cardBackVideo.style.display = "block";
                     cardBackVideo.play();
@@ -607,6 +631,7 @@ function enableModal(players) {
         }
     });
 }
+
 
 /* ---------------------------
    MODE STATS MODAL (PNG VERSION)
@@ -1323,8 +1348,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const video = document.getElementById("cardBackVideo");
     video.load();   //  forces preload of 3_intro.mp4
 });
-
-
 
 
 

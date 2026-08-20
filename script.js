@@ -498,7 +498,7 @@ function enableModal(players) {
             cardBackVideo.pause();
             cardBackVideo.currentTime = 0;
             cardBackVideo.style.display = "none";
-            cardBackVideo.classList.remove("video-3", "video-5");
+            cardBackVideo.classList.remove("video-3", "video-5", "video-2");
 
             // ===============================
             // MODE RATINGS
@@ -548,6 +548,7 @@ function enableModal(players) {
 
             // SPECIAL POSITION OVERRIDES
             card.classList.remove(
+                "player2-adjust",
                 "player5-adjust",
                 "player4-adjust",
                 "player11-adjust",
@@ -560,6 +561,7 @@ function enableModal(players) {
             if (p.id === 11) card.classList.add("player11-adjust");
             if (p.id === 13) card.classList.add("player13-adjust");
             if (p.id === 3) card.classList.add("player3-adjust");
+            if (p.id === 2) card.classList.add("player2-adjust");
 
             // SET BACK CARD PNG
             const backEl = document.querySelector(".back");
@@ -610,6 +612,23 @@ function enableModal(players) {
                 };
             }
 
+            // ===============================
+            // VIDEO FOR PLAYER 2
+            // ===============================
+            if (p.id === 2) {
+                cardBackVideo.src = "cards/2_intro.mp4";
+                cardBackVideo.classList.add("video-2");
+
+                setTimeout(() => {
+                    cardBackVideo.style.display = "block";
+                    cardBackVideo.play();
+                }, 1000);
+
+                cardBackVideo.onended = () => {
+                    cardBackVideo.style.display = "none";
+                };
+            }
+
         });
     });
 
@@ -631,6 +650,7 @@ function enableModal(players) {
         }
     });
 }
+
 
 
 /* ---------------------------

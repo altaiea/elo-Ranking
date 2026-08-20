@@ -465,6 +465,27 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    SPECIAL POSITION OVERRIDES
    ONLY FOR PLAYERS 4 AND 13
 ============================ */
+
+.player2-adjust .rating {
+    position: absolute;
+    top: 22px !important;
+    left: -5px !important;
+}
+
+.player2-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-0px, 10px) !important;
+}
+
+.player2-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(0px, 8px) !important;
+}
+
+.player2-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 10px) !important;
+}
 .player5-adjust .rating {
     position: absolute;
     top: 13px !important;

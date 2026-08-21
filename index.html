@@ -22,7 +22,7 @@
     <button class="nav-tab" data-tab="leaderboardPage">Leaderboard</button>
     <button class="nav-tab" data-tab="teamsPage">Teams</button>
     <button class="nav-tab" data-tab="seriesHistoryPage">History</button>
-    <button class="nav-tab" data-tab="codleticPage">Codletic</button>
+    <button class="nav-tab" data-tab="comparisonsPage">Comparisons</button>
     <button class="nav-tab" data-tab="mapsPage">Maps</button>
     <button class="nav-tab" data-tab="carouselPage">Cards</button>
 </div>
@@ -218,13 +218,36 @@
 </div>
 
 <!-- ============================
-      CODLETIC TAB
+      COMPARISONS TAB
 ============================ -->
-<div id="codleticPage" class="tab-page">
-    <article class="codletic-article">
-        <h2>Codletic</h2>
-        <p>Article Pending.</p>
-    </article>
+<div id="comparisonsPage" class="tab-page">
+    <section class="comparison-page">
+        <div class="comparison-header">
+            <h2>HEAD-TO-HEAD</h2>
+            <p>Who's Better?</p>
+        </div>
+
+        <div class="comparison-selectors">
+            <div class="comparison-player-box">
+                <label for="comparePlayerA">PLAYER 1</label>
+                <select id="comparePlayerA" class="comparison-select">
+                    <option value="">Select player</option>
+                </select>
+            </div>
+
+            <div class="comparison-vs">VS</div>
+
+            <div class="comparison-player-box">
+                <label for="comparePlayerB">PLAYER 2</label>
+                <select id="comparePlayerB" class="comparison-select">
+                    <option value="">Select player</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="comparisonEmpty" class="comparison-empty">Select two players to begin.</div>
+        <div id="comparisonContent" class="comparison-content" style="display:none;"></div>
+    </section>
 </div>
 
 <!-- ============================
@@ -238,59 +261,59 @@
             <div class="slider" style="--quantity: 14;">
                 <!-- Cards unchanged -->
                 <!-- (Your 14 card items remain exactly as you sent them) -->
-                <div class="item" style="--position: 1">
+                <div class="item" style="--position: 1" data-player-id="1">
                     <div class="card-face carousel-front"><img src="cards/1_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 2">
+                <div class="item" style="--position: 2" data-player-id="2">
                     <div class="card-face carousel-front"><img src="cards/2_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 3">
+                <div class="item" style="--position: 3" data-player-id="3">
                     <div class="card-face carousel-front"><img src="cards/3_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 4">
+                <div class="item" style="--position: 4" data-player-id="4">
                     <div class="card-face carousel-front"><img src="cards/4_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 5">
+                <div class="item" style="--position: 5" data-player-id="5">
                     <div class="card-face carousel-front"><img src="cards/5_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 6">
+                <div class="item" style="--position: 6" data-player-id="6">
                     <div class="card-face carousel-front"><img src="cards/6_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 7">
+                <div class="item" style="--position: 7" data-player-id="7">
                     <div class="card-face carousel-front"><img src="cards/7_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 8">
+                <div class="item" style="--position: 8" data-player-id="8">
                     <div class="card-face carousel-front"><img src="cards/8_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 9">
+                <div class="item" style="--position: 9" data-player-id="9">
                     <div class="card-face carousel-front"><img src="cards/9_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 10">
+                <div class="item" style="--position: 10" data-player-id="10">
                     <div class="card-face carousel-front"><img src="cards/10_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 11">
+                <div class="item" style="--position: 11" data-player-id="11">
                     <div class="card-face carousel-front"><img src="cards/11_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 12">
+                <div class="item" style="--position: 12" data-player-id="12">
                     <div class="card-face carousel-front"><img src="cards/12_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 13">
+                <div class="item" style="--position: 13" data-player-id="13">
                     <div class="card-face carousel-front"><img src="cards/13_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>
-                <div class="item" style="--position: 14">
+                <div class="item" style="--position: 14" data-player-id="14">
                     <div class="card-face carousel-front"><img src="cards/14_back.png" alt=""></div>
                     <div class="card-face carousel-back"><img src="wings.png" alt=""></div>
                 </div>

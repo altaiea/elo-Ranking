@@ -1,3 +1,30 @@
+
+function playCarouselClick() {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = window.__carouselAudioContext || (window.__carouselAudioContext = new AudioCtx());
+        if (ctx.state === "suspended") ctx.resume();
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.04, now + 0.003);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.06);
+    } catch (_) {}
+}
+
 // ===============================
 // LOAD PREVIOUS + CURRENT STATS
 // ===============================
@@ -55,6 +82,7 @@ function mergeStats(prevPlayersObj, currPlayersObj) {
 
     populateAutoDropdowns();
     populateManualDropdowns();
+    setupComparisons();
 
 }
 
@@ -477,17 +505,13 @@ const customBackCards = {
     14: "cards/14_back.png"
 };
 
-function enableModal(players) {
+function openPlayerModal(playerId, playerList = allPlayers) {
     const modal = document.getElementById("playerModal");
-    const closeModal = document.getElementById("closeModal");
+    const p = playerList.find(x => x.id === Number(playerId)) || allPlayers.find(x => x.id === Number(playerId));
 
-    document.querySelectorAll(".player-name").forEach(el => {
-        el.addEventListener("click", () => {
+    if (!modal || !p) return;
 
-            const id = Number(el.dataset.id);
-            const p = players.find(x => x.id === id);
-
-            modal.style.display = "block";
+    modal.style.display = "block";
 
             const card = modal.querySelector(".card");
             const cardBackVideo = document.getElementById("cardBackVideo");
@@ -503,9 +527,9 @@ function enableModal(players) {
             // ===============================
             // MODE RATINGS
             // ===============================
-            const hp = computeMode("hp", p, players);
-            const snd = computeMode("snd", p, players);
-            const ovl = computeMode("overload", p, players);
+            const hp = computeMode("hp", p, playerList);
+            const snd = computeMode("snd", p, playerList);
+            const ovl = computeMode("overload", p, playerList);
 
             const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
 
@@ -629,33 +653,610 @@ function enableModal(players) {
                 };
             }
 
-        });
-    });
+    }
 
-    // CLOSE MODAL
-    closeModal.addEventListener("click", () => {
-        modal.style.display = "none";
-        const cardBackVideo = document.getElementById("cardBackVideo");
-        cardBackVideo.pause();
-        cardBackVideo.style.display = "none";
-    });
-
-    // CLICK OUTSIDE MODAL
-    document.addEventListener("click", e => {
-        if (e.target === modal) {
-            modal.style.display = "none";
-            const cardBackVideo = document.getElementById("cardBackVideo");
-            cardBackVideo.pause();
-            cardBackVideo.style.display = "none";
-        }
+function enableModal(players) {
+    document.querySelectorAll(".player-name").forEach(el => {
+        // Prevent duplicate handlers when the leaderboard is re-rendered.
+        if (el.dataset.modalBound === "true") return;
+        el.dataset.modalBound = "true";
+        el.addEventListener("click", () => openPlayerModal(Number(el.dataset.id), players));
     });
 }
 
+/* ======================================================
+   PLAYER COMPARISONS
+====================================================== */
+function setupComparisons() {
+    const a = document.getElementById("comparePlayerA");
+    const b = document.getElementById("comparePlayerB");
+    if (!a || !b) return;
 
+    const buildOptions = (select, selected) => {
+        select.innerHTML = `<option value="">Select player</option>`;
+        allPlayers
+            .slice()
+            .sort((x, y) => x.name.localeCompare(y.name))
+            .forEach(p => {
+                const option = document.createElement("option");
+                option.value = p.id;
+                option.textContent = p.name;
+                if (String(p.id) === String(selected)) option.selected = true;
+                select.appendChild(option);
+            });
+    };
 
-/* ---------------------------
-   MODE STATS MODAL (PNG VERSION)
----------------------------- */
+    const currentA = a.value;
+    const currentB = b.value;
+    buildOptions(a, currentA);
+    buildOptions(b, currentB);
+
+    // Avoid duplicate listeners when stats are reloaded.
+    if (a.dataset.bound !== "true") {
+        a.addEventListener("change", () => renderComparison());
+        a.dataset.bound = "true";
+    }
+    if (b.dataset.bound !== "true") {
+        b.addEventListener("change", () => renderComparison());
+        b.dataset.bound = "true";
+    }
+}
+
+function comparisonNumber(value, decimals = 2) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "0";
+    return n.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: decimals
+    });
+}
+
+function comparisonPercent(value) {
+    return `${(Number(value || 0) * 100).toFixed(1)}%`;
+}
+
+function comparisonRatio(kills, deaths) {
+    kills = Number(kills || 0);
+    deaths = Number(deaths || 0);
+    return deaths === 0 ? comparisonNumber(kills) : comparisonNumber(kills / deaths);
+}
+
+function comparisonWinRate(wins, losses) {
+    const total = Number(wins || 0) + Number(losses || 0);
+    return total === 0 ? "0.0%" : comparisonPercent(Number(wins || 0) / total);
+}
+
+function getComparisonMode(p, prefix) {
+    const kills = Number(p[prefix + "Kills"] || 0);
+    const deaths = Number(p[prefix + "Deaths"] || 0);
+    const wins = Number(p[prefix + "Wins"] || 0);
+    const losses = Number(p[prefix + "Losses"] || 0);
+    const marginTotal = Number(p[prefix + "MarginTotal"] || 0);
+    const marginCount = Number(p[prefix + "MarginCount"] || 0);
+    const damage = Number(p[prefix + "LifetimeDamage"] || 0);
+    const teamDamage = Number(p[prefix + "LifetimeTeamDamage"] || 0);
+    const maps = wins + losses;
+    const avgM = marginCount ? marginTotal / marginCount : 0;
+    const damageShare = teamDamage ? damage / teamDamage : 0;
+
+    // Match the main player modal's AvgM conversion exactly.
+    const multiplier = prefix === "hp" ? 250 : prefix === "snd" ? 6 : 8;
+
+    return {
+        killsPerMap: maps ? kills / maps : 0,
+        deathsPerMap: maps ? deaths / maps : 0,
+        mapWinRate: maps ? wins / maps : 0,
+        damageShare,
+        avgModeUnit: avgM * multiplier
+    };
+}
+
+function comparisonModeUnitLabel(prefix) {
+    if (prefix === "hp") return "AVG POINTS / MAP";
+    if (prefix === "snd") return "AVG ROUNDS / MAP";
+    return "AVG GOALS / MAP";
+}
+
+function comparisonPlayerCard(p, slot) {
+    return `
+        <div class="comparison-card-wrap">
+            <div class="comparison-card-name">${p.name}</div>
+            <div class="comparison-card-stage" data-player-id="${p.id}" data-slot="${slot}"></div>
+        </div>`;
+}
+
+function buildComparisonMainCard(p) {
+    const template = document.querySelector("#playerModal .container");
+    if (!template) return null;
+
+    const container = template.cloneNode(true);
+    container.removeAttribute("id");
+
+    const card = container.querySelector(".card");
+    if (!card) return container;
+
+    card.classList.remove("flipped", "player2-adjust", "player5-adjust", "player4-adjust", "player11-adjust", "player13-adjust", "player3-adjust");
+    [2, 3, 4, 5, 11, 13].forEach(id => {
+        if (p.id === id) card.classList.add(`player${id}-adjust`);
+    });
+
+    const video = card.querySelector(".card-back-video");
+    if (video) video.remove();
+
+    const hp = computeMode("hp", p, allPlayers);
+    const snd = computeMode("snd", p, allPlayers);
+    const ovl = computeMode("overload", p, allPlayers);
+    const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
+
+    const ratingEl = card.querySelector(".rating");
+    if (ratingEl) {
+        ratingEl.textContent = avg;
+        setRatingColor(ratingEl, avg);
+    }
+
+    const hpEl = card.querySelector(".col1.row1");
+    const ovlEl = card.querySelector(".col2.row1");
+    const sndEl = card.querySelector(".col3.row1");
+
+    [[hpEl, hp.rating], [ovlEl, ovl.rating], [sndEl, snd.rating]].forEach(([el, value]) => {
+        if (!el) return;
+        el.textContent = value;
+        setRatingColor(el, value);
+        el.onclick = null;
+    });
+
+    const dateBox = card.querySelector(".date-box");
+    if (dateBox) {
+        if ([1, 11].includes(p.id)) {
+            dateBox.style.left = "auto";
+            dateBox.style.right = "40px";
+            dateBox.style.top = "28px";
+        } else {
+            dateBox.style.right = "auto";
+            dateBox.style.left = "36px";
+            dateBox.style.top = "28px";
+        }
+    }
+
+    const back = card.querySelector(".back");
+    if (back) {
+        back.style.backgroundImage = `url('${customBackCards[p.id] || "CDLcardUse.png"}')`;
+        back.style.opacity = "1";
+    }
+
+    card.classList.add("flipped");
+    return container;
+}
+
+function hydrateComparisonCards() {
+    document.querySelectorAll(".comparison-card-stage").forEach(stage => {
+        const id = Number(stage.dataset.playerId);
+        const p = allPlayers.find(x => x.id === id);
+        if (!p) return;
+        const card = buildComparisonMainCard(p);
+        if (card) stage.replaceChildren(card);
+    });
+}
+
+function compareMetric(a, b, better = "higher") {
+    const av = Number(a || 0);
+    const bv = Number(b || 0);
+    if (av === bv) return 0.5;
+    return better === "higher" ? (av > bv ? 1 : 0) : (av < bv ? 1 : 0);
+}
+
+function getModeHeadToHead(a, b, prefix) {
+    const x = getComparisonMode(a, prefix);
+    const y = getComparisonMode(b, prefix);
+
+    const metrics = [
+        [x.killsPerMap, y.killsPerMap, "higher"],
+        [x.deathsPerMap, y.deathsPerMap, "lower"],
+        [x.mapWinRate, y.mapWinRate, "higher"],
+        [x.damageShare, y.damageShare, "higher"],
+        [x.avgModeUnit, y.avgModeUnit, "higher"]
+    ];
+
+    const scoreA = metrics.reduce((sum, [av, bv, better]) => sum + compareMetric(av, bv, better), 0);
+    return { x, y, scoreA, scoreB: 5 - scoreA };
+}
+
+function renderModeComparison(name, prefix, a, b) {
+    const { x, y, scoreA, scoreB } = getModeHeadToHead(a, b, prefix);
+
+    return {
+        scoreA,
+        scoreB,
+        html: `<div class="comparison-section">
+            <div class="comparison-section-title">${name.toUpperCase()} <span class="mode-score">${a.name} ${comparisonNumber(scoreA, 1)} — ${comparisonNumber(scoreB, 1)} ${b.name}</span></div>
+            ${comparisonRow("KILLS / MAP", x.killsPerMap, y.killsPerMap, "number", "higher")}
+            ${comparisonRow("DEATHS / MAP", x.deathsPerMap, y.deathsPerMap, "number", "lower")}
+            ${comparisonRow("MAP WIN %", x.mapWinRate, y.mapWinRate, "percent", "higher")}
+            ${comparisonRow("DAMAGE SHARE", x.damageShare, y.damageShare, "percent", "higher")}
+            ${comparisonRow(comparisonModeUnitLabel(prefix), x.avgModeUnit, y.avgModeUnit, "number", "higher")}
+        </div>`
+    };
+}
+
+function renderComparison() {
+    const aId = Number(document.getElementById("comparePlayerA")?.value);
+    const bId = Number(document.getElementById("comparePlayerB")?.value);
+    const empty = document.getElementById("comparisonEmpty");
+    const content = document.getElementById("comparisonContent");
+
+    if (!aId || !bId || aId === bId) {
+        if (empty) {
+            empty.textContent = aId && bId && aId === bId
+                ? "Select two different players to compare."
+                : "Select two players to begin.";
+            empty.style.display = "block";
+        }
+        if (content) content.style.display = "none";
+        return;
+    }
+
+    const a = allPlayers.find(p => p.id === aId);
+    const b = allPlayers.find(p => p.id === bId);
+    if (!a || !b) return;
+
+    empty.style.display = "none";
+    content.style.display = "grid";
+
+    const modes = [
+        ["Hardpoint", "hp"],
+        ["Search & Destroy", "snd"],
+        ["Overload", "overload"]
+    ];
+
+    const overallA = Math.round((computeMode("hp", a, allPlayers).rating + computeMode("snd", a, allPlayers).rating + computeMode("overload", a, allPlayers).rating) / 3);
+    const overallB = Math.round((computeMode("hp", b, allPlayers).rating + computeMode("snd", b, allPlayers).rating + computeMode("overload", b, allPlayers).rating) / 3);
+
+    const modeResults = modes.map(([name, prefix]) => renderModeComparison(name, prefix, a, b));
+    const headToHeadA = modeResults.reduce((sum, result) => sum + result.scoreA, 0);
+    const headToHeadB = modeResults.reduce((sum, result) => sum + result.scoreB, 0);
+
+    content.innerHTML = `
+        <div class="comparison-card-pair">
+            ${comparisonPlayerCard(a, "a")}
+            <div class="comparison-vs-card">VS</div>
+            ${comparisonPlayerCard(b, "b")}
+        </div>
+
+        <div class="comparison-score final-head-to-head ${headToHeadA > headToHeadB ? "a-winner" : headToHeadB > headToHeadA ? "b-winner" : "tie"}">
+            <strong>${a.name} ${comparisonNumber(headToHeadA, 1)} — ${comparisonNumber(headToHeadB, 1)} ${b.name}</strong>
+            <span>HEAD-TO-HEAD</span>
+            <small>15 points across 3 modes · 5 metrics per mode</small>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-section-title">OVERALL</div>
+            ${comparisonRow("ELO", a.elo, b.elo, "number", "higher")}
+            ${comparisonRow("CURRENT RANK", a.currentRank, b.currentRank, "number", "lower")}
+            ${comparisonRow("OVERALL RATING", overallA, overallB, "number", "higher")}
+            ${comparisonRow("ELO CHANGE", a.eloChange, b.eloChange, "number", "higher")}
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-section-title">LIFETIME</div>
+            ${comparisonRow("KILLS", a.lifetimeKills, b.lifetimeKills, "number", "higher")}
+            ${comparisonRow("DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower")}
+            ${comparisonRow("K/D", comparisonRatio(a.lifetimeKills, a.lifetimeDeaths), comparisonRatio(b.lifetimeKills, b.lifetimeDeaths), "text", "higher")}
+            ${comparisonRow("WINS", a.hpWins + a.sndWins + a.overloadWins, b.hpWins + b.sndWins + b.overloadWins, "number", "higher")}
+            ${comparisonRow("LOSSES", a.hpLosses + a.sndLosses + a.overloadLosses, b.hpLosses + b.sndLosses + b.overloadLosses, "number", "lower")}
+            ${comparisonRow("WIN RATE", (a.hpWins + a.sndWins + a.overloadWins) / ((a.hpWins + a.sndWins + a.overloadWins) + (a.hpLosses + a.sndLosses + a.overloadLosses) || 1), (b.hpWins + b.sndWins + b.overloadWins) / ((b.hpWins + b.sndWins + b.overloadWins) + (b.hpLosses + b.sndLosses + b.overloadLosses) || 1), "percent", "higher")}
+        </div>
+
+        ${modeResults.map(result => result.html).join("")}
+
+    `;
+
+    hydrateComparisonCards();
+}
+
+function comparisonRow(label, a, b, type = "number", better = "higher") {
+    const numeric = type === "number" || type === "percent";
+    const av = numeric ? Number(a || 0) : String(a);
+    const bv = numeric ? Number(b || 0) : String(b);
+    let aBetter = false, bBetter = false;
+
+    if (numeric && av !== bv) {
+        aBetter = better === "higher" ? av > bv : av < bv;
+        bBetter = better === "higher" ? bv > av : bv < av;
+    }
+
+    const format = v => type === "percent" ? comparisonPercent(v) : type === "number" ? comparisonNumber(v) : v;
+    return `<div class="comparison-row">
+        <div class="comparison-value left ${aBetter ? "better" : ""}">${format(av)}</div>
+        <div class="comparison-label">${label}</div>
+        <div class="comparison-value right ${bBetter ? "better" : ""}">${format(bv)}</div>
+    </div>`;
+}
+
+function closePlayerModal() {
+    const modal = document.getElementById("playerModal");
+    const cardBackVideo = document.getElementById("cardBackVideo");
+    if (!modal) return;
+    modal.style.display = "none";
+    if (cardBackVideo) {
+        cardBackVideo.pause();
+        cardBackVideo.style.display = "none";
+    }
+}
+
+function setupCarousel() {
+    const slider = document.querySelector("#carouselPage .slider");
+    if (!slider) return;
+
+    const items = [...slider.querySelectorAll(".item")];
+    const quantity = items.length || 14;
+    const step = 360 / quantity;
+
+    // JS is the single owner of the carousel's overall rotation.
+    const AUTO_SPEED = -360 / 18000; // degrees per millisecond
+    const DRAG_SENSITIVITY = 0.55;
+    const DRAG_THRESHOLD = 8;
+    const FOLLOW_EASE = 0.22;
+    const TARGET_EASE = 0.13;
+    const RESUME_DELAY = 900;
+
+    let rotation = 0;
+    let targetRotation = 0;
+    let lastTime = null;
+    let autoRunning = true;
+    let isPointerDown = false;
+    let isDragging = false;
+    let activePointerId = null;
+    let pointerStartX = 0;
+    let pointerStartRotation = 0;
+    let suppressClick = false;
+    let resumeTimer = null;
+    let modalOpening = false;
+
+    // Completely remove the old CSS animation so it cannot fight JS.
+    slider.style.animation = "none";
+    slider.style.transition = "none";
+    slider.style.touchAction = "none";
+    slider.style.cursor = "grab";
+    slider.style.willChange = "transform";
+
+    items.forEach(item => {
+        item.dataset.playerId = item.dataset.playerId || item.style.getPropertyValue("--position").trim();
+        item.style.cursor = "grab";
+        item.querySelectorAll("img").forEach(img => {
+            img.draggable = false;
+            img.style.userSelect = "none";
+            img.style.webkitUserDrag = "none";
+            img.style.pointerEvents = "none";
+        });
+    });
+
+    // Short UI click sound. Web Audio is created only after user interaction.
+    let audioContext = null;
+    function playClickSound() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            if (!audioContext) audioContext = new AudioCtx();
+            if (audioContext.state === "suspended") audioContext.resume();
+
+            const now = audioContext.currentTime;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = "sawtooth";
+            osc.frequency.setValueAtTime(520, now);
+            osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.04, now + 0.003);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.start(now);
+            osc.stop(now + 0.06);
+        } catch (_) {}
+    }
+
+    function applyRotation() {
+        slider.style.transform = `perspective(2000px) rotateX(-16deg) rotateY(${rotation}deg)`;
+    }
+
+    function stopAuto() {
+        autoRunning = false;
+        lastTime = null;
+        if (resumeTimer) {
+            clearTimeout(resumeTimer);
+            resumeTimer = null;
+        }
+    }
+
+    function resumeAuto(delay = RESUME_DELAY) {
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+            if (!isPointerDown && !modalOpening) {
+                autoRunning = true;
+                lastTime = null;
+            }
+        }, delay);
+    }
+
+    function shortestTargetForPlayer(playerId) {
+        const desired = -(Number(playerId) - 1) * step;
+        const turns = Math.round((targetRotation - desired) / 360);
+        return desired + turns * 360;
+    }
+
+    function animateToPlayer(playerId) {
+        const id = Number(playerId);
+        if (!id || id < 1 || id > quantity) return;
+
+        stopAuto();
+        modalOpening = true;
+        suppressClick = false;
+        targetRotation = shortestTargetForPlayer(id);
+        playClickSound();
+
+        // The render loop handles the easing. Open the modal only once the
+        // visual rotation has actually reached the requested card.
+        const waitForArrival = () => {
+            if (!modalOpening) return;
+            if (Math.abs(targetRotation - rotation) < 0.35) {
+                rotation = targetRotation;
+                applyRotation();
+
+                if (typeof allPlayers !== "undefined" && allPlayers && allPlayers.length) {
+                    openPlayerModal(id, allPlayers);
+                    modalOpening = false;
+                    resumeAuto();
+                } else {
+                    // Player data may still be loading.
+                    setTimeout(waitForArrival, 50);
+                }
+                return;
+            }
+            requestAnimationFrame(waitForArrival);
+        };
+        requestAnimationFrame(waitForArrival);
+    }
+
+    function onPointerDown(event) {
+        if (modalOpening) return;
+
+        isPointerDown = true;
+        isDragging = false;
+        suppressClick = false;
+        activePointerId = event.pointerId;
+        pointerStartX = event.clientX;
+        pointerStartRotation = targetRotation;
+
+        stopAuto();
+        slider.style.cursor = "grabbing";
+
+        try { slider.setPointerCapture(event.pointerId); } catch (_) {}
+        event.preventDefault();
+    }
+
+    function onPointerMove(event) {
+        if (!isPointerDown || event.pointerId !== activePointerId || modalOpening) return;
+
+        const deltaX = event.clientX - pointerStartX;
+
+        if (!isDragging && Math.abs(deltaX) >= DRAG_THRESHOLD) {
+            isDragging = true;
+            suppressClick = true;
+            playClickSound();
+        }
+
+        if (!isDragging) return;
+
+        event.preventDefault();
+        targetRotation = pointerStartRotation + deltaX * DRAG_SENSITIVITY;
+    }
+
+    function finishPointer(event) {
+        if (!isPointerDown || event.pointerId !== activePointerId) return;
+
+        isPointerDown = false;
+        try { slider.releasePointerCapture(event.pointerId); } catch (_) {}
+        activePointerId = null;
+        slider.style.cursor = "grab";
+
+        if (isDragging) {
+            // Freeze exactly where the user released. No momentum.
+            targetRotation = rotation;
+            isDragging = false;
+            suppressClick = true;
+            resumeAuto();
+        } else {
+            // Handle a true tap directly from pointerup. Relying on the
+            // browser's synthetic click event can be unreliable when
+            // pointer capture is used, especially on touch devices.
+            const tapped = document.elementFromPoint(event.clientX, event.clientY);
+            const item = tapped ? tapped.closest('#carouselPage .item') : null;
+            if (item && slider.contains(item)) {
+                const playerId = Number(item.dataset.playerId);
+                if (playerId) animateToPlayer(playerId);
+            }
+            resumeAuto();
+        }
+    }
+
+    function cancelPointer(event) {
+        if (!isPointerDown || event.pointerId !== activePointerId) return;
+        isPointerDown = false;
+        isDragging = false;
+        activePointerId = null;
+        targetRotation = rotation;
+        slider.style.cursor = "grab";
+        try { slider.releasePointerCapture(event.pointerId); } catch (_) {}
+        resumeAuto();
+    }
+
+    slider.addEventListener("pointerdown", onPointerDown, { passive: false });
+    slider.addEventListener("pointermove", onPointerMove, { passive: false });
+    slider.addEventListener("pointerup", finishPointer);
+    slider.addEventListener("pointercancel", cancelPointer);
+    slider.addEventListener("lostpointercapture", () => {
+        if (isPointerDown) {
+            isPointerDown = false;
+            isDragging = false;
+            activePointerId = null;
+            targetRotation = rotation;
+            slider.style.cursor = "grab";
+            resumeAuto();
+        }
+    });
+    slider.addEventListener("dragstart", e => e.preventDefault());
+
+    // A tap is a click; a drag is never a click.
+    items.forEach(item => {
+        const playerId = Number(item.dataset.playerId);
+        item.addEventListener("click", event => {
+            if (suppressClick) {
+                suppressClick = false;
+                event.preventDefault();
+                event.stopPropagation();
+                return;
+            }
+            animateToPlayer(playerId);
+        });
+    });
+
+    function render(timestamp) {
+        if (lastTime === null) lastTime = timestamp;
+        const delta = Math.min(timestamp - lastTime, 40);
+        lastTime = timestamp;
+
+        if (autoRunning && !isPointerDown && !modalOpening) {
+            targetRotation += AUTO_SPEED * delta;
+        }
+
+        // Smoothly follow the target. During a drag the target itself follows
+        // the pointer, giving a fluid, direct-feeling rotation.
+        const ease = isDragging ? FOLLOW_EASE : TARGET_EASE;
+        const difference = targetRotation - rotation;
+        rotation += difference * (1 - Math.pow(1 - ease, delta / 16.67));
+
+        if (Math.abs(difference) < 0.001) rotation = targetRotation;
+        applyRotation();
+        requestAnimationFrame(render);
+    }
+
+    applyRotation();
+    requestAnimationFrame(render);
+
+    // Modal controls are shared with the leaderboard.
+    const modal = document.getElementById("playerModal");
+    const closeModal = document.getElementById("closeModal");
+    if (closeModal && closeModal.dataset.modalBound !== "true") {
+        closeModal.dataset.modalBound = "true";
+        closeModal.addEventListener("click", closePlayerModal);
+    }
+    if (modal && modal.dataset.modalBound !== "true") {
+        modal.dataset.modalBound = "true";
+        modal.addEventListener("click", e => {
+            if (e.target === modal) closePlayerModal();
+        });
+    }
+}
 
 function openModeModal(modeName, modeStats) {
     const modal = document.getElementById("modeModal");
@@ -1058,7 +1659,7 @@ function initTabs() {
             if (target === "leaderboardPage")      title.textContent = "LEADERBOARD";
             else if (target === "teamsPage")       title.textContent = "TEAMS";
             else if (target === "seriesHistoryPage") title.textContent = "9 MAPS";
-            else if (target === "codleticPage")    title.textContent = "CODLETIC";
+            else if (target === "comparisonsPage") title.textContent = "COMPARISONS";
             else if (target === "mapsPage")        title.textContent = "MAPS";
             else if (target === "carouselPage")    title.textContent = "CARDS";
         });
@@ -1242,6 +1843,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTabs();
     renderSeriesList();
     setupMapBuilder();
+    setupCarousel();
 });
 
 // ===============================

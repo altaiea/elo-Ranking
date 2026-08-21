@@ -949,18 +949,18 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     left: calc(50% - 50px);
     transform-style: preserve-3d;
     transform: perspective(2000px);
-    animation: autoRun 18s linear infinite;
     z-index: 2;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+    -webkit-tap-highlight-color: transparent;
 }
 
-@keyframes autoRun {
-    from {
-        transform: perspective(2000px) rotateX(-16deg) rotateY(0deg);
-    }
-    to {
-        transform: perspective(2000px) rotateX(-16deg) rotateY(-360deg);
-    }
+#carouselPage .slider:active {
+    cursor: grabbing;
 }
+
 
 #carouselPage .item {
     position: absolute;
@@ -1352,3 +1352,351 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 
 
+
+/* ============================================================
+   PLAYER COMPARISON TAB
+============================================================ */
+.comparison-page {
+    width: min(1180px, 94%);
+    margin: 0 auto;
+    padding: 28px 0 50px;
+}
+
+.comparison-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.comparison-header h2 {
+    margin: 0 0 8px;
+    color: #00eaff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(0, 234, 255, .35);
+}
+
+.comparison-header p {
+    margin: 0;
+    color: #9caab2;
+}
+
+.comparison-selectors {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: end;
+    gap: 18px;
+    margin: 0 auto 22px;
+}
+
+.comparison-player-box {
+    background: #10151a;
+    border: 1px solid #00eaff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 16px rgba(0, 234, 255, .08);
+}
+
+.comparison-player-box label {
+    display: block;
+    color: #00eaff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.comparison-select {
+    width: 100%;
+    padding: 12px;
+    background: #080b0f;
+    color: #f2f7f9;
+    border: 1px solid #34434c;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.comparison-select:focus {
+    outline: none;
+    border-color: #00eaff;
+    box-shadow: 0 0 10px rgba(0, 234, 255, .18);
+}
+
+.comparison-vs {
+    align-self: center;
+    justify-self: center;
+    color: #00eaff;
+    font-weight: 900;
+    font-size: 20px;
+    text-shadow: 0 0 10px rgba(0, 234, 255, .45);
+}
+
+.comparison-empty {
+    text-align: center;
+    padding: 35px 20px;
+    color: #7f8d95;
+    border: 1px dashed #34434c;
+    border-radius: 8px;
+    background: rgba(10, 15, 20, .6);
+}
+
+.comparison-content {
+    display: grid;
+    gap: 18px;
+}
+
+.comparison-summary {
+    display: grid;
+    grid-template-columns: 1fr 110px 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.comparison-player-summary {
+    background: linear-gradient(145deg, #151b21, #0c1014);
+    border: 1px solid #283941;
+    border-radius: 8px;
+    padding: 18px;
+    text-align: center;
+}
+
+.comparison-player-summary.winner {
+    border-color: #00eaff;
+    box-shadow: 0 0 18px rgba(0, 234, 255, .12);
+}
+
+.comparison-player-summary .comparison-name {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.comparison-player-summary .comparison-elo {
+    color: #f2c94c;
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+.comparison-player-summary .comparison-rating {
+    font-size: 42px;
+    font-weight: 900;
+    color: #00eaff;
+    margin-top: 8px;
+}
+
+.comparison-score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0c1116;
+    border: 1px solid #283941;
+    border-radius: 8px;
+}
+
+.comparison-score strong {
+    color: #00eaff;
+    font-size: 26px;
+}
+
+.comparison-score span {
+    color: #77858d;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.comparison-section {
+    background: #10151a;
+    border: 1px solid #27363e;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.comparison-section-title {
+    padding: 13px 16px;
+    color: #00eaff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    border-bottom: 1px solid #27363e;
+    background: #0b1014;
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 150px 1fr;
+    align-items: center;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(39, 54, 62, .55);
+}
+
+.comparison-row:last-child { border-bottom: 0; }
+
+.comparison-value {
+    padding: 10px 16px;
+    font-weight: 700;
+    color: #dce7eb;
+}
+
+.comparison-value.left { text-align: right; }
+.comparison-value.right { text-align: left; }
+
+.comparison-value.better {
+    color: #00ffb7;
+    text-shadow: 0 0 7px rgba(0,255,183,.22);
+}
+
+.comparison-label {
+    text-align: center;
+    color: #7f8d95;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+@media (max-width: 700px) {
+    .comparison-page { width: 94%; padding-top: 18px; }
+    .comparison-selectors { grid-template-columns: 1fr; gap: 10px; }
+    .comparison-vs { padding: 2px 0; }
+    .comparison-summary { grid-template-columns: 1fr; }
+    .comparison-score { min-height: 55px; flex-direction: row; gap: 8px; }
+    .comparison-row { grid-template-columns: 1fr 90px 1fr; }
+    .comparison-value { padding: 9px 8px; font-size: 13px; }
+    .comparison-label { font-size: 9px; }
+}
+
+/* ============================
+   COMPARISON PLAYER CARDS
+   Uses the exact main player modal card DOM/positioning.
+============================ */
+.comparison-card-pair {
+    display: grid;
+    grid-template-columns: minmax(260px, 350px) 70px minmax(260px, 350px);
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 8px auto 26px;
+}
+
+.comparison-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.comparison-card-name {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #efd73a;
+    text-shadow: 0 0 12px rgba(0,234,255,.25);
+}
+
+.comparison-card-stage {
+    width: 350px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* The cloned .container is literally the one from #playerModal, so its
+   internal absolute positions and player-specific overrides are identical. */
+.comparison-card-stage > .container {
+    margin: 0;
+    flex: 0 0 350px;
+}
+
+.comparison-card-stage .card {
+    transition: none;
+}
+
+.comparison-card-stage .card-layer,
+.comparison-card-stage .card-back-video {
+    display: none !important;
+}
+
+.comparison-vs-card {
+    font-size: 22px;
+    font-weight: 900;
+    color: #00eaff;
+    text-shadow: 0 0 15px rgba(0,234,255,.5);
+    text-align: center;
+}
+
+.comparison-caption {
+    color: #77858d;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+    .comparison-card-pair {
+        grid-template-columns: minmax(220px, 1fr) 50px minmax(220px, 1fr);
+        gap: 8px;
+    }
+    .comparison-card-stage {
+        transform: scale(.78);
+        transform-origin: top center;
+        margin-bottom: -110px;
+    }
+}
+
+@media (max-width: 700px) {
+    .comparison-card-pair {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+    .comparison-vs-card {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        margin-bottom: -4px;
+    }
+    .comparison-card-name {
+        font-size: 16px;
+    }
+    .comparison-card-stage {
+        transform: scale(.58);
+        margin-bottom: -210px;
+    }
+}
+
+
+/* Head-to-head comparison scoring */
+.mode-score {
+    float: right;
+    color: #dce7eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
+}
+
+.final-head-to-head {
+    min-height: 100px;
+    padding: 20px;
+    gap: 6px;
+    text-align: center;
+}
+
+.final-head-to-head strong {
+    font-size: 30px;
+}
+
+.final-head-to-head small {
+    color: #77858d;
+    font-size: 10px;
+    letter-spacing: .5px;
+}
+
+@media (max-width: 700px) {
+    .mode-score {
+        float: none;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .final-head-to-head strong {
+        font-size: 22px;
+    }
+}

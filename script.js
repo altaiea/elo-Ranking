@@ -505,6 +505,85 @@ const customBackCards = {
     14: "cards/14_back.png"
 };
 
+let playerModalLoadToken = 0;
+
+function waitForCardImage(src) {
+    return new Promise(resolve => {
+        const img = new Image();
+        let done = false;
+
+        const finish = () => {
+            if (done) return;
+            done = true;
+            if (img.decode) {
+                img.decode().catch(() => {}).finally(resolve);
+            } else {
+                resolve();
+            }
+        };
+
+        img.onload = finish;
+        img.onerror = resolve;
+        img.src = src;
+
+        if (img.complete && img.naturalWidth > 0) finish();
+    });
+}
+
+function waitForCardVideo(video, src) {
+    return new Promise(resolve => {
+        if (!video || !src) {
+            resolve();
+            return;
+        }
+
+        let done = false;
+        const finish = () => {
+            if (done) return;
+            done = true;
+            cleanup();
+            resolve();
+        };
+
+        const cleanup = () => {
+            video.removeEventListener("loadedmetadata", checkReady);
+            video.removeEventListener("canplaythrough", finish);
+            video.removeEventListener("progress", checkReady);
+            video.removeEventListener("loadeddata", checkReady);
+            video.removeEventListener("error", finish);
+            video.removeEventListener("abort", finish);
+        };
+
+        const checkReady = () => {
+            if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+                // If duration is known, prefer to wait until the entire file is buffered.
+                if (Number.isFinite(video.duration) && video.duration > 0) {
+                    try {
+                        const end = video.buffered.length ? video.buffered.end(video.buffered.length - 1) : 0;
+                        if (end + 0.05 >= video.duration) finish();
+                    } catch (_) {
+                        finish();
+                    }
+                } else {
+                    finish();
+                }
+            }
+        };
+
+        video.addEventListener("loadedmetadata", checkReady);
+        video.addEventListener("loadeddata", checkReady);
+        video.addEventListener("progress", checkReady);
+        video.addEventListener("canplaythrough", finish);
+        video.addEventListener("error", finish);
+        video.addEventListener("abort", finish);
+
+        video.preload = "auto";
+        video.src = src;
+        video.load();
+        checkReady();
+    });
+}
+
 function openPlayerModal(playerId, playerList = allPlayers) {
     const modal = document.getElementById("playerModal");
     const p = playerList.find(x => x.id === Number(playerId)) || allPlayers.find(x => x.id === Number(playerId));
@@ -597,61 +676,58 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             }
 
             // ===============================
-            // CARD FLIP
+            // PRELOAD EVERYTHING BEHIND THE CARD BEFORE FLIPPING
             // ===============================
+            // The Wings/front remains visible while these assets load.
+            // Every modal opening gets a fresh load check; cached assets resolve immediately.
+            const loadToken = ++playerModalLoadToken;
             card.classList.remove("flipped");
-            setTimeout(() => card.classList.add("flipped"), 1000);
+            cardBackVideo.pause();
+            cardBackVideo.currentTime = 0;
+            cardBackVideo.style.display = "none";
 
-            // ===============================
-            // VIDEO FOR PLAYER 3
-            // ===============================
-            if (p.id === 3) {
-                cardBackVideo.src = "cards/3_intro.mp4";
-                cardBackVideo.classList.add("video-3");
+            const backSrc = customBackCards[p.id] || "CDLcardUse.png";
+            const introVideos = {
+                2: "cards/2_intro.mp4",
+                3: "cards/3_intro.mp4",
+                5: "cards/5_intro.mp4"
+            };
+            const introClasses = {
+                2: "video-2",
+                3: "video-3",
+                5: "video-5"
+            };
+            const introSrc = introVideos[p.id] || null;
 
-                setTimeout(() => {
+            cardBackVideo.classList.remove("video-3", "video-5", "video-2");
+            if (introSrc) cardBackVideo.classList.add(introClasses[p.id]);
+
+            // Load the actual Wings/back artwork first. The visible front is never flipped
+            // until this promise and the video promise (when applicable) are complete.
+            const imageReady = waitForCardImage(backSrc);
+            const videoReady = introSrc
+                ? waitForCardVideo(cardBackVideo, introSrc)
+                : Promise.resolve();
+
+            Promise.all([imageReady, videoReady]).then(() => {
+                // User may have opened a different player while this one was loading.
+                if (loadToken !== playerModalLoadToken) return;
+                if (modal.style.display === "none") return;
+
+                // Keep the existing 1000ms CSS flip animation exactly as it is.
+                card.classList.add("flipped");
+
+                if (introSrc) {
                     cardBackVideo.style.display = "block";
-                    cardBackVideo.play();
-                }, 1000);
-
-                cardBackVideo.onended = () => {
-                    cardBackVideo.style.display = "none";
-                };
-            }
-
-            // ===============================
-            // VIDEO FOR PLAYER 5
-            // ===============================
-            if (p.id === 5) {
-                cardBackVideo.src = "cards/5_intro.mp4";
-                cardBackVideo.classList.add("video-5");
-
-                setTimeout(() => {
-                    cardBackVideo.style.display = "block";
-                    cardBackVideo.play();
-                }, 1000);
-
-                cardBackVideo.onended = () => {
-                    cardBackVideo.style.display = "none";
-                };
-            }
-
-            // ===============================
-            // VIDEO FOR PLAYER 2
-            // ===============================
-            if (p.id === 2) {
-                cardBackVideo.src = "cards/2_intro.mp4";
-                cardBackVideo.classList.add("video-2");
-
-                setTimeout(() => {
-                    cardBackVideo.style.display = "block";
-                    cardBackVideo.play();
-                }, 1000);
-
-                cardBackVideo.onended = () => {
-                    cardBackVideo.style.display = "none";
-                };
-            }
+                    const playPromise = cardBackVideo.play();
+                    if (playPromise && typeof playPromise.catch === "function") {
+                        playPromise.catch(() => {});
+                    }
+                    cardBackVideo.onended = () => {
+                        cardBackVideo.style.display = "none";
+                    };
+                }
+            });
 
     }
 

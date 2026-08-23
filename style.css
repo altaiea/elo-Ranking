@@ -366,43 +366,6 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     border-radius: 6px;
 }
 
-/* ============================
-   PLAYER 3 OVERRIDE (optional)
-============================ */
-.card-back-video.video-3 {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-
-    clip-path: inset(12px 10px 15px 10px);
-    transform: scale(1.05);
-
-    display: none;
-    z-index: 0;
-    border-radius: 6px;
-}
-
-/* ============================
-   PLAYER 5 OVERRIDE
-============================ */
-.card-back-video.video-5 {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    clip-path: inset(5px 3px 5px 3px);
-    transform: scale(1.05);
-    display: none;
-    z-index: 0;
-    border-radius: 6px;
-
-}
-
 
 .date-box {
     position: absolute;
@@ -574,21 +537,21 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 .player11-adjust .rating {
     position: absolute;
-    top: 4px !important;
-    right: 234px !important;
+    top: 8px !important;
+    right: 231px !important;
 }
 
 .player11-adjust .col1.row1 {
     position: absolute !important;
-    transform: translate(-4px, -9px) !important;
+    transform: translate(-1px, 0px) !important;
 }
 .player11-adjust .col2.row1 {
     position: absolute !important;
-    transform: translate(-3px, -9px) !important;
+    transform: translate(0px, -2px) !important;
 }
 .player11-adjust .col3.row1 {
     position: absolute !important;
-    transform: translate(1px, -9px) !important;
+    transform: translate(0px, 0px) !important;
 }
 
 

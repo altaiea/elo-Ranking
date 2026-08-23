@@ -711,7 +711,6 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                 1: "cards/1_intro.mp4",
                 2: "cards/2_intro.mp4",
                 3: "cards/3_intro.mp4",
-                4: "cards/4_intro.mp4",
                 5: "cards/5_intro.mp4",
                 6: "cards/6_intro.mp4",
                 7: "cards/7_intro.mp4",
@@ -889,8 +888,13 @@ function buildComparisonMainCard(p) {
     const card = container.querySelector(".card");
     if (!card) return container;
 
-    card.classList.remove("flipped", "player2-adjust", "player5-adjust", "player4-adjust", "player11-adjust", "player13-adjust", "player3-adjust");
-    [2, 3, 4, 5, 11, 13].forEach(id => {
+    card.classList.remove(
+        "flipped",
+        "rating-80", "rating-90", "rating-98",
+        "player2-adjust", "player5-adjust", "player4-adjust",
+        "player11-adjust", "player13-adjust", "player3-adjust", "player10-adjust"
+    );
+    [2, 3, 4, 5, 10, 11, 13].forEach(id => {
         if (p.id === id) card.classList.add(`player${id}-adjust`);
     });
 
@@ -902,9 +906,15 @@ function buildComparisonMainCard(p) {
     const ovl = computeMode("overload", p, allPlayers);
     const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
 
+    // Match the main player modal's rating-tier styling as well as its layout.
+    if (avg >= 98) card.classList.add("rating-98");
+    else if (avg >= 90) card.classList.add("rating-90");
+    else if (avg >= 80) card.classList.add("rating-80");
+
     const ratingEl = card.querySelector(".rating");
     if (ratingEl) {
         ratingEl.textContent = avg;
+        ratingEl.style.visibility = "visible";
         setRatingColor(ratingEl, avg);
     }
 
@@ -915,6 +925,9 @@ function buildComparisonMainCard(p) {
     [[hpEl, hp.rating], [ovlEl, ovl.rating], [sndEl, snd.rating]].forEach(([el, value]) => {
         if (!el) return;
         el.textContent = value;
+        // A clone can inherit visibility:hidden from an intro currently playing
+        // in the live modal. Head-to-Head never uses intros, so always show stats.
+        el.style.visibility = "visible";
         setRatingColor(el, value);
         el.onclick = null;
     });

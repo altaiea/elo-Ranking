@@ -596,12 +596,31 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             const cardBackVideo = document.getElementById("cardBackVideo");
 
             // ===============================
-            // RESET VIDEO + REMOVE OLD CLASSES
+            // RESET TRANSIENT MODAL STATE
             // ===============================
+            // The same modal is reused for every player, so always clear any
+            // state/callbacks left behind by the previously opened card first.
+            card.classList.remove("flipped");
             cardBackVideo.pause();
-            cardBackVideo.currentTime = 0;
+            cardBackVideo.onended = null;
+            try { cardBackVideo.currentTime = 0; } catch (_) {}
             cardBackVideo.style.display = "none";
             cardBackVideo.classList.remove("video-3", "video-5", "video-2");
+
+            // Scope these shared class names to the real player modal. Head-to-Head
+            // contains cloned card markup with the same classes.
+            const ratingEl = modal.querySelector(".rating");
+            const dateBox = modal.querySelector(".date-box");
+            const hpEl = modal.querySelector(".col1.row1");
+            const ovlEl = modal.querySelector(".col2.row1");
+            const sndEl = modal.querySelector(".col3.row1");
+            const backEl = modal.querySelector(".back");
+
+            // Never inherit hidden stats from a previous intro/card. If the new
+            // player has an intro, they are hidden again below for that player only.
+            [ratingEl, hpEl, ovlEl, sndEl].forEach(el => {
+                if (el) el.style.visibility = "visible";
+            });
 
             // ===============================
             // MODE RATINGS
@@ -619,12 +638,10 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             else if (avg >= 80) card.classList.add("rating-80");
 
             // OVERALL RATING
-            const ratingEl = document.querySelector(".rating");
             ratingEl.textContent = avg;
             setRatingColor(ratingEl, avg);
 
             // DATE BOX POSITION
-            const dateBox = document.querySelector(".date-box");
             const dateBoxRightSide = [1, 11];
 
             if (dateBoxRightSide.includes(p.id)) {
@@ -638,10 +655,6 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             }
 
             // 3 CIRCLES
-            const hpEl = document.querySelector(".col1.row1");
-            const ovlEl = document.querySelector(".col2.row1");
-            const sndEl = document.querySelector(".col3.row1");
-
             setRatingColor(hpEl, hp.rating);
             hpEl.textContent = hp.rating;
 
@@ -689,8 +702,6 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             if (p.id === 10)card.classList.add("player10-adjust");
 
             // SET BACK CARD PNG
-            const backEl = document.querySelector(".back");
-
             if (customBackCards[p.id]) {
                 backEl.style.backgroundImage = `url('${customBackCards[p.id]}')`;
             }
@@ -1103,11 +1114,22 @@ function closePlayerModal() {
     const modal = document.getElementById("playerModal");
     const cardBackVideo = document.getElementById("cardBackVideo");
     if (!modal) return;
+    // Invalidate any image/video readiness callback from the card being closed.
+    playerModalLoadToken++;
     modal.style.display = "none";
     if (cardBackVideo) {
         cardBackVideo.pause();
+        cardBackVideo.onended = null;
+        try { cardBackVideo.currentTime = 0; } catch (_) {}
         cardBackVideo.style.display = "none";
     }
+
+    const card = modal.querySelector(".card");
+    if (card) card.classList.remove("flipped");
+
+    modal.querySelectorAll(".rating, .col1.row1, .col2.row1, .col3.row1").forEach(el => {
+        el.style.visibility = "visible";
+    });
 }
 
 function setupCarousel() {

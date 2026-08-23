@@ -612,6 +612,12 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
             const avg = Math.round((hp.rating + snd.rating + ovl.rating) / 3);
 
+            // Rating tier drives the premium visual treatment without changing the artwork.
+            card.classList.remove("rating-80", "rating-90", "rating-98");
+            if (avg >= 98) card.classList.add("rating-98");
+            else if (avg >= 90) card.classList.add("rating-90");
+            else if (avg >= 80) card.classList.add("rating-80");
+
             // OVERALL RATING
             const ratingEl = document.querySelector(".rating");
             ratingEl.textContent = avg;
@@ -645,6 +651,20 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             setRatingColor(sndEl, snd.rating);
             sndEl.textContent = snd.rating;
 
+            // Keep all stat numbers off the intro video. They are revealed only
+            // once the intro has finished and the player's x_back image is visible.
+            const statNumberElements = [ratingEl, hpEl, ovlEl, sndEl];
+            const hideStatNumbers = () => {
+                statNumberElements.forEach(el => {
+                    if (el) el.style.visibility = "hidden";
+                });
+            };
+            const showStatNumbers = () => {
+                statNumberElements.forEach(el => {
+                    if (el) el.style.visibility = "visible";
+                });
+            };
+
             hpEl.onclick = () => openModeModal("Hardpoint", hp);
             ovlEl.onclick = () => openModeModal("Overload", ovl);
             sndEl.onclick = () => openModeModal("Search & Destroy", snd);
@@ -656,7 +676,8 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                 "player4-adjust",
                 "player11-adjust",
                 "player13-adjust",
-                "player3-adjust"
+                "player3-adjust",
+                "player10-adjust"
             );
 
             if (p.id === 5) card.classList.add("player5-adjust");
@@ -665,14 +686,13 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             if (p.id === 13) card.classList.add("player13-adjust");
             if (p.id === 3) card.classList.add("player3-adjust");
             if (p.id === 2) card.classList.add("player2-adjust");
+            if (p.id === 10)card.classList.add("player10-adjust");
 
             // SET BACK CARD PNG
             const backEl = document.querySelector(".back");
 
             if (customBackCards[p.id]) {
                 backEl.style.backgroundImage = `url('${customBackCards[p.id]}')`;
-            } else {
-                backEl.style.backgroundImage = "url('CDLcardUse.png')";
             }
 
             // ===============================
@@ -686,11 +706,19 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             cardBackVideo.currentTime = 0;
             cardBackVideo.style.display = "none";
 
-            const backSrc = customBackCards[p.id] || "CDLcardUse.png";
+            const backSrc = customBackCards[p.id];
             const introVideos = {
+                1: "cards/1_intro.mp4",
                 2: "cards/2_intro.mp4",
                 3: "cards/3_intro.mp4",
-                5: "cards/5_intro.mp4"
+                4: "cards/4_intro.mp4",
+                5: "cards/5_intro.mp4",
+                6: "cards/6_intro.mp4",
+                7: "cards/7_intro.mp4",
+                9: "cards/9_intro.mp4",
+                10: "cards/10_intro.mp4",
+                11: "cards/11_intro.mp4",
+                12: "cards/12_intro.mp4"
             };
             const introClasses = {
                 2: "video-2",
@@ -699,8 +727,16 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             };
             const introSrc = introVideos[p.id] || null;
 
+            // Intro cards must not show their stat numbers over the video.
+            // Cards with no intro can display stats as soon as their back is shown.
+            if (introSrc) hideStatNumbers();
+            else showStatNumbers();
+
+            cardBackVideo.onended = null;
             cardBackVideo.classList.remove("video-3", "video-5", "video-2");
-            if (introSrc) cardBackVideo.classList.add(introClasses[p.id]);
+            if (introSrc && introClasses[p.id]) {
+                cardBackVideo.classList.add(introClasses[p.id]);
+            }
 
             // Load the actual Wings/back artwork first. The visible front is never flipped
             // until this promise and the video promise (when applicable) are complete.
@@ -724,7 +760,9 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                         playPromise.catch(() => {});
                     }
                     cardBackVideo.onended = () => {
+                        // Remove the intro first, exposing x_back, then reveal stats.
                         cardBackVideo.style.display = "none";
+                        showStatNumbers();
                     };
                 }
             });
@@ -896,7 +934,7 @@ function buildComparisonMainCard(p) {
 
     const back = card.querySelector(".back");
     if (back) {
-        back.style.backgroundImage = `url('${customBackCards[p.id] || "CDLcardUse.png"}')`;
+        if (customBackCards[p.id]) back.style.backgroundImage = `url('${customBackCards[p.id]}')`;
         back.style.opacity = "1";
     }
 

@@ -516,24 +516,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     transform: translate(1px, 4px) !important;
 }
 
-.player4-adjust .rating {
-    position: absolute;
-    top: 8px !important;
-    right: 2px !important;
-}
 
-.player4-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-5px, -9px) !important;
-}
-.player4-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-1px, -9px) !important;
-}
-.player4-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(4px, -9px) !important;
-}
 
 .player11-adjust .rating {
     position: absolute;

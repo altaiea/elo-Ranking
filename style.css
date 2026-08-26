@@ -482,23 +482,23 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 .player5-adjust .rating {
     position: absolute;
-    top: 13px !important;
-    left: -4px !important;
+    top: 11px !important;
+    left: -2px !important;
 }
 
 .player5-adjust .col1.row1 {
     position: absolute !important;
-    transform: translate(2px, 8px) !important;
+    transform: translate(-1px, 7px) !important;
 }
 
 .player5-adjust .col2.row1 {
     position: absolute !important;
-    transform: translate(3px, 6px) !important;
+    transform: translate(-1px, 6px) !important;
 }
 
 .player5-adjust .col3.row1 {
     position: absolute !important;
-    transform: translate(1px, 8px) !important;
+    transform: translate(-1px, 7px) !important;
 }
 
 .player3-adjust .col1.row1 {

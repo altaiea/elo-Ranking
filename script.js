@@ -1808,7 +1808,7 @@ function initTabs() {
             // Update title text for ALL tabs
             if (target === "leaderboardPage")      title.textContent = "LEADERBOARD";
             else if (target === "teamsPage")       title.textContent = "TEAMS";
-            else if (target === "seriesHistoryPage") title.textContent = "9 MAPS";
+            else if (target === "seriesHistoryPage") title.textContent = "SERIES HISTORY";
             else if (target === "comparisonsPage") title.textContent = "COMPARISONS";
             else if (target === "mapsPage")        title.textContent = "MAPS";
             else if (target === "carouselPage")    title.textContent = "CARDS";
@@ -1818,56 +1818,147 @@ function initTabs() {
 
 
 // ---------------------------
-// SERIES CONFIG
+// SERIES HISTORY DATA
 // ---------------------------
-const seriesIndex = [
-    { id: 1, file: "series_1.json" },
-    { id: 2, file: "series_2.json" },
-    { id: 3, file: "series_3.json" }
-];
+const SERIES_HISTORY_FOLDER = "serieshistory";
+const seriesCache = new Map();
 
+function getSeriesFile(seriesId) {
+    return `${SERIES_HISTORY_FOLDER}/series_${seriesId}.json`;
+}
 
+// SeriesStorage creates consecutive files (series_1.json, series_2.json, ...).
+// A normal browser cannot list a folder, so discover them in order and stop at
+// the first missing file.
+async function discoverSeriesHistory() {
+    const discovered = [];
+    let seriesId = 1;
+
+    while (true) {
+        const file = getSeriesFile(seriesId);
+        let response;
+
+        try {
+            response = await fetch(file, { cache: "no-store" });
+        } catch (error) {
+            if (seriesId === 1) console.error("Could not load series history:", error);
+            break;
+        }
+
+        if (!response.ok) break;
+
+        try {
+            const series = await response.json();
+            if (!series || Number(series.seriesId) !== seriesId) {
+                console.error(`Invalid series history file: ${file}`);
+                break;
+            }
+            seriesCache.set(seriesId, series);
+            discovered.push(series);
+            seriesId++;
+        } catch (error) {
+            console.error(`Could not read ${file}:`, error);
+            break;
+        }
+    }
+
+    return discovered;
+}
+
+function getSeriesTeamIds(series, teamKey) {
+    const team = series && series[teamKey];
+    return Array.isArray(team?.playerIds) ? team.playerIds.map(Number) : [];
+}
+
+function getSeriesTeamLabel(series, teamKey) {
+    const ids = getSeriesTeamIds(series, teamKey);
+    const fallback = teamKey === "teamA" ? "Team A" : "Team B";
+    return ids.length ? ids.map(getPlayerName).join(" / ") : fallback;
+}
+
+function getSeriesScore(series) {
+    return `${Number(series?.teamA?.mapWins || 0)}-${Number(series?.teamB?.mapWins || 0)}`;
+}
 
 // ---------------------------
 // SERIES LIST RENDER
 // ---------------------------
-function renderSeriesList() {
+async function renderSeriesList() {
     const listEl = document.getElementById("seriesList");
     const viewerEl = document.getElementById("seriesViewer");
+    if (!listEl || !viewerEl) return;
 
-    listEl.innerHTML = "";
+    listEl.style.display = "";
+    listEl.innerHTML = '<div class="series-entry">Loading series history...</div>';
     viewerEl.style.display = "none";
+    viewerEl.innerHTML = "";
+    seriesCache.clear();
 
-    seriesIndex.forEach(s => {
-        fetch(s.file)
-            .then(r => r.json())
-            .then(data => {
-                const series = data.seriesList.find(x => x.seriesId === s.id);
+    const seriesList = await discoverSeriesHistory();
+    listEl.innerHTML = "";
 
-                const div = document.createElement("div");
-                div.className = "series-entry";
+    if (!seriesList.length) {
+        const empty = document.createElement("div");
+        empty.className = "series-entry";
+        empty.textContent = "No series history found";
+        listEl.appendChild(empty);
+        return;
+    }
 
-                // Show team names instead of "Series 1"
-                div.textContent = `${series.teamAName} vs ${series.teamBName}`;
-
-                div.addEventListener("click", () => loadSeries(s));
-                listEl.appendChild(div);
-            });
+    seriesList.forEach(series => {
+        const div = document.createElement("div");
+        div.className = "series-entry";
+        const format = String(series.format || "SERIES").replaceAll("_", " ");
+        const status = series.status || "ACTIVE";
+        div.textContent = `Series ${series.seriesId} — ${format} — ${getSeriesScore(series)} — ${status}`;
+        div.addEventListener("click", () => loadSeries(series.seriesId));
+        listEl.appendChild(div);
     });
 }
-
 
 // ---------------------------
 // LOAD ONE SERIES
 // ---------------------------
-function loadSeries(seriesMeta) {
-    fetch(seriesMeta.file)
-        .then(r => r.json())
-        .then(data => {
-            const series = data.seriesList.find(x => x.seriesId === seriesMeta.id);
-            renderSeriesViewer(series);
-        })
-        .catch(err => console.error("Error loading series:", err));
+async function loadSeries(seriesId) {
+    let series = seriesCache.get(Number(seriesId));
+
+    if (!series) {
+        try {
+            const response = await fetch(getSeriesFile(seriesId), { cache: "no-store" });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            series = await response.json();
+            seriesCache.set(Number(seriesId), series);
+        } catch (error) {
+            console.error("Error loading series:", error);
+            return;
+        }
+    }
+
+    renderSeriesViewer(series);
+}
+
+function buildSeriesLeaderboard(series) {
+    const teamAIds = new Set(getSeriesTeamIds(series, "teamA"));
+    const teamBIds = new Set(getSeriesTeamIds(series, "teamB"));
+    const playerStats = series.playerStats || {};
+
+    return Object.entries(playerStats).map(([idText, player]) => {
+        const playerId = Number(player?.playerId ?? idText);
+        const modes = Object.values(player?.modeStats || {});
+        const kills = modes.reduce((total, mode) => total + Number(mode?.kills || 0), 0);
+        const deaths = modes.reduce((total, mode) => total + Number(mode?.deaths || 0), 0);
+        const damage = modes.reduce((total, mode) => total + Number(mode?.damage || 0), 0);
+
+        return {
+            playerId,
+            playerName: getPlayerName(playerId),
+            team: teamAIds.has(playerId) ? "A" : teamBIds.has(playerId) ? "B" : "?",
+            kills,
+            deaths,
+            damage,
+            mvpScore: Number(player?.overallMvpScore || 0)
+        };
+    });
 }
 
 
@@ -1875,7 +1966,11 @@ function loadSeries(seriesMeta) {
 // RENDER SERIES VIEWER
 // ---------------------------
 function renderSeriesViewer(series) {
+    const listEl = document.getElementById("seriesList");
     const viewerEl = document.getElementById("seriesViewer");
+    if (!viewerEl || !series) return;
+
+    if (listEl) listEl.style.display = "none";
     viewerEl.style.display = "block";
     viewerEl.innerHTML = "";
 
@@ -1888,7 +1983,7 @@ function renderSeriesViewer(series) {
 
     // Title with final score
     const title = document.createElement("h2");
-    title.textContent = `${series.teamAName} vs ${series.teamBName} — ${series.finalScore}`;
+    title.textContent = `Series ${series.seriesId} — Team A ${getSeriesScore(series)} Team B`;
     viewerEl.appendChild(title);
 
     // MVP badge
@@ -1896,11 +1991,15 @@ function renderSeriesViewer(series) {
     mvp.style.fontSize = "18px";
     mvp.style.fontWeight = "700";
     mvp.style.color = "#00eaff";
-    mvp.innerHTML = `MVP: <span style="color:#FFD700;">⭐ ${series.mvpPlayerName}</span>`;
+    const overallMvpId = Number(series?.overallMvp?.playerId || 0);
+    const overallMvpScore = Number(series?.overallMvp?.mvpScore || 0);
+    mvp.innerHTML = overallMvpId
+        ? `MVP: <span style="color:#FFD700;">⭐ ${getPlayerName(overallMvpId)} (${overallMvpScore.toFixed(3)})</span>`
+        : `MVP: <span style="color:#FFD700;">Pending</span>`;
     viewerEl.appendChild(mvp);
 
-    // Remove players who did not play
-    const played = series.leaderboard.filter(p => !(p.kills === 0 && p.deaths === 0));
+    const played = buildSeriesLeaderboard(series)
+        .filter(p => !(p.kills === 0 && p.deaths === 0));
 
     // Split into Team A and Team B using JSON field
     const teamAPlayers = played.filter(p => p.team === "A");
@@ -1913,7 +2012,7 @@ function renderSeriesViewer(series) {
     tableA.className = "series-scoreboard";
     tableA.innerHTML = `
         <thead>
-            <tr><th colspan="6" style="color:#00eaff;">${series.teamAName}</th></tr>
+            <tr><th colspan="6" style="color:#00eaff;">${getSeriesTeamLabel(series, "teamA")}</th></tr>
             <tr>
                 <th>Player</th>
                 <th>Kills</th>
@@ -1929,7 +2028,7 @@ function renderSeriesViewer(series) {
 
     teamAPlayers.forEach(p => {
         const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
-        const isMVP = p.playerId === series.mvpPlayerId;
+        const isMVP = p.playerId === overallMvpId;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -1938,7 +2037,7 @@ function renderSeriesViewer(series) {
             <td>${p.deaths}</td>
             <td>${kd}</td>
             <td>${p.damage.toLocaleString()}</td>
-            <td>${p.mvpScore.toFixed(2)}</td>
+            <td>${p.mvpScore.toFixed(3)}</td>
         `;
         tbodyA.appendChild(tr);
     });
@@ -1952,7 +2051,7 @@ function renderSeriesViewer(series) {
     tableB.className = "series-scoreboard";
     tableB.innerHTML = `
         <thead>
-            <tr><th colspan="6" style="color:#00eaff;">${series.teamBName}</th></tr>
+            <tr><th colspan="6" style="color:#00eaff;">${getSeriesTeamLabel(series, "teamB")}</th></tr>
             <tr>
                 <th>Player</th>
                 <th>Kills</th>
@@ -1968,7 +2067,7 @@ function renderSeriesViewer(series) {
 
     teamBPlayers.forEach(p => {
         const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
-        const isMVP = p.playerId === series.mvpPlayerId;
+        const isMVP = p.playerId === overallMvpId;
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -1977,7 +2076,7 @@ function renderSeriesViewer(series) {
             <td>${p.deaths}</td>
             <td>${kd}</td>
             <td>${p.damage.toLocaleString()}</td>
-            <td>${p.mvpScore.toFixed(2)}</td>
+            <td>${p.mvpScore.toFixed(3)}</td>
         `;
         tbodyB.appendChild(tr);
     });
@@ -2120,7 +2219,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const video = document.getElementById("cardBackVideo");
     video.load();   //  forces preload of 3_intro.mp4
 });
-
 
 
 

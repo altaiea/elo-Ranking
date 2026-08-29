@@ -719,18 +719,18 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
             const backSrc = customBackCards[p.id];
             const introVideos = {
-                1: "cards/1_intro.mp4",
-                2: "cards/2_intro.mp4",
-                3: "cards/3_intro.mp4",
-                4: "cards/4_intro.mp4",
-                5: "cards/5_intro.mp4",
-                6: "cards/6_intro.mp4",
-                7: "cards/7_intro.mp4",
-                9: "cards/9_intro.mp4",
-                10: "cards/10_intro.mp4",
-                11: "cards/11_intro.mp4",
-                12: "cards/12_intro.mp4"
-            };
+    1: "cards/1_intro.mp4",
+    2: "cards/2_intro.mp4",
+    3: "cards/3_intro.mp4",
+    5: "cards/5_intro.mp4",
+    6: "cards/6_intro.mp4",
+    7: "cards/7_intro.mp4",
+    8: "cards/8_intro.mp4",
+    9: "cards/9_intro.mp4",
+    10: "cards/10_intro.mp4",
+    11: "cards/11_intro.mp4",
+    12: "cards/12_intro.mp4"
+};
             const introClasses = {
                 2: "video-2",
                 3: "video-3",

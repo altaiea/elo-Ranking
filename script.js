@@ -722,6 +722,7 @@ function openPlayerModal(playerId, playerList = allPlayers) {
     1: "cards/1_intro.mp4",
     2: "cards/2_intro.mp4",
     3: "cards/3_intro.mp4",
+    4: "cards/4_intro.mp4",
     5: "cards/5_intro.mp4",
     6: "cards/6_intro.mp4",
     7: "cards/7_intro.mp4",

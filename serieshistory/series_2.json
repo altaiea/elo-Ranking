@@ -1,0 +1,647 @@
+{
+  "seriesId": 2,
+  "format": "BEST_OF_5",
+  "winsRequired": 3,
+  "status": "COMPLETE",
+  "teamA": {
+    "playerIds": [
+      3,
+      2,
+      11,
+      12
+    ],
+    "mapWins": 2
+  },
+  "teamB": {
+    "playerIds": [
+      1,
+      9,
+      8,
+      10
+    ],
+    "mapWins": 3
+  },
+  "winningTeam": 2,
+  "seriesRecordsApplied": true,
+  "maps": [
+    {
+      "mapId": "imported-3415b67b42a3db91592d2a50fa788064697989a086b5e39cf41d8014ddc045f4",
+      "mapNumber": 1,
+      "gameMode": "Hardpoint",
+      "scoreDifference": 5,
+      "winningTeam": 2,
+      "teamA": [
+        {
+          "playerId": 3,
+          "kills": 56,
+          "deaths": 27
+        },
+        {
+          "playerId": 2,
+          "kills": 46,
+          "deaths": 30
+        },
+        {
+          "playerId": 11,
+          "kills": 39,
+          "deaths": 24
+        },
+        {
+          "playerId": 12,
+          "kills": 39,
+          "deaths": 36
+        }
+      ],
+      "teamB": [
+        {
+          "playerId": 1,
+          "kills": 42,
+          "deaths": 28
+        },
+        {
+          "playerId": 9,
+          "kills": 43,
+          "deaths": 33
+        },
+        {
+          "playerId": 8,
+          "kills": 44,
+          "deaths": 34
+        },
+        {
+          "playerId": 10,
+          "kills": 38,
+          "deaths": 33
+        }
+      ]
+    },
+    {
+      "mapId": "imported-fb093624cc30a715e7f774253477cee3c2b9c6b4187ea616fe05d350e4486c05",
+      "mapNumber": 2,
+      "gameMode": "Hardpoint",
+      "scoreDifference": 82,
+      "winningTeam": 1,
+      "teamA": [
+        {
+          "playerId": 2,
+          "kills": 55,
+          "deaths": 23
+        },
+        {
+          "playerId": 3,
+          "kills": 46,
+          "deaths": 23
+        },
+        {
+          "playerId": 12,
+          "kills": 35,
+          "deaths": 21
+        },
+        {
+          "playerId": 11,
+          "kills": 28,
+          "deaths": 26
+        }
+      ],
+      "teamB": [
+        {
+          "playerId": 1,
+          "kills": 45,
+          "deaths": 29
+        },
+        {
+          "playerId": 10,
+          "kills": 26,
+          "deaths": 26
+        },
+        {
+          "playerId": 9,
+          "kills": 31,
+          "deaths": 34
+        },
+        {
+          "playerId": 8,
+          "kills": 21,
+          "deaths": 32
+        }
+      ]
+    },
+    {
+      "mapId": "imported-856ad8573dc0cbe1c66102146b2925fecb5b2caae7944fa1d35c54a5edc3e15f",
+      "mapNumber": 3,
+      "gameMode": "Overload",
+      "scoreDifference": 5,
+      "winningTeam": 2,
+      "teamA": [
+        {
+          "playerId": 2,
+          "kills": 49,
+          "deaths": 29
+        },
+        {
+          "playerId": 3,
+          "kills": 38,
+          "deaths": 30
+        },
+        {
+          "playerId": 11,
+          "kills": 26,
+          "deaths": 26
+        },
+        {
+          "playerId": 12,
+          "kills": 24,
+          "deaths": 28
+        }
+      ],
+      "teamB": [
+        {
+          "playerId": 1,
+          "kills": 42,
+          "deaths": 22
+        },
+        {
+          "playerId": 9,
+          "kills": 39,
+          "deaths": 26
+        },
+        {
+          "playerId": 8,
+          "kills": 35,
+          "deaths": 26
+        },
+        {
+          "playerId": 10,
+          "kills": 38,
+          "deaths": 23
+        }
+      ]
+    },
+    {
+      "mapId": "imported-0f0ae8002cb3bc5c3fbab00d9605d5b3d6f180d49f1b57828e352b7e9456b5ba",
+      "mapNumber": 4,
+      "gameMode": "SND",
+      "scoreDifference": 2,
+      "winningTeam": 1,
+      "teamA": [
+        {
+          "playerId": 2,
+          "kills": 14,
+          "deaths": 6
+        },
+        {
+          "playerId": 3,
+          "kills": 11,
+          "deaths": 7
+        },
+        {
+          "playerId": 11,
+          "kills": 6,
+          "deaths": 8
+        },
+        {
+          "playerId": 12,
+          "kills": 4,
+          "deaths": 8
+        }
+      ],
+      "teamB": [
+        {
+          "playerId": 1,
+          "kills": 11,
+          "deaths": 7
+        },
+        {
+          "playerId": 9,
+          "kills": 11,
+          "deaths": 8
+        },
+        {
+          "playerId": 10,
+          "kills": 8,
+          "deaths": 7
+        },
+        {
+          "playerId": 8,
+          "kills": 4,
+          "deaths": 8
+        }
+      ]
+    },
+    {
+      "mapId": "imported-e464d840d2de360cadc799014fd4642c382147fd54fa64d55ac01fb033e7ab8a",
+      "mapNumber": 5,
+      "gameMode": "SND",
+      "scoreDifference": 3,
+      "winningTeam": 2,
+      "teamA": [
+        {
+          "playerId": 2,
+          "kills": 9,
+          "deaths": 8
+        },
+        {
+          "playerId": 12,
+          "kills": 7,
+          "deaths": 8
+        },
+        {
+          "playerId": 11,
+          "kills": 5,
+          "deaths": 8
+        },
+        {
+          "playerId": 3,
+          "kills": 5,
+          "deaths": 7
+        }
+      ],
+      "teamB": [
+        {
+          "playerId": 9,
+          "kills": 12,
+          "deaths": 4
+        },
+        {
+          "playerId": 8,
+          "kills": 11,
+          "deaths": 5
+        },
+        {
+          "playerId": 1,
+          "kills": 9,
+          "deaths": 6
+        },
+        {
+          "playerId": 10,
+          "kills": 5,
+          "deaths": 7
+        }
+      ]
+    }
+  ],
+  "playerStats": {
+    "3": {
+      "playerId": 3,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 102,
+          "deaths": 50,
+          "kd": 2.04,
+          "teamAverageKd": 1.6459764978483946,
+          "damage": 10200.0,
+          "teamDamage": 34400.0,
+          "damageShare": 0.29651162790697677,
+          "avgM": 0.19249999999999998,
+          "mvpScore": 0.24385499464023153
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 16,
+          "deaths": 14,
+          "kd": 1.1428571428571428,
+          "teamAverageKd": 1.0401785714285714,
+          "damage": 1600.0,
+          "teamDamage": 6100.0,
+          "damageShare": 0.26229508196721313,
+          "avgM": -0.08333333333333334,
+          "mvpScore": -0.07751817427790789
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 38,
+          "deaths": 30,
+          "kd": 1.2666666666666666,
+          "teamAverageKd": 1.2033661740558292,
+          "damage": 3800.0,
+          "teamDamage": 13700.0,
+          "damageShare": 0.2773722627737226,
+          "avgM": -0.625,
+          "mvpScore": -0.5795570997087484
+        }
+      },
+      "overallMvpScore": -0.1377400931154749,
+      "modesIncluded": 3
+    },
+    "2": {
+      "playerId": 2,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 101,
+          "deaths": 53,
+          "kd": 1.9056603773584906,
+          "teamAverageKd": 1.6459764978483946,
+          "damage": 10100.0,
+          "teamDamage": 34400.0,
+          "damageShare": 0.2936046511627907,
+          "avgM": 0.19249999999999998,
+          "mvpScore": 0.23008541642610253
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 23,
+          "deaths": 14,
+          "kd": 1.6428571428571428,
+          "teamAverageKd": 1.0401785714285714,
+          "damage": 2300.0,
+          "teamDamage": 6100.0,
+          "damageShare": 0.3770491803278688,
+          "avgM": -0.08333333333333334,
+          "mvpScore": -0.042340578649492595
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 49,
+          "deaths": 29,
+          "kd": 1.6896551724137931,
+          "teamAverageKd": 1.2033661740558292,
+          "damage": 4900.0,
+          "teamDamage": 13700.0,
+          "damageShare": 0.35766423357664234,
+          "avgM": -0.625,
+          "mvpScore": -0.3720994690350341
+        }
+      },
+      "overallMvpScore": -0.061451543752808056,
+      "modesIncluded": 3
+    },
+    "11": {
+      "playerId": 11,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 67,
+          "deaths": 50,
+          "kd": 1.34,
+          "teamAverageKd": 1.6459764978483946,
+          "damage": 6700.0,
+          "teamDamage": 34400.0,
+          "damageShare": 0.19476744186046513,
+          "avgM": 0.19249999999999998,
+          "mvpScore": 0.14710136091930132
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 11,
+          "deaths": 16,
+          "kd": 0.6875,
+          "teamAverageKd": 1.0401785714285714,
+          "damage": 1100.0,
+          "teamDamage": 6100.0,
+          "damageShare": 0.18032786885245902,
+          "avgM": -0.08333333333333334,
+          "mvpScore": -0.10673729020296643
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 26,
+          "deaths": 26,
+          "kd": 1.0,
+          "teamAverageKd": 1.2033661740558292,
+          "damage": 2600.0,
+          "teamDamage": 13700.0,
+          "damageShare": 0.1897810218978102,
+          "avgM": -0.625,
+          "mvpScore": -0.7450072213632496
+        }
+      },
+      "overallMvpScore": -0.23488105021563824,
+      "modesIncluded": 3
+    },
+    "12": {
+      "playerId": 12,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 74,
+          "deaths": 57,
+          "kd": 1.2982456140350878,
+          "teamAverageKd": 1.6459764978483946,
+          "damage": 7400.0,
+          "teamDamage": 34400.0,
+          "damageShare": 0.21511627906976744,
+          "avgM": 0.19249999999999998,
+          "mvpScore": 0.14895822801436454
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 11,
+          "deaths": 16,
+          "kd": 0.6875,
+          "teamAverageKd": 1.0401785714285714,
+          "damage": 1100.0,
+          "teamDamage": 6100.0,
+          "damageShare": 0.18032786885245902,
+          "avgM": -0.08333333333333334,
+          "mvpScore": -0.10673729020296643
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 24,
+          "deaths": 28,
+          "kd": 0.8571428571428571,
+          "teamAverageKd": 1.2033661740558292,
+          "damage": 2400.0,
+          "teamDamage": 13700.0,
+          "damageShare": 0.17518248175182483,
+          "avgM": -0.625,
+          "mvpScore": -0.8033362098929681
+        }
+      },
+      "overallMvpScore": -0.25370509069385666,
+      "modesIncluded": 3
+    },
+    "1": {
+      "playerId": 1,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 87,
+          "deaths": 57,
+          "kd": 1.5263157894736843,
+          "teamAverageKd": 1.175096912243583,
+          "damage": 8700.0,
+          "teamDamage": 29000.0,
+          "damageShare": 0.3,
+          "avgM": -0.19249999999999998,
+          "mvpScore": -0.14425768306660275
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 20,
+          "deaths": 13,
+          "kd": 1.5384615384615385,
+          "teamAverageKd": 1.3843864468864469,
+          "damage": 2000.0,
+          "teamDamage": 7100.0,
+          "damageShare": 0.28169014084507044,
+          "avgM": 0.08333333333333334,
+          "mvpScore": 0.09371439642126264
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 42,
+          "deaths": 22,
+          "kd": 1.9090909090909092,
+          "teamAverageKd": 1.6018546670720584,
+          "damage": 4200.0,
+          "teamDamage": 15400.0,
+          "damageShare": 0.2727272727272727,
+          "avgM": 0.625,
+          "mvpScore": 0.742318143812709
+        }
+      },
+      "overallMvpScore": 0.23059161905578962,
+      "modesIncluded": 3
+    },
+    "9": {
+      "playerId": 9,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 74,
+          "deaths": 67,
+          "kd": 1.1044776119402986,
+          "teamAverageKd": 1.175096912243583,
+          "damage": 7400.0,
+          "teamDamage": 29000.0,
+          "damageShare": 0.25517241379310346,
+          "avgM": -0.19249999999999998,
+          "mvpScore": -0.1978035731714325
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 23,
+          "deaths": 12,
+          "kd": 1.9166666666666667,
+          "teamAverageKd": 1.3843864468864469,
+          "damage": 2300.0,
+          "teamDamage": 7100.0,
+          "damageShare": 0.323943661971831,
+          "avgM": 0.08333333333333334,
+          "mvpScore": 0.11475463357065471
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 39,
+          "deaths": 26,
+          "kd": 1.5,
+          "teamAverageKd": 1.6018546670720584,
+          "damage": 3900.0,
+          "teamDamage": 15400.0,
+          "damageShare": 0.2532467532467532,
+          "avgM": 0.625,
+          "mvpScore": 0.5962142477088129
+        }
+      },
+      "overallMvpScore": 0.1710551027026784,
+      "modesIncluded": 3
+    },
+    "8": {
+      "playerId": 8,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 65,
+          "deaths": 66,
+          "kd": 0.9848484848484849,
+          "teamAverageKd": 1.175096912243583,
+          "damage": 6500.0,
+          "teamDamage": 29000.0,
+          "damageShare": 0.22413793103448276,
+          "avgM": -0.19249999999999998,
+          "mvpScore": -0.21827908355057127
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 15,
+          "deaths": 13,
+          "kd": 1.1538461538461537,
+          "teamAverageKd": 1.3843864468864469,
+          "damage": 1500.0,
+          "teamDamage": 7100.0,
+          "damageShare": 0.2112676056338028,
+          "avgM": 0.08333333333333334,
+          "mvpScore": 0.06888593849421315
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 35,
+          "deaths": 26,
+          "kd": 1.3461538461538463,
+          "teamAverageKd": 1.6018546670720584,
+          "damage": 3500.0,
+          "teamDamage": 15400.0,
+          "damageShare": 0.22727272727272727,
+          "avgM": 0.625,
+          "mvpScore": 0.5237866752812406
+        }
+      },
+      "overallMvpScore": 0.12479784340829414,
+      "modesIncluded": 3
+    },
+    "10": {
+      "playerId": 10,
+      "modeStats": {
+        "Hardpoint": {
+          "mapsPlayed": 2,
+          "kills": 64,
+          "deaths": 59,
+          "kd": 1.0847457627118644,
+          "teamAverageKd": 1.175096912243583,
+          "damage": 6400.0,
+          "teamDamage": 29000.0,
+          "damageShare": 0.2206896551724138,
+          "avgM": -0.19249999999999998,
+          "mvpScore": -0.2096596602113934
+        },
+        "SND": {
+          "mapsPlayed": 2,
+          "kills": 13,
+          "deaths": 14,
+          "kd": 0.9285714285714286,
+          "teamAverageKd": 1.3843864468864469,
+          "damage": 1300.0,
+          "teamDamage": 7100.0,
+          "damageShare": 0.18309859154929578,
+          "avgM": 0.08333333333333334,
+          "mvpScore": 0.05597836484720289
+        },
+        "Overload": {
+          "mapsPlayed": 1,
+          "kills": 38,
+          "deaths": 23,
+          "kd": 1.6521739130434783,
+          "teamAverageKd": 1.6018546670720584,
+          "damage": 3800.0,
+          "teamDamage": 15400.0,
+          "damageShare": 0.24675324675324675,
+          "avgM": 0.625,
+          "mvpScore": 0.6376809331972375
+        }
+      },
+      "overallMvpScore": 0.16133321261101566,
+      "modesIncluded": 3
+    }
+  },
+  "modeMvps": {
+    "Hardpoint": {
+      "playerId": 3,
+      "mvpScore": 0.24385499464023153
+    },
+    "SND": {
+      "playerId": 9,
+      "mvpScore": 0.11475463357065471
+    },
+    "Overload": {
+      "playerId": 1,
+      "mvpScore": 0.742318143812709
+    }
+  },
+  "overallMvp": {
+    "playerId": 1,
+    "mvpScore": 0.23059161905578962
+  }
+}

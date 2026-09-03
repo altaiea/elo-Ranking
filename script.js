@@ -44,17 +44,56 @@ let showInactive = false;
 
 
 // ===============================
+// NEW PLAYER FALLBACK STATS
+// ===============================
+// IDs 15 and 16 are available immediately even before the stats JSON files
+// have been updated to include them. Real JSON values automatically take over
+// as soon as those IDs exist in current_stats.json / previous_stats.json.
+function createEmptyPlayerStats() {
+    return {
+        elo: 0,
+        lifetimeKills: 0, lifetimeDeaths: 0,
+        mapKills: 0, mapDeaths: 0,
+        hpKills: 0, hpDeaths: 0,
+        sndKills: 0, sndDeaths: 0,
+        overloadKills: 0, overloadDeaths: 0,
+        hpWins: 0, hpLosses: 0,
+        sndWins: 0, sndLosses: 0,
+        overloadWins: 0, overloadLosses: 0,
+        seriesWins: 0, seriesLosses: 0,
+        hpMarginTotal: 0, hpMarginCount: 0,
+        sndMarginTotal: 0, sndMarginCount: 0,
+        overloadMarginTotal: 0, overloadMarginCount: 0,
+        hpDamage: 0, hpDamageShare: 0,
+        sndDamage: 0, sndDamageShare: 0,
+        overloadDamage: 0, overloadDamageShare: 0,
+        hpLifetimeDamage: 0, hpLifetimeTeamDamage: 0,
+        sndLifetimeDamage: 0, sndLifetimeTeamDamage: 0,
+        overloadLifetimeDamage: 0, overloadLifetimeTeamDamage: 0
+    };
+}
+
+// ===============================
 // MERGE PREVIOUS + CURRENT
 // ===============================
 function mergeStats(prevPlayersObj, currPlayersObj) {
 
-    const prevPlayers = Object.entries(prevPlayersObj).map(([id, p]) => ({
+    // Keep the supplied stats untouched; only provide placeholders when the
+    // two new IDs are not present yet.
+    const prevSource = { ...prevPlayersObj };
+    const currSource = { ...currPlayersObj };
+    [15, 16].forEach(id => {
+        if (!prevSource[id]) prevSource[id] = createEmptyPlayerStats();
+        if (!currSource[id]) currSource[id] = createEmptyPlayerStats();
+    });
+
+    const prevPlayers = Object.entries(prevSource).map(([id, p]) => ({
         id: Number(id),
         name: getPlayerName(Number(id)),
         ...p
     }));
 
-    const currPlayers = Object.entries(currPlayersObj).map(([id, p]) => ({
+    const currPlayers = Object.entries(currSource).map(([id, p]) => ({
         id: Number(id),
         name: getPlayerName(Number(id)),
         ...p
@@ -353,7 +392,9 @@ function getPlayerName(id) {
         11: "TOJI",
         12: "NABEEL",
         13: "SAFY",
-        14: "MASEEH"
+        14: "MASEEH",
+        15: "ZU",
+        16: "SION"
     };
     return names[id] || "Player " + id;
 }
@@ -502,7 +543,9 @@ const customBackCards = {
     11: "cards/11_back.png",
     12: "cards/12_back.png",
     13: "cards/13_back.png",
-    14: "cards/14_back.png"
+    14: "cards/14_back.png",
+    15: "cards/15_back.png",
+    16: "cards/16_back.png"
 };
 
 let playerModalLoadToken = 0;
@@ -705,7 +748,9 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
             // SET BACK CARD PNG
             if (customBackCards[p.id]) {
-                backEl.style.backgroundImage = `url('${customBackCards[p.id]}')`;
+                backEl.style.backgroundImage = [15, 16].includes(p.id)
+                    ? `url('${customBackCards[p.id]}'), url('wings.png')`
+                    : `url('${customBackCards[p.id]}')`;
             }
 
             // ===============================
@@ -732,7 +777,9 @@ function openPlayerModal(playerId, playerList = allPlayers) {
     9: "cards/9_intro.mp4",
     10: "cards/10_intro.mp4",
     11: "cards/11_intro.mp4",
-    12: "cards/12_intro.mp4"
+    12: "cards/12_intro.mp4",
+    15: "cards/15_intro.mp4",
+    16: "cards/16_intro.mp4"
 };
             const introClasses = {
                 2: "video-2",
@@ -767,7 +814,9 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                 // Keep the existing 1000ms CSS flip animation exactly as it is.
                 card.classList.add("flipped");
 
-                if (introSrc) {
+                const introAvailable = introSrc && !cardBackVideo.error && cardBackVideo.readyState >= 1;
+
+                if (introAvailable) {
                     cardBackVideo.style.display = "block";
                     const playPromise = cardBackVideo.play();
                     if (playPromise && typeof playPromise.catch === "function") {
@@ -778,6 +827,11 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                         cardBackVideo.style.display = "none";
                         showStatNumbers();
                     };
+                } else if (introSrc) {
+                    // Allows new players to exist before their intro file is added.
+                    // Once x_intro.mp4 exists, the same path automatically plays it.
+                    cardBackVideo.style.display = "none";
+                    showStatNumbers();
                 }
             });
 
@@ -906,10 +960,10 @@ function buildComparisonMainCard(p) {
     card.classList.remove(
         "flipped",
         "rating-80", "rating-90", "rating-98",
-        "player2-adjust", "player5-adjust", "player4-adjust",
+        "player1-adjust", "player2-adjust", "player5-adjust", "player4-adjust",
         "player11-adjust", "player13-adjust", "player3-adjust", "player10-adjust"
     );
-    [2, 3, 4, 5, 10, 11, 13].forEach(id => {
+    [1, 2, 3, 4, 5, 10, 11, 13].forEach(id => {
         if (p.id === id) card.classList.add(`player${id}-adjust`);
     });
 
@@ -962,7 +1016,11 @@ function buildComparisonMainCard(p) {
 
     const back = card.querySelector(".back");
     if (back) {
-        if (customBackCards[p.id]) back.style.backgroundImage = `url('${customBackCards[p.id]}')`;
+        if (customBackCards[p.id]) {
+            back.style.backgroundImage = [15, 16].includes(p.id)
+                ? `url('${customBackCards[p.id]}'), url('wings.png')`
+                : `url('${customBackCards[p.id]}')`;
+        }
         back.style.opacity = "1";
     }
 

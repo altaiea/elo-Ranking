@@ -439,6 +439,29 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    SPECIAL POSITION OVERRIDES
    ONLY FOR PLAYERS 4 AND 13
 ============================ */
+/* PLAYER 16 — OVERALL RATING */
+
+.player16-adjust .rating {
+    position: absolute;
+    top: 0px !important;
+    left: 3px !important;
+}
+
+.player16-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 1px) !important;
+}
+
+.player16-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 0px) !important;
+}
+
+.player16-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 2px) !important;
+}
+
 .player1-adjust .rating {
     position: absolute;
     top: 8px !important;

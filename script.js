@@ -1578,7 +1578,6 @@ function openModeModal(modeName, modeStats) {
 ---------------------------- */
 
 function setRatingColor(el, rating) {
-    // Reset previous styling
     el.style.color = "";
     el.style.background = "";
     el.style.webkitBackgroundClip = "";
@@ -1586,13 +1585,10 @@ function setRatingColor(el, rating) {
     el.style.filter = "";
     el.style.textShadow = "";
 
-    // Special 99 rating
     if (rating === 99) {
-        // Exact same base purple as SLAYR 99
-        el.style.color = "#7A00C8";
+        el.style.color = "#A855F7";
 
         el.style.textShadow =
-            // Dark outline
             "0 -1.5px 0 #160022, " +
             "0.6px -1.4px 0 #160022, " +
             "1.1px -1.1px 0 #160022, " +
@@ -1609,19 +1605,11 @@ function setRatingColor(el, rating) {
             "-1.4px -0.6px 0 #160022, " +
             "-1.1px -1.1px 0 #160022, " +
             "-0.6px -1.4px 0 #160022, " +
-
-            // Strong purple glow
-            "0 0 2px #D580FF, " +
-            "0 0 4px #B940FF, " +
-            "0 0 7px #9A20E8, " +
-            "0 0 11px #7A00C8, " +
-            "0 0 17px #7A00C8, " +
-            "0 0 24px #5A0096";
+            "0 0 4px #A855F7";
 
         return;
     }
 
-    // Normal rating colours
     if (rating < 60) {
         el.style.color = "#FF3B3B";
     } else if (rating <= 66) {

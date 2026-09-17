@@ -42,6 +42,9 @@ Promise.all([
 let allPlayers = [];
 let showInactive = false;
 
+// Players listed here remain fully viewable, but are excluded from percentile pools.
+const INACTIVE_PLAYER_IDS = new Set([14]); // MASEEH
+
 
 // ===============================
 // NEW PLAYER FALLBACK STATS
@@ -150,7 +153,12 @@ function renderTable() {
         const losses = p.hpLosses + p.sndLosses + p.overloadLosses;
         const kills = p.lifetimeKills;
         const deaths = p.lifetimeDeaths;
-        return showInactive ? true : (wins + losses + kills + deaths) > 0;
+        const hasActivity = (wins + losses + kills + deaths) > 0;
+        const isInactive = INACTIVE_PLAYER_IDS.has(p.id);
+
+        // Explicitly inactive players (currently MASEEH / ID 14) appear only
+        // when "Show Inactive Players" is enabled. Their stored stats remain intact.
+        return showInactive ? true : (hasActivity && !isInactive);
     });
 
     filtered.sort((a, b) => b.elo - a.elo);
@@ -435,6 +443,13 @@ function computeModeRating(kdPct, wrPct, marginPct, slayerWeighted, gamesPlayed)
 ---------------------------- */
 
 function computeMode(prefix, p, players) {
+    // Inactive players keep their own stored card stats, but do not contribute
+    // values to anybody's percentile comparison pool.
+    const activePercentilePlayers = players.filter(x => !INACTIVE_PLAYER_IDS.has(x.id));
+    const percentilePlayers = INACTIVE_PLAYER_IDS.has(p.id)
+        ? [...activePercentilePlayers, p]
+        : activePercentilePlayers;
+
     const kills = p[prefix + "Kills"];
     const deaths = p[prefix + "Deaths"];
     const wins = p[prefix + "Wins"];
@@ -454,23 +469,23 @@ function computeMode(prefix, p, players) {
     const wr = (wins + losses) === 0 ? 0 : wins / (wins + losses);
     const margin = marginCount === 0 ? 0 : marginTotal / marginCount;
 
-    const kdArr = players
+    const kdArr = percentilePlayers
         .filter(x => x[prefix + "Deaths"] + x[prefix + "Kills"] > 0)
         .map(x => x[prefix + "Kills"] / x[prefix + "Deaths"]);
     const kdPct = percentile(kd, kdArr);
 
-    const wrArr = players
+    const wrArr = percentilePlayers
         .filter(x => x[prefix + "Wins"] + x[prefix + "Losses"] > 0)
         .map(x => x[prefix + "Wins"] / (x[prefix + "Wins"] + x[prefix + "Losses"]));
     const wrPct = percentile(wr, wrArr);
 
-    const marginArr = players
+    const marginArr = percentilePlayers
         .filter(x => x[prefix + "MarginCount"] > 0)
         .map(x => x[prefix + "MarginTotal"] / x[prefix + "MarginCount"]);
     const marginPct = percentile(margin, marginArr);
 
     // NEW — percentile array for lifetime damage share
-    const dmgArr = players
+    const dmgArr = percentilePlayers
         .filter(x => (x[prefix + "LifetimeTeamDamage"] || 0) > 0)
         .map(x => {
             const ld = x[prefix + "LifetimeDamage"] || 0;
@@ -530,22 +545,22 @@ function computeMode(prefix, p, players) {
 // CUSTOM BACK CARDS PER PLAYER
 // ===============================
 const customBackCards = {
-    1: "cards/1_back.png",
-    2: "cards/2_back.png",
-    3: "cards/3_back.png",
-    4: "cards/4_back.png",
-    5: "cards/5_back.png",
-    6: "cards/6_back.png",
-    7: "cards/7_back.png",
-    8: "cards/8_back.png",
-    9: "cards/9_back.png",
-    10: "cards/10_back.png",
-    11: "cards/11_back.png",
-    12: "cards/12_back.png",
-    13: "cards/13_back.png",
-    14: "cards/14_back.png",
-    15: "cards/15_back.png",
-    16: "cards/16_back.png"
+    1: "cards/1_back.webp",
+    2: "cards/2_back.webp",
+    3: "cards/3_back.webp",
+    4: "cards/4_back.webp",
+    5: "cards/5_back.webp",
+    6: "cards/6_back.webp",
+    7: "cards/7_back.webp",
+    8: "cards/8_back.webp",
+    9: "cards/9_back.webp",
+    10: "cards/10_back.webp",
+    11: "cards/11_back.webp",
+    12: "cards/12_back.webp",
+    13: "cards/13_back.webp",
+    14: "cards/14_back.webp",
+    15: "cards/15_back.webp",
+    16: "cards/16_back.webp"
 };
 
 let playerModalLoadToken = 0;
@@ -727,26 +742,12 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
             // SPECIAL POSITION OVERRIDES
             card.classList.remove(
-                "player16-adjust",
-                "player1-adjust",
-                "player2-adjust",
-                "player5-adjust",
-                "player4-adjust",
-                "player11-adjust",
-                "player13-adjust",
-                "player3-adjust",
-                "player10-adjust"
+                ...Array.from({ length: 16 }, (_, index) => `player${index + 1}-adjust`)
             );
-    
-            if (p.id === 5) card.classList.add("player5-adjust");
-            if (p.id === 4) card.classList.add("player4-adjust");
-            if (p.id === 11) card.classList.add("player11-adjust");
-            if (p.id === 13) card.classList.add("player13-adjust");
-            if (p.id === 3) card.classList.add("player3-adjust");
-            if (p.id === 2) card.classList.add("player2-adjust");
-            if (p.id === 10)card.classList.add("player10-adjust");
-            if (p.id === 1)card.classList.add("player1-adjust");
-            if (p.id === 16) card.classList.add("player16-adjust");
+
+            // Every player has an independent coordinate override class.
+            // The same class naming scheme is also used by Head-to-Head cards.
+            if (p.id >= 1 && p.id <= 16) card.classList.add(`player${p.id}-adjust`);
 
             // SET BACK CARD PNG
             if (customBackCards[p.id]) {
@@ -962,12 +963,9 @@ function buildComparisonMainCard(p) {
     card.classList.remove(
         "flipped",
         "rating-80", "rating-90", "rating-98",
-        "player1-adjust", "player2-adjust", "player5-adjust", "player4-adjust",
-        "player11-adjust", "player13-adjust", "player3-adjust", "player10-adjust"
+        ...Array.from({ length: 16 }, (_, index) => `player${index + 1}-adjust`)
     );
-    [1, 2, 3, 4, 5, 10, 11, 13].forEach(id => {
-        if (p.id === id) card.classList.add(`player${id}-adjust`);
-    });
+    if (p.id >= 1 && p.id <= 16) card.classList.add(`player${p.id}-adjust`);
 
     const video = card.querySelector(".card-back-video");
     if (video) video.remove();
@@ -1195,6 +1193,50 @@ function closePlayerModal() {
         el.style.visibility = "visible";
     });
 }
+
+// ===============================
+// BACKGROUND CARD ASSET CACHE WARMING
+// ===============================
+// Runs only after the normal page load. It does not replace or bypass the
+// existing modal readiness checks; it simply gives the browser a chance to
+// cache assets before the user opens a card.
+function warmPlayerCardCache() {
+    const backSources = Object.values(customBackCards);
+    const introSources = [
+        "cards/1_intro.mp4", "cards/2_intro.mp4", "cards/3_intro.mp4",
+        "cards/4_intro.mp4", "cards/5_intro.mp4", "cards/6_intro.mp4",
+        "cards/7_intro.mp4", "cards/8_intro.mp4", "cards/9_intro.mp4",
+        "cards/10_intro.mp4", "cards/11_intro.mp4", "cards/12_intro.mp4",
+        "cards/15_intro.mp4"
+    ];
+
+    backSources.forEach(src => {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = src;
+    });
+
+    // Stagger full-quality video cache warming so it does not compete with
+    // the initial page render or request every large video simultaneously.
+    introSources.forEach((src, index) => {
+        setTimeout(() => {
+            const video = document.createElement("video");
+            video.preload = "auto";
+            video.muted = true;
+            video.src = src;
+            video.load();
+        }, index * 250);
+    });
+}
+
+window.addEventListener("load", () => {
+    const startCacheWarm = () => warmPlayerCardCache();
+    if ("requestIdleCallback" in window) {
+        requestIdleCallback(startCacheWarm, { timeout: 2000 });
+    } else {
+        setTimeout(startCacheWarm, 500);
+    }
+}, { once: true });
 
 function setupCarousel() {
     const slider = document.querySelector("#carouselPage .slider");
@@ -1434,6 +1476,15 @@ function setupCarousel() {
     });
 
     function render(timestamp) {
+        const carouselVisible = !document.hidden && slider.offsetParent !== null;
+        if (!carouselVisible) {
+            // Do not spend transform/compositing work on a hidden tab/page.
+            // Reset timing so returning to Cards never causes a large jump.
+            lastTime = null;
+            requestAnimationFrame(render);
+            return;
+        }
+
         if (lastTime === null) lastTime = timestamp;
         const delta = Math.min(timestamp - lastTime, 40);
         lastTime = timestamp;
@@ -1531,11 +1582,31 @@ function setRatingColor(el, rating) {
     el.style.background = "";
     el.style.webkitBackgroundClip = "";
     el.style.webkitTextFillColor = "";
+    el.style.filter = "";
+    el.style.textShadow = "";
 
     if (rating === 99) {
-        el.style.background = "linear-gradient(to bottom, #FF3CFF, #D020FF, #7A00C8)";
-        el.style.webkitBackgroundClip = "text";
-        el.style.webkitTextFillColor = "transparent";
+        el.style.color = "#A855F7";
+
+        el.style.textShadow =
+            "0 -1.5px 0 #160022, " +
+            "0.6px -1.4px 0 #160022, " +
+            "1.1px -1.1px 0 #160022, " +
+            "1.4px -0.6px 0 #160022, " +
+            "1.5px 0 0 #160022, " +
+            "1.4px 0.6px 0 #160022, " +
+            "1.1px 1.1px 0 #160022, " +
+            "0.6px 1.4px 0 #160022, " +
+            "0 1.5px 0 #160022, " +
+            "-0.6px 1.4px 0 #160022, " +
+            "-1.1px 1.1px 0 #160022, " +
+            "-1.4px 0.6px 0 #160022, " +
+            "-1.5px 0 0 #160022, " +
+            "-1.4px -0.6px 0 #160022, " +
+            "-1.1px -1.1px 0 #160022, " +
+            "-0.6px -1.4px 0 #160022, " +
+            "0 0 4px #A855F7";
+
         return;
     }
 

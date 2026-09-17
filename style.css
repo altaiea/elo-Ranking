@@ -435,172 +435,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .col2.row1 { left: 153px; top: 347px; }
 .col3.row1 { left: 270px; top: 347px; }
 
-/* ============================
-   SPECIAL POSITION OVERRIDES
-   ONLY FOR PLAYERS 4 AND 13
-============================ */
 /* PLAYER 16 — OVERALL RATING */
-
-.player16-adjust .rating {
-    position: absolute;
-    top: 5px !important;
-    left: -3px !important;
-}
-
-.player16-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 1px) !important;
-}
-
-.player16-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 0px) !important;
-}
-
-.player16-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 2px) !important;
-}
-
-.player1-adjust .rating {
-    position: absolute;
-    top: 8px !important;
-    left: 1px !important;
-}
-
-.player1-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(5px, 25px) !important;
-}
-
-.player1-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, 25px) !important;
-}
-
-.player1-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-8px, 25px) !important;
-}
-
-.player10-adjust .rating {
-    position: absolute;
-    top: 12px !important;
-    left: -6px !important;
-}
-
-.player10-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 4px) !important;
-}
-
-.player10-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(2px, 2px) !important;
-}
-
-.player10-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(6px, 4px) !important;
-}
-
-.player2-adjust .rating {
-    position: absolute;
-    top: 22px !important;
-    left: -5px !important;
-}
-
-.player2-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-0px, 10px) !important;
-}
-
-.player2-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, 8px) !important;
-}
-
-.player2-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 10px) !important;
-}
-.player5-adjust .rating {
-    position: absolute;
-    top: 11px !important;
-    left: -2px !important;
-}
-
-.player5-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 7px) !important;
-}
-
-.player5-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 6px) !important;
-}
-
-.player5-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 7px) !important;
-}
-
-.player3-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(0px, 4px) !important;
-}
-
-.player3-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(1px, 2px) !important;
-}
-
-.player3-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(1px, 4px) !important;
-}
-
-
-
-.player11-adjust .rating {
-    position: absolute;
-    top: 8px !important;
-    right: 231px !important;
-}
-
-.player11-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 0px) !important;
-}
-.player11-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, -2px) !important;
-}
-.player11-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(0px, 0px) !important;
-}
-
-
-
-.player13-adjust .rating {
-    position: absolute;
-    top: 5px !important;
-    right: 2px !important;
-}
-
-.player13-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-6px, -11px) !important;
-}
-.player13-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-2px, -13px) !important;
-}
-.player13-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(3px, -11px) !important;
-}
 
 /* ============================
    MODE MODAL — PNG VERSION
@@ -1843,4 +1678,292 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     .final-head-to-head strong {
         font-size: 22px;
     }
+}
+
+/* ============================================================
+   PLAYER COORDINATE OVERRIDES — MASTER SECTION
+   Players 1–16 are kept together here deliberately.
+   These same playerX-adjust classes are applied to the normal
+   modal and Head-to-Head cards by script.js.
+   Edit these values when manually aligning a player's numbers.
+============================================================ */
+
+/* PLAYER 1 */
+.player1-adjust .rating {
+    position: absolute;
+    top: 8px !important;
+    left: 4px !important;
+}
+.player1-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(5px, 26px) !important;
+}
+.player1-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(0px, 25px) !important;
+}
+.player1-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-8px, 26px) !important;
+}
+
+/* PLAYER 2 */
+.player2-adjust .rating {
+    position: absolute;
+    top: 22px !important;
+    left: -5px !important;
+}
+.player2-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-0px, 10px) !important;
+}
+.player2-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(0px, 8px) !important;
+}
+.player2-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 10px) !important;
+}
+
+/* PLAYER 3 */
+.player3-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+}
+.player3-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(0px, 4px) !important;
+}
+.player3-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(1px, 2px) !important;
+}
+.player3-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(1px, 4px) !important;
+}
+
+/* PLAYER 4 */
+.player4-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 1px !important;
+}
+.player4-adjust .col1.row1 {
+    transform: translate(0px, -1px) !important;
+}
+.player4-adjust .col2.row1 {
+    transform: translate(0px, -3px) !important;
+}
+.player4-adjust .col3.row1 {
+    transform: translate(-1px, -1px) !important;
+}
+
+/* PLAYER 5 */
+.player5-adjust .rating {
+    position: absolute;
+    top: 11px !important;
+    left: -2px !important;
+}
+.player5-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 7px) !important;
+}
+.player5-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 6px) !important;
+}
+.player5-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 7px) !important;
+}
+
+/* PLAYER 6 */
+.player6-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 1px !important;
+}
+.player6-adjust .col1.row1 {
+    transform: translate(1px, 0px) !important;
+}
+.player6-adjust .col2.row1 {
+    transform: translate(-1px, -2px) !important;
+}
+.player6-adjust .col3.row1 {
+    transform: translate(-2px, 0px) !important;
+}
+
+/* PLAYER 7 */
+.player7-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 1px !important;
+}
+.player7-adjust .col1.row1 {
+    transform: translate(1px, 0px) !important;
+}
+.player7-adjust .col2.row1 {
+    transform: translate(0px, -2px) !important;
+}
+.player7-adjust .col3.row1 {
+    transform: translate(-1px, 0px) !important;
+}
+
+/* PLAYER 8 */
+.player8-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+}
+.player8-adjust .col1.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player8-adjust .col2.row1 {
+    transform: translate(0px, -2px) !important;
+}
+.player8-adjust .col3.row1 {
+    transform: translate(0px, 0px) !important;
+}
+
+/* PLAYER 9 */
+.player9-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+}
+.player9-adjust .col1.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player9-adjust .col2.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player9-adjust .col3.row1 {
+    transform: translate(0px, 0px) !important;
+}
+
+/* PLAYER 10 */
+.player10-adjust .rating {
+    position: absolute;
+    top: 12px !important;
+    left: -6px !important;
+}
+.player10-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 4px) !important;
+}
+.player10-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(2px, 2px) !important;
+}
+.player10-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(6px, 4px) !important;
+}
+
+/* PLAYER 11 */
+.player11-adjust .rating {
+    position: absolute;
+    top: 8px !important;
+    right: 231px !important;
+}
+.player11-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 0px) !important;
+}
+.player11-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(0px, -2px) !important;
+}
+.player11-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(0px, 0px) !important;
+}
+
+/* PLAYER 12 */
+.player12-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+}
+.player12-adjust .col1.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player12-adjust .col2.row1 {
+    transform: translate(0px, -2px) !important;
+}
+.player12-adjust .col3.row1 {
+    transform: translate(0px, 0px) !important;
+}
+
+/* PLAYER 13 */
+.player13-adjust .rating {
+    position: absolute;
+    top: 5px !important;
+    right: 2px !important;
+}
+.player13-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-6px, -11px) !important;
+}
+.player13-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-2px, -13px) !important;
+}
+.player13-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(3px, -11px) !important;
+}
+
+/* PLAYER 14 */
+.player14-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 1px !important;
+}
+.player14-adjust .col1.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player14-adjust .col2.row1 {
+    transform: translate(0px, -2px) !important;
+}
+.player14-adjust .col3.row1 {
+    transform: translate(-1px, 0px) !important;
+}
+
+/* PLAYER 15 */
+.player15-adjust .rating {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+}
+.player15-adjust .col1.row1 {
+    transform: translate(0px, 0px) !important;
+}
+.player15-adjust .col2.row1 {
+    transform: translate(0px, -2px) !important;
+}
+.player15-adjust .col3.row1 {
+    transform: translate(-2px, 0px) !important;
+}
+
+/* PLAYER 16 */
+.player16-adjust .rating {
+    position: absolute;
+    top: 5px !important;
+    left: -7px !important;
+}
+.player16-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 2px) !important;
+}
+.player16-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 0px) !important;
+}
+.player16-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 2px) !important;
 }

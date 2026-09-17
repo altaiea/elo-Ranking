@@ -443,8 +443,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 .player16-adjust .rating {
     position: absolute;
-    top: 0px !important;
-    left: 3px !important;
+    top: 1px !important;
+    left: -3px !important;
 }
 
 .player16-adjust .col1.row1 {

@@ -727,6 +727,7 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
             // SPECIAL POSITION OVERRIDES
             card.classList.remove(
+                "player16-adjust",
                 "player1-adjust",
                 "player2-adjust",
                 "player5-adjust",
@@ -745,6 +746,7 @@ function openPlayerModal(playerId, playerList = allPlayers) {
             if (p.id === 2) card.classList.add("player2-adjust");
             if (p.id === 10)card.classList.add("player10-adjust");
             if (p.id === 1)card.classList.add("player1-adjust");
+            if (p.id === 16) card.classList.add("player16-adjust");
 
             // SET BACK CARD PNG
             if (customBackCards[p.id]) {

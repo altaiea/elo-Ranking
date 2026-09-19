@@ -31,12 +31,15 @@
 ============================ -->
 <div id="leaderboardPage" class="tab-page">
 
-    <div class="toggle-container">
-        <label class="switch small-switch">
-            <input type="checkbox" id="toggleInactive">
-            <span class="slider small-slider"></span>
-        </label>
-        <span class="toggle-label">Show Inactive Players</span>
+    <div class="leaderboard-toolbar">
+        <div class="toggle-container">
+            <label class="switch small-switch">
+                <input type="checkbox" id="toggleInactive">
+                <span class="slider small-slider"></span>
+            </label>
+            <span class="toggle-label">Show Inactive Players</span>
+        </div>
+        <button id="monthlyRankingsButton" class="monthly-rankings-button" type="button">Monthly Rankings</button>
     </div>
 
     <table id="leaderboard">
@@ -207,7 +210,7 @@
 
 
 <!-- ============================
-     SERIES HISTORY TAB
+     DAILY MAP HISTORY / AUDIT TAB
 ============================ -->
 <div id="seriesHistoryPage" class="tab-page">
 
@@ -419,6 +422,8 @@
 
 
 
+<script src="config.js"></script>
+<script src="data-client.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

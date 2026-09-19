@@ -1967,3 +1967,427 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     position: absolute !important;
     transform: translate(-1px, 2px) !important;
 }
+
+
+/* ============================
+   MAP HISTORY + ELO TRACE
+============================ */
+#historyList {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.history-entry {
+    width: 100%;
+    background: #15151a;
+    padding: 15px 18px;
+    margin: 10px 0;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #00eaff;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    text-align: left;
+    font: inherit;
+}
+
+.history-entry:hover {
+    background: #00eaff;
+    color: #000;
+}
+
+.history-entry-date {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.history-entry-count {
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.85;
+}
+
+.history-viewer {
+    width: min(1200px, 95%);
+    margin: 30px auto;
+    display: none;
+}
+
+.history-back-btn,
+.history-calc-btn {
+    background: #00eaff;
+    color: #000;
+    border: 1px solid #00eaff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.history-back-btn {
+    padding: 10px 18px;
+    margin-bottom: 20px;
+}
+
+.history-calc-btn {
+    padding: 7px 10px;
+    white-space: nowrap;
+}
+
+.history-back-btn:hover,
+.history-calc-btn:hover {
+    filter: brightness(1.08);
+}
+
+.history-day-title {
+    margin: 0 0 22px;
+    color: #00eaff;
+}
+
+.history-map-card {
+    background: #101014;
+    border: 1px solid rgba(0, 234, 255, 0.55);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 0 18px rgba(0, 234, 255, 0.08);
+}
+
+.history-map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 20px;
+    background: #15151a;
+    border-bottom: 1px solid rgba(0, 234, 255, 0.35);
+}
+
+.history-map-mode {
+    color: #00eaff;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.history-map-source {
+    margin-top: 4px;
+    color: #8f929d;
+    font-size: 12px;
+}
+
+.history-map-score {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.history-team-section {
+    padding: 16px 18px 5px;
+}
+
+.history-team-heading {
+    color: #a8abb5;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+.history-team-winner {
+    color: #00eaff;
+}
+
+.history-table-wrap {
+    overflow-x: auto;
+}
+
+.history-scoreboard {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.history-scoreboard th {
+    background: #0d0d10;
+    color: #00eaff;
+    padding: 10px 8px;
+    border-bottom: 2px solid #00eaff;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.history-scoreboard td {
+    padding: 11px 8px;
+    border-bottom: 1px solid #24242b;
+    text-align: center;
+}
+
+.history-scoreboard td:first-child,
+.history-scoreboard th:first-child {
+    text-align: left;
+}
+
+.history-player-row:hover {
+    background: rgba(0, 234, 255, 0.035);
+}
+
+.history-elo-positive {
+    color: #52e08a;
+    font-weight: 800;
+}
+
+.history-elo-negative {
+    color: #ff6b7a;
+    font-weight: 800;
+}
+
+.history-trace-unavailable {
+    color: #7e818a;
+    font-size: 12px;
+}
+
+.history-calculation-row > td {
+    padding: 0 !important;
+    background: #0b0b0e;
+}
+
+.history-calculation {
+    padding: 18px;
+    text-align: left;
+}
+
+.history-calc-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.history-calc-summary > div {
+    background: #141419;
+    border: 1px solid #25252d;
+    border-radius: 7px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.history-calc-summary span {
+    color: #8f929d;
+    font-size: 12px;
+}
+
+.history-calc-summary strong {
+    color: #fff;
+}
+
+.history-calc-steps {
+    display: grid;
+    gap: 10px;
+}
+
+.history-calc-step {
+    background: #121217;
+    border: 1px solid #25252d;
+    border-left: 3px solid #00eaff;
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+
+.history-calc-step-header {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #fff;
+}
+
+.history-calc-step-number {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #00eaff;
+    color: #000;
+    font-size: 11px;
+    font-weight: 900;
+    flex: 0 0 auto;
+}
+
+.history-calc-formula {
+    color: #00eaff;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    margin: 9px 0;
+    overflow-wrap: anywhere;
+}
+
+.history-calc-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    color: #c4c6ce;
+    font-size: 12px;
+}
+
+.history-calc-inputs b {
+    color: #8f929d;
+}
+
+.history-calc-result {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 1px solid #24242b;
+}
+
+.history-calc-result span {
+    color: #8f929d;
+    font-size: 12px;
+}
+
+.history-calc-result strong {
+    color: #fff;
+    font-family: Consolas, Monaco, monospace;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+    #historyList { width: 96%; }
+    .history-viewer { width: 98%; }
+    .history-entry { padding: 13px; }
+    .history-map-header { padding: 14px; }
+    .history-map-score { font-size: 22px; }
+    .history-calc-summary { grid-template-columns: 1fr; }
+}
+
+/* Compact calculation breakdown: presentation-only History tab extension. */
+.history-calc-grouped .history-calc-compact {
+    max-width: 720px;
+    display: grid;
+    gap: 0;
+    margin: 0 auto 10px;
+    padding: 8px 16px;
+    background: #121217;
+    border: 1px solid #303039;
+    border-radius: 9px;
+}
+.history-calc-grouped .history-calc-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 7px 0;
+    border-bottom: 1px solid #25252d;
+    color: #d0d0d6;
+    font-size: 13px;
+}
+.history-calc-grouped .history-calc-line:last-child { border-bottom: 0; }
+.history-calc-grouped .history-calc-line strong { font-family: Consolas, Monaco, monospace; text-align: right; }
+.history-calc-grouped .history-calc-line-final { font-size: 15px; font-weight: 700; }
+.history-calc-grouped .history-calc-gain,
+.history-calc-grouped .history-calc-result strong.history-calc-gain { color: #37d78d; }
+.history-calc-grouped .history-calc-loss,
+.history-calc-grouped .history-calc-result strong.history-calc-loss { color: #ff6575; }
+.history-calc-grouped .history-calc-neutral { color: #f0f0f3; }
+.history-calc-grouped .history-calc-note {
+    text-align: center;
+    color: #9fa0ab;
+    font-size: 11px;
+    margin: 8px auto 12px;
+    max-width: 720px;
+}
+.history-calc-grouped .history-calc-full-details { max-width: 900px; margin: 0 auto; }
+.history-calc-grouped .history-calc-full-details > summary {
+    cursor: pointer;
+    color: #00eaff;
+    font-size: 12px;
+    padding: 8px 4px;
+}
+.history-calc-grouped .history-calc-full-details[open] > summary { margin-bottom: 8px; }
+
+
+/* ======================================================
+   MONTHLY RANKINGS — LEADERBOARD POPUP
+   Visual/reporting only. No Elo calculations are performed here.
+====================================================== */
+.leaderboard-toolbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:12px;
+}
+.leaderboard-toolbar .toggle-container { margin-bottom:0; }
+.monthly-rankings-button {
+    border:1px solid rgba(0,234,255,.45);
+    background:#17191c;
+    color:#7feeff;
+    border-radius:9px;
+    padding:9px 14px;
+    font:inherit;
+    font-weight:700;
+    cursor:pointer;
+}
+.monthly-rankings-button:hover { background:#20252a; border-color:#7feeff; }
+.popup-card.monthly-popup-card {
+    width:min(1080px, calc(100vw - 34px));
+    max-width:1080px;
+    max-height:88vh;
+    overflow:auto;
+}
+.monthly-rankings-popup { padding:4px 2px 8px; }
+.monthly-popup-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:18px;
+    margin-bottom:18px;
+}
+.monthly-popup-header h2 { margin:0 0 5px; color:#7feeff; }
+.monthly-popup-header p { margin:0; color:#aeb5bd; max-width:680px; line-height:1.45; }
+.monthly-month-label { color:#aeb5bd; font-size:.9rem; display:flex; align-items:center; gap:8px; white-space:nowrap; }
+#monthlyMonthSelect {
+    background:#191b1f;
+    color:#fff;
+    border:1px solid #3b424a;
+    border-radius:7px;
+    padding:7px 9px;
+}
+.monthly-summary { color:#aeb5bd; margin:0 0 10px; }
+.monthly-table-wrap { overflow-x:auto; border:1px solid #2a2d31; border-radius:10px; }
+.monthly-table { width:100%; border-collapse:collapse; min-width:720px; }
+.monthly-table th {
+    text-align:left;
+    color:#7feeff;
+    font-size:.8rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-bottom:1px solid #57dff3;
+    padding:12px 14px;
+}
+.monthly-table td { padding:13px 14px; border-bottom:1px solid #292c30; color:#e6e8ea; }
+.monthly-player-row { cursor:pointer; background:#1c1d20; }
+.monthly-player-row:nth-of-type(4n+3) { background:#202326; }
+.monthly-player-row:hover { background:#292d31; }
+.monthly-rank { font-weight:800; color:#7feeff !important; }
+.monthly-player-name { font-weight:700; }
+.monthly-breakdown-row td { background:#111315; padding:9px 14px 14px; }
+.monthly-position-breakdown { display:flex; flex-wrap:wrap; gap:7px; }
+.monthly-position-chip { background:#24282c; border:1px solid #363c42; border-radius:999px; padding:5px 9px; color:#cfd4d8; font-size:.86rem; }
+.monthly-position-chip b { color:#7feeff; }
+.monthly-loading, .monthly-empty { padding:28px 12px; text-align:center; color:#aeb5bd; }
+@media (max-width: 700px) {
+    .leaderboard-toolbar { align-items:flex-start; flex-direction:column; }
+    .monthly-rankings-button { width:100%; }
+    .monthly-popup-header { align-items:flex-start; flex-direction:column; }
+}

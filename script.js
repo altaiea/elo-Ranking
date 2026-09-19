@@ -1642,7 +1642,9 @@ function showPopup(html) {
 
 document.getElementById("popupClose").addEventListener("click", () => {
     document.getElementById("popupOverlay").style.display = "none";
-    document.getElementById("popupCard").style.display = "none";
+    const popupCard = document.getElementById("popupCard");
+    popupCard.style.display = "none";
+    popupCard.classList.remove("monthly-popup-card");
 });
 
 
@@ -1915,15 +1917,19 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTeamCollapsibles();
     populateAutoDropdowns();
     populateManualDropdowns();
+    const monthlyButton = document.getElementById("monthlyRankingsButton");
+    if (monthlyButton && monthlyButton.dataset.bound !== "true") {
+        monthlyButton.addEventListener("click", openMonthlyRankings);
+        monthlyButton.dataset.bound = "true";
+    }
 });
 
 
 
 
 // ======================================================
-// TABS + SERIES HISTORY (ADDED BELOW YOUR ORIGINAL CODE)
+// TABS + MAP HISTORY
 // ======================================================
-
 
 function initTabs() {
     const tabs = document.querySelectorAll(".nav-tab");
@@ -1934,297 +1940,728 @@ function initTabs() {
         btn.addEventListener("click", () => {
             const target = btn.dataset.tab;
 
-            // Show correct page
             pages.forEach(p => {
                 p.style.display = (p.id === target) ? "block" : "none";
             });
 
-            // Update title text for ALL tabs
-            if (target === "leaderboardPage")      title.textContent = "LEADERBOARD";
-            else if (target === "teamsPage")       title.textContent = "TEAMS";
-            else if (target === "seriesHistoryPage") title.textContent = "SERIES HISTORY";
-            else if (target === "comparisonsPage") title.textContent = "COMPARISONS";
-            else if (target === "mapsPage")        title.textContent = "MAPS";
-            else if (target === "carouselPage")    title.textContent = "CARDS";
+            if (target === "leaderboardPage")        title.textContent = "LEADERBOARD";
+            else if (target === "teamsPage")         title.textContent = "TEAMS";
+            else if (target === "seriesHistoryPage") title.textContent = "HISTORY";
+            else if (target === "comparisonsPage")   title.textContent = "COMPARISONS";
+            else if (target === "mapsPage")          title.textContent = "MAPS";
+            else if (target === "carouselPage")      title.textContent = "CARDS";
         });
     });
 }
 
-
 // ---------------------------
-// SERIES HISTORY DATA
+// MAP HISTORY DATA
 // ---------------------------
-const SERIES_HISTORY_FOLDER = "serieshistory";
-const seriesCache = new Map();
+const MAP_HISTORY_FOLDER = "history";
+const MAP_HISTORY_INDEX = `${MAP_HISTORY_FOLDER}/index.json`;
+const historyDayCache = new Map();
 
-function getSeriesFile(seriesId) {
-    return `${SERIES_HISTORY_FOLDER}/series_${seriesId}.json`;
+function formatHistoryDate(dateText) {
+    if (!dateText) return "Unknown date";
+    const date = new Date(`${dateText}T00:00:00`);
+    if (Number.isNaN(date.getTime())) return String(dateText);
+    return date.toLocaleDateString(undefined, {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
 }
 
-// SeriesStorage creates consecutive files (series_1.json, series_2.json, ...).
-// A normal browser cannot list a folder, so discover them in order and stop at
-// the first missing file.
-async function discoverSeriesHistory() {
-    const discovered = [];
-    let seriesId = 1;
+function formatElo(value, digits = 2) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number.toFixed(digits) : "—";
+}
 
-    while (true) {
-        const file = getSeriesFile(seriesId);
-        let response;
 
-        try {
-            response = await fetch(file, { cache: "no-store" });
-        } catch (error) {
-            if (seriesId === 1) console.error("Could not load series history:", error);
-            break;
-        }
+// ---------------------------
+// MONTHLY RANKINGS
+// ---------------------------
+const monthlyRankingsCache = new Map();
 
-        if (!response.ok) break;
+function monthlyPlayerName(playerId) {
+    const existing = allPlayers.find(player => Number(player.id) === Number(playerId));
+    return existing ? existing.name : getPlayerName(Number(playerId));
+}
 
-        try {
-            const series = await response.json();
-            if (!series || Number(series.seriesId) !== seriesId) {
-                console.error(`Invalid series history file: ${file}`);
-                break;
-            }
-            seriesCache.set(seriesId, series);
-            discovered.push(series);
-            seriesId++;
-        } catch (error) {
-            console.error(`Could not read ${file}:`, error);
-            break;
+function ordinal(position) {
+    const value = Number(position);
+    if (!Number.isFinite(value)) return "—";
+    const mod100 = value % 100;
+    if (mod100 >= 11 && mod100 <= 13) return `${value}th`;
+    if (value % 10 === 1) return `${value}st`;
+    if (value % 10 === 2) return `${value}nd`;
+    if (value % 10 === 3) return `${value}rd`;
+    return `${value}th`;
+}
+
+function monthLabel(monthKey) {
+    const match = /^(\d{4})-(\d{2})$/.exec(String(monthKey || ""));
+    if (!match) return String(monthKey || "Unknown month");
+    const d = new Date(Number(match[1]), Number(match[2]) - 1, 1);
+    return d.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+}
+
+function normaliseHistoryIndex(indexPayload) {
+    const days = Array.isArray(indexPayload) ? indexPayload : (indexPayload?.days || []);
+    return days
+        .map(item => typeof item === "string" ? { date: item, file: `${item}.json` } : item)
+        .filter(item => item && item.date)
+        .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+}
+
+async function loadHistoryIndexForMonthly() {
+    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Unable to load map history (${response.status}).`);
+    return normaliseHistoryIndex(await response.json());
+}
+
+async function loadHistoryDayForMonthly(dayInfo) {
+    const dateKey = String(dayInfo.date);
+    if (historyDayCache.has(dateKey)) return historyDayCache.get(dateKey);
+    const fileName = dayInfo.file || `${dateKey}.json`;
+    const response = await fetch(`${MAP_HISTORY_FOLDER}/${fileName}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Unable to load ${fileName} (${response.status}).`);
+    const payload = await response.json();
+    historyDayCache.set(dateKey, payload);
+    return payload;
+}
+
+function emptyMonthlyPlayer(playerId) {
+    return {
+        playerId: Number(playerId),
+        name: monthlyPlayerName(playerId),
+        wins: 0,
+        losses: 0,
+        mapsPlayed: 0,
+        highestElo: null,
+        positionCounts: {}
+    };
+}
+
+function monthlyVector(record, maxPosition) {
+    const values = [];
+    for (let position = 1; position <= maxPosition; position += 1) {
+        values.push(Number(record.positionCounts[position] || 0));
+    }
+    return values;
+}
+
+function compareMonthlyRecords(a, b, maxPosition) {
+    const av = monthlyVector(a, maxPosition);
+    const bv = monthlyVector(b, maxPosition);
+    for (let i = 0; i < maxPosition; i += 1) {
+        if (av[i] !== bv[i]) return bv[i] - av[i];
+    }
+    return String(a.name).localeCompare(String(b.name));
+}
+
+function sameMonthlyStanding(a, b, maxPosition) {
+    if (!a || !b) return false;
+    for (let position = 1; position <= maxPosition; position += 1) {
+        if (Number(a.positionCounts[position] || 0) !== Number(b.positionCounts[position] || 0)) return false;
+    }
+    return true;
+}
+
+function teamForPlayer(game, playerId) {
+    const teams = game?.teams || {};
+    for (const key of ["A", "B"]) {
+        const found = (teams[key] || []).some(player => Number(player.playerId) === Number(playerId));
+        if (found) return key;
+    }
+    return null;
+}
+
+function teamWonMap(game, teamKey) {
+    const winningTeam = Number(game?.result?.winningTeam);
+    if (teamKey === "A") return winningTeam === 1;
+    if (teamKey === "B") return winningTeam === 2;
+    return false;
+}
+
+async function buildMonthlyRankings(monthKey) {
+    if (monthlyRankingsCache.has(monthKey)) return monthlyRankingsCache.get(monthKey);
+
+    const index = await loadHistoryIndexForMonthly();
+    const matchingDays = index.filter(day => String(day.date).startsWith(`${monthKey}-`));
+    if (!matchingDays.length) {
+        const empty = { monthKey, records: [], maxPosition: allPlayers.length || 16, mapCount: 0 };
+        monthlyRankingsCache.set(monthKey, empty);
+        return empty;
+    }
+
+    const dayPayloads = [];
+    for (const dayInfo of matchingDays) dayPayloads.push(await loadHistoryDayForMonthly(dayInfo));
+    dayPayloads.sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+
+    // Reconstruct the overall Elo table in map order. Position counts are awarded
+    // only to players who actually participated in that map.
+    const currentElo = {};
+    const firstOpening = dayPayloads[0]?.openingStats || {};
+    Object.entries(firstOpening).forEach(([playerId, stats]) => {
+        const elo = Number(stats?.elo);
+        if (Number.isFinite(elo)) currentElo[String(playerId)] = elo;
+    });
+    allPlayers.forEach(player => {
+        if (!(String(player.id) in currentElo)) currentElo[String(player.id)] = Number(player.elo || 0);
+    });
+
+    const records = new Map();
+    let mapCount = 0;
+
+    for (const day of dayPayloads) {
+        const maps = Array.isArray(day?.maps) ? day.maps : [];
+        for (const map of maps) {
+            const eloRows = Array.isArray(map?.elo) ? map.elo : [];
+            if (!eloRows.length) continue;
+            mapCount += 1;
+
+            // Update the ratings first so the recorded position is the player's
+            // overall leaderboard position after this approved map.
+            eloRows.forEach(row => {
+                const after = Number(row?.after);
+                if (Number.isFinite(after)) currentElo[String(row.playerId)] = after;
+            });
+
+            const rankedIds = Object.entries(currentElo)
+                .sort((a, b) => Number(b[1]) - Number(a[1]) || Number(a[0]) - Number(b[0]))
+                .map(([playerId]) => Number(playerId));
+            const rankById = new Map(rankedIds.map((playerId, index) => [playerId, index + 1]));
+
+            eloRows.forEach(row => {
+                const playerId = Number(row.playerId);
+                if (!Number.isFinite(playerId)) return;
+                if (!records.has(playerId)) records.set(playerId, emptyMonthlyPlayer(playerId));
+                const record = records.get(playerId);
+                const position = rankById.get(playerId);
+                if (position) record.positionCounts[position] = Number(record.positionCounts[position] || 0) + 1;
+                record.mapsPlayed += 1;
+
+                const before = Number(row.before);
+                const after = Number(row.after);
+                for (const value of [before, after]) {
+                    if (Number.isFinite(value) && (record.highestElo === null || value > record.highestElo)) record.highestElo = value;
+                }
+
+                const teamKey = teamForPlayer(map.game, playerId);
+                if (teamKey) {
+                    if (teamWonMap(map.game, teamKey)) record.wins += 1;
+                    else record.losses += 1;
+                }
+            });
         }
     }
 
-    return discovered;
+    const maxPosition = Math.max(allPlayers.length || 0, Object.keys(currentElo).length || 0, 1);
+    const sorted = [...records.values()].sort((a, b) => compareMonthlyRecords(a, b, maxPosition));
+    let previous = null;
+    let displayedRank = 0;
+    sorted.forEach((record, index) => {
+        if (!sameMonthlyStanding(record, previous, maxPosition)) displayedRank = index + 1;
+        record.monthlyRank = displayedRank;
+        previous = record;
+    });
+
+    const result = { monthKey, records: sorted, maxPosition, mapCount };
+    monthlyRankingsCache.set(monthKey, result);
+    return result;
 }
 
-function getSeriesTeamIds(series, teamKey) {
-    const team = series && series[teamKey];
-    return Array.isArray(team?.playerIds) ? team.playerIds.map(Number) : [];
+function mostHeldPosition(record) {
+    const entries = Object.entries(record.positionCounts || {})
+        .map(([position, count]) => [Number(position), Number(count)])
+        .filter(([, count]) => count > 0)
+        .sort((a, b) => b[1] - a[1] || a[0] - b[0]);
+    return entries.length ? { position: entries[0][0], count: entries[0][1] } : null;
 }
 
-function getSeriesTeamLabel(series, teamKey) {
-    const ids = getSeriesTeamIds(series, teamKey);
-    const fallback = teamKey === "teamA" ? "Team A" : "Team B";
-    return ids.length ? ids.map(getPlayerName).join(" / ") : fallback;
+function monthlyPositionBreakdown(record) {
+    return Object.entries(record.positionCounts || {})
+        .map(([position, count]) => [Number(position), Number(count)])
+        .filter(([, count]) => count > 0)
+        .sort((a, b) => a[0] - b[0])
+        .map(([position, count]) => `<span class="monthly-position-chip"><b>${ordinal(position)}</b> ${count} map${count === 1 ? "" : "s"}</span>`)
+        .join("");
 }
 
-function getSeriesScore(series) {
-    return `${Number(series?.teamA?.mapWins || 0)}-${Number(series?.teamB?.mapWins || 0)}`;
+async function renderMonthlyRankings(monthKey) {
+    const content = document.getElementById("monthlyRankingsBody");
+    if (!content) return;
+    content.innerHTML = `<div class="monthly-loading">Loading ${monthLabel(monthKey)}…</div>`;
+    try {
+        const monthly = await buildMonthlyRankings(monthKey);
+        if (!monthly.records.length) {
+            content.innerHTML = `<div class="monthly-empty">No approved map history is available for ${monthLabel(monthKey)}.</div>`;
+            return;
+        }
+        content.innerHTML = `
+            <div class="monthly-summary">${monthly.mapCount} approved map${monthly.mapCount === 1 ? "" : "s"} recorded this month</div>
+            <div class="monthly-table-wrap">
+                <table class="monthly-table">
+                    <thead><tr><th>Rank</th><th>Player</th><th>W/L</th><th>Highest Elo</th><th>Most-held position</th></tr></thead>
+                    <tbody>
+                        ${monthly.records.map(record => {
+                            const held = mostHeldPosition(record);
+                            return `<tr class="monthly-player-row" data-monthly-player="${record.playerId}">
+                                <td class="monthly-rank">${record.monthlyRank}</td>
+                                <td class="monthly-player-name">${record.name}</td>
+                                <td>${record.wins}-${record.losses}</td>
+                                <td>${formatElo(record.highestElo)}</td>
+                                <td>${held ? `${ordinal(held.position)} · ${held.count} map${held.count === 1 ? "" : "s"}` : "—"}</td>
+                            </tr>
+                            <tr class="monthly-breakdown-row" data-monthly-breakdown="${record.playerId}" hidden>
+                                <td colspan="5"><div class="monthly-position-breakdown">${monthlyPositionBreakdown(record) || "No counted positions."}</div></td>
+                            </tr>`;
+                        }).join("")}
+                    </tbody>
+                </table>
+            </div>`;
+
+        content.querySelectorAll(".monthly-player-row").forEach(row => {
+            row.addEventListener("click", () => {
+                const playerId = row.dataset.monthlyPlayer;
+                const detail = content.querySelector(`[data-monthly-breakdown="${playerId}"]`);
+                if (detail) detail.hidden = !detail.hidden;
+            });
+        });
+    } catch (error) {
+        content.innerHTML = `<div class="monthly-empty">Monthly rankings could not be loaded: ${String(error.message || error)}</div>`;
+    }
 }
 
-// ---------------------------
-// SERIES LIST RENDER
-// ---------------------------
-async function renderSeriesList() {
-    const listEl = document.getElementById("seriesList");
-    const viewerEl = document.getElementById("seriesViewer");
+async function openMonthlyRankings() {
+    try {
+        const index = await loadHistoryIndexForMonthly();
+        const months = [...new Set(index.map(day => String(day.date).slice(0, 7)).filter(Boolean))].sort().reverse();
+        const now = new Date();
+        const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+        const selected = months.includes(currentMonth) ? currentMonth : (months[0] || currentMonth);
+        showPopup(`
+            <div class="monthly-rankings-popup">
+                <div class="monthly-popup-header">
+                    <div>
+                        <h2>Monthly Rankings</h2>
+                        <p>Maps played while holding each overall leaderboard position. Only maps the player participated in count.</p>
+                    </div>
+                    <label class="monthly-month-label">Month
+                        <select id="monthlyMonthSelect">${(months.length ? months : [selected]).map(month => `<option value="${month}" ${month === selected ? "selected" : ""}>${monthLabel(month)}</option>`).join("")}</select>
+                    </label>
+                </div>
+                <div id="monthlyRankingsBody"></div>
+            </div>`);
+        const card = document.getElementById("popupCard");
+        if (card) card.classList.add("monthly-popup-card");
+        const select = document.getElementById("monthlyMonthSelect");
+        if (select) select.addEventListener("change", () => renderMonthlyRankings(select.value));
+        renderMonthlyRankings(selected);
+    } catch (error) {
+        showPopup(`<div class="monthly-rankings-popup"><h2>Monthly Rankings</h2><div class="monthly-empty">${String(error.message || error)}</div></div>`);
+    }
+}
+
+
+function formatSignedElo(value, digits = 2) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return "—";
+    return `${number >= 0 ? "+" : ""}${number.toFixed(digits)}`;
+}
+
+function formatTraceValue(value) {
+    if (value === null || value === undefined) return "—";
+    if (typeof value === "number") return Number.isFinite(value) ? String(value) : "—";
+    if (typeof value === "boolean") return value ? "true" : "false";
+    return String(value);
+}
+
+async function loadHistoryIndex() {
+    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Could not load ${MAP_HISTORY_INDEX} (HTTP ${response.status})`);
+    const data = await response.json();
+
+    let entries = [];
+    if (Array.isArray(data)) entries = data;
+    else if (Array.isArray(data?.dates)) entries = data.dates;
+    else if (Array.isArray(data?.days)) entries = data.days;
+
+    return entries.map(item => {
+        if (typeof item === "string") {
+            return { date: item, file: `${item}.json`, maps: null };
+        }
+        const date = String(item?.date || "");
+        return {
+            date,
+            file: item?.file || `${date}.json`,
+            maps: Number.isFinite(Number(item?.maps)) ? Number(item.maps) : null
+        };
+    }).filter(item => item.date);
+}
+
+async function loadHistoryDay(entry) {
+    const key = entry.date;
+    if (historyDayCache.has(key)) return historyDayCache.get(key);
+
+    const file = `${MAP_HISTORY_FOLDER}/${entry.file || `${entry.date}.json`}`;
+    const response = await fetch(file, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Could not load ${file} (HTTP ${response.status})`);
+    const day = await response.json();
+    historyDayCache.set(key, day);
+    return day;
+}
+
+function createHistoryMessage(text, className = "history-entry") {
+    const el = document.createElement("div");
+    el.className = className;
+    el.textContent = text;
+    return el;
+}
+
+async function renderHistoryList() {
+    const listEl = document.getElementById("historyList");
+    const viewerEl = document.getElementById("historyViewer");
     if (!listEl || !viewerEl) return;
 
     listEl.style.display = "";
-    listEl.innerHTML = '<div class="series-entry">Loading series history...</div>';
     viewerEl.style.display = "none";
     viewerEl.innerHTML = "";
-    seriesCache.clear();
-
-    const seriesList = await discoverSeriesHistory();
     listEl.innerHTML = "";
+    listEl.appendChild(createHistoryMessage("Loading match history..."));
+    historyDayCache.clear();
 
-    if (!seriesList.length) {
-        const empty = document.createElement("div");
-        empty.className = "series-entry";
-        empty.textContent = "No series history found";
-        listEl.appendChild(empty);
+    let entries;
+    try {
+        entries = await loadHistoryIndex();
+    } catch (error) {
+        console.error("Could not load map history:", error);
+        listEl.innerHTML = "";
+        listEl.appendChild(createHistoryMessage("No match history found"));
         return;
     }
 
-    seriesList.forEach(series => {
-        const div = document.createElement("div");
-        div.className = "series-entry";
-        const format = String(series.format || "SERIES").replaceAll("_", " ");
-        const status = series.status || "ACTIVE";
-        div.textContent = `Series ${series.seriesId} — ${format} — ${getSeriesScore(series)} — ${status}`;
-        div.addEventListener("click", () => loadSeries(series.seriesId));
-        listEl.appendChild(div);
-    });
-}
+    entries.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    listEl.innerHTML = "";
 
-// ---------------------------
-// LOAD ONE SERIES
-// ---------------------------
-async function loadSeries(seriesId) {
-    let series = seriesCache.get(Number(seriesId));
-
-    if (!series) {
-        try {
-            const response = await fetch(getSeriesFile(seriesId), { cache: "no-store" });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            series = await response.json();
-            seriesCache.set(Number(seriesId), series);
-        } catch (error) {
-            console.error("Error loading series:", error);
-            return;
-        }
+    if (!entries.length) {
+        listEl.appendChild(createHistoryMessage("No match history found"));
+        return;
     }
 
-    renderSeriesViewer(series);
-}
+    entries.forEach(entry => {
+        const row = document.createElement("button");
+        row.type = "button";
+        row.className = "history-entry";
 
-function buildSeriesLeaderboard(series) {
-    const teamAIds = new Set(getSeriesTeamIds(series, "teamA"));
-    const teamBIds = new Set(getSeriesTeamIds(series, "teamB"));
-    const playerStats = series.playerStats || {};
+        const date = document.createElement("span");
+        date.className = "history-entry-date";
+        date.textContent = formatHistoryDate(entry.date);
 
-    return Object.entries(playerStats).map(([idText, player]) => {
-        const playerId = Number(player?.playerId ?? idText);
-        const modes = Object.values(player?.modeStats || {});
-        const kills = modes.reduce((total, mode) => total + Number(mode?.kills || 0), 0);
-        const deaths = modes.reduce((total, mode) => total + Number(mode?.deaths || 0), 0);
-        const damage = modes.reduce((total, mode) => total + Number(mode?.damage || 0), 0);
+        const count = document.createElement("span");
+        count.className = "history-entry-count";
+        count.textContent = entry.maps === null ? "View maps" : `${entry.maps} map${entry.maps === 1 ? "" : "s"}`;
 
-        return {
-            playerId,
-            playerName: getPlayerName(playerId),
-            team: teamAIds.has(playerId) ? "A" : teamBIds.has(playerId) ? "B" : "?",
-            kills,
-            deaths,
-            damage,
-            mvpScore: Number(player?.overallMvpScore || 0)
-        };
+        row.append(date, count);
+        row.addEventListener("click", async () => {
+            try {
+                const day = await loadHistoryDay(entry);
+                renderHistoryDay(day, entry);
+            } catch (error) {
+                console.error("Error loading history day:", error);
+            }
+        });
+        listEl.appendChild(row);
     });
 }
 
+function getMapScore(map) {
+    const score = map?.game?.result?.score || {};
+    return {
+        teamA: score?.teamA ?? "—",
+        teamB: score?.teamB ?? "—"
+    };
+}
 
-// ---------------------------
-// RENDER SERIES VIEWER
-// ---------------------------
-function renderSeriesViewer(series) {
-    const listEl = document.getElementById("seriesList");
-    const viewerEl = document.getElementById("seriesViewer");
-    if (!viewerEl || !series) return;
+function renderHistoryDay(day, entry) {
+    const listEl = document.getElementById("historyList");
+    const viewerEl = document.getElementById("historyViewer");
+    if (!viewerEl) return;
 
     if (listEl) listEl.style.display = "none";
     viewerEl.style.display = "block";
     viewerEl.innerHTML = "";
 
-    // Back button
     const backBtn = document.createElement("button");
-    backBtn.className = "series-back-btn";
-    backBtn.textContent = "← Back to Series List";
-    backBtn.addEventListener("click", renderSeriesList);
+    backBtn.className = "history-back-btn";
+    backBtn.type = "button";
+    backBtn.textContent = "← Back to History";
+    backBtn.addEventListener("click", renderHistoryList);
     viewerEl.appendChild(backBtn);
 
-    // Title with final score
     const title = document.createElement("h2");
-    title.textContent = `Series ${series.seriesId} — Team A ${getSeriesScore(series)} Team B`;
+    title.className = "history-day-title";
+    title.textContent = formatHistoryDate(day?.date || entry?.date);
     viewerEl.appendChild(title);
 
-    // MVP badge
-    const mvp = document.createElement("p");
-    mvp.style.fontSize = "18px";
-    mvp.style.fontWeight = "700";
-    mvp.style.color = "#00eaff";
-    const overallMvpId = Number(series?.overallMvp?.playerId || 0);
-    const overallMvpScore = Number(series?.overallMvp?.mvpScore || 0);
-    mvp.innerHTML = overallMvpId
-        ? `MVP: <span style="color:#FFD700;">⭐ ${getPlayerName(overallMvpId)} (${overallMvpScore.toFixed(3)})</span>`
-        : `MVP: <span style="color:#FFD700;">Pending</span>`;
-    viewerEl.appendChild(mvp);
+    const maps = Array.isArray(day?.maps) ? day.maps : [];
+    if (!maps.length) {
+        viewerEl.appendChild(createHistoryMessage("No maps recorded for this date."));
+        return;
+    }
 
-    const played = buildSeriesLeaderboard(series)
-        .filter(p => !(p.kills === 0 && p.deaths === 0));
-
-    // Split into Team A and Team B using JSON field
-    const teamAPlayers = played.filter(p => p.team === "A");
-    const teamBPlayers = played.filter(p => p.team === "B");
-
-    // ---------------------------
-    // TEAM A TABLE
-    // ---------------------------
-    const tableA = document.createElement("table");
-    tableA.className = "series-scoreboard";
-    tableA.innerHTML = `
-        <thead>
-            <tr><th colspan="6" style="color:#00eaff;">${getSeriesTeamLabel(series, "teamA")}</th></tr>
-            <tr>
-                <th>Player</th>
-                <th>Kills</th>
-                <th>Deaths</th>
-                <th>K/D</th>
-                <th>Damage</th>
-                <th>MVP Score</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    `;
-    const tbodyA = tableA.querySelector("tbody");
-
-    teamAPlayers.forEach(p => {
-        const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
-        const isMVP = p.playerId === overallMvpId;
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${isMVP ? "⭐ " : ""}${p.playerName}</td>
-            <td>${p.kills}</td>
-            <td>${p.deaths}</td>
-            <td>${kd}</td>
-            <td>${p.damage.toLocaleString()}</td>
-            <td>${p.mvpScore.toFixed(3)}</td>
-        `;
-        tbodyA.appendChild(tr);
-    });
-
-    viewerEl.appendChild(tableA);
-
-    // ---------------------------
-    // TEAM B TABLE
-    // ---------------------------
-    const tableB = document.createElement("table");
-    tableB.className = "series-scoreboard";
-    tableB.innerHTML = `
-        <thead>
-            <tr><th colspan="6" style="color:#00eaff;">${getSeriesTeamLabel(series, "teamB")}</th></tr>
-            <tr>
-                <th>Player</th>
-                <th>Kills</th>
-                <th>Deaths</th>
-                <th>K/D</th>
-                <th>Damage</th>
-                <th>MVP Score</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    `;
-    const tbodyB = tableB.querySelector("tbody");
-
-    teamBPlayers.forEach(p => {
-        const kd = p.deaths === 0 ? p.kills : (p.kills / p.deaths).toFixed(2);
-        const isMVP = p.playerId === overallMvpId;
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${isMVP ? "⭐ " : ""}${p.playerName}</td>
-            <td>${p.kills}</td>
-            <td>${p.deaths}</td>
-            <td>${kd}</td>
-            <td>${p.damage.toLocaleString()}</td>
-            <td>${p.mvpScore.toFixed(3)}</td>
-        `;
-        tbodyB.appendChild(tr);
-    });
-
-    viewerEl.appendChild(tableB);
+    maps.forEach((map, index) => viewerEl.appendChild(buildMapHistoryCard(map, index)));
 }
 
+function buildMapHistoryCard(map, index) {
+    const card = document.createElement("section");
+    card.className = "history-map-card";
+
+    const score = getMapScore(map);
+    const header = document.createElement("div");
+    header.className = "history-map-header";
+
+    const info = document.createElement("div");
+    const mode = document.createElement("div");
+    mode.className = "history-map-mode";
+    mode.textContent = `${map?.gameMode || map?.game?.gameMode || "Map"} · Map ${index + 1}`;
+
+    const source = document.createElement("div");
+    source.className = "history-map-source";
+    source.textContent = map?.source || map?.game?.source || "";
+    info.append(mode, source);
+
+    const scoreBox = document.createElement("div");
+    scoreBox.className = "history-map-score";
+    scoreBox.textContent = `${score.teamA} – ${score.teamB}`;
+
+    header.append(info, scoreBox);
+    card.appendChild(header);
+
+    const teams = map?.game?.teams || {};
+    const eloByPlayer = new Map((Array.isArray(map?.elo) ? map.elo : []).map(item => [Number(item.playerId), item]));
+
+    card.appendChild(buildHistoryTeam("TEAM A", teams.A || [], eloByPlayer, Number(map?.game?.result?.winningTeam) === 1));
+    card.appendChild(buildHistoryTeam("TEAM B", teams.B || [], eloByPlayer, Number(map?.game?.result?.winningTeam) === 2));
+
+    return card;
+}
+
+function buildHistoryTeam(label, players, eloByPlayer, won) {
+    const section = document.createElement("div");
+    section.className = "history-team-section";
+
+    const heading = document.createElement("div");
+    heading.className = `history-team-heading${won ? " history-team-winner" : ""}`;
+    heading.textContent = won ? `${label} · WIN` : label;
+    section.appendChild(heading);
+
+    const tableWrap = document.createElement("div");
+    tableWrap.className = "history-table-wrap";
+
+    const table = document.createElement("table");
+    table.className = "history-scoreboard";
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>K/D</th>
+                <th>Elo Before</th>
+                <th>Change</th>
+                <th>Elo After</th>
+                <th>Calculation</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    `;
+
+    const tbody = table.querySelector("tbody");
+    (Array.isArray(players) ? players : []).forEach(player => {
+        const playerId = Number(player?.playerId);
+        const elo = eloByPlayer.get(playerId) || {};
+        const kills = Number(player?.kills || 0);
+        const deaths = Number(player?.deaths || 0);
+        const kd = deaths === 0 ? kills : kills / deaths;
+
+        const row = document.createElement("tr");
+        row.className = "history-player-row";
+
+        const values = [
+            getPlayerName(playerId),
+            String(kills),
+            String(deaths),
+            Number(kd).toFixed(2),
+            formatElo(elo?.before),
+            formatSignedElo(elo?.change),
+            formatElo(elo?.after)
+        ];
+
+        values.forEach((value, cellIndex) => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            if (cellIndex === 5) {
+                const change = Number(elo?.change);
+                if (Number.isFinite(change)) td.className = change >= 0 ? "history-elo-positive" : "history-elo-negative";
+            }
+            row.appendChild(td);
+        });
+
+        const actionCell = document.createElement("td");
+        const trace = elo?.calculationTrace;
+        if (trace && Array.isArray(trace.steps) && trace.steps.length) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "history-calc-btn";
+            button.textContent = "View calculation";
+            actionCell.appendChild(button);
+
+            const detailsRow = document.createElement("tr");
+            detailsRow.className = "history-calculation-row";
+            detailsRow.style.display = "none";
+            const detailsCell = document.createElement("td");
+            detailsCell.colSpan = 8;
+            detailsCell.appendChild(buildCalculationTrace(trace));
+            detailsRow.appendChild(detailsCell);
+
+            button.addEventListener("click", () => {
+                const opening = detailsRow.style.display === "none";
+                detailsRow.style.display = opening ? "table-row" : "none";
+                button.textContent = opening ? "Hide calculation" : "View calculation";
+            });
+
+            row.appendChild(actionCell);
+            tbody.appendChild(row);
+            tbody.appendChild(detailsRow);
+            return;
+        } else {
+            const unavailable = document.createElement("span");
+            unavailable.className = "history-trace-unavailable";
+            unavailable.textContent = "Not recorded";
+            actionCell.appendChild(unavailable);
+        }
+
+        row.appendChild(actionCell);
+        tbody.appendChild(row);
+    });
+
+    tableWrap.appendChild(table);
+    section.appendChild(tableWrap);
+    return section;
+}
+
+function buildCalculationTrace(trace) {
+    // Presentation only: all displayed values come from Java's saved trace.
+    const container = document.createElement("div");
+    container.className = "history-calculation history-calc-grouped";
+    const recordedSteps = Array.isArray(trace?.steps) ? trace.steps : [];
+    const findStep = name => recordedSteps.find(step => step?.name === name);
+    const recorded = name => findStep(name)?.result;
+    const signed = value => {
+        if (typeof value !== "number" || !Number.isFinite(value)) return formatTraceValue(value);
+        return `${value >= 0 ? "+" : ""}${value.toFixed(2)}`;
+    };
+    const valueClass = value => {
+        if (typeof value !== "number" || !Number.isFinite(value) || value === 0) return "history-calc-neutral";
+        return value > 0 ? "history-calc-gain" : "history-calc-loss";
+    };
+    const addLine = (parent, title, value, options = {}) => {
+        if (value === undefined || value === null) return;
+        const line = document.createElement("div");
+        line.className = `history-calc-line${options.final ? " history-calc-line-final" : ""}`;
+        const nameEl = document.createElement("span");
+        nameEl.textContent = title;
+        const valueEl = document.createElement("strong");
+        valueEl.textContent = options.signed ? signed(value) : (options.elo ? formatElo(value) : formatTraceValue(value));
+        valueEl.className = options.signed ? valueClass(value) : "history-calc-neutral";
+        line.append(nameEl, valueEl);
+        parent.appendChild(line);
+    };
+
+    const summary = document.createElement("div");
+    summary.className = "history-calc-compact";
+    addLine(summary, "Starting Elo", trace?.before, { elo: true });
+    addLine(summary, "Players Elo vs Enemy Team Average", `${formatElo(trace?.before)} vs ${formatElo(recorded("Opponent average Elo"))}`);
+    addLine(summary, "Base Elo", recorded("Base Elo"), { signed: true });
+    addLine(summary, "After map margin", recorded("Base after margin"), { signed: true });
+    addLine(summary, "KD adjustment", recorded("KD adjustment"), { signed: true });
+    addLine(summary, "Damage adjustment", recorded("Damage adjustment"), { signed: true });
+    // The published change is authoritative: display it rather than recomputing from rounded components.
+    addLine(summary, "Total Elo change", trace?.change, { signed: true, final: true });
+    addLine(summary, "Updated Elo", trace?.after, { elo: true, final: true });
+    container.appendChild(summary);
+
+    const note = document.createElement("p");
+    note.className = "history-calc-note";
+    note.textContent = "Green = Elo gained or a positive adjustment · Red = Elo lost or a negative adjustment. Values are recorded by the Java engine; the summary is rounded for display.";
+    container.appendChild(note);
+
+    const details = document.createElement("details");
+    details.className = "history-calc-full-details";
+    const disclosure = document.createElement("summary");
+    disclosure.textContent = `Show all ${recordedSteps.length} recorded calculation steps and formulas`;
+    details.appendChild(disclosure);
+    const steps = document.createElement("div");
+    steps.className = "history-calc-steps";
+
+    recordedSteps.forEach((step, index) => {
+        const stepEl = document.createElement("div");
+        stepEl.className = "history-calc-step";
+        const header = document.createElement("div");
+        header.className = "history-calc-step-header";
+        const number = document.createElement("span");
+        number.className = "history-calc-step-number";
+        number.textContent = String(index + 1);
+        const name = document.createElement("strong");
+        name.textContent = step?.name || `Step ${index + 1}`;
+        header.append(number, name);
+        stepEl.appendChild(header);
+
+        if (step?.formula) {
+            const formula = document.createElement("div");
+            formula.className = "history-calc-formula";
+            formula.textContent = step.formula;
+            stepEl.appendChild(formula);
+        }
+        const inputs = step?.inputs && typeof step.inputs === "object" ? Object.entries(step.inputs) : [];
+        if (inputs.length) {
+            const inputsEl = document.createElement("div");
+            inputsEl.className = "history-calc-inputs";
+            inputs.forEach(([key, value]) => {
+                const pair = document.createElement("span");
+                const keyEl = document.createElement("b");
+                keyEl.textContent = `${key}: `;
+                pair.append(keyEl, document.createTextNode(formatTraceValue(value)));
+                inputsEl.appendChild(pair);
+            });
+            stepEl.appendChild(inputsEl);
+        }
+        const result = document.createElement("div");
+        result.className = "history-calc-result";
+        const resultLabel = document.createElement("span");
+        resultLabel.textContent = "Result";
+        const resultValue = document.createElement("strong");
+        resultValue.textContent = formatTraceValue(step?.result);
+        if (["Base Elo", "Base after margin", "KD adjustment", "Damage adjustment", "Final change"].includes(step?.name)) {
+            resultValue.classList.add(valueClass(step?.result));
+        }
+        result.append(resultLabel, resultValue);
+        stepEl.appendChild(result);
+        steps.appendChild(stepEl);
+    });
+    details.appendChild(steps);
+    container.appendChild(details);
+    return container;
+}
 
 // ---------------------------
-// INITIALISE TABS + SERIES
+// INITIALISE TABS + HISTORY
 // ---------------------------
 document.addEventListener("DOMContentLoaded", () => {
     initTabs();
-    renderSeriesList();
+    renderHistoryList();
     setupMapBuilder();
     setupCarousel();
 });

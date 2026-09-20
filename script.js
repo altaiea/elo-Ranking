@@ -26,14 +26,50 @@ function playCarouselClick() {
 }
 
 // ===============================
-// LOAD PREVIOUS + CURRENT STATS
+// LOAD CURRENT STATS + TODAY'S OPENING STATS
 // ===============================
-Promise.all([
-    fetch("previous_stats.json").then(r => r.json()),
-    fetch("current_stats.json").then(r => r.json())
-]).then(([prevData, currData]) => {
-    mergeStats(prevData.players, currData.players);
-});
+// Daily arrows compare the latest approved ratings with the fixed opening
+// ratings saved before the first map of that history day. Neither yesterday's
+// daily snapshot nor previous_stats.json is needed.
+async function loadDailyLeaderboard() {
+    const currentResponse = await fetch("current_stats.json", { cache: "no-store" });
+    if (!currentResponse.ok) throw new Error(`Could not load current_stats.json (HTTP ${currentResponse.status})`);
+    const current = await currentResponse.json();
+    let openingStats = null;
+
+    try {
+        const indexResponse = await fetch("history/index.json", { cache: "no-store" });
+        if (!indexResponse.ok) throw new Error(`Could not load history/index.json (HTTP ${indexResponse.status})`);
+        const index = await indexResponse.json();
+        const days = Array.isArray(index) ? index :
+            Array.isArray(index?.days) ? index.days :
+            Array.isArray(index?.dates) ? index.dates : [];
+        const latest = days.map(day => typeof day === "string"
+            ? { date: day, file: `${day}.json` }
+            : day
+        ).filter(day => /^\d{4}-\d{2}-\d{2}$/.test(String(day?.date || "")))
+         .sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+
+        if (latest) {
+            const dayFile = String(latest.file || `${latest.date}.json`);
+            // Only accept a plain filename, never a path supplied by the index.
+            if (!/^[\w.-]+\.json$/.test(dayFile)) throw new Error("Invalid history filename");
+            const dayResponse = await fetch(`history/${dayFile}`, { cache: "no-store" });
+            if (!dayResponse.ok) throw new Error(`Could not load history/${dayFile} (HTTP ${dayResponse.status})`);
+            const day = await dayResponse.json();
+            if (day.date && day.date !== latest.date) throw new Error("History date does not match index");
+            if (day.openingStats && typeof day.openingStats === "object") openingStats = day.openingStats;
+        }
+    } catch (error) {
+        // The leaderboard must still load if a history file is missing.
+        // Missing opening values produce no comparison arrow, not false zero change.
+        console.warn("Daily opening Elo unavailable; hiding daily comparison arrows:", error);
+    }
+
+    mergeStats(openingStats, current.players);
+}
+
+loadDailyLeaderboard().catch(error => console.error("Could not load leaderboard:", error));
 
 
 // ===============================
@@ -51,7 +87,7 @@ const INACTIVE_PLAYER_IDS = new Set([14]); // MASEEH
 // ===============================
 // IDs 15 and 16 are available immediately even before the stats JSON files
 // have been updated to include them. Real JSON values automatically take over
-// as soon as those IDs exist in current_stats.json / previous_stats.json.
+// as soon as those IDs exist in current_stats.json.
 function createEmptyPlayerStats() {
     return {
         elo: 0,
@@ -77,24 +113,20 @@ function createEmptyPlayerStats() {
 }
 
 // ===============================
-// MERGE PREVIOUS + CURRENT
+// MERGE OPENING + CURRENT (DISPLAY ONLY)
 // ===============================
-function mergeStats(prevPlayersObj, currPlayersObj) {
-
-    // Keep the supplied stats untouched; only provide placeholders when the
-    // two new IDs are not present yet.
-    const prevSource = { ...prevPlayersObj };
+function mergeStats(openingPlayersObj, currPlayersObj) {
+    // Never modify either JSON source. Opening Elo remains the daily baseline.
+    const openingSource = openingPlayersObj && typeof openingPlayersObj === "object"
+        ? openingPlayersObj : {};
     const currSource = { ...currPlayersObj };
     [15, 16].forEach(id => {
-        if (!prevSource[id]) prevSource[id] = createEmptyPlayerStats();
         if (!currSource[id]) currSource[id] = createEmptyPlayerStats();
     });
 
-    const prevPlayers = Object.entries(prevSource).map(([id, p]) => ({
-        id: Number(id),
-        name: getPlayerName(Number(id)),
-        ...p
-    }));
+    const openingPlayers = Object.entries(openingSource).map(([id, p]) => ({
+        id: Number(id), elo: Number(p?.elo)
+    })).filter(p => Number.isFinite(p.elo));
 
     const currPlayers = Object.entries(currSource).map(([id, p]) => ({
         id: Number(id),
@@ -102,19 +134,20 @@ function mergeStats(prevPlayersObj, currPlayersObj) {
         ...p
     }));
 
-    prevPlayers.sort((a, b) => b.elo - a.elo);
-    prevPlayers.forEach((p, i) => p.previousRank = i + 1);
+    openingPlayers.sort((a, b) => b.elo - a.elo);
+    openingPlayers.forEach((p, i) => p.openingRank = i + 1);
 
     currPlayers.sort((a, b) => b.elo - a.elo);
     currPlayers.forEach((p, i) => p.currentRank = i + 1);
 
     allPlayers = currPlayers.map(p => {
-        const old = prevPlayers.find(x => x.id === p.id);
-
+        const opening = openingPlayers.find(x => x.id === p.id);
+        const hasOpening = !!opening && Number.isFinite(Number(p.elo));
         return {
             ...p,
-            eloChange: old ? p.elo - old.elo : 0,
-            rankChange: old ? old.previousRank - p.currentRank : 0
+            hasDailyComparison: hasOpening,
+            eloChange: hasOpening ? Number(p.elo) - opening.elo : 0,
+            rankChange: hasOpening ? opening.openingRank - p.currentRank : 0
         };
     });
 
@@ -169,13 +202,13 @@ function renderTable() {
         // ===============================
         // RANK ARROWS
         // ===============================
-        const thickRankArrow = p.rankChange > 0 ? "▲" :
+        const thickRankArrow = !p.hasDailyComparison ? "—" : p.rankChange > 0 ? "▲" :
             p.rankChange < 0 ? "▼" : "—";
 
-        const rankArrowClass = p.rankChange > 0 ? "arrow-up" :
+        const rankArrowClass = !p.hasDailyComparison ? "arrow-none" : p.rankChange > 0 ? "arrow-up" :
             p.rankChange < 0 ? "arrow-down" : "arrow-none";
 
-        const thinRankArrow = p.rankChange > 0 ? `↑ ${p.rankChange}` :
+        const thinRankArrow = !p.hasDailyComparison ? "No opening stats" : p.rankChange > 0 ? `↑ ${p.rankChange}` :
             p.rankChange < 0 ? `↓ ${Math.abs(p.rankChange)}` :
                 "– 0";
 
@@ -213,13 +246,13 @@ function renderTable() {
         // ===============================
         // ELO CELL
         // ===============================
-        const thickEloArrow = p.eloChange > 0 ? "▲" :
+        const thickEloArrow = !p.hasDailyComparison ? "—" : p.eloChange > 0 ? "▲" :
             p.eloChange < 0 ? "▼" : "—";
 
-        const eloArrowClass = p.eloChange > 0 ? "arrow-up" :
+        const eloArrowClass = !p.hasDailyComparison ? "arrow-none" : p.eloChange > 0 ? "arrow-up" :
             p.eloChange < 0 ? "arrow-down" : "arrow-none";
 
-        const thinEloArrow = p.eloChange > 0 ? `↑ ${p.eloChange.toFixed(2)}` :
+        const thinEloArrow = !p.hasDailyComparison ? "No opening stats" : p.eloChange > 0 ? `↑ ${p.eloChange.toFixed(2)}` :
             p.eloChange < 0 ? `↓ ${Math.abs(p.eloChange).toFixed(2)}` :
                 "– 0.00";
 

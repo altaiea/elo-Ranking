@@ -529,7 +529,7 @@
       "seriesLosses": 0,
       "hpMarginTotal": 1.15,
       "hpMarginCount": 17,
-      "sndMarginTotal": -2.220446049250313E-16,
+      "sndMarginTotal": -2.220446049250313e-16,
       "sndMarginCount": 13,
       "overloadMarginTotal": 0.25,
       "overloadMarginCount": 9,

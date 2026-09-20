@@ -2391,3 +2391,20 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     .monthly-rankings-button { width:100%; }
     .monthly-popup-header { align-items:flex-start; flex-direction:column; }
 }
+
+/* Monthly Rankings: compact podium view with expandable position counts. */
+.monthly-report-status { color:#7feeff; font-weight:750; }
+.monthly-first-count { color:#6bd59b !important; font-weight:800; }
+.monthly-player-row:focus-visible { outline:2px solid #7feeff; outline-offset:-2px; }
+.monthly-player-summary { margin:4px 0 14px; color:#cbd2d6; font-size:.92rem; }
+.monthly-position-breakdown { display:block; max-width:590px; }
+.monthly-position-line { display:grid; grid-template-columns:46px minmax(0,1fr) 36px; align-items:center; gap:12px; padding:5px 0; color:#cbd2d6; }
+.monthly-position-line strong { text-align:right; color:#f0f3f6; }
+.monthly-position-track { background:#30363b; border-radius:99px; overflow:hidden; height:10px; }
+.monthly-position-fill { background:#899ca9; border-radius:99px; height:100%; }
+.monthly-position-first { background:#52c58b; }
+.monthly-breakdown-row[hidden] { display:none; }
+@media(max-width:700px) { .monthly-position-breakdown { max-width:100%; } }
+
+/* Monthly eligibility display only */
+.monthly-provisional { color:#9da5ad; font-weight:600; font-size:.82rem; }

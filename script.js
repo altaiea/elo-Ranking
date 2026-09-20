@@ -2007,10 +2007,12 @@ function monthLabel(monthKey) {
 }
 
 function normaliseHistoryIndex(indexPayload) {
-    const days = Array.isArray(indexPayload) ? indexPayload : (indexPayload?.days || []);
+    // The published index uses "dates"; accept older "days" and array formats too.
+    const days = Array.isArray(indexPayload) ? indexPayload
+        : (Array.isArray(indexPayload?.dates) ? indexPayload.dates : (indexPayload?.days || []));
     return days
         .map(item => typeof item === "string" ? { date: item, file: `${item}.json` } : item)
-        .filter(item => item && item.date)
+        .filter(item => item && /^\d{4}-\d{2}-\d{2}$/.test(String(item.date)))
         .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 }
 
@@ -2085,88 +2087,115 @@ function teamWonMap(game, teamKey) {
 }
 
 async function buildMonthlyRankings(monthKey) {
+    // Rebuild on open so a newly published static history is visible on refresh.
     if (monthlyRankingsCache.has(monthKey)) return monthlyRankingsCache.get(monthKey);
-
     const index = await loadHistoryIndexForMonthly();
     const matchingDays = index.filter(day => String(day.date).startsWith(`${monthKey}-`));
     if (!matchingDays.length) {
-        const empty = { monthKey, records: [], maxPosition: allPlayers.length || 16, mapCount: 0 };
+        const empty = { monthKey, records: [], maxPosition: 0, mapCount: 0 };
         monthlyRankingsCache.set(monthKey, empty);
         return empty;
     }
 
     const dayPayloads = [];
-    for (const dayInfo of matchingDays) dayPayloads.push(await loadHistoryDayForMonthly(dayInfo));
-    dayPayloads.sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
-
-    // Reconstruct the overall Elo table in map order. Position counts are awarded
-    // only to players who actually participated in that map.
-    const currentElo = {};
-    const firstOpening = dayPayloads[0]?.openingStats || {};
-    Object.entries(firstOpening).forEach(([playerId, stats]) => {
-        const elo = Number(stats?.elo);
-        if (Number.isFinite(elo)) currentElo[String(playerId)] = elo;
-    });
-    allPlayers.forEach(player => {
-        if (!(String(player.id) in currentElo)) currentElo[String(player.id)] = Number(player.elo || 0);
-    });
-
+    for (const info of matchingDays) {
+        const payload = await loadHistoryDayForMonthly(info);
+        dayPayloads.push({ date: info.date, payload });
+    }
     const records = new Map();
+    const currentElo = new Map();
     let mapCount = 0;
+    const seenMaps = new Set();
+    let maxPosition = 0;
 
-    for (const day of dayPayloads) {
-        const maps = Array.isArray(day?.maps) ? day.maps : [];
+    for (const { date, payload } of dayPayloads) {
+        // Each day records the complete leaderboard at its opening. This also
+        // handles days without matches between publication dates. Never use
+        // today's current_stats.json as the baseline for an older month.
+        const opening = payload?.openingStats;
+        if (!opening || !Object.keys(opening).length) {
+            throw new Error(`No opening leaderboard for ${date}; its monthly positions cannot be reconstructed reliably.`);
+        }
+        currentElo.clear();
+        Object.entries(opening).forEach(([id, player]) => {
+            const rating = Number(player?.elo);
+            if (Number.isFinite(rating)) currentElo.set(String(id), rating);
+        });
+        if (!currentElo.size) throw new Error(`No valid opening ratings for ${date}.`);
+        const maps = Array.isArray(payload?.maps) ? payload.maps : [];
+        // The published per-day array retains Java import order. Do not sort by
+        // source filename or timestamp, which could change the Elo sequence.
         for (const map of maps) {
+            const mapKey = String(map?.mapId || map?.fingerprint || "");
+            if (mapKey && seenMaps.has(mapKey)) continue;
+            if (mapKey) seenMaps.add(mapKey);
             const eloRows = Array.isArray(map?.elo) ? map.elo : [];
             if (!eloRows.length) continue;
+            const playedOn = String(map?.date || date);
+            if (!playedOn.startsWith(`${monthKey}-`)) continue;
+            const participants = new Set();
+            for (const row of eloRows) {
+                const playerId = Number(row?.playerId);
+                const after = Number(row?.after);
+                if (!Number.isInteger(playerId) || !Number.isFinite(after)) continue;
+                participants.add(playerId);
+                currentElo.set(String(playerId), after);
+            }
+            if (!participants.size) continue;
             mapCount += 1;
 
-            // Update the ratings first so the recorded position is the player's
-            // overall leaderboard position after this approved map.
-            eloRows.forEach(row => {
-                const after = Number(row?.after);
-                if (Number.isFinite(after)) currentElo[String(row.playerId)] = after;
-            });
+            // Same overall rating order as the original main leaderboard:
+            // all player ratings, descending, with stable ties. We preserve the
+            // openingStats insertion order rather than invent a new tie-breaker.
+            const rankedIds = [...currentElo.entries()]
+                .sort((a, b) => b[1] - a[1])
+                .map(([id]) => Number(id));
+            const rankById = new Map(rankedIds.map((id, index) => [id, index + 1]));
+            maxPosition = Math.max(maxPosition, rankedIds.length);
 
-            const rankedIds = Object.entries(currentElo)
-                .sort((a, b) => Number(b[1]) - Number(a[1]) || Number(a[0]) - Number(b[0]))
-                .map(([playerId]) => Number(playerId));
-            const rankById = new Map(rankedIds.map((playerId, index) => [playerId, index + 1]));
-
-            eloRows.forEach(row => {
-                const playerId = Number(row.playerId);
-                if (!Number.isFinite(playerId)) return;
+            for (const row of eloRows) {
+                const playerId = Number(row?.playerId);
+                if (!participants.has(playerId)) continue;
+                const teamKey = teamForPlayer(map?.game, playerId);
+                if (!teamKey) continue; // Only actual participants earn map counts.
                 if (!records.has(playerId)) records.set(playerId, emptyMonthlyPlayer(playerId));
                 const record = records.get(playerId);
                 const position = rankById.get(playerId);
-                if (position) record.positionCounts[position] = Number(record.positionCounts[position] || 0) + 1;
+                if (position) record.positionCounts[position] = (record.positionCounts[position] || 0) + 1;
                 record.mapsPlayed += 1;
-
-                const before = Number(row.before);
-                const after = Number(row.after);
-                for (const value of [before, after]) {
-                    if (Number.isFinite(value) && (record.highestElo === null || value > record.highestElo)) record.highestElo = value;
+                for (const value of [Number(row.before), Number(row.after)]) {
+                    if (Number.isFinite(value) && (record.highestElo === null || value > record.highestElo)) {
+                        record.highestElo = value;
+                    }
                 }
-
-                const teamKey = teamForPlayer(map.game, playerId);
-                if (teamKey) {
-                    if (teamWonMap(map.game, teamKey)) record.wins += 1;
-                    else record.losses += 1;
-                }
-            });
+                if (teamWonMap(map.game, teamKey)) record.wins += 1;
+                else record.losses += 1;
+            }
         }
     }
 
-    const maxPosition = Math.max(allPlayers.length || 0, Object.keys(currentElo).length || 0, 1);
-    const sorted = [...records.values()].sort((a, b) => compareMonthlyRecords(a, b, maxPosition));
+    // Eligibility changes monthly placement only, never Elo or position counts.
+    const minMapsForRanking = 10;
+    const sorted = [...records.values()].sort((a, b) => {
+        const aQualified = a.mapsPlayed >= minMapsForRanking;
+        const bQualified = b.mapsPlayed >= minMapsForRanking;
+        if (aQualified !== bQualified) return aQualified ? -1 : 1;
+        return compareMonthlyRecords(a, b, maxPosition);
+    });
     let previous = null;
     let displayedRank = 0;
-    sorted.forEach((record, index) => {
-        if (!sameMonthlyStanding(record, previous, maxPosition)) displayedRank = index + 1;
+    let qualifiedIndex = 0;
+    sorted.forEach(record => {
+        record.qualified = record.mapsPlayed >= minMapsForRanking;
+        if (!record.qualified) {
+            record.monthlyRank = null;
+            return;
+        }
+        qualifiedIndex += 1;
+        if (!sameMonthlyStanding(record, previous, maxPosition)) displayedRank = qualifiedIndex;
         record.monthlyRank = displayedRank;
         previous = record;
     });
-
     const result = { monthKey, records: sorted, maxPosition, mapCount };
     monthlyRankingsCache.set(monthKey, result);
     return result;
@@ -2180,13 +2209,20 @@ function mostHeldPosition(record) {
     return entries.length ? { position: entries[0][0], count: entries[0][1] } : null;
 }
 
-function monthlyPositionBreakdown(record) {
-    return Object.entries(record.positionCounts || {})
-        .map(([position, count]) => [Number(position), Number(count)])
-        .filter(([, count]) => count > 0)
-        .sort((a, b) => a[0] - b[0])
-        .map(([position, count]) => `<span class="monthly-position-chip"><b>${ordinal(position)}</b> ${count} map${count === 1 ? "" : "s"}</span>`)
-        .join("");
+function monthlyPositionBreakdown(record, maxPosition) {
+    const largest = Math.max(1, ...Object.values(record.positionCounts || {}).map(Number));
+    const lines = [];
+    for (let position = 1; position <= maxPosition; position += 1) {
+        const count = Number(record.positionCounts[position] || 0);
+        if (!count) continue;
+        const width = (count / largest) * 100;
+        lines.push(`<div class="monthly-position-line">
+            <span>${ordinal(position)}</span>
+            <div class="monthly-position-track"><div class="monthly-position-fill${position === 1 ? " monthly-position-first" : ""}" style="width:${width}%"></div></div>
+            <strong>${count}</strong>
+        </div>`);
+    }
+    return lines.join("") || "No counted positions.";
 }
 
 async function renderMonthlyRankings(monthKey) {
@@ -2199,57 +2235,77 @@ async function renderMonthlyRankings(monthKey) {
             content.innerHTML = `<div class="monthly-empty">No approved map history is available for ${monthLabel(monthKey)}.</div>`;
             return;
         }
-        content.innerHTML = `
-            <div class="monthly-summary">${monthly.mapCount} approved map${monthly.mapCount === 1 ? "" : "s"} recorded this month</div>
+        const now = new Date();
+        const liveMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+        const status = monthKey === liveMonth ? "In progress" : "Final report";
+        const table = document.createElement("div");
+        table.innerHTML = `
+            <div class="monthly-summary"><span class="monthly-report-status">${status} · ${monthLabel(monthKey)}</span> · ${monthly.mapCount} approved map${monthly.mapCount === 1 ? "" : "s"} recorded · Minimum 10 personally played maps to qualify</div>
             <div class="monthly-table-wrap">
                 <table class="monthly-table">
-                    <thead><tr><th>Rank</th><th>Player</th><th>W/L</th><th>Highest Elo</th><th>Most-held position</th></tr></thead>
+                    <thead><tr><th>Rank</th><th>Player</th><th>Maps in 1st</th><th>W/L</th><th>Peak Elo</th></tr></thead>
                     <tbody>
-                        ${monthly.records.map(record => {
-                            const held = mostHeldPosition(record);
-                            return `<tr class="monthly-player-row" data-monthly-player="${record.playerId}">
-                                <td class="monthly-rank">${record.monthlyRank}</td>
-                                <td class="monthly-player-name">${record.name}</td>
-                                <td>${record.wins}-${record.losses}</td>
+                        ${monthly.records.map(record => `<tr class="monthly-player-row" data-monthly-player="${record.playerId}" tabindex="0" role="button" aria-expanded="false">
+                                <td class="monthly-rank">${record.qualified ? record.monthlyRank : '<span class="monthly-provisional">Provisional</span>'}</td>
+                                <td class="monthly-player-name"></td>
+                                <td class="monthly-first-count">${Number(record.positionCounts[1] || 0)}</td>
+                                <td>${record.wins}–${record.losses}</td>
                                 <td>${formatElo(record.highestElo)}</td>
-                                <td>${held ? `${ordinal(held.position)} · ${held.count} map${held.count === 1 ? "" : "s"}` : "—"}</td>
                             </tr>
                             <tr class="monthly-breakdown-row" data-monthly-breakdown="${record.playerId}" hidden>
-                                <td colspan="5"><div class="monthly-position-breakdown">${monthlyPositionBreakdown(record) || "No counted positions."}</div></td>
-                            </tr>`;
-                        }).join("")}
+                                <td colspan="5">
+                                    <div class="monthly-player-summary">${record.mapsPlayed} maps played · ${record.wins}–${record.losses} W/L · Peak Elo ${formatElo(record.highestElo)}${record.qualified ? "" : ` · ${10 - record.mapsPlayed} more map${10 - record.mapsPlayed === 1 ? "" : "s"} to qualify`}</div>
+                                    <div class="monthly-position-breakdown">${monthlyPositionBreakdown(record, monthly.maxPosition)}</div>
+                                </td>
+                            </tr>`).join("")}
                     </tbody>
                 </table>
             </div>`;
-
-        content.querySelectorAll(".monthly-player-row").forEach(row => {
-            row.addEventListener("click", () => {
-                const playerId = row.dataset.monthlyPlayer;
-                const detail = content.querySelector(`[data-monthly-breakdown="${playerId}"]`);
-                if (detail) detail.hidden = !detail.hidden;
+        content.replaceChildren(...table.childNodes);
+        monthly.records.forEach(record => {
+            const row = content.querySelector(`[data-monthly-player="${record.playerId}"]`);
+            if (!row) return;
+            row.querySelector(".monthly-player-name").textContent = record.name;
+            const toggle = () => {
+                const detail = content.querySelector(`[data-monthly-breakdown="${record.playerId}"]`);
+                if (!detail) return;
+                detail.hidden = !detail.hidden;
+                row.setAttribute("aria-expanded", String(!detail.hidden));
+            };
+            row.addEventListener("click", toggle);
+            row.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggle(); }
             });
         });
     } catch (error) {
-        content.innerHTML = `<div class="monthly-empty">Monthly rankings could not be loaded: ${String(error.message || error)}</div>`;
+        content.textContent = `Monthly rankings could not be loaded: ${String(error.message || error)}`;
+        content.classList.add("monthly-empty");
     }
 }
 
 async function openMonthlyRankings() {
     try {
+        // Clear cached reports when opening the modal so new GitHub history can
+        // be shown after a normal website refresh, without persisted counters.
+        monthlyRankingsCache.clear();
         const index = await loadHistoryIndexForMonthly();
-        const months = [...new Set(index.map(day => String(day.date).slice(0, 7)).filter(Boolean))].sort().reverse();
         const now = new Date();
         const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-        const selected = months.includes(currentMonth) ? currentMonth : (months[0] || currentMonth);
+        const months = [...new Set(index.map(day => String(day.date).slice(0, 7)).filter(month => /^\d{4}-\d{2}$/.test(month) && month <= currentMonth))].sort().reverse();
+        const completedMonths = months.filter(month => month < currentMonth);
+        // On the first of every month the last completed month becomes the
+        // default final report. An ongoing month remains selectable separately.
+        const selected = completedMonths[0] || months[0] || currentMonth;
+        const selectableMonths = months.length ? months : [currentMonth];
         showPopup(`
             <div class="monthly-rankings-popup">
                 <div class="monthly-popup-header">
                     <div>
                         <h2>Monthly Rankings</h2>
-                        <p>Maps played while holding each overall leaderboard position. Only maps the player participated in count.</p>
+                        <p>Maps personally played at each overall Elo position after the map. Rankings compare maps in 1st, then 2nd, then 3rd.</p>
                     </div>
                     <label class="monthly-month-label">Month
-                        <select id="monthlyMonthSelect">${(months.length ? months : [selected]).map(month => `<option value="${month}" ${month === selected ? "selected" : ""}>${monthLabel(month)}</option>`).join("")}</select>
+                        <select id="monthlyMonthSelect">${selectableMonths.map(month => `<option value="${month}" ${month === selected ? "selected" : ""}>${monthLabel(month)}${month === currentMonth ? " · In progress" : " · Final"}</option>`).join("")}</select>
                     </label>
                 </div>
                 <div id="monthlyRankingsBody"></div>
@@ -2260,10 +2316,10 @@ async function openMonthlyRankings() {
         if (select) select.addEventListener("change", () => renderMonthlyRankings(select.value));
         renderMonthlyRankings(selected);
     } catch (error) {
-        showPopup(`<div class="monthly-rankings-popup"><h2>Monthly Rankings</h2><div class="monthly-empty">${String(error.message || error)}</div></div>`);
+        showPopup(`<div class="monthly-rankings-popup"><h2>Monthly Rankings</h2><div class="monthly-empty">Monthly rankings could not be loaded.</div></div>`);
+        console.error("Could not open monthly rankings:", error);
     }
 }
-
 
 function formatSignedElo(value, digits = 2) {
     const number = Number(value);

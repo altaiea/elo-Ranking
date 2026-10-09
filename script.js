@@ -1233,8 +1233,52 @@ function closePlayerModal() {
 // Runs only after the normal page load. It does not replace or bypass the
 // existing modal readiness checks; it simply gives the browser a chance to
 // cache assets before the user opens a card.
-// Card art and intro videos are now loaded only when a card is opened
-// (they used to be pre-downloaded for every player, ~130 MB).
+// Card art and intro videos are NOT downloaded for everyone on page load
+// (that used to be ~130 MB). Instead a player's media is fetched ahead of the
+// click: when the pointer hovers / a finger touches their name, and then slowly
+// in the background on fast connections, so videos start without buffering.
+const WARM_INTRO_IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15];
+const warmedPlayers = new Set();
+
+function warmPlayerMedia(id) {
+    id = Number(id);
+    if (!id || warmedPlayers.has(id)) return;
+    warmedPlayers.add(id);
+    const backSrc = typeof customBackCards !== "undefined" ? customBackCards[id] : null;
+    if (backSrc) {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = backSrc;
+    }
+    if (WARM_INTRO_IDS.includes(id)) {
+        const video = document.createElement("video");
+        video.preload = "auto";
+        video.muted = true;
+        video.src = `cards/${id}_intro.mp4`;
+        video.load();
+    }
+}
+
+document.addEventListener("pointerover", e => {
+    const el = e.target.closest && e.target.closest(".player-name[data-id]");
+    if (el) warmPlayerMedia(el.dataset.id);
+});
+document.addEventListener("touchstart", e => {
+    const el = e.target.closest && e.target.closest(".player-name[data-id]");
+    if (el) warmPlayerMedia(el.dataset.id);
+}, { passive: true });
+
+// Background warm-up, one player every 3 s, only on a fast connection
+// without data-saver. Starts after the page has fully loaded and gone idle.
+window.addEventListener("load", () => {
+    const c = navigator.connection || {};
+    if (c.saveData || (c.effectiveType && c.effectiveType !== "4g")) return;
+    const start = () => {
+        WARM_INTRO_IDS.forEach((id, i) => setTimeout(() => warmPlayerMedia(id), 3000 * (i + 1)));
+    };
+    if ("requestIdleCallback" in window) requestIdleCallback(start, { timeout: 5000 });
+    else setTimeout(start, 3000);
+}, { once: true });
 
 function setupCarousel() {
     const slider = document.querySelector("#carouselPage .slider");

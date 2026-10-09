@@ -2408,3 +2408,25 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 /* Monthly eligibility display only */
 .monthly-provisional { color:#9da5ad; font-weight:600; font-size:.82rem; }
+
+
+/* ============================
+   PLAYER CARD ENTRANCE (carousel -> modal)
+============================ */
+.modal-content.modal-enter {
+    animation: cardSwingIn 520ms cubic-bezier(.2,.9,.25,1.08) both;
+}
+
+#playerModal:has(.modal-enter) { animation: modalBackdropIn 320ms ease-out both; }
+
+@keyframes cardSwingIn {
+    0%   { opacity: 0; transform: perspective(1100px) translateY(60px) rotateY(-75deg) scale(0.45); filter: brightness(1.8); }
+    55%  { opacity: 1; filter: brightness(1.25); }
+    100% { opacity: 1; transform: perspective(1100px) translateY(0) rotateY(0) scale(1); filter: brightness(1); }
+}
+@keyframes modalBackdropIn {
+    from { background-color: rgba(0,0,0,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .modal-content.modal-enter { animation: none; }
+}

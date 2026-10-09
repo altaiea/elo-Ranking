@@ -32,13 +32,13 @@ function playCarouselClick() {
 // ratings saved before the first map of that history day. Neither yesterday's
 // daily snapshot nor previous_stats.json is needed.
 async function loadDailyLeaderboard() {
-    const currentResponse = await fetch("current_stats.json", { cache: "no-store" });
+    const currentResponse = await fetch("current_stats.json", { cache: "no-cache" });
     if (!currentResponse.ok) throw new Error(`Could not load current_stats.json (HTTP ${currentResponse.status})`);
     const current = await currentResponse.json();
     let openingStats = null;
 
     try {
-        const indexResponse = await fetch("history/index.json", { cache: "no-store" });
+        const indexResponse = await fetch("history/index.json", { cache: "no-cache" });
         if (!indexResponse.ok) throw new Error(`Could not load history/index.json (HTTP ${indexResponse.status})`);
         const index = await indexResponse.json();
         const days = Array.isArray(index) ? index :
@@ -54,7 +54,7 @@ async function loadDailyLeaderboard() {
             const dayFile = String(latest.file || `${latest.date}.json`);
             // Only accept a plain filename, never a path supplied by the index.
             if (!/^[\w.-]+\.json$/.test(dayFile)) throw new Error("Invalid history filename");
-            const dayResponse = await fetch(`history/${dayFile}`, { cache: "no-store" });
+            const dayResponse = await fetch(`history/${dayFile}`, { cache: "no-cache" });
             if (!dayResponse.ok) throw new Error(`Could not load history/${dayFile} (HTTP ${dayResponse.status})`);
             const day = await dayResponse.json();
             if (day.date && day.date !== latest.date) throw new Error("History date does not match index");
@@ -1233,43 +1233,8 @@ function closePlayerModal() {
 // Runs only after the normal page load. It does not replace or bypass the
 // existing modal readiness checks; it simply gives the browser a chance to
 // cache assets before the user opens a card.
-function warmPlayerCardCache() {
-    const backSources = Object.values(customBackCards);
-    const introSources = [
-        "cards/1_intro.mp4", "cards/2_intro.mp4", "cards/3_intro.mp4",
-        "cards/4_intro.mp4", "cards/5_intro.mp4", "cards/6_intro.mp4",
-        "cards/7_intro.mp4", "cards/8_intro.mp4", "cards/9_intro.mp4",
-        "cards/10_intro.mp4", "cards/11_intro.mp4", "cards/12_intro.mp4",
-        "cards/15_intro.mp4"
-    ];
-
-    backSources.forEach(src => {
-        const img = new Image();
-        img.decoding = "async";
-        img.src = src;
-    });
-
-    // Stagger full-quality video cache warming so it does not compete with
-    // the initial page render or request every large video simultaneously.
-    introSources.forEach((src, index) => {
-        setTimeout(() => {
-            const video = document.createElement("video");
-            video.preload = "auto";
-            video.muted = true;
-            video.src = src;
-            video.load();
-        }, index * 250);
-    });
-}
-
-window.addEventListener("load", () => {
-    const startCacheWarm = () => warmPlayerCardCache();
-    if ("requestIdleCallback" in window) {
-        requestIdleCallback(startCacheWarm, { timeout: 2000 });
-    } else {
-        setTimeout(startCacheWarm, 500);
-    }
-}, { once: true });
+// Card art and intro videos are now loaded only when a card is opened
+// (they used to be pre-downloaded for every player, ~130 MB).
 
 function setupCarousel() {
     const slider = document.querySelector("#carouselPage .slider");
@@ -1721,6 +1686,37 @@ function populateAutoDropdowns() {
     });
 }
 
+/* ======================================================
+   TEAM MATHS (shared by the auto and manual builders)
+   Elo's expected-score formula compares two ratings, so each team is
+   represented by its AVERAGE rating (the same way the Elo engine does it).
+====================================================== */
+function teamStats(teamA, teamB) {
+    const sum = team => team.reduce((s, p) => s + p.elo, 0);
+    const eloA = sum(teamA);
+    const eloB = sum(teamB);
+    const avgA = eloA / teamA.length;
+    const avgB = eloB / teamB.length;
+    const probA = 1 / (1 + Math.pow(10, (avgB - avgA) / 400));
+    return { eloA, eloB, avgA, avgB, probA, probB: 1 - probA };
+}
+
+function teamStatsHtml(t) {
+    return `
+        <div class="popup-section">
+            <h3>ELO Totals</h3>
+            <p>Team A: ${t.eloA.toFixed(2)} (avg ${t.avgA.toFixed(2)})<br>
+               Team B: ${t.eloB.toFixed(2)} (avg ${t.avgB.toFixed(2)})<br>
+               Difference: ${Math.abs(t.eloA - t.eloB).toFixed(2)} total / ${Math.abs(t.avgA - t.avgB).toFixed(2)} average</p>
+        </div>
+
+        <div class="popup-section">
+            <h3>Win Probability</h3>
+            <p>Team A: ${(t.probA * 100).toFixed(1)}%<br>
+               Team B: ${(t.probB * 100).toFixed(1)}%</p>
+        </div>`;
+}
+
 document.getElementById("generateTeams").addEventListener("click", () => {
 
     const selects = document.querySelectorAll(".team-player");
@@ -1776,8 +1772,9 @@ document.getElementById("generateTeams").addEventListener("click", () => {
        WIN PROBABILITY
     =============================== */
 
-    const probA = 1 / (1 + Math.pow(10, (best.eloB - best.eloA) / 400));
-    const probB = 1 - probA;
+    const stats = teamStats(best.teamA, best.teamB);
+    const probA = stats.probA;
+    const probB = stats.probB;
 
     const strengthA = probA * 100;
     const strengthB = probB * 100;
@@ -1823,17 +1820,7 @@ document.getElementById("generateTeams").addEventListener("click", () => {
             <p>${best.teamB.map(p => `• ${p.name}`).join("<br>")}</p>
         </div>
 
-        <div class="popup-section">
-            <h3>ELO Totals</h3>
-            <p>Team A: ${best.eloA.toFixed(2)}<br>
-               Team B: ${best.eloB.toFixed(2)}</p>
-        </div>
-
-        <div class="popup-section">
-            <h3>Win Probability</h3>
-            <p>Team A: ${(probA * 100).toFixed(1)}%<br>
-               Team B: ${(probB * 100).toFixed(1)}%</p>
-        </div>
+        ${teamStatsHtml(stats)}
     `;
 
     showPopup(html);
@@ -1858,9 +1845,8 @@ function checkManualReady() {
     const teamA = [...document.querySelectorAll(".manualA")].map(s => s.value).filter(v => v);
     const teamB = [...document.querySelectorAll(".manualB")].map(s => s.value).filter(v => v);
 
-    if (teamA.length === 4 && teamB.length === 4) {
-        document.getElementById("simulateMatchBtn").style.display = "inline-block";
-    }
+    const ready = teamA.length === 4 && teamB.length === 4;
+    document.getElementById("simulateMatchBtn").style.display = ready ? "inline-block" : "none";
 }
 
 document.querySelectorAll(".manual-select").forEach(sel => {
@@ -1871,15 +1857,18 @@ document.getElementById("simulateMatchBtn").addEventListener("click", () => {
 
     const teamAIds = [...document.querySelectorAll(".manualA")].map(s => Number(s.value));
     const teamBIds = [...document.querySelectorAll(".manualB")].map(s => Number(s.value));
+    const allIds = [...teamAIds, ...teamBIds];
+    if (allIds.some(id => !id) || new Set(allIds).size !== 8) {
+        showPopup("<h2>Error</h2><p>Please select 8 different players.</p>");
+        return;
+    }
 
     const teamA = teamAIds.map(id => allPlayers.find(p => p.id === id));
     const teamB = teamBIds.map(id => allPlayers.find(p => p.id === id));
 
-    const eloA = teamA.reduce((s, p) => s + p.elo, 0);
-    const eloB = teamB.reduce((s, p) => s + p.elo, 0);
-
-    const probA = 1 / (1 + Math.pow(10, (eloB - eloA) / 400));
-    const probB = 1 - probA;
+    const stats = teamStats(teamA, teamB);
+    const probA = stats.probA;
+    const probB = stats.probB;
 
     const strengthA = probA * 100;
     const strengthB = probB * 100;
@@ -1925,17 +1914,7 @@ document.getElementById("simulateMatchBtn").addEventListener("click", () => {
             <p>${teamB.map(p => `• ${p.name}`).join("<br>")}</p>
         </div>
 
-        <div class="popup-section">
-            <h3>ELO Totals</h3>
-            <p>Team A: ${eloA.toFixed(2)}<br>
-               Team B: ${eloB.toFixed(2)}</p>
-        </div>
-
-        <div class="popup-section">
-            <h3>Win Probability</h3>
-            <p>Team A: ${(probA * 100).toFixed(1)}%<br>
-               Team B: ${(probB * 100).toFixed(1)}%</p>
-        </div>
+        ${teamStatsHtml(stats)}
     `;
 
     showPopup(html);
@@ -2050,7 +2029,7 @@ function normaliseHistoryIndex(indexPayload) {
 }
 
 async function loadHistoryIndexForMonthly() {
-    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-store" });
+    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Unable to load map history (${response.status}).`);
     return normaliseHistoryIndex(await response.json());
 }
@@ -2059,7 +2038,7 @@ async function loadHistoryDayForMonthly(dayInfo) {
     const dateKey = String(dayInfo.date);
     if (historyDayCache.has(dateKey)) return historyDayCache.get(dateKey);
     const fileName = dayInfo.file || `${dateKey}.json`;
-    const response = await fetch(`${MAP_HISTORY_FOLDER}/${fileName}`, { cache: "no-store" });
+    const response = await fetch(`${MAP_HISTORY_FOLDER}/${fileName}`, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Unable to load ${fileName} (${response.status}).`);
     const payload = await response.json();
     historyDayCache.set(dateKey, payload);
@@ -2130,11 +2109,10 @@ async function buildMonthlyRankings(monthKey) {
         return empty;
     }
 
-    const dayPayloads = [];
-    for (const info of matchingDays) {
-        const payload = await loadHistoryDayForMonthly(info);
-        dayPayloads.push({ date: info.date, payload });
-    }
+    // Download all days at the same time; they are still processed below in
+    // index order, so the Elo sequence is unchanged.
+    const loaded = await Promise.all(matchingDays.map(info => loadHistoryDayForMonthly(info)));
+    const dayPayloads = matchingDays.map((info, i) => ({ date: info.date, payload: loaded[i] }));
     const records = new Map();
     const currentElo = new Map();
     let mapCount = 0;
@@ -2368,7 +2346,7 @@ function formatTraceValue(value) {
 }
 
 async function loadHistoryIndex() {
-    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-store" });
+    const response = await fetch(MAP_HISTORY_INDEX, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Could not load ${MAP_HISTORY_INDEX} (HTTP ${response.status})`);
     const data = await response.json();
 
@@ -2395,7 +2373,7 @@ async function loadHistoryDay(entry) {
     if (historyDayCache.has(key)) return historyDayCache.get(key);
 
     const file = `${MAP_HISTORY_FOLDER}/${entry.file || `${entry.date}.json`}`;
-    const response = await fetch(file, { cache: "no-store" });
+    const response = await fetch(file, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Could not load ${file} (HTTP ${response.status})`);
     const day = await response.json();
     historyDayCache.set(key, day);
@@ -2875,10 +2853,6 @@ function setupMapBuilder() {
         });
     });
 }
-window.addEventListener("DOMContentLoaded", () => {
-    const video = document.getElementById("cardBackVideo");
-    video.load();   //  forces preload of 3_intro.mp4
-});
 
 
 

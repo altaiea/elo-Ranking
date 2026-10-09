@@ -1115,6 +1115,31 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     margin-bottom: 4px;
 }
 
+/* Map picture cards: the picture fills the card, the text sits on top. */
+.map-card.has-picture {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    padding: 8px 10px;
+    background-color: #000;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8);
+}
+.map-card.has-picture::before {            /* dark fade so the words stay readable */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.80) 100%);
+    pointer-events: none;
+}
+.map-card.has-picture > * { position: relative; }
+.map-card.has-picture span { margin-bottom: 0; font-size: 0.66rem; letter-spacing: 0.3px; white-space: nowrap; color: #bff8ff; }
+.map-card-name { font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; color: #fff; }
+
 
 
 /* ============================

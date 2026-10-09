@@ -2839,9 +2839,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===============================
 const mapPool = {
     hardpoint: ["SAKE", "COLOSSUS", "DEN", "SCAR", "GRIDLOCK", "HACIENDA","FREQUENCY"],
-    snd: ["DEN", "GRIDLOCK", "RAID", "FRINGE", "SAKE", "HACIENDA"],
+    snd: ["DEN", "GRIDLOCK", "RAID", "FRINGE", "SAKE", "HACIENDA", "EXPRESS"],
     overload: ["DEN", "EXPOSURE", "SCAR", "GRIDLOCK"]
 };
+
+// Maps that have a picture in the maps/ folder.
+const MAP_PICTURES = new Set([
+    "COLOSSUS", "DEN", "EXPOSURE", "EXPRESS", "FREQUENCY", "FRINGE",
+    "GRIDLOCK", "HACIENDA", "RAID", "SAKE", "SCAR"
+]);
 
 // ===============================
 // SERIES MODE PATTERNS
@@ -2921,12 +2927,20 @@ function renderSeries(count) {
     if (!output) return;
 
     output.innerHTML = series
-        .map((entry, i) => `
-            <div class="map-card">
+        .map((entry, i) => {
+            // Picture lives in maps/<name>.webp; entries like "POOL EXHAUSTED"
+            // have no picture and fall back to the plain dark card.
+            const hasPicture = MAP_PICTURES.has(entry.map);
+            const style = hasPicture
+                ? ` style="background-image: url('maps/${entry.map.toLowerCase()}.webp')"`
+                : "";
+            return `
+            <div class="map-card${hasPicture ? " has-picture" : ""}"${style}>
                 <span>MAP ${i + 1} — ${entry.mode.toUpperCase()}</span>
-                ${entry.map}
+                <strong class="map-card-name">${entry.map}</strong>
             </div>
-        `)
+        `;
+        })
         .join("");
 }
 

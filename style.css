@@ -2455,3 +2455,13 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 @media (prefers-reduced-motion: reduce) {
     .modal-content.modal-enter { animation: none; }
 }
+
+/* Maps tab on phones: tighter padding so two picture cards fit per row */
+@media (max-width: 600px) {
+    .maps-container { padding: 8px; }
+    .map-series-block { padding: 8px; }
+    .map-series-output { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+    .map-card.has-picture { min-height: 96px; padding: 6px 6px; }
+    .map-card.has-picture span { font-size: 0.55rem; letter-spacing: 0; }
+    .map-card-name { font-size: 0.9rem; letter-spacing: 0.5px; }
+}

@@ -1,27 +1,62 @@
 
+// Metallic "clink": a few non-harmonic sine partials (like struck metal)
+// with a very fast attack and a short ring-out, plus a tiny noise tick.
+function playMetalClink(ctx) {
+    const now = ctx.currentTime;
+    const master = ctx.createGain();
+    master.gain.value = 0.07;
+    const highpass = ctx.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.value = 450;
+    master.connect(highpass);
+    highpass.connect(ctx.destination);
+
+    const base = 880 + Math.random() * 60;            // tiny pitch variation
+    const partials = [                                 // ratio, level, ring time (s)
+        [1.00, 1.00, 0.22],
+        [2.76, 0.65, 0.17],
+        [5.40, 0.42, 0.12],
+        [8.93, 0.26, 0.08]
+    ];
+    partials.forEach(([ratio, level, ring]) => {
+        const osc = ctx.createOscillator();
+        const env = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = base * ratio;
+        env.gain.setValueAtTime(0.0001, now);
+        env.gain.exponentialRampToValueAtTime(level, now + 0.002);
+        env.gain.exponentialRampToValueAtTime(0.0001, now + ring);
+        osc.connect(env);
+        env.connect(master);
+        osc.start(now);
+        osc.stop(now + ring + 0.02);
+    });
+
+    // 12 ms of filtered noise for the "tick" of metal on metal
+    const length = Math.floor(ctx.sampleRate * 0.012);
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / length);
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = "highpass";
+    noiseFilter.frequency.value = 3500;
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.value = 0.5;
+    noise.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(master);
+    noise.start(now);
+}
+
 function playCarouselClick() {
     try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
         const ctx = window.__carouselAudioContext || (window.__carouselAudioContext = new AudioCtx());
         if (ctx.state === "suspended") ctx.resume();
-
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(520, now);
-        osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
-
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.04, now + 0.003);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.06);
+        playMetalClink(ctx);
     } catch (_) {}
 }
 
@@ -1290,10 +1325,13 @@ function setupCarousel() {
 
     // JS is the single owner of the carousel's overall rotation.
     const AUTO_SPEED = -360 / 18000; // degrees per millisecond
-    const DRAG_SENSITIVITY = 0.55;
-    const DRAG_THRESHOLD = 8;
-    const FOLLOW_EASE = 0.22;
+    const DRAG_SENSITIVITY = 0.6;
+    const DRAG_THRESHOLD = 5;
+    const FOLLOW_EASE = 0.38;   // follow the finger/mouse more tightly
     const TARGET_EASE = 0.13;
+    const TAP_EASE = 0.28;       // faster spin when you tap a card
+    const OPEN_WITHIN_DEG = 7;   // open the card when nearly there, not exactly there
+    const OPEN_MAX_MS = 380;     // ...and never wait longer than this
     const RESUME_DELAY = 900;
 
     let rotation = 0;
@@ -1335,20 +1373,7 @@ function setupCarousel() {
             if (!AudioCtx) return;
             if (!audioContext) audioContext = new AudioCtx();
             if (audioContext.state === "suspended") audioContext.resume();
-
-            const now = audioContext.currentTime;
-            const osc = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            osc.type = "sawtooth";
-            osc.frequency.setValueAtTime(520, now);
-            osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
-            gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.exponentialRampToValueAtTime(0.04, now + 0.003);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
-            osc.connect(gain);
-            gain.connect(audioContext.destination);
-            osc.start(now);
-            osc.stop(now + 0.06);
+            playMetalClink(audioContext);
         } catch (_) {}
     }
 
@@ -1393,12 +1418,11 @@ function setupCarousel() {
 
         // The render loop handles the easing. Open the modal only once the
         // visual rotation has actually reached the requested card.
+        const startedAt = performance.now();
         const waitForArrival = () => {
             if (!modalOpening) return;
-            if (Math.abs(targetRotation - rotation) < 0.35) {
-                rotation = targetRotation;
-                applyRotation();
-
+            const closeEnough = Math.abs(targetRotation - rotation) < OPEN_WITHIN_DEG;
+            if (closeEnough || performance.now() - startedAt > OPEN_MAX_MS) {
                 if (typeof allPlayers !== "undefined" && allPlayers && allPlayers.length) {
                     openPlayerModal(id, allPlayers);
                     modalOpening = false;
@@ -1423,6 +1447,9 @@ function setupCarousel() {
         activePointerId = event.pointerId;
         pointerStartX = event.clientX;
         pointerStartRotation = targetRotation;
+
+        const pressed = event.target.closest && event.target.closest("#carouselPage .item");
+        if (pressed && typeof warmPlayerMedia === "function") warmPlayerMedia(pressed.dataset.playerId);
 
         stopAuto();
         slider.style.cursor = "grabbing";
@@ -1537,7 +1564,7 @@ function setupCarousel() {
 
         // Smoothly follow the target. During a drag the target itself follows
         // the pointer, giving a fluid, direct-feeling rotation.
-        const ease = isDragging ? FOLLOW_EASE : TARGET_EASE;
+        const ease = isDragging ? FOLLOW_EASE : (modalOpening ? TAP_EASE : TARGET_EASE);
         const difference = targetRotation - rotation;
         rotation += difference * (1 - Math.pow(1 - ease, delta / 16.67));
 

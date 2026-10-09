@@ -718,6 +718,15 @@ function openPlayerModal(playerId, playerList = allPlayers) {
 
     modal.style.display = "block";
 
+    // Entrance: the card swings in from the carousel and settles in front.
+    const modalBox = modal.querySelector(".modal-content");
+    if (modalBox) {
+        modalBox.classList.remove("modal-enter");
+        void modalBox.offsetWidth;                 // restart the animation
+        modalBox.classList.add("modal-enter");
+        modalBox.addEventListener("animationend", () => modalBox.classList.remove("modal-enter"), { once: true });
+    }
+
             const card = modal.querySelector(".card");
             const cardBackVideo = document.getElementById("cardBackVideo");
 
@@ -1346,6 +1355,8 @@ function setupCarousel() {
     let suppressClick = false;
     let resumeTimer = null;
     let modalOpening = false;
+    let lastTickIndex = null;      // which card slot the carousel last passed
+    let lastTickTime = 0;
 
     // Completely remove the old CSS animation so it cannot fight JS.
     slider.style.animation = "none";
@@ -1466,6 +1477,8 @@ function setupCarousel() {
         if (!isDragging && Math.abs(deltaX) >= DRAG_THRESHOLD) {
             isDragging = true;
             suppressClick = true;
+            lastTickIndex = Math.round(rotation / step);
+            lastTickTime = performance.now();
             playClickSound();
         }
 
@@ -1569,6 +1582,23 @@ function setupCarousel() {
         rotation += difference * (1 - Math.pow(1 - ease, delta / 16.67));
 
         if (Math.abs(difference) < 0.001) rotation = targetRotation;
+
+        // Ratchet: one metallic clink each time a card slot passes the front
+        // while dragging (or while spinning to a tapped card).
+        if (isDragging || modalOpening) {
+            const slot = Math.round(rotation / step);
+            if (lastTickIndex === null) lastTickIndex = slot;
+            if (slot !== lastTickIndex) {
+                lastTickIndex = slot;
+                const nowMs = performance.now();
+                if (nowMs - lastTickTime > 45) {      // never faster than ~22 per second
+                    lastTickTime = nowMs;
+                    playClickSound();
+                }
+            }
+        } else {
+            lastTickIndex = null;
+        }
         applyRotation();
         requestAnimationFrame(render);
     }

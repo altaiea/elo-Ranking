@@ -1368,6 +1368,7 @@ function setupCarousel() {
     let modalOpening = false;
     let lastTickIndex = null;      // which card slot the carousel last passed
     let lastTickTime = 0;
+    let introRot = null;           // while the Cards intro plays, it owns the ring's rotation
 
     // Completely remove the old CSS animation so it cannot fight JS.
     slider.style.animation = "none";
@@ -1461,7 +1462,7 @@ function setupCarousel() {
     }
 
     function onPointerDown(event) {
-        if (modalOpening) return;
+        if (modalOpening || introRunning) return;
 
         isPointerDown = true;
         isDragging = false;
@@ -1610,12 +1611,166 @@ function setupCarousel() {
         } else {
             lastTickIndex = null;
         }
+        if (introRot) rotation = targetRotation = introRot();
         applyRotation();
         requestAnimationFrame(render);
     }
 
     applyRotation();
     requestAnimationFrame(render);
+
+    // ---- Cards tab intro ----
+    // A deck at the left spreads into a fan. The cards then leave the fan one at a time and drop into
+    // their slots while the ring spins, which eases down to its normal auto-rotation as the last card lands.
+    // Cards that land showing the other side turn over early in their flight, never when they land.
+    // Skipped when the visitor prefers reduced motion.
+    let introRunning = false;
+    function playIntro() {
+        if (introRunning) return;
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        introRunning = true;
+        stopAuto();
+        const startRotation = rotation;   // the ring may already be turned, so everything below uses its absolute angle
+        const START_BACK = false;   // false: the deck and fan start face-up. true would start them wings-side up.
+        const FAN_RY = START_BACK ? 180 : 0;
+
+        const RADIUS = 400, TILT = -16, CAM = 2000;
+        const rad = d => d * Math.PI / 180;
+        const T = (x, y, z, ry, rz) =>
+            `translate3d(${x}px, ${y}px, ${z}px) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+        const facing = (x, y, z, ry) => {
+            const c = Math.cos(rad(TILT)), s = Math.sin(rad(TILT));
+            const px = x, py = y * c - z * s, pz = y * s + z * c;
+            const nx = Math.sin(rad(ry)), nz = Math.cos(rad(ry));
+            const wy = -nz * s, wz = nz * c;
+            const dot = nx * (0 - px) + wy * (0 - py) + wz * (CAM - pz);
+            return dot / Math.hypot(nx, wy, wz) / Math.hypot(px, py, CAM - pz);
+        };
+        const MARGIN = Math.sin(rad(7));
+        const easeOut = u => 1 - Math.pow(1 - u, 3);
+        const easeOutBack = u => { const c1 = 0.7, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); };
+        const smooth = x => { const c = Math.max(0, Math.min(1, x)); return c * c * (3 - 2 * c); };
+        const wrap = d => ((d + 180) % 360 + 360) % 360 - 180;
+
+        // Timing (ms)
+        const DECK_HOLD = 120, FAN_STAGGER = 13, FAN_TIME = 460, FAN_HOLD = 30, GAP = 48, FLIGHT = 780, DT = 30;
+        // Fan geometry
+        const SPREAD = 6.4, FAN_R = 105, PIVOT_X = -300, PIVOT_Y = -5, DECK_X = -300, DECK_Y = -60;
+
+        const n = items.length, mid = (n - 1) / 2;
+        const firstLeave = DECK_HOLD + (n - 1) * FAN_STAGGER + FAN_TIME + FAN_HOLD;
+        const total = firstLeave + (n - 1) * GAP + FLIGHT;
+
+        // Human-style timing. The fan opens gently, speeds up through the middle and eases off at the
+        // end, like a thumb riffle. Cards are dealt with a slightly uneven rhythm. The first and last
+        // card keep exactly the same timing as before, so the total length does not change.
+        const easeSine = x => 0.5 - 0.5 * Math.cos(Math.PI * x);
+        const noise = i => { const v = Math.sin(i * 127.1 + 311.7) * 43758.5453; return v - Math.floor(v); };   // 0..1, the same every time
+        const edge = x => Math.sin(Math.PI * x);                                                               // 0 at both ends, so the first and last card never move
+        const fanDelay = p => {
+            const x = p / (n - 1);
+            return (n - 1) * FAN_STAGGER * easeSine(x);
+        };
+        const dealDelay = k => {
+            const x = k / (n - 1);
+            const eased = 0.6 * x + 0.4 * easeSine(x);                                                         // a little hesitation at the start, a little ease at the end
+            return (n - 1) * GAP * eased + (noise(k + 40) - 0.5) * 12 * edge(x);
+        };
+
+        // The ring spins up while the cards are dealt in, then eases down to its normal
+        // auto-rotation speed exactly as the last card lands.
+        const W_END = AUTO_SPEED, W_START = -0.14;
+        const rotAt = t => {
+            const c = Math.max(0, Math.min(t, total)), s = c / total;
+            return startRotation + W_END * c + (W_START - W_END) * (total / 3) * (1 - Math.pow(1 - s, 3));
+        };
+
+        const anims = items.map(item => {
+            const id = Number(item.dataset.playerId), k = id - 1, a = (k * step) % 360;
+            const p = n - 1 - k;                               // card 1 is on top of the fan and leaves first
+            const leave = firstLeave + dealDelay(k), land = leave + FLIGHT;
+
+            // Which face shows once the card lands depends on where the spinning ring has got to.
+            const rotLand = rotAt(land);
+            const aLand = a + rotLand;
+            const back = facing(RADIUS * Math.sin(rad(aLand)), 0, RADIUS * Math.cos(rad(aLand)), aLand) < 0;
+            const want = back ? -1 : 1;
+            const stays = back === START_BACK;                 // cards that land showing the side they started on never turn over
+            const m = Math.round((FAN_RY - (a + rotAt(leave))) / 360);   // keeps the turn short
+
+            const deck = { x: DECK_X + p * 0.7, y: DECK_Y - p * 1.1, z: 190 + p * 1.2, ry: FAN_RY, rz: 0 };
+            const th = (p - mid) * SPREAD, tilt = START_BACK ? -1 : 1;   // a card lying back-up tilts the other way on screen
+            const fan = { x: PIVOT_X + FAN_R * Math.sin(rad(th)), y: PIVOT_Y - FAN_R * Math.cos(rad(th)), z: 190 + p * 3, ry: FAN_RY, rz: tilt * th };
+            const sweepStart = DECK_HOLD + fanDelay(p);
+            const sweepTime = FAN_TIME * (0.97 + 0.06 * noise(p + 7));      // each card swings out a touch differently
+            const spinTurns = -(1 + (k % 3 === 0 ? 1 : 0));                 // like a card skimmed onto a turntable: spins about its own vertical axis, not like a clock hand
+
+            // The card's pose in the frame the ring spins in front of (before the ring's own spin).
+            const poseAt = t => {
+                if (t <= sweepStart) return deck;
+                if (t < sweepStart + sweepTime) {
+                    const u = easeOutBack((t - sweepStart) / sweepTime);
+                    return { x: deck.x + (fan.x - deck.x) * u, y: deck.y + (fan.y - deck.y) * u, z: deck.z + (fan.z - deck.z) * u, ry: FAN_RY, rz: tilt * th * u };
+                }
+                if (t <= leave) return fan;
+                const raw = Math.min(1, (t - leave) / FLIGHT), u = easeOut(raw);
+                const r = rotAt(t);
+                const tx = RADIUS * Math.sin(rad(a + r)), tz = RADIUS * Math.cos(rad(a + r));
+                const ryT = a + r + 360 * m;
+                let o = {
+                    x: fan.x + (tx - fan.x) * u,
+                    z: fan.z + (tz - fan.z) * u,
+                    y: fan.y * (1 - u) - 28 * Math.sin(Math.PI * raw),
+                    rz: fan.rz * (1 - u) * (1 - u),
+                    ry: stays ? FAN_RY + (ryT - FAN_RY) * u : FAN_RY + (ryT - FAN_RY) * smooth((raw - 0.05) / 0.33)
+                };
+                if (raw >= (stays ? 0 : 0.4) && raw < 1 && want * facing(o.x, o.y, o.z, o.ry) < MARGIN) {
+                    const base = back ? 180 : 0, q = back ? o.ry - 180 : wrap(o.ry);
+                    let lo = 0, hi = 1;
+                    for (let i = 0; i < 12; i++) {
+                        const mm = (lo + hi) / 2;
+                        if (want * facing(o.x, o.y, o.z, base + q * mm) >= MARGIN) lo = mm; else hi = mm;
+                    }
+                    o.ry += q * lo - q;
+                }
+                o.ry += 360 * spinTurns * Math.pow(1 - u, 2);   // thrown spin, fades to exactly 0 on landing
+                return o;
+            };
+
+            const frames = [];
+            for (let t = 0; ; t += DT) {
+                const tt = Math.min(t, total);
+                const o = tt >= land ? { x: RADIUS * Math.sin(rad(a + rotAt(tt))), y: 0, z: RADIUS * Math.cos(rad(a + rotAt(tt))), ry: a + rotAt(tt) + 360 * m, rz: 0 } : poseAt(tt);
+                const r = rad(rotAt(tt)), cs = Math.cos(r), sn = Math.sin(r);
+                // Back into the ring's own (spinning) coordinates.
+                frames.push({
+                    transform: T(o.x * cs - o.z * sn, o.y, o.x * sn + o.z * cs, o.ry - (rotAt(tt)), o.rz),
+                    offset: tt / total
+                });
+                if (tt >= total) break;
+            }
+            return item.animate(frames, { duration: total, easing: "linear", fill: "both" });
+        });
+
+        // The ring's spin is a Web Animation too, built from the same numbers and started in the same
+        // moment as the cards, so the browser moves the ring and the cards together on every frame.
+        const ringFrames = [];
+        for (let t = 0; ; t += DT) {
+            const tt = Math.min(t, total);
+            ringFrames.push({ transform: `perspective(2000px) rotateX(-16deg) rotateY(${rotAt(tt)}deg)`, offset: tt / total });
+            if (tt >= total) break;
+        }
+        const ringAnim = slider.animate(ringFrames, { duration: total, easing: "linear", fill: "both" });
+        Promise.all(anims.map(an => an.finished).concat(ringAnim.finished)).then(() => {
+            rotation = targetRotation = rotAt(total);
+            anims.forEach(an => an.cancel());
+            ringAnim.cancel();
+            applyRotation();
+            introRunning = false;
+            resumeAuto(50);
+        }).catch(() => { introRunning = false; });
+    }
+    window.__cardsIntro = playIntro;
 
     // Modal controls are shared with the leaderboard.
     const modal = document.getElementById("playerModal");
@@ -2218,6 +2373,7 @@ function initTabs() {
     tabs.forEach(btn => {
         btn.addEventListener("click", () => {
             const target = btn.dataset.tab;
+            const wasShown = document.getElementById(target) && document.getElementById(target).style.display === "block";
 
             pages.forEach(p => {
                 p.style.display = (p.id === target) ? "block" : "none";
@@ -2229,6 +2385,8 @@ function initTabs() {
             else if (target === "comparisonsPage")   title.textContent = "COMPARISONS";
             else if (target === "mapsPage")          title.textContent = "MAPS";
             else if (target === "carouselPage")      title.textContent = "CARDS";
+
+            if (target === "carouselPage" && !wasShown && window.__cardsIntro) window.__cardsIntro();
         });
     });
 }

@@ -150,6 +150,12 @@ function createEmptyPlayerStats() {
 // ===============================
 // MERGE OPENING + CURRENT (DISPLAY ONLY)
 // ===============================
+function playerHasActivity(p) {
+    const wins = (p.hpWins || 0) + (p.sndWins || 0) + (p.overloadWins || 0);
+    const losses = (p.hpLosses || 0) + (p.sndLosses || 0) + (p.overloadLosses || 0);
+    return (wins + losses + (p.lifetimeKills || 0) + (p.lifetimeDeaths || 0)) > 0;
+}
+
 function mergeStats(openingPlayersObj, currPlayersObj) {
     // Never modify either JSON source. Opening Elo remains the daily baseline.
     const openingSource = openingPlayersObj && typeof openingPlayersObj === "object"
@@ -169,20 +175,32 @@ function mergeStats(openingPlayersObj, currPlayersObj) {
         ...p
     }));
 
-    openingPlayers.sort((a, b) => b.elo - a.elo);
-    openingPlayers.forEach((p, i) => p.openingRank = i + 1);
+    // Ranking pool = players who are active AND not flagged inactive. Inactive
+    // players and empty placeholders never take a rank number from, or push
+    // arrows onto, the current pool. They are numbered after the pool.
+    const inPool = p => !INACTIVE_PLAYER_IDS.has(p.id) && playerHasActivity(p);
+    const poolIds = new Set(currPlayers.filter(inPool).map(p => p.id));
 
-    currPlayers.sort((a, b) => b.elo - a.elo);
-    currPlayers.forEach((p, i) => p.currentRank = i + 1);
+    const openingPool = openingPlayers.filter(p => poolIds.has(p.id));
+    openingPool.sort((a, b) => b.elo - a.elo);
+    openingPool.forEach((p, i) => p.openingRank = i + 1);
+
+    const currPool = currPlayers.filter(inPool).sort((a, b) => b.elo - a.elo);
+    const currRest = currPlayers.filter(p => !inPool(p)).sort((a, b) => b.elo - a.elo);
+    currPool.forEach((p, i) => { p.currentRank = i + 1; p.inRankPool = true; });
+    currRest.forEach((p, i) => { p.currentRank = currPool.length + i + 1; p.inRankPool = false; });
+    currPlayers.length = 0;
+    currPlayers.push(...currPool, ...currRest);
 
     allPlayers = currPlayers.map(p => {
         const opening = openingPlayers.find(x => x.id === p.id);
         const hasOpening = !!opening && Number.isFinite(Number(p.elo));
+        const rankComparable = hasOpening && p.inRankPool && Number.isFinite(opening.openingRank);
         return {
             ...p,
             hasDailyComparison: hasOpening,
             eloChange: hasOpening ? Number(p.elo) - opening.elo : 0,
-            rankChange: hasOpening ? opening.openingRank - p.currentRank : 0
+            rankChange: rankComparable ? opening.openingRank - p.currentRank : 0
         };
     });
 
@@ -229,7 +247,7 @@ function renderTable() {
         return showInactive ? true : (hasActivity && !isInactive);
     });
 
-    filtered.sort((a, b) => b.elo - a.elo);
+    filtered.sort((a, b) => a.currentRank - b.currentRank);
 
     filtered.forEach(p => {
         const tr = document.createElement("tr");
@@ -340,7 +358,8 @@ function renderTable() {
     enableRankDrops();
     enableEloDrops();
     enableWLDrops();
-    enableModal(filtered);
+    // Player names on the leaderboard are plain text now. The cards open from the
+    // Cards tab only. (enableModal is kept below in case you want this back.)
 }
 
 
@@ -596,6 +615,7 @@ function computeMode(prefix, p, players) {
         rating,
         wins,
         losses,
+        dmgShare,
         slayerWeighted,
         kdPct,
         wrPct,
@@ -813,9 +833,9 @@ function openPlayerModal(playerId, playerList = allPlayers) {
                 });
             };
 
-            hpEl.onclick = () => openModeModal("Hardpoint", hp);
-            ovlEl.onclick = () => openModeModal("Overload", ovl);
-            sndEl.onclick = () => openModeModal("Search & Destroy", snd);
+            hpEl.onclick = () => openModeModal("Hardpoint", hp, p);
+            ovlEl.onclick = () => openModeModal("Overload", ovl, p);
+            sndEl.onclick = () => openModeModal("Search & Destroy", snd, p);
 
             // SPECIAL POSITION OVERRIDES
             card.classList.remove(
@@ -1303,15 +1323,6 @@ function warmPlayerMedia(id) {
     }
 }
 
-document.addEventListener("pointerover", e => {
-    const el = e.target.closest && e.target.closest(".player-name[data-id]");
-    if (el) warmPlayerMedia(el.dataset.id);
-});
-document.addEventListener("touchstart", e => {
-    const el = e.target.closest && e.target.closest(".player-name[data-id]");
-    if (el) warmPlayerMedia(el.dataset.id);
-}, { passive: true });
-
 // Background warm-up, one player every 3 s, only on a fast connection
 // without data-saver. Starts after the page has fully loaded and gone idle.
 window.addEventListener("load", () => {
@@ -1621,53 +1632,208 @@ function setupCarousel() {
     }
 }
 
-function openModeModal(modeName, modeStats) {
-    const modal = document.getElementById("modeModal");
+/* ---------------------------
+   MODE STATS PANEL (wheel design)
+   Opens when a mode circle (Hardpoint / Overload / S&D) is clicked.
+   Shows final numbers only. They come from computeMode(), the same
+   maths the card uses.
+---------------------------- */
 
-    let convertedMargin = modeStats.margin;
+// Scores use the same 57-99 scale as the card ratings.
+function modeScore(pct) {
+    return Math.round(57 + pct * 42);
+}
+
+// Stars follow the mode rating: 57 = 1 star ... 99 = 5 stars.
+function starsFromRating(rating) {
+    const w = (rating - 57) / 42;
+    return Math.max(1, Math.min(5, Math.round(1 + w * 4)));
+}
+
+function modeScoreColor(score) {
+    if (score < 40) return "#FF4444";
+    if (score < 60) return "#FFFFFF";
+    if (score < 80) return "#FFE066";
+    if (score <= 98) return "#00FF66";
+    return "#A855F7";
+}
+
+function modeEscape(text) {
+    return String(text).replace(/[&<>"']/g, c => (
+        { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+    ));
+}
+
+function modePolar(cx, cy, r, deg) {
+    const a = deg * Math.PI / 180;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+}
+
+function modeSectorPath(cx, cy, r0, r1, a0, a1) {
+    const [x0, y0] = modePolar(cx, cy, r1, a0);
+    const [x1, y1] = modePolar(cx, cy, r1, a1);
+    const [x2, y2] = modePolar(cx, cy, r0, a1);
+    const [x3, y3] = modePolar(cx, cy, r0, a0);
+    const large = (a1 - a0) > 180 ? 1 : 0;
+    return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r1} ${r1} 0 ${large} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} ` +
+           `L${x2.toFixed(2)} ${y2.toFixed(2)} A${r0} ${r0} 0 ${large} 0 ${x3.toFixed(2)} ${y3.toFixed(2)} Z`;
+}
+
+function modeArcPath(cx, cy, r, a0, a1) {
+    const [x0, y0] = modePolar(cx, cy, r, a0);
+    const [x1, y1] = modePolar(cx, cy, r, a1);
+    const large = (a1 - a0) > 180 ? 1 : 0;
+    return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 ${large} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+}
+
+function modeStarsSvg(count) {
+    const star = "M12 2.2l2.9 6.1 6.7.8-4.9 4.6 1.3 6.6L12 17l-6 3.3 1.3-6.6L2.4 9.1l6.7-.8z";
+    let out = "";
+    for (let i = 1; i <= 5; i++) {
+        out += `<svg class="mp-star ${i <= count ? "on" : "off"}" viewBox="0 0 24 24" aria-hidden="true"><path d="${star}"/></svg>`;
+    }
+    return `<span class="mp-stars-row" role="img" aria-label="${count} out of 5 stars">${out}</span>`;
+}
+
+// The five wheel segments: name on the wheel, wheel score, and the final number shown in the list.
+function buildModeStats(s, convertedMargin) {
+    const dec = n => n.toFixed(2);
+    return [
+        { label: "K/D", short: "K/D", name: "K/D",
+          score: modeScore(s.kdPct), value: dec(s.kd), tone: s.kd < 1 ? "bad" : "good" },
+        { label: "AVG MARGIN", short: "MARGIN", name: "Avg margin",
+          score: modeScore(s.marginPct), value: (convertedMargin > 0 ? "+" : "") + dec(convertedMargin),
+          tone: convertedMargin < 0 ? "bad" : "good" },
+        { label: "WIN RATE", short: "WIN RATE", name: "Win rate",
+          score: modeScore(s.wrPct), value: (s.wr * 100).toFixed(1) + "%", tone: "" },
+        { label: "DAMAGE SHARE", short: "DAMAGE", name: "Damage share",
+          score: modeScore(s.dmgPct), value: (s.dmgShare * 100).toFixed(1) + "%", tone: "" },
+        { label: "SLAYING POWER", short: "SLAYING", name: "Slaying power",
+          score: s.slayerRating, value: String(s.slayerRating), tone: "" }
+    ];
+}
+
+let modeModalBound = false;
+
+function closeModeModal() {
+    const modal = document.getElementById("modeModal");
+    if (modal) {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+    }
+}
+
+function openModeModal(modeName, modeStats, player) {
+    const modal = document.getElementById("modeModal");
+    const panel = document.getElementById("modePanel");
+    if (!modal || !panel) return;
+
+    const s = modeStats;
+
+    let convertedMargin = s.margin;
     if (modeName === "Hardpoint") convertedMargin *= 250;
     if (modeName === "Overload") convertedMargin *= 8;
     if (modeName === "Search & Destroy") convertedMargin *= 6;
 
-    const kd = modeStats.kd;
-    const slayerScore = modeStats.slayerRating;
+    const stats = buildModeStats(s, convertedMargin);
+    const playerName = player && player.name ? player.name : "";
 
-    // Title stays the same
-    document.getElementById("modeTitleBox").innerHTML = `
-        <div class="mode-title-box">${modeName}</div>
-    `;
+    const narrow = window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
+    const viewBox = narrow ? "-8 0 476 420" : "-70 0 600 420";
 
-    //  KD — box removed
-    document.getElementById("modeKDBox").innerHTML = `
-        <span class="stat-value" id="modeKD">${kd.toFixed(2)}</span>
-    `;
+    // Wheel geometry
+    const cx = 230, cy = 210, rIn = 62, rOut = 140, labelR = 162;
+    const span = 360 / stats.length, gap = 3;
+    let sectors = "", labels = "";
 
-    //  AvgM — box removed
-    document.getElementById("modeMarginBox").innerHTML = `
-        <span class="stat-value" id="modeMargin">${convertedMargin.toFixed(2)}</span>
-    `;
+    stats.forEach((stat, i) => {
+        const a0 = -90 + i * span + gap / 2;
+        const a1 = -90 + (i + 1) * span - gap / 2;
+        const mid = (a0 + a1) / 2;
+        const rFill = rIn + (rOut - rIn) * (stat.score / 99);
+        const [lx, ly] = modePolar(cx, cy, labelR, mid);
+        const cos = Math.cos(mid * Math.PI / 180);
+        const anchor = cos > 0.3 ? "start" : cos < -0.3 ? "end" : "middle";
 
-    //  Slayer — box removed, circle kept
-    document.getElementById("modeSlayerBox").innerHTML = `
-        <div class="stat-circle" id="modeSlayer">${slayerScore}</div>
-    `;
+        sectors += `
+            <g class="mw-seg" data-i="${i}" tabindex="0" role="button" aria-label="${modeEscape(stat.label)} ${stat.score}">
+                <path class="mw-track" d="${modeSectorPath(cx, cy, rIn, rOut, a0, a1)}"/>
+                <path class="mw-fill" d="${modeSectorPath(cx, cy, rIn, rFill, a0, a1)}"/>
+                <path class="mw-edge" d="${modeArcPath(cx, cy, rFill, a0, a1)}"/>
+            </g>`;
+        labels += `
+            <text class="mw-label" data-i="${i}" x="${lx.toFixed(1)}" y="${(ly + 5).toFixed(1)}" text-anchor="${anchor}">
+                <tspan class="mw-name">${modeEscape(narrow ? stat.short : stat.label)}</tspan>
+                <tspan class="mw-val" dx="6" fill="${modeScoreColor(stat.score)}">${stat.score}</tspan>
+            </text>`;
+    });
 
-    // Colors
-    setKDColor(document.getElementById("modeKD"), kd);
-    setMarginColor(document.getElementById("modeMargin"), convertedMargin);
+    const wheel = `
+        <svg class="mp-wheel-svg" viewBox="${viewBox}" role="img" aria-label="${modeEscape(modeName)} rating wheel">
+            ${sectors}
+            <circle class="mw-core" cx="${cx}" cy="${cy}" r="${rIn - 3}"/>
+            <circle class="mw-ring" cx="${cx}" cy="${cy}" r="${rIn - 13}"/>
+            <text class="mw-ovr" x="${cx}" y="${cy + 8}" text-anchor="middle" fill="${modeScoreColor(s.rating)}">${s.rating}</text>
+            <text class="mw-ovr-label" x="${cx}" y="${cy + 28}" text-anchor="middle">OVR</text>
+            ${labels}
+        </svg>`;
 
-    const slayerEl = document.getElementById("modeSlayer");
-    if (slayerScore < 40) slayerEl.style.color = slayerEl.style.borderColor = "#FF4444";
-    else if (slayerScore < 60) slayerEl.style.color = slayerEl.style.borderColor = "white";
-    else if (slayerScore < 80) slayerEl.style.color = slayerEl.style.borderColor = "#FFE066";
-    else if (slayerScore <= 98) slayerEl.style.color = slayerEl.style.borderColor = "#00FF66";
-    else if (slayerScore === 99) slayerEl.style.color = slayerEl.style.borderColor = "#7A00C8";
+    const rows = stats.map((stat, i) => `
+        <div class="mp-row" data-i="${i}">
+            <span>${modeEscape(stat.name)}</span>
+            <b class="${stat.tone}">${modeEscape(stat.value)}</b>
+        </div>`).join("");
+
+    panel.innerHTML = `
+        <div class="mp-top">
+            <div class="mp-who">
+                ${playerName ? `<span class="mp-player">${modeEscape(playerName)}</span>` : ""}
+                <span class="mp-mode">${modeEscape(modeName)}</span>
+            </div>
+            <button type="button" class="mp-close" aria-label="Close">×</button>
+        </div>
+        <div class="mp-body">
+            <div class="mp-wheel">${wheel}</div>
+            <div class="mp-detail">
+                <div class="mp-rows">${rows}</div>
+                <div class="mp-stars"><span>Stars</span>${modeStarsSvg(starsFromRating(s.rating))}</div>
+            </div>
+        </div>`;
+
+    // Hovering or tapping a wheel segment lights up its row in the list.
+    const segs = Array.from(panel.querySelectorAll(".mw-seg"));
+    const texts = Array.from(panel.querySelectorAll(".mw-label"));
+    const listRows = Array.from(panel.querySelectorAll(".mp-row"));
+
+    function select(i) {
+        segs.forEach((g, n) => g.classList.toggle("sel", n === i));
+        texts.forEach((t, n) => t.classList.toggle("sel", n === i));
+        listRows.forEach((r, n) => r.classList.toggle("sel", n === i));
+    }
+
+    segs.forEach(g => {
+        const i = Number(g.dataset.i);
+        g.addEventListener("mouseenter", () => select(i));
+        g.addEventListener("focus", () => select(i));
+        g.addEventListener("click", () => select(i));
+        g.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i); }
+        });
+    });
+    texts.forEach(t => t.addEventListener("click", () => select(Number(t.dataset.i))));
+    listRows.forEach(r => r.addEventListener("mouseenter", () => select(Number(r.dataset.i))));
+    panel.querySelector(".mp-close").addEventListener("click", closeModeModal);
 
     modal.style.display = "block";
+    modal.setAttribute("aria-hidden", "false");
 
-    document.addEventListener("click", e => {
-        if (e.target === modal) modal.style.display = "none";
-    });
+    if (!modeModalBound) {
+        modeModalBound = true;
+        modal.addEventListener("click", e => { if (e.target === modal) closeModeModal(); });
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape" && modal.style.display === "block") closeModeModal();
+        });
+    }
 }
 
 

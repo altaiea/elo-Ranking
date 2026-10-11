@@ -79,11 +79,7 @@ tr:nth-child(3) .rank { color: #ce8946; text-shadow: 0 0 10px #cd7f32; }
 ============================ */
 .player-name {
     color: #00eaff;
-    cursor: pointer;
     font-weight: 700;
-}
-.player-name:hover {
-    text-shadow: 0 0 10px #00eaff;
 }
 
 /* ============================
@@ -438,136 +434,150 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER 16 — OVERALL RATING */
 
 /* ============================
-   MODE MODAL — PNG VERSION
+   MODE STATS PANEL (wheel)
 ============================ */
 
 #modeModal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.78);
     z-index: 999;
 }
 
-/* Modal box */
-.mode-modal-content {
+.mp-panel {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 350px;
-    height: auto;
-    pointer-events: auto;
-}
-
-/* Shield PNG */
-.mode-shield {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 0 20px rgba(0,255,255,0.35));
-}
-
-/* ============================
-   MODE MODAL — POSITION CONTROL
-============================ */
-
-/* Each stat element is independently positionable */
-#modeTitleBox,
-#modeKDBox,
-#modeMarginBox,
-#modeSlayerBox {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    pointer-events: none; /* stats don't block clicks */
-
-    /* Shared text styling */
+    width: min(940px, 94vw);
+    max-height: 94vh;
+    overflow: auto;
+    padding: 18px 22px 22px;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #101218 0%, #0b0c10 100%);
+    border: 1px solid #00eaff44;
+    border-radius: 14px;
+    box-shadow: 0 0 30px rgba(0, 234, 255, 0.18), inset 0 0 40px rgba(0, 234, 255, 0.04);
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    color: white;
-    font-weight: 700;
-    text-shadow: 0 0 6px rgba(0,255,255,0.25);
+    color: #fff;
 }
 
-/* DEFAULT POSITIONS — CHANGE THESE VALUES */
-
-/* Title centered */
-#modeTitleBox {
-    top: 175px;
-}
-
-/* KD number — centered horizontally */
-#modeKDBox {
-    top: 56px;
-    left: 28px;
-
-}
-
-/* AvgM number — centered horizontally */
-#modeMarginBox {
-    top: 93px;
-    left: 30px;
-
-}
-
-/* Slayer circle — centered horizontally */
-#modeSlayerBox {
-    top: 245px;
-    left: 151px;
-}
-
-
-/* ============================
-   MODE MODAL — ELEMENT STYLING
-============================ */
-
-/* Title bar */
-.mode-title-box {
-    background: linear-gradient(90deg, #00eaff33, #003b4a55);
-    padding: 8px 0;
-    width: 55%;
-    margin: 0 auto;
-    border-radius: 6px;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
-}
-
-/* Stat boxes */
-.stat-box {
-    background: linear-gradient(180deg, #0f1114, #0a0b0d);
-    border: 1px solid #00eaff55;
-    padding: 6px 12px;
-    width: fit-content;
-    margin: 0 auto;
-    border-radius: 6px;
-    box-shadow:
-            0 0 10px rgba(0, 255, 255, 0.15),
-            inset 0 0 8px rgba(0, 255, 255, 0.08);
-}
-
-.stat-row {
+.mp-top {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 4px;
 }
 
-.stat-circle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,255,255,0.25);
+.mp-who {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 900;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.mp-player {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.mp-mode {
     font-size: 14px;
-    margin-left: 10px;
-    box-shadow:
-            0 0 10px rgba(0,255,255,0.25),
-            inset 0 0 6px rgba(255,255,255,0.15);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #00eaff;
+    text-shadow: 0 0 8px rgba(0, 234, 255, 0.5);
 }
 
+.mp-close {
+    background: none;
+    border: 1px solid #25252d;
+    border-radius: 8px;
+    color: #cfd6dd;
+    font-size: 22px;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+.mp-close:hover { border-color: #00eaff; color: #00eaff; }
+
+.mp-body {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.mp-wheel { flex: 1 1 58%; min-width: 0; }
+.mp-detail { flex: 1 1 42%; min-width: 0; }
+
+.mp-wheel-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* Wheel */
+.mw-seg { cursor: pointer; outline: none; }
+.mw-track { fill: #1a1c23; stroke: #2a2d38; stroke-width: 1; }
+.mw-fill  { fill: #1e88c9; transition: fill .15s; }
+.mw-edge  { fill: none; stroke: #35d44a; stroke-width: 5; stroke-linecap: butt; transition: stroke .15s; }
+.mw-seg:hover .mw-fill, .mw-seg.sel .mw-fill { fill: #2aa8f0; }
+.mw-seg.sel .mw-edge { stroke: #c8ff3a; stroke-width: 7; }
+.mw-seg.sel .mw-track { stroke: #c8ff3a99; }
+.mw-seg:focus-visible .mw-track { stroke: #00eaff; stroke-width: 2; }
+
+.mw-core { fill: #0a0b0e; stroke: #2a2d38; stroke-width: 2; }
+.mw-ring { fill: none; stroke: #5a5772; stroke-width: 3; }
+.mw-ovr { font-size: 40px; font-weight: 800; paint-order: stroke; stroke: #000; stroke-width: 3px; }
+.mw-ovr-label { font-size: 14px; font-weight: 700; letter-spacing: 3px; fill: #9aa3ad; }
+
+.mw-label { font-size: 15px; font-weight: 600; letter-spacing: .5px; cursor: pointer; }
+.mw-name { fill: #8d95a0; }
+.mw-val  { font-weight: 800; font-size: 17px; }
+.mw-label.sel .mw-name { fill: #fff; }
+
+/* Stat list */
+.mp-rows { display: grid; gap: 4px; margin-bottom: 16px; }
+.mp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #1b1d24;
+    border-radius: 6px;
+    font-size: 19px;
+    transition: background .15s;
+}
+.mp-row span { color: #cfd6dd; }
+.mp-row b { font-size: 21px; font-variant-numeric: tabular-nums; }
+.mp-row b.good { color: #00FF66; }
+.mp-row b.bad  { color: #FF4444; }
+.mp-row.sel { background: rgba(200, 255, 58, .08); }
+.mp-row.sel span { color: #fff; }
+
+.mp-stars {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 6px 12px 0;
+    font-size: 19px;
+    color: #cfd6dd;
+}
+.mp-stars-row { display: inline-flex; gap: 5px; }
+.mp-star { width: 28px; height: 28px; }
+.mp-star.on  path { fill: #FFD43B; stroke: #b8860b; stroke-width: .8; filter: drop-shadow(0 0 3px rgba(255, 212, 59, .5)); }
+.mp-star.off path { fill: #2a2d38; stroke: #3a3d48; stroke-width: .8; }
+
+@media (max-width: 760px) {
+    .mp-panel { padding: 14px 14px 18px; }
+    .mp-body { flex-direction: column; align-items: stretch; gap: 8px; }
+    .mp-player { font-size: 20px; }
+    .mw-label { font-size: 15px; }
+    .mw-val { font-size: 18px; }
+    .mp-row { font-size: 17px; padding: 8px 10px; }
+    .mp-row b { font-size: 19px; }
+}
 
 /* ============================
    SERIES HISTORY (UNCHANGED)

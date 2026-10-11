@@ -2491,3 +2491,44 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .lineup-fav .lineup-stats > div:last-child .lineup-num { color: #39ff6a; }
 .lineup-cap { color: #8fb7c2; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
 @media (max-width: 520px) { .popup-card { width: auto; max-width: calc(100vw - 20px); box-sizing: border-box; padding: 18px 12px; } .lineup-wrap { gap: 6px; } .lineup-num { font-size: 15px; } .lineup-stats { gap: 10px; } }
+
+/* ============================
+   PHONES: one consistent layout (added)
+============================ */
+html { -webkit-text-size-adjust: 100%; }
+@media (max-width: 600px) {
+    body { padding: 16px 10px; overflow-x: hidden; }
+    h1 { font-size: clamp(26px, 8.4vw, 38px); letter-spacing: 1px; margin-bottom: 18px; }
+
+    /* tab buttons: a tidy 3 x 2 grid */
+    #tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 16px; }
+    .nav-tab { margin: 0; padding: 9px 2px; font-size: 13px; width: 100%; }
+
+    /* leaderboard table fits the screen */
+    table { width: 100%; }
+    th { padding: 10px 3px; font-size: 11px; letter-spacing: 0; }
+    td { padding: 9px 3px; font-size: 13px; }
+
+    /* Cards tab: no huge empty area under the ring */
+    #carouselPage { height: auto; }
+    #carouselPage .banner { height: 58vh; min-height: 330px; }
+
+    /* Teams */
+    .team-strength-wrapper { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+    /* the two player cards must fit side by side: shrink them with zoom (it changes the layout size, unlike scale) */
+    .comparison-card-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .comparison-card-wrap { min-width: 0; }
+    .comparison-card-stage { transform: none; margin-bottom: 0; zoom: 0.4; }
+}
+
+@media (max-width: 600px) {
+    .player-select-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .team-player, .manual-select { width: 100%; min-width: 0; font-size: 14px; }
+    .team-content.open { max-height: 1400px; }
+    .strength-bar { width: 100%; }
+    .final-head-to-head { flex-direction: column; align-items: center; }
+    .final-head-to-head strong { font-size: 20px; }
+}

@@ -1616,6 +1616,16 @@ function setupCarousel() {
         requestAnimationFrame(render);
     }
 
+    // Shrink the whole ring on narrow screens so every card is on screen, whatever the device.
+    // It uses the separate `scale` property, so it never interferes with the spin or the intro.
+    function fitRing() {
+        const s = Math.max(0.36, Math.min(1, window.innerWidth / 960));
+        slider.style.scale = s < 1 ? String(s) : "";
+        slider.style.top = s < 0.7 ? "6%" : "";            // phones: sit the ring higher so there is no big empty gap
+    }
+    fitRing();
+    window.addEventListener("resize", fitRing);
+
     applyRotation();
     requestAnimationFrame(render);
 

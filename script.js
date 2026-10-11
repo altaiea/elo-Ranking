@@ -2139,6 +2139,43 @@ function teamStatsHtml(t) {
         </div>`;
 }
 
+
+/* ======================================================
+   TEAM LINEUP VIEW (mini cards joined by green lines)
+   Used by both the auto and the manual builder popups.
+====================================================== */
+// Where the four cards sit inside a team's box, as % of its width / height.
+const LINEUP_SPOTS = [[50, 21], [15, 50], [85, 50], [50, 79]];
+const LINEUP_LINES = [[0, 1], [0, 2], [1, 3], [2, 3], [0, 3], [1, 2]];   // every card is joined to every other
+
+function teamLineupBlock(label, team, avg, prob, cls) {
+    const lines = LINEUP_LINES.map(([a, b]) =>
+        `<line x1="${LINEUP_SPOTS[a][0]}" y1="${LINEUP_SPOTS[a][1]}" x2="${LINEUP_SPOTS[b][0]}" y2="${LINEUP_SPOTS[b][1]}"></line>`).join("");
+    const cards = team.map((p, i) => `
+        <img class="lineup-card" style="left:${LINEUP_SPOTS[i][0]}%; top:${LINEUP_SPOTS[i][1]}%;"
+             src="cards/${p.id}_back.webp" alt="${p.name}" title="${p.name}" loading="eager" decoding="async">`).join("");
+    return `
+        <div class="lineup-team ${cls}">
+            <div class="lineup-title">${label}</div>
+            <div class="lineup-board">
+                <svg class="lineup-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>
+                ${cards}
+            </div>
+            <div class="lineup-stats">
+                <div><span class="lineup-num">${avg.toFixed(1)}</span><span class="lineup-cap">Avg Elo</span></div>
+                <div><span class="lineup-num">${(prob * 100).toFixed(1)}%</span><span class="lineup-cap">Win</span></div>
+            </div>
+        </div>`;
+}
+
+function teamLineupHtml(teamA, teamB, t) {
+    return `
+        <div class="lineup-wrap">
+            ${teamLineupBlock("Team A", teamA, t.avgA, t.probA, t.probA >= t.probB ? "lineup-fav" : "")}
+            ${teamLineupBlock("Team B", teamB, t.avgB, t.probB, t.probB > t.probA ? "lineup-fav" : "")}
+        </div>`;
+}
+
 document.getElementById("generateTeams").addEventListener("click", () => {
 
     const selects = document.querySelectorAll(".team-player");
@@ -2230,19 +2267,8 @@ document.getElementById("generateTeams").addEventListener("click", () => {
     =============================== */
 
     const html = `
-        <h2>Auto Team Builder</h2>
-
-        <div class="popup-section">
-            <h3>Team A</h3>
-            <p>${best.teamA.map(p => `• ${p.name}`).join("<br>")}</p>
-        </div>
-
-        <div class="popup-section">
-            <h3>Team B</h3>
-            <p>${best.teamB.map(p => `• ${p.name}`).join("<br>")}</p>
-        </div>
-
-        ${teamStatsHtml(stats)}
+        <h2>Best Match-Up</h2>
+        ${teamLineupHtml(best.teamA, best.teamB, stats)}
     `;
 
     showPopup(html);
@@ -2325,18 +2351,7 @@ document.getElementById("simulateMatchBtn").addEventListener("click", () => {
 
     const html = `
         <h2>Match Simulation</h2>
-
-        <div class="popup-section">
-            <h3>Team A</h3>
-            <p>${teamA.map(p => `• ${p.name}`).join("<br>")}</p>
-        </div>
-
-        <div class="popup-section">
-            <h3>Team B</h3>
-            <p>${teamB.map(p => `• ${p.name}`).join("<br>")}</p>
-        </div>
-
-        ${teamStatsHtml(stats)}
+        ${teamLineupHtml(teamA, teamB, stats)}
     `;
 
     showPopup(html);

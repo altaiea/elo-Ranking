@@ -10304,6 +10304,1619 @@
           }
         }
       ]
+    },
+    {
+      "mapId": "map-c4c407caa984c85cb39e305783a40ec0be28baf7ebcc4522dd343dc223ca4ce1",
+      "date": "2026-10-12",
+      "source": "manual-overload-2026-10-12.mp4",
+      "fingerprint": "c4c407caa984c85cb39e305783a40ec0be28baf7ebcc4522dd343dc223ca4ce1",
+      "importedAt": "2026-10-12T17:11:14.600565900Z",
+      "gameMode": "Overload",
+      "game": {
+        "source": "manual-overload-2026-10-12.mp4",
+        "gameMode": "Overload",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 4,
+            "teamB": 3
+          },
+          "winningTeam": 1,
+          "scoreDifference": 1
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 7,
+              "kills": 30,
+              "deaths": 24
+            },
+            {
+              "playerId": 3,
+              "kills": 34,
+              "deaths": 22
+            },
+            {
+              "playerId": 5,
+              "kills": 29,
+              "deaths": 28
+            },
+            {
+              "playerId": 11,
+              "kills": 29,
+              "deaths": 28
+            }
+          ],
+          "B": [
+            {
+              "playerId": 2,
+              "kills": 45,
+              "deaths": 24
+            },
+            {
+              "playerId": 16,
+              "kills": 24,
+              "deaths": 25
+            },
+            {
+              "playerId": 4,
+              "kills": 34,
+              "deaths": 25
+            },
+            {
+              "playerId": 8,
+              "kills": 30,
+              "deaths": 22
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 7,
+          "before": 923.0976862658472,
+          "change": 1.4655081515463735,
+          "after": 924.5631944173936,
+          "calculationTrace": {
+            "playerId": 7,
+            "mode": "Overload",
+            "teamWon": true,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 923.0976862658472,
+            "change": 1.4655081515464008,
+            "after": 924.5631944173936,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 923.0976862658472
+                },
+                "result": 923.0976862658472
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 979.252347457516
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 1.2167207792207793
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 12200.0
+                },
+                "result": 12200.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 923.0976862658472,
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 0.41988336339626353
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 1.0
+                },
+                "result": 1.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 1.0,
+                  "expected": 0.41988336339626353
+                },
+                "result": 11.602332732074728
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": 11.602332732074728,
+                  "marginT": 0.125
+                },
+                "result": 1.450291591509341
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": 1.450291591509341
+                },
+                "result": 1.450291591509341
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 30.0
+                },
+                "result": 3000.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 3000.0,
+                  "teamDamage": 12200.0
+                },
+                "result": 0.2459016393442623
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 30.0,
+                  "mapDeaths": 24.0
+                },
+                "result": 1.25
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.25,
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 0.03327922077922074
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.2459016393442623,
+                  "averageShare": 0.25
+                },
+                "result": -0.0040983606557377095
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.450291591509341,
+                  "kdCarry": 0.03327922077922074,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": 0.024132287034043392
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.450291591509341,
+                  "damageCarry": -0.0040983606557377095,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": -0.008915726996983665
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": 1.450291591509341,
+                  "kdAdjustment": 0.024132287034043392,
+                  "damageAdjustment": -0.008915726996983665
+                },
+                "result": 1.4655081515464008
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 923.0976862658472,
+                  "finalChange": 1.4655081515464008
+                },
+                "result": 924.5631944173936
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 3,
+          "before": 1105.784364992354,
+          "change": 0.9826754821961003,
+          "after": 1106.7670404745502,
+          "calculationTrace": {
+            "playerId": 3,
+            "mode": "Overload",
+            "teamWon": true,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 1105.784364992354,
+            "change": 0.9826754821960195,
+            "after": 1106.7670404745502,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 1105.784364992354
+                },
+                "result": 1105.784364992354
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 979.252347457516
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 1.2167207792207793
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 12200.0
+                },
+                "result": 12200.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 1105.784364992354,
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 0.6744489810257156
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 1.0
+                },
+                "result": 1.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 1.0,
+                  "expected": 0.6744489810257156
+                },
+                "result": 6.511020379485688
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": 6.511020379485688,
+                  "marginT": 0.125
+                },
+                "result": 0.813877547435711
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": 0.813877547435711
+                },
+                "result": 0.813877547435711
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 34.0
+                },
+                "result": 3400.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 3400.0,
+                  "teamDamage": 12200.0
+                },
+                "result": 0.2786885245901639
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 34.0,
+                  "mapDeaths": 22.0
+                },
+                "result": 1.5454545454545454
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.5454545454545454,
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 0.32873376623376616
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.2786885245901639,
+                  "averageShare": 0.25
+                },
+                "result": 0.02868852459016391
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 0.813877547435711,
+                  "kdCarry": 0.32873376623376616,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": 0.13377451571082097
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 0.813877547435711,
+                  "damageCarry": 0.02868852459016391,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": 0.03502341904948753
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": 0.813877547435711,
+                  "kdAdjustment": 0.13377451571082097,
+                  "damageAdjustment": 0.03502341904948753
+                },
+                "result": 0.9826754821960195
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 1105.784364992354,
+                  "finalChange": 0.9826754821960195
+                },
+                "result": 1106.7670404745502
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 5,
+          "before": 1028.8387044254046,
+          "change": 0.9559230968718566,
+          "after": 1029.7946275222764,
+          "calculationTrace": {
+            "playerId": 5,
+            "mode": "Overload",
+            "teamWon": true,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 1028.8387044254046,
+            "change": 0.9559230968718192,
+            "after": 1029.7946275222764,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 1028.8387044254046
+                },
+                "result": 1028.8387044254046
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 979.252347457516
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 1.2167207792207793
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 12200.0
+                },
+                "result": 12200.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 1028.8387044254046,
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 0.570879898596355
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 1.0
+                },
+                "result": 1.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 1.0,
+                  "expected": 0.570879898596355
+                },
+                "result": 8.582402028072899
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": 8.582402028072899,
+                  "marginT": 0.125
+                },
+                "result": 1.0728002535091123
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": 1.0728002535091123
+                },
+                "result": 1.0728002535091123
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 29.0
+                },
+                "result": 2900.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 2900.0,
+                  "teamDamage": 12200.0
+                },
+                "result": 0.23770491803278687
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 29.0,
+                  "mapDeaths": 28.0
+                },
+                "result": 1.0357142857142858
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.0357142857142858,
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": -0.18100649350649345
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.23770491803278687,
+                  "averageShare": 0.25
+                },
+                "result": -0.012295081967213128
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.0728002535091123,
+                  "kdCarry": -0.18100649350649345,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": -0.09709190606028084
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.0728002535091123,
+                  "damageCarry": -0.012295081967213128,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": -0.01978525057701234
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": 1.0728002535091123,
+                  "kdAdjustment": -0.09709190606028084,
+                  "damageAdjustment": -0.01978525057701234
+                },
+                "result": 0.9559230968718192
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 1028.8387044254046,
+                  "finalChange": 0.9559230968718192
+                },
+                "result": 1029.7946275222764
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 874.3765145706146,
+          "change": 1.4401785127630546,
+          "after": 875.8166930833777,
+          "calculationTrace": {
+            "playerId": 11,
+            "mode": "Overload",
+            "teamWon": true,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 874.3765145706146,
+            "change": 1.4401785127630786,
+            "after": 875.8166930833777,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 874.3765145706146
+                },
+                "result": 874.3765145706146
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 979.252347457516
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": 1.2167207792207793
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 12200.0
+                },
+                "result": 12200.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 874.3765145706146,
+                  "opponentAverage": 979.252347457516
+                },
+                "result": 0.3534944898197052
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 1.0
+                },
+                "result": 1.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 1.0,
+                  "expected": 0.3534944898197052
+                },
+                "result": 12.930110203605896
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": 12.930110203605896,
+                  "marginT": 0.125
+                },
+                "result": 1.616263775450737
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": 1.616263775450737
+                },
+                "result": 1.616263775450737
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 29.0
+                },
+                "result": 2900.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 2900.0,
+                  "teamDamage": 12200.0
+                },
+                "result": 0.23770491803278687
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 29.0,
+                  "mapDeaths": 28.0
+                },
+                "result": 1.0357142857142858
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.0357142857142858,
+                  "teamAverageKD": 1.2167207792207793
+                },
+                "result": -0.18100649350649345
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.23770491803278687,
+                  "averageShare": 0.25
+                },
+                "result": -0.012295081967213128
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.616263775450737,
+                  "kdCarry": -0.18100649350649345,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": -0.1462771192879522
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.616263775450737,
+                  "damageCarry": -0.012295081967213128,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": -0.029808143399706246
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": 1.616263775450737,
+                  "kdAdjustment": -0.1462771192879522,
+                  "damageAdjustment": -0.029808143399706246
+                },
+                "result": 1.4401785127630786
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 874.3765145706146,
+                  "finalChange": 1.4401785127630786
+                },
+                "result": 875.8166930833777
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 2,
+          "before": 1074.268116726588,
+          "change": -0.9815348739841738,
+          "after": 1073.2865818526038,
+          "calculationTrace": {
+            "playerId": 2,
+            "mode": "Overload",
+            "teamWon": false,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 1074.268116726588,
+            "change": -0.9815348739841792,
+            "after": 1073.2865818526038,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 1074.268116726588
+                },
+                "result": 1074.268116726588
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 983.0243175635551
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": 1.389659090909091
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 13300.0
+                },
+                "result": 13300.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 1074.268116726588,
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 0.6283725921170024
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 0.0
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 0.0,
+                  "expected": 0.6283725921170024
+                },
+                "result": -12.567451842340047
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": -12.567451842340047,
+                  "marginT": 0.125
+                },
+                "result": -1.5709314802925058
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": -1.5709314802925058
+                },
+                "result": 1.5709314802925058
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 45.0
+                },
+                "result": 4500.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 4500.0,
+                  "teamDamage": 13300.0
+                },
+                "result": 0.3383458646616541
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 45.0,
+                  "mapDeaths": 24.0
+                },
+                "result": 1.875
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.875,
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": 0.4853409090909091
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.3383458646616541,
+                  "averageShare": 0.25
+                },
+                "result": 0.08834586466165412
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.5709314802925058,
+                  "kdCarry": 0.4853409090909091,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": 0.38121865638234614
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.5709314802925058,
+                  "damageCarry": 0.08834586466165412,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": 0.20817794992598054
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": -1.5709314802925058,
+                  "kdAdjustment": 0.38121865638234614,
+                  "damageAdjustment": 0.20817794992598054
+                },
+                "result": -0.9815348739841792
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 1074.268116726588,
+                  "finalChange": -0.9815348739841792
+                },
+                "result": 1073.2865818526038
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 16,
+          "before": 887.3950109625873,
+          "change": -1.2062054543781642,
+          "after": 886.1888055082092,
+          "calculationTrace": {
+            "playerId": 16,
+            "mode": "Overload",
+            "teamWon": false,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 887.3950109625873,
+            "change": -1.206205454378194,
+            "after": 886.1888055082092,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 887.3950109625873
+                },
+                "result": 887.3950109625873
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 983.0243175635551
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": 1.389659090909091
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 13300.0
+                },
+                "result": 13300.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 887.3950109625873,
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 0.36575153545608596
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 0.0
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 0.0,
+                  "expected": 0.36575153545608596
+                },
+                "result": -7.31503070912172
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": -7.31503070912172,
+                  "marginT": 0.125
+                },
+                "result": -0.914378838640215
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": -0.914378838640215
+                },
+                "result": 0.914378838640215
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 24.0
+                },
+                "result": 2400.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 2400.0,
+                  "teamDamage": 13300.0
+                },
+                "result": 0.18045112781954886
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 24.0,
+                  "mapDeaths": 25.0
+                },
+                "result": 0.96
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 0.96,
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": -0.42965909090909093
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.18045112781954886,
+                  "averageShare": 0.25
+                },
+                "result": -0.06954887218045114
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 0.914378838640215,
+                  "kdCarry": -0.42965909090909093,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": -0.19643559027833254
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 0.914378838640215,
+                  "damageCarry": -0.06954887218045114,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": -0.09539102545964649
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": -0.914378838640215,
+                  "kdAdjustment": -0.19643559027833254,
+                  "damageAdjustment": -0.09539102545964649
+                },
+                "result": -1.206205454378194
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 887.3950109625873,
+                  "finalChange": -1.206205454378194
+                },
+                "result": 886.1888055082092
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 4,
+          "before": 1031.4843727736727,
+          "change": -1.4322944071152506,
+          "after": 1030.0520783665575,
+          "calculationTrace": {
+            "playerId": 4,
+            "mode": "Overload",
+            "teamWon": false,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 1031.4843727736727,
+            "change": -1.4322944071151855,
+            "after": 1030.0520783665575,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 1031.4843727736727
+                },
+                "result": 1031.4843727736727
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 983.0243175635551
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": 1.389659090909091
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 13300.0
+                },
+                "result": 13300.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 1031.4843727736727,
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 0.5692908683146422
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 0.0
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 0.0,
+                  "expected": 0.5692908683146422
+                },
+                "result": -11.385817366292843
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": -11.385817366292843,
+                  "marginT": 0.125
+                },
+                "result": -1.4232271707866053
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": -1.4232271707866053
+                },
+                "result": 1.4232271707866053
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 34.0
+                },
+                "result": 3400.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 3400.0,
+                  "teamDamage": 13300.0
+                },
+                "result": 0.2556390977443609
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 34.0,
+                  "mapDeaths": 25.0
+                },
+                "result": 1.36
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.36,
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": -0.0296590909090908
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.2556390977443609,
+                  "averageShare": 0.25
+                },
+                "result": 0.005639097744360888
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.4232271707866053,
+                  "kdCarry": -0.0296590909090908,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": -0.021105812021324014
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.4232271707866053,
+                  "damageCarry": 0.005639097744360888,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": 0.012038575692743813
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": -1.4232271707866053,
+                  "kdAdjustment": -0.021105812021324014,
+                  "damageAdjustment": 0.012038575692743813
+                },
+                "result": -1.4322944071151855
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 1031.4843727736727,
+                  "finalChange": -1.4322944071151855
+                },
+                "result": 1030.0520783665575
+              }
+            ]
+          }
+        },
+        {
+          "playerId": 8,
+          "before": 923.861889367216,
+          "change": -1.0907911817430431,
+          "after": 922.771098185473,
+          "calculationTrace": {
+            "playerId": 8,
+            "mode": "Overload",
+            "teamWon": false,
+            "teamSize": 4,
+            "scoreDifferenceMargin": 0.125,
+            "before": 923.861889367216,
+            "change": -1.09079118174309,
+            "after": 922.771098185473,
+            "steps": [
+              {
+                "name": "Starting Elo",
+                "formula": "Existing player Elo",
+                "inputs": {
+                  "elo": 923.861889367216
+                },
+                "result": 923.861889367216
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "Average of opponent Elo ratings before this map",
+                "inputs": {
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 983.0243175635551
+              },
+              {
+                "name": "Team average KD",
+                "formula": "Average of team map KD values",
+                "inputs": {
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": 1.389659090909091
+              },
+              {
+                "name": "Team damage",
+                "formula": "Sum of team player map kills * 100",
+                "inputs": {
+                  "teamDamage": 13300.0
+                },
+                "result": 13300.0
+              },
+              {
+                "name": "Average damage share",
+                "formula": "teamSize == 0 ? 0 : 1 / teamSize",
+                "inputs": {
+                  "teamSize": 4.0
+                },
+                "result": 0.25
+              },
+              {
+                "name": "Margin multiplier",
+                "formula": "PerformanceCalculator.marginT(scoreDifference, mode)",
+                "inputs": {
+                  "marginT": 0.125
+                },
+                "result": 0.125
+              },
+              {
+                "name": "Expected score",
+                "formula": "1 / (1 + 10 ^ ((opponentAverage - startingElo) / 400))",
+                "inputs": {
+                  "startingElo": 923.861889367216,
+                  "opponentAverage": 983.0243175635551
+                },
+                "result": 0.41567191940996484
+              },
+              {
+                "name": "Actual result",
+                "formula": "win ? 1 : 0",
+                "inputs": {
+                  "actual": 0.0
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Base Elo",
+                "formula": "K_FACTOR * (actual - expected)",
+                "inputs": {
+                  "K_FACTOR": 20.0,
+                  "actual": 0.0,
+                  "expected": 0.41567191940996484
+                },
+                "result": -8.313438388199296
+              },
+              {
+                "name": "Base after margin",
+                "formula": "base * marginT",
+                "inputs": {
+                  "base": -8.313438388199296,
+                  "marginT": 0.125
+                },
+                "result": -1.039179798524912
+              },
+              {
+                "name": "Adjustment pool",
+                "formula": "abs(baseAfterMargin)",
+                "inputs": {
+                  "baseAfterMargin": -1.039179798524912
+                },
+                "result": 1.039179798524912
+              },
+              {
+                "name": "Player damage",
+                "formula": "mapKills * 100",
+                "inputs": {
+                  "mapKills": 30.0
+                },
+                "result": 3000.0
+              },
+              {
+                "name": "Damage share",
+                "formula": "teamDamage == 0 ? 0 : playerDamage / teamDamage",
+                "inputs": {
+                  "playerDamage": 3000.0,
+                  "teamDamage": 13300.0
+                },
+                "result": 0.22556390977443608
+              },
+              {
+                "name": "Player KD",
+                "formula": "PerformanceCalculator.kd(mapKills, mapDeaths, mode)",
+                "inputs": {
+                  "mapKills": 30.0,
+                  "mapDeaths": 22.0
+                },
+                "result": 1.3636363636363635
+              },
+              {
+                "name": "KD carry",
+                "formula": "playerKD - teamAverageKD",
+                "inputs": {
+                  "playerKD": 1.3636363636363635,
+                  "teamAverageKD": 1.389659090909091
+                },
+                "result": -0.026022727272727364
+              },
+              {
+                "name": "Damage carry",
+                "formula": "damageShare - averageShare",
+                "inputs": {
+                  "damageShare": 0.22556390977443608,
+                  "averageShare": 0.25
+                },
+                "result": -0.024436090225563922
+              },
+              {
+                "name": "KD adjustment",
+                "formula": "pool * kdCarry * KD_WEIGHT",
+                "inputs": {
+                  "pool": 1.039179798524912,
+                  "kdCarry": -0.026022727272727364,
+                  "KD_WEIGHT": 0.5
+                },
+                "result": -0.013521146242170778
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "pool * damageCarry * DAMAGE_WEIGHT",
+                "inputs": {
+                  "pool": 1.039179798524912,
+                  "damageCarry": -0.024436090225563922,
+                  "DAMAGE_WEIGHT": 1.5
+                },
+                "result": -0.038090236976007136
+              },
+              {
+                "name": "Final change",
+                "formula": "baseAfterMargin + kdAdjustment + damageAdjustment",
+                "inputs": {
+                  "baseAfterMargin": -1.039179798524912,
+                  "kdAdjustment": -0.013521146242170778,
+                  "damageAdjustment": -0.038090236976007136
+                },
+                "result": -1.09079118174309
+              },
+              {
+                "name": "Updated Elo",
+                "formula": "startingElo + finalChange",
+                "inputs": {
+                  "startingElo": 923.861889367216,
+                  "finalChange": -1.09079118174309
+                },
+                "result": 922.771098185473
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
   "closingStats": {
@@ -10347,61 +11960,61 @@
       "overloadLifetimeTeamDamage": 1621900.0
     },
     "2": {
-      "elo": 1074.268116726588,
-      "lifetimeKills": 12511,
-      "lifetimeDeaths": 7674,
+      "elo": 1073.2865818526038,
+      "lifetimeKills": 12556,
+      "lifetimeDeaths": 7698,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 7103,
       "hpDeaths": 4391,
       "sndKills": 1302,
       "sndDeaths": 805,
-      "overloadKills": 4106,
-      "overloadDeaths": 2478,
+      "overloadKills": 4151,
+      "overloadDeaths": 2502,
       "hpWins": 70,
       "hpLosses": 92,
       "sndWins": 85,
       "sndLosses": 44,
       "overloadWins": 42,
-      "overloadLosses": 55,
+      "overloadLosses": 56,
       "seriesWins": 0,
       "seriesLosses": 3,
       "hpMarginTotal": -4.103000000000001,
       "hpMarginCount": 162,
       "sndMarginTotal": 18.49999999999999,
       "sndMarginCount": 129,
-      "overloadMarginTotal": -3.75,
-      "overloadMarginCount": 97,
+      "overloadMarginTotal": -3.875,
+      "overloadMarginCount": 98,
       "hpDamage": 4900.0,
       "hpDamageShare": 0.2722222222222222,
       "sndDamage": 1500.0,
       "sndDamageShare": 0.45454545454545453,
-      "overloadDamage": 4100.0,
-      "overloadDamageShare": 0.3106060606060606,
+      "overloadDamage": 4500.0,
+      "overloadDamageShare": 0.3383458646616541,
       "hpLifetimeDamage": 669600.0,
       "hpLifetimeTeamDamage": 2254500.0,
       "sndLifetimeDamage": 124400.0,
       "sndLifetimeTeamDamage": 408000.0,
-      "overloadLifetimeDamage": 392500.0,
-      "overloadLifetimeTeamDamage": 1296700.0
+      "overloadLifetimeDamage": 397000.0,
+      "overloadLifetimeTeamDamage": 1310000.0
     },
     "3": {
-      "elo": 1105.784364992354,
-      "lifetimeKills": 14480,
-      "lifetimeDeaths": 8147,
+      "elo": 1106.7670404745502,
+      "lifetimeKills": 14514,
+      "lifetimeDeaths": 8169,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 8220,
       "hpDeaths": 4581,
       "sndKills": 1452,
       "sndDeaths": 964,
-      "overloadKills": 4808,
-      "overloadDeaths": 2602,
+      "overloadKills": 4842,
+      "overloadDeaths": 2624,
       "hpWins": 104,
       "hpLosses": 85,
       "sndWins": 76,
       "sndLosses": 81,
-      "overloadWins": 54,
+      "overloadWins": 55,
       "overloadLosses": 57,
       "seriesWins": 0,
       "seriesLosses": 2,
@@ -10409,77 +12022,77 @@
       "hpMarginCount": 189,
       "sndMarginTotal": -6.000000000000001,
       "sndMarginCount": 157,
-      "overloadMarginTotal": -1.375,
-      "overloadMarginCount": 111,
+      "overloadMarginTotal": -1.25,
+      "overloadMarginCount": 112,
       "hpDamage": 4500.0,
       "hpDamageShare": 0.28662420382165604,
       "sndDamage": 1100.0,
       "sndDamageShare": 0.5238095238095238,
-      "overloadDamage": 5200.0,
-      "overloadDamageShare": 0.3795620437956204,
+      "overloadDamage": 3400.0,
+      "overloadDamageShare": 0.2786885245901639,
       "hpLifetimeDamage": 763700.0,
       "hpLifetimeTeamDamage": 2585800.0,
       "sndLifetimeDamage": 138000.0,
       "sndLifetimeTeamDamage": 462100.0,
-      "overloadLifetimeDamage": 449600.0,
-      "overloadLifetimeTeamDamage": 1467900.0
+      "overloadLifetimeDamage": 453000.0,
+      "overloadLifetimeTeamDamage": 1480100.0
     },
     "4": {
-      "elo": 1031.4843727736727,
-      "lifetimeKills": 6351,
-      "lifetimeDeaths": 3974,
+      "elo": 1030.0520783665575,
+      "lifetimeKills": 6385,
+      "lifetimeDeaths": 3999,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 3609,
       "hpDeaths": 2242,
       "sndKills": 611,
       "sndDeaths": 440,
-      "overloadKills": 2131,
-      "overloadDeaths": 1292,
+      "overloadKills": 2165,
+      "overloadDeaths": 1317,
       "hpWins": 48,
       "hpLosses": 41,
       "sndWins": 36,
       "sndLosses": 37,
       "overloadWins": 28,
-      "overloadLosses": 24,
+      "overloadLosses": 25,
       "seriesWins": 2,
       "seriesLosses": 0,
       "hpMarginTotal": 1.3649999999999998,
       "hpMarginCount": 89,
       "sndMarginTotal": -1.500000000000001,
       "sndMarginCount": 73,
-      "overloadMarginTotal": -0.875,
-      "overloadMarginCount": 52,
+      "overloadMarginTotal": -1.0,
+      "overloadMarginCount": 53,
       "hpDamage": 4700.0,
       "hpDamageShare": 0.2611111111111111,
       "sndDamage": 1100.0,
       "sndDamageShare": 0.3142857142857143,
-      "overloadDamage": 3700.0,
-      "overloadDamageShare": 0.2890625,
+      "overloadDamage": 3400.0,
+      "overloadDamageShare": 0.2556390977443609,
       "hpLifetimeDamage": 360900.0,
       "hpLifetimeTeamDamage": 1303500.0,
       "sndLifetimeDamage": 61100.0,
       "sndLifetimeTeamDamage": 230800.0,
-      "overloadLifetimeDamage": 213100.0,
-      "overloadLifetimeTeamDamage": 768400.0
+      "overloadLifetimeDamage": 216500.0,
+      "overloadLifetimeTeamDamage": 781700.0
     },
     "5": {
-      "elo": 1028.8387044254046,
-      "lifetimeKills": 13731,
-      "lifetimeDeaths": 8249,
+      "elo": 1029.7946275222764,
+      "lifetimeKills": 13760,
+      "lifetimeDeaths": 8277,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 8100,
       "hpDeaths": 4626,
       "sndKills": 1373,
       "sndDeaths": 927,
-      "overloadKills": 4258,
-      "overloadDeaths": 2696,
+      "overloadKills": 4287,
+      "overloadDeaths": 2724,
       "hpWins": 105,
       "hpLosses": 76,
       "sndWins": 61,
       "sndLosses": 83,
-      "overloadWins": 57,
+      "overloadWins": 58,
       "overloadLosses": 49,
       "seriesWins": 1,
       "seriesLosses": 0,
@@ -10487,20 +12100,20 @@
       "hpMarginCount": 181,
       "sndMarginTotal": -10.666666666666664,
       "sndMarginCount": 144,
-      "overloadMarginTotal": 3.625,
-      "overloadMarginCount": 106,
+      "overloadMarginTotal": 3.75,
+      "overloadMarginCount": 107,
       "hpDamage": 3400.0,
       "hpDamageShare": 0.21656050955414013,
       "sndDamage": 500.0,
       "sndDamageShare": 0.23809523809523808,
-      "overloadDamage": 4400.0,
-      "overloadDamageShare": 0.3697478991596639,
+      "overloadDamage": 2900.0,
+      "overloadDamageShare": 0.23770491803278687,
       "hpLifetimeDamage": 749900.0,
       "hpLifetimeTeamDamage": 2530900.0,
       "sndLifetimeDamage": 127500.0,
       "sndLifetimeTeamDamage": 427500.0,
-      "overloadLifetimeDamage": 393600.0,
-      "overloadLifetimeTeamDamage": 1381400.0
+      "overloadLifetimeDamage": 396500.0,
+      "overloadLifetimeTeamDamage": 1393600.0
     },
     "6": {
       "elo": 930.3399815822623,
@@ -10542,22 +12155,22 @@
       "overloadLifetimeTeamDamage": 1209700.0
     },
     "7": {
-      "elo": 923.0976862658472,
-      "lifetimeKills": 7978,
-      "lifetimeDeaths": 7067,
+      "elo": 924.5631944173936,
+      "lifetimeKills": 8008,
+      "lifetimeDeaths": 7091,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 4652,
       "hpDeaths": 4031,
       "sndKills": 814,
       "sndDeaths": 836,
-      "overloadKills": 2512,
-      "overloadDeaths": 2200,
+      "overloadKills": 2542,
+      "overloadDeaths": 2224,
       "hpWins": 76,
       "hpLosses": 65,
       "sndWins": 54,
       "sndLosses": 66,
-      "overloadWins": 45,
+      "overloadWins": 46,
       "overloadLosses": 39,
       "seriesWins": 0,
       "seriesLosses": 2,
@@ -10565,59 +12178,59 @@
       "hpMarginCount": 141,
       "sndMarginTotal": -5.833333333333333,
       "sndMarginCount": 120,
-      "overloadMarginTotal": 2.375,
-      "overloadMarginCount": 84,
+      "overloadMarginTotal": 2.5,
+      "overloadMarginCount": 85,
       "hpDamage": 3900.0,
       "hpDamageShare": 0.2484076433121019,
       "sndDamage": 200.0,
       "sndDamageShare": 0.09523809523809523,
-      "overloadDamage": 4400.0,
-      "overloadDamageShare": 0.2430939226519337,
+      "overloadDamage": 3000.0,
+      "overloadDamageShare": 0.2459016393442623,
       "hpLifetimeDamage": 453300.0,
       "hpLifetimeTeamDamage": 1998700.0,
       "sndLifetimeDamage": 79900.0,
       "sndLifetimeTeamDamage": 378600.0,
-      "overloadLifetimeDamage": 246100.0,
-      "overloadLifetimeTeamDamage": 1112300.0
+      "overloadLifetimeDamage": 249100.0,
+      "overloadLifetimeTeamDamage": 1124500.0
     },
     "8": {
-      "elo": 923.861889367216,
-      "lifetimeKills": 11265,
-      "lifetimeDeaths": 9585,
+      "elo": 922.771098185473,
+      "lifetimeKills": 11295,
+      "lifetimeDeaths": 9607,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 6496,
       "hpDeaths": 5468,
       "sndKills": 1142,
       "sndDeaths": 1097,
-      "overloadKills": 3627,
-      "overloadDeaths": 3020,
+      "overloadKills": 3657,
+      "overloadDeaths": 3042,
       "hpWins": 87,
       "hpLosses": 108,
       "sndWins": 80,
       "sndLosses": 77,
       "overloadWins": 53,
-      "overloadLosses": 60,
+      "overloadLosses": 61,
       "seriesWins": 2,
       "seriesLosses": 1,
       "hpMarginTotal": -7.217,
       "hpMarginCount": 195,
       "sndMarginTotal": 1.6666666666666672,
       "sndMarginCount": 157,
-      "overloadMarginTotal": 0.0,
-      "overloadMarginCount": 113,
+      "overloadMarginTotal": -0.125,
+      "overloadMarginCount": 114,
       "hpDamage": 5100.0,
       "hpDamageShare": 0.2833333333333333,
       "sndDamage": 1200.0,
       "sndDamageShare": 0.34285714285714286,
-      "overloadDamage": 3700.0,
-      "overloadDamageShare": 0.2890625,
+      "overloadDamage": 3000.0,
+      "overloadDamageShare": 0.22556390977443608,
       "hpLifetimeDamage": 613800.0,
       "hpLifetimeTeamDamage": 2679700.0,
       "sndLifetimeDamage": 108300.0,
       "sndLifetimeTeamDamage": 471500.0,
-      "overloadLifetimeDamage": 344800.0,
-      "overloadLifetimeTeamDamage": 1492100.0
+      "overloadLifetimeDamage": 347800.0,
+      "overloadLifetimeTeamDamage": 1505400.0
     },
     "9": {
       "elo": 1025.4934031895039,
@@ -10698,22 +12311,22 @@
       "overloadLifetimeTeamDamage": 1118600.0
     },
     "11": {
-      "elo": 874.3765145706146,
-      "lifetimeKills": 6230,
-      "lifetimeDeaths": 5651,
+      "elo": 875.8166930833777,
+      "lifetimeKills": 6259,
+      "lifetimeDeaths": 5679,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 3631,
       "hpDeaths": 3228,
       "sndKills": 604,
       "sndDeaths": 663,
-      "overloadKills": 1995,
-      "overloadDeaths": 1760,
+      "overloadKills": 2024,
+      "overloadDeaths": 1788,
       "hpWins": 74,
       "hpLosses": 53,
       "sndWins": 40,
       "sndLosses": 60,
-      "overloadWins": 42,
+      "overloadWins": 43,
       "overloadLosses": 32,
       "seriesWins": 0,
       "seriesLosses": 1,
@@ -10721,20 +12334,20 @@
       "hpMarginCount": 127,
       "sndMarginTotal": -11.166666666666666,
       "sndMarginCount": 100,
-      "overloadMarginTotal": 0.625,
-      "overloadMarginCount": 74,
+      "overloadMarginTotal": 0.75,
+      "overloadMarginCount": 75,
       "hpDamage": 3900.0,
       "hpDamageShare": 0.2484076433121019,
       "sndDamage": 600.0,
       "sndDamageShare": 0.18181818181818182,
-      "overloadDamage": 2000.0,
-      "overloadDamageShare": 0.15151515151515152,
+      "overloadDamage": 2900.0,
+      "overloadDamageShare": 0.23770491803278687,
       "hpLifetimeDamage": 337400.0,
       "hpLifetimeTeamDamage": 1717000.0,
       "sndLifetimeDamage": 55700.0,
       "sndLifetimeTeamDamage": 285200.0,
-      "overloadLifetimeDamage": 185000.0,
-      "overloadLifetimeTeamDamage": 949600.0
+      "overloadLifetimeDamage": 187900.0,
+      "overloadLifetimeTeamDamage": 961800.0
     },
     "12": {
       "elo": 909.1112722900717,
@@ -10893,44 +12506,44 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 887.3950109625873,
-      "lifetimeKills": 2469,
-      "lifetimeDeaths": 2119,
+      "elo": 886.1888055082092,
+      "lifetimeKills": 2493,
+      "lifetimeDeaths": 2144,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 1429,
       "hpDeaths": 1196,
       "sndKills": 232,
       "sndDeaths": 233,
-      "overloadKills": 808,
-      "overloadDeaths": 690,
+      "overloadKills": 832,
+      "overloadDeaths": 715,
       "hpWins": 19,
       "hpLosses": 26,
       "sndWins": 16,
       "sndLosses": 18,
       "overloadWins": 13,
-      "overloadLosses": 14,
+      "overloadLosses": 15,
       "seriesWins": 0,
       "seriesLosses": 0,
       "hpMarginTotal": -3.2499999999999996,
       "hpMarginCount": 45,
       "sndMarginTotal": -1.0000000000000004,
       "sndMarginCount": 34,
-      "overloadMarginTotal": 0.375,
-      "overloadMarginCount": 27,
+      "overloadMarginTotal": 0.25,
+      "overloadMarginCount": 28,
       "hpDamage": 3300.0,
       "hpDamageShare": 0.18333333333333332,
       "sndDamage": 1000.0,
       "sndDamageShare": 0.2857142857142857,
-      "overloadDamage": 2800.0,
-      "overloadDamageShare": 0.21875,
+      "overloadDamage": 2400.0,
+      "overloadDamageShare": 0.18045112781954886,
       "hpLifetimeDamage": 142900.0,
       "hpLifetimeTeamDamage": 659900.0,
       "sndLifetimeDamage": 23200.0,
       "sndLifetimeTeamDamage": 115600.0,
-      "overloadLifetimeDamage": 80800.0,
-      "overloadLifetimeTeamDamage": 395200.0
+      "overloadLifetimeDamage": 83200.0,
+      "overloadLifetimeTeamDamage": 408500.0
     }
   },
-  "updatedAt": "2026-10-12T16:41:44.352177600Z"
+  "updatedAt": "2026-10-12T17:11:14.616130500Z"
 }

@@ -9,9 +9,47 @@
     <link rel="preload" href="wings.png" as="image">
 
     <link rel="stylesheet" href="style.css">
+<style>
+#bootLoader{position:fixed;inset:0;z-index:2147483000;background:#0b0f14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#e8edf3;font-family:sans-serif;transition:opacity .45s}
+#bootLoader.done{opacity:0;pointer-events:none}
+#bootLoader .bl-title{font:800 22px/1 sans-serif;letter-spacing:.2em}
+#bootLoader .bl-bar{width:320px;max-width:70vw;height:6px;border-radius:3px;background:#1d2530;overflow:hidden}
+#bootLoader .bl-fill{height:100%;width:0;background:#39ff6a;box-shadow:0 0 12px #39ff6a;transition:width .25s}
+#bootLoader .bl-pct{font:700 13px/1 sans-serif;letter-spacing:.12em;color:#8a929e}
+</style>
 </head>
 
 <body>
+<div id="bootLoader"><div class="bl-title">LOADING</div><div class="bl-bar"><div class="bl-fill" id="blFill"></div></div><div class="bl-pct" id="blPct">0%</div></div>
+<script>
+/* Preloads the site's images, data and map history before it opens (progress counts files), then warms the intro videos in the background. */
+(function () {
+    var PRELOAD_VIDEOS_FIRST = false;   // set true to make the loading screen wait for the intro videos too
+    var imgs = ["wings.png","gun.png","hands.webp","CircleC.png","target.svg"];
+    ["colossus","den","exposure","express","frequency","fringe","gridlock","hacienda","raid","sake","scar"].forEach(function (n) { imgs.push("maps/" + n + ".webp"); });
+    for (var i = 1; i <= 16; i++) imgs.push("cards/" + i + "_back.webp");
+    var videos = [1,2,3,4,5,6,7,8,9,10,11,12,15,16].map(function (n) { return "cards/" + n + "_intro.mp4"; });
+    var data = ["current_stats.json","previous_stats.json","previous_stats_monthly_tab.json","history/index.json"];
+    var total = imgs.length + data.length, done = 0, finished = false;   // the history index and its day files count as one step
+    var fill = document.getElementById("blFill"), pct = document.getElementById("blPct"), box = document.getElementById("bootLoader");
+    function tick() { done++; var p = Math.min(100, Math.round(done / total * 100)); fill.style.width = p + "%"; pct.textContent = p + "%"; if (done >= total) finish(); }
+    function finish() {
+        if (finished) return; finished = true;
+        box.classList.add("done"); setTimeout(function () { box.remove(); }, 600);
+        if (!PRELOAD_VIDEOS_FIRST) videos.reduce(function (chain, u) { return chain.then(function () { return fetch(u, { priority: "low" }).then(function (r) { return r.arrayBuffer(); }).catch(function () {}); }); }, Promise.resolve());   // one at a time, low priority, so they never crowd out the site
+    }
+    imgs.forEach(function (src) { var im = new Image(); im.onload = im.onerror = tick; im.src = src; });
+    data.forEach(function (u) {
+        fetch(u).then(function (r) { return u === "history/index.json" ? r.json() : r.arrayBuffer(); }).then(function (j) {
+            if (u !== "history/index.json") return;
+            var days = (j.days || j || []);
+            var all = days.map(function (d) { return fetch("history/" + (d.file || d.date + ".json")).then(function (r) { return r.arrayBuffer(); }).catch(function () {}); });
+            if (PRELOAD_VIDEOS_FIRST) all = all.concat(videos.map(function (u2) { return fetch(u2).then(function (r) { return r.arrayBuffer(); }).catch(function () {}); }));
+            Promise.all(all).then(tick);
+        }).catch(function () { if (u === "history/index.json") tick(); }).then(function () { if (u !== "history/index.json") tick(); });
+    });
+})();
+</script>
 
 <h1 id="pageTitle">LEADERBOARD</h1>
 

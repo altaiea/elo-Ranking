@@ -748,11 +748,11 @@ function floatLayout(box) {
     const boxCenter = box.offsetTop + box.offsetHeight / 2;
     const ty = cardCenter - boxCenter, sc = 0.7 * s;
     const pose = (dy, rz, rx, ry) =>
-        `perspective(1100px) translateY(${ty + dy * s}px) scale(${sc}) rotateZ(${rz}deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        `translateY(${ty + dy * s}px) perspective(1100px) scale(${sc}) rotateZ(${rz}deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
     // After the card has turned over it keeps levitating above the hands, upright and a touch larger.
     const tyUp = imgTop + 0.325 * handsH - boxCenter, scUp = 0.82 * s;
     const up = (dy, rz, ry) =>
-        `perspective(1100px) translateY(${tyUp + dy * s}px) scale(${scUp}) rotateZ(${rz}deg) rotateX(0deg) rotateY(${ry}deg)`;
+        `translateY(${tyUp + dy * s}px) perspective(1100px) scale(${scUp}) rotateZ(${rz}deg) rotateX(0deg) rotateY(${ry}deg)`;
     return { handsW, imgTop, a: pose(-9, -1, 19, -3), b: pose(9, 1, 15, 3), ua: up(-10, -1.2, -3), ub: up(10, 1.2, 3) };
 }
 

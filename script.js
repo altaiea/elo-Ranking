@@ -2321,9 +2321,130 @@ function teamStatsHtml(t) {
 const LINEUP_SPOTS = [[50, 19], [16, 47], [84, 47], [50, 75]];
 const LINEUP_LINES = [[0, 1], [0, 2], [1, 3], [2, 3], [0, 3], [1, 2]];   // every card is joined to every other
 
+/* ======================================================
+   PLAYER CHEMISTRY (colours the lineup links)
+   For every pair that has played on the same team: win rate together,
+   nudged toward 50% for small samples, ranked against all other pairs
+   and turned into a 57-99 rating (same idea as the mode ratings).
+   Pairs with fewer than CHEM_MIN_GAMES maps stay grey.
+====================================================== */
+const CHEM_MIN_GAMES = 10;     // maps together before a pair gets a colour
+const CHEM_SHRINK = 10;        // pulls small samples toward 50 %
+let chemData = null, chemPromise = null;
+
+const chemKey = (a, b) => a < b ? `${a}-${b}` : `${b}-${a}`;
+const chemBand = r => r < 65 ? "red" : r < 80 ? "amber" : r < 95 ? "green" : "purple";
+
+function chemBuild(days) {
+    const seen = new Set(), pairs = new Map();
+    days.forEach(day => (day.maps || []).forEach(m => {
+        if (!m || seen.has(m.mapId)) return;
+        seen.add(m.mapId);
+        const win = m.game && m.game.result && m.game.result.winningTeam;
+        if (win !== 1 && win !== 2) return;
+        [["A", 1], ["B", 2]].forEach(([k, w]) => {
+            const ids = ((m.game.teams || {})[k] || []).map(p => Number(p.playerId));
+            for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+                const key = chemKey(ids[i], ids[j]);
+                const e = pairs.get(key) || { ids: [ids[i], ids[j]], games: 0, wins: 0 };
+                e.games++; if (win === w) e.wins++;
+                pairs.set(key, e);
+            }
+        });
+    }));
+    const list = [...pairs.values()].filter(e => e.games >= CHEM_MIN_GAMES);
+    list.forEach(e => { e.value = (e.wins + 0.5 * CHEM_SHRINK) / (e.games + CHEM_SHRINK); });
+    const pool = list.filter(e => !e.ids.some(id => INACTIVE_PLAYER_IDS.has(id))).map(e => e.value);
+    list.forEach(e => { e.rating = Math.round(57 + 42 * percentile(e.value, pool)); e.band = chemBand(e.rating); });
+    const out = new Map();
+    list.forEach(e => out.set(chemKey(e.ids[0], e.ids[1]), e));
+    return out;
+}
+
+function chemEnsure() {
+    if (chemData) return Promise.resolve(chemData);
+    if (!chemPromise) {
+        chemPromise = (async () => {
+            const index = await loadHistoryIndexForMonthly();
+            const days = await Promise.all(index.map(loadHistoryDayForMonthly));
+            chemData = chemBuild(days);
+            return chemData;
+        })().catch(err => { chemPromise = null; throw err; });
+    }
+    return chemPromise;
+}
+
+// each link runs between the middles of the two card edges that face each other
+function lineupEdges() {
+    document.querySelectorAll("#popupContent .lineup-board").forEach(board => {
+        const card = board.querySelector(".lineup-card");
+        if (!card || !board.offsetHeight) return;
+        const hw = card.offsetWidth / 2 / board.offsetWidth * 100, hh = card.offsetHeight / 2 / board.offsetHeight * 100;
+        // which edge of card i faces card j: T/B/L/R
+        const EDGE = { "0-1": "LT", "0-2": "RT", "1-3": "BL", "2-3": "BR", "0-3": "BT", "1-2": "RL" };
+        const pt = (i, e) => [LINEUP_SPOTS[i][0] + (e === "L" ? -hw : e === "R" ? hw : 0), LINEUP_SPOTS[i][1] + (e === "T" ? -hh : e === "B" ? hh : 0)];
+        board.querySelectorAll(".lineup-lines line[data-i]").forEach(ln => {
+            const i = +ln.dataset.i, j = +ln.dataset.j, e = EDGE[i + "-" + j];
+            const [x1, y1] = pt(i, e[0]), [x2, y2] = pt(j, e[1]);
+            ln.setAttribute("x1", x1); ln.setAttribute("y1", y1); ln.setAttribute("x2", x2); ln.setAttribute("y2", y2);
+        });
+    });
+}
+
+// paints every link, fills each badge (hidden until its link is clicked) and the team Chem figure
+function chemApply() {
+    document.querySelectorAll("#popupContent .lineup-team").forEach(team => {
+        const ratings = [];
+        team.querySelectorAll(".lineup-lines line[data-a]").forEach(ln => {
+            const info = chemData && chemData.get(chemKey(+ln.dataset.a, +ln.dataset.b));
+            ["chem-loading", "chem-none", "chem-red", "chem-amber", "chem-green", "chem-purple"].forEach(k => ln.classList.remove(k));
+            ln.classList.add(info ? "chem-" + info.band : "chem-none");
+            if (info) ratings.push(info.rating);
+            const badge = team.querySelector(`.chem-badge[data-a="${ln.dataset.a}"][data-b="${ln.dataset.b}"]`);
+            if (badge) {
+                const shown = badge.classList.contains("show"), opened = badge.classList.contains("open");
+                badge.className = "chem-badge" + (info ? " chem-" + info.band : " chem-none") + (shown ? " show" : "") + (opened ? " open" : "");
+                badge.innerHTML = info ? `${info.rating}<small>${info.wins}-${info.games - info.wins}</small>` : "\u2013";
+            }
+        });
+        const num = team.querySelector(".chem-team");
+        if (num) {
+            if (ratings.length >= 3) {
+                const avg = Math.round(ratings.reduce((x, y) => x + y, 0) / ratings.length);
+                num.textContent = avg; num.style.color = { red: "#ff4d4d", amber: "#ffb020", green: "#39ff6a", purple: "#A855F7" }[chemBand(avg)];
+            } else { num.innerHTML = "&ndash;"; num.style.color = ""; }
+        }
+    });
+}
+
+// click a link to show its number; only one is open at a time, click it again or click away to close
+document.addEventListener("click", e => {
+    const bd = e.target.closest && e.target.closest("#popupContent .chem-badge");
+    if (bd) { if (bd.querySelector("small")) bd.classList.toggle("open"); return; }   // click the number to see the win-loss
+    const ln = e.target.closest && e.target.closest("#popupContent .lineup-lines line");
+    const board = ln && ln.closest(".lineup-board");
+    const a = ln && (ln.dataset.a || ln.dataset.pa), b = ln && (ln.dataset.b || ln.dataset.pb);
+    const badge = board && board.parentNode.parentNode.querySelector(`.chem-badge[data-a="${a}"][data-b="${b}"]`);
+    const wasOpen = badge && badge.classList.contains("show");
+    document.querySelectorAll("#popupContent .chem-badge.show").forEach(el => el.classList.remove("show", "open"));
+    document.querySelectorAll("#popupContent .lineup-lines line.sel").forEach(el => el.classList.remove("sel"));
+    if (!badge || wasOpen) return;
+    const x = (+ln.getAttribute("x1") + +ln.getAttribute("x2")) / 2, y = (+ln.getAttribute("y1") + +ln.getAttribute("y2")) / 2;
+    badge.style.left = x + "%"; badge.style.top = y + "%";
+    badge.classList.add("show");
+    board.querySelectorAll(`.lineup-lines line[data-a="${a}"][data-b="${b}"]`).forEach(el => el.classList.add("sel"));
+});
+
 function teamLineupBlock(label, team, avg, prob, cls) {
     const lines = LINEUP_LINES.map(([a, b]) =>
-        `<line x1="${LINEUP_SPOTS[a][0]}" y1="${LINEUP_SPOTS[a][1]}" x2="${LINEUP_SPOTS[b][0]}" y2="${LINEUP_SPOTS[b][1]}"></line>`).join("");
+        `<line class="chem-loading" data-i="${a}" data-j="${b}" data-a="${team[a].id}" data-b="${team[b].id}" x1="${LINEUP_SPOTS[a][0]}" y1="${LINEUP_SPOTS[a][1]}" x2="${LINEUP_SPOTS[b][0]}" y2="${LINEUP_SPOTS[b][1]}"></line>`).join("");
+    const hits = LINEUP_LINES.map(([a, b]) =>
+        `<line class="chem-hit" data-i="${a}" data-j="${b}" data-pa="${team[a].id}" data-pb="${team[b].id}" x1="${LINEUP_SPOTS[a][0]}" y1="${LINEUP_SPOTS[a][1]}" x2="${LINEUP_SPOTS[b][0]}" y2="${LINEUP_SPOTS[b][1]}"></line>`).join("");
+    const badges = LINEUP_LINES.map(([a, b], i) => {
+        const t = (a === 0 && b === 3) ? 0.3 : 0.5;   // the two long diagonals cross in the middle, so one badge moves up
+        const x = LINEUP_SPOTS[a][0] + (LINEUP_SPOTS[b][0] - LINEUP_SPOTS[a][0]) * t, y = LINEUP_SPOTS[a][1] + (LINEUP_SPOTS[b][1] - LINEUP_SPOTS[a][1]) * t;
+        return `<span class="chem-badge" data-i="${a}" data-j="${b}" data-a="${team[a].id}" data-b="${team[b].id}" style="left:${x}%; top:${y}%;"></span>`;
+    }).join("");
     const cards = team.map((p, i) => `
         <div class="lineup-card" style="left:${LINEUP_SPOTS[i][0]}%; top:${LINEUP_SPOTS[i][1]}%;">
             <img src="cards/${p.id}_back.webp" alt="${p.name}" title="${p.name}" loading="eager" decoding="async">
@@ -2334,12 +2455,14 @@ function teamLineupBlock(label, team, avg, prob, cls) {
         <div class="lineup-team ${cls}">
             <div class="lineup-title">${label}</div>
             <div class="lineup-board">
-                <svg class="lineup-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>
+                <svg class="lineup-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}${hits}</svg>
+                ${badges}
                 ${cards}
             </div>
             <div class="lineup-stats">
                 <div><span class="lineup-num">${avg.toFixed(1)}</span><span class="lineup-cap">Avg Elo</span></div>
                 <div><span class="lineup-num">${(prob * 100).toFixed(1)}%</span><span class="lineup-cap">Win</span></div>
+                <div><span class="lineup-num chem-team">&ndash;</span><span class="lineup-cap">Chem</span></div>
             </div>
         </div>`;
 }
@@ -2575,6 +2698,7 @@ function initTabs() {
             else if (target === "mapsPage")          title.textContent = "MAPS";
             else if (target === "carouselPage")      title.textContent = "CARDS";
 
+            if (target === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Teams opens
             if (target === "carouselPage" && !wasShown && window.__cardsIntro) window.__cardsIntro();
         });
     });
@@ -3778,7 +3902,9 @@ function setupMapBuilder() {
     const _showPopup = showPopup;
     showPopup = function (html) {
         _showPopup(html);
+        try { lineupEdges(); } catch (e) { console.error(e); }
         try { playLineupFx(); } catch (e) { console.error(e); }
+        if (document.querySelector("#popupContent .lineup-wrap")) chemEnsure().then(chemApply).catch(() => chemApply());
     };
 
     /* ---------- MAPS ---------- */
@@ -3859,7 +3985,7 @@ function setupMapBuilder() {
         const teams = [...wrap.querySelectorAll(".lineup-team")];
         const cards = ORDER.map(([ti, i]) => teams[ti].querySelectorAll(".lineup-card")[i]);
         const bb = btn.getBoundingClientRect(), target = { x: bb.left + bb.width / 2, y: bb.top + bb.height / 2 };
-        wrap.querySelectorAll(".lineup-name, .lineup-stats, .lineup-lines, .lineup-title").forEach(el =>
+        wrap.querySelectorAll(".lineup-name, .lineup-stats, .lineup-lines, .lineup-title, .chem-badge").forEach(el =>
             el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: "forwards" }));
         const dur = 600, stag = 80, t0 = 200, shrink = .12;
         cards.slice().reverse().forEach((c, n) => {

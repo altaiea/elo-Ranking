@@ -2488,7 +2488,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .lineup-stats { display: flex; justify-content: center; gap: 16px; margin-top: 6px; }
 .lineup-stats > div { display: flex; flex-direction: column; align-items: center; line-height: 1.15; }
 .lineup-num { color: #fff; font-size: 18px; font-weight: 700; }
-.lineup-fav .lineup-stats > div:last-child .lineup-num { color: #39ff6a; }
+.lineup-fav .lineup-stats > div:nth-child(2) .lineup-num { color: #39ff6a; }
 .lineup-cap { color: #8fb7c2; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
 @media (max-width: 520px) { .popup-card { width: auto; max-width: calc(100vw - 20px); box-sizing: border-box; padding: 18px 12px; } .lineup-wrap { gap: 6px; } .lineup-num { font-size: 15px; } .lineup-stats { gap: 10px; } }
 
@@ -2626,3 +2626,28 @@ html { -webkit-text-size-adjust: 100%; }
     linear-gradient(rgba(0,0,0,.0), rgba(0,0,0,.25)),
     repeating-linear-gradient(91deg, rgba(0,0,0,.30) 0 2px, transparent 2px 9px, rgba(255,255,255,.035) 9px 10px, transparent 10px 23px),
     linear-gradient(#140b06, #0d0704); }
+
+/* ---- player chemistry: link colour + number ---- */
+.lineup-lines line.chem-loading, .lineup-lines line.chem-none { stroke: #8a929e; opacity: 0.45; filter: none; }
+.lineup-lines line.chem-red    { stroke: #ff4d4d; filter: drop-shadow(0 0 3px rgba(255,77,77,0.8)); }
+.lineup-lines line.chem-amber  { stroke: #ffb020; filter: drop-shadow(0 0 3px rgba(255,176,32,0.8)); }
+.lineup-lines line.chem-green  { stroke: #39ff6a; filter: drop-shadow(0 0 3px rgba(57,255,106,0.8)); }
+.lineup-lines line.chem-purple { stroke: #A855F7; opacity: 1; filter: drop-shadow(0 0 4px rgba(168,85,247,0.95)); }
+.lineup-lines line.chem-hit { stroke: transparent; stroke-width: 16; opacity: 1; filter: none; pointer-events: stroke; cursor: pointer; }
+.lineup-lines line.sel { stroke-width: 3; opacity: 1; }
+.chem-badge { display: none; position: absolute; z-index: 9; transform: translate(-50%, -50%); padding: 2px 6px; border-radius: 9px; text-align: center; font: 700 9px/1.1 system-ui, sans-serif; background: rgba(8,12,18,0.94); border: 1px solid currentColor; cursor: pointer; white-space: nowrap; }
+.chem-badge.show { display: block; animation: chemPulse 1.3s ease-in-out infinite; }
+.chem-badge.open { animation: none; }
+.chem-badge small { display: none; font: 500 8px/1.3 system-ui, sans-serif; color: #b8c0cc; margin-top: 1px; }
+.chem-badge.open small { display: block; }
+.chem-badge.chem-none { cursor: default; animation: none; }
+@keyframes chemPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 currentColor; }
+    50%      { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 9px 1px currentColor; }
+}
+@media (prefers-reduced-motion: reduce) { .chem-badge.show { animation: none; } }
+.chem-badge.chem-red    { color: #ff4d4d; }
+.chem-badge.chem-amber  { color: #ffb020; }
+.chem-badge.chem-green  { color: #39ff6a; }
+.chem-badge.chem-purple { color: #A855F7; box-shadow: 0 0 8px rgba(168,85,247,0.6); }
+.chem-badge.chem-none   { color: #8a929e; }

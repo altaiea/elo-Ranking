@@ -2532,3 +2532,21 @@ html { -webkit-text-size-adjust: 100%; }
     .final-head-to-head { flex-direction: column; align-items: center; }
     .final-head-to-head strong { font-size: 20px; }
 }
+
+/* Player card: hovering on a corner until tapped */
+.modal-content.modal-enter { animation: none; }
+.modal-content.floating-card { cursor: pointer; }
+.modal-content.awaiting-tap .front { animation: frontPulse 1.5s ease-in-out infinite; }
+@keyframes frontPulse {
+    0%, 100% { box-shadow: 0 0 40px rgb(9 136 191), 0 0 20px rgba(161, 15, 224, 0.4); }
+    50%      { box-shadow: 0 0 85px 16px rgba(0, 234, 255, 0.95), 0 0 36px 6px rgba(161, 15, 224, 0.75); }
+}
+#cardHands { position: fixed; left: 50%; max-width: none; height: auto; pointer-events: none; user-select: none; display: none; z-index: -1; }
+#playerModal { background: rgba(0,0,0,0.86); }
+
+/* Player card: no grey panel behind the card, so it truly looks like the card itself is flipping.
+   The cyan frame moves onto the card faces so it turns over with the card. */
+#playerModal .modal-content { background: transparent; border-color: transparent; box-shadow: none; }
+#playerModal .card .front, #playerModal .card .back { outline: 2px solid #00eaff; outline-offset: 2px; border-radius: 3px; }
+#playerModal .card .front { filter: drop-shadow(0 0 9px rgba(0, 255, 255, 0.45)); }
+#playerModal .card .back  { filter: drop-shadow(0 0 9px rgba(0, 255, 255, 0.45)); }

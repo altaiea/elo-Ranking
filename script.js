@@ -3553,6 +3553,15 @@ function setupMapBuilder() {
 
         // ---- 2. dress the scene
         wrap.classList.add("scene");
+        // static firing-range backdrop: flat full-body targets behind the table (not part of the camera move)
+        const bdrop = document.createElement("div"); bdrop.className = "fx-backdrop";
+        bdrop.innerHTML = "<div class='bd-in'>" + [[17, -1, .3], [50, -3, .33], [83, -1, .3]].map(([x, y, k]) =>
+            `<div class="rm-stand bd-t" style="left:${x}%;top:${y}%;transform:translateX(-50%) scale(${k})"><i class='rs-glow'></i><i class='rs-cable'></i><i class='rs-carrier'></i><i class='rs-board'></i><i class='rs-win a'></i><i class='rs-win b'></i><i class='rs-paper'></i><i class='rs-clip a'></i><i class='rs-clip b'></i></div>`).join("") + "</div>";
+        popup.insertBefore(bdrop, popup.firstChild);
+        window.__lineupBackdrop = bdrop;
+        // the table carries on past its front edge, so the edge nearest the camera never shows
+        const tableExt = document.createElement("div"); tableExt.className = "fx-tableext"; wrap.insertBefore(tableExt, wrap.firstChild);
+        { const g = document.createElement("img"); g.src = "gun.png"; g.className = "lineup-gun"; g.alt = ""; g.draggable = false; wrap.appendChild(g); }
         const vig = document.createElement("div"); vig.className = "fx-vignette"; wrap.appendChild(vig);
         const grain = document.createElement("div"); grain.className = "fx-grain"; popup.appendChild(grain);
         const barT = document.createElement("div"), barB = document.createElement("div");
@@ -3574,6 +3583,7 @@ function setupMapBuilder() {
         const RISE = lastFlip + 120, RISE_DUR = 1700;
         const done = RISE + RISE_DUR;
         window.__lineupDone = done;
+        bdrop.animate([{ opacity: 1 }, { opacity: 1, offset: 0.97 }, { opacity: 0 }], { duration: done + 500, fill: "forwards" }).onfinish = () => bdrop.remove();
 
         // ---- 3. camera: wide shot -> follows the dealt card -> stays on it while it turns -> pulls back out -> next card
         wrap.style.transformOrigin = "50% 55%";
@@ -3592,6 +3602,20 @@ function setupMapBuilder() {
         const N = 300, dt = done / N, alpha = 1 - Math.exp(-dt / 95);
         let fx = 0, fy = 0, gz = 0;
         const camKeys = [];
+        const bdKeys = [], bdIn = bdrop.firstChild;
+        // projection helpers: how the table looks (tilt = far edge width / near edge width, and where its far edge sits) for a given camera
+        const CW = wrap.offsetWidth, CH = wrap.offsetHeight;
+        const project = (ty, tx, rx, sc) => {
+            const m = new DOMMatrix(); m.m34 = -1 / 900;
+            m.translateSelf(tx, ty, 0); m.rotateAxisAngleSelf(1, 0, 0, rx); m.scaleSelf(sc, sc, 1);
+            const P = (x, y) => { const q = m.transformPoint(new DOMPoint(x, y, 0, 1)); return [q.x / q.w, q.y / q.w]; };
+            const tl = P(-CW / 2, -CH * .55), tr = P(CW / 2, -CH * .55), bl = P(-CW / 2, CH * .45), br = P(CW / 2, CH * .45);
+            return { ratio: (tr[0] - tl[0]) / (br[0] - bl[0]), top: (tl[1] + tr[1]) / 2 };
+        };
+        const pr0 = popup.getBoundingClientRect();
+        const boardBottom = Math.min(...[...bdrop.querySelectorAll(".rs-board")].map(e => e.getBoundingClientRect().bottom)) - pr0.top;
+        const bdOy = bdrop.offsetHeight * 0.3;
+        const wideTop = project(66, 0, 57, 0.84).top;
         for (let i = 0; i <= N; i++) {
             const ms = done * i / N;
             let tx_ = 0, ty_ = 0, zt = 0;                       // target focus and target zoom (0 = wide, 1 = on the card)
@@ -3611,22 +3635,36 @@ function setupMapBuilder() {
             fx += (tx_ - fx) * alpha; fy += (ty_ - fy) * alpha;
             gz += (zt - gz) * (1 - Math.exp(-dt / 140));
             const g = ms < RISE ? gz : gz * Math.max(0, 1 - (ms - RISE) / 450);
-            let ty, tx, rx, rz, ry, sc;
+            let ty, tx, rx, rz, ry, sc, ce = 0;
             if (ms <= RISE) {
                 const t = ms / RISE;
-                ty = lerp(8, 4, t); tx = lerp(-6, 6, t); rx = lerp(52, 50, t); rz = lerp(-3, -2, t); sc = lerp(1.0, 1.03, t); ry = 0;
+                ty = lerp(66, 58, t); tx = 0; rx = lerp(57, 55, t); rz = 0; sc = lerp(0.84, 0.90, t); ry = 0;
             } else {
-                const u = (ms - RISE) / RISE_DUR, e = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
-                ty = lerp(4, 0, e); tx = lerp(6, 0, e); rx = lerp(50, 0, e); rz = lerp(-2, 0, e); sc = lerp(1.03, 1, e); ry = 0;
+                const u = (ms - RISE) / RISE_DUR, e = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; ce = e;
+                ty = lerp(58, 0, e); tx = 0; rx = lerp(55, 0, e); rz = 0; sc = lerp(0.90, 1, e); ry = 0;
             }
-            sc += .30 * g;
+            const b0 = { ty, tx, rx, sc };
+            sc += .25 * g;
             tx += -fx * HW * .78 * g;
             ty += -fy * HH * .55 * g;
-            ry += fx * 8 * g;
-            rz += fx * 2.2 * g;
-            rx += -fy * 3 * g;
+            
+            
+            
+            // hold the table's apparent tilt while following: solve for the pitch that gives the same far/near ratio as the un-followed shot
+            const refP = project(b0.ty, b0.tx, b0.rx, b0.sc);
+            if (g > 0.0005) {
+                let lo = rx - 14, hi = rx + 14;
+                for (let it = 0; it < 14; it++) { const mid = (lo + hi) / 2; if (project(ty, tx, mid, sc).ratio > refP.ratio) lo = mid; else hi = mid; }
+                rx = (lo + hi) / 2;
+            }
+            const curP = project(ty, tx, rx, sc);
+            { const bs = 1 + (sc - 0.84) * 0.45;
+              const bx = tx * 0.32, by = (curP.top - wideTop) - ce * 300 - (bs - 1) * (boardBottom - bdOy);
+              bdKeys.push({ transform: i === N ? "translate(0px, -300px) scale(1)" : `translate(${bx.toFixed(2)}px, ${by.toFixed(2)}px) scale(${bs.toFixed(4)})`, offset: i / N }); }
             camKeys.push({ transform: i === N ? "none" : `perspective(900px) translateY(${ty.toFixed(2)}px) translateX(${tx.toFixed(2)}px) rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg) rotateZ(${rz.toFixed(3)}deg) scale(${sc.toFixed(4)})`, offset: i / N });
         }
+        bdIn.animate(bdKeys, { duration: done, easing: "linear", fill: "both" });
+        tableExt.animate([{ opacity: 1 }, { opacity: 1, offset: RISE / done }, { opacity: 0, offset: Math.min(1, (RISE + RISE_DUR * 0.55) / done) }, { opacity: 0 }], { duration: done, fill: "forwards" });
         wrap.animate(camKeys, { duration: done, easing: "linear", fill: "backwards" }).onfinish = () => { wrap.style.transformOrigin = ""; };
 
         vig.animate([{ opacity: 1 }, { opacity: 1, offset: RISE / done }, { opacity: .35 }], { duration: done, fill: "forwards" });

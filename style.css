@@ -2591,3 +2591,38 @@ html { -webkit-text-size-adjust: 100%; }
 .fx-close { position: absolute; top: 8px; right: 14px; z-index: 12; cursor: pointer; border: 0; background: none; padding: 0; }
 .fx-mini { display: block; width: 38px; height: 54px; border-radius: 5px; border: 2px solid #00eaff; background: url('wings.png') center/cover, #07131a; box-shadow: 0 0 12px rgba(0,234,255,.6), 0 4px 8px rgba(0,0,0,.6); transform: rotate(8deg); transition: transform .2s; }
 .fx-close:hover .fx-mini { transform: rotate(0deg) scale(1.08); }
+
+/* ---- pistol prop on the table ---- */
+.lineup-gun { position: absolute; left: 50%; top: 6%; width: 21%; transform: translateX(-50%) rotate(-6deg); z-index: 0; pointer-events: none;
+  filter: drop-shadow(5px 9px 7px rgba(0,0,0,.65)); }
+
+/* ---- static firing-range backdrop ---- */
+.fx-backdrop { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; border-radius: 10px; background: #020203; }
+.fx-backdrop .bd-t { position: absolute; width: 700px; height: 830px; transform-origin: 50% 0; }
+.bd-floor { display: none; }
+.popup-card.lineup-cine #popupContent { position: relative; z-index: 1; }
+.rm-stand i { position: absolute; display: block; }
+.rs-cable { left: 50%; width: 6px; margin-left: -3px; top: 0; height: 120px; background: linear-gradient(90deg, #555, #222); }
+.rs-carrier { left: 50%; width: 150px; margin-left: -75px; top: 100px; height: 96px; background: linear-gradient(#34383d, #121416); border-radius: 10px 10px 36px 36px; box-shadow: 0 8px 14px rgba(0,0,0,.6); }
+.rs-carrier::after { content: ""; position: absolute; left: 18px; right: 18px; bottom: 12px; height: 14px; border-radius: 7px; background: #2a62c9; }
+.rs-board { left: 50%; width: 390px; margin-left: -195px; top: 190px; height: 620px; background: linear-gradient(90deg, #cfd1d3, #f2f3f4 12%, #f6f7f8 88%, #c8cacc);
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 100% 0, 76% 0, 50% -0px, 24% 0); box-shadow: 0 10px 22px rgba(0,0,0,.6); }
+.rs-win { top: 250px; width: 78px; height: 48px; background: #17191c; box-shadow: inset 0 4px 8px rgba(0,0,0,.8); }
+.rs-win.a { left: 50%; margin-left: -150px; } .rs-win.b { left: 50%; margin-left: 72px; }
+.rs-paper { top: 318px; left: 50%; width: 330px; height: 474px; margin-left: -165px; background: url('target.svg') center/100% 100%; box-shadow: 0 6px 12px rgba(0,0,0,.45); }
+.rs-clip { top: 308px; width: 38px; height: 16px; background: linear-gradient(#aeb3b8, #4f5459); border-radius: 3px; box-shadow: 0 3px 5px rgba(0,0,0,.6); }
+.rs-clip.a { left: 50%; margin-left: -140px; } .rs-clip.b { left: 50%; margin-left: 102px; }
+.rs-glow { top: 120px; left: -120px; right: -120px; bottom: 80px; background: radial-gradient(ellipse at 50% 42%, rgba(255,240,205,.34), transparent 62%); }
+
+.fx-backdrop .bd-in { position: absolute; inset: 0; transform-origin: 50% 30%; will-change: transform; }
+
+/* faint pool of light on the floor under the table, so it reads as standing on something */
+.fx-backdrop::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -12%; height: 52%;
+  background: radial-gradient(ellipse at 50% 38%, rgba(255,214,160,.17), rgba(255,200,140,.06) 45%, transparent 70%); }
+
+/* table carries on past its near edge */
+.fx-tableext { position: absolute; left: 0; right: 0; top: calc(100% - 2px); height: 900px; pointer-events: none;
+  background:
+    linear-gradient(rgba(0,0,0,.0), rgba(0,0,0,.25)),
+    repeating-linear-gradient(91deg, rgba(0,0,0,.30) 0 2px, transparent 2px 9px, rgba(255,255,255,.035) 9px 10px, transparent 10px 23px),
+    linear-gradient(#140b06, #0d0704); }

@@ -2651,3 +2651,92 @@ html { -webkit-text-size-adjust: 100%; }
 .chem-badge.chem-green  { color: #39ff6a; }
 .chem-badge.chem-purple { color: #A855F7; box-shadow: 0 0 8px rgba(168,85,247,0.6); }
 .chem-badge.chem-none   { color: #8a929e; }
+/* ============================
+   DUO NETWORK (History tab)
+============================ */
+.dn-box { width: 90%; margin: 0 auto 18px; }
+.dn-toggle { width: auto; background: #15151a; border: 1px solid #00eaff; border-radius: 6px; color: #00eaff; padding: 9px 14px; display: inline-flex; align-items: center; gap: 12px; cursor: pointer; font: inherit; text-align: left; transition: 0.2s; }
+.dn-toggle span { font-size: 15px; font-weight: 800; letter-spacing: .08em; }
+.dn-toggle b { font-size: 14px; transition: transform .25s; }
+.dn-toggle:hover { background: #00eaff; color: #000; }
+.dn-box.open .dn-toggle b { transform: rotate(180deg); }
+.dn-body { display: none; background: #101014; border: 1px solid #00eaff44; border-radius: 8px; padding: 16px; margin-top: 10px; }
+.dn-box.open .dn-body { display: block; }
+.dn-loading { text-align: center; color: #8a929e; padding: 40px; }
+
+.dn-controls { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; }
+.dn-play, .dn-all { background: transparent; color: #00eaff; border: 1px solid #00eaff; border-radius: 6px; padding: 9px 14px; font: 700 13px/1 'Segoe UI', sans-serif; letter-spacing: .1em; cursor: pointer; white-space: nowrap; }
+.dn-play:hover, .dn-all:hover { background: #00eaff; color: #000; }
+.dn-range { flex: 1; }
+.dn-range-labels { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; color: #e6e6e6; margin-bottom: 6px; }
+.dn-track { position: relative; height: 22px; }
+.dn-track::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 4px; background: #262a33; border-radius: 2px; }
+.dn-fill { position: absolute; top: 9px; height: 4px; background: #00eaff; border-radius: 2px; box-shadow: 0 0 10px #00eaff88; }
+.dn-track input { position: absolute; left: 0; width: 100%; top: 0; margin: 0; height: 22px; background: none; -webkit-appearance: none; appearance: none; pointer-events: none; }
+.dn-track input::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 18px; height: 18px; border-radius: 50%; background: #0d0d0f; border: 3px solid #00eaff; cursor: grab; box-shadow: 0 0 8px #00eaff88; }
+.dn-track input::-moz-range-thumb { pointer-events: auto; width: 12px; height: 12px; border-radius: 50%; background: #0d0d0f; border: 3px solid #00eaff; cursor: grab; }
+.dn-track input::-webkit-slider-runnable-track { background: none; }
+.dn-min { color: #8a929e; font-size: 13px; white-space: nowrap; }
+.dn-min select { background: #15151a; color: #e6e6e6; border: 1px solid #333; border-radius: 4px; padding: 4px 6px; font: inherit; }
+
+.dn-main { display: flex; gap: 16px; align-items: flex-start; }
+.dn-stage { position: relative; flex: 0 0 600px; }
+.dn-svg { width: 600px; height: 582px; display: block; }
+.dn-edge { transition: stroke-width .55s ease, stroke .55s ease, opacity .55s ease; stroke-opacity: 1; }
+.dn-hit { stroke: transparent; stroke-width: 14px; cursor: pointer; pointer-events: none; }
+.dn-selpath { stroke: #39ff6a; stroke-width: 7px; stroke-dasharray: 2 11; stroke-linecap: round; opacity: 0; transition: opacity .3s; filter: drop-shadow(0 0 6px #39ff6a); pointer-events: none; animation: dnMarch 1.2s linear infinite; }
+@keyframes dnMarch { to { stroke-dashoffset: -26; } }
+.dn-ring { fill: none; stroke: #00eaff; }
+.dn-node { cursor: pointer; transition: opacity .3s; }
+.dn-nhit { fill: transparent; }
+.dn-dot { fill: #e8edf3; stroke: #0d0d0f; stroke-width: 3; transition: fill .25s; }
+.dn-name { fill: #e6e6e6; font: 800 15px 'Segoe UI', sans-serif; letter-spacing: .06em; transition: fill .25s; pointer-events: none; }
+.dn-node:hover .dn-dot { fill: #00eaff; }
+.dn-node.sel .dn-dot { fill: #39ff6a; filter: drop-shadow(0 0 7px #39ff6a); }
+.dn-node.sel .dn-name { fill: #39ff6a; }
+.dn-node.faded { opacity: .35; }
+.dn-tip { position: absolute; display: none; pointer-events: none; background: #0d0d0f; border: 1px solid #00eaff; border-radius: 6px; padding: 8px 11px; font-size: 14px; color: #e6e6e6; line-height: 1.4; z-index: 4; white-space: nowrap; }
+.dn-tip b { color: #00eaff; letter-spacing: .06em; }
+
+.dn-side { flex: 1; min-width: 0; }
+.dn-card { background: #15151a; border: 1px solid #262a33; border-radius: 10px; padding: 16px 18px; position: relative; }
+.dn-duo { border-color: #39ff6a66; box-shadow: 0 0 0 1px #39ff6a22 inset; }
+.dn-kicker { font-size: 12px; letter-spacing: .14em; color: #6f7b8b; font-weight: 700; }
+.dn-title { font-size: 22px; font-weight: 800; letter-spacing: .06em; margin: 4px 0 10px; color: #f2f5f9; }
+.dn-title span { color: #39ff6a; }
+.dn-hint { font-size: 14px; color: #a9b3c1; line-height: 1.45; }
+.dn-big { display: flex; gap: 8px; margin-bottom: 12px; }
+.dn-big > div { flex: 1 1 0; min-width: 0; background: #0d0d0f; border-radius: 8px; padding: 9px 2px; text-align: center; }
+.dn-big b { display: block; font-size: 21px; color: #39ff6a; line-height: 1.1; }
+.dn-big small { font-size: 10px; letter-spacing: .06em; color: #8a929e; text-transform: uppercase; }
+.dn-modes { display: flex; gap: 8px; }
+.dn-mode { flex: 1; display: flex; flex-direction: column; align-items: center; background: #0d0d0f; border-radius: 8px; padding: 7px 4px; }
+.dn-mode span { font-size: 11px; letter-spacing: .12em; color: #8a929e; font-weight: 700; }
+.dn-mode b { font-size: 20px; color: #e6e6e6; } .dn-mode i { font-style: normal; font-size: 12px; color: #a9b3c1; }
+.dn-note { margin-top: 12px; font-size: 13px; color: #a9b3c1; }
+  .dn-clear { position: static; display: block; margin: 14px 0 0 auto; background: transparent; color: #00eaff; border: 1px solid #00eaff55; border-radius: 5px; padding: 4px 9px; font: 700 11px/1 'Segoe UI', sans-serif; letter-spacing: .1em; cursor: pointer; }
+.dn-clear:hover { background: #00eaff; color: #000; }
+.dn-lh { display: grid; grid-template-columns: 76px 30px 1fr 42px; gap: 6px; padding: 10px 4px 4px; font-size: 10px; letter-spacing: .12em; color: #6f7b8b; font-weight: 700; }
+.dn-lh span:nth-child(2), .dn-lh span:nth-child(3), .dn-lh span:nth-child(4) { text-align: right; }
+.dn-list { margin-top: 0; max-height: 420px; overflow-y: auto; overflow-x: hidden; }
+.dn-row { display: grid; grid-template-columns: 76px 30px 1fr 42px; gap: 6px; align-items: center; padding: 5px 4px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.dn-row:hover { background: #1d2230; }
+.dn-row.faint { opacity: .45; }
+.dn-rn { font-weight: 800; letter-spacing: .05em; font-size: 13px; }
+.dn-rg { color: #e6e6e6; font-weight: 700; text-align: right; } .dn-rr { text-align: right; color: #a9b3c1; font-size: 12px; white-space: nowrap; } .dn-rw { text-align: right; font-weight: 800; }
+.dn-ul { list-style: none; padding: 0; margin: 6px 0 0; }
+.dn-ul li { display: flex; justify-content: space-between; gap: 6px; padding: 4px 6px; border-radius: 6px; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.dn-ul li:hover { background: #1d2230; }
+.dn-ul li i { font-style: normal; color: #a9b3c1; font-size: 12px; }
+
+/* history grouped into weeks */
+.history-week { margin: 10px 0; }
+.history-week-head { width: 100%; background: #15151a; padding: 15px 18px; border: 1px solid #00eaff; border-radius: 6px; cursor: pointer; color: #00eaff; transition: 0.2s; display: flex; align-items: center; gap: 14px; font: inherit; text-align: left; }
+.history-week-head:hover { background: #00eaff; color: #000; }
+.history-week-chev { font-size: 14px; transition: transform .25s; }
+.history-week.open .history-week-chev { transform: rotate(90deg); }
+.history-week-title { font-size: 18px; font-weight: 800; flex: 1; }
+.history-week-meta { font-size: 14px; font-weight: 700; opacity: .85; }
+.history-week-days { display: none; margin: 0 0 4px 22px; padding-left: 14px; border-left: 2px solid #00eaff55; }
+.history-week.open .history-week-days { display: block; }
+.history-week-days .history-entry { margin: 8px 0; }

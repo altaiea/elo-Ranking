@@ -1,6 +1,11 @@
 {
   "days": [
     {
+      "date": "2026-10-20",
+      "file": "2026-10-20.json",
+      "mapCount": 5
+    },
+    {
       "date": "2026-10-19",
       "file": "2026-10-19.json",
       "mapCount": 5

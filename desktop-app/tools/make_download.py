@@ -16,8 +16,7 @@ APP = Path(__file__).resolve().parents[1]
 REPO = APP.parent
 SKIP_PARTS = {".venv", "__pycache__", ".pytest_cache", "dist", "models", ".git", ".idea"}
 SKIP_NAMES = {"upload-config.json"}
-SITE_FILES = ("index.html", "script.js", "style.css", "landing.js", "CircleC.png", "gun.png", "hands.webp",
-              "target.svg", "wings.png")
+SITE_SUFFIXES = {".html", ".js", ".css", ".png", ".webp", ".svg", ".jpg", ".ico"}
 SITE_FOLDERS = ("cards", "maps", "game", "assets", "css", "js")
 SEED_FILES = ("current_stats.json", "previous_stats.json")
 
@@ -38,9 +37,9 @@ def main() -> None:
             if relative.parts[0] in ("site", "seed-data"):
                 continue
             add(zf, path, f"{top}/{relative.as_posix()}")
-        for name in SITE_FILES:
-            if (REPO / name).is_file():
-                add(zf, REPO / name, f"{top}/site/{name}")
+        for path in sorted(REPO.iterdir()):
+            if path.is_file() and path.suffix.lower() in SITE_SUFFIXES:
+                add(zf, path, f"{top}/site/{path.name}")
         for folder in SITE_FOLDERS:
             for path in sorted((REPO / folder).rglob("*")) if (REPO / folder).is_dir() else []:
                 if path.is_file() and path.suffix.lower() != ".mp4":

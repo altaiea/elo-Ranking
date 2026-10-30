@@ -324,6 +324,9 @@ function buildCalculationTrace(trace) {
     addLine(summary, "After map margin", recorded("Base after margin"), { signed: true });
     addLine(summary, "KD adjustment", recorded("KD adjustment"), { signed: true });
     addLine(summary, "Damage adjustment", recorded("Damage adjustment"), { signed: true });
+    // Recorded from Elo rules version 2 onwards; older maps simply skip these lines.
+    addLine(summary, "Winner guard scale", recorded("Winner guard scale"));
+    addLine(summary, "Leak share", recorded("Leak share"), { signed: true });
     // The published change is authoritative: display it rather than recomputing from rounded components.
     addLine(summary, "Total Elo change", trace?.change, { signed: true, final: true });
     addLine(summary, "Updated Elo", trace?.after, { elo: true, final: true });
@@ -380,7 +383,7 @@ function buildCalculationTrace(trace) {
         resultLabel.textContent = "Result";
         const resultValue = document.createElement("strong");
         resultValue.textContent = formatTraceValue(step?.result);
-        if (["Base Elo", "Base after margin", "KD adjustment", "Damage adjustment", "Final change"].includes(step?.name)) {
+        if (["Base Elo", "Base after margin", "KD adjustment", "Damage adjustment", "Leak share", "Final change"].includes(step?.name)) {
             resultValue.classList.add(valueClass(step?.result));
         }
         result.append(resultLabel, resultValue);

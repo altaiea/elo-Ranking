@@ -1,0 +1,5 @@
+numpy<2.4
+opencv-python>=4.10,<5
+paddlepaddle>=3.2,<4
+paddleocr>=3.3,<4
+pytest>=8,<10

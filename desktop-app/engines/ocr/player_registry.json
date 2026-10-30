@@ -1,0 +1,92 @@
+{
+  "players": {
+    "1": {
+      "name": "Nessy",
+      "codName": "Obey"
+    },
+    "2": {
+      "name": "Kal",
+      "codName": "kazzi11",
+      "aliases": [
+        "Kazzie"
+      ]
+    },
+    "3": {
+      "name": "Bilal",
+      "codName": "symbrrr"
+    },
+    "4": {
+      "name": "Ees",
+      "codName": "itzees"
+    },
+    "5": {
+      "name": "Abdul",
+      "codName": "nagi"
+    },
+    "6": {
+      "name": "Akeeb",
+      "codName": "kahmunrah"
+    },
+    "7": {
+      "name": "Usmaan",
+      "codName": "Rehman dakait"
+    },
+    "8": {
+      "name": "Amaan",
+      "codName": "Putin be Shootin"
+    },
+    "9": {
+      "name": "Parvez",
+      "codName": "CR7",
+      "aliases": [
+        "CRT",
+        "CR?",
+        "CRZ",
+        "CR1",
+        "C R 7"
+      ]
+    },
+    "10": {
+      "name": "Hazza",
+      "codName": "Hazza"
+    },
+    "11": {
+      "name": "Haideri",
+      "codName": "Toji Fushiguro"
+    },
+    "12": {
+      "name": "Nabeel",
+      "codName": "Darren Cann",
+      "aliases": [
+        "Clive Bixby"
+      ]
+    },
+    "13": {
+      "name": "Safy",
+      "codName": "safy_apex"
+    },
+    "14": {
+      "name": "Maseeh",
+      "codName": "Thiago",
+      "aliases": [
+        "maseeh"
+      ]
+    },
+    "15": {
+      "name": "Zak",
+      "codName": "zu",
+      "aliases": [
+        "2U",
+        "7U",
+        "ZV",
+        "2V",
+        "Z0",
+        "TU"
+      ]
+    },
+    "16": {
+      "name": "Sion",
+      "codName": "iShxdows"
+    }
+  }
+}

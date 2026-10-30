@@ -1,0 +1,1 @@
+"""Structured COD scoreboard recognition."""

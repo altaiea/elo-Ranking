@@ -1,7 +1,7 @@
 {
   "players": {
     "1": {
-      "elo": 1042.9632587434419,
+      "elo": 1049.0482799581039,
       "lifetimeKills": 15017,
       "lifetimeDeaths": 9238,
       "mapKills": 0,
@@ -40,7 +40,7 @@
       "overloadLifetimeTeamDamage": 1531800.0
     },
     "2": {
-      "elo": 1062.4672921562067,
+      "elo": 1067.6941324094626,
       "lifetimeKills": 11485,
       "lifetimeDeaths": 7081,
       "mapKills": 0,
@@ -79,7 +79,7 @@
       "overloadLifetimeTeamDamage": 1202100.0
     },
     "3": {
-      "elo": 1113.10522642919,
+      "elo": 1114.6718671216477,
       "lifetimeKills": 14225,
       "lifetimeDeaths": 8011,
       "mapKills": 0,
@@ -157,7 +157,7 @@
       "overloadLifetimeTeamDamage": 755600.0
     },
     "5": {
-      "elo": 1039.9591006478654,
+      "elo": 1040.4169685761622,
       "lifetimeKills": 13550,
       "lifetimeDeaths": 8125,
       "mapKills": 0,
@@ -196,7 +196,7 @@
       "overloadLifetimeTeamDamage": 1369500.0
     },
     "6": {
-      "elo": 926.5347456471355,
+      "elo": 925.5308407122899,
       "lifetimeKills": 9207,
       "lifetimeDeaths": 6848,
       "mapKills": 0,
@@ -235,7 +235,7 @@
       "overloadLifetimeTeamDamage": 1139500.0
     },
     "7": {
-      "elo": 918.7100940123865,
+      "elo": 927.1951165125481,
       "lifetimeKills": 7706,
       "lifetimeDeaths": 6837,
       "mapKills": 0,
@@ -313,7 +313,7 @@
       "overloadLifetimeTeamDamage": 1397200.0
     },
     "9": {
-      "elo": 1033.10702667065,
+      "elo": 1038.4530011163142,
       "lifetimeKills": 11599,
       "lifetimeDeaths": 9135,
       "mapKills": 0,
@@ -430,7 +430,7 @@
       "overloadLifetimeTeamDamage": 912400.0
     },
     "12": {
-      "elo": 904.0975547425027,
+      "elo": 903.7905638890014,
       "lifetimeKills": 10163,
       "lifetimeDeaths": 9382,
       "mapKills": 0,

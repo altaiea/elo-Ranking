@@ -2,7 +2,7 @@
   "date": "2026-10-24",
   "openingStats": {
     "1": {
-      "elo": 1108.5145712633155,
+      "elo": 1114.5995924779775,
       "lifetimeKills": 16830,
       "lifetimeDeaths": 10333,
       "mapKills": 0,
@@ -41,7 +41,7 @@
       "overloadLifetimeTeamDamage": 1729800.0
     },
     "2": {
-      "elo": 1107.4322735368055,
+      "elo": 1113.4478713922554,
       "lifetimeKills": 14445,
       "lifetimeDeaths": 8902,
       "mapKills": 0,
@@ -80,7 +80,7 @@
       "overloadLifetimeTeamDamage": 1514100.0
     },
     "3": {
-      "elo": 1103.14656421005,
+      "elo": 1103.9458035176172,
       "lifetimeKills": 15467,
       "lifetimeDeaths": 8725,
       "mapKills": 0,
@@ -119,7 +119,7 @@
       "overloadLifetimeTeamDamage": 1591300.0
     },
     "4": {
-      "elo": 1065.336676195353,
+      "elo": 1065.4521789146315,
       "lifetimeKills": 7498,
       "lifetimeDeaths": 4643,
       "mapKills": 0,
@@ -158,7 +158,7 @@
       "overloadLifetimeTeamDamage": 904600.0
     },
     "5": {
-      "elo": 1088.0428828136648,
+      "elo": 1088.3889269754059,
       "lifetimeKills": 15648,
       "lifetimeDeaths": 9438,
       "mapKills": 0,
@@ -197,7 +197,7 @@
       "overloadLifetimeTeamDamage": 1605900.0
     },
     "6": {
-      "elo": 1005.4629931486684,
+      "elo": 1004.2497590207521,
       "lifetimeKills": 10552,
       "lifetimeDeaths": 7840,
       "mapKills": 0,
@@ -236,7 +236,7 @@
       "overloadLifetimeTeamDamage": 1310900.0
     },
     "7": {
-      "elo": 948.7058534664554,
+      "elo": 957.190875966617,
       "lifetimeKills": 8706,
       "lifetimeDeaths": 7641,
       "mapKills": 0,
@@ -275,7 +275,7 @@
       "overloadLifetimeTeamDamage": 1220200.0
     },
     "8": {
-      "elo": 912.9408251977469,
+      "elo": 913.5273093745595,
       "lifetimeKills": 12522,
       "lifetimeDeaths": 10725,
       "mapKills": 0,
@@ -314,7 +314,7 @@
       "overloadLifetimeTeamDamage": 1686300.0
     },
     "9": {
-      "elo": 1059.8767359111525,
+      "elo": 1065.5984331997822,
       "lifetimeKills": 13489,
       "lifetimeDeaths": 10616,
       "mapKills": 0,
@@ -431,7 +431,7 @@
       "overloadLifetimeTeamDamage": 1099800.0
     },
     "12": {
-      "elo": 959.3920048520922,
+      "elo": 960.6337815502247,
       "lifetimeKills": 11838,
       "lifetimeDeaths": 10817,
       "mapKills": 0,
@@ -696,26 +696,26 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1107.4322735368055,
+          "before": 1113.4478713922554,
           "change": 1.2595677712927227,
-          "after": 1108.6918413080982,
+          "after": 1114.707439163548,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Overload",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 1107.4322735368055,
+            "before": 1113.4478713922554,
             "change": 1.2595677712928053,
-            "after": 1108.6918413080982,
+            "after": 1114.707439163548,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1107.4322735368055
+                  "elo": 1113.4478713922554
                 },
-                "result": 1107.4322735368055
+                "result": 1113.4478713922554
               },
               {
                 "name": "Opponent average Elo",
@@ -879,36 +879,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1107.4322735368055,
+                  "startingElo": 1113.4478713922554,
                   "finalChange": 1.2595677712928053
                 },
-                "result": 1108.6918413080982
+                "result": 1114.707439163548
               }
             ]
           }
         },
         {
           "playerId": 5,
-          "before": 1088.0428828136648,
+          "before": 1088.3889269754059,
           "change": 1.193777380396341,
-          "after": 1089.2366601940612,
+          "after": 1089.5827043558022,
           "calculationTrace": {
             "playerId": 5,
             "mode": "Overload",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 1088.0428828136648,
+            "before": 1088.3889269754059,
             "change": 1.19377738039629,
-            "after": 1089.2366601940612,
+            "after": 1089.5827043558022,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1088.0428828136648
+                  "elo": 1088.3889269754059
                 },
-                "result": 1088.0428828136648
+                "result": 1088.3889269754059
               },
               {
                 "name": "Opponent average Elo",
@@ -1072,36 +1072,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1088.0428828136648,
+                  "startingElo": 1088.3889269754059,
                   "finalChange": 1.19377738039629
                 },
-                "result": 1089.2366601940612
+                "result": 1089.5827043558022
               }
             ]
           }
         },
         {
           "playerId": 8,
-          "before": 912.9408251977469,
+          "before": 913.5273093745595,
           "change": 1.3314048791708046,
-          "after": 914.2722300769177,
+          "after": 914.8587142537303,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 912.9408251977469,
+            "before": 913.5273093745595,
             "change": 1.331404879170799,
-            "after": 914.2722300769177,
+            "after": 914.8587142537303,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 912.9408251977469
+                  "elo": 913.5273093745595
                 },
-                "result": 912.9408251977469
+                "result": 913.5273093745595
               },
               {
                 "name": "Opponent average Elo",
@@ -1265,36 +1265,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 912.9408251977469,
+                  "startingElo": 913.5273093745595,
                   "finalChange": 1.331404879170799
                 },
-                "result": 914.2722300769177
+                "result": 914.8587142537303
               }
             ]
           }
         },
         {
           "playerId": 12,
-          "before": 959.3920048520922,
+          "before": 960.6337815502247,
           "change": 0.9087076508960763,
-          "after": 960.3007125029883,
+          "after": 961.5424892011208,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 959.3920048520922,
+            "before": 960.6337815502247,
             "change": 0.9087076508961098,
-            "after": 960.3007125029883,
+            "after": 961.5424892011208,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 959.3920048520922
+                  "elo": 960.6337815502247
                 },
-                "result": 959.3920048520922
+                "result": 960.6337815502247
               },
               {
                 "name": "Opponent average Elo",
@@ -1458,36 +1458,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 959.3920048520922,
+                  "startingElo": 960.6337815502247,
                   "finalChange": 0.9087076508961098
                 },
-                "result": 960.3007125029883
+                "result": 961.5424892011208
               }
             ]
           }
         },
         {
           "playerId": 3,
-          "before": 1103.14656421005,
+          "before": 1103.9458035176172,
           "change": -0.756378308255762,
-          "after": 1102.3901859017942,
+          "after": 1103.1894252093614,
           "calculationTrace": {
             "playerId": 3,
             "mode": "Overload",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 1103.14656421005,
+            "before": 1103.9458035176172,
             "change": -0.7563783082557403,
-            "after": 1102.3901859017942,
+            "after": 1103.1894252093614,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1103.14656421005
+                  "elo": 1103.9458035176172
                 },
-                "result": 1103.14656421005
+                "result": 1103.9458035176172
               },
               {
                 "name": "Opponent average Elo",
@@ -1651,36 +1651,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1103.14656421005,
+                  "startingElo": 1103.9458035176172,
                   "finalChange": -0.7563783082557403
                 },
-                "result": 1102.3901859017942
+                "result": 1103.1894252093614
               }
             ]
           }
         },
         {
           "playerId": 7,
-          "before": 948.7058534664554,
+          "before": 957.190875966617,
           "change": -1.2016651727429917,
-          "after": 947.5041882937124,
+          "after": 955.989210793874,
           "calculationTrace": {
             "playerId": 7,
             "mode": "Overload",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 948.7058534664554,
+            "before": 957.190875966617,
             "change": -1.2016651727430117,
-            "after": 947.5041882937124,
+            "after": 955.989210793874,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 948.7058534664554
+                  "elo": 957.190875966617
                 },
-                "result": 948.7058534664554
+                "result": 957.190875966617
               },
               {
                 "name": "Opponent average Elo",
@@ -1844,36 +1844,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 948.7058534664554,
+                  "startingElo": 957.190875966617,
                   "finalChange": -1.2016651727430117
                 },
-                "result": 947.5041882937124
+                "result": 955.989210793874
               }
             ]
           }
         },
         {
           "playerId": 9,
-          "before": 1059.8767359111525,
+          "before": 1065.5984331997822,
           "change": -1.7380003634923469,
-          "after": 1058.1387355476602,
+          "after": 1063.8604328362899,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Overload",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.125,
-            "before": 1059.8767359111525,
+            "before": 1065.5984331997822,
             "change": -1.7380003634922578,
-            "after": 1058.1387355476602,
+            "after": 1063.8604328362899,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1059.8767359111525
+                  "elo": 1065.5984331997822
                 },
-                "result": 1059.8767359111525
+                "result": 1065.5984331997822
               },
               {
                 "name": "Opponent average Elo",
@@ -2037,10 +2037,10 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1059.8767359111525,
+                  "startingElo": 1065.5984331997822,
                   "finalChange": -1.7380003634922578
                 },
-                "result": 1058.1387355476602
+                "result": 1063.8604328362899
               }
             ]
           }
@@ -2309,26 +2309,26 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1108.6918413080982,
+          "before": 1114.707439163548,
           "change": 3.579399977592857,
-          "after": 1112.271241285691,
+          "after": 1118.286839141141,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 1108.6918413080982,
+            "before": 1114.707439163548,
             "change": 3.579399977592788,
-            "after": 1112.271241285691,
+            "after": 1118.286839141141,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1108.6918413080982
+                  "elo": 1114.707439163548
                 },
-                "result": 1108.6918413080982
+                "result": 1114.707439163548
               },
               {
                 "name": "Opponent average Elo",
@@ -2492,36 +2492,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1108.6918413080982,
+                  "startingElo": 1114.707439163548,
                   "finalChange": 3.579399977592788
                 },
-                "result": 1112.271241285691
+                "result": 1118.286839141141
               }
             ]
           }
         },
         {
           "playerId": 5,
-          "before": 1089.2366601940612,
+          "before": 1089.5827043558022,
           "change": 5.826915197392282,
-          "after": 1095.0635753914535,
+          "after": 1095.4096195531945,
           "calculationTrace": {
             "playerId": 5,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 1089.2366601940612,
+            "before": 1089.5827043558022,
             "change": 5.826915197392376,
-            "after": 1095.0635753914535,
+            "after": 1095.4096195531945,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1089.2366601940612
+                  "elo": 1089.5827043558022
                 },
-                "result": 1089.2366601940612
+                "result": 1089.5827043558022
               },
               {
                 "name": "Opponent average Elo",
@@ -2685,36 +2685,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1089.2366601940612,
+                  "startingElo": 1089.5827043558022,
                   "finalChange": 5.826915197392376
                 },
-                "result": 1095.0635753914535
+                "result": 1095.4096195531945
               }
             ]
           }
         },
         {
           "playerId": 8,
-          "before": 914.2722300769177,
+          "before": 914.8587142537303,
           "change": 6.4770382341492905,
-          "after": 920.749268311067,
+          "after": 921.3357524878796,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 914.2722300769177,
+            "before": 914.8587142537303,
             "change": 6.477038234149235,
-            "after": 920.749268311067,
+            "after": 921.3357524878796,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 914.2722300769177
+                  "elo": 914.8587142537303
                 },
-                "result": 914.2722300769177
+                "result": 914.8587142537303
               },
               {
                 "name": "Opponent average Elo",
@@ -2878,36 +2878,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 914.2722300769177,
+                  "startingElo": 914.8587142537303,
                   "finalChange": 6.477038234149235
                 },
-                "result": 920.749268311067
+                "result": 921.3357524878796
               }
             ]
           }
         },
         {
           "playerId": 12,
-          "before": 960.3007125029883,
+          "before": 961.5424892011208,
           "change": 3.173454839689839,
-          "after": 963.4741673426781,
+          "after": 964.7159440408107,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 960.3007125029883,
+            "before": 961.5424892011208,
             "change": 3.173454839689876,
-            "after": 963.4741673426781,
+            "after": 964.7159440408107,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 960.3007125029883
+                  "elo": 961.5424892011208
                 },
-                "result": 960.3007125029883
+                "result": 961.5424892011208
               },
               {
                 "name": "Opponent average Elo",
@@ -3071,36 +3071,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 960.3007125029883,
+                  "startingElo": 961.5424892011208,
                   "finalChange": 3.173454839689876
                 },
-                "result": 963.4741673426781
+                "result": 964.7159440408107
               }
             ]
           }
         },
         {
           "playerId": 3,
-          "before": 1102.3901859017942,
+          "before": 1103.1894252093614,
           "change": -3.913656689110212,
-          "after": 1098.476529212684,
+          "after": 1099.2757685202512,
           "calculationTrace": {
             "playerId": 3,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 1102.3901859017942,
+            "before": 1103.1894252093614,
             "change": -3.913656689110299,
-            "after": 1098.476529212684,
+            "after": 1099.2757685202512,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1102.3901859017942
+                  "elo": 1103.1894252093614
                 },
-                "result": 1102.3901859017942
+                "result": 1103.1894252093614
               },
               {
                 "name": "Opponent average Elo",
@@ -3264,36 +3264,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1102.3901859017942,
+                  "startingElo": 1103.1894252093614,
                   "finalChange": -3.913656689110299
                 },
-                "result": 1098.476529212684
+                "result": 1099.2757685202512
               }
             ]
           }
         },
         {
           "playerId": 7,
-          "before": 947.5041882937124,
+          "before": 955.989210793874,
           "change": -4.4968224097242455,
-          "after": 943.0073658839882,
+          "after": 951.4923883841498,
           "calculationTrace": {
             "playerId": 7,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 947.5041882937124,
+            "before": 955.989210793874,
             "change": -4.496822409724301,
-            "after": 943.0073658839882,
+            "after": 951.4923883841498,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 947.5041882937124
+                  "elo": 955.989210793874
                 },
-                "result": 947.5041882937124
+                "result": 955.989210793874
               },
               {
                 "name": "Opponent average Elo",
@@ -3457,36 +3457,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 947.5041882937124,
+                  "startingElo": 955.989210793874,
                   "finalChange": -4.496822409724301
                 },
-                "result": 943.0073658839882
+                "result": 951.4923883841498
               }
             ]
           }
         },
         {
           "playerId": 9,
-          "before": 1058.1387355476602,
+          "before": 1063.8604328362899,
           "change": -5.294898356641625,
-          "after": 1052.8438371910186,
+          "after": 1058.5655344796482,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.5,
-            "before": 1058.1387355476602,
+            "before": 1063.8604328362899,
             "change": -5.294898356641651,
-            "after": 1052.8438371910186,
+            "after": 1058.5655344796482,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1058.1387355476602
+                  "elo": 1063.8604328362899
                 },
-                "result": 1058.1387355476602
+                "result": 1063.8604328362899
               },
               {
                 "name": "Opponent average Elo",
@@ -3650,10 +3650,10 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1058.1387355476602,
+                  "startingElo": 1063.8604328362899,
                   "finalChange": -5.294898356641651
                 },
-                "result": 1052.8438371910186
+                "result": 1058.5655344796482
               }
             ]
           }
@@ -3922,26 +3922,26 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1112.271241285691,
+          "before": 1118.286839141141,
           "change": 1.304793081551452,
-          "after": 1113.5760343672425,
+          "after": 1119.5916322226924,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 1112.271241285691,
+            "before": 1118.286839141141,
             "change": 1.3047930815514075,
-            "after": 1113.5760343672425,
+            "after": 1119.5916322226924,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1112.271241285691
+                  "elo": 1118.286839141141
                 },
-                "result": 1112.271241285691
+                "result": 1118.286839141141
               },
               {
                 "name": "Opponent average Elo",
@@ -4105,36 +4105,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1112.271241285691,
+                  "startingElo": 1118.286839141141,
                   "finalChange": 1.3047930815514075
                 },
-                "result": 1113.5760343672425
+                "result": 1119.5916322226924
               }
             ]
           }
         },
         {
           "playerId": 5,
-          "before": 1095.0635753914535,
+          "before": 1095.4096195531945,
           "change": 1.42971121378946,
-          "after": 1096.493286605243,
+          "after": 1096.839330766984,
           "calculationTrace": {
             "playerId": 5,
             "mode": "Hardpoint",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 1095.0635753914535,
+            "before": 1095.4096195531945,
             "change": 1.4297112137894232,
-            "after": 1096.493286605243,
+            "after": 1096.839330766984,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1095.0635753914535
+                  "elo": 1095.4096195531945
                 },
-                "result": 1095.0635753914535
+                "result": 1095.4096195531945
               },
               {
                 "name": "Opponent average Elo",
@@ -4298,36 +4298,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1095.0635753914535,
+                  "startingElo": 1095.4096195531945,
                   "finalChange": 1.4297112137894232
                 },
-                "result": 1096.493286605243
+                "result": 1096.839330766984
               }
             ]
           }
         },
         {
           "playerId": 8,
-          "before": 920.749268311067,
+          "before": 921.3357524878796,
           "change": 1.454396031013971,
-          "after": 922.203664342081,
+          "after": 922.7901485188936,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 920.749268311067,
+            "before": 921.3357524878796,
             "change": 1.4543960310139534,
-            "after": 922.203664342081,
+            "after": 922.7901485188936,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 920.749268311067
+                  "elo": 921.3357524878796
                 },
-                "result": 920.749268311067
+                "result": 921.3357524878796
               },
               {
                 "name": "Opponent average Elo",
@@ -4491,36 +4491,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 920.749268311067,
+                  "startingElo": 921.3357524878796,
                   "finalChange": 1.4543960310139534
                 },
-                "result": 922.203664342081
+                "result": 922.7901485188936
               }
             ]
           }
         },
         {
           "playerId": 12,
-          "before": 963.4741673426781,
+          "before": 964.7159440408107,
           "change": 1.5240069877564792,
-          "after": 964.9981743304346,
+          "after": 966.2399510285671,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
             "teamWon": true,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 963.4741673426781,
+            "before": 964.7159440408107,
             "change": 1.52400698775647,
-            "after": 964.9981743304346,
+            "after": 966.2399510285671,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 963.4741673426781
+                  "elo": 964.7159440408107
                 },
-                "result": 963.4741673426781
+                "result": 964.7159440408107
               },
               {
                 "name": "Opponent average Elo",
@@ -4684,36 +4684,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 963.4741673426781,
+                  "startingElo": 964.7159440408107,
                   "finalChange": 1.52400698775647
                 },
-                "result": 964.9981743304346
+                "result": 966.2399510285671
               }
             ]
           }
         },
         {
           "playerId": 3,
-          "before": 1098.476529212684,
+          "before": 1099.2757685202512,
           "change": -0.983259001449369,
-          "after": 1097.4932702112346,
+          "after": 1098.2925095188018,
           "calculationTrace": {
             "playerId": 3,
             "mode": "Hardpoint",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 1098.476529212684,
+            "before": 1099.2757685202512,
             "change": -0.9832590014494701,
-            "after": 1097.4932702112346,
+            "after": 1098.2925095188018,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1098.476529212684
+                  "elo": 1099.2757685202512
                 },
-                "result": 1098.476529212684
+                "result": 1099.2757685202512
               },
               {
                 "name": "Opponent average Elo",
@@ -4877,36 +4877,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1098.476529212684,
+                  "startingElo": 1099.2757685202512,
                   "finalChange": -0.9832590014494701
                 },
-                "result": 1097.4932702112346
+                "result": 1098.2925095188018
               }
             ]
           }
         },
         {
           "playerId": 7,
-          "before": 943.0073658839882,
+          "before": 951.4923883841498,
           "change": -1.2769251258133636,
-          "after": 941.7304407581748,
+          "after": 950.2154632583364,
           "calculationTrace": {
             "playerId": 7,
             "mode": "Hardpoint",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 943.0073658839882,
+            "before": 951.4923883841498,
             "change": -1.2769251258133296,
-            "after": 941.7304407581748,
+            "after": 950.2154632583364,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 943.0073658839882
+                  "elo": 951.4923883841498
                 },
-                "result": 943.0073658839882
+                "result": 951.4923883841498
               },
               {
                 "name": "Opponent average Elo",
@@ -5070,36 +5070,36 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 943.0073658839882,
+                  "startingElo": 951.4923883841498,
                   "finalChange": -1.2769251258133296
                 },
-                "result": 941.7304407581748
+                "result": 950.2154632583364
               }
             ]
           }
         },
         {
           "playerId": 9,
-          "before": 1052.8438371910186,
+          "before": 1058.5655344796482,
           "change": -2.126083218174017,
-          "after": 1050.7177539728445,
+          "after": 1056.4394512614742,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
             "teamWon": false,
             "teamSize": 4,
             "scoreDifferenceMargin": 0.155,
-            "before": 1052.8438371910186,
+            "before": 1058.5655344796482,
             "change": -2.1260832181740916,
-            "after": 1050.7177539728445,
+            "after": 1056.4394512614742,
             "steps": [
               {
                 "name": "Starting Elo",
                 "formula": "Existing player Elo",
                 "inputs": {
-                  "elo": 1052.8438371910186
+                  "elo": 1058.5655344796482
                 },
-                "result": 1052.8438371910186
+                "result": 1058.5655344796482
               },
               {
                 "name": "Opponent average Elo",
@@ -5263,10 +5263,10 @@
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
-                  "startingElo": 1052.8438371910186,
+                  "startingElo": 1058.5655344796482,
                   "finalChange": -2.1260832181740916
                 },
-                "result": 1050.7177539728445
+                "result": 1056.4394512614742
               }
             ]
           }
@@ -5469,7 +5469,7 @@
   ],
   "closingStats": {
     "1": {
-      "elo": 1108.5145712633155,
+      "elo": 1114.5995924779775,
       "lifetimeKills": 16830,
       "lifetimeDeaths": 10333,
       "mapKills": 0,
@@ -5508,7 +5508,7 @@
       "overloadLifetimeTeamDamage": 1729800.0
     },
     "2": {
-      "elo": 1113.5760343672425,
+      "elo": 1119.5916322226924,
       "lifetimeKills": 14544,
       "lifetimeDeaths": 8959,
       "mapKills": 0,
@@ -5547,7 +5547,7 @@
       "overloadLifetimeTeamDamage": 1525900.0
     },
     "3": {
-      "elo": 1097.4932702112346,
+      "elo": 1098.2925095188018,
       "lifetimeKills": 15564,
       "lifetimeDeaths": 8774,
       "mapKills": 0,
@@ -5586,7 +5586,7 @@
       "overloadLifetimeTeamDamage": 1602900.0
     },
     "4": {
-      "elo": 1065.336676195353,
+      "elo": 1065.4521789146315,
       "lifetimeKills": 7498,
       "lifetimeDeaths": 4643,
       "mapKills": 0,
@@ -5625,7 +5625,7 @@
       "overloadLifetimeTeamDamage": 904600.0
     },
     "5": {
-      "elo": 1096.493286605243,
+      "elo": 1096.839330766984,
       "lifetimeKills": 15748,
       "lifetimeDeaths": 9496,
       "mapKills": 0,
@@ -5664,7 +5664,7 @@
       "overloadLifetimeTeamDamage": 1617700.0
     },
     "6": {
-      "elo": 1005.4629931486684,
+      "elo": 1004.2497590207521,
       "lifetimeKills": 10552,
       "lifetimeDeaths": 7840,
       "mapKills": 0,
@@ -5703,7 +5703,7 @@
       "overloadLifetimeTeamDamage": 1310900.0
     },
     "7": {
-      "elo": 941.7304407581748,
+      "elo": 950.2154632583364,
       "lifetimeKills": 8774,
       "lifetimeDeaths": 7703,
       "mapKills": 0,
@@ -5742,7 +5742,7 @@
       "overloadLifetimeTeamDamage": 1231800.0
     },
     "8": {
-      "elo": 922.203664342081,
+      "elo": 922.7901485188936,
       "lifetimeKills": 12593,
       "lifetimeDeaths": 10787,
       "mapKills": 0,
@@ -5781,7 +5781,7 @@
       "overloadLifetimeTeamDamage": 1698100.0
     },
     "9": {
-      "elo": 1050.7177539728445,
+      "elo": 1056.4394512614742,
       "lifetimeKills": 13554,
       "lifetimeDeaths": 10686,
       "mapKills": 0,
@@ -5898,7 +5898,7 @@
       "overloadLifetimeTeamDamage": 1111400.0
     },
     "12": {
-      "elo": 964.9981743304346,
+      "elo": 966.2399510285671,
       "lifetimeKills": 11901,
       "lifetimeDeaths": 10874,
       "mapKills": 0,

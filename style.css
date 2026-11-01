@@ -2713,8 +2713,8 @@ html { -webkit-text-size-adjust: 100%; }
     position: absolute; left: 50%; top: -10px; width: 520px; height: 780px; transform: translateX(-50%);
     background: url("knockout/hooded-warrior.webp") center top / contain no-repeat;
     mix-blend-mode: lighten; opacity: .9; pointer-events: none;
-    -webkit-mask-image: radial-gradient(ellipse 60% 62% at 50% 40%, #000 55%, transparent 100%);
-            mask-image: radial-gradient(ellipse 60% 62% at 50% 40%, #000 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 40%, transparent 100%);
 }
 .ko-top, #koTiers, .ko-rules, .ko-cards-bar, .ko-cards { position: relative; }
 .ko-top { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 24px; align-items: start; min-height: 520px; }
@@ -2807,3 +2807,34 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
     .ko-rules { grid-template-columns: 1fr 1fr; }
     .ko-bracket { overflow-x: auto; }
 }
+
+/* Rules button and panel */
+.ko-cards-bar { gap: 12px; }
+.ko-rules-btn { background: rgba(10,8,5,.85); color: var(--ko-gold); border-color: var(--ko-gold); box-shadow: none; }
+.ko-rules-btn:hover, .ko-rules-btn.active { background: #1d1810; filter: none; box-shadow: 0 0 18px rgba(242,193,78,.25); }
+.ko-rules-panel { position: relative; border: 1px solid var(--ko-line); border-radius: 10px; background: rgba(10,8,5,.9); padding: 18px; }
+.ko-rules-panel[hidden] { display: none; }
+.ko-rules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px 22px; }
+.ko-rules-grid section { border-left: 2px solid var(--ko-gold); padding: 2px 0 2px 12px; }
+.ko-rules-grid h4 { margin: 0 0 6px; color: var(--ko-gold); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; }
+.ko-rules-grid p { margin: 0 0 6px; color: #d9d1bf; font-size: 13.5px; line-height: 1.5; }
+.ko-rules-grid b { color: #fff; }
+
+/* Header layouts (preview options; only one will stay) */
+.ko-top { grid-template-columns: 330px minmax(0, 1fr) 330px; }
+.ko-top .ko-standings { grid-column: 3; grid-row: 1; }
+/* A: framed panel on the left, mirroring the rankings panel */
+.ko-layout-a .ko-title { grid-column: 1; grid-row: 1; padding: 16px; margin-top: 0; background: rgba(10,8,5,.88); border: 1px solid var(--ko-line); border-radius: 10px; max-width: none; align-self: start; }
+.ko-layout-a .ko-h { font-size: 42px; }
+.ko-layout-a .ko-h em { font-size: 22px; }
+.ko-layout-a .ko-q { font-size: 15px; }
+/* B: poster title centred under the warrior, like the World Cup poster */
+.ko-layout-b .ko-title { grid-column: 2; grid-row: 1; align-self: end; justify-items: center; text-align: center; max-width: none; padding: 0 0 6px; }
+.ko-layout-b .ko-h { text-align: center; font-size: 50px; }
+.ko-layout-b .ko-h em { font-size: 24px; }
+.ko-layout-b .ko-q { font-size: 15px; }
+.ko-layout-b .ko-art { top: -40px; height: 640px; }
+/* C: warrior on the left, title in the middle */
+.ko-layout-c .ko-art { left: 190px; width: 420px; height: 620px; }
+.ko-layout-c .ko-title { grid-column: 2; grid-row: 1; padding: 70px 0 0 24px; max-width: none; }
+.ko-layout-c .ko-h { font-size: 52px; }

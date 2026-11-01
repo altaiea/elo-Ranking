@@ -12,6 +12,7 @@ import { buildMonthlyRankings } from "./monthly.js";
 import { KNOCKOUT_RULES, buildBracket, buildTiers, previousMonthKey, tierKey, tierName } from "./knockoutRules.js";
 import { escapeHtml, monthKeyOf, monthLabel, ordinal } from "./ui.js";
 import { openKnockoutCards, setupKnockoutCardsButton } from "./knockoutCardsView.js";
+import { setupKnockoutRulesButton } from "./knockoutRulesView.js";
 
 const TIER_COLOURS = ["#f2c14e", "#d9dee3", "#d08a4a", "#9fd27a", "#c98bff"];   // Premier gold, Swing silver, Challenger bronze
 const tierColour = index => TIER_COLOURS[index] || TIER_COLOURS[TIER_COLOURS.length - 1];
@@ -54,6 +55,7 @@ async function init() {
     select.addEventListener("change", () => renderMonth(select.value));
     // The Knock-out Cards button, and any captain's name, open the Knock-out Cards.
     setupKnockoutCardsButton();
+    setupKnockoutRulesButton();
     const poster = document.querySelector(".ko-poster");
     const open = el => openKnockoutCards(Number(el.dataset.koPlayer));
     poster.addEventListener("click", e => { const el = e.target.closest("[data-ko-player]"); if (el) open(el); });

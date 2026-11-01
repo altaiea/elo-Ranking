@@ -7,10 +7,7 @@
 ====================================================== */
 import { fillCard } from "./playerCard.js";
 import { loadKnockoutCardPool } from "./knockoutCards.js";
-import { escapeHtml, monthLabel } from "./ui.js";
-
-// "2026-11" -> "Nov 2026"
-const shortMonthLabel = key => { const [y, m] = key.split("-").map(Number); return new Date(y, m - 1, 1).toLocaleDateString(undefined, { month: "short", year: "numeric" }); };
+import { escapeHtml } from "./ui.js";
 
 let rendered = false;
 
@@ -34,10 +31,10 @@ async function render() {
         rendered = true;
         return;
     }
-    box.innerHTML = `<p class="ko-small">Captain's Cup maps only (${pool.mapCount} so far). These maps still count towards the normal cards and Elo.</p>
+    box.innerHTML = `<p class="ko-small">Every Knock-out Card starts from zero and only counts Captain's Cup maps (${pool.mapCount} so far). Those maps still count towards the normal cards and Elo as well.</p>
         <div class="ko-card-grid">${pool.players.map(p => {
-            const where = p.tier ? `${escapeHtml(p.tier.name)} · ${escapeHtml(shortMonthLabel(p.month))}` : (p.month ? escapeHtml(shortMonthLabel(p.month)) : "");
-            return `<div class="ko-card-wrap" title="${escapeHtml(p.tier ? p.tier.name + " · " + monthLabel(p.month) : "")}" data-ko-card="${p.id}" style="--c:var(--ko-tier-${p.tier ? p.tier.index : "x"})">
+            const where = p.tier ? escapeHtml(p.tier.name) : "";
+            return `<div class="ko-card-wrap" data-ko-card="${p.id}" style="--c:var(--ko-tier-${p.tier ? p.tier.index : "x"})">
                 <div class="ko-card-stage"><span class="ko-card-tier">${where}</span><span class="ko-card-ko">KO</span></div>
                 <div class="ko-card-meta">${p.mapsPlayed} cup map${p.mapsPlayed === 1 ? "" : "s"}</div></div>`;
         }).join("")}</div>`;

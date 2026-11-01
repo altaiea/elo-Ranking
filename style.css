@@ -2691,3 +2691,150 @@ html { -webkit-text-size-adjust: 100%; }
     text-align: center;
     padding: 24px;
 }
+
+/* ============================
+   KNOCKOUT TAB (Captain's Cup)
+   Black and gold poster around the hooded warrior artwork; each tier is a
+   two-sided bracket with the final in the middle. Everything here is new
+   and uses ko- names, so no existing style is changed.
+============================ */
+.ko-poster {
+    --ko-gold: #f2c14e; --ko-gold-deep: #b8862b; --ko-line: #3a3122; --ko-panel: #15120d; --ko-muted: #a39a88;
+    --ko-tier-0: #f2c14e; --ko-tier-1: #d9dee3; --ko-tier-2: #d08a4a; --ko-tier-x: #a39a88;
+    position: relative; overflow: hidden; max-width: 1180px; margin: 0 auto; padding: 28px 26px 30px;
+    border: 1px solid var(--ko-line); border-radius: 12px;
+    background:
+        radial-gradient(ellipse 45% 55% at 50% 22%, rgba(242,193,78,.16), transparent 70%),
+        repeating-linear-gradient(135deg, rgba(242,193,78,.022) 0 2px, transparent 2px 16px),
+        linear-gradient(180deg, #0d0b08 0%, #080706 60%, #050505 100%);
+    display: grid; gap: 22px;
+}
+.ko-art {
+    position: absolute; left: 50%; top: -10px; width: 520px; height: 780px; transform: translateX(-50%);
+    background: url("knockout/hooded-warrior.webp") center top / contain no-repeat;
+    mix-blend-mode: lighten; opacity: .9; pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 40%, transparent 100%);
+            mask-image: radial-gradient(ellipse 50% 58% at 50% 42%, #000 40%, transparent 100%);
+}
+.ko-top, #koTiers, .ko-rules, .ko-cards-bar, .ko-cards { position: relative; }
+.ko-top { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 24px; align-items: start; min-height: 520px; }
+.ko-title { padding-top: 40px; display: grid; gap: 8px; justify-items: start; max-width: 460px; }
+.ko-kicker { font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--ko-muted); font-weight: 700; }
+.ko-h { margin: 0; text-align: left; font-size: 56px; line-height: .95; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; color: #fff; text-shadow: 0 0 26px rgba(0,0,0,.9), 0 0 18px rgba(242,193,78,.25); }
+.ko-h em { display: block; font-style: normal; color: var(--ko-gold); font-size: 30px; letter-spacing: .14em; text-shadow: 0 0 18px rgba(242,193,78,.45); margin-top: 6px; }
+.ko-q { margin: 6px 0 0; font-size: 18px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #f1ead9; text-shadow: 0 0 12px #000; }
+.ko-small { margin: 0; color: var(--ko-muted); font-size: 13px; text-shadow: 0 0 8px #000; }
+.ko-month { color: var(--ko-muted); font-size: 13px; display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+.ko-month select { background: #15120d; color: #f1ead9; border: 1px solid var(--ko-line); border-radius: 4px; padding: 5px 8px; }
+
+.ko-standings { background: rgba(10,8,5,.88); border: 1px solid var(--ko-line); border-radius: 10px; padding: 12px 12px 10px; backdrop-filter: blur(3px); }
+.ko-standings-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.ko-standings-head b { color: var(--ko-gold); font-size: 15px; }
+.ko-standings-head span { color: var(--ko-muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-shadow: none; font-size: 13px; }
+.ko-table th { background: none; padding: 5px 6px; font-size: 11px; color: var(--ko-muted); text-transform: uppercase; letter-spacing: .08em; border-bottom: 1px solid var(--ko-line); text-align: left; }
+.ko-table td { padding: 4px 6px; border-bottom: 1px solid #221d15; text-align: left; }
+.ko-table tr td:first-child { border-left: 3px solid var(--c, transparent); }
+.ko-rank { font-weight: 800; color: var(--c, var(--ko-muted)) !important; width: 22px; }
+.ko-name { font-weight: 700; }
+.ko-num { color: #e9d9a8; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ko-num small { color: var(--ko-muted); font-weight: 600; }
+.ko-off td { color: #6f685c; }
+.ko-chip { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #0d0b08; background: var(--c); border-radius: 999px; padding: 1px 8px; }
+.ko-chip-off { background: #2b261e; color: var(--ko-muted); }
+
+/* Knock-out Cards button and panel */
+.ko-cards-bar { display: flex; justify-content: center; }
+.ko-cards-btn { background: linear-gradient(180deg, #f6cf68, #c99632); color: #120e07; border: 1px solid #ffe29a; border-radius: 6px; padding: 9px 22px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; cursor: pointer; box-shadow: 0 0 22px rgba(242,193,78,.3); }
+.ko-cards-btn:hover, .ko-cards-btn.active { filter: brightness(1.08); box-shadow: 0 0 30px rgba(242,193,78,.5); }
+.ko-cards-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ko-cards { border: 1px solid var(--ko-line); border-radius: 10px; background: rgba(10,8,5,.75); padding: 16px; display: grid; gap: 12px; }
+.ko-cards[hidden] { display: none; }
+.ko-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px 14px; justify-items: center; }
+.ko-card-wrap { display: grid; justify-items: center; gap: 6px; border-radius: 12px; padding: 6px; transition: box-shadow .3s; }
+.ko-card-wrap.ko-picked { box-shadow: 0 0 0 2px var(--ko-gold), 0 0 30px rgba(242,193,78,.35); }
+.ko-card-stage { position: relative; width: 280px; height: 400px; }
+.ko-card-stage > .container { margin: 0; width: 350px; transform: scale(.8); transform-origin: top left; }
+.ko-card-stage .card { transition: none; }
+.ko-card-stage .card-layer, .ko-card-stage .card-back-video { display: none !important; }
+/* Tier tab (bottom left) and KO tab (bottom right) mirror each other on the
+   card's bottom edge. The outline is the tier colour, fading to green along
+   the angled side. */
+.ko-card-tag { position: absolute; bottom: -8px; z-index: 30; pointer-events: none; padding: 2px; box-shadow: 0 4px 12px rgba(0,0,0,.6); }
+.ko-card-tag > span { display: block; background: linear-gradient(180deg, #1a160f 0%, #0d0b08 100%); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; line-height: 1; padding: 6px 18px 6px 10px; }
+.ko-card-tier { left: -6px; padding-left: 5px; background: linear-gradient(90deg, var(--c) 0%, var(--c) 55%, var(--ko-edge, #4ee08a) 100%); clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
+.ko-card-tier > span { color: var(--c); clip-path: polygon(0 0, 100% 0, calc(100% - 11px) 100%, 0 100%); }
+.ko-card-ko { right: -6px; padding-right: 5px; background: linear-gradient(270deg, #ff3b3b 0%, #ff3b3b 55%, var(--ko-edge, #4ee08a) 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%); }
+/* Edge colours: Premier fades to the purple of a 99 rating, Swing to the
+   leaderboard blue, Challenger is green all round. The Knockout banner has
+   a red outline. */
+.ko-card-wrap[data-ko-tier="0"] { --ko-edge: #A855F7; }
+.ko-card-wrap[data-ko-tier="1"] { --ko-edge: #00eaff; }
+.ko-card-wrap[data-ko-tier="2"] .ko-card-tier { background: #4ee08a; }
+.ko-card-ko > span { color: var(--ko-gold); padding: 6px 10px 6px 18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 11px 100%); }
+.ko-card-meta { font-size: 12px; color: var(--ko-muted); margin-top: 12px; }
+
+/* Brackets */
+#koTiers { display: grid; gap: 26px; }
+.ko-tier { display: grid; gap: 12px; }
+.ko-tier-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; border-bottom: 2px solid var(--c); padding-bottom: 5px; }
+.ko-tier-head h3 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
+.ko-tier-head span { color: var(--ko-muted); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.ko-bracket { display: grid; gap: 0 26px; align-items: stretch; }
+.ko-col { display: grid; grid-template-rows: auto 1fr; gap: 8px; min-width: 0; }
+.ko-colhead { display: grid; text-align: center; gap: 1px; }
+.ko-colhead b { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #e9e1cf; }
+.ko-colhead span { font-size: 11px; color: var(--ko-muted); }
+.ko-stack { display: flex; flex-direction: column; justify-content: space-around; gap: 12px; }
+.ko-centre .ko-stack { justify-content: center; }
+.ko-match { position: relative; background: linear-gradient(180deg, #1d1912, #141109); border: 1px solid #3d3424; border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.45); }
+.ko-left .ko-match::after, .ko-right .ko-match::before { content: ""; position: absolute; top: 50%; width: 26px; border-top: 2px solid #4a3f2a; }
+.ko-left .ko-match::after { right: -27px; }
+.ko-right .ko-match::before { left: -27px; }
+.ko-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 7px 10px; font-weight: 700; font-size: 14px; }
+.ko-row + .ko-row { border-top: 1px solid #2c261b; }
+.ko-seed { text-align: center; font-weight: 900; color: var(--c); }
+.ko-pname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-transform: uppercase; letter-spacing: .03em; color: #f1ead9; }
+.ko-score { font-weight: 900; font-variant-numeric: tabular-nums; color: #fff; }
+.ko-tbd .ko-pname { color: #857d6e; font-style: italic; font-weight: 500; text-transform: none; letter-spacing: 0; }
+.ko-won { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.ko-won .ko-pname { color: #fff; }
+.ko-lost { opacity: .5; }
+.ko-bye { border-style: dashed; }
+.ko-byelabel, .ko-wager { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ko-muted); padding: 4px 10px 6px; border-top: 1px solid #2c261b; }
+.ko-wager { color: #ff8a3d; }
+.ko-final { border-color: var(--c); box-shadow: 0 0 26px color-mix(in srgb, var(--c) 25%, transparent); }
+.ko-champion { display: grid; justify-items: center; gap: 2px; padding: 10px; border: 2px solid var(--c); border-radius: 8px; background: rgba(8,7,5,.85); text-align: center; }
+.ko-champion span { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--c); font-weight: 800; }
+.ko-champion b { font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+.ko-champion em { font-style: normal; font-size: 12px; color: #9fd27a; font-weight: 700; }
+.ko-empty { padding: 26px 12px; text-align: center; color: var(--ko-muted); }
+.ko-rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; border-top: 1px solid var(--ko-line); padding-top: 16px; }
+.ko-rules div { color: var(--ko-muted); font-size: 13px; line-height: 1.45; }
+.ko-rules b { display: block; color: #f1ead9; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+[data-ko-player] { cursor: pointer; }
+[data-ko-player]:hover, [data-ko-player]:focus-visible { text-decoration: underline; outline: none; }
+@media (max-width: 900px) {
+    .ko-top { grid-template-columns: 1fr; min-height: 0; }
+    .ko-rules { grid-template-columns: 1fr 1fr; }
+    .ko-bracket { overflow-x: auto; }
+}
+
+/* Rules button and panel */
+.ko-cards-bar { gap: 12px; }
+.ko-rules-btn { background: rgba(10,8,5,.85); color: var(--ko-gold); border-color: var(--ko-gold); box-shadow: none; }
+.ko-rules-btn:hover, .ko-rules-btn.active { background: #1d1810; filter: none; box-shadow: 0 0 18px rgba(242,193,78,.25); }
+.ko-rules-panel { position: relative; border: 1px solid var(--ko-line); border-radius: 10px; background: rgba(10,8,5,.9); padding: 18px; }
+.ko-rules-panel[hidden] { display: none; }
+.ko-rules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px 22px; }
+.ko-rules-grid section { border-left: 2px solid var(--ko-gold); padding: 2px 0 2px 12px; }
+.ko-rules-grid h4 { margin: 0 0 6px; color: var(--ko-gold); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; }
+.ko-rules-grid p { margin: 0 0 6px; color: #d9d1bf; font-size: 13.5px; line-height: 1.5; }
+.ko-rules-grid b { color: #fff; }
+
+/* Header: warrior on the left, title in the middle, rankings on the right */
+.ko-top { grid-template-columns: 330px minmax(0, 1fr) 330px; }
+.ko-top .ko-standings { grid-column: 3; grid-row: 1; }
+.ko-art { left: 195px; top: 0px; width: 420px; height: 620px; }
+.ko-title { grid-column: 2; grid-row: 1; padding: 70px 0 0 24px; max-width: none; }
+.ko-h { font-size: 52px; }

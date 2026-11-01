@@ -35,6 +35,7 @@
     <button class="nav-tab" data-tab="comparisonsPage">Head-To-Head</button>
     <button class="nav-tab" data-tab="mapsPage">Maps</button>
     <button class="nav-tab" data-tab="carouselPage">Cards</button>
+    <button class="nav-tab" data-tab="knockoutPage">Knockout</button>
 </div>
 
 <!-- ============================
@@ -279,9 +280,36 @@
 </div>
 
 <!-- ============================
+       KNOCKOUT TAB (Captain's Cup, js/knockout.js)
+============================ -->
+<div id="knockoutPage" class="tab-page">
+    <section class="ko-poster">
+        <div class="ko-art" aria-hidden="true"></div>
+        <div class="ko-top">
+            <div class="ko-title">
+                <div class="ko-kicker">4V4 · Captain's Cup</div>
+                <h2 class="ko-h"><span id="koMonthName">November 2026</span><em>Knockout stage</em></h2>
+                <p class="ko-q">Who's the best 9-map captain in each tier?</p>
+                <p class="ko-small" id="koSeededFrom"></p>
+                <label class="ko-month">Month <select id="koMonthSelect"></select></label>
+            </div>
+            <aside class="ko-standings" id="koStandings" aria-label="Monthly rankings used for the seeds"></aside>
+        </div>
+        <div class="ko-cards-bar">
+            <button type="button" id="koCardsButton" class="ko-cards-btn" aria-expanded="false" aria-controls="koCards">Knock-out Cards</button>
+            <button type="button" id="koRulesButton" class="ko-cards-btn ko-rules-btn" aria-expanded="false" aria-controls="koRules">Rules</button>
+        </div>
+        <div id="koRules" class="ko-rules-panel" hidden></div>
+        <div id="koCards" class="ko-cards" hidden></div>
+        <div id="koTiers"></div>
+    </section>
+</div>
+
+<!-- ============================
      MAIN PLAYER MODAL
 ============================ -->
 <div id="playerModal" class="modal">
+
 
     <div class="modal-content">
         <span id="closeModal" class="close"></span>

@@ -13,6 +13,7 @@ import { renderHistoryList } from "./history.js";
 import { setupDuoNetwork } from "./duoNetwork.js";
 import { openMonthlyRankings } from "./monthly.js";
 import { setupMaps } from "./maps.js";
+import { showKnockout } from "./knockout.js";
 import { preloadCarouselImages, setupCarousel } from "./carousel.js";
 import { closePlayerModal, isPlayerModalOpen, setupPlayerModal, warmAllInBackground } from "./playerCard.js";
 import { closeModeModal, setupModeModal } from "./modeModal.js";
@@ -77,6 +78,7 @@ function start() {
     setupTabs(tab => {
         if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Teams opens
         if (tab === "carouselPage") showCarousel({ deal: true });
+        if (tab === "knockoutPage") showKnockout();
     });
     renderHistoryList();
 

@@ -18,6 +18,9 @@ still: export from CODStats, then push with GitHub Desktop.
 | `js/leaderboard.js`, `teams.js`, `history.js`, `duoNetwork.js`, `monthly.js`, `comparisons.js`, `maps.js`, `carousel.js` | One file per tab or feature |
 | `js/playerCard.js`, `js/modeModal.js` | The card popup (hands, flip, intro video) and the mode wheel |
 | `js/ui.js` | Shared helpers: formatting, colours, click sound, popup |
+| `js/knockout.js` | The Knockout tab (Captain's Cup): tiers, brackets, seeding table |
+| `js/knockoutRules.js` | Cup rules and bracket maths (tiers, seeding, 1.5x / 2x, +20). No page code |
+| `js/knockoutCards.js` | Stats for the Knockout card (cup maps only). No page code |
 
 `config.js`, `data.js` and `ratings.js` have no page code on purpose: the
 Three.js game can `import` them and show exactly the same names, numbers and
@@ -34,6 +37,8 @@ ratings as the site.
   and Monthly rankings use it. If it is missing or older than `index.json`, the
   site reads the day files instead, so it can never show wrong numbers, only
   load slower. Rebuild it with `python tools/build_history_summary.py`.
+- `knockout/YYYY-MM.json` and `knockout/index.json`: Captain's Cup results
+  (series played, winners, map ids). See `knockout/README.md`.
 - `daily_stats/`, `previous_stats*.json`: kept for the exporter; the site does not read them.
 
 ## Card pictures and intro videos

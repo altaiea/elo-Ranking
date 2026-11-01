@@ -11,6 +11,7 @@ import {
 import { cardRatings, ratingTierClass } from "./ratings.js";
 import { reduceMotion, setRatingColor } from "./ui.js";
 import { openModeModal } from "./modeModal.js";
+import { loadKnockoutCardPool } from "./knockoutCards.js";
 
 const ADJUST_CLASSES = CARD_PLAYER_IDS.map(id => `player${id}-adjust`);
 const TIER_CLASSES = ["rating-80", "rating-90", "rating-98"];
@@ -281,7 +282,42 @@ export function fillCard(card, p, players, { clickableModes = false } = {}) {
 /* ---------------------------
    OPEN / CLOSE
 ---------------------------- */
-export function openPlayerModal(playerId) {
+// ---------------------------
+// OVERALL / KNOCKOUT SWITCH
+// ---------------------------
+// The Knockout card uses the same artwork and the same rating maths, but only
+// Captain's Cup maps, compared against the other players' cup maps.
+function applyCardView(card, p, players, view, pool) {
+    const cupStats = pool?.byId.get(p.id);
+    const knockout = view === "knockout" && !!cupStats;
+    if (knockout) fillCard(card, cupStats, pool.players);
+    else fillCard(card, p, players, { clickableModes: true });
+    card.classList.toggle("card-knockout", knockout);
+    document.querySelectorAll("#cardViewSwitch button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.view === (knockout ? "knockout" : "overall"));
+    });
+}
+
+function setupCardViewSwitch(card, p, players, view, token) {
+    const knockoutBtn = document.querySelector('#cardViewSwitch [data-view="knockout"]');
+    const overallBtn = document.querySelector('#cardViewSwitch [data-view="overall"]');
+    if (!knockoutBtn || !overallBtn) return;
+    knockoutBtn.disabled = true;
+    knockoutBtn.title = "Loading Captain's Cup maps…";
+    let pool = null;
+    overallBtn.onclick = () => applyCardView(card, p, players, "overall", pool);
+    knockoutBtn.onclick = () => applyCardView(card, p, players, "knockout", pool);
+    loadKnockoutCardPool().then(result => {
+        if (token !== loadToken) return;
+        pool = result;
+        const cup = pool.byId.get(p.id);
+        knockoutBtn.disabled = !cup;
+        knockoutBtn.title = cup ? `${cup.mapsPlayed} Captain's Cup map${cup.mapsPlayed === 1 ? "" : "s"}` : "No Captain's Cup maps yet";
+        if (view === "knockout" && cup) applyCardView(card, p, players, "knockout", pool);
+    }).catch(() => { knockoutBtn.title = "Captain's Cup maps could not be loaded"; });
+}
+
+export function openPlayerModal(playerId, { view = "overall" } = {}) {
     const modal = document.getElementById("playerModal");
     const players = getPlayers();
     const p = players.find(x => x.id === Number(playerId));
@@ -307,6 +343,7 @@ export function openPlayerModal(playerId) {
     video.style.display = "none";
     video.classList.remove(...VIDEO_CLASSES);
 
+    card.classList.remove("card-knockout");
     const statEls = fillCard(card, p, players, { clickableModes: true });
     const setStatsVisible = visible => statEls.forEach(el => { el.style.visibility = visible ? "visible" : "hidden"; });
 
@@ -318,6 +355,7 @@ export function openPlayerModal(playerId) {
     // The wings side stays up while the art and video load; the card is never
     // turned over before both are ready.
     const token = ++loadToken;
+    setupCardViewSwitch(card, p, players, view, token);
     const imageReady = waitForImage(cardAssets.art(p.id));
     const videoReady = introSrc ? waitForVideo(video, introSrc) : Promise.resolve();
 

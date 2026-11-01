@@ -10,7 +10,8 @@ const TABS = {
     historyPage: { title: "HISTORY", hash: "history" },
     comparisonsPage: { title: "COMPARISONS", hash: "head-to-head" },
     mapsPage: { title: "MAPS", hash: "maps" },
-    carouselPage: { title: "CARDS", hash: "cards" }
+    carouselPage: { title: "CARDS", hash: "cards" },
+    knockoutPage: { title: "KNOCKOUT", hash: "knockout" }
 };
 
 // onShow(tabId, firstTimeShownNow) runs whenever a tab is opened.

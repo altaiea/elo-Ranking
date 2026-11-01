@@ -16,7 +16,8 @@ function buildCard(p, pool) {
     container.removeAttribute("id");
     const card = container.querySelector(".card");
     card.querySelector(".card-back-video")?.remove();
-    fillCard(card, p, pool.players).forEach(el => { el.style.visibility = "visible"; });
+    // Mode circles open the mode wheel with Cup-only stats, same as the normal card.
+    fillCard(card, p, pool.players, { clickableModes: true }).forEach(el => { el.style.visibility = "visible"; });
     card.querySelector(".back").style.opacity = "1";
     card.classList.add("flipped");
     return container;

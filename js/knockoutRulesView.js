@@ -23,7 +23,8 @@ function rulesHtml() {
             <p>In a six-player tier, seeds 1 and 2 get a bye to the semi-finals while 3 v 6 and 4 v 5 play round 1. A four-player tier starts at the semi-finals: 1 v 4 and 2 v 3.</p></section>
         <section><h4>3 · Series formats</h4>
             <p>Every round before the final is played as one of: <b>${R.earlyRoundFormats.join("</b>, <b>")}</b>. The two captains agree which. ${R.preferredEarlyFormat.replace("1x ", "")} is preferred; the others are there for anyone who can't fit nine maps into one night.</p>
-            <p>For 2x Bo5 the maps from both sets are added together.</p>
+            <p>Every series is first to a majority: Bo9 first to 5, Bo7 first to 4, Bo5 first to 3. Once someone clinches, the series is over.</p>
+            <p>For 2x Bo5 the maps from both sets are added together. Win both sets and you win the series. If the sets are split, it goes to mode aggregates: total HP points, total SND rounds and total Overload points across both sets. Win two of the three modes and you win. If the modes are still level, the bigger total margin across all maps decides it.</p>
             <p>The final is always a <b>${R.finalFormat.replace("1x ", "")}</b>.</p></section>
         <section><h4>4 · Deadlines</h4>
             <p>All rounds before the final must be finished by the end of week 3 (the ${ordinal(R.earlyRoundsDeadlineDay)}).</p>
@@ -31,7 +32,8 @@ function rulesHtml() {
         <section><h4>5 · Elo</h4>
             <p>Every map in a Cup series counts for Elo as normal, for every player.</p>
             <p>For the two <b>captains</b>, the whole series counts as one result. Their Elo changes from every map in the series are added together (both sets for 2x Bo5), and that series total is multiplied by <b>${R.captainMultiplier}x</b>, whether they win or lose.</p>
-            <p>The winner of each tier's final is that tier's MVP and gets a <b>+${R.tierWinnerBonus} Elo</b> bonus.</p></section>
+            <p>The winner of each tier's final is that tier's MVP and gets a <b>+${R.tierWinnerBonus} Elo</b> bonus.</p>
+            <p><b>Nothing is created or lost.</b> The captains' extra is paid back by the other players in the series, shared by how many of its maps each played. The +${R.tierWinnerBonus} is split evenly across the rest of the winner's tier. The total Elo of everyone stays the same.</p></section>
         <section><h4>6 · Wager</h4>
             <p>Before any series, a captain can offer the other captain a wager. Only the two captains can wager, and only with each other.</p>
             <p>If both agree, their series total counts <b>${R.wagerMultiplier}x</b> instead of ${R.captainMultiplier}x. ${R.captainMultiplier}x is the default, and a wager is never forced on anyone.</p></section>

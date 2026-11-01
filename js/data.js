@@ -152,31 +152,6 @@ async function loadLatestOpeningElo() {
 }
 
 // ---------------------------
-// CAPTAIN'S CUP RESULTS
-// ---------------------------
-// knockout/YYYY-MM.json: { month, tiers?: [[ids]...], series: [ { captains, winner, ... } ] }
-// A month with no file yet simply has no results.
-export async function loadKnockoutMonth(monthKey) {
-    if (!/^\d{4}-\d{2}$/.test(String(monthKey))) return { series: [] };
-    const response = await fetch(`knockout/${monthKey}.json`, { cache: "no-cache" });
-    if (response.status === 404) return { series: [] };
-    if (!response.ok) throw new Error(`Could not load knockout/${monthKey}.json (HTTP ${response.status})`);
-    const data = await response.json();
-    return { ...data, series: Array.isArray(data?.series) ? data.series : [] };
-}
-
-// Every month's cup series. knockout/index.json lists the months that have a
-// results file: { "months": ["2026-11", ...] }.
-export async function loadAllKnockoutSeries() {
-    const response = await fetch("knockout/index.json", { cache: "no-cache" });
-    if (response.status === 404) return [];
-    if (!response.ok) throw new Error(`Could not load knockout/index.json (HTTP ${response.status})`);
-    const months = ((await response.json())?.months || []).filter(m => /^\d{4}-\d{2}$/.test(String(m)));
-    const files = await Promise.all(months.map(month => loadKnockoutMonth(month).catch(() => ({ series: [] }))));
-    return files.flatMap((file, i) => file.series.map(series => ({ ...series, month: months[i] })));
-}
-
-// ---------------------------
 // PLAYERS
 // ---------------------------
 export function createEmptyPlayerStats() {

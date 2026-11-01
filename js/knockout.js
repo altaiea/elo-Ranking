@@ -6,13 +6,14 @@
    The rules and bracket maths live in js/knockoutRules.js.
 ====================================================== */
 import { getPlayerName } from "./config.js";
-import { loadAllHistory, loadHistoryIndex, loadKnockoutMonth } from "./data.js";
+import { loadAllHistory, loadHistoryIndex } from "./data.js";
+import { loadKnockoutMonth } from "./knockoutData.js";
 import { buildMonthlyRankings } from "./monthly.js";
 import { KNOCKOUT_RULES, buildBracket, buildTiers, previousMonthKey, tierKey, tierName } from "./knockoutRules.js";
 import { escapeHtml, monthKeyOf, monthLabel, ordinal } from "./ui.js";
-import { openPlayerModal } from "./playerCard.js";
+import { openKnockoutCards, setupKnockoutCardsButton } from "./knockoutCardsView.js";
 
-const TIER_COLOURS = ["#f2c14e", "#cfd8e0", "#19e3ff", "#4ee08a", "#ff3d8b"];
+const TIER_COLOURS = ["#f2c14e", "#d9dee3", "#d08a4a", "#9fd27a", "#c98bff"];   // Premier gold, Swing silver, Challenger bronze
 const tierColour = index => TIER_COLOURS[index] || TIER_COLOURS[TIER_COLOURS.length - 1];
 const shortMonth = monthKey => {
     const [y, m] = monthKey.split("-").map(Number);
@@ -51,9 +52,10 @@ async function init() {
     select.innerHTML = (months.length ? months : [selected]).map(m =>
         `<option value="${m}" ${m === selected ? "selected" : ""}>${monthLabel(m)}</option>`).join("");
     select.addEventListener("change", () => renderMonth(select.value));
-    // Any captain's name opens their Knockout card (the Overall card is one tap away).
+    // The Knock-out Cards button, and any captain's name, open the Knock-out Cards.
+    setupKnockoutCardsButton();
     const poster = document.querySelector(".ko-poster");
-    const open = el => openPlayerModal(Number(el.dataset.koPlayer), { view: "knockout" });
+    const open = el => openKnockoutCards(Number(el.dataset.koPlayer));
     poster.addEventListener("click", e => { const el = e.target.closest("[data-ko-player]"); if (el) open(el); });
     poster.addEventListener("keydown", e => {
         const el = e.target.closest("[data-ko-player]");

@@ -291,11 +291,13 @@
                 <h2 class="ko-h"><span id="koMonthName">November 2026</span><em>Knockout stage</em></h2>
                 <p class="ko-q">Who's the best 9-map captain in each tier?</p>
                 <p class="ko-small" id="koSeededFrom"></p>
-                <p class="ko-small">Tap a captain to see their Knockout card: their stats from Captain's Cup maps only.</p>
+                
                 <label class="ko-month">Month <select id="koMonthSelect"></select></label>
             </div>
             <aside class="ko-standings" id="koStandings" aria-label="Monthly rankings used for the seeds"></aside>
         </div>
+        <div class="ko-cards-bar"><button type="button" id="koCardsButton" class="ko-cards-btn" aria-expanded="false" aria-controls="koCards">Knock-out Cards</button></div>
+        <div id="koCards" class="ko-cards" hidden></div>
         <div id="koTiers"></div>
         <div class="ko-rules">
             <div><b>Rounds before the final</b>Captains choose 2x Bo5, 1x Bo7 or 1x Bo9 (Bo9 preferred). Every round before the final is done by the 21st.</div>
@@ -311,11 +313,6 @@
 ============================ -->
 <div id="playerModal" class="modal">
 
-    <!-- Overall card, or the Knockout card (Captain's Cup maps only) -->
-    <div class="card-view-switch" id="cardViewSwitch" role="group" aria-label="Card stats">
-        <button type="button" data-view="overall" class="active">Overall</button>
-        <button type="button" data-view="knockout" disabled title="No Captain's Cup maps yet">Knockout</button>
-    </div>
 
     <div class="modal-content">
         <span id="closeModal" class="close"></span>

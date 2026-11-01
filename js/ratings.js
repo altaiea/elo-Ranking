@@ -5,7 +5,6 @@
 // show exactly the same numbers as the site.
 
 import { INACTIVE_PLAYER_IDS, MODES } from "./config.js";
-import { createEmptyPlayerStats } from "./data.js";
 
 /* ---------------------------
    PERCENTILE ENGINE
@@ -174,50 +173,4 @@ export function buildChemistry(days) {
     const pool = list.filter(e => !e.ids.some(id => INACTIVE_PLAYER_IDS.has(id))).map(e => e.value);
     list.forEach(e => { e.rating = scaleRating(percentile(e.value, pool)); e.band = chemBand(e.rating); });
     return new Map(list.map(e => [chemKey(e.ids[0], e.ids[1]), e]));
-}
-
-/* ---------------------------
-   CARD STATS FROM A SET OF MAPS
-   Rebuilds the card fields of current_stats.json (kills, deaths, wins,
-   losses, margin T, damage share) from published history maps, using the
-   Elo engine's own rules: margin T = score difference / cap (Hardpoint 200,
-   SND 6, Overload 8, at most 1), +T for the winners and -T for the losers,
-   and damage = kills x 100 (the engine's legacy damage). Used for the
-   Knockout card, which only counts Captain's Cup maps.
----------------------------- */
-const MODE_PREFIX_BY_NAME = { Hardpoint: "hp", SND: "snd", Overload: "overload" };
-const MARGIN_CAP = { hp: 200, snd: 6, overload: 8 };
-
-export function statsFromMaps(maps) {
-    const out = new Map();
-    const seen = new Set();
-    for (const m of maps) {
-        if (!m || seen.has(m.mapId)) continue;
-        seen.add(m.mapId);
-        const prefix = MODE_PREFIX_BY_NAME[m.gameMode];
-        const result = m.game?.result || {};
-        const win = Number(result.winningTeam);
-        if (!prefix || (win !== 1 && win !== 2)) continue;
-        const t = Math.min(1, (Number(result.scoreDifference) || 0) / MARGIN_CAP[prefix]);
-        [["A", 1], ["B", 2]].forEach(([key, teamNo]) => {
-            const team = (m.game.teams || {})[key] || [];
-            const teamKills = team.reduce((sum, pl) => sum + (Number(pl.kills) || 0), 0);
-            const won = win === teamNo;
-            team.forEach(pl => {
-                const id = Number(pl.playerId);
-                if (!out.has(id)) out.set(id, { ...createEmptyPlayerStats(), id, mapsPlayed: 0 });
-                const s = out.get(id);
-                const k = Number(pl.kills) || 0, d = Number(pl.deaths) || 0;
-                s.mapsPlayed += 1;
-                s.lifetimeKills += k; s.lifetimeDeaths += d;
-                s[prefix + "Kills"] += k; s[prefix + "Deaths"] += d;
-                s[prefix + (won ? "Wins" : "Losses")] += 1;
-                s[prefix + "MarginTotal"] += won ? t : -t;
-                s[prefix + "MarginCount"] += 1;
-                s[prefix + "LifetimeDamage"] += k * 100;
-                s[prefix + "LifetimeTeamDamage"] += teamKills * 100;
-            });
-        });
-    }
-    return out;
 }

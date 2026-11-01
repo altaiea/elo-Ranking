@@ -2750,17 +2750,31 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
 .ko-cards-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .ko-cards { border: 1px solid var(--ko-line); border-radius: 10px; background: rgba(10,8,5,.75); padding: 16px; display: grid; gap: 12px; }
 .ko-cards[hidden] { display: none; }
-.ko-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px 14px; justify-items: center; }
+.ko-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px 14px; justify-items: center; }
 .ko-card-wrap { display: grid; justify-items: center; gap: 6px; border-radius: 12px; padding: 6px; transition: box-shadow .3s; }
 .ko-card-wrap.ko-picked { box-shadow: 0 0 0 2px var(--ko-gold), 0 0 30px rgba(242,193,78,.35); }
 .ko-card-stage { position: relative; width: 280px; height: 400px; }
 .ko-card-stage > .container { margin: 0; width: 350px; transform: scale(.8); transform-origin: top left; }
 .ko-card-stage .card { transition: none; }
 .ko-card-stage .card-layer, .ko-card-stage .card-back-video { display: none !important; }
-.ko-card-ko, .ko-card-tier { position: absolute; bottom: 4px; z-index: 30; font-weight: 900; text-transform: uppercase; border-radius: 999px; pointer-events: none; }
-.ko-card-ko { right: 8px; font-size: 14px; letter-spacing: .12em; color: #0d0b08; background: var(--ko-gold); padding: 1px 10px; box-shadow: 0 0 16px rgba(242,193,78,.6); }
-.ko-card-tier { left: 8px; font-size: 10px; letter-spacing: .08em; color: var(--c); background: rgba(8,7,5,.85); border: 1px solid var(--c); padding: 3px 9px; max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ko-card-meta { font-size: 12px; color: var(--ko-muted); }
+/* KO coin and tier tab sit on the card's bottom edge, half over the frame,
+   so they never cover the player's name. */
+.ko-card-ko, .ko-card-tier { position: absolute; z-index: 30; pointer-events: none; text-transform: uppercase; font-weight: 900; }
+.ko-card-ko {
+    right: -8px; bottom: -14px; width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 16px; letter-spacing: .04em; color: #1a1205;
+    background: radial-gradient(circle at 35% 30%, #fff1b8 0%, #f2c14e 38%, #b8862b 100%);
+    border: 2px solid #120e07; box-shadow: 0 0 0 2px #f2c14e, 0 0 18px rgba(242,193,78,.65);
+}
+.ko-card-tier {
+    left: -6px; bottom: -8px; font-size: 11px; letter-spacing: .18em; color: var(--c);
+    background: linear-gradient(90deg, #0d0b08 0%, #1a160f 100%);
+    border: 1px solid var(--c); border-left-width: 4px; padding: 5px 14px 5px 10px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    box-shadow: 0 4px 12px rgba(0,0,0,.6);
+}
+.ko-card-tier:empty { display: none; }
+.ko-card-meta { font-size: 12px; color: var(--ko-muted); margin-top: 12px; }
 
 /* Brackets */
 #koTiers { display: grid; gap: 26px; }

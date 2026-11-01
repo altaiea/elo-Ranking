@@ -30,11 +30,11 @@ function rulesHtml() {
             <p>The final is played in the last week, from the ${ordinal(R.earlyRoundsDeadlineDay + 1)} to the end of the month.</p></section>
         <section><h4>5 · Elo</h4>
             <p>Every map in a Cup series counts for Elo as normal, for every player.</p>
-            <p>The two <b>captains</b> play for more: their Elo change on each map is multiplied by <b>${R.captainMultiplier}x</b>, for wins and for losses.</p>
+            <p>For the two <b>captains</b>, the whole series counts as one result. Their Elo changes from every map in the series are added together (both sets for 2x Bo5), and that series total is multiplied by <b>${R.captainMultiplier}x</b>, whether they win or lose.</p>
             <p>The winner of each tier's final is that tier's MVP and gets a <b>+${R.tierWinnerBonus} Elo</b> bonus.</p></section>
         <section><h4>6 · Wager</h4>
-            <p>Once a month, a captain can offer the other captain a wager before their series starts. If both agree, the captains play for <b>${R.wagerMultiplier}x</b> instead of ${R.captainMultiplier}x for that whole series.</p>
-            <p>${R.captainMultiplier}x is the default. A wager is never forced on anyone.</p></section>
+            <p>Before any series, a captain can offer the other captain a wager. Only the two captains can wager, and only with each other.</p>
+            <p>If both agree, their series total counts <b>${R.wagerMultiplier}x</b> instead of ${R.captainMultiplier}x. ${R.captainMultiplier}x is the default, and a wager is never forced on anyone.</p></section>
         <section><h4>7 · Knock-out Cards</h4>
             <p>Every player's Knock-out Card starts from zero. It only counts maps from Captain's Cup series and compares you with everyone else's Cup maps.</p>
             <p>Your normal card still counts every map, Cup maps included. The bottom left of the card shows the tier you fought in.</p></section>

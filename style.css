@@ -2823,6 +2823,6 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
 /* Header: warrior on the left, title in the middle, rankings on the right */
 .ko-top { grid-template-columns: 330px minmax(0, 1fr) 330px; }
 .ko-top .ko-standings { grid-column: 3; grid-row: 1; }
-.ko-art { left: 195px; top: 14px; width: 420px; height: 620px; }
+.ko-art { left: 195px; top: 0px; width: 420px; height: 620px; }
 .ko-title { grid-column: 2; grid-row: 1; padding: 70px 0 0 24px; max-width: none; }
 .ko-h { font-size: 52px; }

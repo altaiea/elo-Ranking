@@ -29,7 +29,9 @@ month's file only needs the series that have been played.
   For "2x Bo5" give the combined map score.
 - `format`: "2x Bo5", "1x Bo7" or "1x Bo9". The final is always "1x Bo9".
 - `wager`: true when both captains agreed the 2x Elo wager for this series
-  (each captain can do this once a month). Otherwise the captains get 1.5x.
+  (allowed in any series). Otherwise the captains get 1.5x. The multiplier
+  applies to each captain's total Elo change over the whole series (all maps,
+  both sets for 2x Bo5), not map by map.
 - `dates`: the history days the series' maps were played on.
 - `mapIds`: the `mapId` of every map in the series (from `history/`). These
   maps make up the Knockout card. They still count for the overall card and

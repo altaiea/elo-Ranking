@@ -14,9 +14,11 @@
 //   - Every round before the final is played as 2x Bo5, 1x Bo7 or 1x Bo9
 //     (captains' choice, Bo9 preferred) and must be done by the end of week 3.
 //     The final is a Bo9 in the last week.
-//   - Elo works as normal for everyone. In a cup series the two captains'
-//     Elo changes are multiplied by 1.5 (wins and losses). Once a month a
-//     captain can agree a wager with the other captain to make it 2x instead.
+//   - Elo works as normal for everyone. For the two captains a cup series is
+//     counted as one result: their Elo changes from every map in the series
+//     (both sets for 2x Bo5) are added up, and that series total is
+//     multiplied by 1.5 (win or loss). In any series the two captains can
+//     agree a wager to make it 2x instead.
 //   - The tier winner gets +20 Elo.
 
 export const KNOCKOUT_RULES = {
@@ -25,7 +27,6 @@ export const KNOCKOUT_RULES = {
     tierNames: ["Premier", "Swing", "Challenger"],
     captainMultiplier: 1.5,
     wagerMultiplier: 2,
-    wagersPerCaptainPerMonth: 1,
     tierWinnerBonus: 20,
     earlyRoundFormats: ["2x Bo5", "1x Bo7", "1x Bo9"],
     preferredEarlyFormat: "1x Bo9",
@@ -112,7 +113,7 @@ export function buildBracket(playerIds, series = []) {
     return { size, rounds, champion: current[0] || null };
 }
 
-// Elo multiplier for a captain in a cup series (1.5 normally, 2 with a wager).
+// Multiplier on a captain's series total Elo change (1.5 normally, 2 with a wager).
 export function captainMultiplier(seriesEntry, rules = KNOCKOUT_RULES) {
     return seriesEntry?.wager ? rules.wagerMultiplier : rules.captainMultiplier;
 }

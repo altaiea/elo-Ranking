@@ -2838,3 +2838,52 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
 .ko-art { left: 195px; top: 0px; width: 420px; height: 620px; }
 .ko-title { grid-column: 2; grid-row: 1; padding: 70px 0 0 24px; max-width: none; }
 .ko-h { font-size: 52px; }
+
+/* Fluid sizing: the Knockout poster lays itself out from its own width
+   (container queries), so it fits phones, narrow windows and zoom without
+   touching the rest of the site. */
+.ko-poster { container-type: inline-size; container-name: ko; }
+.ko-tbd .ko-pname { white-space: normal; line-height: 1.2; }
+.ko-tier-head { flex-wrap: wrap; }
+.ko-cards-bar { flex-wrap: wrap; }
+
+/* Medium: warrior and title share the left, rankings on the right */
+@container ko (max-width: 1080px) {
+    .ko-top { grid-template-columns: minmax(0, 1fr) minmax(280px, 330px); min-height: 0; }
+    .ko-top .ko-standings { grid-column: 2; }
+    .ko-art { left: 19cqi; top: 0; width: min(420px, 44cqi); height: min(620px, 65cqi); }
+    .ko-title { grid-column: 1; padding: clamp(40px, 7cqi, 70px) 0 0 clamp(150px, 30cqi, 300px); }
+    .ko-h { font-size: clamp(34px, 5.2cqi, 52px); }
+    .ko-h em { font-size: clamp(20px, 3cqi, 30px); }
+    .ko-q { font-size: clamp(14px, 1.8cqi, 18px); }
+    .ko-bracket { gap: 0 18px; }
+    .ko-left .ko-match::after { right: -19px; width: 18px; }
+    .ko-right .ko-match::before { left: -19px; width: 18px; }
+}
+
+/* Narrow: everything stacks, brackets scroll sideways inside their tier */
+@container ko (max-width: 900px) {
+    .ko-top { grid-template-columns: minmax(0, 1fr); }
+    .ko-top .ko-standings { grid-column: 1; grid-row: 2; width: 100%; max-width: 560px; justify-self: center; }
+    .ko-art { left: 50%; transform: translateX(-50%); width: min(420px, 90cqi); height: min(560px, 120cqi); opacity: .45; }
+    .ko-title { grid-column: 1; grid-row: 1; padding: 24px 0 8px; justify-items: center; text-align: center; }
+    .ko-h { text-align: center; font-size: clamp(30px, 10cqi, 52px); }
+    .ko-h em { font-size: clamp(18px, 5.5cqi, 30px); }
+    .ko-q { font-size: clamp(13px, 3.6cqi, 18px); }
+    .ko-tier { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .ko-bracket { min-width: min(760px, 100%); }
+    .ko-rules-grid { grid-template-columns: minmax(0, 1fr); }
+    .ko-card-grid { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+}
+
+/* Phone width: brackets keep their size and scroll sideways */
+@container ko (max-width: 700px) {
+    .ko-bracket { min-width: 760px; }
+}
+
+/* Very narrow: shrink the cards so a whole card always shows */
+@container ko (max-width: 330px) {
+    .ko-card-stage { width: 224px; height: 320px; }
+    .ko-card-stage > .container { transform: scale(.64); }
+    .ko-table { font-size: 12px; }
+}

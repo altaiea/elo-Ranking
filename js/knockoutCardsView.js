@@ -34,8 +34,8 @@ async function render() {
     box.innerHTML = `<p class="ko-small">Every Knock-out Card starts from zero and only counts Captain's Cup maps (${pool.mapCount} so far). Those maps still count towards the normal cards and Elo as well.</p>
         <div class="ko-card-grid">${pool.players.map(p => {
             const where = p.tier ? escapeHtml(p.tier.name) : "";
-            return `<div class="ko-card-wrap" data-ko-card="${p.id}" style="--c:var(--ko-tier-${p.tier ? p.tier.index : "x"})">
-                <div class="ko-card-stage">${where ? `<span class="ko-card-tag ko-card-tier"><span>${where}</span></span>` : ""}<span class="ko-card-tag ko-card-ko"><span>KO</span></span></div>
+            return `<div class="ko-card-wrap" data-ko-card="${p.id}" data-ko-tier="${p.tier ? p.tier.index : ""}" style="--c:var(--ko-tier-${p.tier ? p.tier.index : "x"})">
+                <div class="ko-card-stage">${where ? `<span class="ko-card-tag ko-card-tier"><span>${where}</span></span>` : ""}<span class="ko-card-tag ko-card-ko"><span>Knockout</span></span></div>
                 <div class="ko-card-meta">${p.mapsPlayed} cup map${p.mapsPlayed === 1 ? "" : "s"}</div></div>`;
         }).join("")}</div>`;
     box.querySelectorAll(".ko-card-wrap").forEach(wrap => {

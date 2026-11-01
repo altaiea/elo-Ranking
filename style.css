@@ -2762,9 +2762,11 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
    the angled side. */
 .ko-card-tag { position: absolute; bottom: -8px; z-index: 30; pointer-events: none; padding: 2px; box-shadow: 0 4px 12px rgba(0,0,0,.6); }
 .ko-card-tag > span { display: block; background: linear-gradient(180deg, #1a160f 0%, #0d0b08 100%); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; line-height: 1; padding: 6px 18px 6px 10px; }
-.ko-card-tier { left: -6px; padding-left: 5px; background: linear-gradient(90deg, var(--c) 0%, var(--c) 55%, #4ee08a 100%); clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
+.ko-card-tier { left: -6px; padding-left: 5px; background: linear-gradient(90deg, var(--c) 0%, var(--c) 55%, var(--ko-edge, #4ee08a) 100%); clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
 .ko-card-tier > span { color: var(--c); clip-path: polygon(0 0, 100% 0, calc(100% - 11px) 100%, 0 100%); }
-.ko-card-ko { right: -6px; padding-right: 5px; background: linear-gradient(270deg, var(--ko-gold) 0%, var(--ko-gold) 55%, #4ee08a 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%); }
+.ko-card-ko { right: -6px; padding-right: 5px; background: linear-gradient(270deg, var(--ko-gold) 0%, var(--ko-gold) 55%, var(--ko-edge, #4ee08a) 100%); clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%); }
+/* Premier cards fade to the purple of a 99 rating instead of green. */
+.ko-card-wrap[data-ko-tier="0"] { --ko-edge: #A855F7; }
 .ko-card-ko > span { color: var(--ko-gold); padding: 6px 10px 6px 18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 11px 100%); }
 .ko-card-meta { font-size: 12px; color: var(--ko-muted); margin-top: 12px; }
 

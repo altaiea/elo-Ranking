@@ -9,15 +9,16 @@
 import { getPlayerName } from "./config.js";
 import { escapeHtml, formatHistoryDate, showPopup } from "./ui.js";
 import { tierName } from "./knockoutRules.js";
-import { mapCarries, seriesCarryTotals } from "./knockoutMvp.js";
+import { mapMatchRatings, seriesRatings } from "./knockoutMvp.js";
 
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 
 let seriesNow = [];
 let mapsByIdNow = new Map();
 
-const signed = value => Math.abs(value) < 0.05 ? "0.0" : `${value > 0 ? "+" : "−"}${Math.abs(value).toFixed(1)}`;
-const carryTag = value => `<b class="koh-c ${value >= 0.05 ? "koh-up" : value <= -0.05 ? "koh-down" : ""}">${signed(value)}</b>`;
+// A rating out of 10: gold for 8+, white for a good game, muted below 5.
+const ratingBand = r => r >= 8 ? "koh-r-top" : r >= 6.5 ? "koh-r-good" : r >= 5 ? "" : "koh-r-low";
+const ratingTag = (value, outOf = false) => `<b class="koh-r10 ${ratingBand(value)}">${value.toFixed(1)}${outOf ? "<i>/10</i>" : ""}</b>`;
 
 function roundName(series) {
     if (series.final) return "Final";
@@ -43,7 +44,7 @@ function lineup(players, captainId, carries) {
         const id = Number(p.playerId);
         const kd = `${Number(p.kills) || 0}/${Number(p.deaths) || 0}`;
         const c = carries.get(id);
-        return `<span class="koh-p${id === captainId ? " koh-cap" : ""}">${escapeHtml(getPlayerName(id))}<small>${kd}</small>${c === undefined ? "" : carryTag(c)}</span>`;
+        return `<span class="koh-p${id === captainId ? " koh-cap" : ""}">${escapeHtml(getPlayerName(id))}<small>${kd}</small>${c === undefined ? "" : ratingTag(c)}</span>`;
     }).join("");
 }
 
@@ -60,7 +61,7 @@ function mapRow(map, index, captains) {
     const winSide = Number(result.winningTeam) === 1 ? "A" : Number(result.winningTeam) === 2 ? "B" : null;
     const won = side => winSide === side ? " koh-win" : "";
     const mode = map.gameMode || map.game?.gameMode || "Map";
-    const carries = mapCarries(map);
+    const carries = mapMatchRatings(map);
     return `<li class="koh-map">
         <span class="koh-n" data-mode="${escapeHtml(mode)}">${index + 1}</span>
         <span class="koh-mode" title="${escapeHtml(mode)}">${escapeHtml(MODE_SHORT[mode] || mode)}</span>
@@ -74,7 +75,7 @@ function mapRow(map, index, captains) {
 // played most of the series' maps on, then the series MVP.
 function totalsRow(maps, captains, seriesIndex) {
     const [c1] = captains;
-    const totals = seriesCarryTotals(maps);
+    const totals = seriesRatings(maps);
     if (!totals.length) return "";
     const sideCount = new Map();
     maps.filter(Boolean).forEach(m => {
@@ -87,20 +88,20 @@ function totalsRow(maps, captains, seriesIndex) {
         }));
     });
     const onLeft = id => { const c = sideCount.get(id) || { with: 0, against: 0 }; return c.with >= c.against; };
-    const cell = e => `<span class="koh-p${captains.includes(e.playerId) ? " koh-cap" : ""}">${escapeHtml(getPlayerName(e.playerId))}<small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${carryTag(e.total)}</span>`;
+    const cell = e => `<span class="koh-p${captains.includes(e.playerId) ? " koh-cap" : ""}">${escapeHtml(getPlayerName(e.playerId))}<small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${ratingTag(e.rating, true)}</span>`;
     const left = totals.filter(e => onLeft(e.playerId));
     const right = totals.filter(e => !onLeft(e.playerId));
     const mvp = totals[0];
     return `<li class="koh-map koh-total">
-            <span class="koh-n" data-mode="Series total">Σ</span>
-            <span class="koh-mode">TOTAL</span>
+            <span class="koh-n" data-mode="Series rating">Σ</span>
+            <span class="koh-mode">AVG</span>
             <span class="koh-team koh-left">${left.map(cell).join("")}</span>
-            <span class="koh-score koh-total-label">Series<br>carry</span>
+            <span class="koh-score koh-total-label">Series<br>rating</span>
             <span class="koh-team koh-right">${right.map(cell).join("")}</span>
         </li>
         <li class="koh-mvprow">
             <button type="button" class="koh-mvpcell" data-koh-mvp="${seriesIndex}" title="How the series MVP works">
-                <em>Series MVP</em><span class="koh-mvpname">${escapeHtml(getPlayerName(mvp.playerId))}</span>${carryTag(mvp.total)}</button>
+                <em>Series MVP</em><span class="koh-mvpname">${escapeHtml(getPlayerName(mvp.playerId))}</span>${ratingTag(mvp.rating, true)}</button>
         </li>`;
 }
 
@@ -112,14 +113,21 @@ function seriesBlock(series, mapsById, seriesIndex) {
     const name = id => `<span class="koh-captain${winner === id ? " koh-win" : winner ? " koh-out" : ""}">${escapeHtml(getPlayerName(id))}</span>`;
     const dates = (series.dates || []).map(formatHistoryDate).join(", ");
     const maps = (series.mapIds || []).map(id => mapsById.get(id));
-    const meta = [tierName(Number(series.tier) || 0), roundName(series), series.format, series.wager ? "2x wager" : "", dates].filter(Boolean);
-    return `<article class="koh-series">
-        <header class="koh-head">
-            <div class="koh-meta">${meta.map(escapeHtml).join(" · ")}</div>
-            <div class="koh-versus">${name(c1)}<span class="koh-sscore">${score[0] ?? "–"} – ${score[1] ?? "–"}</span>${name(c2)}</div>
-        </header>
-        ${maps.length ? `<ol class="koh-maps">${maps.map((m, i) => mapRow(m, i, captains)).join("")}${totalsRow(maps, captains, seriesIndex)}</ol>` : `<div class="ko-small">No maps recorded for this series yet.</div>`}
-    </article>`;
+    const meta = [tierName(Number(series.tier) || 0), roundName(series), series.format, series.wager ? "2x wager" : ""].filter(Boolean);
+    const mapCount = maps.filter(Boolean).length;
+    // Folded by default, like the History tab's weeks: the title is just the two captains.
+    return `<details class="koh-series">
+        <summary class="koh-head">
+            <span class="koh-chev" aria-hidden="true">▸</span>
+            <span class="koh-versus">${name(c1)}<span class="koh-vs">vs</span>${name(c2)}</span>
+            <span class="koh-sscore">${score[0] ?? "–"} – ${score[1] ?? "–"}</span>
+            <span class="koh-meta">${meta.map(escapeHtml).join(" · ")}${mapCount ? ` · ${mapCount} map${mapCount === 1 ? "" : "s"}` : ""}</span>
+        </summary>
+        <div class="koh-body">
+            ${dates ? `<div class="koh-dates">Played ${escapeHtml(dates)}</div>` : ""}
+            ${maps.length ? `<ol class="koh-maps">${maps.map((m, i) => mapRow(m, i, captains)).join("")}${totalsRow(maps, captains, seriesIndex)}</ol>` : `<div class="ko-small">No maps recorded for this series yet.</div>`}
+        </div>
+    </details>`;
 }
 
 // Fills the History panel for one month. Called each time the month changes.
@@ -134,28 +142,28 @@ export function renderKnockoutHistory(monthKey, cup, history) {
     seriesNow = series;
     mapsByIdNow = mapsById;
     panel.innerHTML = series.length
-        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Captains are in gold. Under each name: kills/deaths and that map's carry (how much they outplayed their own teammates). The Σ row adds the carries up for the series.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
+        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10 for how much they outplayed their own teammates (6 is an average game). The Σ row is each player's average for the series. Not Elo.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
         : `<div class="ko-empty">No Captain's Cup series have been played this month yet.</div>`;
 }
 
-// The popup behind the Series MVP button: how carry works and the totals.
+// The popup behind the Series MVP button: how the rating works and the board.
 function openMvpExplainer(seriesIndex) {
     const series = seriesNow[seriesIndex];
     if (!series) return;
     const maps = (series.mapIds || []).map(id => mapsByIdNow.get(id)).filter(Boolean);
-    const totals = seriesCarryTotals(maps);
-    const list = totals.map((e, i) => `<li${i === 0 ? ` class="koh-top"` : ""}><span>${i + 1}</span><b>${escapeHtml(getPlayerName(e.playerId))}</b><small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${carryTag(e.total)}</li>`).join("");
+    const list = seriesRatings(maps).map((e, i) => `<li${i === 0 ? ` class="koh-top"` : ""}><span>${i + 1}</span><b>${escapeHtml(getPlayerName(e.playerId))}</b><small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${ratingTag(e.rating)}</li>`).join("");
     showPopup(`<div class="koh-explain">
         <h2>Series MVP</h2>
-        <p class="koh-lead">The player who outplayed their <b>own teammates</b> the most across the whole series. Steady carrying map after map beats one big game.</p>
+        <p class="koh-lead">A match rating out of 10, like a football player rating. It shows who outplayed their <b>own teammates</b>. It is <b>not Elo</b> and doesn't change anyone's Elo or card.</p>
+        <div class="koh-scale"><span><b>8+</b> carried</span><span><b>7</b> good game</span><span><b>6</b> average</span><span><b>under 5</b> rough night</span></div>
         <div class="koh-steps">
-            <div><b>1 · KD carry</b><span>Your KD on the map minus your team's average KD (SND KD counts up to 4).</span></div>
-            <div><b>2 · Kill carry</b><span>Your share of your team's kills minus an even share (¼ in a 4v4).</span></div>
-            <div><b>3 · Map carry</b><span>10 × (KD carry × 0.5 + kill carry × 1.5), the same weights the Elo engine uses for its performance part. 0 is an average game for your team, and + means you carried.</span></div>
-            <div><b>4 · Series carry</b><span>Your map carries added up. The highest total is the Series MVP, and it adds one to the trophy count on their card.</span></div>
+            <div><b>1 · KD vs teammates</b><span>Your KD on the map minus your team's average KD (SND KD counts up to 4).</span></div>
+            <div><b>2 · Kills vs teammates</b><span>Your share of your team's kills minus an even share (¼ in a 4v4).</span></div>
+            <div><b>3 · Map rating</b><span>Starts at 6.0 and moves with those two, using the same weights the Elo engine uses for its performance part: 6 + 5 × (KD × 0.5 + kills × 1.5), kept between 1 and 10.</span></div>
+            <div><b>4 · Series rating</b><span>The average of your map ratings, so steady games beat one big map. The best average is the Series MVP and adds one to the trophy count on their card.</span></div>
         </div>
-        <p class="koh-note">Winning, losing and the score margin don't change it, so the best player on the losing team can still be MVP. Only Captain's Cup series count, and it doesn't change Elo or the card ratings.</p>
-        <section><h3>Series carry</h3><ol class="koh-plist">${list}</ol></section>
+        <p class="koh-note">Winning, losing and the score margin don't change it, so the best player on the losing team can still be MVP. Only Captain's Cup series count.</p>
+        <section><h3>Series rating</h3><ol class="koh-plist">${list}</ol></section>
     </div>`, { className: "koh-popup" });
 }
 

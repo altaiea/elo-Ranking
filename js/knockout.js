@@ -13,6 +13,7 @@ import { KNOCKOUT_RULES, buildBracket, buildTiers, previousMonthKey, tierKey, ti
 import { escapeHtml, monthKeyOf, monthLabel, ordinal } from "./ui.js";
 import { openKnockoutCards, setupKnockoutCardsButton } from "./knockoutCardsView.js";
 import { setupKnockoutRulesButton } from "./knockoutRulesView.js";
+import { renderKnockoutHistory, setupKnockoutHistoryButton } from "./knockoutHistoryView.js";
 
 const TIER_COLOURS = ["#f2c14e", "#d9dee3", "#d08a4a", "#9fd27a", "#c98bff"];   // Premier gold, Swing silver, Challenger bronze
 const tierColour = index => TIER_COLOURS[index] || TIER_COLOURS[TIER_COLOURS.length - 1];
@@ -56,6 +57,7 @@ async function init() {
     // The Knock-out Cards button, and any captain's name, open the Knock-out Cards.
     setupKnockoutCardsButton();
     setupKnockoutRulesButton();
+    setupKnockoutHistoryButton();
     const poster = document.querySelector(".ko-poster");
     const open = el => openKnockoutCards(Number(el.dataset.koPlayer));
     poster.addEventListener("click", e => { const el = e.target.closest("[data-ko-player]"); if (el) open(el); });
@@ -90,12 +92,24 @@ async function renderMonth(monthKey) {
     const tierOf = new Map();
     tiers.forEach(t => t.playerIds.forEach(id => tierOf.set(id, t)));
 
-    standingsBox.innerHTML = standingsTable(monthly, seedMonth, tierOf);
+    const brackets = tiers.map(t => buildBracket(t.playerIds, cup.series));
+    standingsBox.innerHTML = standingsTable(monthly, seedMonth, tierOf, knockedOut(brackets));
     let rank = 1;
-    tiersBox.innerHTML = tiers.map(t => {
+    tiersBox.innerHTML = tiers.map((t, i) => {
         const from = rank; rank += t.playerIds.length;
-        return tierPoster(t, from, rank - 1, buildBracket(t.playerIds, cup.series), monthKey);
+        return tierPoster(t, from, rank - 1, brackets[i], monthKey);
     }).join("");
+    renderKnockoutHistory(monthKey, cup, history);
+}
+
+// Everyone who has lost a series this month (a bye is not a loss).
+function knockedOut(brackets) {
+    const out = new Set();
+    brackets.forEach(b => b.rounds.flat().forEach(m => {
+        if (m.bye || !m.winner) return;
+        m.slots.forEach(s => { if (s && s.playerId !== m.winner.playerId) out.add(s.playerId); });
+    }));
+    return out;
 }
 
 // The highest leaderboard position a player reached in the month, e.g. "2nd x17".
@@ -107,11 +121,12 @@ function topFinish(record, maxPosition) {
     return "–";
 }
 
-function standingsTable(monthly, seedMonth, tierOf) {
+function standingsTable(monthly, seedMonth, tierOf, out = new Set()) {
     const rows = monthly.records.map(r => {
         const t = tierOf.get(r.playerId);
         const chip = t ? `<span class="ko-chip" style="--c:${tierColour(t.index)}">${escapeHtml(t.name)}</span>` : `<span class="ko-chip ko-chip-off">Not qualified</span>`;
-        return `<tr${t ? ` style="--c:${tierColour(t.index)}"` : ` class="ko-off"`}>
+        const outCls = out.has(r.playerId) ? " ko-outrow" : "";
+        return `<tr${t ? ` class="${outCls.trim()}" style="--c:${tierColour(t.index)}"` : ` class="ko-off"`}${outCls ? ` title="Knocked out"` : ""}>
             <td class="ko-rank">${r.qualified ? r.monthlyRank : "–"}</td>
             <td class="ko-name"><span data-ko-player="${r.playerId}" role="button" tabindex="0">${escapeHtml(r.name)}</span></td>
             <td class="ko-num">${topFinish(r, monthly.maxPosition)}</td>
@@ -133,7 +148,7 @@ function slotRow(slot, match, placeholder) {
     }
     const won = match?.winner && !match.bye && match.winner.playerId === slot.playerId;
     const lost = match?.winner && !match.bye && match.winner.playerId !== slot.playerId;
-    return `<div class="ko-row${won ? " ko-won" : ""}${lost ? " ko-lost" : ""}">
+    return `<div class="ko-row${won ? " ko-won" : ""}${lost ? " ko-lost" : ""}"${lost ? ` title="Knocked out"` : ""}>
         <span class="ko-seed">${slot.seed}</span><span class="ko-pname" data-ko-player="${slot.playerId}" role="button" tabindex="0">${escapeHtml(getPlayerName(slot.playerId))}</span><span class="ko-score">${score}</span></div>`;
 }
 

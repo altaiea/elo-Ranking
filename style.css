@@ -1937,6 +1937,25 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     transform: translate(-1px, 2px) !important;
 }
 
+/* PLAYER 17 */
+.player17-adjust .rating {
+    position: absolute;
+    top: 5px !important;
+    left: -7px !important;
+}
+.player17-adjust .col1.row1 {
+    position: absolute !important;
+    transform: translate(-2px, 2px) !important;
+}
+.player17-adjust .col2.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 0px) !important;
+}
+.player17-adjust .col3.row1 {
+    position: absolute !important;
+    transform: translate(-1px, 2px) !important;
+}
+
 
 /* ============================
    MAP HISTORY + ELO TRACE

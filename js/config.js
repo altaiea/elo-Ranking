@@ -39,10 +39,10 @@ export const PLACEHOLDER_PLAYER_IDS = [15, 16, 17];
 export const PLACEHOLDER_STARTING_ELO = { 17: 925 }; // HAMZ
 
 // Every player with a card, in carousel order.
-export const CARD_PLAYER_IDS = Array.from({ length: 16 }, (_, i) => i + 1);
+export const CARD_PLAYER_IDS = Array.from({ length: 17 }, (_, i) => i + 1);
 
 // Players whose intro video exists (cards/web/N_intro.mp4).
-export const INTRO_PLAYER_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16]);
+export const INTRO_PLAYER_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17]);
 
 // Intro videos framed differently from the default (see style.css .video-N).
 export const INTRO_VIDEO_CLASSES = { 2: "video-2", 3: "video-3", 5: "video-5" };

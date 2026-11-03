@@ -13,9 +13,9 @@
 // winning, losing and the score margin do not change it: it only says how
 // much better or worse you played than your own teammates.
 //
-// The Knockout History shows these raw carries on every map and each
-// player's series total; the highest series total is the series MVP (the
-// trophy count on the cards). carryRating() turns a carry into the site's
+// The Knockout History shows each map's carry as a match rating out of 10
+// (matchRating) and each player's series average; the best series average is
+// the series MVP (the trophy count on the cards). carryRating() turns a carry into the site's
 // 57-99 scale against every map in history, if a rating is ever wanted.
 
 import { percentile, scaleRating } from "./ratings.js";
@@ -84,8 +84,7 @@ export function averageRatings(maps, scale) {
 }
 
 // Each player's total carry over a series: the sum of their map carries.
-// [{ playerId, total, maps }] best first. Summing (not averaging) rewards
-// carrying the team map after map rather than one big game.
+// [{ playerId, total, maps }] best first.
 export function seriesCarryTotals(maps) {
     const totals = new Map();
     maps.filter(Boolean).forEach(m => mapCarries(m).forEach((carry, id) => {
@@ -96,10 +95,36 @@ export function seriesCarryTotals(maps) {
     return [...totals.values()].sort((a, b) => b.total - a.total || b.maps - a.maps || a.playerId - b.playerId);
 }
 
-// The series MVP: the highest total carry across the series' maps.
+// Match rating out of 10, like a football player rating, so it never reads
+// as Elo: 6 is an average game for your team, 7+ good, 8+ a carry, under 5
+// a rough night. Over all history most maps land between 3.6 and 8.6.
+export const matchRating = carry => Math.min(10, Math.max(1, 6 + carry / 2));
+
+// { playerId: rating out of 10 } for one map.
+export function mapMatchRatings(map) {
+    const out = new Map();
+    mapCarries(map).forEach((carry, id) => out.set(id, matchRating(carry)));
+    return out;
+}
+
+// Each player's series rating: the average of their map ratings out of 10,
+// so steady games beat one big map. [{ playerId, rating, maps }] best first.
+export function seriesRatings(maps) {
+    const totals = new Map();
+    maps.filter(Boolean).forEach(m => mapMatchRatings(m).forEach((rating, id) => {
+        const t = totals.get(id) || { playerId: id, sum: 0, maps: 0 };
+        t.sum += rating; t.maps += 1;
+        totals.set(id, t);
+    }));
+    return [...totals.values()]
+        .map(t => ({ playerId: t.playerId, rating: t.sum / t.maps, maps: t.maps }))
+        .sort((a, b) => b.rating - a.rating || b.maps - a.maps || a.playerId - b.playerId);
+}
+
+// The series MVP: the best series rating.
 export function seriesMvp(series, mapsById) {
     const maps = (series?.mapIds || []).map(id => mapsById.get(id)).filter(Boolean);
-    const board = seriesCarryTotals(maps);
+    const board = seriesRatings(maps);
     return board.length ? board[0].playerId : null;
 }
 

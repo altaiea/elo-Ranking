@@ -1940,20 +1940,20 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER 17 */
 .player17-adjust .rating {
     position: absolute;
-    top: 5px !important;
-    left: -7px !important;
+    top: 9px !important;
+    left: -4px !important;
 }
 .player17-adjust .col1.row1 {
     position: absolute !important;
-    transform: translate(-2px, 2px) !important;
+    transform: translate(1px, 1px) !important;
 }
 .player17-adjust .col2.row1 {
     position: absolute !important;
-    transform: translate(-1px, 0px) !important;
+    transform: translate(0px, 0px) !important;
 }
 .player17-adjust .col3.row1 {
     position: absolute !important;
-    transform: translate(-1px, 2px) !important;
+    transform: translate(-1px, 0px) !important;
 }
 
 

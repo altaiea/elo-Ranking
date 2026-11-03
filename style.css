@@ -1921,8 +1921,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER 16 */
 .player16-adjust .rating {
     position: absolute;
-    top: 5px !important;
-    left: -7px !important;
+    top: 2px !important;
+    left: 0px !important;
 }
 .player16-adjust .col1.row1 {
     position: absolute !important;
@@ -1940,8 +1940,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER 17 */
 .player17-adjust .rating {
     position: absolute;
-    top: 9px !important;
-    left: -4px !important;
+    top: 14px !important;
+    left: -1px !important;
 }
 .player17-adjust .col1.row1 {
     position: absolute !important;

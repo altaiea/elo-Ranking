@@ -11,6 +11,36 @@ import {
 import { cardRatings, ratingTierClass } from "./ratings.js";
 import { reduceMotion, setRatingColor } from "./ui.js";
 import { openModeModal } from "./modeModal.js";
+import { loadMvpCounts } from "./knockoutMvp.js";
+
+// Gold trophy for the Captain's Cup MVP badge (series MVPs won).
+// Each copy gets its own gradient id: a shared id can paint nothing when the
+// first copy on the page sits inside a hidden popup.
+let trophyCount = 0;
+const trophySvg = () => { const id = `mvpGold${++trophyCount}`; return TROPHY_SVG.replaceAll("mvpGold", id); };
+const TROPHY_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="mvpGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a3"/><stop offset=".5" stop-color="#f2c14e"/><stop offset="1" stop-color="#a8741f"/></linearGradient></defs><path fill="url(#mvpGold)" d="M6 2h12v2h3v3a5 5 0 0 1-4.6 5A6 6 0 0 1 13 15.9V18h3v2H8v-2h3v-2.1A6 6 0 0 1 7.6 12 5 5 0 0 1 3 7V4h3V2Zm0 4H5v1a3 3 0 0 0 1.4 2.5A6 6 0 0 1 6 8V6Zm12 0v2c0 .5 0 1-.1 1.5A3 3 0 0 0 19 7V6h-1Z"/><rect x="6" y="21" width="12" height="2" rx=".6" fill="#f1ead9"/></svg>`;
+
+// Shows "trophy xN" on a card once the player has won a Cup series MVP.
+// It sits in the top corner opposite the rating banner.
+function updateMvpBadge(card, p, right) {
+    let badge = card.querySelector(".mvp-badge");
+    if (!badge) {
+        badge = document.createElement("div");
+        badge.className = "mvp-badge";
+        card.querySelector(".back").appendChild(badge);
+    }
+    badge.classList.toggle("mvp-badge-left", right);
+    badge.hidden = true;
+    card.dataset.mvpFor = String(p.id);
+    loadMvpCounts().then(counts => {
+        if (card.dataset.mvpFor !== String(p.id)) return;     // another player was opened meanwhile
+        const n = counts.get(Number(p.id)) || 0;
+        badge.hidden = n === 0;
+        badge.title = n ? `Captain's Cup series MVP ×${n}` : "";
+        badge.innerHTML = n ? `${trophySvg()}<b>×${n}</b>` : "";
+    });
+    return badge;
+}
 
 const ADJUST_CLASSES = CARD_PLAYER_IDS.map(id => `player${id}-adjust`);
 const TIER_CLASSES = ["rating-80", "rating-90", "rating-98"];
@@ -275,7 +305,8 @@ export function fillCard(card, p, players, { clickableModes = false } = {}) {
     });
 
     card.querySelector(".back").style.backgroundImage = backgroundFor(p.id);
-    return [ratingEl, ...circles.map(([el]) => el)];
+    const badge = updateMvpBadge(card, p, right);
+    return [ratingEl, ...circles.map(([el]) => el), badge];
 }
 
 /* ---------------------------

@@ -142,7 +142,7 @@ export function renderKnockoutHistory(monthKey, cup, history) {
     seriesNow = series;
     mapsByIdNow = mapsById;
     panel.innerHTML = series.length
-        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10, half against their own teammates and half against the whole lobby (6 is an average game). The Σ row is each player's average for the series. Not Elo.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
+        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10, half against their own teammates and half against the whole lobby (6 is an average game). The Σ row is each player's average for the series. Not Elo. New to this? Read <b>Rules → 8 · Series MVP</b>.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
         : `<div class="ko-empty">No Captain's Cup series have been played this month yet.</div>`;
 }
 

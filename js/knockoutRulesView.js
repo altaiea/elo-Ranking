@@ -40,6 +40,10 @@ function rulesHtml() {
         <section><h4>7 · Knock-out Cards</h4>
             <p>Every player's Knock-out Card starts from zero. It only counts maps from Captain's Cup series and compares you with everyone else's Cup maps.</p>
             <p>Your normal card still counts every map, Cup maps included. The bottom left of the card shows the tier you fought in.</p></section>
+        <section><h4>8 · Series MVP (the trophy)</h4>
+            <p>Every map gives you a score out of 10 (6 is average, 8+ is a carry). It is <b>not Elo</b>. Half of it compares your KD and kills with <b>your own team</b>, half with <b>everyone in the lobby</b> (both teams). Winning or losing doesn't change it.</p>
+            <p>Your series score is the average of your maps. The highest is the Series MVP and gets a trophy on their card.</p>
+            <p><b>Example (SND):</b> Player 1 goes 9/5. Against their own team they carried: <b>8.5</b>. Against the whole lobby they were a bit above average: <b>6.5</b>. Half and half: <b>7.5</b> for that map.</p></section>
     </div>`;
 }
 

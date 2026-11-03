@@ -73,11 +73,19 @@ function mapRow(map, index, captains) {
 
 // The last row of a series: each player's total carry, on the side they
 // played most of the series' maps on, then the series MVP.
+// Series kills/deaths and K/D, e.g. "193/116 · 1.66 KD".
+function kdLine(t = { kills: 0, deaths: 0 }) {
+    const kd = t.deaths ? t.kills / t.deaths : t.kills;
+    const band = kd >= 1.5 ? "koh-kd-hi" : kd >= 1 ? "koh-kd-ok" : "koh-kd-lo";
+    return `<span class="koh-kdkd">${t.kills}/${t.deaths}</span><br><b class="koh-kd ${band}">${kd.toFixed(2)}</b> KD`;
+}
+
 function totalsRow(maps, captains, seriesIndex) {
     const [c1] = captains;
     const totals = seriesRatings(maps);
     if (!totals.length) return "";
     const sideCount = new Map();
+    const kdTotals = new Map();
     maps.filter(Boolean).forEach(m => {
         const mine = sideOf(m, c1) || "A";
         Object.entries(m.game?.teams || {}).forEach(([side, team]) => (team || []).forEach(p => {
@@ -85,10 +93,13 @@ function totalsRow(maps, captains, seriesIndex) {
             const c = sideCount.get(id) || { with: 0, against: 0 };
             c[side === mine ? "with" : "against"] += 1;
             sideCount.set(id, c);
+            const kd = kdTotals.get(id) || { kills: 0, deaths: 0 };
+            kd.kills += Number(p.kills) || 0; kd.deaths += Number(p.deaths) || 0;
+            kdTotals.set(id, kd);
         }));
     });
     const onLeft = id => { const c = sideCount.get(id) || { with: 0, against: 0 }; return c.with >= c.against; };
-    const cell = e => `<span class="koh-p${captains.includes(e.playerId) ? " koh-cap" : ""}">${escapeHtml(getPlayerName(e.playerId))}<small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${ratingTag(e.rating, true)}</span>`;
+    const cell = e => `<span class="koh-p${captains.includes(e.playerId) ? " koh-cap" : ""}">${escapeHtml(getPlayerName(e.playerId))}<small>${kdLine(kdTotals.get(e.playerId))}</small>${ratingTag(e.rating, true)}</span>`;
     const left = totals.filter(e => onLeft(e.playerId));
     const right = totals.filter(e => !onLeft(e.playerId));
     const mvp = totals[0];
@@ -142,7 +153,7 @@ export function renderKnockoutHistory(monthKey, cup, history) {
     seriesNow = series;
     mapsByIdNow = mapsById;
     panel.innerHTML = series.length
-        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10, half against their own teammates and half against the whole lobby (6 is an average game). The Σ row is each player's average for the series. Not Elo. New to this? Read <b>Rules → 8 · Series MVP</b>.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
+        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in bright white. Under each name: kills/deaths and a match rating out of 10, half against their own teammates and half against the whole lobby (6 is an average game). The Σ row is each player's total kills/deaths, K/D and average rating for the series. Not Elo. New to this? Read <b>Rules → 8 · Series MVP</b>.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
         : `<div class="ko-empty">No Captain's Cup series have been played this month yet.</div>`;
 }
 

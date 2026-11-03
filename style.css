@@ -2944,13 +2944,15 @@ tr.ko-outrow::after { inset: 2px 0; }
 .koh-maps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .koh-map { display: grid; grid-template-columns: 22px 40px minmax(0, 1fr) 84px minmax(0, 1fr); align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; background: rgba(0,0,0,.35); font-size: 13px; }
 .koh-n { color: #857d6e; font-weight: 700; text-align: right; }
-.koh-mode { color: var(--ko-gold); font-weight: 900; font-size: 11px; letter-spacing: .1em; }
-.koh-team { display: flex; flex-wrap: wrap; gap: 4px 10px; opacity: .6; }
-.koh-team.koh-win { opacity: 1; }
+.koh-mode { color: #7feeff; font-weight: 900; font-size: 11px; letter-spacing: .1em; }
+.koh-team { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+/* The losing side of a map is dimmed, except its captain, who always stays bright. */
+.koh-map:not(.koh-total) .koh-team:not(.koh-win) .koh-p:not(.koh-cap) { opacity: .6; }
 .koh-right { justify-content: flex-end; text-align: right; }
 .koh-p { display: inline-flex; flex-direction: column; color: #d9d1bf; text-transform: uppercase; letter-spacing: .03em; line-height: 1.15; }
 .koh-p small { color: #857d6e; font-size: 10.5px; letter-spacing: 0; }
-.koh-cap { color: var(--ko-gold); font-weight: 800; }
+.koh-cap { color: #fff; font-weight: 900; text-shadow: 0 0 10px rgba(255,255,255,.35); }
+.koh-cap small { color: #bdb6a7; }
 .koh-score { display: flex; justify-content: center; gap: 6px; font-weight: 900; color: #a59c88; font-variant-numeric: tabular-nums; }
 .koh-score b.koh-win { color: #fff; }
 .koh-score i { font-style: normal; color: #5f584c; }
@@ -3008,6 +3010,21 @@ tr.ko-outrow::after { inset: 2px 0; }
 .koh-total .koh-team { opacity: 1; }
 .koh-total .koh-n { color: var(--ko-gold); font-size: 15px; }
 .koh-total .koh-c { font-size: 13px; }
+/* The Σ series row is icy blue, like the site theme. K/D: bright ice 1.5+,
+   white 1+, red under 1. */
+.koh-map.koh-total { background: linear-gradient(180deg, rgba(0,234,255,.10), rgba(0,234,255,.03)); border-color: rgba(0,234,255,.55); box-shadow: 0 0 18px rgba(0,234,255,.08) inset; }
+.koh-total .koh-n, .koh-total .koh-mode, .koh-total .koh-total-label { color: #7feeff; }
+.koh-total .koh-team { gap: 6px 22px; }
+.koh-total .koh-p small { color: #9fb4bf; font-size: 11px; line-height: 1.35; white-space: nowrap; }
+.koh-total .koh-kdkd { color: #f4f8fa; font-weight: 800; font-size: 13.5px; }
+.koh-total .koh-kd { font-size: 11px; font-weight: 800; }
+/* Series ratings in the Series MVP gold. */
+.koh-total .koh-r10, .koh-total .koh-r10.koh-r-top, .koh-total .koh-r10.koh-r-good { color: var(--ko-gold); text-shadow: 0 0 8px rgba(242,193,78,.35); }
+.koh-total .koh-r10.koh-r-low { color: var(--ko-gold-deep); text-shadow: none; }
+.koh-total .koh-r10 i { color: var(--ko-gold-deep); }
+.koh-kd-hi { color: #00eaff; text-shadow: 0 0 8px rgba(0,234,255,.45); }
+.koh-kd-ok { color: #f4f8fa; }
+.koh-kd-lo { color: #ff6b6b; }
 .koh-total-label { color: var(--ko-gold); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-align: center; line-height: 1.25; font-weight: 900; }
 .koh-mvprow { display: flex; justify-content: center; padding-top: 2px; }
 .koh-mvpcell em { white-space: nowrap; }
@@ -3028,7 +3045,8 @@ tr.ko-outrow::after { inset: 2px 0; }
     }
     .koh-map .koh-n { grid-area: n; display: flex; gap: 6px; justify-content: flex-start; text-align: left; font-size: 12px; }
     .koh-map .koh-mode { display: none; }
-    .koh-map .koh-n::after { content: attr(data-mode); color: var(--ko-gold); font-weight: 900; letter-spacing: .1em; font-size: 11px; text-transform: uppercase; }
+    .koh-map .koh-n::after { content: attr(data-mode); color: #7feeff; font-weight: 900; letter-spacing: .1em; font-size: 11px; text-transform: uppercase; }
+    .koh-map.koh-total .koh-n::after { color: #7feeff; }
     .koh-map .koh-left { grid-area: left; }
     .koh-map .koh-right { grid-area: right; }
     .koh-map .koh-score { grid-area: score; align-self: center; gap: 4px; }

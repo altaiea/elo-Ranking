@@ -13,6 +13,10 @@
 // winning, losing and the score margin do not change it: it only says how
 // much better or worse you played than your own teammates.
 //
+// The rated carry is half that and half the same sum against the whole
+// lobby (all players on the map), so beating everyone counts as well as
+// beating your teammates.
+//
 // The Knockout History shows each map's carry as a match rating out of 10
 // (matchRating) and each player's series average; the best series average is
 // the series MVP (the trophy count on the cards). carryRating() turns a carry into the site's
@@ -34,19 +38,30 @@ function mapKd(player, mode) {
 }
 
 // { playerId: carry } for one map. Empty when the map has no line-ups.
-export function mapCarries(map) {
+// lobby = true compares each player with all players on the map instead of
+// only their own team.
+export function mapCarries(map, lobby = false) {
     const mode = map?.gameMode || map?.game?.gameMode;
     const out = new Map();
-    Object.values(map?.game?.teams || {}).forEach(team => {
-        if (!Array.isArray(team) || !team.length) return;
-        const avgKd = team.reduce((sum, p) => sum + mapKd(p, mode), 0) / team.length;
-        const teamKills = team.reduce((sum, p) => sum + (Number(p.kills) || 0), 0);
-        team.forEach(p => {
-            const killShare = teamKills ? (Number(p.kills) || 0) / teamKills : 0;
-            const carry = POOL * ((mapKd(p, mode) - avgKd) * KD_WEIGHT + (killShare - 1 / team.length) * KILL_WEIGHT);
+    const teams = Object.values(map?.game?.teams || {}).filter(t => Array.isArray(t) && t.length);
+    (lobby ? [teams.flat()] : teams).forEach(group => {
+        const avgKd = group.reduce((sum, p) => sum + mapKd(p, mode), 0) / group.length;
+        const groupKills = group.reduce((sum, p) => sum + (Number(p.kills) || 0), 0);
+        group.forEach(p => {
+            const killShare = groupKills ? (Number(p.kills) || 0) / groupKills : 0;
+            const carry = POOL * ((mapKd(p, mode) - avgKd) * KD_WEIGHT + (killShare - 1 / group.length) * KILL_WEIGHT);
             out.set(Number(p.playerId), carry);
         });
     });
+    return out;
+}
+
+// The rated carry: half against your own team, half against the whole lobby.
+export function mapCombinedCarries(map) {
+    const team = mapCarries(map);
+    const lobby = mapCarries(map, true);
+    const out = new Map();
+    team.forEach((c, id) => out.set(id, (c + (lobby.get(id) ?? c)) / 2));
     return out;
 }
 
@@ -103,7 +118,7 @@ export const matchRating = carry => Math.min(10, Math.max(1, 6 + carry / 2));
 // { playerId: rating out of 10 } for one map.
 export function mapMatchRatings(map) {
     const out = new Map();
-    mapCarries(map).forEach((carry, id) => out.set(id, matchRating(carry)));
+    mapCombinedCarries(map).forEach((carry, id) => out.set(id, matchRating(carry)));
     return out;
 }
 

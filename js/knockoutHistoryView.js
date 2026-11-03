@@ -142,7 +142,7 @@ export function renderKnockoutHistory(monthKey, cup, history) {
     seriesNow = series;
     mapsByIdNow = mapsById;
     panel.innerHTML = series.length
-        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10 for how much they outplayed their own teammates (6 is an average game). The Σ row is each player's average for the series. Not Elo.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
+        ? `<p class="ko-small">Every Captain's Cup series this month, newest first. Tap a series to open it. Captains are in gold. Under each name: kills/deaths and a match rating out of 10, half against their own teammates and half against the whole lobby (6 is an average game). The Σ row is each player's average for the series. Not Elo. New to this? Read <b>Rules → 8 · Series MVP</b>.</p>${series.map((s, i) => seriesBlock(s, mapsById, i)).join("")}`
         : `<div class="ko-empty">No Captain's Cup series have been played this month yet.</div>`;
 }
 
@@ -154,12 +154,12 @@ function openMvpExplainer(seriesIndex) {
     const list = seriesRatings(maps).map((e, i) => `<li${i === 0 ? ` class="koh-top"` : ""}><span>${i + 1}</span><b>${escapeHtml(getPlayerName(e.playerId))}</b><small>${e.maps} map${e.maps === 1 ? "" : "s"}</small>${ratingTag(e.rating)}</li>`).join("");
     showPopup(`<div class="koh-explain">
         <h2>Series MVP</h2>
-        <p class="koh-lead">A match rating out of 10, like a football player rating. It shows who outplayed their <b>own teammates</b>. It is <b>not Elo</b> and doesn't change anyone's Elo or card.</p>
+        <p class="koh-lead">A match rating out of 10, like a football player rating. Half of it is how you did against your <b>own teammates</b>, half against the <b>whole lobby</b>. It is <b>not Elo</b> and doesn't change anyone's Elo or card.</p>
         <div class="koh-scale"><span><b>8+</b> carried</span><span><b>7</b> good game</span><span><b>6</b> average</span><span><b>under 5</b> rough night</span></div>
         <div class="koh-steps">
-            <div><b>1 · KD vs teammates</b><span>Your KD on the map minus your team's average KD (SND KD counts up to 4).</span></div>
-            <div><b>2 · Kills vs teammates</b><span>Your share of your team's kills minus an even share (¼ in a 4v4).</span></div>
-            <div><b>3 · Map rating</b><span>Starts at 6.0 and moves with those two, using the same weights the Elo engine uses for its performance part: 6 + 5 × (KD × 0.5 + kills × 1.5), kept between 1 and 10.</span></div>
+            <div><b>1 · KD</b><span>Your KD on the map minus the average KD, once for your team and once for the whole lobby (SND KD counts up to 4).</span></div>
+            <div><b>2 · Kills</b><span>Your share of the kills minus an even share: ¼ of your team's, ⅛ of the lobby's in a 4v4.</span></div>
+            <div><b>3 · Map rating</b><span>Starts at 6.0 and moves with those two, using the same weights the Elo engine uses for its performance part: 6 + 5 × (KD × 0.5 + kills × 1.5), done for team and lobby and split 50/50, kept between 1 and 10.</span></div>
             <div><b>4 · Series rating</b><span>The average of your map ratings, so steady games beat one big map. The best average is the Series MVP and adds one to the trophy count on their card.</span></div>
         </div>
         <p class="koh-note">Winning, losing and the score margin don't change it, so the best player on the losing team can still be MVP. Only Captain's Cup series count.</p>

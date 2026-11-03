@@ -40,6 +40,19 @@ function rulesHtml() {
         <section><h4>7 · Knock-out Cards</h4>
             <p>Every player's Knock-out Card starts from zero. It only counts maps from Captain's Cup series and compares you with everyone else's Cup maps.</p>
             <p>Your normal card still counts every map, Cup maps included. The bottom left of the card shows the tier you fought in.</p></section>
+        <section><h4>8 · Series MVP (the trophy)</h4>
+            <p>Every map gives you a score out of 10 (6 is average, 8+ is a carry). It is <b>not Elo</b>. Half of it compares your KD and kills with <b>your own team</b>, half with <b>everyone in the lobby</b> (both teams). Winning or losing doesn't change it.</p>
+            <p>Your series score is the average of your maps. The highest is the Series MVP and gets a trophy on their card.</p>
+            <p><b>Example (SND):</b> Player 1 goes 9/5. Against their own team they carried: <b>8.5</b>. Against the whole lobby they were a bit above average: <b>6.5</b>. Half and half: <b>7.5</b> for that map.</p></section>
+        <section><h4>9 · MVP questions</h4>
+            <p><b>Is this Elo?</b><br>No. It never adds or takes away Elo. It's just a match rating.</p>
+            <p><b>I won the series. Why am I not MVP?</b><br>Winning doesn't count. It's only about how well you played compared with the others.</p>
+            <p><b>I had a good KD. Why is my score low?</b><br>It's relative. If your teammates or the lobby did even better, your score drops.</p>
+            <p><b>Can one huge map win it?</b><br>Not on its own. It's your average across every map, so steady games win.</p>
+            <p><b>What if two players tie?</b><br>Whoever played more maps in the series gets it.</p>
+            <p><b>When do I get the trophy?</b><br>Once the series is finished. It shows on your card with how many you've won.</p>
+            <p><b>Where can I see everyone's scores?</b><br>Open <b>History</b>, tap a series, then tap the <b>Series MVP</b> button.</p>
+        </section>
     </div>`;
 }
 

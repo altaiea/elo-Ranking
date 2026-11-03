@@ -1921,16 +1921,16 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 /* PLAYER 16 */
 .player16-adjust .rating {
     position: absolute;
-    top: 2px !important;
-    left: 0px !important;
+    top: 8px !important;
+    left: -2px !important;
 }
 .player16-adjust .col1.row1 {
     position: absolute !important;
-    transform: translate(-2px, 2px) !important;
+    transform: translate(1px, 2px) !important;
 }
 .player16-adjust .col2.row1 {
     position: absolute !important;
-    transform: translate(-1px, 0px) !important;
+    transform: translate(-2px, 0px) !important;
 }
 .player16-adjust .col3.row1 {
     position: absolute !important;
@@ -1941,19 +1941,19 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .player17-adjust .rating {
     position: absolute;
     top: 14px !important;
-    left: -1px !important;
+    left: -3px !important;
 }
 .player17-adjust .col1.row1 {
     position: absolute !important;
-    transform: translate(1px, 1px) !important;
+    transform: translate(2px, 1px) !important;
 }
 .player17-adjust .col2.row1 {
     position: absolute !important;
-    transform: translate(0px, 0px) !important;
+    transform: translate(-1px, -2px) !important;
 }
 .player17-adjust .col3.row1 {
     position: absolute !important;
-    transform: translate(-1px, 0px) !important;
+    transform: translate(1px, 0px) !important;
 }
 
 

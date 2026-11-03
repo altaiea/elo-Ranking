@@ -102,7 +102,7 @@ function start() {
 
     Promise.all([playersLoaded, wings]).then(() => {
         boot.finish();
-        // Small things first (the 16 carousel thumbnails, ~400 KB in all),
+        // Small things first (the 17 carousel thumbnails, ~400 KB in all),
         // then the full card art and intros one by one on fast connections.
         whenIdle(() => {
             preloadCarouselImages();

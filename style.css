@@ -2946,8 +2946,9 @@ tr.ko-outrow::after { inset: 2px 0; }
 .koh-n { color: #857d6e; font-weight: 700; text-align: right; }
 .koh-mode { color: #7feeff; font-weight: 900; font-size: 11px; letter-spacing: .1em; }
 .koh-team { display: flex; flex-wrap: wrap; gap: 4px 10px; }
-/* The losing side of a map is dimmed, except its captain, who always stays bright. */
-.koh-map:not(.koh-total) .koh-team:not(.koh-win) .koh-p:not(.koh-cap) { opacity: .6; }
+/* Non-captain names are one even soft grey on every map and in the Σ row, win or
+   lose, so only captains stand out (the score shows who won the map). */
+.koh-p:not(.koh-cap) { color: #b3ac9d; }
 .koh-right { justify-content: flex-end; text-align: right; }
 .koh-p { display: inline-flex; flex-direction: column; color: #d9d1bf; text-transform: uppercase; letter-spacing: .03em; line-height: 1.15; }
 .koh-p small { color: #857d6e; font-size: 10.5px; letter-spacing: 0; }

@@ -20,7 +20,8 @@ export const PLAYER_NAMES = {
     13: "SAFY",
     14: "MASEEH",
     15: "ZU",
-    16: "SION"
+    16: "SION",
+    17: "HAMZ"
 };
 
 export function getPlayerName(id) {
@@ -32,7 +33,10 @@ export function getPlayerName(id) {
 export const INACTIVE_PLAYER_IDS = new Set([14]); // MASEEH
 
 // IDs that always appear, even before the stats JSON includes them.
-export const PLACEHOLDER_PLAYER_IDS = [15, 16];
+export const PLACEHOLDER_PLAYER_IDS = [15, 16, 17];
+// Starting Elo for a placeholder that is not in the stats JSON yet (default 0).
+// Must match the starting Elo set for that player in CODStats (stats.json).
+export const PLACEHOLDER_STARTING_ELO = { 17: 925 }; // HAMZ
 
 // Every player with a card, in carousel order.
 export const CARD_PLAYER_IDS = Array.from({ length: 16 }, (_, i) => i + 1);

@@ -10,7 +10,7 @@
 //   history/summary.json      optional small copy of every day, without the
 //                             calculation traces (tools/build_history_summary.py)
 
-import { INACTIVE_PLAYER_IDS, PLACEHOLDER_PLAYER_IDS, getPlayerName } from "./config.js";
+import { INACTIVE_PLAYER_IDS, PLACEHOLDER_PLAYER_IDS, PLACEHOLDER_STARTING_ELO, getPlayerName } from "./config.js";
 
 const HISTORY_FOLDER = "history";
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -191,7 +191,7 @@ export function playerHasActivity(p) {
 export function buildPlayers(currentPlayers, openingElo) {
     const source = { ...currentPlayers };
     PLACEHOLDER_PLAYER_IDS.forEach(id => {
-        if (!source[id]) source[id] = createEmptyPlayerStats();
+        if (!source[id]) source[id] = { ...createEmptyPlayerStats(), elo: PLACEHOLDER_STARTING_ELO[id] || 0 };
     });
 
     const players = Object.entries(source).map(([id, p]) => ({

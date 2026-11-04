@@ -1,5 +1,5 @@
 /* ======================================================
-   MAPS TAB: random map sets
+   MAP SETS (used by the Teams & Maps tab)
    5 maps: no map repeats at all.
    7 / 9 maps: no map repeats within the same mode.
 ====================================================== */
@@ -29,8 +29,7 @@ export function generateMapSet(count) {
 
 const pictureUrl = name => `url('maps/${name.toLowerCase()}.webp')`;
 
-function renderMapSet(count) {
-    const output = document.getElementById(`mapSeries${count}`);
+export function renderMapSet(count, output) {
     output.innerHTML = generateMapSet(count).map((entry, i) => {
         // Entries like "POOL EXHAUSTED" have no picture and keep the plain dark card.
         const hasPicture = MAP_PICTURES.has(entry.map);
@@ -68,20 +67,5 @@ function spinCards(output) {
             card.animate([{ scale: "1.12" }, { scale: "0.96", offset: 0.55 }, { scale: "1" }], { duration: 420, easing: EASE_OUT });
             card.animate([{ boxShadow: "0 0 26px #00eaff" }, { boxShadow: "0 0 0 transparent" }], { duration: 700, easing: "ease-out" });
         }, 700 + i * 380);
-    });
-}
-
-export function setupMaps() {
-    document.querySelectorAll(".map-series-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const count = parseInt(btn.dataset.count, 10);
-            const loader = document.getElementById("mapLoading");
-            loader.style.display = "block";
-            document.getElementById(`mapSeries${count}`).innerHTML = "";
-            setTimeout(() => {
-                loader.style.display = "none";
-                renderMapSet(count);
-            }, 600); // smooth delay
-        });
     });
 }

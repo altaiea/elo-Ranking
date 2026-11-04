@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="layout-side theme-ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1100">
@@ -10,6 +10,8 @@
     <link rel="modulepreload" href="js/main.js">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="matchSetup.css">
+    <link rel="stylesheet" href="layout.css">
 <style>
 #bootLoader{position:fixed;inset:0;z-index:2147483000;background:#0b0f14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#e8edf3;font-family:sans-serif;transition:opacity .45s}
 #bootLoader.done{opacity:0;pointer-events:none}
@@ -23,20 +25,27 @@
 <body>
 <div id="bootLoader"><div class="bl-title">LOADING</div><div class="bl-bar"><div class="bl-fill" id="blFill"></div></div><div class="bl-pct" id="blPct">0%</div></div>
 
-<h1 id="pageTitle">LEADERBOARD</h1>
-
 <!-- ============================
-     TAB BAR
+     SIDE MENU (a bar along the bottom on phones)
 ============================ -->
-<div id="tabs" role="tablist">
-    <button class="nav-tab" data-tab="leaderboardPage">Leaderboard</button>
-    <button class="nav-tab" data-tab="teamsPage">Teams</button>
-    <button class="nav-tab" data-tab="historyPage">History</button>
-    <button class="nav-tab" data-tab="comparisonsPage">Head-To-Head</button>
-    <button class="nav-tab" data-tab="mapsPage">Maps</button>
-    <button class="nav-tab" data-tab="carouselPage">Cards</button>
-    <button class="nav-tab" data-tab="knockoutPage">Knockout</button>
-</div>
+<aside class="rail" id="rail">
+    <div class="rail-brand"><span class="rail-logo">ELO</span></div>
+    <nav id="tabs" role="tablist">
+        <button class="nav-tab" data-tab="leaderboardPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span class="nl">Leaderboard</span><span class="ns">Ranks</span></button>
+        <button class="nav-tab" data-tab="teamsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg><span class="nl">Teams &amp; Maps</span><span class="ns">Teams</span></button>
+        <button class="nav-tab" data-tab="historyPage"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="nl">History</span><span class="ns">History</span></button>
+        <button class="nav-tab" data-tab="comparisonsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7 7M4 4v4M4 4h4M20 20l-7-7M20 20v-4M20 20h-4M20 4l-6 6M4 20l6-6"/></svg><span class="nl">Head-To-Head</span><span class="ns">H2H</span></button>
+        <button class="nav-tab" data-tab="carouselPage"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l3 1-3.5 12-2.5-.7"/></svg><span class="nl">Cards</span><span class="ns">Cards</span></button>
+        <button class="nav-tab" data-tab="knockoutPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3h4A4.5 4.5 0 0 1 19 7.5V12a4 4 0 0 1-4 4h-4.5A3.5 3.5 0 0 1 7 12.5V6.5A3.5 3.5 0 0 1 10.5 3z"/><path d="M7 8.5H6A2 2 0 0 0 4 10.5v1A2.5 2.5 0 0 0 6.5 14H7.5"/><path d="M11 7.5c1.5-.6 3.5-.6 5 .3"/><path d="M9.5 16v4.5h7.5V16M9.5 18.3h7.5"/></svg><span class="nl">Knockout</span><span class="ns">Knockout</span></button>
+    </nav>
+</aside>
+
+<main class="shell" id="shell">
+
+<!-- page header: tabs.js fills it for the open tab -->
+<header class="page-head" id="pageHead">
+    <h1 class="ph-title" id="pageTitle">LEADERBOARD</h1>
+</header>
 
 <!-- ============================
      LEADERBOARD TAB
@@ -70,156 +79,61 @@
 </div>
 
 <div id="teamsPage" class="tab-page">
+  <div class="ms" id="matchSetup">
 
-    <h2 style="text-align:center; color:#00eaff;">Generate Teams</h2>
-
-    <div class="teams-container">
-
-        <!-- AUTO TEAM BUILDER -->
-        <div class="team-panel">
-            <button class="team-toggle" data-target="autoPanel">Auto Team ▼</button>
-
-            <div id="autoPanel" class="team-content">
-                <p>Select 8 players:</p>
-
-                <div class="player-select-grid">
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                    <select class="team-player"></select>
-                </div>
-
-                <button id="generateTeams" class="generate-teams-btn">
-                    Best Match-Up
-                </button>
-
-                <!--  Strength Bars (with percentage text) -->
-                <div class="team-strength-wrapper">
-                    <div class="team-strength">
-                        <span>Team A Strength</span>
-                        <div class="strength-bar">
-                            <div id="strengthA" class="strength-fill">
-                                <span id="strengthAText" class="strength-text"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-strength">
-                        <span>Team B Strength</span>
-                        <div class="strength-bar">
-                            <div id="strengthB" class="strength-fill">
-                                <span id="strengthBText" class="strength-text"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- STEP 1: PLAYERS -->
+    <section class="ms-card">
+      <header class="ms-head">
+        <span class="ms-step">1</span>
+        <div class="ms-head-text">
+          <h2>Pick players</h2>
         </div>
+        <span class="ms-count" id="msCount">0/8</span>
+      </header>
 
-        <!-- MANUAL TEAM BUILDER -->
-        <div class="team-panel">
-            <button class="team-toggle" data-target="manualPanel">Manual team ▼</button>
+      <div class="ms-seg" role="tablist" id="msModeSeg">
+        <button class="on" data-mode="auto" type="button">Auto balance</button>
+        <button data-mode="manual" type="button">Pick teams</button>
+      </div>
 
-            <div id="manualPanel" class="team-content">
+      <div class="ms-addto" id="msAddTo" hidden>
+        <button class="ms-addto-btn a on" data-team="A" type="button">Team A <b>0/4</b></button>
+        <button class="ms-addto-btn b" data-team="B" type="button">Team B <b>0/4</b></button>
+      </div>
 
-                <div class="manual-team-block">
-                    <h4 class="team-label">Team A</h4>
-                    <div class="player-select-grid">
-                        <select class="manualA manual-select"></select>
-                        <select class="manualA manual-select"></select>
-                        <select class="manualA manual-select"></select>
-                        <select class="manualA manual-select"></select>
-                    </div>
-                </div>
+      <div class="ms-grid" id="msPlayers"></div>
 
-                <div class="manual-team-block">
-                    <h4 class="team-label">Team B</h4>
-                    <div class="player-select-grid">
-                        <select class="manualB manual-select"></select>
-                        <select class="manualB manual-select"></select>
-                        <select class="manualB manual-select"></select>
-                        <select class="manualB manual-select"></select>
-                    </div>
-                </div>
+      <div class="ms-row">
+        <button class="ms-link" id="msInactive" type="button">Show inactive</button>
+        <button class="ms-link" id="msClear" type="button">Clear</button>
+      </div>
 
-                <button id="simulateMatchBtn" class="generate-teams-btn" style="display:none;">
-                    Simulate Match
-                </button>
+      <div class="ms-dock">
+        <button class="ms-go" id="msBuild" type="button" disabled>Pick 8 players</button>
+      </div>
 
-                <!-- Strength Bars (with percentage text) -->
-                <div class="team-strength-wrapper">
-                    <div class="team-strength">
-                        <span>Team A Strength</span>
-                        <div class="strength-bar">
-                            <div id="manualStrengthA" class="strength-fill">
-                                <span id="manualStrengthAText" class="strength-text"></span>
-                            </div>
-                        </div>
-                    </div>
+    </section>
 
-                    <div class="team-strength">
-                        <span>Team B Strength</span>
-                        <div class="strength-bar">
-                            <div id="manualStrengthB" class="strength-fill">
-                                <span id="manualStrengthBText" class="strength-text"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    <!-- STEP 2: MAPS -->
+    <section class="ms-card">
+      <header class="ms-head">
+        <span class="ms-step">2</span>
+        <div class="ms-head-text">
+          <h2>Roll maps</h2>
         </div>
+      </header>
+      <div class="ms-seg ms-seg-3" id="msSeriesSeg">
+        <button data-count="5" type="button">Bo5</button>
+        <button class="on" data-count="7" type="button">Bo7</button>
+        <button data-count="9" type="button">Bo9</button>
+      </div>
+      <button class="map-series-btn ms-roll" id="msRoll" type="button">Generate</button>
+      <div id="mapLoading" class="map-loading" style="display:none;"><div class="spinner"></div></div>
+      <div id="mapSeriesOut" class="map-series-output"></div>
+    </section>
 
-    </div>
-
+  </div>
 </div>
-
-<!-- ============================
-      MAPS TAB PAGE
-============================ -->
-<div id="mapsPage" class="tab-page">
-
-    <h2 style="text-align:center; color:#00eaff;">Maps</h2>
-
-    <!--loading spinner -->
-    <div id="mapLoading" class="map-loading" style="display:none;">
-        <div class="spinner"></div>
-    </div>
-
-    <div class="maps-container">
-
-        <div class="map-series-block">
-            <div class="map-series-header">
-                <span class="map-series-title">5‑Map Series</span>
-                <button class="map-series-btn" data-count="5">Generate</button>
-            </div>
-            <div id="mapSeries5" class="map-series-output"></div>
-        </div>
-
-        <div class="map-series-block">
-            <div class="map-series-header">
-                <span class="map-series-title">7‑Map Series</span>
-                <button class="map-series-btn" data-count="7">Generate</button>
-            </div>
-            <div id="mapSeries7" class="map-series-output"></div>
-        </div>
-
-        <div class="map-series-block">
-            <div class="map-series-header">
-                <span class="map-series-title">9‑Map Series</span>
-                <button class="map-series-btn" data-count="9">Generate</button>
-            </div>
-            <div id="mapSeries9" class="map-series-output"></div>
-        </div>
-
-    </div>
-
-</div>
-
 
 <!-- ============================
      MAP HISTORY TAB (duo network, then days by week)
@@ -306,6 +220,8 @@
         <div id="koTiers"></div>
     </section>
 </div>
+
+</main>
 
 <!-- ============================
      MAIN PLAYER MODAL

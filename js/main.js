@@ -7,12 +7,13 @@
 import { cardAssets } from "./config.js";
 import { loadPlayers } from "./data.js";
 import { setupLeaderboard, showLeaderboard, showLeaderboardError } from "./leaderboard.js";
-import { setupTeams, showTeams, chemEnsure } from "./teams.js";
+import { chemEnsure } from "./teams.js";
 import { setupComparisons, showComparisons } from "./comparisons.js";
 import { renderHistoryList } from "./history.js";
 import { setupDuoNetwork } from "./duoNetwork.js";
 import { openMonthlyRankings } from "./monthly.js";
-import { setupMaps } from "./maps.js";
+import { setupMatchSetup, showMatchSetup } from "./matchSetup.js";
+import { setupLayout } from "./layout.js";
 import { showKnockout } from "./knockout.js";
 import { preloadCarouselImages, setupCarousel } from "./carousel.js";
 import { closePlayerModal, isPlayerModalOpen, setupPlayerModal, warmAllInBackground } from "./playerCard.js";
@@ -63,20 +64,20 @@ function whenIdle(fn, timeout = 3000) {
 }
 
 function start() {
+    setupLayout();
     setupPopup();
     setupDropdowns();
     setupModeModal();
     setupPlayerModal(() => players);
     setupLeaderboard();
-    setupTeams();
     setupComparisons();
-    setupMaps();
+    setupMatchSetup();
     setupDuoNetwork();
     document.getElementById("monthlyRankingsButton").addEventListener("click", openMonthlyRankings);
 
     const showCarousel = setupCarousel(() => players.length > 0);
     setupTabs(tab => {
-        if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Teams opens
+        if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Teams & Maps opens
         if (tab === "carouselPage") showCarousel({ deal: true });
         if (tab === "knockoutPage") showKnockout();
     });
@@ -92,7 +93,7 @@ function start() {
     const playersLoaded = boot.step(loadPlayers().then(list => {
         players = list;
         showLeaderboard(players);
-        showTeams(players);
+        showMatchSetup(players);
         showComparisons(players);
     }).catch(error => {
         console.error("Could not load leaderboard:", error);

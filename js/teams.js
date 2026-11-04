@@ -1,14 +1,12 @@
 /* ======================================================
-   TEAMS TAB
-   Auto builder (best 4 v 4 from 8 players), manual builder, and the team
-   line-up popup: mini cards joined by lines coloured by chemistry.
+   TEAM LINE-UP
+   The line-up popup (mini cards joined by lines coloured by chemistry) and
+   its card-deal reveal. The player picker lives in matchSetup.js.
 ====================================================== */
 import { cardAssets } from "./config.js";
 import { loadAllHistory } from "./data.js";
-import { bestSplit, buildChemistry, chemBand, chemKey, teamStats } from "./ratings.js";
+import { buildChemistry, chemBand, chemKey, teamStats } from "./ratings.js";
 import { closePopup, reduceMotion, showPopup } from "./ui.js";
-
-let players = [];
 
 const EASE_OUT = "cubic-bezier(.2,.8,.2,1)";
 
@@ -25,44 +23,6 @@ export function chemEnsure() {
             .catch(err => { chemPromise = null; throw err; });
     }
     return chemPromise;
-}
-
-/* ---------------------------
-   DROPDOWNS
----------------------------- */
-const optionsHtml = placeholder => `<option value="">${placeholder}</option>` +
-    players.map(p => `<option value="${p.id}">${p.name}</option>`).join("");
-
-function fillSelects(selects, placeholder) {
-    selects.forEach(sel => {
-        const keep = sel.value;
-        sel.innerHTML = optionsHtml(placeholder);
-        if (players.some(p => String(p.id) === keep)) sel.value = keep;
-    });
-}
-
-// A player chosen in one box is greyed out in the others of the same builder.
-function lockDuplicates(selects) {
-    const chosen = selects.map(s => s.value).filter(Boolean);
-    selects.forEach(s => {
-        [...s.options].forEach(opt => {
-            if (opt.value) opt.disabled = chosen.includes(opt.value) && opt.value !== s.value;
-        });
-    });
-}
-
-const autoSelects = () => [...document.querySelectorAll(".team-player")];
-const manualSelects = () => [...document.querySelectorAll(".manual-select")];
-
-/* ---------------------------
-   STRENGTH BARS
----------------------------- */
-function setStrength(barId, textId, value) {
-    const bar = document.getElementById(barId);
-    bar.classList.remove("strength-high", "strength-medium", "strength-low");
-    bar.classList.add(value >= 47 ? "strength-high" : value >= 35 ? "strength-medium" : "strength-low");
-    bar.style.width = value + "%";
-    document.getElementById(textId).textContent = value.toFixed(1) + "%";
 }
 
 /* ======================================================
@@ -478,7 +438,7 @@ function addCloseCard(pop, arriveAt) {
     });
 }
 
-function showLineup(teamA, teamB) {
+export function showLineup(teamA, teamB) {
     const stats = teamStats(teamA, teamB);
     showPopup(teamLineupHtml(teamA, teamB, stats), {
         onOpen: pop => {
@@ -493,61 +453,9 @@ function showLineup(teamA, teamB) {
     return stats;
 }
 
-const errorPopup = text => showPopup(`<h2>Error</h2><p>${text}</p>`);
-
 /* ---------------------------
-   SETUP
+   SETUP: clicking a chemistry line in the popup shows its number
 ---------------------------- */
-export function setupTeams() {
-    // Collapsible panels
-    document.querySelectorAll(".team-toggle").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const open = document.getElementById(btn.dataset.target).classList.toggle("open");
-            btn.textContent = open ? btn.textContent.replace("▼", "▲") : btn.textContent.replace("▲", "▼");
-            btn.setAttribute("aria-expanded", String(open));
-        });
-    });
-
-    autoSelects().forEach(sel => sel.addEventListener("change", () => lockDuplicates(autoSelects())));
-    manualSelects().forEach(sel => sel.addEventListener("change", () => {
-        lockDuplicates(manualSelects());
-        const ready = manualSelects().every(s => s.value);
-        document.getElementById("simulateMatchBtn").style.display = ready ? "inline-block" : "none";
-    }));
-
-    document.getElementById("generateTeams").addEventListener("click", () => {
-        const chosen = autoSelects().map(s => Number(s.value)).filter(Boolean);
-        if (chosen.length !== 8 || new Set(chosen).size !== 8) {
-            errorPopup("Please select 8 unique players.");
-            return;
-        }
-        const best = bestSplit(chosen.map(id => players.find(p => p.id === id)));
-        const stats = showLineup(best.teamA, best.teamB);
-        setStrength("strengthA", "strengthAText", stats.probA * 100);
-        setStrength("strengthB", "strengthBText", stats.probB * 100);
-    });
-
-    document.getElementById("simulateMatchBtn").addEventListener("click", () => {
-        const idsOf = cls => [...document.querySelectorAll(cls)].map(s => Number(s.value));
-        const teamAIds = idsOf(".manualA"), teamBIds = idsOf(".manualB");
-        const all = [...teamAIds, ...teamBIds];
-        if (all.some(id => !id) || new Set(all).size !== 8) {
-            errorPopup("Please select 8 different players.");
-            return;
-        }
-        const find = id => players.find(p => p.id === id);
-        const stats = showLineup(teamAIds.map(find), teamBIds.map(find));
-        setStrength("manualStrengthA", "manualStrengthAText", stats.probA * 100);
-        setStrength("manualStrengthB", "manualStrengthBText", stats.probB * 100);
-    });
-
+export function setupLineupClicks() {
     document.addEventListener("click", onLineupClick);
-}
-
-export function showTeams(list) {
-    players = list;
-    fillSelects(autoSelects(), "Select Player");
-    fillSelects(manualSelects(), "Select Player");
-    lockDuplicates(autoSelects());
-    lockDuplicates(manualSelects());
 }

@@ -17,7 +17,8 @@ function buildCard(p, pool) {
     const card = container.querySelector(".card");
     card.querySelector(".card-back-video")?.remove();
     // Mode circles open the mode wheel with Cup-only stats, same as the normal card.
-    fillCard(card, p, pool.players, { clickableModes: true }).forEach(el => { el.style.visibility = "visible"; });
+    // The Series MVP trophy shows on these cards only.
+    fillCard(card, p, pool.players, { clickableModes: true, mvpBadge: true }).forEach(el => { el.style.visibility = "visible"; });
     card.querySelector(".back").style.opacity = "1";
     card.classList.add("flipped");
     return container;

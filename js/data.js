@@ -244,3 +244,20 @@ export async function loadPlayers() {
     ]);
     return buildPlayers(current.players || {}, openingElo);
 }
+
+// For the site: the players straight from current_stats.json, so the
+// leaderboard can show without waiting for history/summary.json (about 430 KB).
+// withArrows resolves to the same list with today's up/down arrows, or null.
+// (loadPlayers above still does both in one go, for the game.)
+export async function loadPlayersQuick() {
+    const opening = loadLatestOpeningElo().catch(error => {
+        console.warn("Daily opening Elo unavailable; hiding daily comparison arrows:", error);
+        return null;
+    });
+    const current = await fetchJson("current_stats.json");
+    const raw = current.players || {};
+    return {
+        players: buildPlayers(raw, null),
+        withArrows: opening.then(elo => elo ? buildPlayers(raw, elo) : null)
+    };
+}

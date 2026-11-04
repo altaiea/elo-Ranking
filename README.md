@@ -8,7 +8,7 @@ still: export from CODStats, then push with GitHub Desktop.
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Page markup for every tab |
+| `index.html` | Page markup for every tab. Lists every `js/` file as a `modulepreload` so they all download at once: add a line there when you add a file |
 | `style.css` | All styling (theme unchanged) |
 | `script.js` | Entry file; it only loads `js/main.js`. Kept at this path because the CODStats exporter checks for it |
 | `js/main.js` | Start-up: loading screen, tabs, background loading of card pictures |
@@ -16,6 +16,8 @@ still: export from CODStats, then push with GitHub Desktop.
 | `js/data.js` | Reads `current_stats.json` and `history/`. No page code |
 | `js/ratings.js` | Card ratings, team win chances, chemistry. No page code |
 | `js/leaderboard.js`, `teams.js`, `history.js`, `duoNetwork.js`, `monthly.js`, `comparisons.js`, `maps.js`, `carousel.js` | One file per tab or feature |
+| `js/matchSetup.js` | The Teams & Maps tab: tap-to-pick players, Bo5/Bo7/Bo9 maps. Uses `teams.js` (line-up reveal) and `maps.js` (map sets) |
+| `js/layout.js`, `layout.css` | Side menu (bottom bar on phones) and the Knockout-style blue theme |
 | `js/playerCard.js`, `js/modeModal.js` | The card popup (hands, flip, intro video) and the mode wheel |
 | `js/ui.js` | Shared helpers: formatting, colours, click sound, popup |
 | `js/knockout.js` | The Knockout tab (Captain's Cup): tiers, brackets, seeding table |

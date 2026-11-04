@@ -25,7 +25,8 @@ let playersReady = () => false;
 let imagesReady = null;
 
 // Builds the ring. The small thumbnails (about 25 KB each) are used here; the
-// full card art is only loaded when a card is opened.
+// full card art is only loaded when a card is opened. The thumbnails start as
+// data-src so they don't hold up the first load; loadRingImages() sets them.
 function buildItems() {
     slider.style.setProperty("--quantity", CARD_PLAYER_IDS.length);
     items = CARD_PLAYER_IDS.map((id, i) => {
@@ -34,7 +35,7 @@ function buildItems() {
         item.style.setProperty("--position", i + 1);
         item.dataset.playerId = id;
         item.innerHTML = `
-            <div class="card-face carousel-front"><img src="${cardAssets.thumb(id)}" decoding="async" alt="" draggable="false"></div>
+            <div class="card-face carousel-front"><img data-src="${cardAssets.thumb(id)}" decoding="async" alt="" draggable="false"></div>
             <div class="card-face carousel-back"><img src="${cardAssets.wingsThumb}" decoding="async" alt="" draggable="false"></div>`;
         return item;
     });
@@ -51,7 +52,12 @@ function buildItems() {
 // Resolves when every carousel picture is downloaded AND decoded, so the deal
 // never has a card pop in or stutter mid-flight (the old first-deal glitch:
 // lazy, full-size pictures were still decoding while the cards flew).
+function loadRingImages() {
+    images.forEach(img => { if (img.dataset.src && !img.getAttribute("src")) img.src = img.dataset.src; });
+}
+
 function whenImagesReady() {
+    loadRingImages();
     if (!imagesReady) {
         const all = Promise.all(images.map(img =>
             (img.complete ? Promise.resolve() : new Promise(r => { img.addEventListener("load", r, { once: true }); img.addEventListener("error", r, { once: true }); }))
@@ -454,9 +460,9 @@ export function setupCarousel(isPlayersReady) {
     };
 }
 
-// Fetch the carousel thumbnails early (they are small), so the Cards tab is ready.
+// Fetch the carousel thumbnails once the page is up (they are small), so the Cards tab is ready.
 export function preloadCarouselImages() {
-    CARD_PLAYER_IDS.forEach(id => { const img = new Image(); img.decoding = "async"; img.src = cardAssets.thumb(id); });
+    loadRingImages();
     const wings = new Image();
     wings.src = cardAssets.wingsThumb;
 }

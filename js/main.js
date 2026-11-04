@@ -5,7 +5,7 @@
 // quietly in the background. Each tab lives in its own file in js/.
 
 import { cardAssets } from "./config.js";
-import { loadPlayers } from "./data.js";
+import { loadPlayersQuick } from "./data.js";
 import { setupLeaderboard, showLeaderboard, showLeaderboardError } from "./leaderboard.js";
 import { chemEnsure } from "./teams.js";
 import { setupComparisons, showComparisons } from "./comparisons.js";
@@ -90,11 +90,18 @@ function start() {
         if (isPlayerModalOpen()) closePlayerModal();
     });
 
-    const playersLoaded = boot.step(loadPlayers().then(list => {
+    // The leaderboard shows as soon as current_stats.json arrives; the daily
+    // arrows are added when the history summary has downloaded.
+    const playersLoaded = boot.step(loadPlayersQuick().then(({ players: list, withArrows }) => {
         players = list;
         showLeaderboard(players);
         showMatchSetup(players);
         showComparisons(players);
+        withArrows.then(full => {
+            if (!full) return;
+            players = full;
+            showLeaderboard(players);
+        });
     }).catch(error => {
         console.error("Could not load leaderboard:", error);
         showLeaderboardError("The leaderboard could not be loaded. Please refresh the page.");

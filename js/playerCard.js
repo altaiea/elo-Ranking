@@ -21,7 +21,8 @@ const trophySvg = () => { const id = `mvpGold${++trophyCount}`; return TROPHY_SV
 const TROPHY_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="mvpGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a3"/><stop offset=".5" stop-color="#f2c14e"/><stop offset="1" stop-color="#a8741f"/></linearGradient></defs><path fill="url(#mvpGold)" d="M6 2h12v2h3v3a5 5 0 0 1-4.6 5A6 6 0 0 1 13 15.9V18h3v2H8v-2h3v-2.1A6 6 0 0 1 7.6 12 5 5 0 0 1 3 7V4h3V2Zm0 4H5v1a3 3 0 0 0 1.4 2.5A6 6 0 0 1 6 8V6Zm12 0v2c0 .5 0 1-.1 1.5A3 3 0 0 0 19 7V6h-1Z"/><rect x="6" y="21" width="12" height="2" rx=".6" fill="#f1ead9"/></svg>`;
 
 // Shows "trophy xN" on a card once the player has won a Cup series MVP.
-// It sits in the top corner opposite the rating banner.
+// It sits in the top corner opposite the rating banner. Only the Knock-out
+// Cards show it (fillCard's mvpBadge option); every other card has none.
 function updateMvpBadge(card, p, right) {
     let badge = card.querySelector(".mvp-badge");
     if (!badge) {
@@ -272,9 +273,9 @@ function elasticFlip(card) {
 /* ---------------------------
    CARD FACE
    Fills the shared card markup (#playerModal .container) for one player.
-   Used by the popup and by the Head-to-Head cards.
+   Used by the popup, the Head-to-Head cards and the Knock-out Cards.
 ---------------------------- */
-export function fillCard(card, p, players, { clickableModes = false } = {}) {
+export function fillCard(card, p, players, { clickableModes = false, mvpBadge = false } = {}) {
     const ratings = cardRatings(p, players);
 
     card.classList.remove(...TIER_CLASSES, ...ADJUST_CLASSES);
@@ -305,8 +306,14 @@ export function fillCard(card, p, players, { clickableModes = false } = {}) {
     });
 
     card.querySelector(".back").style.backgroundImage = backgroundFor(p.id);
-    const badge = updateMvpBadge(card, p, right);
-    return [ratingEl, ...circles.map(([el]) => el), badge];
+    const statEls = [ratingEl, ...circles.map(([el]) => el)];
+    if (!mvpBadge) {
+        // The trophy belongs to the Knock-out Cards only: drop any copy on this card.
+        card.querySelector(".mvp-badge")?.remove();
+        delete card.dataset.mvpFor;
+        return statEls;
+    }
+    return [...statEls, updateMvpBadge(card, p, right)];
 }
 
 /* ---------------------------

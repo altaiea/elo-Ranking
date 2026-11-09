@@ -54,3 +54,5 @@ The site loads smaller copies from `cards/web/`:
 
 After adding or changing a card or intro, run `python tools/optimize_media.py`
 (needs Pillow and ffmpeg), then add the player to `js/config.js`.
+
+Empty

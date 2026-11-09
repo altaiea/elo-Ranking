@@ -12,6 +12,7 @@ import { cardRatings, ratingTierClass } from "./ratings.js";
 import { reduceMotion, setRatingColor } from "./ui.js";
 import { openModeModal } from "./modeModal.js";
 import { loadMvpCounts } from "./knockoutMvp.js";
+import { loadModeStreaks, streakTier } from "./streaks.js";
 
 // Gold trophy for the Captain's Cup MVP badge (series MVPs won).
 // Each copy gets its own gradient id: a shared id can paint nothing when the
@@ -41,6 +42,34 @@ function updateMvpBadge(card, p, right) {
         badge.innerHTML = n ? `${trophySvg()}<b>×${n}</b>` : "";
     });
     return badge;
+}
+
+// Streak fire on the orbs: one animated layer per mode with a 3+ win streak
+// (streaks.js). It sits on top of the card art but under the numbers, and is
+// see-through over the orb glass so the orb still shows.
+const STREAK_ORBS = [["hp", "streak-hp", "Hardpoint"], ["overload", "streak-overload", "Overload"], ["snd", "streak-snd", "Search & Destroy"]];
+
+function updateStreakFire(card, p) {
+    const back = card.querySelector(".back");
+    card.dataset.streakFor = String(p.id);
+    back.querySelectorAll(".streak-fire").forEach(el => el.remove());
+    loadModeStreaks().then(streaks => {
+        if (card.dataset.streakFor !== String(p.id)) return;     // another player was opened meanwhile
+        back.querySelectorAll(".streak-fire").forEach(el => el.remove());
+        const rec = streaks.get(Number(p.id));
+        if (!rec) return;
+        STREAK_ORBS.forEach(([mode, cls, label]) => {
+            const wins = rec[mode]?.current || 0, tier = streakTier(wins);
+            if (!tier) return;
+            const img = document.createElement("img");
+            img.className = `streak-fire ${cls} streak-${tier}`;
+            img.src = cardAssets.streakFire(tier);
+            img.alt = "";
+            img.title = `${wins}-win ${label} streak`;
+            img.draggable = false;
+            back.prepend(img);       // first child: the numbers paint over it
+        });
+    });
 }
 
 const ADJUST_CLASSES = CARD_PLAYER_IDS.map(id => `player${id}-adjust`);
@@ -290,9 +319,10 @@ export function fillCard(card, p, players, { clickableModes = false, mvpBadge = 
 
     const dateBox = card.querySelector(".date-box");
     const right = DATE_BOX_RIGHT_SIDE.has(p.id);
-    dateBox.style.left = right ? "auto" : "36px";
-    dateBox.style.right = right ? "40px" : "auto";
-    dateBox.style.top = "28px";
+    // Centred on the new template's banner (style.css "NEW CARD TEMPLATE").
+    dateBox.style.left = right ? "auto" : "33px";
+    dateBox.style.right = right ? "33px" : "auto";
+    dateBox.style.top = "27px";
 
     const circles = [
         [card.querySelector(".col1.row1"), "Hardpoint", ratings.hp],
@@ -306,6 +336,7 @@ export function fillCard(card, p, players, { clickableModes = false, mvpBadge = 
     });
 
     card.querySelector(".back").style.backgroundImage = backgroundFor(p.id);
+    updateStreakFire(card, p);
     const statEls = [ratingEl, ...circles.map(([el]) => el)];
     if (!mvpBadge) {
         // The trophy belongs to the Knock-out Cards only: drop any copy on this card.

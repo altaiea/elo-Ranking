@@ -285,7 +285,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     background: #1a1a20;
     margin: 10% auto;
     padding: 2px;
-    width: 350px;
+    width: 321px;
     height: 500px;
     border: 2px solid #00eaff;
     box-shadow: 0 0 20px rgba(0,255,255,0.4);
@@ -299,7 +299,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    CARD STYLING
 ============================ */
 .container {
-    width: 350px;
+    width: 321px;   /* new card frame shape: 1107 x 1723 */
     height: 500px;
     perspective: 1000px;
     margin: 0 auto;
@@ -427,9 +427,9 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     overflow: hidden;
 }
 
-.col1.row1 { left: 35px; top: 347px; }
-.col2.row1 { left: 153px; top: 347px; }
-.col3.row1 { left: 270px; top: 347px; }
+.col1.row1 { left: 49px; top: 308px; }
+.col2.row1 { left: 137px; top: 347px; }
+.col3.row1 { left: 224px; top: 308px; }
 
 /* PLAYER 16 — OVERALL RATING */
 
@@ -1519,7 +1519,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 ============================ */
 .comparison-card-pair {
     display: grid;
-    grid-template-columns: minmax(260px, 350px) 70px minmax(260px, 350px);
+    grid-template-columns: minmax(240px, 321px) 70px minmax(240px, 321px);
     justify-content: center;
     align-items: center;
     gap: 24px;
@@ -1542,7 +1542,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 .comparison-card-stage {
-    width: 350px;
+    width: 321px;
     height: 500px;
     display: flex;
     justify-content: center;
@@ -1553,7 +1553,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
    internal absolute positions and player-specific overrides are identical. */
 .comparison-card-stage > .container {
     margin: 0;
-    flex: 0 0 350px;
+    flex: 0 0 321px;
 }
 
 .comparison-card-stage .card {
@@ -1650,312 +1650,52 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 /* ============================================================
-   PLAYER COORDINATE OVERRIDES — MASTER SECTION
-   Players 1–16 are kept together here deliberately.
-   These same playerX-adjust classes are applied to the normal
-   modal and Head-to-Head cards by script.js.
-   Edit these values when manually aligning a player's numbers.
+   NEW CARD TEMPLATE (Nov 2026): NUMBERS
+   Every card now uses the same template (card-template/layered-v2), so the
+   per-player coordinate overrides are gone: one set of positions fits all.
+   Orb centres on the 321 x 500 card: HP (72, 334), OVERLOAD (159, 373),
+   S&D (247, 334). Banner centre (53, 64). The playerN-adjust classes are
+   still added by playerCard.js, so a single card can be nudged here if needed.
+   Numbers: Black Ops One, carved into the orb/banner in the tier colour
+   (the colour itself comes from setRatingColor in ui.js).
 ============================================================ */
+@font-face {
+    font-family: "Black Ops One";
+    src: url("fonts/BlackOpsOne-Regular.ttf") format("truetype");
+    font-display: block;
+}
+.card .circle-row1 {
+    width: 46px !important;
+    height: 46px !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    font-family: "Black Ops One", sans-serif !important;
+    font-size: 23px !important;
+    font-weight: 400 !important;
+    text-shadow: 0 1.5px 0 rgba(255,255,255,.35), 0 -1.5px 0 rgba(0,0,0,.9), 0 0 5px rgba(0,0,0,.6) !important;
+    transform: perspective(60px) rotateX(8deg) scaleY(1.06);
+}
+.card .date-box .rating {
+    font-family: "Black Ops One", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 34px;
+    text-shadow: 0 2px 0 rgba(255,255,255,.3), 0 -2px 0 rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6) !important;
+}
 
-/* PLAYER 1 */
-.player1-adjust .rating {
+/* Streak fire (js/streaks.js + playerCard.js). Each layer is 92.8 x 110.2 on the
+   321 x 500 card, with the orb centre 46.4 px from its left and 87 px from its top. */
+.back .streak-fire {
     position: absolute;
-    top: 8px !important;
-    left: 4px !important;
-}
-.player1-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(5px, 26px) !important;
-}
-.player1-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, 25px) !important;
-}
-.player1-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-8px, 26px) !important;
-}
-
-/* PLAYER 2 */
-.player2-adjust .rating {
-    position: absolute;
-    top: 22px !important;
-    left: -5px !important;
-}
-.player2-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-0px, 10px) !important;
-}
-.player2-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, 8px) !important;
-}
-.player2-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 10px) !important;
-}
-
-/* PLAYER 3 */
-.player3-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 0px !important;
-}
-.player3-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(0px, 4px) !important;
-}
-.player3-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(1px, 2px) !important;
-}
-.player3-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(1px, 4px) !important;
-}
-
-/* PLAYER 4 */
-.player4-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 1px !important;
-}
-.player4-adjust .col1.row1 {
-    transform: translate(0px, -1px) !important;
-}
-.player4-adjust .col2.row1 {
-    transform: translate(0px, -3px) !important;
-}
-.player4-adjust .col3.row1 {
-    transform: translate(-1px, -1px) !important;
-}
-
-/* PLAYER 5 */
-.player5-adjust .rating {
-    position: absolute;
-    top: 11px !important;
-    left: -2px !important;
-}
-.player5-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 7px) !important;
-}
-.player5-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 6px) !important;
-}
-.player5-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 7px) !important;
-}
-
-/* PLAYER 6 */
-.player6-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 1px !important;
-}
-.player6-adjust .col1.row1 {
-    transform: translate(1px, 0px) !important;
-}
-.player6-adjust .col2.row1 {
-    transform: translate(-1px, -2px) !important;
-}
-.player6-adjust .col3.row1 {
-    transform: translate(-2px, 0px) !important;
-}
-
-/* PLAYER 7 */
-.player7-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 1px !important;
-}
-.player7-adjust .col1.row1 {
-    transform: translate(1px, 0px) !important;
-}
-.player7-adjust .col2.row1 {
-    transform: translate(0px, -2px) !important;
-}
-.player7-adjust .col3.row1 {
-    transform: translate(-1px, 0px) !important;
-}
-
-/* PLAYER 8 */
-.player8-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 0px !important;
-}
-.player8-adjust .col1.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player8-adjust .col2.row1 {
-    transform: translate(0px, -2px) !important;
-}
-.player8-adjust .col3.row1 {
-    transform: translate(0px, 0px) !important;
-}
-
-/* PLAYER 9 */
-.player9-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 0px !important;
-}
-.player9-adjust .col1.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player9-adjust .col2.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player9-adjust .col3.row1 {
-    transform: translate(0px, 0px) !important;
-}
-
-/* PLAYER 10 */
-.player10-adjust .rating {
-    position: absolute;
-    top: 12px !important;
-    left: -6px !important;
-}
-.player10-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 4px) !important;
-}
-.player10-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(2px, 2px) !important;
-}
-.player10-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(6px, 4px) !important;
-}
-
-/* PLAYER 11 */
-.player11-adjust .rating {
-    position: absolute;
-    top: 8px !important;
-    right: 231px !important;
-}
-.player11-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 0px) !important;
-}
-.player11-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(0px, -2px) !important;
-}
-.player11-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(0px, 0px) !important;
-}
-
-/* PLAYER 12 */
-.player12-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 0px !important;
-}
-.player12-adjust .col1.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player12-adjust .col2.row1 {
-    transform: translate(0px, -2px) !important;
-}
-.player12-adjust .col3.row1 {
-    transform: translate(0px, 0px) !important;
-}
-
-/* PLAYER 13 */
-.player13-adjust .rating {
-    position: absolute;
-    top: 5px !important;
-    right: 2px !important;
-}
-.player13-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(-6px, -11px) !important;
-}
-.player13-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-2px, -13px) !important;
-}
-.player13-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(3px, -11px) !important;
-}
-
-/* PLAYER 14 */
-.player14-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 1px !important;
-}
-.player14-adjust .col1.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player14-adjust .col2.row1 {
-    transform: translate(0px, -2px) !important;
-}
-.player14-adjust .col3.row1 {
-    transform: translate(-1px, 0px) !important;
-}
-
-/* PLAYER 15 */
-.player15-adjust .rating {
-    position: relative;
-    top: 0px !important;
-    left: 0px !important;
-}
-.player15-adjust .col1.row1 {
-    transform: translate(0px, 0px) !important;
-}
-.player15-adjust .col2.row1 {
-    transform: translate(0px, -2px) !important;
-}
-.player15-adjust .col3.row1 {
-    transform: translate(-2px, 0px) !important;
-}
-
-/* PLAYER 16 */
-.player16-adjust .rating {
-    position: absolute;
-    top: 8px !important;
-    left: -2px !important;
-}
-.player16-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(1px, 2px) !important;
-}
-.player16-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-2px, 0px) !important;
-}
-.player16-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(-1px, 2px) !important;
-}
-
-/* PLAYER 17 */
-.player17-adjust .rating {
-    position: absolute;
-    top: 14px !important;
-    left: -3px !important;
-}
-.player17-adjust .col1.row1 {
-    position: absolute !important;
-    transform: translate(2px, 1px) !important;
-}
-.player17-adjust .col2.row1 {
-    position: absolute !important;
-    transform: translate(-1px, -2px) !important;
-}
-.player17-adjust .col3.row1 {
-    position: absolute !important;
-    transform: translate(1px, 0px) !important;
-}
-
+    width: 92.8px;
+    height: 110.2px;
+    pointer-events: none;
+    user-select: none;
+}
+.back .streak-hp       { left: 25.4px;  top: 247.3px; }
+.back .streak-overload { left: 113px;   top: 286.2px; }
+.back .streak-snd      { left: 200.5px; top: 247.3px; }
 
 /* ============================
    MAP HISTORY + ELO TRACE
@@ -2536,7 +2276,7 @@ html { -webkit-text-size-adjust: 100%; }
 @keyframes grainShift { 0% { background-position: 0 0 } 25% { background-position: -40px 30px } 50% { background-position: 25px -50px } 75% { background-position: -60px -20px } 100% { background-position: 0 0 } }
 .fx-bar { position: absolute; left: 0; right: 0; height: 8%; background: #000; z-index: 8; pointer-events: none; }
 .fx-bar.top { top: 0; } .fx-bar.bottom { bottom: 0; }
-.lineup-card { aspect-ratio: 7 / 10; }
+.lineup-card { aspect-ratio: 1107 / 1723; }
 .lineup-card img:not(.lineup-wings) { height: 100%; object-fit: cover; }
 
 /* ---- Lineup popup close button ---- */
@@ -2773,7 +2513,7 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
 .ko-card-wrap { display: grid; justify-items: center; gap: 6px; border-radius: 12px; padding: 6px; transition: box-shadow .3s; }
 .ko-card-wrap.ko-picked { box-shadow: 0 0 0 2px var(--ko-gold), 0 0 30px rgba(242,193,78,.35); }
 .ko-card-stage { position: relative; width: 280px; height: 400px; }
-.ko-card-stage > .container { margin: 0; width: 350px; transform: scale(.8); transform-origin: top left; }
+.ko-card-stage > .container { margin: 0; width: 321px; transform: scale(.8); transform-origin: top left; }
 .ko-card-stage .card { transition: none; }
 .ko-card-stage .card-layer, .ko-card-stage .card-back-video { display: none !important; }
 /* Tier tab (bottom left) and KO tab (bottom right) mirror each other on the

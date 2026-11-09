@@ -41,6 +41,11 @@ export const PLACEHOLDER_STARTING_ELO = { 17: 925 }; // HAMZ
 // Every player with a card, in carousel order.
 export const CARD_PLAYER_IDS = Array.from({ length: 17 }, (_, i) => i + 1);
 
+// Intro videos are PAUSED until the new intros are made (Nov 2026): cards open
+// straight to the art with no video download or wait. Set this back to true to
+// turn them on again; the list below says which players have one.
+export const INTROS_ENABLED = false;
+
 // Players whose intro video exists (cards/web/N_intro.mp4).
 export const INTRO_PLAYER_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17]);
 
@@ -48,16 +53,19 @@ export const INTRO_PLAYER_IDS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 
 export const INTRO_VIDEO_CLASSES = { 2: "video-2", 3: "video-3", 5: "video-5" };
 
 // Cards whose artwork has a see-through background and need the wings behind them.
-export const CARDS_WITH_WINGS_UNDERLAY = new Set([15, 16]);
+// None since the new card template (Nov 2026): every card's art is fully painted.
+export const CARDS_WITH_WINGS_UNDERLAY = new Set([]);
 
 // Cards whose rating box sits on the right instead of the left.
-export const DATE_BOX_RIGHT_SIDE = new Set([1, 11]);
+// None since the new card template: the banner is top-left on every card.
+export const DATE_BOX_RIGHT_SIDE = new Set([]);
 
 // Web-sized copies made by tools/optimize_media.py. The originals stay in cards/.
 export const cardAssets = {
     thumb: id => `cards/web/${id}_thumb.webp`,
     art: id => `cards/web/${id}_card.webp`,
-    intro: id => INTRO_PLAYER_IDS.has(Number(id)) ? `cards/web/${id}_intro.mp4` : null,
+    intro: id => INTROS_ENABLED && INTRO_PLAYER_IDS.has(Number(id)) ? `cards/web/${id}_intro.mp4` : null,
+    streakFire: tier => `cards/streak/fire_${tier}.webp`,
     wings: "wings.webp",
     wingsThumb: "wings_thumb.webp",
     hands: "hands.webp",

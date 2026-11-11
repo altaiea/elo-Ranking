@@ -28,18 +28,20 @@
 .page-head { margin: 0 0 20px; text-align: left; }
 .layout-side .ph-title { margin: 4px 0 0; text-align: left; font-size: 30px; letter-spacing: 1.5px; text-transform: uppercase; }
 
-/* phones: the menu becomes a bottom bar */
-.layout-side.is-phone .rail { top: auto; bottom: 0; right: auto; height: auto; flex-direction: row; padding: 6px 4px 10px; gap: 0; border-right: 0; border-top: 1px solid rgba(242, 193, 78,.18); background: rgba(10, 8, 5,.97); }
+/* phones: the menu becomes a bottom bar (.phone-bar: the desktop pages with this bar, js/layout.js) */
+.layout-side:is(.is-phone, .phone-bar) .rail { top: auto; bottom: 0; right: auto; height: auto; flex-direction: row; padding: 6px 4px 10px; gap: 0; border-right: 0; border-top: 1px solid rgba(242, 193, 78,.18); background: rgba(10, 8, 5,.97); }
 .layout-side .ns { display: none; }
-.layout-side.is-phone .nl { display: none; }
-.layout-side.is-phone .ns { display: block; }
-.layout-side.is-phone .rail-brand { display: none; }
-.layout-side.is-phone #tabs { flex-direction: row; width: 100%; gap: 2px; }
-.layout-side.is-phone .nav-tab { flex: 1 1 0; min-width: 0; flex-direction: column; gap: 4px; padding: 7px 1px 5px; font-size: 9.5px; letter-spacing: 0; text-align: center; white-space: nowrap; overflow: hidden; }
-.layout-side.is-phone .nav-tab span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
-.layout-side.is-phone .nav-tab svg { width: 22px; height: 22px; }
-.layout-side.is-phone .nav-tab.active { box-shadow: inset 0 2px 0 #f2c14e; border-color: transparent; }
-.layout-side.is-phone .shell { margin-left: 0; padding: 22px 26px 260px; }
+.layout-side:is(.is-phone, .phone-bar) .nl { display: none; }
+.layout-side:is(.is-phone, .phone-bar) .ns { display: block; }
+.layout-side:is(.is-phone, .phone-bar) .rail-brand { display: none; }
+.layout-side:is(.is-phone, .phone-bar) #tabs { flex-direction: row; width: 100%; gap: 2px; }
+.layout-side:is(.is-phone, .phone-bar) .nav-tab { flex: 1 1 0; min-width: 0; flex-direction: column; gap: 4px; padding: 7px 1px 5px; font-size: 9.5px; letter-spacing: 0; text-align: center; white-space: nowrap; overflow: hidden; }
+.layout-side:is(.is-phone, .phone-bar) .nav-tab span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.layout-side:is(.is-phone, .phone-bar) .nav-tab svg { width: 22px; height: 22px; }
+.layout-side:is(.is-phone, .phone-bar) .nav-tab.active { box-shadow: inset 0 2px 0 #f2c14e; border-color: transparent; }
+.layout-side:is(.is-phone, .phone-bar) .shell { margin-left: 0; padding: 22px 26px 260px; }
+
+.layout-side.phone-bar .shell { padding-bottom: 230px; }
 
 /* ---------- Knockout poster theme, in blue ---------- */
 .theme-ko body { background: #060504; }

@@ -1,11 +1,17 @@
 // ======================================================
 // LAYOUT: side menu, and the bottom bar on phones
 // ======================================================
-// Phones show the exact desktop site: the page is laid out 1400px wide (meta
-// viewport in index.html) and the phone shrinks it to fit its screen, the same
-// as a desktop window. PHONE_LAYOUT = true brings back the separate phone layout
-// (bottom menu bar, pages zoomed up and fitted to the screen's width).
+// Phones show the desktop pages with the menu moved to a bar along the bottom
+// (.phone-bar), so the page is centred and only needs 1150px: index.html lays
+// it out 1150px wide and the phone shrinks it to fit its screen.
+// PHONE_LAYOUT = true brings back the separate phone layout (pages zoomed up
+// and restyled for the narrow screen).
 const PHONE_LAYOUT = false;
+const PHONE_PAGE_WIDTH = 1150;   // keep in step with the viewport script in index.html
+// Pages that use the phone layout anyway (bigger, laid out for the narrow screen): Match Day and Players.
+const PHONE_LAYOUT_PAGES = new Set(["teamsPage", "cardsPage", "comparisonsPage"]);
+let openPage = null;
+let refit = () => {};
 
 // What gets zoomed to fit on a phone.
 //   max:    zoom it up to the phone zoom, but no further than it still fits
@@ -58,6 +64,13 @@ function fitOne(item) {
     });
 }
 
+// Called when a page opens (js/main.js), so Match Day and Players switch to the phone layout.
+export function setLayoutPage(tabId) {
+    if (tabId === openPage) return;
+    openPage = tabId;
+    refit();
+}
+
 export function fitPhonePages() {
     PHONE_FIT.forEach(fitOne);
 }
@@ -68,15 +81,21 @@ export function setupLayout() {
     const head = document.getElementById("pageHead");
     if (!rail) return;
     const fit = () => {
-        const sw = screen.width, phone = PHONE_LAYOUT && sw <= 700 && innerWidth > sw * 1.2;
-        uiZoom = phone ? Math.min(2.2, innerWidth / sw) : 1;
+        const sw = screen.width, small = sw <= 700 && innerWidth > sw * 1.2;
+        const phone = small && (PHONE_LAYOUT || PHONE_LAYOUT_PAGES.has(openPage));
+        // the page width index.html asks phones for; innerWidth can briefly read wider while a page swaps
+        const pageW = small ? Math.min(innerWidth, PHONE_PAGE_WIDTH) : innerWidth;
+        uiZoom = phone ? Math.min(2.2, pageW / sw) : 1;
         html.classList.toggle("is-phone", phone);
-        rail.style.width = phone ? sw + "px" : "";
-        rail.style.zoom = phone ? String(innerWidth / sw) : "";
+        html.classList.toggle("phone-bar", small);
+        // the bottom bar is sized to the phone's real width, then zoomed up to the page
+        rail.style.width = small ? sw + "px" : "";
+        rail.style.zoom = small ? String(pageW / sw) : "";
         if (head) head.style.zoom = phone ? String(uiZoom) : "";
         html.style.setProperty("--ui-zoom", String(uiZoom));   // for locker.css
         fitPhonePages();
     };
+    refit = fit;
     fit();
     addEventListener("resize", fit);
 

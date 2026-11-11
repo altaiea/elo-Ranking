@@ -121,7 +121,7 @@ function renderPodiumAndTiles(shown) {
         const n = numbers(p);
         return `<div class="lb-tile" data-id="${p.id}">
             <span class="lb-t-rank">${p.currentRank}</span>
-            <span class="lb-t-face"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
+            <img class="lb-t-card" src="${cardAssets.thumb(p.id)}" alt="" loading="lazy">
             <span class="lb-t-name">${p.name}</span>
             <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
             <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>

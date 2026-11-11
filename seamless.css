@@ -207,7 +207,8 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 
 /* ---------- last month's number one: wings behind their card in the hands (js/locker.js adds .winged) ---------- */
 /* card_wings.webp is drawn on the card template's 1400 x 2000 canvas, where the card frame is x 147-1253, y 109-1831; these numbers line it up */
-.hand-card.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
+.hand-card.winged::before, #playerModal .container.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
+#playerModal .container { position: relative; }
 
 /* ---------- Leaderboard: top three as a podium, everyone else as tiles (js/leaderboard.js draws #lbAlt) ---------- */
 /* The old table stays in the page, hidden: the card hand and the daily arrows still read it. */
@@ -238,8 +239,7 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
 .lb-tile.locker-pick { background: rgba(var(--gold-rgb), .12); border-color: var(--line); }
 .lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
-.lb-t-face { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); overflow: hidden; }
-.lb-t-face img { display: block; width: 100%; transform: scale(2.1); transform-origin: 50% 12%; }
+.lb-t-card { display: block; width: 44px; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 3px; border: 1px solid var(--gold-deep); box-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
 .lb-t-name { color: var(--gold); font-weight: 900; letter-spacing: .04em; }
 .lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
 .lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }

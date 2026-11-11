@@ -93,6 +93,7 @@ function cardStage(p) {
 // A face-up copy of the popup card, without the intro video.
 function buildCard(p) {
     const container = document.querySelector("#playerModal .container").cloneNode(true);
+    container.classList.remove("winged");          // the popup's wings are for the player it last showed
     container.removeAttribute("id");
     const card = container.querySelector(".card");
     card.querySelector(".card-back-video")?.remove();

@@ -124,8 +124,11 @@ export function createGlobe3D(stage, S, on) {
             }
             const picked = k === selKey;
             g.toColour.set(picked ? colours.pick : st.col);
-            g.toEmissive.set(picked ? colours.pick : 0x000000); if (picked) g.toEmissive.multiplyScalar(0.3);
-            g.toOpacity = picked ? 1 : e.dim ? 0.05 : 0.35 + 0.65 * Math.min(1, st.op * 1.15);
+            // the picked player's connections glow a little in their own colour, so they stand out from the faded rest
+            if (picked) g.toEmissive.copy(colours.pick).multiplyScalar(0.3);
+            else if (st.glow) g.toEmissive.set(st.col).multiplyScalar(0.4);
+            else g.toEmissive.set(0x000000);
+            g.toOpacity = picked || st.glow ? 1 : e.dim ? 0.04 : 0.35 + 0.65 * Math.min(1, st.op * 1.15);
             g.mesh.visible = true;
         });
         S.ids.forEach(id => {

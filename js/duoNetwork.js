@@ -35,14 +35,18 @@ function readColours() {
     // the 3D drawing's players, picked colour and metal dial
     if (S) S.colours = { node: get("--dn-node", "#f0e3c2"), pick: get("--dn-pick", "#ffe9a8"), metal: get("--dn-metal", "#d9c48f") };
 }
+// Call after changing the --dn-… colours in CSS to redraw with them.
+export function refreshDuoColours() { if (S && S.wrap) update(); }
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
 const shade = (colour, strength) => `rgb(${mix(mix(BG, colour, 0.3), colour, 0.35 + 0.65 * clamp01(strength))})`;
-// plain = true: the two-colour look used when nobody is picked
-const winColour = (wr, plain = false) => wr < 0.5 ? shade(LOSS, (0.5 - wr) / 0.22)
-    : plain ? shade(PLAIN, (wr - 0.5) / 0.22)
-    : wr >= BEST_FROM ? shade(BEST, 0.5 + (wr - BEST_FROM) / 0.12)
-    : shade(WIN, 0.35 + (wr - 0.5) / 0.1);
+// plain = true: the two-colour look used when nobody is picked.
+// A picked player's connections stay near full strength so the three colours are easy to tell apart.
+const winColour = (wr, plain = false) => plain
+    ? (wr < 0.5 ? shade(LOSS, (0.5 - wr) / 0.22) : shade(PLAIN, (wr - 0.5) / 0.22))
+    : wr < 0.5 ? shade(LOSS, 0.75 + (0.5 - wr))
+    : wr >= BEST_FROM ? shade(BEST, 0.85 + (wr - BEST_FROM))
+    : shade(WIN, 0.75 + (wr - 0.5));
 const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 const h = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 const nm = id => getPlayerName(id);
@@ -308,7 +312,7 @@ function update(opts) {
         const touches = focus !== null && (e.a === focus || e.b === focus);
         const dim = focus !== null && !touches;
         const style = show
-            ? { sw: 1 + 8.5 * Math.sqrt(p.g / maxG), col: winColour(wr, focus === null), op: dim ? 0.07 : 0.35 + 0.55 * Math.min(1, p.g / 18) }
+            ? { sw: 1 + 8.5 * Math.sqrt(p.g / maxG), col: winColour(wr, focus === null), op: dim ? 0.07 : touches ? 1 : 0.35 + 0.55 * Math.min(1, p.g / 18), glow: touches }
             : { sw: 0.5, col: "rgb(70,78,92)", op: 0 };
         const ia = S.pos[e.a].i, ib = S.pos[e.b].i;
         const ring = i => originI === null ? 0 : Math.min(Math.abs(i - originI), n - Math.abs(i - originI));

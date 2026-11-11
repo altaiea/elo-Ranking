@@ -7,9 +7,7 @@
 
 import { createCardHand, showPlayerReadout } from "./cardHand.js";
 import { openPlayerModal } from "./playerCard.js";
-import { loadAllHistory } from "./data.js";
-import { buildMonthlyRankings } from "./monthly.js";
-import { monthKeyOf } from "./ui.js";
+import { lastMonthWinner } from "./monthWinner.js";
 
 let players = [];
 let lockerHand = null, cardsHand = null;
@@ -53,22 +51,13 @@ export function setupLocker({ onCompare }) {
 }
 
 // Last month's number one wears the wings behind their card, in both hands.
-// "Last month" is the month before the newest day in the history.
 let wingsDone = false;
-async function giveWingsToLastMonthsWinner() {
+function giveWingsToLastMonthsWinner() {
     if (wingsDone) return;
     wingsDone = true;
-    try {
-        const days = (await loadAllHistory()).filter(d => d && d.date);
-        if (!days.length) return;
-        const newest = days.map(d => String(d.date)).sort().pop();
-        const lastMonth = monthKeyOf(new Date(Number(newest.slice(0, 4)), Number(newest.slice(5, 7)) - 2, 1));
-        const winner = buildMonthlyRankings(days, lastMonth).records.find(r => r.monthlyRank === 1);
-        if (!winner) return;
-        document.querySelectorAll(`.hand-card[data-id="${winner.playerId}"]`).forEach(card => card.classList.add("winged"));
-    } catch (error) {
-        console.warn("Could not work out last month's winner for the wings.", error);
-    }
+    lastMonthWinner().then(id => {
+        if (id) document.querySelectorAll(`.hand-card[data-id="${id}"]`).forEach(card => card.classList.add("winged"));
+    });
 }
 
 export function showLocker(list) {

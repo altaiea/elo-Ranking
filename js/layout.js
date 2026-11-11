@@ -1,12 +1,11 @@
 // ======================================================
 // LAYOUT: side menu, and the bottom bar on phones
 // ======================================================
-// The site keeps a fixed 1100px canvas (meta viewport), so on a phone everything
-// is drawn small. The bottom bar and page header are sized to the phone's real
-// width and zoomed up so they read like a phone app.
-//
-// On phones each page's content is also zoomed to fit the screen's width
-// (fitPhonePages below), so nothing ever needs sideways scrolling.
+// Phones show the exact desktop site: the page is laid out 1400px wide (meta
+// viewport in index.html) and the phone shrinks it to fit its screen, the same
+// as a desktop window. PHONE_LAYOUT = true brings back the separate phone layout
+// (bottom menu bar, pages zoomed up and fitted to the screen's width).
+const PHONE_LAYOUT = false;
 
 // What gets zoomed to fit on a phone.
 //   max:    zoom it up to the phone zoom, but no further than it still fits
@@ -69,7 +68,7 @@ export function setupLayout() {
     const head = document.getElementById("pageHead");
     if (!rail) return;
     const fit = () => {
-        const sw = screen.width, phone = sw <= 700 && innerWidth > sw * 1.2;
+        const sw = screen.width, phone = PHONE_LAYOUT && sw <= 700 && innerWidth > sw * 1.2;
         uiZoom = phone ? Math.min(2.2, innerWidth / sw) : 1;
         html.classList.toggle("is-phone", phone);
         rail.style.width = phone ? sw + "px" : "";

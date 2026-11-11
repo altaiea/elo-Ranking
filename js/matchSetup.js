@@ -34,7 +34,7 @@ export function fitPhone() {
     if (!page || !box) return;
     const cs = getComputedStyle(page);
     const sw = screen.width, avail = (page.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)) || document.body.clientWidth;
-    const phone = sw <= 700 && avail > sw * 1.2;      // phone showing the 1100px canvas
+    const phone = document.documentElement.classList.contains("is-phone");   // only when the phone layout is on (js/layout.js)
     box.classList.toggle("ms-phone", phone);
     box.style.width = phone ? sw + "px" : "";
     box.style.zoom = phone ? String(avail / sw) : "";

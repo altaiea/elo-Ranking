@@ -207,22 +207,19 @@ function stopCardFloat() {
 }
 
 // Swing in from the carousel and settle into the floating pose. Resolves when it is hovering.
-// faceUp: the card arrives already showing its picture and floats upright (no wings side first).
-function startCardFloat(box, { faceUp = false } = {}) {
+function startCardFloat(box) {
     stopCardFloat();
     const L = floatLayout(box);
     box.__floatPoses = L;
-    const from = faceUp ? `${L.ua} scale(0.82)` : "perspective(1100px) rotateY(-180deg) scale(0.6)";
-    const to = faceUp ? L.ua : L.a;
     cardEnterAnim = box.animate([
-        { opacity: 0, transform: from, offset: 0 },
-        { opacity: 1, offset: faceUp ? 0.45 : 0.2 },
-        { opacity: 1, transform: to, offset: 1 }
-    ], { duration: faceUp ? 420 : 900, easing: "cubic-bezier(.25,.8,.25,1)", fill: "forwards" });
+        { opacity: 0, transform: "perspective(1100px) rotateY(-180deg) scale(0.6)", offset: 0 },
+        { opacity: 1, offset: 0.2 },
+        { opacity: 1, transform: L.a, offset: 1 }
+    ], { duration: 900, easing: "cubic-bezier(.25,.8,.25,1)", fill: "forwards" });
     const enter = cardEnterAnim;
     return enter.finished.then(() => {
         if (cardEnterAnim !== enter) return false;
-        cardFloatAnim = box.animate(faceUp ? [{ transform: L.ua }, { transform: L.ub }] : [{ transform: L.a }, { transform: L.b }],
+        cardFloatAnim = box.animate([{ transform: L.a }, { transform: L.b }],
             { duration: 2600, direction: "alternate", iterations: Infinity, easing: "ease-in-out" });
         enter.cancel(); cardEnterAnim = null;
         return true;
@@ -350,9 +347,11 @@ export function openPlayerModal(playerId) {
     modalBox.classList.remove("modal-enter");
     void modalBox.offsetWidth;                 // restart the backdrop fade
     modalBox.classList.add("modal-enter");
-    // Nothing shows until the card's picture is ready, so the wings side never flashes up first.
-    stopCardFloat();
-    modalBox.style.visibility = "hidden";
+    const floatReady = motion ? startCardFloat(modalBox) : (stopCardFloat(), Promise.resolve(false));
+    // The tale of the tape slides out beside the card (where the card floats, or where it stands without motion).
+    const rect = modalBox.getBoundingClientRect();
+    showCardTape(p, players, motion ? modalBox.__floatPoses.place
+        : { cx: rect.left + rect.width / 2, cy: rect.top + rect.height / 2, w: rect.width, h: rect.height, s: 1 });
 
     const card = modal.querySelector(".card");
     const video = document.getElementById("cardBackVideo");
@@ -384,9 +383,9 @@ export function openPlayerModal(playerId) {
     const imageReady = waitForImage(cardAssets.art(p.id));
     const videoReady = introSrc ? waitForVideo(video, introSrc) : Promise.resolve();
 
-    const revealCard = ({ alreadyFlipped = false } = {}) => {
+    const revealCard = () => {
         card.classList.add("flipped");
-        if (motion && !alreadyFlipped) elasticFlip(card);
+        if (motion) elasticFlip(card);
         if (!introSrc) return;
         if (!video.error && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
             try { video.currentTime = 0; } catch (_) {}
@@ -404,22 +403,12 @@ export function openPlayerModal(playerId) {
         }
     };
 
-    // One click opens the card face up: wait for the picture (at most 700 ms), then the card floats in showing it.
-    const shortWait = new Promise(resolve => setTimeout(resolve, 700));
-    Promise.race([Promise.all([imageReady, videoReady]), shortWait]).then(() => {
+    Promise.all([imageReady, videoReady, floatReady]).then(([, , hovering]) => {
         // The visitor may have opened a different player, or closed the card, meanwhile.
         if (token !== loadToken || modal.style.display === "none") return;
-        card.style.transition = "none";
-        card.classList.add("flipped");
-        void card.offsetWidth;
-        card.style.transition = "";
-        modalBox.style.visibility = "";
-        if (motion) startCardFloat(modalBox, { faceUp: true });
-        // The tale of the tape slides out beside the card (where the card floats, or where it stands without motion).
-        const rect = modalBox.getBoundingClientRect();
-        showCardTape(p, players, motion ? modalBox.__floatPoses.place
-            : { cx: rect.left + rect.width / 2, cy: rect.top + rect.height / 2, w: rect.width, h: rect.height, s: 1 });
-        revealCard({ alreadyFlipped: true });
+        // The card hovers on its wings side until it is tapped, then it turns over.
+        if (hovering) armCardReveal(modalBox, () => { if (token === loadToken) revealCard(); });
+        else revealCard();
     });
 }
 

@@ -12,8 +12,8 @@ import { setupComparisons, showComparisons } from "./comparisons.js";
 import { renderHistoryList } from "./history.js";
 import { setupDuoNetwork } from "./duoNetwork.js";
 import { showMonthlyRankings } from "./monthly.js";
-import { setupMatchSetup, showMatchSetup } from "./matchSetup.js";
-import { setupLayout } from "./layout.js";
+import { fitPhone, setupMatchSetup, showMatchSetup } from "./matchSetup.js";
+import { fitPhonePages, setupLayout } from "./layout.js";
 import { showKnockout } from "./knockout.js";
 import { redrawHands, setupLocker, showLocker } from "./locker.js";
 import { setupFightNight, showFightNight, startComparison } from "./fightNight.js";
@@ -80,10 +80,14 @@ function start() {
     setupLocker({ onCompare: id => { startComparison(id); showTab("comparisonsPage"); }, showCards: () => showTab("cardsPage") });
 
     showTab = setupTabs(tab => {
-        if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Match Day opens
+        if (tab === "teamsPage") {
+            chemEnsure().catch(() => {});   // warm the chemistry data the first time Match Day opens
+            requestAnimationFrame(fitPhone); // size the phone layout now the page is visible (also after a link or Back)
+        }
         if (tab === "leaderboardPage" || tab === "cardsPage") redrawHands();
         if (tab === "monthlyPage") showMonthlyRankings();
         if (tab === "knockoutPage") showKnockout();
+        requestAnimationFrame(fitPhonePages);   // phones: zoom the open page to fit the screen's width
     });
     renderHistoryList();
 

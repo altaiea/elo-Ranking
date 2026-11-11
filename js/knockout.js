@@ -198,7 +198,7 @@ function tierPoster(tier, fromRank, toRank, bracket, monthKey) {
     // Left half: the top half of the draw, rounds 0 .. total-2, moving inwards.
     for (let r = 0; r < total - 1; r += 1) {
         const matches = bracket.rounds[r];
-        cols.push(`<div class="ko-col ko-left"><div class="ko-colhead">${roundLabel(r, total, monthKey)}</div>
+        cols.push(`<div class="ko-col ko-left" data-round="${r}"><div class="ko-colhead">${roundLabel(r, total, monthKey)}</div>
             <div class="ko-stack">${matches.slice(0, matches.length / 2).map(m => matchBox(bracket, m)).join("")}</div></div>`);
     }
     const final = bracket.rounds[total - 1][0];
@@ -209,7 +209,7 @@ function tierPoster(tier, fromRank, toRank, bracket, monthKey) {
     // Right half: the bottom half of the draw, mirrored.
     for (let r = total - 2; r >= 0; r -= 1) {
         const matches = bracket.rounds[r];
-        cols.push(`<div class="ko-col ko-right"><div class="ko-colhead">${roundLabel(r, total, monthKey)}</div>
+        cols.push(`<div class="ko-col ko-right" data-round="${r}"><div class="ko-colhead">${roundLabel(r, total, monthKey)}</div>
             <div class="ko-stack">${matches.slice(matches.length / 2).map(m => matchBox(bracket, m)).join("")}</div></div>`);
     }
     return `<section class="ko-tier" style="--c:${colour}">${head}

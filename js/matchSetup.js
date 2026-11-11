@@ -29,7 +29,7 @@ const countOf = team => [...picked.values()].filter(t => t === team).length;
 /* ---------------------------
    PHONE FIT
 ---------------------------- */
-function fitPhone() {
+export function fitPhone() {
     const page = $("teamsPage"), box = $("matchSetup");
     if (!page || !box) return;
     const cs = getComputedStyle(page);

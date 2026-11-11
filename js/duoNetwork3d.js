@@ -10,8 +10,8 @@
      on    : { pickNode(id), pickEdge("a-b"), hoverEdge("a-b" or null, x, y) }
 
    How the neon look is made: nothing here is lit by lamps. Every tube is drawn
-   three times: a thin bright core, a wider see-through one, and a much wider
-   faint one. The outer two are "added" to whatever is behind them, so where
+   three times: a solid core in its full colour, a slightly wider see-through
+   one, and a wider faint one. The outer two are "added" to whatever is behind them, so where
    glows cross they get brighter, the way real neon does.
 
    Turning: the globe's angle is kept as a quaternion (one rotation that can
@@ -61,7 +61,7 @@ export function createGlobe3D(stage, S, on) {
         [[0x19e6ff, 0, 0], [0xff2e7e, Math.PI / 2, 0], [0x8a5cff, 0, Math.PI / 2]].forEach(([c, rx, ry]) => {
             const m = new T.Mesh(hoop, additive(c, 0.3)); m.rotation.set(rx, ry, 0); world.add(m);
         });
-        const heart = new T.Sprite(glowMaterial(0x5a3dff, 0.22)); heart.scale.setScalar(3.4); world.add(heart);
+        const heart = new T.Sprite(glowMaterial(0x5a3dff, 0.12)); heart.scale.setScalar(3.4); world.add(heart);
         const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0x9fb4ff, 0.55), 260), o = new T.Object3D();
         let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // the same dust every time
         for (let i = 0; i < 260; i++) {
@@ -78,8 +78,8 @@ export function createGlobe3D(stage, S, on) {
     const nodes = {};
     S.ids.forEach(id => {
         const colour = new T.Color(S.colour[id]), p = new T.Vector3(...S.pos[id]);
-        const core = new T.Mesh(ball, new T.MeshBasicMaterial({ color: colour.clone().lerp(WHITE, 0.55), transparent: true })); core.position.copy(p);
-        const glow = new T.Sprite(glowMaterial(colour, 0.9)); glow.position.copy(p);
+        const core = new T.Mesh(ball, new T.MeshBasicMaterial({ color: colour.clone().lerp(WHITE, 0.12), transparent: true })); core.position.copy(p);
+        const glow = new T.Sprite(glowMaterial(colour, 0.6)); glow.position.copy(p);
         const hit = new T.Mesh(hitBall, unseen); hit.position.copy(p); hit.scale.setScalar(0.13); hit.userData.id = id;
         world.add(core, glow, hit);
         const label = document.createElement("span");
@@ -101,7 +101,7 @@ export function createGlobe3D(stage, S, on) {
         const halo = layer(new T.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0, blending: T.AdditiveBlending, depthWrite: false }), 1);
         const wide = layer(new T.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0, blending: T.AdditiveBlending, depthWrite: false }), 1);
         const spark = new T.Sprite(glowMaterial(0xffffff, 0)); spark.visible = false; world.add(spark);
-        return edges[k] = { k, curve, core, halo, wide, spark, radius: 0, level: 0, toLevel: 0, cA: new T.Color(0), cB: new T.Color(0), tA: new T.Color(), tB: new T.Color(), white: 0.35, toWhite: 0.35, dirty: true, phase: (a * 0.37 + b * 0.61) % 1, lit: false };
+        return edges[k] = { k, curve, core, halo, wide, spark, radius: 0, level: 0, toLevel: 0, cA: new T.Color(0), cB: new T.Color(0), tA: new T.Color(), tB: new T.Color(), white: 0.04, toWhite: 0.04, dirty: true, phase: (a * 0.37 + b * 0.61) % 1, lit: false };
     }
     // Colour a tube along its length from one end's colour to the other's. white: how much the colour is washed towards white.
     const tmp = new T.Color();
@@ -118,9 +118,9 @@ export function createGlobe3D(stage, S, on) {
         Object.keys(S.edges).forEach(k => {
             const e = S.edges[k], g = edges[k] || makeEdge(k);
             const duo = e.state === "duo";
-            const radius = (0.0035 + 0.013 * e.weight) * (duo ? 1.5 : 1);
+            const radius = (0.005 + 0.014 * e.weight) * (duo ? 1.5 : 1);
             if (Math.abs(radius - g.radius) > 0.0003) {
-                [[g.core, radius, 8], [g.halo, radius * 2.4 + 0.004, 6], [g.wide, radius * 5 + 0.012, 6]].forEach(([m, r, sides]) => {
+                [[g.core, radius, 8], [g.halo, radius * 1.7 + 0.003, 6], [g.wide, radius * 3.4 + 0.008, 6]].forEach(([m, r, sides]) => {
                     if (m.geometry) m.geometry.dispose();
                     m.geometry = new T.TubeGeometry(g.curve, 26, r, sides, false);
                 });
@@ -128,8 +128,8 @@ export function createGlobe3D(stage, S, on) {
             }
             if (e.byWinRate) { g.tA.set(COLOURS[band(e.wr)]); g.tB.copy(g.tA); }
             else { g.tA.copy(nodes[e.a].colour); g.tB.copy(nodes[e.b].colour); }
-            g.toWhite = duo ? 0.75 : 0.35;
-            g.toLevel = duo ? 2.2 : e.state === "lit" ? 1.35 : e.state === "dim" ? 0.05 : 0.32 + 0.5 * e.weight;
+            g.toWhite = duo ? 0.5 : 0.04;                  // lines keep their full colour; only the chosen duo is washed towards white
+            g.toLevel = duo ? 2.2 : e.state === "lit" ? 1.35 : e.state === "dim" ? 0.03 : 0.32 + 0.5 * e.weight;
             g.lit = duo || e.state === "lit";
             g.core.visible = g.halo.visible = g.wide.visible = true;
         });
@@ -187,10 +187,10 @@ export function createGlobe3D(stage, S, on) {
             const d = g.toLevel - g.level;
             g.level = Math.abs(d) > 0.003 ? g.level + d * 0.14 : g.toLevel;
             if (g.level < 0.004 && g.toLevel === 0) { g.core.visible = g.halo.visible = g.wide.visible = g.spark.visible = false; return; }
-            g.core.material.opacity = Math.min(1, g.level * 1.1);
-            g.core.material.depthWrite = g.level > 0.4;
-            g.halo.material.opacity = Math.min(0.6, g.level * 0.3);
-            g.wide.material.opacity = Math.min(0.3, g.level * g.level * 0.09);      // the widest glow is saved for the lines that are lit up
+            g.core.material.opacity = Math.min(1, g.level * 3.2);          // solid for every line except the faded ones
+            g.core.material.depthWrite = g.level > 0.3;
+            g.halo.material.opacity = Math.min(0.4, g.level * 0.16);
+            g.wide.material.opacity = Math.min(0.2, g.level * g.level * 0.05);      // the widest glow is saved for the lines that are lit up
             // colours glide to their new values
             const off = Math.abs(g.cA.r - g.tA.r) + Math.abs(g.cA.g - g.tA.g) + Math.abs(g.cA.b - g.tA.b) + Math.abs(g.cB.r - g.tB.r) + Math.abs(g.cB.g - g.tB.g) + Math.abs(g.cB.b - g.tB.b) + Math.abs(g.white - g.toWhite);
             if (off > 0.004) { g.cA.lerp(g.tA, 0.2); g.cB.lerp(g.tB, 0.2); g.white += (g.toWhite - g.white) * 0.2; g.dirty = true; }
@@ -213,8 +213,8 @@ export function createGlobe3D(stage, S, on) {
             n.r += (n.toR * (1 + n.pulse * 0.6) - n.r) * 0.2;
             n.fade += (n.toFade - n.fade) * 0.14; n.lift += (n.toLift - n.lift) * 0.14;
             n.core.scale.setScalar(n.r); n.core.material.opacity = n.fade;
-            n.glow.scale.setScalar(n.r * (7 + 5 * n.lift + (calm ? 0 : 0.6 * Math.sin(tick * 0.05 + id))));
-            n.glow.material.opacity = n.fade * (0.75 + 0.25 * n.lift);
+            n.glow.scale.setScalar(n.r * (4.5 + 4 * n.lift + (calm ? 0 : 0.6 * Math.sin(tick * 0.05 + id))));
+            n.glow.material.opacity = n.fade * (0.5 + 0.4 * n.lift);
             v.copy(n.p).applyMatrix4(world.matrixWorld);
             n.depth = v.z;
             v.project(camera);

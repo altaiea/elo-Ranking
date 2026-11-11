@@ -207,8 +207,12 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 
 /* ---------- last month's number one: wings behind their card in the hands (js/locker.js adds .winged) ---------- */
 /* card_wings.webp is drawn on the card template's 1400 x 2000 canvas, where the card frame is x 147-1253, y 109-1831; these numbers line it up */
-.hand-card.winged::before, #playerModal .container.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
+.hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
 #playerModal .container { position: relative; }
+/* the wings glow blue, so they read clearly against the card's gold glow */
+.hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { filter: brightness(1.35) saturate(1.25) drop-shadow(0 0 4px rgba(90, 170, 255, .95)) drop-shadow(0 0 14px rgba(40, 120, 255, .7)); animation: wingGlow 2.6s ease-in-out infinite; }
+@keyframes wingGlow { 50% { filter: brightness(1.6) saturate(1.3) drop-shadow(0 0 6px rgba(120, 190, 255, 1)) drop-shadow(0 0 22px rgba(40, 120, 255, .9)); } }
+@media (prefers-reduced-motion: reduce) { .hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { animation: none; } }
 
 /* ---------- Leaderboard: top three as a podium, everyone else as tiles (js/leaderboard.js draws #lbAlt) ---------- */
 /* The old table stays in the page, hidden: the card hand and the daily arrows still read it. */
@@ -221,7 +225,8 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-pod-1 { border-top-color: var(--gold); padding-top: 22px; padding-bottom: 20px; }
 .lb-pod-3 { border-top-color: #d08a4a; }
 .lb-pod:hover, .lb-pod.locker-pick { background: rgba(var(--gold-rgb), .08); }
-.lb-pod img { grid-row: 1 / 4; width: 74px; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 5px; border: 1px solid var(--line); }
+.lb-pod-card { grid-row: 1 / 4; width: 74px; }
+.lb-pod-card img { border-radius: 5px; border: 1px solid var(--line); }
 .lb-pod-place { position: absolute; right: 12px; top: 8px; font: 400 34px/1 "Black Ops One", "Segoe UI", sans-serif; color: var(--line); }
 .lb-pod-1 .lb-pod-place { color: rgba(var(--gold-rgb), .5); }
 .lb-pod-name { color: var(--gold); font-size: 17px; font-weight: 900; letter-spacing: .04em; }
@@ -239,7 +244,11 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
 .lb-tile.locker-pick { background: rgba(var(--gold-rgb), .12); border-color: var(--line); }
 .lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
-.lb-t-card { display: block; width: 44px; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 3px; border: 1px solid var(--gold-deep); box-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+.lb-t-card { width: 44px; }
+.lb-t-card img { border-radius: 3px; border: 1px solid var(--gold-deep); box-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+/* a mini card: the card picture, with room for the wings round it */
+.lb-mini { position: relative; display: block; aspect-ratio: 2 / 3; }
+.lb-mini img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
 .lb-t-name { color: var(--gold); font-weight: 900; letter-spacing: .04em; }
 .lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
 .lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
@@ -259,11 +268,10 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-t-stat em { font-style: normal; }
 .is-phone .lb-t-stat em { display: none; }
 
-/* ---------- Head-to-Head: Overall under the score, then Lifetime, then the three modes side by side ---------- */
+/* ---------- Head-to-Head: Lifetime under the score as one column, then the three modes side by side ---------- */
 .h2h-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .comparison-section { border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
 .comparison-section.wide { grid-column: 1 / -1; }
-.comparison-section.wide .cs-rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
 .comparison-section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 2px; }
 .comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
 .comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 34px; }
@@ -271,4 +279,3 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .comparison-label { font-size: 9.5px; min-width: 100px; }
 .is-phone .h2h-sections { zoom: var(--ui-zoom); }
 .is-phone .comparison-section { grid-column: 1 / -1; }
-.is-phone .comparison-section.wide .cs-rows { grid-template-columns: 1fr; }

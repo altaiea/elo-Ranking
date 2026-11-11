@@ -3,7 +3,6 @@
 ====================================================== */
 import { MODES } from "./config.js";
 import { totalLosses, totalWins } from "./data.js";
-import { cardRatings } from "./ratings.js";
 import { fillCard } from "./playerCard.js";
 
 let players = [];
@@ -55,7 +54,7 @@ function row(label, a, b, type = "number", better = "higher") {
     </div>`;
 }
 
-// One block of rows with a title and its score. wide = runs the full width (Overall, Lifetime).
+// One block of rows with a title and its score. wide = runs the full width (Lifetime).
 //   rows: [label, a's value, b's value, type, better]
 function section(title, a, b, rows, wide = false) {
     const scoreA = rows.reduce((sum, [, x, y, , better = "higher"]) => sum + compareMetric(x, y, better), 0);
@@ -125,12 +124,6 @@ function render() {
 
     const kd = p => Number(p.lifetimeDeaths || 0) === 0 ? Number(p.lifetimeKills || 0) : p.lifetimeKills / p.lifetimeDeaths;
     const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
-    const overall = section("OVERALL", a, b, [
-        ["ELO", a.elo, b.elo],
-        ["CURRENT RANK", a.currentRank, b.currentRank, "number", "lower"],
-        ["OVERALL RATING", cardRatings(a, players).overall, cardRatings(b, players).overall],
-        ["ELO CHANGE", a.eloChange, b.eloChange]
-    ], true);
     const lifetime = section("LIFETIME", a, b, [
         ["KILLS", a.lifetimeKills, b.lifetimeKills],
         ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower"],
@@ -140,7 +133,7 @@ function render() {
         ["WIN RATE", winRate(a), winRate(b), "percent"]
     ], true);
     const modeResults = MODES.map(mode => modeSection(mode, a, b));
-    const sections = [overall, lifetime, ...modeResults];
+    const sections = [lifetime, ...modeResults];
     const totalA = modeResults.reduce((sum, r) => sum + r.scoreA, 0);
     const totalB = modeResults.reduce((sum, r) => sum + r.scoreB, 0);
 
@@ -156,7 +149,7 @@ function render() {
             <span>HEAD-TO-HEAD</span>
         </div>
 
-        <!-- Overall and Lifetime run the full width; the three modes sit side by side under them -->
+        <!-- Lifetime runs the full width as one column; the three modes sit side by side under it -->
         <div class="h2h-sections">${sections.map(sec => sec.html).join("")}</div>
     `;
 

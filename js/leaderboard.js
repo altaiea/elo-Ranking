@@ -4,6 +4,7 @@
 import { INACTIVE_PLAYER_IDS, cardAssets } from "./config.js";
 import { playerHasActivity, totalLosses, totalWins } from "./data.js";
 import { kdColor } from "./ui.js";
+import { lastMonthWinner } from "./monthWinner.js";
 
 let players = [];
 let showInactive = false;
@@ -102,7 +103,7 @@ function renderPodiumAndTiles(shown) {
     const podium = [shown[1], shown[0], shown[2]].filter(Boolean).map(p => {
         const n = numbers(p);
         return `<button type="button" class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
-            <img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy">
+            <span class="lb-mini lb-pod-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <span class="lb-pod-place">${p.currentRank}</span>
             <span class="lb-pod-name">${p.name}</span>
             <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
@@ -121,7 +122,7 @@ function renderPodiumAndTiles(shown) {
         const n = numbers(p);
         return `<div class="lb-tile" data-id="${p.id}">
             <span class="lb-t-rank">${p.currentRank}</span>
-            <img class="lb-t-card" src="${cardAssets.thumb(p.id)}" alt="" loading="lazy">
+            <span class="lb-mini lb-t-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <span class="lb-t-name">${p.name}</span>
             <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
             <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>
@@ -129,6 +130,8 @@ function renderPodiumAndTiles(shown) {
         </div>`;
     }).join("");
     box.innerHTML = `<div class="lb-podium">${podium}</div><div class="lb-tiles">${tiles}</div>`;
+    // last month's number one: wings on their mini card too
+    lastMonthWinner().then(id => box.querySelectorAll(`.lb-mini[data-mini="${id}"]`).forEach(el => el.classList.add("winged")));
 }
 
 export function setupLeaderboard() {

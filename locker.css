@@ -1,0 +1,88 @@
+/* ======================================================
+   RANKS / PLAYERS PAGES
+   The switch under the title, the hand of cards (js/cardHand.js), the Locker
+   room and Cards page (js/locker.js), Fight night (js/fightNight.js) and the
+   tale of the tape beside the card popup (js/cardTape.js).
+   --ui-zoom is set by js/layout.js: on a phone the site is drawn on a wide
+   canvas, so text here is zoomed up to stay readable.
+====================================================== */
+:root {
+    --gold: #f2c14e; --gold-hi: #ffe29a; --gold-deep: #b8862b; --gold-ink: #120e07; --gold-rgb: 242, 193, 78;
+    --line: #3a3122; --line-soft: #221d15; --panel: rgba(10, 8, 5, .85); --text: #f1ead9; --muted: #a39a88; --rival: #ff3b3b;
+    --ui-zoom: 1;
+}
+@font-face { font-family: "Black Ops One"; src: url("fonts/BlackOpsOne-Regular.ttf"); font-display: swap; }
+
+/* ---------- gold switch and buttons ---------- */
+.sub-tabs { display: inline-flex; flex-wrap: wrap; gap: 3px; margin: 0 0 16px; padding: 3px; border: 1px solid var(--line); border-radius: 7px; background: rgba(0, 0, 0, .45); zoom: var(--ui-zoom); }
+.sub-tabs[hidden] { display: none; }
+.sub-tabs button { margin: 0; padding: 8px 14px; border: 0; border-radius: 5px; background: none; color: var(--muted); font: 900 12.5px "Segoe UI", sans-serif; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.sub-tabs button.on { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); }
+.gold-btn { margin: 0; padding: 8px 16px; border: 1px solid var(--gold-hi); border-radius: 6px; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); font: 900 12px "Segoe UI", sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
+.gold-btn.ghost { background: none; color: var(--gold); border-color: var(--gold); }
+.sub-tabs button:focus-visible, .gold-btn:focus-visible, .hand:focus-visible, .fight button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ---------- hand of cards ---------- */
+.hand { position: relative; height: calc(var(--card-w, 180px) * 2.2); perspective: 1400px; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab; outline-offset: -3px; }
+.hand.grabbing { cursor: grabbing; }
+.hand-track { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateY(6%); }
+.hand-card { position: absolute; left: 50%; top: 50%; width: var(--card-w, 180px); height: calc(var(--card-w, 180px) * 1.5); margin: calc(var(--card-w, 180px) * -.75) 0 0 calc(var(--card-w, 180px) * -.5); transform-origin: 50% 330%; will-change: transform; cursor: pointer; }
+.hand-card img { position: absolute; inset: 0; width: 100%; height: 100%; box-sizing: border-box; object-fit: cover; border: 2px solid var(--gold-deep); border-radius: 6px; pointer-events: none; }
+.hand-card.on img { border-color: var(--gold-hi); box-shadow: 0 0 24px rgba(var(--gold-rgb), .55); }
+.hand-floor { position: absolute; left: 50%; bottom: 5%; width: min(620px, 90%); height: 80px; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(var(--gold-rgb), .22), transparent 65%); pointer-events: none; }
+
+.readout { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 26px; padding: 14px 18px; border-top: 1px solid var(--line); zoom: var(--ui-zoom); }
+.readout-rank { color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.readout-name { font: 400 28px/1 "Black Ops One", "Segoe UI", sans-serif; letter-spacing: .05em; color: #fff; }
+.readout-stats { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.readout-stat { display: grid; }
+.readout-stat b { font: 400 22px/1.1 "Black Ops One", "Segoe UI", sans-serif; color: var(--gold); font-variant-numeric: tabular-nums; }
+.readout-stat span { font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.readout-buttons { display: flex; gap: 8px; }
+
+/* Locker room: the hand above the leaderboard */
+.locker { margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
+#table-body tr { cursor: pointer; }
+#table-body tr.locker-pick td { background: rgba(var(--gold-rgb), .12) !important; }
+
+/* Cards page */
+.theme-ko #cardsPage { padding: 0; overflow: hidden; }
+#cardsHand { height: calc(var(--card-w, 180px) * 2.5); }
+
+/* ---------- Fight night ---------- */
+.fight { display: grid; gap: 14px; margin-bottom: 18px; }
+.comparison-selectors { display: none !important; }      /* the selects still hold the choice; the cards above drive them */
+.fight-vs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 14px; zoom: var(--ui-zoom); }
+.fight-slot { display: flex; align-items: center; gap: 12px; min-height: 84px; margin: 0; padding: 8px 14px; border: 2px dashed var(--line); border-radius: 8px; background: rgba(0, 0, 0, .4); color: var(--text); font-family: inherit; text-align: left; cursor: pointer; }
+.fight-slot.b { flex-direction: row-reverse; text-align: right; }
+.fight-slot img { flex: none; width: 44px; height: 66px; object-fit: cover; border-radius: 4px; }
+.fight-slot small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .16em; color: var(--muted); }
+.fight-slot b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; letter-spacing: .05em; }
+.fight-slot.on { border-style: solid; border-color: var(--gold); box-shadow: 0 0 22px rgba(var(--gold-rgb), .3); }
+.fight-slot.b.on { border-color: var(--rival); box-shadow: 0 0 22px rgba(255, 59, 59, .3); }
+.fight-vs-mark { font: 400 40px "Black Ops One", "Segoe UI", sans-serif; color: var(--gold); text-shadow: 0 0 22px rgba(var(--gold-rgb), .5); }
+.fight-strip { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 10px; }
+.fight-strip button { flex: none; width: calc(62px * var(--ui-zoom)); aspect-ratio: 2 / 3; margin: 0; padding: 0; border: 2px solid var(--line); border-radius: 5px; overflow: hidden; background: none; cursor: pointer; }
+.fight-strip button.a { border-color: var(--gold); box-shadow: 0 0 12px rgba(var(--gold-rgb), .5); }
+.fight-strip button.b { border-color: var(--rival); box-shadow: 0 0 12px rgba(255, 59, 59, .5); }
+.fight-strip img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- tale of the tape (card popup) ---------- */
+/* --cx/--cy/--w/--h: where the card floats; --s: the popup's scale. All set by js/cardTape.js. */
+#cardTape { position: fixed; z-index: -1; pointer-events: none; display: grid; gap: calc(11px * var(--s)); color: var(--text); font-size: calc(13px * var(--s));
+    left: calc(var(--cx) + var(--w) / 2 + 56px * var(--s)); top: calc(var(--cy) - var(--h) / 2 + 10px);
+    width: min(calc(340px * var(--s)), calc(100vw - var(--cx) - var(--w) / 2 - 80px * var(--s))); }
+.tape-rank { color: var(--gold); font-weight: 900; letter-spacing: .14em; }
+#cardTape h4 { margin: 0 0 4px; font: 400 2.7em/1 "Black Ops One", "Segoe UI", sans-serif; letter-spacing: .05em; color: #fff; }
+.tape-row { display: grid; grid-template-columns: 7.2em minmax(0, 1fr) 3.6em; align-items: center; gap: .8em; font-weight: 800; font-variant-numeric: tabular-nums; animation: tapeSlide .5s both; }
+.tape-row:nth-child(4) { animation-delay: .06s; } .tape-row:nth-child(5) { animation-delay: .12s; } .tape-row:nth-child(6) { animation-delay: .18s; }
+.tape-row:nth-child(7) { animation-delay: .24s; } .tape-row:nth-child(8) { animation-delay: .3s; }
+.tape-row span { font-size: .85em; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.tape-row b { text-align: right; color: var(--gold); }
+.tape-row i { display: block; height: .6em; border-radius: 4px; background: var(--line-soft); overflow: hidden; }
+.tape-row u { display: block; height: 100%; background: var(--gold); }
+@keyframes tapeSlide { from { opacity: 0; transform: translateX(26px); } }
+.is-phone #cardTape { left: 9%; width: 82%; top: calc(var(--cy) + var(--h) / 2 + 70px); font-size: 34px; }
+#cardHands { display: none !important; }     /* the hands under the card are replaced by the tape */
+
+@media (prefers-reduced-motion: reduce) { .tape-row { animation: none; } }

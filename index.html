@@ -34,18 +34,23 @@
     <link rel="modulepreload" href="js/knockoutCards.js">
     <link rel="modulepreload" href="js/knockoutRulesView.js">
     <link rel="modulepreload" href="js/knockoutHistoryView.js">
-    <link rel="modulepreload" href="js/carousel.js">
+    <link rel="modulepreload" href="js/cardHand.js">
+    <link rel="modulepreload" href="js/locker.js">
+    <link rel="modulepreload" href="js/fightNight.js">
+    <link rel="modulepreload" href="js/cardTape.js">
     <link rel="modulepreload" href="js/tabs.js">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="matchSetup.css">
     <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="locker.css">
+    <link rel="stylesheet" href="seamless.css">
 <style>
-#bootLoader{position:fixed;inset:0;z-index:2147483000;background:#0b0f14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#e8edf3;font-family:sans-serif;transition:opacity .45s}
+#bootLoader{position:fixed;inset:0;z-index:2147483000;background:#0d0b08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#e8edf3;font-family:sans-serif;transition:opacity .45s}
 #bootLoader.done{opacity:0;pointer-events:none}
 #bootLoader .bl-title{font:800 22px/1 sans-serif;letter-spacing:.2em}
-#bootLoader .bl-bar{width:320px;max-width:70vw;height:6px;border-radius:3px;background:#1d2530;overflow:hidden}
-#bootLoader .bl-fill{height:100%;width:0;background:#39ff6a;box-shadow:0 0 12px #39ff6a;transition:width .25s}
+#bootLoader .bl-bar{width:320px;max-width:70vw;height:6px;border-radius:3px;background:#221d15;overflow:hidden}
+#bootLoader .bl-fill{height:100%;width:0;background:#f2c14e;box-shadow:0 0 12px #f2c14e;transition:width .25s}
 #bootLoader .bl-pct{font:700 13px/1 sans-serif;letter-spacing:.12em;color:#8a929e}
 </style>
 </head>
@@ -59,11 +64,9 @@
 <aside class="rail" id="rail">
     <div class="rail-brand"><span class="rail-logo">ELO</span></div>
     <nav id="tabs" role="tablist">
-        <button class="nav-tab" data-tab="leaderboardPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span class="nl">Leaderboard</span><span class="ns">Ranks</span></button>
-        <button class="nav-tab" data-tab="teamsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg><span class="nl">Teams &amp; Maps</span><span class="ns">Teams</span></button>
-        <button class="nav-tab" data-tab="historyPage"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="nl">History</span><span class="ns">History</span></button>
-        <button class="nav-tab" data-tab="comparisonsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7 7M4 4v4M4 4h4M20 20l-7-7M20 20v-4M20 20h-4M20 4l-6 6M4 20l6-6"/></svg><span class="nl">Head-To-Head</span><span class="ns">H2H</span></button>
-        <button class="nav-tab" data-tab="carouselPage"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l3 1-3.5 12-2.5-.7"/></svg><span class="nl">Cards</span><span class="ns">Cards</span></button>
+        <button class="nav-tab" data-tab="leaderboardPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span class="nl">Ranks</span><span class="ns">Ranks</span></button>
+        <button class="nav-tab" data-tab="teamsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg><span class="nl">Match Day</span><span class="ns">Match Day</span></button>
+        <button class="nav-tab" data-tab="cardsPage"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l3 1-3.5 12-2.5-.7"/></svg><span class="nl">Players</span><span class="ns">Players</span></button>
         <button class="nav-tab" data-tab="knockoutPage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3h4A4.5 4.5 0 0 1 19 7.5V12a4 4 0 0 1-4 4h-4.5A3.5 3.5 0 0 1 7 12.5V6.5A3.5 3.5 0 0 1 10.5 3z"/><path d="M7 8.5H6A2 2 0 0 0 4 10.5v1A2.5 2.5 0 0 0 6.5 14H7.5"/><path d="M11 7.5c1.5-.6 3.5-.6 5 .3"/><path d="M9.5 16v4.5h7.5V16M9.5 18.3h7.5"/></svg><span class="nl">Knockout</span><span class="ns">Knockout</span></button>
     </nav>
 </aside>
@@ -72,13 +75,19 @@
 
 <!-- page header: tabs.js fills it for the open tab -->
 <header class="page-head" id="pageHead">
-    <h1 class="ph-title" id="pageTitle">LEADERBOARD</h1>
+    <img class="ph-art" id="pageArt" alt="" hidden>
+    <h1 class="ph-title" id="pageTitle">RANKS</h1>
 </header>
+<!-- the pages inside the open group (Ranks, Players): tabs.js fills it -->
+<div class="sub-tabs" id="subTabs" hidden></div>
 
 <!-- ============================
      LEADERBOARD TAB
 ============================ -->
 <div id="leaderboardPage" class="tab-page">
+
+    <!-- Locker room: the hand of cards and the middle player's numbers (js/locker.js) -->
+    <div class="locker"><div id="lockerHand"></div><div class="readout" id="lockerReadout"></div></div>
 
     <div class="leaderboard-toolbar">
         <div class="toggle-container">
@@ -88,7 +97,6 @@
             </label>
             <span class="toggle-label">Show Inactive Players</span>
         </div>
-        <button id="monthlyRankingsButton" class="monthly-rankings-button" type="button">Monthly Rankings</button>
     </div>
 
     <table id="leaderboard">
@@ -164,6 +172,13 @@
 </div>
 
 <!-- ============================
+     MONTHLY RANKINGS (js/monthly.js)
+============================ -->
+<div id="monthlyPage" class="tab-page">
+    <div id="monthlyRoot"></div>
+</div>
+
+<!-- ============================
      MAP HISTORY TAB (duo network, then days by week)
 ============================ -->
 <div id="historyPage" class="tab-page">
@@ -180,8 +195,10 @@
     <section class="comparison-page">
         <div class="comparison-header">
             <h2>HEAD-TO-HEAD</h2>
-            <p>Who's Better?</p>
         </div>
+
+        <!-- Fight night: pick the two players from their cards (js/fightNight.js). The selects below hold the choice. -->
+        <div id="fightNight" class="fight"></div>
 
         <div class="comparison-selectors">
             <div class="comparison-player-box">
@@ -201,24 +218,17 @@
             </div>
         </div>
 
-        <div id="comparisonEmpty" class="comparison-empty">Select two players to begin.</div>
+        <div id="comparisonEmpty" class="comparison-empty">Pick two players.</div>
         <div id="comparisonContent" class="comparison-content" style="display:none;"></div>
     </section>
 </div>
 
 <!-- ============================
-       CARDS TAB PAGE (CAROUSEL)
+       CARDS PAGE (hand of cards, js/locker.js)
 ============================ -->
-<div id="carouselPage" class="tab-page">
-    <h2 style="text-align:center; color:#00eaff;"></h2>
-
-    <div id="carouselContainer">
-        <div class="banner">
-            <div class="card-particle-layer" aria-hidden="true"></div>
-            <!-- The cards are added by js/carousel.js from the player list in js/config.js -->
-            <div class="slider"></div>
-        </div>
-    </div>
+<div id="cardsPage" class="tab-page">
+    <div id="cardsHand"></div>
+    <div class="readout" id="cardsReadout"></div>
 </div>
 
 <!-- ============================

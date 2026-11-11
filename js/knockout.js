@@ -135,7 +135,7 @@ function standingsTable(monthly, seedMonth, tierOf, out = new Set()) {
     return `<div class="ko-standings-head"><b>${monthLabel(seedMonth)}</b><span>Final Monthly Rankings</span></div>
         <table class="ko-table"><thead><tr><th>#</th><th>Player</th><th title="Highest overall Elo position reached after a map, and how many maps there">Top finish</th><th>Tier</th></tr></thead>
         <tbody>${rows}</tbody></table>
-        <p class="ko-small">Ranked by maps in 1st, then 2nd, then 3rd. Minimum 10 maps to qualify.</p>`;
+        <p class="ko-small">Maps in 1st, then 2nd, then 3rd. 10 maps to qualify.</p>`;
 }
 
 function slotRow(slot, match, placeholder) {

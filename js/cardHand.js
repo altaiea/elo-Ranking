@@ -77,7 +77,8 @@ export function createCardHand(root, { onSelect = () => {}, onOpen = () => {}, o
 
     root.addEventListener("pointerdown", e => {
         pendingOpen = null;
-        drag = { id: e.pointerId, x: e.clientX, startPos: pos, moved: false, samples: [[e.timeStamp, pos]] };
+        const card = e.target.closest(".hand-card");
+        drag = { id: e.pointerId, cardIndex: card ? Number(card.dataset.i) : null, x: e.clientX, startPos: pos, moved: false, samples: [[e.timeStamp, pos]] };
     });
     root.addEventListener("pointermove", e => {
         if (!drag || e.pointerId !== drag.id) return;
@@ -105,9 +106,8 @@ export function createCardHand(root, { onSelect = () => {}, onOpen = () => {}, o
             vel = dt > .008 ? Math.max(-40, Math.min(40, (pos - first[1]) / dt)) : 0;
             target = Math.round(pos + vel * .2);
         } else if (e.type === "pointerup") {
-            const card = e.target.closest && e.target.closest(".hand-card");
-            if (card) {
-                const i = Number(card.dataset.i), offset = wrap(i - pos);
+            if (d.cardIndex !== null) {
+                const i = d.cardIndex, offset = wrap(i - pos);
                 target = Math.round(pos + offset);
                 if (Math.abs(offset) < .5) onOpen(ids[i]);
                 else if (openOnArrive) pendingOpen = ids[i];
@@ -145,10 +145,11 @@ export function createCardHand(root, { onSelect = () => {}, onOpen = () => {}, o
     return {
         draw,                                   // call when the hand becomes visible
         selected: () => ids[selected],
-        goTo(id) {
+        goTo(id, { open = false } = {}) {
             const i = ids.indexOf(Number(id));
             if (i < 0) return;
             target = Math.round(pos + wrap(i - pos));
+            pendingOpen = open ? ids[i] : null;
             run();
         }
     };

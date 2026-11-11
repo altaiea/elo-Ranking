@@ -84,9 +84,9 @@ function renderPodiumAndTiles(shown) {
         box = document.createElement("div");
         box.id = "lbAlt";
         document.getElementById("leaderboard").before(box);
-        // a click here does what a click on that player's table row does
+        // Only a player's name navigates to their card.
         box.addEventListener("click", e => {
-            const item = e.target.closest("[data-id]");
+            const item = e.target.closest(".lb-pod-name, .lb-t-name");
             const cell = item && document.querySelector(`#table-body .player-name[data-id="${item.dataset.id}"]`);
             if (cell) cell.click();
         });
@@ -102,13 +102,13 @@ function renderPodiumAndTiles(shown) {
 
     const podium = [shown[1], shown[0], shown[2]].filter(Boolean).map(p => {
         const n = numbers(p);
-        return `<button type="button" class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
+        return `<div class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
             <span class="lb-mini lb-pod-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <span class="lb-pod-place">${p.currentRank}</span>
-            <span class="lb-pod-name">${p.name}</span>
+            <button type="button" class="lb-pod-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
             <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
             <span class="lb-pod-stats"><span>${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span>${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
-        </button>`;
+        </div>`;
     }).join("");
 
     // Elo meter: 12 blocks. The top player fills all of them; the scale starts a little under the lowest player.
@@ -123,7 +123,7 @@ function renderPodiumAndTiles(shown) {
         return `<div class="lb-tile" data-id="${p.id}">
             <span class="lb-t-rank">${p.currentRank}</span>
             <span class="lb-mini lb-t-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
-            <span class="lb-t-name">${p.name}</span>
+            <button type="button" class="lb-t-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
             <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
             <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>
             <span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span>

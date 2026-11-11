@@ -25,12 +25,11 @@ export function setupLocker({ onCompare, showCards }) {
         if (!byId(id)) return;
         showCards();
         cardsHand.draw();
-        cardsHand.goTo(id);
-        openPlayerModal(Number(id));
+        cardsHand.goTo(id, { open: true });
     };
     document.getElementById("table-body").addEventListener("click", e => {
         if (e.target.closest("[data-dropdown-toggle]")) return;
-        const cell = e.target.closest("tr")?.querySelector(".player-name");
+        const cell = e.target.closest(".player-name");
         if (cell) openFromRanks(cell.dataset.id);
     });
 

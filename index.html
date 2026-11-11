@@ -2,7 +2,9 @@
 <html lang="en" class="layout-side theme-ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1400">
+    <meta name="viewport" id="viewportMeta" content="width=1400">
+    <!-- Phones: the menu moves to a bottom bar (js/layout.js), so the page only needs 1150px and is drawn bigger. -->
+    <script>if (screen.width <= 700) document.getElementById("viewportMeta").setAttribute("content", "width=1150");</script>
     <title>Elo Leaderboard</title>
     <meta name="robots" content="noindex, nofollow">
 

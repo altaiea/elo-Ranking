@@ -1,16 +1,124 @@
-/* Only Duo Network: no global theme or page changes. */
-.dn-box { container-type: inline-size; container-name: duo; }
-.dn-surround { pointer-events: none; }
-@container duo (max-width: 870px) {
- .dn-main { flex-direction: column; }
- .dn-stage { flex: none; width: min(600px, 100%); margin-inline: auto; }
- .dn-svg { width: 100%; height: auto; aspect-ratio: 680 / 660; }
- .dn-side { width: 100%; box-sizing: border-box; }
- .dn-controls { flex-wrap: wrap; gap: 12px; }
- .dn-range { min-width: 180px; }
+/* ======================================================
+   DUO NETWORK pop-up (js/duoNetwork.js, js/duoNetwork3d.js)
+   Only the duo network: nothing here touches the rest of the site.
+   Gold on black like the rest of the site.
+   Layout: a bar along the top, the 3D globe filling the left, the
+   stats panel down the right, and the time controls under the globe.
+   On a tall screen (a phone held upright) the panel moves under the globe.
+====================================================== */
+.duo-pop {
+    --duo-gold: #f2c14e; --duo-text: #f1ead9; --duo-muted: #9a8f78; --duo-line: rgba(242, 193, 78, .26);
+    position: fixed; inset: 0; z-index: 400; color: var(--duo-text);
+    font: 14px/1.4 "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(60% 55% at 38% 50%, rgba(242, 193, 78, .07), transparent 70%), #0b0906;
 }
-.is-phone .dn-stage { width: 100%; }
-.is-phone .dn-svg { width: 100%; height: auto; aspect-ratio: 680 / 660; }
-.is-phone .dn-main { flex-direction: column; }
-.is-phone .dn-side { width: 100%; box-sizing: border-box; }
+.duo-pop[hidden] { display: none; }
+.duo-wait { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 16px; color: var(--duo-muted); letter-spacing: .14em; text-transform: uppercase; font-size: 13px; }
+.duo-pop.ready .duo-wait { display: none; }
+.duo-pop.failed .duo-wait { color: var(--duo-gold); }
 
+.duo-ui { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) 340px; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "top top" "stage side" "bottom side"; }
+.duo-top { grid-area: top; display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--duo-line); }
+.duo-top h2 { margin: 0 auto 0 0; font-size: 19px; font-weight: 900; letter-spacing: .2em; color: #fff; }
+.duo-top h2 b { color: var(--duo-gold); }
+
+.duo-btn, .duo-seg button { font: 800 11.5px/1 "Segoe UI", system-ui, sans-serif; letter-spacing: .14em; color: var(--duo-text); background: rgba(242, 193, 78, .08); border: 1px solid var(--duo-line); border-radius: 8px; padding: 10px 13px; margin: 0; cursor: pointer; white-space: nowrap; transition: border-color .15s, box-shadow .15s, color .15s; -webkit-tap-highlight-color: transparent; }
+.duo-btn:hover, .duo-btn:focus-visible { border-color: var(--duo-gold); color: #fff; box-shadow: 0 0 14px rgba(242, 193, 78, .45), inset 0 0 10px rgba(242, 193, 78, .12); outline: none; }
+.duo-seg { display: inline-flex; border: 1px solid var(--duo-line); border-radius: 8px; overflow: hidden; }
+.duo-seg button { border: 0; border-radius: 0; background: none; color: var(--duo-muted); }
+.duo-seg button[aria-pressed="true"] { background: var(--duo-gold); color: #1a1408; box-shadow: 0 0 16px rgba(242, 193, 78, .6); }
+.duo-seg button:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+
+.duo-stage { grid-area: stage; position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.duo-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.duo-gl.grabbing { cursor: grabbing; }
+.duo-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.duo-labels span { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 2px 4px; color: var(--duo-name, #f3dfa6); font: 800 13px/1.1 "Segoe UI", system-ui, sans-serif; letter-spacing: .08em; text-shadow: 0 0 2px #000, 0 1px 3px #000, 0 0 6px #000; pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; will-change: transform; }
+.duo-labels span.sel { color: #fff; text-shadow: 0 0 10px rgba(242, 193, 78, .9), 0 0 2px #000; font-size: 15px; }
+.duo-labels span:focus-visible { outline: 1px solid var(--duo-gold); outline-offset: 2px; border-radius: 4px; }
+.duo-tip { position: absolute; display: none; z-index: 200; pointer-events: none; white-space: nowrap; padding: 8px 11px; border-radius: 8px; background: rgba(11, 9, 6, .94); border: 1px solid var(--duo-gold); box-shadow: 0 0 16px rgba(242, 193, 78, .35); font-size: 13px; }
+.duo-tip b { letter-spacing: .06em; color: #fff; }
+.duo-hint { position: absolute; left: 0; right: 0; bottom: 10px; z-index: 150; text-align: center; pointer-events: none; color: var(--duo-muted); font-size: 11.5px; letter-spacing: .08em; }
+.duo-hint .touch { display: none; }
+@media (pointer: coarse) { .duo-hint .mouse { display: none; } .duo-hint .touch { display: inline; } }
+.duo-nogl { position: absolute; inset: 0; display: grid; place-content: center; padding: 24px; text-align: center; color: var(--duo-muted); }
+
+.duo-bottom { grid-area: bottom; padding: 10px 20px 14px; border-top: 1px solid var(--duo-line); }
+.duo-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin-bottom: 10px; color: var(--duo-muted); font-size: 12px; letter-spacing: .04em; }
+.duo-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.duo-legend i { width: 18px; height: 4px; border-radius: 2px; }
+.duo-controls { display: flex; align-items: center; gap: 16px; }
+.duo-range { flex: 1; min-width: 140px; }
+.duo-range-labels { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--duo-text); }
+.duo-track { position: relative; height: 22px; }
+.duo-track::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 4px; border-radius: 2px; background: rgba(242, 193, 78, .25); }
+.duo-fill { position: absolute; top: 9px; height: 4px; border-radius: 2px; background: var(--duo-gold); box-shadow: 0 0 12px rgba(242, 193, 78, .7); }
+.duo-track input { position: absolute; left: 0; top: 0; width: 100%; height: 22px; margin: 0; background: none; -webkit-appearance: none; appearance: none; pointer-events: none; }
+.duo-track input::-webkit-slider-runnable-track { background: none; }
+.duo-track input::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 18px; height: 18px; border-radius: 50%; background: #0b0906; border: 3px solid #fff; box-shadow: 0 0 10px var(--duo-gold); cursor: grab; }
+.duo-track input::-moz-range-thumb { pointer-events: auto; width: 12px; height: 12px; border-radius: 50%; background: #0b0906; border: 3px solid #fff; box-shadow: 0 0 10px var(--duo-gold); cursor: grab; }
+.duo-track input::-moz-range-track { background: none; }
+.duo-min { color: var(--duo-muted); font-size: 11.5px; font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
+.duo-min select { margin-left: 6px; padding: 7px 8px; background: #0b0906; color: var(--duo-text); border: 1px solid var(--duo-line); border-radius: 6px; font: inherit; }
+
+.duo-side { grid-area: side; min-height: 0; overflow: hidden; display: flex; flex-direction: column; padding: 18px 20px; border-left: 1px solid var(--duo-line); background: rgba(0, 0, 0, .35); }
+.duo-kicker { color: var(--duo-muted); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.duo-title { margin: 4px 0 10px; font-size: 24px; font-weight: 900; letter-spacing: .05em; color: #fff; }
+.duo-title b { color: var(--duo-gold); }
+.duo-title span { color: var(--duo-muted); font-weight: 700; }
+.duo-note { color: var(--duo-muted); font-size: 13px; }
+.duo-blocks { display: grid; gap: 14px; margin-top: 16px; }
+.duo-li, .duo-row { box-sizing: border-box; width: 100%; margin: 0; background: none; border: 0; border-bottom: 1px solid rgba(242, 193, 78, .16); color: var(--duo-text); font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.duo-li { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 7px 4px; font-size: 13px; white-space: nowrap; }
+.duo-li b { letter-spacing: .04em; }
+.duo-li i { font-style: normal; color: var(--duo-muted); font-size: 12px; }
+.duo-li em { font-style: normal; font-weight: 800; }
+.duo-li:hover, .duo-row:hover, .duo-li:focus-visible, .duo-row:focus-visible { background: rgba(242, 193, 78, .08); outline: none; }
+.duo-list { flex: 0 1 auto; min-height: 0; display: grid; grid-auto-rows: minmax(0, 30px); align-content: start; overflow: hidden; }
+.duo-row { display: grid; grid-template-columns: 1fr 34px 58px 46px; gap: 6px; align-items: center; padding: 0 4px; font-size: 13.5px; }
+.duo-row.faint { opacity: .45; }
+.duo-rn { font-weight: 800; letter-spacing: .05em; color: var(--duo-gold); }
+.duo-rg { text-align: right; font-weight: 700; }
+.duo-rr { text-align: right; color: var(--duo-muted); font-size: 12px; white-space: nowrap; }
+.duo-rw { text-align: right; font-weight: 800; }
+.duo-big, .duo-modes { display: flex; gap: 8px; margin-bottom: 8px; }
+.duo-big > div, .duo-mode { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 10px 2px; border: 1px solid rgba(242, 193, 78, .22); border-radius: 10px; background: rgba(242, 193, 78, .07); }
+.duo-big b { font-size: 21px; color: #fff; line-height: 1.1; }
+.duo-big small, .duo-mode span { color: var(--duo-muted); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.duo-mode b { font-size: 18px; color: #fff; }
+.duo-mode i { font-style: normal; font-size: 12px; color: var(--duo-muted); }
+.duo-clear { align-self: flex-end; margin-top: 14px; }
+
+/* A tall screen: the panel goes under the globe, and its three lists sit side by side. */
+@media (max-aspect-ratio: 1/1) {
+    .duo-ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto auto; grid-template-areas: "top" "stage" "bottom" "side"; }
+    .duo-side { box-sizing: border-box; height: 420px; border-left: 0; border-top: 1px solid var(--duo-line); }   /* a fixed height, so the globe does not change size as the panel's contents change */
+    .duo-controls { flex-wrap: wrap; }
+    .duo-range { order: 5; flex: 1 1 100%; }
+    .duo-list { grid-template-columns: 1fr 1fr; column-gap: 18px; }
+    .duo-top h2 { font-size: 16px; }
+}
+/* Phones draw these pages shrunk to fit (see js/layout.js), so the text here is scaled back up to a readable size. */
+.phone-bar .duo-top, .phone-bar .duo-bottom, .phone-bar .duo-side { zoom: 2.1; }
+.phone-bar .duo-list { grid-auto-rows: minmax(0, 27px); }
+.phone-bar .duo-legend { margin-bottom: 6px; }
+.phone-bar .duo-labels span { font-size: 31px; padding: 6px 10px; }
+.phone-bar .duo-labels span.sel { font-size: 35px; }
+.phone-bar .duo-hint { font-size: 26px; bottom: 18px; }
+.phone-bar .duo-tip { zoom: 2.2; }
+.phone-bar .duo-top { padding: 10px 12px; gap: 8px; }
+.phone-bar .duo-top h2 { font-size: 14px; letter-spacing: .14em; }
+.phone-bar .duo-btn, .phone-bar .duo-seg button { padding: 9px 9px; font-size: 10.5px; letter-spacing: .1em; }
+.phone-bar .duo-bottom { padding: 8px 12px 10px; }
+.phone-bar .duo-side { padding: 12px; }
+.phone-bar .duo-blocks { gap: 8px; margin-top: 10px; }
+.phone-bar .duo-li { padding: 5px 4px; }
+.phone-bar .duo-legend .duo-extra { display: none; }          /* keeps the legend to one line, so the globe never changes size */
+.phone-bar .duo-title { margin-bottom: 4px; }
+.phone-bar .duo-title + .duo-note { display: none; }
+.phone-bar .duo-blocks { gap: 6px; margin-top: 6px; }
+.phone-bar .duo-li { padding: 3px 4px; }
+.phone-bar .duo-labels span { padding: 2px 4px; }
+.phone-bar .duo-controls { gap: 8px 12px; }
+.duo-hint { transition: opacity .6s; }
+.duo-stage.touched .duo-hint { opacity: 0; }

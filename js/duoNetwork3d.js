@@ -44,7 +44,7 @@ export function createGlobe3D(stage, S, on) {
     scene.add(new T.AmbientLight(0xffffff, 0.15));
 
     const globe = new T.Group(); globe.scale.setScalar(GLOBE_SIZE); scene.add(globe);
-    const colours = { node: new T.Color(0xe9dfc8), pick: new T.Color(0xf2c14e), metal: new T.Color(0xc9a557) };
+    const colours = { node: new T.Color(0xf0e3c2), pick: new T.Color(0xffe9a8), metal: new T.Color(0xd9c48f) };
 
     /* ---------- the dial round the outside: a solid metal bezel with tick marks ---------- */
     // Sizes are in globe radiuses; 1.365 is the top edge of the picture.

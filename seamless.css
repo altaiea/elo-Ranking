@@ -99,14 +99,9 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .history-player-row:hover { background: rgba(var(--gold-rgb), .045); }
 
 /* ---------- Duo network ---------- */
-/* line colours: winning duos, losing duos (6-digit hex). js/duoNetwork.js reads these. */
-/* --dn-node: the players. --dn-pick: whatever you have chosen. --dn-metal: the dial round the outside. */
-:root { --dn-win: #efe6d2; --dn-loss: #a3312f; --dn-node: #e9dfc8; --dn-pick: #f2c14e; --dn-metal: #c9a557; }
-/* other colour schemes to try: set data-duo on <html> (the preview bar does this) */
-:root[data-duo="brass"] { --dn-win: #d9b56c; --dn-loss: #3f8279; --dn-node: #e6d3a1; --dn-pick: #fff1c9; --dn-metal: #a8843f; }
-:root[data-duo="parchment"] { --dn-win: #e9dcbd; --dn-loss: #40577a; --dn-node: #efe4c8; --dn-pick: #f2c14e; --dn-metal: #8a6a3a; }
-:root[data-duo="champagne"] { --dn-win: #ecdcb4; --dn-loss: #7d2136; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
-:root[data-duo="pewter"] { --dn-win: #cdd2d6; --dn-loss: #b96a3c; --dn-node: #dfe3e6; --dn-pick: #f2c14e; --dn-metal: #9aa0a6; }
+/* Champagne and oxblood. --dn-best / --dn-win / --dn-loss: connections by win rate (purple, green, red).
+   --dn-node: the players. --dn-pick: whatever you have chosen. --dn-metal: the dial round the outside. */
+:root { --dn-best: #a855f7; --dn-win: #4e9467; --dn-loss: #a3312f; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
 .dn-box { margin: 0 0 14px; }
 .dn-toggle { padding: 9px 14px; }
 .dn-body { background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 6px; margin-top: 6px; }
@@ -210,23 +205,16 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .is-phone .dn-stage { flex: none; }
 
 /* ---------- last month's number one: wings behind their card in the hands (js/locker.js adds .winged) ---------- */
-.hand-card.winged::before { content: ""; position: absolute; left: 50%; top: 47%; width: 270%; height: 195%; transform: translate(-50%, -50%); background: url("wings_cutout.webp") center / contain no-repeat; pointer-events: none; }
+/* card_wings.webp is drawn on the card template's 1400 x 2000 canvas, where the card frame is x 147-1253, y 109-1831; these numbers line it up */
+.hand-card.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
 
-/* ======================================================
-   LAYOUTS TO COMPARE
-   Each is switched on by an attribute on <html> (the preview bar sets it).
-   Once one is chosen, the others can be deleted from here and from the js.
-====================================================== */
-
-/* ---------- Leaderboard: data-lb="podium" or "tiles" (js/leaderboard.js draws #lbAlt) ---------- */
-#lbAlt, .lb-podium, .lb-tiles { display: none; }
-[data-lb="podium"] #lbAlt, [data-lb="tiles"] #lbAlt { display: block; zoom: var(--ui-zoom); }
-[data-lb="podium"] .lb-podium { display: grid; }
-[data-lb="tiles"] .lb-tiles { display: grid; }
-[data-lb="tiles"] #leaderboard, [data-lb="podium"] #leaderboard tbody tr:nth-child(-n+3) { display: none; }
+/* ---------- Leaderboard: top three as a podium, everyone else as tiles (js/leaderboard.js draws #lbAlt) ---------- */
+/* The old table stays in the page, hidden: the card hand and the daily arrows still read it. */
+#leaderboard { display: none; }
+#lbAlt { zoom: var(--ui-zoom); }
 
 /* podium: second, first, third */
-.lb-podium { grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: end; margin: 6px 0 18px; }
+.lb-podium { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: end; margin: 6px 0 14px; }
 .lb-pod { position: relative; display: grid; grid-template-columns: 74px 1fr; grid-template-rows: auto auto 1fr; column-gap: 14px; align-items: start; margin: 0; padding: 14px 14px 12px; text-align: left; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); border-top: 3px solid #d9dee3; border-radius: 10px; color: #fff; font: inherit; cursor: pointer; }
 .lb-pod-1 { border-top-color: var(--gold); padding-top: 22px; padding-bottom: 20px; }
 .lb-pod-3 { border-top-color: #d08a4a; }
@@ -244,9 +232,8 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-pod-stats i, .lb-t-stat i { font-style: normal; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
 
 /* tiles: one line per player, each number with its label */
-.lb-tiles { gap: 6px; margin-top: 6px; }
-.lb-tile { display: grid; grid-template-columns: 34px 44px 150px 1fr 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-left: 3px solid transparent; border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
-.lb-tile:nth-child(1) { border-left-color: var(--gold); } .lb-tile:nth-child(2) { border-left-color: #d9dee3; } .lb-tile:nth-child(3) { border-left-color: #d08a4a; }
+.lb-tiles { display: grid; gap: 6px; }
+.lb-tile { display: grid; grid-template-columns: 34px 44px 150px 1fr 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
 .lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
 .lb-tile.locker-pick { background: rgba(var(--gold-rgb), .12); border-color: var(--line); }
 .lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
@@ -256,49 +243,31 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
 .lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
 .lb-t-elo > span:not(.lb-bar) { font-size: 12px; font-weight: 700; }
-.lb-bar { height: 5px; border-radius: 3px; background: var(--line-soft); overflow: hidden; }
-.lb-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #6f6857, var(--gold)); }
+/* the Elo meter: a framed row of blocks, filled up to the player's Elo (the top player fills all of them) */
+.lb-bar { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; max-width: 300px; padding: 3px; border: 1px solid var(--gold-deep); border-radius: 2px; }
+.lb-bar i { height: 12px; border: 1px solid rgba(var(--gold-rgb), .28); box-sizing: border-box; }
+.lb-bar i.on { border-color: var(--gold); background: linear-gradient(180deg, var(--gold-hi), var(--gold)); box-shadow: 0 0 6px rgba(var(--gold-rgb), .35); }
 .lb-t-stat { display: grid; }
 .lb-t-stat b { font-size: 15px; }
-
-/* ---------- Head-to-Head: data-h2h="tabs", "grid" or "fold" (js/comparisons.js) ---------- */
-.h2h-sections { display: grid; gap: 18px; }
-.h2h-tabs, .cs-bar { display: none; }
-.comparison-section-title { display: flex; align-items: center; gap: 12px; }
-.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
-:root:not([data-h2h]) .comparison-section:nth-child(-n+2) .mode-score, [data-h2h="list"] .comparison-section:nth-child(-n+2) .mode-score { display: none; }
-
-/* tabs: one block at a time */
-[data-h2h="tabs"] .h2h-tabs { display: flex; justify-content: center; gap: 3px; width: fit-content; margin: 0 auto; padding: 3px; border: 1px solid var(--line); border-radius: 7px; background: rgba(0, 0, 0, .45); }
-.h2h-tabs button { margin: 0; padding: 8px 14px; border: 0; border-radius: 5px; background: none; color: var(--muted); font: 900 12px "Segoe UI", sans-serif; letter-spacing: .12em; cursor: pointer; }
-.h2h-tabs button.on { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); }
-[data-h2h="tabs"] .comparison-section:not(.tab-on) { display: none; }
-
-/* grid: every block on screen at once, side by side */
-[data-h2h="grid"] .h2h-sections { grid-template-columns: repeat(6, 1fr); gap: 14px; }
-[data-h2h="grid"] .comparison-section { grid-column: span 2; border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
-[data-h2h="grid"] .comparison-section:nth-child(-n+2) { grid-column: span 3; }
-[data-h2h="grid"] .comparison-section-title { flex-wrap: wrap; row-gap: 2px; padding: 10px 2px; }
-[data-h2h="grid"] .comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 32px; }
-[data-h2h="grid"] .comparison-value { padding: 5px 8px; font-size: 14px; }
-[data-h2h="grid"] .comparison-label { font-size: 9.5px; min-width: 96px; }
-.is-phone[data-h2h="grid"] .comparison-section, .is-phone[data-h2h="grid"] .comparison-section:nth-child(-n+2) { grid-column: 1 / -1; }
-
-/* fold: one line per block with who won it; click a line to open it */
-[data-h2h="fold"] .h2h-sections { gap: 0; }
-[data-h2h="fold"] .comparison-section-title { cursor: pointer; padding: 14px 8px; border-bottom: 1px solid var(--line-soft); }
-[data-h2h="fold"] .comparison-section-title:hover { background: rgba(var(--gold-rgb), .045); }
-[data-h2h="fold"] .cs-name { width: 170px; color: #fff; font-size: 13px; }
-[data-h2h="fold"] .cs-name::before { content: "\25B8"; display: inline-block; width: 16px; color: var(--muted); }
-[data-h2h="fold"] .open .cs-name::before { content: "\25BE"; }
-[data-h2h="fold"] .cs-bar { display: block; flex: 1; height: 6px; border-radius: 3px; background: #5b5548; overflow: hidden; }
-[data-h2h="fold"] .cs-bar i { display: block; height: 100%; background: #5b5548; border-right: 2px solid #0b0906; }
-[data-h2h="fold"] .cs-bar.a i { background: #3ddc68; }
-[data-h2h="fold"] .cs-bar.b { background: #3ddc68; }
-[data-h2h="fold"] .comparison-section-title .mode-score { margin-left: 0; width: 230px; text-align: right; color: #fff; font-size: 12px; }
-[data-h2h="fold"] .comparison-section:not(.open) .cs-rows { display: none; }
-[data-h2h="fold"] .cs-rows { background: rgba(0, 0, 0, .3); }
 .is-phone .lb-podium { grid-template-columns: 1fr; gap: 8px; }
 .is-phone .lb-pod-1 { order: -1; }
-.is-phone .lb-tile { grid-template-columns: 30px 44px 1fr 150px 130px 60px; }
-.is-phone .lb-bar { display: none; }
+.is-phone .lb-tile { grid-template-columns: 26px 44px minmax(80px, 1fr) auto 50px 44px; gap: 10px; padding-right: 10px; }
+.is-phone .lb-t-elo { grid-template-columns: 58px 46px; row-gap: 3px; }
+.is-phone .lb-bar { grid-column: 1 / -1; }
+.is-phone .lb-bar i { height: 8px; }
+.lb-t-stat em { font-style: normal; }
+.is-phone .lb-t-stat em { display: none; }
+
+/* ---------- Head-to-Head: Overall under the score, then Lifetime, then the three modes side by side ---------- */
+.h2h-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.comparison-section { border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
+.comparison-section.wide { grid-column: 1 / -1; }
+.comparison-section.wide .cs-rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
+.comparison-section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 2px; }
+.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
+.comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 34px; }
+.comparison-value { padding: 5px 8px; font-size: 14px; }
+.comparison-label { font-size: 9.5px; min-width: 100px; }
+.is-phone .h2h-sections { zoom: var(--ui-zoom); }
+.is-phone .comparison-section { grid-column: 1 / -1; }
+.is-phone .comparison-section.wide .cs-rows { grid-template-columns: 1fr; }

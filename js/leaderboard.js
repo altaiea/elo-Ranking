@@ -69,16 +69,15 @@ function renderTable() {
         tr.innerHTML = rowHtml(p);
         return tr;
     }));
-    renderOtherLayouts(shown);
+    renderPodiumAndTiles(shown);
 }
 
 // ---------------------------
-// OTHER LAYOUTS (to compare)
+// PODIUM AND TILES
 // ---------------------------
-// The same numbers laid out two other ways. Set data-lb on <html> to "podium"
-// (top three as blocks, the rest in the table) or "tiles" (one tile per player).
-// With no data-lb the plain table shows and these stay hidden (see seamless.css).
-function renderOtherLayouts(shown) {
+// What you see: the top three as a podium, everyone else as a tile.
+// The table above is still filled in but hidden (seamless.css); the card hand reads it.
+function renderPodiumAndTiles(shown) {
     let box = document.getElementById("lbAlt");
     if (!box) {
         box = document.createElement("div");
@@ -111,23 +110,26 @@ function renderOtherLayouts(shown) {
         </button>`;
     }).join("");
 
+    // Elo meter: 12 blocks. The top player fills all of them; the scale starts a little under the lowest player.
+    const BLOCKS = 12;
     const elos = shown.map(p => p.elo), low = Math.min(...elos) - 40, high = Math.max(...elos);
-    const tiles = shown.map(p => {
+    const meter = p => {
+        const lit = Math.max(1, Math.round((p.elo - low) / ((high - low) || 1) * BLOCKS));
+        return `<span class="lb-bar">${Array.from({ length: BLOCKS }, (_, i) => `<i class="${i < lit ? "on" : ""}"></i>`).join("")}</span>`;
+    };
+    const tiles = shown.slice(3).map(p => {
         const n = numbers(p);
         return `<div class="lb-tile" data-id="${p.id}">
             <span class="lb-t-rank">${p.currentRank}</span>
             <span class="lb-t-face"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <span class="lb-t-name">${p.name}</span>
-            <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}<span class="lb-bar"><i style="width:${Math.max(4, (p.elo - low) / (high - low) * 100).toFixed(1)}%"></i></span></span>
-            <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L · ${n.wins}-${n.losses}</i></span>
+            <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
+            <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>
             <span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span>
         </div>`;
     }).join("");
     box.innerHTML = `<div class="lb-podium">${podium}</div><div class="lb-tiles">${tiles}</div>`;
 }
-
-// For the preview bar: redraw after data-lb changes.
-export const redrawLeaderboard = () => { if (players.length) renderTable(); };
 
 export function setupLeaderboard() {
     const toggle = document.getElementById("toggleInactive");

@@ -13,25 +13,29 @@ const CX = 340, CY = 330, R = 186;      // centre and size of the globe inside t
 const CAMERA = 3.4;                      // how far away the viewer is, in globe radiuses (smaller = stronger 3D)
 const SPIN = 0.0022;                     // how fast it turns on its own before you touch it
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
-// Line colours come from seamless.css (--dn-win and --dn-loss), so they can be changed there without touching this file.
-// Winning (or even) duos use --dn-win, brighter the better they do; duos that lose more than they win use --dn-loss.
+// Connection colours come from seamless.css, so they can be changed there without touching this file:
+//   --dn-best  duos that win BEST_FROM or more of their maps (the purple of a 99 rating)
+//   --dn-win   duos that win at least half
+//   --dn-loss  duos that lose more than they win
+// Inside each band, the further from 50% the brighter the line.
+const BEST_FROM = 0.57;
 const BG = [11, 9, 6];
 const hex = v => { const m = /^#?([0-9a-f]{6})$/i.exec(String(v).trim()); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
-let WIN = [239, 230, 210], LOSS = [163, 49, 47];
+let BEST = [168, 85, 247], WIN = [78, 148, 103], LOSS = [163, 49, 47];
 function readColours() {
     const css = getComputedStyle(document.documentElement), get = (name, fallback) => hex(css.getPropertyValue(name)) ? css.getPropertyValue(name).trim() : fallback;
+    BEST = hex(css.getPropertyValue("--dn-best")) || BEST;
     WIN = hex(css.getPropertyValue("--dn-win")) || WIN;
     LOSS = hex(css.getPropertyValue("--dn-loss")) || LOSS;
     // the 3D drawing's players, picked colour and metal dial
-    if (S) S.colours = { node: get("--dn-node", "#e9dfc8"), pick: get("--dn-pick", "#f2c14e"), metal: get("--dn-metal", "#c9a557") };
+    if (S) S.colours = { node: get("--dn-node", "#f0e3c2"), pick: get("--dn-pick", "#ffe9a8"), metal: get("--dn-metal", "#d9c48f") };
 }
-// Call after changing the --dn-… colours in CSS (seamless.css) to redraw with them.
-export function refreshDuoColours() { if (S && S.wrap) update(); }
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
-const winColour = wr => wr >= 0.5
-    ? `rgb(${mix(mix(BG, WIN, 0.3), WIN, 0.35 + 0.65 * clamp01((wr - 0.5) / 0.22))})`
-    : `rgb(${mix(mix(BG, LOSS, 0.3), LOSS, 0.35 + 0.65 * clamp01((0.5 - wr) / 0.22))})`;
+const shade = (colour, strength) => `rgb(${mix(mix(BG, colour, 0.3), colour, 0.35 + 0.65 * clamp01(strength))})`;
+const winColour = wr => wr >= BEST_FROM ? shade(BEST, 0.5 + (wr - BEST_FROM) / 0.12)
+    : wr >= 0.5 ? shade(WIN, 0.35 + (wr - 0.5) / 0.1)
+    : shade(LOSS, (0.5 - wr) / 0.22);
 const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 const h = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 const nm = id => getPlayerName(id);

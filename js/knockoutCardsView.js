@@ -8,6 +8,7 @@
 import { fillCard } from "./playerCard.js";
 import { loadKnockoutCardPool } from "./knockoutCards.js";
 import { escapeHtml } from "./ui.js";
+import { showKnockoutPanel } from "./knockoutPanels.js";
 
 let rendered = false;
 
@@ -52,9 +53,7 @@ async function render() {
 export async function openKnockoutCards(playerId = null) {
     const box = document.getElementById("koCards");
     const button = document.getElementById("koCardsButton");
-    box.hidden = false;
-    button.classList.add("active");
-    button.setAttribute("aria-expanded", "true");
+    showKnockoutPanel("koCards");
     try {
         if (!rendered) await render();
     } catch (error) {
@@ -72,9 +71,7 @@ export function setupKnockoutCardsButton() {
     const button = document.getElementById("koCardsButton");
     button.addEventListener("click", () => {
         if (!box.hidden) {
-            box.hidden = true;
-            button.classList.remove("active");
-            button.setAttribute("aria-expanded", "false");
+            showKnockoutPanel(null);
         } else openKnockoutCards();
     });
 }

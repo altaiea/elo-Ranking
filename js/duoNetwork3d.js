@@ -93,7 +93,12 @@ export function createGlobe3D(stage, S, on) {
         const glow = new T.Sprite(new T.SpriteMaterial({ map: glowTexture, color: colours.pick, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 }));
         glow.position.copy(mesh.position); glow.scale.setScalar(NODE_SIZE * 9);
         globe.add(mesh, hit, glow);
-        const label = document.createElement("span"); label.textContent = S.nodes[id].t.textContent; labels.appendChild(label);
+        const label = document.createElement("span"); label.textContent = S.nodes[id].t.textContent;
+        label.dataset.id = id;
+        label.setAttribute("role", "button");
+        label.tabIndex = 0;
+        label.setAttribute("aria-label", `Open ${label.textContent} card`);
+        labels.appendChild(label);
         nodes[id] = { mesh, hit, glow, label, material, width: 0, scale: 1, toScale: 1, toOpacity: 1, toGlow: 0, pulse: 0 };
     });
 
@@ -209,6 +214,15 @@ export function createGlobe3D(stage, S, on) {
         return hit ? hit.object : null;
     }
     const nodeHits = S.ids.map(id => nodes[id].hit);
+    labels.addEventListener("click", e => {
+        const label = e.target.closest("[data-id]");
+        if (label) on.openCard(Number(label.dataset.id));
+    });
+    labels.addEventListener("keydown", e => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        const label = e.target.closest("[data-id]");
+        if (label) { e.preventDefault(); on.openCard(Number(label.dataset.id)); }
+    });
     const shownTubes = () => Object.values(edges).filter(g => g.mesh.visible && g.toOpacity > 0.2).map(g => g.mesh);
     let lastX = 0, lastY = 0, moved = 0, touch = false;
     canvas.addEventListener("pointerdown", e => { down = true; S.vel = 0; moved = 0; lastX = e.clientX; lastY = e.clientY; touch = e.pointerType === "touch"; });

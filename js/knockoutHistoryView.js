@@ -10,6 +10,7 @@ import { getPlayerName } from "./config.js";
 import { escapeHtml, formatHistoryDate, showPopup } from "./ui.js";
 import { tierName } from "./knockoutRules.js";
 import { mapMatchRatings, seriesRatings } from "./knockoutMvp.js";
+import { showKnockoutPanel } from "./knockoutPanels.js";
 
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 
@@ -186,8 +187,6 @@ export function setupKnockoutHistoryButton() {
         if (el) openMvpExplainer(Number(el.dataset.kohMvp));
     });
     button.addEventListener("click", () => {
-        panel.hidden = !panel.hidden;
-        button.classList.toggle("active", !panel.hidden);
-        button.setAttribute("aria-expanded", String(!panel.hidden));
+        showKnockoutPanel(panel.hidden ? "koHistory" : null);
     });
 }

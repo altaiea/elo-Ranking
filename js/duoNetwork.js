@@ -7,6 +7,7 @@
 ====================================================== */
 import { getPlayerName } from "./config.js";
 import { loadAllHistory } from "./data.js";
+import { openPlayerModal } from "./playerCard.js";
 
 const SVGNS = "http://www.w3.org/2000/svg";
 const CX = 340, CY = 330, R = 186;      // centre and size of the globe inside the 680 x 660 drawing (small enough that names stay inside the dial)
@@ -158,7 +159,12 @@ function build(root) {
     wrap.querySelector("#dnMin").addEventListener("change", e => { S.min = +e.target.value; update({ ripple: true, origin: S.selA }); });
     wrap.querySelector(".dn-all").addEventListener("click", () => { stopPlay(); S.lo = 0; S.hi = S.dates.length - 1; lo.value = 0; hi.value = S.hi; update({ ripple: true, origin: S.selA }); });
     wrap.querySelector(".dn-play").addEventListener("click", togglePlay);
-    gN.addEventListener("click", e => { const g = e.target.closest(".dn-node"); if (g && !S.dragged) pickNode(+g.dataset.id); });
+    gN.addEventListener("click", e => {
+        const g = e.target.closest(".dn-node");
+        if (!g || S.dragged) return;
+        if (e.target.closest(".dn-name")) openPlayerModal(+g.dataset.id);
+        else pickNode(+g.dataset.id);
+    });
     gHit.addEventListener("click", e => { if (S.dragged) return; const k = e.target.getAttribute("data-k"); if (!k) return; const [a, b] = k.split("-").map(Number); S.selA = a; S.selB = b; update({ ripple: true, origin: a }); });
     const tip = wrap.querySelector(".dn-tip"), stage = wrap.querySelector(".dn-stage");
     // the small box that follows the mouse over a line; k is "lowId-highId", or null to hide it
@@ -181,6 +187,7 @@ function start3D(stage, svg) {
     import("./duoNetwork3d.js").then(m => {
         const gl = m.createGlobe3D(stage, S, {
             pickNode,
+            openCard: openPlayerModal,
             pickEdge: k => { const [a, b] = k.split("-").map(Number); S.selA = a; S.selB = b; update({ ripple: true, origin: a }); },
             hoverEdge: (k, x, y) => S.showTip(k, x, y)
         });

@@ -201,6 +201,23 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .dn-gl-labels { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 680 / 660; pointer-events: none; overflow: visible; }
 .dn-gl-labels span { position: absolute; white-space: nowrap; color: #fff; font: 700 12.5px "Segoe UI", sans-serif; letter-spacing: .05em; text-shadow: 0 0 4px #0b0906, 0 0 4px #0b0906, 0 1px 2px #000; }
 .dn-gl-labels span.sel { color: var(--dn-pick); }
+.dn-gl-labels span { pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.dn-gl-labels span:focus-visible { outline: 2px solid var(--gold); }
+.dn-name { pointer-events: visiblePainted; cursor: pointer; }
+.dn-node, .lb-pod, .lb-tile, .hand-card { -webkit-tap-highlight-color: transparent; }
+.is-phone #lbAlt { zoom: 1.35; }
+.is-phone .lb-podium { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+.is-phone .lb-pod-1 { order: 0; }
+.is-phone .lb-pod { grid-template-columns: 50px minmax(0, 1fr); column-gap: 8px; padding: 12px 8px; min-width: 0; }
+.is-phone .lb-pod-card { width: 50px; }
+.is-phone .lb-pod-name { font-size: 13px; overflow-wrap: anywhere; }
+.is-phone .lb-pod-elo, .is-phone .lb-pod-1 .lb-pod-elo { font-size: 23px; }
+.is-phone .lb-pod-stats { gap: 5px; flex-wrap: wrap; }
+.is-phone .lb-tile { grid-template-columns: 26px 44px minmax(90px, 1fr) minmax(175px, 2fr) 65px 60px; gap: 8px; }
+.is-phone .lb-t-elo { grid-template-columns: 58px 46px minmax(0, 1fr); }
+.is-phone .lb-bar { grid-column: auto; }
+.is-phone .lb-t-stat em { display: inline; }
+.is-phone .dn-gl-labels span { font-size: 16px; padding: 5px; margin: -5px; }
 .is-phone .dn-pop .dn-controls { flex-wrap: wrap; gap: 12px; }
 .is-phone .dn-pop .dn-range { order: 5; flex: 1 1 100%; }
 .is-phone .dn-stage { flex: none; }
@@ -279,3 +296,12 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .comparison-label { font-size: 9.5px; min-width: 100px; }
 .is-phone .h2h-sections { zoom: var(--ui-zoom); }
 .is-phone .comparison-section { grid-column: 1 / -1; }
+
+/* Keep the ranking composition on phones while leaving enough room for every stat. */
+.is-phone .lb-podium { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.is-phone .lb-pod-1 { order: 0; }
+.is-phone .lb-tile { grid-template-columns: 26px 44px minmax(90px, 1fr) minmax(175px, 2fr) 65px 60px; }
+.is-phone .lb-t-elo { grid-template-columns: 58px 46px minmax(0, 1fr); }
+.is-phone .lb-bar { grid-column: auto; }
+.is-phone .lb-t-stat em { display: inline; }
+#playerModal { z-index: 500; }

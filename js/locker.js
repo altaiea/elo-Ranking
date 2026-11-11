@@ -10,36 +10,28 @@ import { openPlayerModal } from "./playerCard.js";
 import { lastMonthWinner } from "./monthWinner.js";
 
 let players = [];
-let lockerHand = null, cardsHand = null;
+let cardsHand = null;
 const byId = id => players.find(p => p.id === Number(id));
 
-function markLeaderboardRow() {
-    const id = lockerHand ? lockerHand.selected() : null;
-    document.querySelectorAll("#table-body tr").forEach(row => {
-        const cell = row.querySelector(".player-name");
-        row.classList.toggle("locker-pick", !!cell && Number(cell.dataset.id) === id);
-    });
-    document.querySelectorAll("#lbAlt [data-id]").forEach(item => item.classList.toggle("locker-pick", Number(item.dataset.id) === id));
-}
-
 // onCompare(id) runs when a Compare button is pressed.
-export function setupLocker({ onCompare }) {
-    lockerHand = createCardHand(document.getElementById("lockerHand"), {
-        onOpen: openPlayerModal,
-        onSelect: id => { showPlayerReadout(document.getElementById("lockerReadout"), byId(id)); markLeaderboardRow(); }
-    });
+export function setupLocker({ onCompare, showCards }) {
     cardsHand = createCardHand(document.getElementById("cardsHand"), {
         openOnArrive: true,                     // on the Cards page a tap on any card opens it
         onOpen: openPlayerModal,
         onSelect: id => showPlayerReadout(document.getElementById("cardsReadout"), byId(id))
     });
 
-    const tbody = document.getElementById("table-body");
-    new MutationObserver(() => setTimeout(markLeaderboardRow)).observe(tbody, { childList: true });   // the table is redrawn when the arrows arrive
-    tbody.addEventListener("click", e => {
+    const openFromRanks = id => {
+        if (!byId(id)) return;
+        showCards();
+        cardsHand.draw();
+        cardsHand.goTo(id);
+        openPlayerModal(Number(id));
+    };
+    document.getElementById("table-body").addEventListener("click", e => {
         if (e.target.closest("[data-dropdown-toggle]")) return;
         const cell = e.target.closest("tr")?.querySelector(".player-name");
-        if (cell) lockerHand.goTo(cell.dataset.id);
+        if (cell) openFromRanks(cell.dataset.id);
     });
 
     document.addEventListener("click", e => {
@@ -63,13 +55,10 @@ function giveWingsToLastMonthsWinner() {
 export function showLocker(list) {
     players = list;
     giveWingsToLastMonthsWinner();
-    showPlayerReadout(document.getElementById("lockerReadout"), byId(lockerHand.selected()));
     showPlayerReadout(document.getElementById("cardsReadout"), byId(cardsHand.selected()));
-    markLeaderboardRow();
 }
 
 // A hidden hand has no width to lay itself out in, so redraw when its page opens.
 export function redrawHands() {
-    lockerHand.draw();
     cardsHand.draw();
 }

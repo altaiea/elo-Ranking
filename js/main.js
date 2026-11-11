@@ -77,7 +77,7 @@ function start() {
     setupFightNight();
     // Compare (under a hand of cards) opens Head-to-Head with that player as Player 1.
     let showTab = () => {};
-    setupLocker({ onCompare: id => { startComparison(id); showTab("comparisonsPage"); } });
+    setupLocker({ onCompare: id => { startComparison(id); showTab("comparisonsPage"); }, showCards: () => showTab("cardsPage") });
 
     showTab = setupTabs(tab => {
         if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Match Day opens

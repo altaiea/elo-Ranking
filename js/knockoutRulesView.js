@@ -5,6 +5,7 @@
 ====================================================== */
 import { KNOCKOUT_RULES as R } from "./knockoutRules.js";
 import { ordinal } from "./ui.js";
+import { showKnockoutPanel } from "./knockoutPanels.js";
 
 function rulesHtml() {
     const tierList = R.tierNames.map((name, i) => {
@@ -61,8 +62,6 @@ export function setupKnockoutRulesButton() {
     const panel = document.getElementById("koRules");
     panel.innerHTML = rulesHtml();
     button.addEventListener("click", () => {
-        panel.hidden = !panel.hidden;
-        button.classList.toggle("active", !panel.hidden);
-        button.setAttribute("aria-expanded", String(!panel.hidden));
+        showKnockoutPanel(panel.hidden ? "koRules" : null);
     });
 }

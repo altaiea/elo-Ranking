@@ -65,7 +65,7 @@ function spinCards(output) {
             nameEl.textContent = finalName;
             if (!hadPic) card.classList.remove("has-picture");
             card.animate([{ scale: "1.12" }, { scale: "0.96", offset: 0.55 }, { scale: "1" }], { duration: 420, easing: EASE_OUT });
-            card.animate([{ boxShadow: "0 0 26px #f2c14e" }, { boxShadow: "0 0 0 transparent" }], { duration: 700, easing: "ease-out" });
+            card.animate([{ boxShadow: "0 0 26px #00eaff" }, { boxShadow: "0 0 0 transparent" }], { duration: 700, easing: "ease-out" });
         }, 700 + i * 380);
     });
 }

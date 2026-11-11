@@ -16,7 +16,11 @@ const TABS = {
     knockoutPage: { group: "knockout", hash: "knockout" }   // has its own gold header, so the page header hides here
 };
 const GROUP_TITLES = { ranks: "RANKS", players: "PLAYERS", match: "MATCH DAY", knockout: "KNOCKOUT" };
-const GROUP_ART = { ranks: "headers/ranks.webp", players: "headers/players.webp" };   // the picture beside the title
+// The pictures beside the title: one on the left, and (Ranks only) one on the right.
+const GROUP_ART = {
+    ranks: { left: "headers/ranks-left.webp", right: "headers/ranks-right.webp" },
+    players: { left: "headers/players-cards.webp" }
+};
 const OLD_HASHES = { maps: "teamsPage" };   // the Maps tab is now part of Match Day
 
 // onShow(tabId) runs whenever a page is opened. Returns show(tabId), for buttons that jump to a page.
@@ -25,6 +29,7 @@ export function setupTabs(onShow) {
     const title = document.getElementById("pageTitle");
     const head = document.getElementById("pageHead");
     const art = document.getElementById("pageArt");
+    const artRight = document.getElementById("pageArtRight");
     const subTabs = document.getElementById("subTabs");
     let current = null;
 
@@ -45,7 +50,12 @@ export function setupTabs(onShow) {
         subTabs.innerHTML = pages.length < 2 ? "" : pages.map(id =>
             `<button type="button" data-tab="${id}" class="${id === target ? "on" : ""}">${TABS[id].label}</button>`).join("");
         title.textContent = GROUP_TITLES[group];
-        if (art) { art.hidden = !GROUP_ART[group]; if (GROUP_ART[group]) art.src = GROUP_ART[group]; }
+        const pics = GROUP_ART[group] || {};
+        [[art, pics.left], [artRight, pics.right]].forEach(([img, src]) => {
+            if (!img) return;
+            img.hidden = !src;
+            if (src) img.src = src;
+        });
         if (head) head.dataset.tab = target;
         if (updateHash) {
             try { history.replaceState(null, "", `#${TABS[target].hash}`); } catch (_) {}

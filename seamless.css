@@ -11,8 +11,10 @@
 /* ---------- picture beside the page title (js/tabs.js picks the file) ---------- */
 .theme-ko .page-head { display: flex; align-items: center; gap: 18px; min-height: 96px; }
 .ph-art { flex: none; height: 96px; width: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
+.ph-art-right { height: 100px; }
 .ph-art[hidden] { display: none; }
 .is-phone .ph-art { height: 64px; }
+.is-phone .ph-art-right { height: 56px; }
 .theme-ko.is-phone .page-head { min-height: 64px; }
 
 /* ---------- shared pieces ---------- */

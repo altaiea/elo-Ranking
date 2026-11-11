@@ -111,6 +111,7 @@ export function createGlobe3D(stage, S, on) {
     /* ---------- drawing ---------- */
     const v = new T.Vector3();
     let raf = null, w = 0, h = 0, settling = 0;
+    let down = false;                      // a finger or mouse button is held on the globe
     function resize() {
         const cw = stage.clientWidth, ch = Math.round(cw * 660 / 680);
         if (!cw || (cw === w && ch === h)) return;
@@ -120,7 +121,7 @@ export function createGlobe3D(stage, S, on) {
         raf = null;
         if (stage.offsetParent === null) return;                              // closed or on another page: stop until woken
         resize();
-        if (!S.down) { S.yaw += S.vel; S.vel *= 0.94; if (Math.abs(S.vel) < 0.0004) S.vel = 0; if (S.spin) S.yaw += SPIN; }
+        if (!down) { S.yaw += S.vel; S.vel *= 0.94; if (Math.abs(S.vel) < 0.0004) S.vel = 0; if (S.spin) S.yaw += SPIN; }
         globe.rotation.set(S.pitch, S.yaw, 0);
         globe.updateMatrixWorld();
         let moving = false;
@@ -151,7 +152,7 @@ export function createGlobe3D(stage, S, on) {
         });
         renderer.render(scene, camera);
         if (moving) settling = 30; else if (settling) settling--;
-        if (S.spin || S.down || S.vel || settling) raf = requestAnimationFrame(frame);
+        if (S.spin || down || S.vel || settling) raf = requestAnimationFrame(frame);
     }
     function wake() { settling = 30; if (!raf) raf = requestAnimationFrame(frame); }
 
@@ -167,9 +168,9 @@ export function createGlobe3D(stage, S, on) {
     const nodeHits = S.ids.map(id => nodes[id].hit);
     const shownTubes = () => Object.values(edges).filter(g => g.mesh.visible && g.toOpacity > 0.2).map(g => g.mesh);
     let lastX = 0, lastY = 0, moved = 0, touch = false;
-    canvas.addEventListener("pointerdown", e => { S.down = true; S.vel = 0; moved = 0; lastX = e.clientX; lastY = e.clientY; touch = e.pointerType === "touch"; });
+    canvas.addEventListener("pointerdown", e => { down = true; S.vel = 0; moved = 0; lastX = e.clientX; lastY = e.clientY; touch = e.pointerType === "touch"; });
     window.addEventListener("pointermove", e => {
-        if (!S.down) return;
+        if (!down) return;
         const dx = e.clientX - lastX, dy = e.clientY - lastY; lastX = e.clientX; lastY = e.clientY;
         moved += Math.abs(dx) + Math.abs(dy);
         if (moved < 6) return;
@@ -179,8 +180,8 @@ export function createGlobe3D(stage, S, on) {
         wake();
     });
     const up = e => {
-        if (!S.down) return;
-        S.down = false; canvas.classList.remove("grabbing"); wake();
+        if (!down) return;
+        down = false; canvas.classList.remove("grabbing"); wake();
         if (moved >= 6 || e.type !== "pointerup" || e.target !== canvas) return;
         const node = under(e, nodeHits);
         if (node) { on.pickNode(node.userData.id); return; }
@@ -190,7 +191,7 @@ export function createGlobe3D(stage, S, on) {
     window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
     let hoverQueued = null;
     canvas.addEventListener("mousemove", e => {
-        if (S.down) return;
+        if (down) return;
         hoverQueued = e;
         requestAnimationFrame(() => {
             if (!hoverQueued) return;

@@ -102,12 +102,14 @@ function renderPodiumAndTiles(shown) {
 
     const podium = [shown[1], shown[0], shown[2]].filter(Boolean).map(p => {
         const n = numbers(p);
+        // A podium spot: the card stands on top, the numbers under it, then the step with the place on it.
+        // The steps are different heights (1st highest), so the three cards stand like a real podium.
         return `<div class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
             <span class="lb-mini lb-pod-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
-            <span class="lb-pod-place">${p.currentRank}</span>
             <button type="button" class="lb-pod-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
             <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
             <span class="lb-pod-stats"><span>${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span>${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
+            <span class="lb-pod-step"><span class="lb-pod-place">${p.currentRank}</span></span>
         </div>`;
     }).join("");
 

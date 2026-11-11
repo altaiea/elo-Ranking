@@ -211,7 +211,6 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .lb-pod:has(.lb-pod-name:hover), .lb-tile:has(.lb-t-name:hover) { background: rgba(var(--gold-rgb), .08); }
 .lb-pod-name, .lb-t-name { display: block; width: fit-content; max-width: 100%; padding: 4px 0; border: 0; background: none; color: var(--gold); font-family: inherit; font-size: inherit; font-weight: 900; letter-spacing: .04em; text-align: left; cursor: pointer; touch-action: manipulation; }
 .lb-pod-name { font-size: 17px; }
-.is-phone .lb-pod-name { font-size: 13px; }
 .lb-pod-name:focus-visible, .lb-t-name:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
 .is-phone .dn-gl-labels span { font-size: 16px; padding: 5px; margin: -5px; }
 .is-phone .dn-pop .dn-controls { flex-wrap: wrap; gap: 12px; }
@@ -232,23 +231,29 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 #leaderboard { display: none; }
 #lbAlt { zoom: var(--ui-zoom); }
 
-/* podium: second, first, third */
-.lb-podium { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: end; margin: 6px 0 14px; }
-.lb-pod { position: relative; display: grid; grid-template-columns: 74px 1fr; grid-template-rows: auto auto 1fr; column-gap: 14px; align-items: start; margin: 0; padding: 14px 14px 12px; text-align: left; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); border-top: 3px solid #d9dee3; border-radius: 10px; color: #fff; font: inherit; cursor: pointer; }
-.lb-pod-1 { border-top-color: var(--gold); padding-top: 22px; padding-bottom: 20px; }
-.lb-pod-3 { border-top-color: #d08a4a; }
-.lb-pod:hover, .lb-pod.locker-pick { background: rgba(var(--gold-rgb), .08); }
-.lb-pod-card { grid-row: 1 / 4; width: 74px; }
-.lb-pod-card img { border-radius: 5px; border: 1px solid var(--line); }
-.lb-pod-place { position: absolute; right: 12px; top: 8px; font: 400 34px/1 "Black Ops One", "Segoe UI", sans-serif; color: var(--line); }
-.lb-pod-1 .lb-pod-place { color: rgba(var(--gold-rgb), .5); }
-.lb-pod-name { color: var(--gold); font-size: 17px; font-weight: 900; letter-spacing: .04em; }
-.lb-pod-elo { font: 400 30px/1.15 "Black Ops One", "Segoe UI", sans-serif; }
+/* podium: second, first, third. Each spot is a column: the card stands on top, the numbers under it,
+   then a step with the place on it. The steps are different heights, so first stands highest.
+   On phones the same podium is drawn at --pod-w wide and zoomed to fit (js/layout.js), so it keeps this look. */
+.lb-podium { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 16px; align-items: end; margin: 10px 0 18px; }
+.lb-pod { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 0; padding: 0; text-align: center; color: #fff; font: inherit; cursor: pointer; --medal: #d9dee3; --medal-rgb: 217, 222, 227; --step-h: 78px; }
+.lb-pod-1 { --medal: var(--gold); --medal-rgb: var(--gold-rgb); --step-h: 112px; }
+.lb-pod-3 { --medal: #d08a4a; --medal-rgb: 208, 138, 74; --step-h: 56px; }
+.lb-pod-card { width: 96px; margin-bottom: 4px; transition: transform .18s; }
+.lb-pod-1 .lb-pod-card { width: 118px; }
+.lb-pod-card img { border-radius: 6px; border: 2px solid var(--medal); box-shadow: 0 0 18px rgba(var(--medal-rgb), .35), 0 6px 16px rgba(0, 0, 0, .7); }
+.lb-pod:hover .lb-pod-card { transform: translateY(-4px); }
+.lb-pod-name { color: var(--gold); font-size: 17px; font-weight: 900; letter-spacing: .06em; }
+.lb-pod-elo { font: 400 30px/1.05 "Black Ops One", "Segoe UI", sans-serif; white-space: nowrap; }
 .lb-pod-1 .lb-pod-elo { font-size: 36px; }
 .lb-pod-elo span { font: 700 12px "Segoe UI", sans-serif; vertical-align: middle; }
-.lb-pod-stats { display: flex; gap: 16px; align-self: end; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+.lb-pod-stats { display: flex; justify-content: center; gap: 18px; padding: 4px 0 10px; }
 .lb-pod-stats > span { display: grid; }
 .lb-pod-stats b { font-size: 15px; }
+/* the step: a block in the medal's colour with the place carved into it */
+.lb-pod-step { align-self: stretch; display: grid; place-items: center; height: var(--step-h); border: 1px solid rgba(var(--medal-rgb), .45); border-top: 3px solid var(--medal); border-bottom: 0; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, rgba(var(--medal-rgb), .22), rgba(var(--medal-rgb), .04) 70%, transparent); }
+.lb-pod-place { font: 400 44px/1 "Black Ops One", "Segoe UI", sans-serif; color: var(--medal); text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.lb-pod-1 .lb-pod-place { font-size: 58px; }
+.lb-pod:hover .lb-pod-step, .lb-pod.locker-pick .lb-pod-step { background: linear-gradient(180deg, rgba(var(--medal-rgb), .32), rgba(var(--medal-rgb), .08) 70%, transparent); }
 .lb-pod-stats i, .lb-t-stat i { font-style: normal; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
 
 /* tiles: one line per player, each number with its label */
@@ -288,16 +293,6 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 
 /* The fixed-width phone canvas keeps the desktop ranking order and readable spacing. */
 .is-phone #lbAlt { zoom: var(--ui-zoom); }
-.is-phone .lb-podium { grid-template-columns: 1fr; gap: 10px; align-items: stretch; }
-.is-phone .lb-pod-1 { order: -1; }
-.is-phone .lb-pod { grid-template-columns: 64px minmax(0, 1fr) auto; grid-template-rows: auto auto; gap: 5px 14px; align-items: center; padding: 12px 14px; min-width: 0; }
-.is-phone .lb-pod-card { grid-row: 1 / 3; width: 64px; }
-.is-phone .lb-pod-place { font-size: 24px; right: auto; left: 12px; top: 8px; text-shadow: 0 1px 3px #000; }
-.is-phone .lb-pod-elo, .is-phone .lb-pod-1 .lb-pod-elo { grid-column: 2; font-size: 25px; }
-.is-phone .lb-pod-stats { grid-column: 3; grid-row: 1 / 3; display: grid; grid-template-columns: repeat(3, minmax(52px, 1fr)); gap: 8px; margin: 0; padding: 0 0 0 12px; border-top: 0; border-left: 1px solid var(--line-soft); text-align: center; }
-.is-phone .lb-pod-stats > span { min-width: 0; }
-.is-phone .lb-pod-stats b { font-size: 13px; white-space: nowrap; }
-.is-phone .lb-pod-stats i { font-size: 9px; }
 .is-phone .lb-tile { grid-template-columns: 26px 46px minmax(75px, 1fr) 110px 56px 48px; gap: 7px; padding: 9px 10px; }
 .is-phone .lb-t-elo { grid-template-columns: 54px 44px; gap: 4px; }
 .is-phone .lb-bar { grid-column: 1 / -1; max-width: none; }
@@ -315,8 +310,53 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 /* Monthly, History and Knockout were drawn at desktop size on the 1100px phone canvas, so their text was tiny. Zoom them like the other pages. */
 .is-phone #monthlyRoot { zoom: var(--ui-zoom); }
 .is-phone #historyList { zoom: var(--ui-zoom); }
-.is-phone #historyViewer { zoom: calc(var(--ui-zoom) * .72); }
-.is-phone .ko-poster { zoom: calc(var(--ui-zoom) * .72); }
-/* Podium on phones: the place number sat on the card picture's dark banner and could not be read. Give it a small badge on the card's corner. */
-.is-phone .lb-pod-place { left: 4px; top: 4px; display: grid; place-items: center; width: 26px; height: 26px; font-size: 16px; color: #fff; background: rgba(0, 0, 0, .8); border: 1px solid var(--line); border-radius: 50%; text-shadow: none; }
-.is-phone .lb-pod-1 .lb-pod-place { color: var(--gold); border-color: var(--gold); }
+/* History day view and Knockout on phones: js/layout.js picks the biggest zoom at which they still fit the
+   screen's width, so nothing needs sideways scrolling. These rules let their tables and brackets squeeze. */
+.is-phone .history-scoreboard { min-width: 0; }
+.is-phone .history-scoreboard th, .is-phone .history-scoreboard td { padding: 8px 4px; }
+.is-phone .history-scoreboard th { font-size: 10px; letter-spacing: 0; }
+.is-phone .history-calc-btn { padding: 5px 6px; font-size: 9px; letter-spacing: .04em; white-space: normal; }
+.is-phone .history-table-wrap, .is-phone .ko-tier { overflow-x: visible; }
+/* Knockout brackets on phones: five columns side by side squeezed the names to a letter. On a phone the
+   two halves of the draw sit side by side round by round (first round, then semi-finals), with the final
+   and the MVP across the full width underneath, so every name has room. */
+.is-phone .ko-bracket { min-width: 0 !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 14px; }
+.is-phone .ko-col[data-round="0"] { order: 0; }
+.is-phone .ko-col[data-round="1"] { order: 1; }
+.is-phone .ko-col[data-round="2"] { order: 2; }
+.is-phone .ko-centre { order: 9; grid-column: 1 / -1; width: min(100%, 360px); justify-self: center; }
+.is-phone .ko-left .ko-match::after, .is-phone .ko-right .ko-match::before { display: none; }
+
+/* ---------- Clicks (Nov 2026, round 2) ---------- */
+/* No blue tap flash anywhere when something is tapped. */
+html { -webkit-tap-highlight-color: transparent; }
+.hand img, .lb-mini img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+/* Hand of cards: the cards either side of the middle sat behind the (invisible) track in 3D, so clicks on
+   them landed on the track and did nothing. The track lets clicks through to the cards now. */
+.hand-track { pointer-events: none; }
+.hand-card { pointer-events: auto; }
+/* The whole podium spot and the whole tile open the card, so they all show the hand cursor. */
+.lb-pod, .lb-tile { cursor: pointer; }
+.lb-pod:hover, .lb-pod:has(.lb-pod-name:hover) { background: none; }
+.lb-tile:hover, .lb-tile:has(.lb-t-name:hover) { background: rgba(var(--gold-rgb), .06); }
+.lb-pod .lb-pod-name { text-align: center; }
+/* Phones: the podium keeps the desktop layout, drawn at 620px wide and zoomed to fit (js/layout.js). */
+.is-phone .lb-podium { width: 620px; gap: 10px; }
+/* Leaderboard rows on phones: the Elo number and its daily change sat in fixed-width columns, so on some
+   phones the change was drawn on top of the number, and long names ran into the Elo. Each row is now two
+   lines: name, Elo and change on top; the Elo bar, W/L and K/D underneath. Nothing shares a space. */
+.is-phone .lb-tile { grid-template-columns: 26px 46px minmax(0, 1fr) 156px 68px; grid-template-rows: auto auto; gap: 4px 12px; padding: 8px 12px 8px 8px; }
+.is-phone .lb-t-rank, .is-phone .lb-t-card { grid-row: 1 / 3; }
+.is-phone .lb-t-name { grid-column: 3; grid-row: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; }
+.is-phone .lb-t-elo { display: contents; }
+.is-phone .lb-t-elo > b { grid-column: 4; grid-row: 1; justify-self: end; align-self: center; }
+.is-phone .lb-t-elo > span:not(.lb-bar) { grid-column: 5; grid-row: 1; align-self: center; white-space: nowrap; min-width: 50px; }
+.is-phone .lb-t-elo > .lb-bar { grid-column: 3; grid-row: 2; align-self: center; max-width: none; }
+.is-phone .lb-t-stat { grid-row: 2; display: flex; align-items: baseline; gap: 4px; white-space: nowrap; min-width: 0; }
+.is-phone .lb-t-elo + .lb-t-stat { grid-column: 4; justify-self: end; }
+.is-phone .lb-t-stat:last-child { grid-column: 5; }
+.is-phone .lb-t-stat i { white-space: nowrap; }
+.is-phone .lb-pod-elo span { white-space: nowrap; }
+/* Head-to-Head on phones: the row of player cards scrolled sideways. It wraps onto rows instead. */
+.is-phone .fight-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: visible; }
+.is-phone .fight-strip button { width: auto; }

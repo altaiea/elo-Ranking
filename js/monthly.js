@@ -1,12 +1,12 @@
 /* ======================================================
-   MONTHLY RANKINGS (Leaderboard tab button)
+   MONTHLY RANKINGS (Ranks > Monthly)
    For every map a player personally played in the month: where they stood on
    the overall Elo leaderboard straight after it. Players are ranked by maps in
    1st, then 2nd, then 3rd, and so on.
 ====================================================== */
 import { getPlayerName } from "./config.js";
 import { loadAllHistory, loadHistoryIndex } from "./data.js";
-import { formatElo, monthKeyOf, monthLabel, ordinal, showPopup } from "./ui.js";
+import { formatElo, monthKeyOf, monthLabel, ordinal } from "./ui.js";
 
 const MIN_MAPS_FOR_RANKING = 10;
 
@@ -210,7 +210,13 @@ async function renderMonth(monthKey) {
     }
 }
 
-export async function openMonthlyRankings() {
+let shown = false;
+
+// Fills the Monthly page the first time it is opened.
+export async function showMonthlyRankings() {
+    const root = document.getElementById("monthlyRoot");
+    if (!root || shown) return;
+    shown = true;
     try {
         const days = await loadHistoryIndex();
         const currentMonth = monthKeyOf(new Date());
@@ -220,25 +226,22 @@ export async function openMonthlyRankings() {
         // default final report. The ongoing month remains selectable.
         const selected = months.find(month => month < currentMonth) || months[0] || currentMonth;
         const selectable = months.length ? months : [currentMonth];
-        showPopup(`
+        root.innerHTML = `
             <div class="monthly-rankings-popup">
                 <div class="monthly-popup-header">
-                    <div>
-                        <h2>Monthly Rankings</h2>
-                        <p>Maps personally played at each overall Elo position after the map. Rankings compare maps in 1st, then 2nd, then 3rd.</p>
-                    </div>
+                    <p>Maps personally played at each overall Elo position after the map. Rankings compare maps in 1st, then 2nd, then 3rd.</p>
                     <label class="monthly-month-label">Month
                         <select id="monthlyMonthSelect">${selectable.map(month => `<option value="${month}" ${month === selected ? "selected" : ""}>${monthLabel(month)}${month === currentMonth ? " · In progress" : " · Final"}</option>`).join("")}</select>
                     </label>
                 </div>
                 <div id="monthlyRankingsBody"></div>
-            </div>`, { className: "monthly-popup-card" });
+            </div>`;
         const select = document.getElementById("monthlyMonthSelect");
         select.addEventListener("change", () => renderMonth(select.value));
         renderMonth(selected);
     } catch (error) {
-        showPopup(`<div class="monthly-rankings-popup"><h2>Monthly Rankings</h2><div class="monthly-empty">Monthly rankings could not be loaded.</div></div>`,
-            { className: "monthly-popup-card" });
+        shown = false;      // try again the next time the page is opened
+        root.innerHTML = `<div class="monthly-empty">Monthly rankings could not be loaded.</div>`;
         console.error("Could not open monthly rankings:", error);
     }
 }

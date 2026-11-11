@@ -1,15 +1,16 @@
 // ===============================
 // PLAYER CARD POPUP
 // ===============================
-// The card opens hovering on a corner, wings side up, above two open hands
-// (hands.webp) that rise out of the dark. Tapping the card straightens it and
-// turns it over to the player; the hands stay until the popup is closed.
+// The card opens hovering on a corner, wings side up, with the player's
+// headline numbers beside it (js/cardTape.js). Tapping the card straightens it
+// and turns it over to the player.
 
 import {
     CARDS_WITH_WINGS_UNDERLAY, CARD_PLAYER_IDS, DATE_BOX_RIGHT_SIDE, INTRO_VIDEO_CLASSES, cardAssets
 } from "./config.js";
 import { cardRatings, ratingTierClass } from "./ratings.js";
 import { reduceMotion, setRatingColor } from "./ui.js";
+import { hideCardTape, showCardTape } from "./cardTape.js";
 import { openModeModal } from "./modeModal.js";
 import { loadMvpCounts } from "./knockoutMvp.js";
 import { loadModeStreaks, streakTier } from "./streaks.js";
@@ -157,19 +158,20 @@ let cardEnterAnim = null, cardFloatAnim = null, cardTapHandler = null, cardTapBo
 function floatLayout(box) {
     const vw = window.innerWidth, vh = window.innerHeight;
     const s = Math.min(vh / 700, vw / 1100);
-    const handsW = 770 * s, handsH = 1.5 * handsW;          // hands.webp is 2:3 (portrait)
-    const spare = Math.max(0, vh - 700 * s);                // tall screens (phones): lift the whole scene a little
-    const imgTop = vh - 0.69 * handsH - spare * 0.4;         // the hands sit near the bottom edge
-    const cardCenter = imgTop + 0.344 * handsH;              // just above the fingertips, between the thumbs
+    // The card floats in the middle of the screen with the tale of the tape (js/cardTape.js) to its
+    // right. On a phone the tape goes underneath, so the card is bigger and sits higher.
+    const phone = document.documentElement.classList.contains("is-phone");
+    const cardCenter = vh * (phone ? 0.3 : 0.5);
     const boxCenter = box.offsetTop + box.offsetHeight / 2;
-    const ty = cardCenter - boxCenter, sc = 0.7 * s;
+    const ty = cardCenter - boxCenter, sc = (phone ? 1.5 : 0.8) * s;
     const pose = (dy, rz, rx, ry) =>
         `translateY(${ty + dy * s}px) perspective(1100px) scale(${sc}) rotateZ(${rz}deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    // After the card has turned over it keeps levitating above the hands, upright and a touch larger.
-    const tyUp = imgTop + 0.325 * handsH - boxCenter, scUp = 0.82 * s;
+    // After the card has turned over it keeps levitating, upright and a touch larger.
+    const scUp = (phone ? 1.8 : 0.95) * s;
     const up = (dy, rz, ry) =>
-        `translateY(${tyUp + dy * s}px) perspective(1100px) scale(${scUp}) rotateZ(${rz}deg) rotateX(0deg) rotateY(${ry}deg)`;
-    return { handsW, imgTop, a: pose(-9, -1, 19, -3), b: pose(9, 1, 15, 3), ua: up(-10, -1.2, -3), ub: up(10, 1.2, 3) };
+        `translateY(${ty + dy * s}px) perspective(1100px) scale(${scUp}) rotateZ(${rz}deg) rotateX(0deg) rotateY(${ry}deg)`;
+    const place = { cx: vw / 2, cy: cardCenter, w: box.offsetWidth * scUp, h: box.offsetHeight * scUp, s };
+    return { place, a: pose(-9, -1, 19, -3), b: pose(9, 1, 15, 3), ua: up(-10, -1.2, -3), ub: up(10, 1.2, 3) };
 }
 
 export function cardHandsEl() {
@@ -183,26 +185,6 @@ export function cardHandsEl() {
         document.getElementById("playerModal").appendChild(el);
     }
     return el;
-}
-
-function showCardHands(layout) {
-    const el = cardHandsEl();
-    if (handsAnim) handsAnim.cancel();
-    el.style.width = layout.handsW + "px";
-    el.style.top = layout.imgTop + "px";
-    el.style.display = "block";
-    handsAnim = el.animate([
-        { opacity: 0, transform: "translate(-50%, 7%)" },
-        { opacity: 1, transform: "translate(-50%, 0)" }
-    ], { duration: 1100, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" });
-    // once risen, the hands keep breathing gently until the popup is closed
-    const rise = handsAnim;
-    rise.finished.then(() => {
-        if (handsAnim !== rise) return;
-        handsAnim = el.animate([{ transform: "translate(-50%, 0)" }, { transform: "translate(-50%, 7px)" }],
-            { duration: 3200, direction: "alternate", iterations: Infinity, easing: "ease-in-out" });
-        rise.cancel();
-    }).catch(() => {});
 }
 
 function hideCardHands() {
@@ -220,6 +202,7 @@ function stopCardFloat() {
     if (cardTapBox) cardTapBox.classList.remove("floating-card", "awaiting-tap");
     cardTapHandler = cardTapBox = null;
     hideCardHands();
+    hideCardTape();
 }
 
 // Swing in from the carousel and settle into the floating pose. Resolves when it is hovering.
@@ -233,7 +216,6 @@ function startCardFloat(box) {
         { opacity: 1, transform: L.a, offset: 1 }
     ], { duration: 900, easing: "cubic-bezier(.25,.8,.25,1)", fill: "forwards" });
     const enter = cardEnterAnim;
-    showCardHands(L);
     return enter.finished.then(() => {
         if (cardEnterAnim !== enter) return false;
         cardFloatAnim = box.animate([{ transform: L.a }, { transform: L.b }],
@@ -365,6 +347,10 @@ export function openPlayerModal(playerId) {
     void modalBox.offsetWidth;                 // restart the backdrop fade
     modalBox.classList.add("modal-enter");
     const floatReady = motion ? startCardFloat(modalBox) : (stopCardFloat(), Promise.resolve(false));
+    // The tale of the tape slides out beside the card (where the card floats, or where it stands without motion).
+    const rect = modalBox.getBoundingClientRect();
+    showCardTape(p, players, motion ? modalBox.__floatPoses.place
+        : { cx: rect.left + rect.width / 2, cy: rect.top + rect.height / 2, w: rect.width, h: rect.height, s: 1 });
 
     const card = modal.querySelector(".card");
     const video = document.getElementById("cardBackVideo");

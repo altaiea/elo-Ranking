@@ -2,8 +2,8 @@
    TEAMS & MAPS TAB (combined)
 ====================================================== */
 .ms {
-    --cyan: #00eaff; --a: #00eaff; --b: #ffb020; --line: rgba(0, 234, 255, .16);
-    --panel: linear-gradient(180deg, #121821, #0d1117); --muted: #8a97a6;
+    --cyan: #f2c14e; --a: #f2c14e; --b: #ffb020; --line: rgba(242, 193, 78, .16);
+    --panel: linear-gradient(180deg, #121821, #0d0b08); --muted: #8a97a6;
     max-width: 1040px; margin: 0 auto; display: grid; gap: 18px;
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start;
     box-sizing: border-box; text-align: left;
@@ -13,25 +13,25 @@
 
 /* header */
 .ms-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.ms-step { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #001014; background: var(--cyan); box-shadow: 0 0 14px rgba(0,234,255,.45); }
+.ms-step { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #120e07; background: var(--cyan); box-shadow: 0 0 14px rgba(242, 193, 78,.45); }
 .ms-head-text { flex: 1; min-width: 0; }
 .ms-head h2 { margin: 0; font-size: 19px; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; }
 .ms-head p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
-.ms-count { flex: none; font-weight: 800; font-size: 15px; padding: 5px 11px; border-radius: 999px; color: var(--cyan); border: 1px solid rgba(0,234,255,.45); font-variant-numeric: tabular-nums; }
+.ms-count { flex: none; font-weight: 800; font-size: 15px; padding: 5px 11px; border-radius: 999px; color: var(--cyan); border: 1px solid rgba(242, 193, 78,.45); font-variant-numeric: tabular-nums; }
 .ms-count.full { color: #001a08; background: #39ff6a; border-color: #39ff6a; box-shadow: 0 0 14px rgba(57,255,106,.5); }
 
 /* segmented controls */
 .ms-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 12px; background: #0a0e13; border: 1px solid var(--line); margin-bottom: 12px; }
 .ms-seg-3 { grid-template-columns: repeat(3, 1fr); }
 .ms-seg button { all: unset; cursor: pointer; text-align: center; padding: 10px 6px; border-radius: 9px; font-weight: 700; font-size: 14px; color: var(--muted); transition: background .2s, color .2s; }
-.ms-seg button.on { background: rgba(0,234,255,.14); color: var(--cyan); box-shadow: inset 0 0 0 1px rgba(0,234,255,.5); }
+.ms-seg button.on { background: rgba(242, 193, 78,.14); color: var(--cyan); box-shadow: inset 0 0 0 1px rgba(242, 193, 78,.5); }
 
 /* manual: which team a tap adds to */
 .ms-addto { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 12.5px; color: var(--muted); }
 .ms-addto[hidden] { display: none; }
 .ms-addto-btn { all: unset; cursor: pointer; flex: 1; text-align: center; padding: 8px 6px; border-radius: 10px; font-weight: 700; font-size: 13.5px; border: 1px dashed #2a3440; color: #c9d3dd; }
 .ms-addto-btn b { font-weight: 800; margin-left: 4px; opacity: .8; }
-.ms-addto-btn.a.on { border: 1px solid var(--a); color: var(--a); background: rgba(0,234,255,.1); }
+.ms-addto-btn.a.on { border: 1px solid var(--a); color: var(--a); background: rgba(242, 193, 78,.1); }
 .ms-addto-btn.b.on { border: 1px solid var(--b); color: var(--b); background: rgba(255,176,32,.1); }
 
 /* player chips */
@@ -41,8 +41,8 @@
 .ms-chip img { width: 46px; height: 64px; object-fit: cover; border-radius: 6px; filter: grayscale(.55) brightness(.8); transition: filter .2s; }
 .ms-name { font-weight: 800; font-size: 12.5px; letter-spacing: .5px; color: #dfe7ee; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ms-elo { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.ms-tag { position: absolute; top: 5px; right: 5px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 900; font-size: 11px; color: #001014; background: var(--cyan); }
-.ms-chip.on { border-color: var(--cyan); background: rgba(0,234,255,.08); box-shadow: 0 0 0 1px var(--cyan), 0 0 16px rgba(0,234,255,.25); }
+.ms-tag { position: absolute; top: 5px; right: 5px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 900; font-size: 11px; color: #120e07; background: var(--cyan); }
+.ms-chip.on { border-color: var(--cyan); background: rgba(242, 193, 78,.08); box-shadow: 0 0 0 1px var(--cyan), 0 0 16px rgba(242, 193, 78,.25); }
 .ms-chip.on img { filter: none; }
 .ms-chip.team-b { border-color: var(--b); background: rgba(255,176,32,.08); box-shadow: 0 0 0 1px var(--b), 0 0 16px rgba(255,176,32,.22); }
 .ms-chip.team-b .ms-tag { background: var(--b); }
@@ -53,7 +53,7 @@
 
 /* main buttons */
 .ms-dock { margin-top: 12px; }
-.ms-go { all: unset; cursor: pointer; display: block; width: 100%; text-align: center; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 16px; letter-spacing: .6px; color: #001014; background: linear-gradient(180deg, #3ff3ff, #00c8dc); box-shadow: 0 6px 20px rgba(0,234,255,.3); transition: filter .2s, opacity .2s; }
+.ms-go { all: unset; cursor: pointer; display: block; width: 100%; text-align: center; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 16px; letter-spacing: .6px; color: #120e07; background: linear-gradient(180deg, #3ff3ff, #00c8dc); box-shadow: 0 6px 20px rgba(242, 193, 78,.3); transition: filter .2s, opacity .2s; }
 .ms-go:disabled { cursor: default; color: #6f7c88; background: #151c24; box-shadow: none; }
 
 /* your map cards keep their own styles (style.css); this just fits them in the card */
@@ -71,7 +71,7 @@
 .ms-phone .ms-chip { padding: 7px 2px 6px; }
 .ms-phone .ms-chip img { width: 40px; height: 56px; }
 .ms-phone .ms-name { font-size: 11.5px; }
-.ms-phone .ms-dock { position: sticky; bottom: 0; z-index: 5; margin: 12px -12px -14px; padding: 10px 12px 12px; background: linear-gradient(180deg, rgba(13,17,23,0), #0d1117 30%); border-radius: 0 0 14px 14px; }
+.ms-phone .ms-dock { position: sticky; bottom: 0; z-index: 5; margin: 12px -12px -14px; padding: 10px 12px 12px; background: linear-gradient(180deg, rgba(13,17,23,0), #0d0b08 30%); border-radius: 0 0 14px 14px; }
 .ms-phone .ms-head h2 { font-size: 17px; }
 
 /* all: unset drops box-sizing, so put it back on the reset buttons */

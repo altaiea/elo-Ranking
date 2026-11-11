@@ -16,6 +16,7 @@ export function setupLayout() {
         rail.style.width = phone ? sw + "px" : "";
         rail.style.zoom = phone ? String(innerWidth / sw) : "";
         if (head) head.style.zoom = phone ? String(Math.min(2.2, innerWidth / sw)) : "";
+        html.style.setProperty("--ui-zoom", phone ? String(Math.min(2.2, innerWidth / sw)) : "1");   // for locker.css
     };
     fit();
     addEventListener("resize", fit);

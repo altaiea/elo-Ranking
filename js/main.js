@@ -11,11 +11,12 @@ import { chemEnsure } from "./teams.js";
 import { setupComparisons, showComparisons } from "./comparisons.js";
 import { renderHistoryList } from "./history.js";
 import { setupDuoNetwork } from "./duoNetwork.js";
-import { openMonthlyRankings } from "./monthly.js";
+import { showMonthlyRankings } from "./monthly.js";
 import { setupMatchSetup, showMatchSetup } from "./matchSetup.js";
 import { setupLayout } from "./layout.js";
 import { showKnockout } from "./knockout.js";
-import { preloadCarouselImages, setupCarousel } from "./carousel.js";
+import { redrawHands, setupLocker, showLocker } from "./locker.js";
+import { setupFightNight, showFightNight, startComparison } from "./fightNight.js";
 import { closePlayerModal, isPlayerModalOpen, setupPlayerModal, warmAllInBackground } from "./playerCard.js";
 import { closeModeModal, setupModeModal } from "./modeModal.js";
 import { setupTabs } from "./tabs.js";
@@ -73,12 +74,15 @@ function start() {
     setupComparisons();
     setupMatchSetup();
     setupDuoNetwork();
-    document.getElementById("monthlyRankingsButton").addEventListener("click", openMonthlyRankings);
+    setupFightNight();
+    // Compare (under a hand of cards) opens Head-to-Head with that player as Player 1.
+    let showTab = () => {};
+    setupLocker({ onCompare: id => { startComparison(id); showTab("comparisonsPage"); } });
 
-    const showCarousel = setupCarousel(() => players.length > 0);
-    setupTabs(tab => {
-        if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Teams & Maps opens
-        if (tab === "carouselPage") showCarousel({ deal: true });
+    showTab = setupTabs(tab => {
+        if (tab === "teamsPage") chemEnsure().catch(() => {});   // warm the chemistry data the first time Match Day opens
+        if (tab === "leaderboardPage" || tab === "cardsPage") redrawHands();
+        if (tab === "monthlyPage") showMonthlyRankings();
         if (tab === "knockoutPage") showKnockout();
     });
     renderHistoryList();
@@ -97,10 +101,13 @@ function start() {
         showLeaderboard(players);
         showMatchSetup(players);
         showComparisons(players);
+        showFightNight(players);
+        showLocker(players);
         withArrows.then(full => {
             if (!full) return;
             players = full;
             showLeaderboard(players);
+            showLocker(players);
         });
     }).catch(error => {
         console.error("Could not load leaderboard:", error);
@@ -110,12 +117,8 @@ function start() {
 
     Promise.all([playersLoaded, wings]).then(() => {
         boot.finish();
-        // Small things first (the 17 carousel thumbnails, ~400 KB in all),
-        // then the full card art and intros one by one on fast connections.
-        whenIdle(() => {
-            preloadCarouselImages();
-            warmAllInBackground();
-        });
+        // The full card art and intros, one by one, on fast connections.
+        whenIdle(warmAllInBackground);
     });
 }
 

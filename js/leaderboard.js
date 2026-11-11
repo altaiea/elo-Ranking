@@ -127,8 +127,7 @@ function renderPodiumAndTiles(shown) {
             <span class="lb-mini lb-t-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <button type="button" class="lb-t-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
             <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
-            <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>
-            <span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span>
+            <span class="lb-t-stats"><span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span class="lb-t-stat"><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
         </div>`;
     }).join("");
     box.innerHTML = `<div class="lb-podium">${podium}</div><div class="lb-tiles">${tiles}</div>`;

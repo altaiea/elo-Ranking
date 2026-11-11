@@ -352,11 +352,15 @@ html { -webkit-tap-highlight-color: transparent; }
 .is-phone .lb-t-elo > b { grid-column: 4; grid-row: 1; justify-self: end; align-self: center; }
 .is-phone .lb-t-elo > span:not(.lb-bar) { grid-column: 5; grid-row: 1; align-self: center; white-space: nowrap; min-width: 50px; }
 .is-phone .lb-t-elo > .lb-bar { grid-column: 3; grid-row: 2; align-self: center; max-width: none; }
-.is-phone .lb-t-stat { grid-row: 2; display: flex; align-items: baseline; gap: 4px; white-space: nowrap; min-width: 0; }
-.is-phone .lb-t-elo + .lb-t-stat { grid-column: 4; justify-self: end; }
-.is-phone .lb-t-stat:last-child { grid-column: 5; }
-.is-phone .lb-t-stat i { white-space: nowrap; }
+.is-phone .lb-t-stats { grid-column: 4 / 6; grid-row: 2; gap: 12px; justify-content: flex-end; }
 .is-phone .lb-pod-elo span { white-space: nowrap; }
 /* Head-to-Head on phones: the row of player cards scrolled sideways. It wraps onto rows instead. */
 .is-phone .fight-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: visible; }
 .is-phone .fight-strip button { width: auto; }
+/* Every leaderboard row shows the same three numbers as the podium: W/L, Record and K/D, each with its label under it. */
+.lb-tile { grid-template-columns: 34px 44px 150px 1fr 250px; }
+.lb-t-stats { display: flex; justify-content: space-between; gap: 18px; }
+.lb-t-stat { display: grid; justify-items: center; text-align: center; }
+.lb-t-stat b { color: #fff; }
+.is-phone .lb-tile { grid-template-columns: 26px 46px minmax(0, 1fr) 156px 68px; }
+.is-phone .lb-t-stat i { white-space: nowrap; }

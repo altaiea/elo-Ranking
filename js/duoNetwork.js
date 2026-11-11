@@ -8,12 +8,12 @@ import { loadAllHistory } from "./data.js";
 const SVGNS = "http://www.w3.org/2000/svg";
 const CX = 340, CY = 330, R = 228, LABEL_R = R + 30;
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
-const CYAN = [0, 234, 255], DIM_CYAN = [38, 82, 96], RED = [255, 77, 77], DIM_RED = [110, 48, 52];
+const GOLD = [242, 193, 78], DIM_GOLD = [96, 78, 38], RED = [255, 59, 59], DIM_RED = [110, 44, 40];
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
-// winning (or even) duos are cyan, brighter the better they do; duos that lose more than they win are red
+// winning (or even) duos are gold, brighter the better they do; duos that lose more than they win are red
 const winColour = wr => wr >= 0.5
-    ? `rgb(${mix(DIM_CYAN, CYAN, 0.35 + 0.65 * clamp01((wr - 0.5) / 0.22))})`
+    ? `rgb(${mix(DIM_GOLD, GOLD, 0.35 + 0.65 * clamp01((wr - 0.5) / 0.22))})`
     : `rgb(${mix(DIM_RED, RED, 0.35 + 0.65 * clamp01((0.5 - wr) / 0.22))})`;
 const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 const h = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
@@ -183,7 +183,7 @@ function update(opts) {
         const dim = focus !== null && !touches;
         const style = show
             ? { sw: 1 + 8.5 * Math.sqrt(p.g / maxG), col: winColour(wr), op: dim ? 0.07 : 0.35 + 0.55 * Math.min(1, p.g / 18) }
-            : { sw: 0.5, col: "rgb(70,78,92)", op: 0 };
+            : { sw: 0.5, col: "rgb(84,76,62)", op: 0 };
         const ia = S.pos[e.a].i, ib = S.pos[e.b].i;
         const ring = i => originI === null ? 0 : Math.min(Math.abs(i - originI), n - Math.abs(i - originI));
         const delay = opts.ripple ? (originI === null ? Math.abs(ia - ib) * 14 + (Math.min(ia, ib)) * 12 : Math.min(ring(ia), ring(ib)) * 70) : 0;

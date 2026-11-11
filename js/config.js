@@ -66,8 +66,8 @@ export const cardAssets = {
     art: id => `cards/web/${id}_card.webp`,
     intro: id => INTROS_ENABLED && INTRO_PLAYER_IDS.has(Number(id)) ? `cards/web/${id}_intro.mp4` : null,
     streakFire: tier => `cards/streak/fire_${tier}.webp`,
-    wings: "wings.webp",
-    wingsThumb: "wings_thumb.webp",
+    wings: "wings_gold.webp",
+    wingsThumb: "wings_gold_thumb.webp",
     hands: "hands.webp",
     gun: "gun.webp"
 };

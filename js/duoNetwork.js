@@ -1,7 +1,7 @@
 /* ======================================================
    DUO NETWORK
-   Every pairing of players, for any window of time, drawn as a neon
-   globe you can turn any way you like.
+   Every pairing of players, for any window of time, drawn as a gold
+   globe you can turn any way you like. Picked players light up in neon.
 
    This file owns the data, the pop-up, the sliders and the side panel.
    The 3D drawing itself is js/duoNetwork3d.js.
@@ -16,25 +16,19 @@ import { loadAllHistory } from "./data.js";
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 
 /* ---------- colours ---------- */
-// Change these to restyle the network. Every player gets their own colour
-// from playerColour() below; these three are the win-rate colours.
+// Change these to restyle the network.
+// With nobody picked, everything is the site's gold on black. Picking a player
+// lights their connections up in the three neon win-rate colours.
 export const COLOURS = {
-    best: "#b8ff2e",     // duos that win BEST_FROM or more of their maps (lime)
-    win: "#19e6ff",      // duos that win at least half (cyan)
-    loss: "#ff2e7e"      // duos that lose more than they win (hot pink)
+    gold: "#f2c14e",     // the brightest lines and the glow round the players
+    bronze: "#6b4f1c",   // the faintest lines (duos with few maps together)
+    cream: "#f1ead9",    // the players' dots and names
+    best: "#b8ff2e",     // duos that win BEST_FROM or more of their maps (neon lime)
+    win: "#19e6ff",      // duos that win at least half (neon cyan)
+    loss: "#ff2e7e"      // duos that lose more than they win (neon pink)
 };
 const BEST_FROM = 0.57;
 export const band = wr => wr < 0.5 ? "loss" : wr >= BEST_FROM ? "best" : "win";
-// One neon colour per player, spread evenly round the colour wheel. Players next to
-// each other in the list get colours far apart, so neighbours are easy to tell apart.
-function playerColour(i, n) {
-    let step = Math.max(1, Math.round(n * 0.41));
-    const gcd = (a, b) => b ? gcd(b, a % b) : a;
-    while (gcd(step, n) !== 1) step++;
-    const hue = Math.round(((i * step) % n) * 360 / n);
-    const light = hue > 215 && hue < 290 ? 70 : 60;          // blues and violets need lifting to read as bright as the rest
-    return `hsl(${hue}, 100%, ${light}%)`;
-}
 
 const h = html => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 const nm = id => getPlayerName(id);
@@ -67,16 +61,15 @@ async function loadData() {
         events.forEach(e => { total.set(e.a, (total.get(e.a) || 0) + 1); total.set(e.b, (total.get(e.b) || 0) + 1); });
         const ids = [...total.keys()].sort((a, b) => total.get(b) - total.get(a) || a - b);
         // spread the players evenly over the globe (a spiral from top to bottom)
-        const pos = {}, colour = {}, n = ids.length;
+        const pos = {}, n = ids.length;
         ids.forEach((id, i) => {
             const y = 1 - 2 * (i + 0.5) / n, r = Math.sqrt(1 - y * y), a = i * 2.39996;
             pos[id] = [r * Math.cos(a), y, r * Math.sin(a)];
-            colour[id] = playerColour(i, n);
         });
         S = {
-            dates, events, ids, pos, colour, names: Object.fromEntries(ids.map(id => [id, nm(id)])),
+            dates, events, ids, pos, names: Object.fromEntries(ids.map(id => [id, nm(id)])),
             lo: 0, hi: dates.length - 1, min: 5, selA: null, selB: null, playing: null,
-            byWinRate: false,        // false: lines take their two players' colours; true: lines coloured by win rate
+            byWinRate: false,        // false: gold lines until a player is picked; true: every line in its neon win-rate colour
             edges: {}, nodes: {}     // what the 3D drawing should show; filled in by update()
         };
         return S;
@@ -108,7 +101,7 @@ function buildUi() {
   <header class="duo-top">
     <h2>DUO <b>NETWORK</b></h2>
     <div class="duo-seg" role="group" aria-label="Line colours">
-      <button type="button" data-mode="players" aria-pressed="true">PLAYERS</button>
+      <button type="button" data-mode="gold" aria-pressed="true">GOLD</button>
       <button type="button" data-mode="winrate" aria-pressed="false">WIN RATE</button>
     </div>
     <button type="button" class="duo-btn duo-reset">RESET VIEW</button>
@@ -249,14 +242,14 @@ function update(opts) {
     const sw = (c, t) => `<span><i style="background:${c};box-shadow:0 0 10px ${c}"></i>${t}</span>`;
     ui.querySelector("#duoLegend").innerHTML = S.byWinRate || focus !== null
         ? sw(COLOURS.best, `Wins ${Math.round(BEST_FROM * 100)}%+`) + sw(COLOURS.win, "Wins half or more") + sw(COLOURS.loss, "Loses more than wins") + "<span>Thicker line = more maps together</span>"
-        : "<span>Each line blends its two players' colours</span><span>Thicker line = more maps together</span>";
+        : "<span>Tap a player to light up their duos</span><span>Thicker line = more maps together</span>";
     renderSide(agg);
 }
 
 function renderSide(agg) {
     const side = S.ui.querySelector("#duoSide");
     const range = `${fmtDay(S.dates[S.lo])} – ${fmtDay(S.dates[S.hi])}`;
-    const name = id => `<b style="color:${S.colour[id]}">${nm(id)}</b>`;
+    const name = id => `<b>${nm(id)}</b>`;
     const wrColour = (w, d) => COLOURS[band(d ? w / d : 0.5)];
     let totalPairs = 0; agg.forEach(p => { totalPairs += p.g; });
     const mapCount = Math.round(totalPairs / 12);                 // a 4v4 map makes 6 pairs on each side
@@ -278,7 +271,7 @@ function renderSide(agg) {
         side.innerHTML = `
 <div class="duo-kicker">PARTNERS &nbsp;·&nbsp; ${range}</div>
 <div class="duo-title">${name(me)}</div>
-<div class="duo-list">${rows.map(r => `<button type="button" class="duo-row${r.g < S.min ? " faint" : ""}" data-o="${r.o}"><span class="duo-rn" style="color:${S.colour[r.o]}">${nm(r.o)}</span><span class="duo-rg">${r.g}</span><span class="duo-rr">${r.w}–${r.d - r.w}</span><span class="duo-rw" style="color:${wrColour(r.w, r.d)}">${pct(r.w, r.d)}</span></button>`).join("") || "<div class='duo-note'>No maps in this window.</div>"}</div>
+<div class="duo-list">${rows.map(r => `<button type="button" class="duo-row${r.g < S.min ? " faint" : ""}" data-o="${r.o}"><span class="duo-rn">${nm(r.o)}</span><span class="duo-rg">${r.g}</span><span class="duo-rr">${r.w}–${r.d - r.w}</span><span class="duo-rw" style="color:${wrColour(r.w, r.d)}">${pct(r.w, r.d)}</span></button>`).join("") || "<div class='duo-note'>No maps in this window.</div>"}</div>
 <button type="button" class="duo-btn duo-clear">CLEAR</button>`;
         side.querySelectorAll(".duo-row").forEach(r => r.addEventListener("click", () => { S.selB = +r.dataset.o; update({ pulse: true }); }));
     } else {

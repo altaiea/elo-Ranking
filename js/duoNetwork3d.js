@@ -1,6 +1,7 @@
 /* ======================================================
    DUO NETWORK: THE 3D DRAWING  (three.js)
-   A neon globe: every player is a glowing dot, every duo a glowing tube.
+   A gold globe: every player is a glowing dot, every duo a gold tube. Picking
+   a player turns their tubes neon, coloured by win rate.
    js/duoNetwork.js owns the data, the buttons and the side panel, and tells
    this file what to show through S.edges and S.nodes.
 
@@ -26,6 +27,7 @@ const GLOBE_FILL = 0.72;           // the globe's radius as a share of half the 
 const ZOOM_MIN = 0.55, ZOOM_MAX = 2.6;
 const AUTO_SPIN = 0.0028;          // radians a frame, until you touch it
 const WHITE = new T.Color(0xffffff);
+const GOLD = new T.Color(COLOURS.gold), BRONZE = new T.Color(COLOURS.bronze), CREAM = new T.Color(COLOURS.cream);
 
 export function createGlobe3D(stage, S, on) {
     let renderer;
@@ -58,11 +60,11 @@ export function createGlobe3D(stage, S, on) {
     /* ---------- scenery: three hoops (one per axis), a soft glow in the middle, and drifting dust ---------- */
     {
         const hoop = new T.TorusGeometry(1, 0.0022, 6, 160);
-        [[0x19e6ff, 0, 0], [0xff2e7e, Math.PI / 2, 0], [0x8a5cff, 0, Math.PI / 2]].forEach(([c, rx, ry]) => {
-            const m = new T.Mesh(hoop, additive(c, 0.3)); m.rotation.set(rx, ry, 0); world.add(m);
+        [[0, 0], [Math.PI / 2, 0], [0, Math.PI / 2]].forEach(([rx, ry]) => {
+            const m = new T.Mesh(hoop, additive(GOLD, 0.22)); m.rotation.set(rx, ry, 0); world.add(m);
         });
-        const heart = new T.Sprite(glowMaterial(0x5a3dff, 0.12)); heart.scale.setScalar(3.4); world.add(heart);
-        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0x9fb4ff, 0.55), 260), o = new T.Object3D();
+        const heart = new T.Sprite(glowMaterial(0xb07a1e, 0.1)); heart.scale.setScalar(3.4); world.add(heart);
+        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0xf2d9a0, 0.4), 260), o = new T.Object3D();
         let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // the same dust every time
         for (let i = 0; i < 260; i++) {
             const r = 1.35 + rnd() * 2.4, y = rnd() * 2 - 1, a = rnd() * Math.PI * 2, q = Math.sqrt(1 - y * y);
@@ -77,17 +79,17 @@ export function createGlobe3D(stage, S, on) {
     const unseen = new T.MeshBasicMaterial({ visible: false });
     const nodes = {};
     S.ids.forEach(id => {
-        const colour = new T.Color(S.colour[id]), p = new T.Vector3(...S.pos[id]);
-        const core = new T.Mesh(ball, new T.MeshBasicMaterial({ color: colour.clone().lerp(WHITE, 0.12), transparent: true })); core.position.copy(p);
-        const glow = new T.Sprite(glowMaterial(colour, 0.6)); glow.position.copy(p);
+        const p = new T.Vector3(...S.pos[id]);
+        const core = new T.Mesh(ball, new T.MeshBasicMaterial({ color: CREAM, transparent: true })); core.position.copy(p);
+        const glow = new T.Sprite(glowMaterial(GOLD, 0.6)); glow.position.copy(p);
         const hit = new T.Mesh(hitBall, unseen); hit.position.copy(p); hit.scale.setScalar(0.13); hit.userData.id = id;
         world.add(core, glow, hit);
         const label = document.createElement("span");
-        label.textContent = S.names[id]; label.dataset.id = id; label.style.setProperty("--c", S.colour[id]);
+        label.textContent = S.names[id]; label.dataset.id = id;
         label.setAttribute("role", "button"); label.tabIndex = 0;
         label.setAttribute("aria-label", `Select ${S.names[id]}`);
         labels.appendChild(label);
-        nodes[id] = { id, p, colour, core, glow, hit, label, w: 0, h: 0, r: 0.05, toR: 0.05, fade: 1, toFade: 1, lift: 0, toLift: 0, pulse: 0, depth: 0, sx: 0, sy: 0 };
+        nodes[id] = { id, p, core, glow, hit, label, w: 0, h: 0, r: 0.05, toR: 0.05, fade: 1, toFade: 1, lift: 0, toLift: 0, pulse: 0, depth: 0, sx: 0, sy: 0 };
     });
 
     /* ---------- duos ---------- */
@@ -127,7 +129,7 @@ export function createGlobe3D(stage, S, on) {
                 g.radius = radius; g.dirty = true;
             }
             if (e.byWinRate) { g.tA.set(COLOURS[band(e.wr)]); g.tB.copy(g.tA); }
-            else { g.tA.copy(nodes[e.a].colour); g.tB.copy(nodes[e.b].colour); }
+            else { g.tA.copy(BRONZE).lerp(GOLD, e.state === "dim" ? 0.15 : e.weight * e.weight); g.tB.copy(g.tA); }      // gold: the more maps together, the brighter
             g.toWhite = duo ? 0.5 : 0.04;                  // lines keep their full colour; only the chosen duo is washed towards white
             g.toLevel = duo ? 2.2 : e.state === "lit" ? 1.35 : e.state === "dim" ? 0.03 : 0.32 + 0.5 * e.weight;
             g.lit = duo || e.state === "lit";

@@ -132,7 +132,6 @@ function render() {
         <div class="comparison-score final-head-to-head ${totalA > totalB ? "a-winner" : totalB > totalA ? "b-winner" : "tie"}">
             <strong>${a.name} ${num(totalA, 1)} — ${num(totalB, 1)} ${b.name}</strong>
             <span>HEAD-TO-HEAD</span>
-            <small>15 points across 3 modes · 5 metrics per mode</small>
         </div>
 
         <div class="comparison-section">

@@ -166,13 +166,13 @@ async function renderMonth(monthKey) {
     try {
         const monthly = buildMonthlyRankings(await loadAllHistory(), monthKey);
         if (!monthly.records.length) {
-            content.innerHTML = `<div class="monthly-empty">No approved map history is available for ${monthLabel(monthKey)}.</div>`;
+            content.innerHTML = `<div class="monthly-empty">No maps in ${monthLabel(monthKey)}.</div>`;
             return;
         }
-        const status = monthKey === monthKeyOf(new Date()) ? "In progress" : "Final report";
+        const status = monthKey === monthKeyOf(new Date()) ? "In progress" : "Final";
         const more = r => MIN_MAPS_FOR_RANKING - r.mapsPlayed;
         content.innerHTML = `
-            <div class="monthly-summary"><span class="monthly-report-status">${status} · ${monthLabel(monthKey)}</span> · ${monthly.mapCount} approved map${monthly.mapCount === 1 ? "" : "s"} recorded · Minimum ${MIN_MAPS_FOR_RANKING} personally played maps to qualify</div>
+            <div class="monthly-summary"><span class="monthly-report-status">${status}</span> · ${monthly.mapCount} map${monthly.mapCount === 1 ? "" : "s"}</div>
             <div class="monthly-table-wrap">
                 <table class="monthly-table">
                     <thead><tr><th>Rank</th><th>Player</th><th>Maps in 1st</th><th>W/L</th><th>Peak Elo</th></tr></thead>
@@ -186,7 +186,7 @@ async function renderMonth(monthKey) {
                             </tr>
                             <tr class="monthly-breakdown-row" data-monthly-breakdown="${record.playerId}" hidden>
                                 <td colspan="5">
-                                    <div class="monthly-player-summary">${record.mapsPlayed} maps played · ${record.wins}–${record.losses} W/L · Peak Elo ${formatElo(record.highestElo)}${record.qualified ? "" : ` · ${more(record)} more map${more(record) === 1 ? "" : "s"} to qualify`}</div>
+                                    <div class="monthly-player-summary">${record.mapsPlayed} maps${record.qualified ? "" : ` · ${more(record)} more to qualify`}</div>
                                     <div class="monthly-position-breakdown">${positionBreakdown(record, monthly.maxPosition)}</div>
                                 </td>
                             </tr>`).join("")}
@@ -229,7 +229,7 @@ export async function showMonthlyRankings() {
         root.innerHTML = `
             <div class="monthly-rankings-popup">
                 <div class="monthly-popup-header">
-                    <p>Maps personally played at each overall Elo position after the map. Rankings compare maps in 1st, then 2nd, then 3rd.</p>
+                    <p>Ranked by maps in 1st, then 2nd, then 3rd. ${MIN_MAPS_FOR_RANKING} maps to qualify.</p>
                     <label class="monthly-month-label">Month
                         <select id="monthlyMonthSelect">${selectable.map(month => `<option value="${month}" ${month === selected ? "selected" : ""}>${monthLabel(month)}${month === currentMonth ? " · In progress" : " · Final"}</option>`).join("")}</select>
                     </label>

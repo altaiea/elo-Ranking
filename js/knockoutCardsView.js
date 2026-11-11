@@ -29,11 +29,11 @@ async function render() {
     box.innerHTML = `<div class="ko-empty">Loading Knock-out Cards…</div>`;
     const pool = await loadKnockoutCardPool();
     if (!pool.players.length) {
-        box.innerHTML = `<div class="ko-empty">No Knock-out Cards yet. A player's card appears after their first Captain's Cup series.</div>`;
+        box.innerHTML = `<div class="ko-empty">No Knock-out Cards yet.</div>`;
         rendered = true;
         return;
     }
-    box.innerHTML = `<p class="ko-small">Every Knock-out Card starts from zero and only counts Captain's Cup maps (${pool.mapCount} so far). Those maps still count towards the normal cards and Elo as well.</p>
+    box.innerHTML = `<p class="ko-small">Cup maps only (${pool.mapCount} so far).</p>
         <div class="ko-card-grid">${pool.players.map(p => {
             const where = p.tier ? escapeHtml(p.tier.name) : "";
             return `<div class="ko-card-wrap" data-ko-card="${p.id}" data-ko-tier="${p.tier ? p.tier.index : ""}" style="--c:var(--ko-tier-${p.tier ? p.tier.index : "x"})">

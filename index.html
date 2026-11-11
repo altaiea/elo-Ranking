@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="matchSetup.css">
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="locker.css">
+    <link rel="stylesheet" href="seamless.css">
 <style>
 #bootLoader{position:fixed;inset:0;z-index:2147483000;background:#0d0b08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#e8edf3;font-family:sans-serif;transition:opacity .45s}
 #bootLoader.done{opacity:0;pointer-events:none}
@@ -74,6 +75,7 @@
 
 <!-- page header: tabs.js fills it for the open tab -->
 <header class="page-head" id="pageHead">
+    <img class="ph-art" id="pageArt" alt="" hidden>
     <h1 class="ph-title" id="pageTitle">RANKS</h1>
 </header>
 <!-- the pages inside the open group (Ranks, Players): tabs.js fills it -->
@@ -193,7 +195,6 @@
     <section class="comparison-page">
         <div class="comparison-header">
             <h2>HEAD-TO-HEAD</h2>
-            <p>Who's Better?</p>
         </div>
 
         <!-- Fight night: pick the two players from their cards (js/fightNight.js). The selects below hold the choice. -->
@@ -217,7 +218,7 @@
             </div>
         </div>
 
-        <div id="comparisonEmpty" class="comparison-empty">Select two players to begin.</div>
+        <div id="comparisonEmpty" class="comparison-empty">Pick two players.</div>
         <div id="comparisonContent" class="comparison-content" style="display:none;"></div>
     </section>
 </div>

@@ -100,6 +100,8 @@ function build(root) {
 </div>`);
     root.appendChild(wrap);
     const svg = wrap.querySelector(".dn-svg");
+    // Share the globe's viewBox so the decorative surround stays centred at every size.
+    el("image", { href: "assets/duo-gold-surround.svg", x: 0, y: 0, width: 680, height: 660, "aria-hidden": "true", "pointer-events": "none", class: "dn-surround" }, svg);
     el("g", { id: "dnRipples" }, svg);
     const gE = el("g", { id: "dnEdges" }, svg), gHit = el("g", { id: "dnHits" }, svg), gSel = el("g", { id: "dnSel" }, svg), gN = el("g", { id: "dnNodes" }, svg);
     // spread the players evenly over the globe (a spiral from top to bottom)

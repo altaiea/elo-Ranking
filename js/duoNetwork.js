@@ -13,17 +13,22 @@ const CX = 340, CY = 330, R = 186;      // centre and size of the globe inside t
 const CAMERA = 3.4;                      // how far away the viewer is, in globe radiuses (smaller = stronger 3D)
 const SPIN = 0.0022;                     // how fast it turns on its own before you touch it
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
-// Connection colours come from seamless.css, so they can be changed there without touching this file:
+// Connection colours come from seamless.css, so they can be changed there without touching this file.
+// With nobody picked, the globe is two colours:
+//   --dn-plain  duos that win at least half (champagne)
+//   --dn-loss   duos that lose more than they win (oxblood)
+// Once a player is clicked, their connections show three:
 //   --dn-best  duos that win BEST_FROM or more of their maps (the purple of a 99 rating)
-//   --dn-win   duos that win at least half
-//   --dn-loss  duos that lose more than they win
+//   --dn-win   duos that win at least half (green)
+//   --dn-loss  duos that lose more than they win (oxblood)
 // Inside each band, the further from 50% the brighter the line.
 const BEST_FROM = 0.57;
 const BG = [11, 9, 6];
 const hex = v => { const m = /^#?([0-9a-f]{6})$/i.exec(String(v).trim()); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
-let BEST = [168, 85, 247], WIN = [78, 148, 103], LOSS = [163, 49, 47];
+let PLAIN = [236, 220, 180], BEST = [168, 85, 247], WIN = [78, 148, 103], LOSS = [163, 49, 47];
 function readColours() {
     const css = getComputedStyle(document.documentElement), get = (name, fallback) => hex(css.getPropertyValue(name)) ? css.getPropertyValue(name).trim() : fallback;
+    PLAIN = hex(css.getPropertyValue("--dn-plain")) || PLAIN;
     BEST = hex(css.getPropertyValue("--dn-best")) || BEST;
     WIN = hex(css.getPropertyValue("--dn-win")) || WIN;
     LOSS = hex(css.getPropertyValue("--dn-loss")) || LOSS;
@@ -33,9 +38,11 @@ function readColours() {
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
 const shade = (colour, strength) => `rgb(${mix(mix(BG, colour, 0.3), colour, 0.35 + 0.65 * clamp01(strength))})`;
-const winColour = wr => wr >= BEST_FROM ? shade(BEST, 0.5 + (wr - BEST_FROM) / 0.12)
-    : wr >= 0.5 ? shade(WIN, 0.35 + (wr - 0.5) / 0.1)
-    : shade(LOSS, (0.5 - wr) / 0.22);
+// plain = true: the two-colour look used when nobody is picked
+const winColour = (wr, plain = false) => wr < 0.5 ? shade(LOSS, (0.5 - wr) / 0.22)
+    : plain ? shade(PLAIN, (wr - 0.5) / 0.22)
+    : wr >= BEST_FROM ? shade(BEST, 0.5 + (wr - BEST_FROM) / 0.12)
+    : shade(WIN, 0.35 + (wr - 0.5) / 0.1);
 const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 const h = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 const nm = id => getPlayerName(id);
@@ -301,7 +308,7 @@ function update(opts) {
         const touches = focus !== null && (e.a === focus || e.b === focus);
         const dim = focus !== null && !touches;
         const style = show
-            ? { sw: 1 + 8.5 * Math.sqrt(p.g / maxG), col: winColour(wr), op: dim ? 0.07 : 0.35 + 0.55 * Math.min(1, p.g / 18) }
+            ? { sw: 1 + 8.5 * Math.sqrt(p.g / maxG), col: winColour(wr, focus === null), op: dim ? 0.07 : 0.35 + 0.55 * Math.min(1, p.g / 18) }
             : { sw: 0.5, col: "rgb(70,78,92)", op: 0 };
         const ia = S.pos[e.a].i, ib = S.pos[e.b].i;
         const ring = i => originI === null ? 0 : Math.min(Math.abs(i - originI), n - Math.abs(i - originI));

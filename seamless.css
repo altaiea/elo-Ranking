@@ -99,9 +99,10 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .history-player-row:hover { background: rgba(var(--gold-rgb), .045); }
 
 /* ---------- Duo network ---------- */
-/* Champagne and oxblood. --dn-best / --dn-win / --dn-loss: connections by win rate (purple, green, red).
+/* Champagne and oxblood. --dn-plain / --dn-loss: connections with nobody picked.
+   --dn-best / --dn-win / --dn-loss: a picked player's connections by win rate (purple, green, red).
    --dn-node: the players. --dn-pick: whatever you have chosen. --dn-metal: the dial round the outside. */
-:root { --dn-best: #a855f7; --dn-win: #4e9467; --dn-loss: #a3312f; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
+:root { --dn-plain: #ecdcb4; --dn-best: #a855f7; --dn-win: #4e9467; --dn-loss: #a3312f; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
 .dn-box { margin: 0 0 14px; }
 .dn-toggle { padding: 9px 14px; }
 .dn-body { background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 6px; margin-top: 6px; }

@@ -16,13 +16,24 @@ import { loadAllHistory } from "./data.js";
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 
 /* ---------- colours ---------- */
-// Change these to restyle the network.
-// With nobody picked, everything is polished gold on black. Picking a player
-// shows only their connections, in the site's three win-rate colours.
+// With nobody picked, the network is two polished metals: duos that win at least
+// half their maps in the first (light) metal, duos that lose more in the second
+// (dark) one. Each finish below is one pair; FINISH picks which one the site uses.
+//   light / dark : the two metals for the lines
+//   rim          : the ring round each player's black sphere
+//   name         : the colour of the players' names
+export const FINISHES = [
+    { id: "gold",      label: "Gold & black",          light: "#eaa62e", dark: "#2b2724", rim: "#eaa62e", name: "#f3dfa6" },
+    { id: "ivory",     label: "Ivory & oxblood",       light: "#efe6d0", dark: "#5c1512", rim: "#efe6d0", name: "#f4ecdb" },
+    { id: "champagne", label: "Champagne & burgundy",  light: "#e6cf9c", dark: "#5e1a2c", rim: "#e6cf9c", name: "#f1e2bd" },
+    { id: "rose",      label: "Rose gold & onyx",      light: "#e3a68c", dark: "#1f1c1c", rim: "#e3a68c", name: "#f2cdbd" },
+    { id: "platinum",  label: "Platinum & midnight",   light: "#dfe3ea", dark: "#1a2440", rim: "#dfe3ea", name: "#eef1f6" },
+    { id: "bronze",    label: "Bronze & emerald",      light: "#c4823d", dark: "#0f4a36", rim: "#c4823d", name: "#ebc49a" },
+    { id: "silver",    label: "Silver & black",        light: "#c9ccd1", dark: "#26272a", rim: "#c9ccd1", name: "#e8eaee" }
+];
+export const FINISH = "gold";
+// When a player is picked, their connections switch to the site's win-rate colours.
 export const COLOURS = {
-    gold: "#eaa62e",     // the brightest lines and the rims round the players
-    bronze: "#7a5514",   // the faintest lines (duos with few maps together)
-    cream: "#f1ead9",    // the players' dots and names
     best: "#a855f7",     // duos that win BEST_FROM or more of their maps (purple, as on the rest of the site)
     win: "#3fa866",      // duos that win at least half (green)
     loss: "#c5332f"      // duos that lose more than they win (red)
@@ -38,6 +49,13 @@ const pct = (w, d) => d ? Math.round(100 * w / d) + "%" : "–";
 
 let S = null;        // everything the network knows, once the data has loaded
 let loading = null;
+
+// The finish in use. The FINISH picker under the globe can change it; the choice is remembered on this device.
+function pickFinish() {
+    let id = FINISH;
+    try { id = localStorage.getItem("duoFinish") || FINISH; } catch (_) {}
+    return FINISHES.find(f => f.id === id) || FINISHES[0];
+}
 
 /* ---------- data ---------- */
 async function loadData() {
@@ -69,7 +87,8 @@ async function loadData() {
         S = {
             dates, events, ids, pos, names: Object.fromEntries(ids.map(id => [id, nm(id)])),
             lo: 0, hi: dates.length - 1, min: 5, selA: null, selB: null, playing: null,
-            byWinRate: false,        // false: gold lines until a player is picked; true: every line in its win-rate colour
+            byWinRate: false,        // false: two-tone metal until a player is picked; true: every line in its win-rate colour
+            finish: pickFinish(),
             edges: {}, nodes: {}     // what the 3D drawing should show; filled in by update()
         };
         return S;
@@ -101,7 +120,7 @@ function buildUi() {
   <header class="duo-top">
     <h2>DUO <b>NETWORK</b></h2>
     <div class="duo-seg" role="group" aria-label="Line colours">
-      <button type="button" data-mode="gold" aria-pressed="true">GOLD</button>
+      <button type="button" data-mode="metal" aria-pressed="true">METAL</button>
       <button type="button" data-mode="winrate" aria-pressed="false">WIN RATE</button>
     </div>
     <button type="button" class="duo-btn duo-reset">RESET VIEW</button>
@@ -117,6 +136,7 @@ function buildUi() {
         <div class="duo-track"><div class="duo-fill" id="duoFill"></div>
           <input type="range" id="duoLo" min="0" step="1" aria-label="From"><input type="range" id="duoHi" min="0" step="1" aria-label="To"></div>
       </div>
+      <label class="duo-min duo-finish"><span>FINISH</span> <select id="duoFinish"></select></label>
       <label class="duo-min">MIN MAPS <select id="duoMin"><option>1</option><option>3</option><option selected>5</option><option>10</option><option>20</option></select></label>
       <button type="button" class="duo-btn duo-all">ALL TIME</button>
     </div>
@@ -132,6 +152,13 @@ function buildUi() {
         stopPlay(); S.lo = a; S.hi = b; update({ pulse: true });
     };
     lo.addEventListener("input", () => onRange("lo")); hi.addEventListener("input", () => onRange("hi"));
+    const fin = ui.querySelector("#duoFinish");
+    fin.innerHTML = FINISHES.map(f => `<option value="${f.id}"${f === S.finish ? " selected" : ""}>${f.label}</option>`).join("");
+    fin.addEventListener("change", () => {
+        S.finish = FINISHES.find(f => f.id === fin.value) || FINISHES[0];
+        try { localStorage.setItem("duoFinish", S.finish.id); } catch (_) {}
+        update();
+    });
     ui.querySelector("#duoMin").addEventListener("change", e => { S.min = +e.target.value; update({ pulse: true }); });
     ui.querySelector(".duo-all").addEventListener("click", () => { stopPlay(); S.lo = 0; S.hi = S.dates.length - 1; lo.value = 0; hi.value = S.hi; update({ pulse: true }); });
     ui.querySelector(".duo-play").addEventListener("click", togglePlay);
@@ -241,8 +268,9 @@ function update(opts) {
     const f = ui.querySelector("#duoFill"); f.style.left = (last ? S.lo / last * 100 : 0) + "%"; f.style.width = (last ? (S.hi - S.lo) / last * 100 : 100) + "%";
     const sw = (c, t) => `<span><i style="background:${c}"></i>${t}</span>`;
     ui.querySelector("#duoLegend").innerHTML = S.byWinRate || focus !== null
-        ? sw(COLOURS.best, `Wins ${Math.round(BEST_FROM * 100)}%+`) + sw(COLOURS.win, "Wins half or more") + sw(COLOURS.loss, "Loses more than wins") + "<span>Thicker line = more maps together</span>"
-        : "<span>Tap a player to see their duos</span><span>Thicker line = more maps together</span>";
+        ? sw(COLOURS.best, `Wins ${Math.round(BEST_FROM * 100)}%+`) + sw(COLOURS.win, "Wins half or more") + sw(COLOURS.loss, "Loses more than wins") + "<span class='duo-extra'>Thicker line = more maps together</span>"
+        : sw(S.finish.light, "Wins half or more") + sw(S.finish.dark, "Loses more than wins") + "<span class='duo-extra'>Thicker line = more maps together</span><span class='duo-extra'>Tap a player to see their duos</span>";
+    ui.style.setProperty("--duo-name", S.finish.name);
     renderSide(agg);
 }
 

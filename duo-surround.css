@@ -33,8 +33,8 @@
 .duo-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
 .duo-gl.grabbing { cursor: grabbing; }
 .duo-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.duo-labels span { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 2px 4px; color: #f3dfa6; font: 800 13px/1.1 "Segoe UI", system-ui, sans-serif; letter-spacing: .08em; text-shadow: 0 0 2px #000, 0 1px 3px #000, 0 0 6px #000; pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; will-change: transform; }
-.duo-labels span.sel { color: var(--duo-gold); text-shadow: 0 0 10px rgba(242, 193, 78, .9), 0 0 2px #000; font-size: 15px; }
+.duo-labels span { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 2px 4px; color: var(--duo-name, #f3dfa6); font: 800 13px/1.1 "Segoe UI", system-ui, sans-serif; letter-spacing: .08em; text-shadow: 0 0 2px #000, 0 1px 3px #000, 0 0 6px #000; pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; will-change: transform; }
+.duo-labels span.sel { color: #fff; text-shadow: 0 0 10px rgba(242, 193, 78, .9), 0 0 2px #000; font-size: 15px; }
 .duo-labels span:focus-visible { outline: 1px solid var(--duo-gold); outline-offset: 2px; border-radius: 4px; }
 .duo-tip { position: absolute; display: none; z-index: 200; pointer-events: none; white-space: nowrap; padding: 8px 11px; border-radius: 8px; background: rgba(11, 9, 6, .94); border: 1px solid var(--duo-gold); box-shadow: 0 0 16px rgba(242, 193, 78, .35); font-size: 13px; }
 .duo-tip b { letter-spacing: .06em; color: #fff; }
@@ -113,8 +113,14 @@
 .phone-bar .duo-side { padding: 12px; }
 .phone-bar .duo-blocks { gap: 8px; margin-top: 10px; }
 .phone-bar .duo-li { padding: 5px 4px; }
-.phone-bar .duo-legend span:last-child { display: none; }          /* keeps the legend to one line, so the globe never changes size */
+.phone-bar .duo-legend .duo-extra, .phone-bar .duo-finish > span { display: none; }          /* keeps the legend to one line, so the globe never changes size */
 .phone-bar .duo-title { margin-bottom: 4px; }
 .phone-bar .duo-title + .duo-note { display: none; }
 .phone-bar .duo-blocks { gap: 6px; margin-top: 6px; }
 .phone-bar .duo-li { padding: 3px 4px; }
+.duo-finish select { max-width: 200px; }
+.phone-bar .duo-labels span { padding: 2px 4px; }
+.phone-bar .duo-controls { gap: 8px 12px; }
+.phone-bar .duo-finish select { max-width: 132px; margin-left: 0; }
+.duo-hint { transition: opacity .6s; }
+.duo-stage.touched .duo-hint { opacity: 0; }

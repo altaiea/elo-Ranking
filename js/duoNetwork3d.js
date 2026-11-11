@@ -26,7 +26,7 @@ const GLOBE_FILL = 0.72;           // the globe's radius as a share of half the 
 const ZOOM_MIN = 0.55, ZOOM_MAX = 2.6;
 const AUTO_SPIN = 0.0028;          // radians a frame, until you touch it
 const WHITE = new T.Color(0xffffff);
-const GOLD = new T.Color(COLOURS.gold), BRONZE = new T.Color(COLOURS.bronze), CREAM = new T.Color(COLOURS.cream);
+const BLACK = new T.Color(0x000000);
 
 export function createGlobe3D(stage, S, on) {
     let renderer;
@@ -63,9 +63,11 @@ export function createGlobe3D(stage, S, on) {
     const glowMaterial = (colour, opacity) => new T.SpriteMaterial({ map: glowTexture, color: colour, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity });
     const additive = (colour, opacity) => new T.MeshBasicMaterial({ color: colour, transparent: true, opacity, blending: T.AdditiveBlending, depthWrite: false });
 
-    /* ---------- scenery: a little gold dust drifting round the globe ---------- */
+    let dustMaterial = null;
+    /* ---------- scenery: a little dust in the light metal's colour, drifting round the globe ---------- */
     {
-        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0xf2c14e, 0.7), 200), o = new T.Object3D();
+        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0xffffff, 0.7), 200), o = new T.Object3D();
+        dustMaterial = dust.material;
         let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // the same dust every time
         for (let i = 0; i < 200; i++) {
             const r = 1.45 + rnd() * 2.4, y = rnd() * 2 - 1, a = rnd() * Math.PI * 2, q = Math.sqrt(1 - y * y);
@@ -79,13 +81,13 @@ export function createGlobe3D(stage, S, on) {
     // Each player is a glossy black sphere sitting in a gold rim. The rim always faces you.
     const ball = new T.SphereGeometry(1, 32, 24), hitBall = new T.SphereGeometry(1, 10, 8), hoop = new T.TorusGeometry(1.08, 0.13, 14, 48);
     const unseen = new T.MeshBasicMaterial({ visible: false });
-    const goldMetal = new T.MeshPhysicalMaterial({ color: GOLD, metalness: 1, roughness: 0.22, envMapIntensity: 1.4 });
+    const rimMetal = new T.MeshPhysicalMaterial({ color: 0xffffff, metalness: 1, roughness: 0.22, envMapIntensity: 1.4 });
     const nodes = {};
     S.ids.forEach(id => {
         const p = new T.Vector3(...S.pos[id]);
         const core = new T.Mesh(ball, new T.MeshPhysicalMaterial({ color: 0x0a0908, metalness: 0.2, roughness: 0.08, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.3, transparent: true })); core.position.copy(p);
-        const ring = new T.Mesh(hoop, goldMetal.clone()); ring.material.transparent = true; ring.position.copy(p);
-        const glow = new T.Sprite(glowMaterial(GOLD, 0)); glow.position.copy(p);
+        const ring = new T.Mesh(hoop, rimMetal.clone()); ring.material.transparent = true; ring.position.copy(p);
+        const glow = new T.Sprite(glowMaterial(0xffffff, 0)); glow.position.copy(p);
         const hit = new T.Mesh(hitBall, unseen); hit.position.copy(p); hit.scale.setScalar(0.13); hit.userData.id = id;
         world.add(core, ring, glow, hit);
         const label = document.createElement("span");
@@ -118,7 +120,12 @@ export function createGlobe3D(stage, S, on) {
     }
 
     /* ---------- match what duoNetwork.js worked out ---------- */
+    const light = new T.Color(), dark = new T.Color();
     function sync(opts) {
+        const f = S.finish;
+        light.set(f.light); dark.set(f.dark);
+        if (dustMaterial) dustMaterial.color.set(f.light);
+        S.ids.forEach(id => { nodes[id].ring.material.color.set(f.rim); nodes[id].glow.material.color.set(f.rim); });
         Object.keys(S.edges).forEach(k => {
             const e = S.edges[k], g = edges[k] || makeEdge(k);
             const duo = e.state === "duo";
@@ -131,7 +138,7 @@ export function createGlobe3D(stage, S, on) {
                 g.radius = radius; g.dirty = true;
             }
             if (e.byWinRate) { g.tA.set(COLOURS[band(e.wr)]); g.tB.copy(g.tA); }
-            else { g.tA.copy(BRONZE).lerp(GOLD, 0.35 + 0.65 * e.weight); g.tB.copy(g.tA); }      // gold: the more maps together, the brighter
+            else { g.tA.copy(e.wr >= 0.5 ? light : dark).lerp(BLACK, 0.3 * (1 - e.weight)); g.tB.copy(g.tA); }      // two-tone metal; duos with few maps are a shade deeper
             g.toWhite = duo ? 0.25 : 0;
             g.toLevel = e.state === "dim" ? 0 : 1;         // with a player picked, everyone else's lines are hidden
             g.lit = duo || e.state === "lit";
@@ -143,6 +150,7 @@ export function createGlobe3D(stage, S, on) {
             n.toR = (0.034 + 0.03 * v.size) * (v.picked ? 1.3 : 1);
             n.toFade = v.faded ? 0.2 : 1; n.toLift = v.picked ? 1 : 0;
             n.label.classList.toggle("sel", v.picked); n.label.classList.toggle("faded", v.faded);
+            if (w) { n.w = n.label.offsetWidth; n.h = n.label.offsetHeight; }      // a picked name is larger, so measure again
             if (opts && opts.pulse) n.pulse = 1;
         });
         if (!running) draw();           // hidden: still bring the picture up to date, so opening is instant
@@ -210,7 +218,7 @@ export function createGlobe3D(stage, S, on) {
             n.ring.scale.setScalar(n.r); n.ring.material.opacity = n.fade; n.ring.quaternion.copy(unturn);
             n.glow.scale.setScalar(n.r * 7); n.glow.material.opacity = n.fade * 0.55 * n.lift;      // only a picked player glows
             v.copy(n.p).applyMatrix4(world.matrixWorld);
-            n.depth = v.z;
+            n.depth = v.z; n.persp = camera.position.z / (camera.position.z - v.z);
             v.project(camera);
             n.sx = (v.x * 0.5 + 0.5) * w; n.sy = (-v.y * 0.5 + 0.5) * h;
             order.push(n);
@@ -219,24 +227,31 @@ export function createGlobe3D(stage, S, on) {
         renderer.render(scene, camera);
     }
 
-    // Names sit just outside their dot, on the side away from the centre. Nearest players are placed
-    // first; a name that would land on one already placed tries above and below, and failing that goes faint.
+    // Each name sits just outside its sphere, straight out from the middle of the globe, with a clear
+    // gap so it never touches the ball. The name slides smoothly round its sphere as the globe turns and
+    // never jumps to another spot. Nearest players are placed first; a name that would land on one
+    // already placed goes faint instead of moving.
     function placeLabels(order) {
         order.sort((a, b) => b.depth - a.depth);
-        const placed = [];
-        const clash = (x, y, bw, bh) => placed.some(b => x < b.x + b.w + 4 && x + bw + 4 > b.x && y < b.y + b.h + 1 && y + bh + 1 > b.y);
+        const placed = [], pad = 6;
+        const clash = (x, y, bw, bh) => placed.some(b => x < b.x + b.w && x + bw > b.x && y < b.y + b.h && y + bh > b.y);
         order.forEach(n => {
             let dx = n.sx - w / 2, dy = n.sy - h / 2; const len = Math.hypot(dx, dy);
-            if (len < globePx * 0.12) { dx = 0; dy = -1; } else { dx /= len; dy /= len; }
-            const gap = n.r * globePx + 9;
-            const at = (ux, uy) => [n.sx + ux * gap + (Math.abs(ux) < 0.3 ? -n.w / 2 : ux > 0 ? 0 : -n.w), n.sy + uy * gap - n.h / 2];
-            const tries = [at(dx, dy), at(0, -1.25), at(0, 1.25)];
-            let spot = tries.find(([x, y]) => !clash(x, y, n.w, n.h)), hidden = false;
-            if (!spot) { spot = tries[0]; hidden = true; }
-            else placed.push({ x: spot[0], y: spot[1], w: n.w, h: n.h });
+            // near the middle, ease towards "above" instead of flipping
+            const ease = Math.min(1, len / (globePx * 0.25));
+            dx = len ? dx / len * ease : 0; dy = (len ? dy / len * ease : 0) - (1 - ease);
+            const dl = Math.hypot(dx, dy) || 1; dx /= dl; dy /= dl;
+            // the sphere's size on screen, including its rim and the perspective
+            const ball = n.r * 1.25 * globePx * n.persp;
+            // from the name's middle to its edge, along the same line, so the gap is the same all the way round
+            const edge = Math.min(Math.abs(dx) > 0.001 ? n.w / 2 / Math.abs(dx) : 1e9, Math.abs(dy) > 0.001 ? n.h / 2 / Math.abs(dy) : 1e9);
+            const reach = ball + 6 + edge;                                                // to the middle of the name
+            const x = n.sx + dx * reach - n.w / 2, y = n.sy + dy * reach - n.h / 2;
+            const hidden = clash(x - pad, y, n.w + pad * 2, n.h);
+            if (!hidden) placed.push({ x: x - pad, y, w: n.w + pad * 2, h: n.h });
             const near = Math.max(0, Math.min(1, (n.depth + 1) / 2)), s = n.label.style;
-            s.transform = `translate(${spot[0].toFixed(1)}px, ${spot[1].toFixed(1)}px)`;
-            s.opacity = (hidden ? 0.12 : (0.4 + 0.6 * near) * (n.toFade < 1 ? 0.35 : 1)).toFixed(2);
+            s.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+            s.opacity = (hidden ? 0.1 : (0.45 + 0.55 * near) * (n.toFade < 1 ? 0.35 : 1)).toFixed(2);
             s.zIndex = Math.round(near * 100);
         });
     }
@@ -268,6 +283,7 @@ export function createGlobe3D(stage, S, on) {
     let mode = "", moved = 0, pinch = null;
 
     canvas.addEventListener("pointerdown", e => {
+        stage.classList.add("touched");                  // the "drag to spin" hint fades once you have tried it
         try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
         const p = local(e);
         pointers.set(e.pointerId, p);

@@ -1,7 +1,7 @@
 /* ======================================================
    DUO NETWORK pop-up (js/duoNetwork.js, js/duoNetwork3d.js)
    Only the duo network: nothing here touches the rest of the site.
-   Gold on black like the rest of the site; the neon only appears on a picked player's connections.
+   Gold on black like the rest of the site.
    Layout: a bar along the top, the 3D globe filling the left, the
    stats panel down the right, and the time controls under the globe.
    On a tall screen (a phone held upright) the panel moves under the globe.
@@ -33,7 +33,7 @@
 .duo-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
 .duo-gl.grabbing { cursor: grabbing; }
 .duo-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.duo-labels span { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 2px 4px; color: var(--duo-text); font: 800 13px/1.1 "Segoe UI", system-ui, sans-serif; letter-spacing: .08em; text-shadow: 0 0 2px #000, 0 1px 3px #000, 0 0 6px #000; pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; will-change: transform; }
+.duo-labels span { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 2px 4px; color: #f3dfa6; font: 800 13px/1.1 "Segoe UI", system-ui, sans-serif; letter-spacing: .08em; text-shadow: 0 0 2px #000, 0 1px 3px #000, 0 0 6px #000; pointer-events: auto; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; will-change: transform; }
 .duo-labels span.sel { color: var(--duo-gold); text-shadow: 0 0 10px rgba(242, 193, 78, .9), 0 0 2px #000; font-size: 15px; }
 .duo-labels span:focus-visible { outline: 1px solid var(--duo-gold); outline-offset: 2px; border-radius: 4px; }
 .duo-tip { position: absolute; display: none; z-index: 200; pointer-events: none; white-space: nowrap; padding: 8px 11px; border-radius: 8px; background: rgba(11, 9, 6, .94); border: 1px solid var(--duo-gold); box-shadow: 0 0 16px rgba(242, 193, 78, .35); font-size: 13px; }

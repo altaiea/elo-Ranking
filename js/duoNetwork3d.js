@@ -1,7 +1,7 @@
 /* ======================================================
    DUO NETWORK: THE 3D DRAWING  (three.js)
-   A gold globe: every player is a glowing dot, every duo a gold tube. Picking
-   a player turns their tubes neon, coloured by win rate.
+   A globe of polished gold: every player is a black sphere in a gold rim, every
+   duo a gold tube. Picking a player shows only their tubes, coloured by win rate.
    js/duoNetwork.js owns the data, the buttons and the side panel, and tells
    this file what to show through S.edges and S.nodes.
 
@@ -10,10 +10,9 @@
      S     : duoNetwork.js's state
      on    : { pickNode(id), pickEdge("a-b"), hoverEdge("a-b" or null, x, y) }
 
-   How the neon look is made: nothing here is lit by lamps. Every tube is drawn
-   three times: a solid core in its full colour, a slightly wider see-through
-   one, and a wider faint one. The outer two are "added" to whatever is behind them, so where
-   glows cross they get brighter, the way real neon does.
+   How the metal look is made: the tubes and spheres are given a shiny metal
+   surface, and the scene is wrapped in an invisible softly lit room. The
+   highlights you see running along the gold are that room being reflected.
 
    Turning: the globe's angle is kept as a quaternion (one rotation that can
    point any way), not as left/right and up/down angles. That is what lets it
@@ -33,6 +32,9 @@ export function createGlobe3D(stage, S, on) {
     let renderer;
     try { renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" }); }
     catch (_) { return null; }
+    renderer.toneMapping = T.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.95;
+    renderer.outputColorSpace = T.SRGBColorSpace;
     const canvas = renderer.domElement;
     canvas.className = "duo-gl";
     const labels = document.createElement("div");
@@ -44,6 +46,10 @@ export function createGlobe3D(stage, S, on) {
     const camera = new T.PerspectiveCamera(FIELD_OF_VIEW, 1, 0.1, 40);
     const world = new T.Group();                    // everything that turns with the globe
     scene.add(world);
+    // the softly lit room the metal reflects, plus a warm lamp in front and a cool one behind for the highlights
+    scene.environment = new T.PMREMGenerator(renderer).fromScene(new T.RoomEnvironment(), 0.04).texture;
+    const key = new T.DirectionalLight(0xfff1d6, 2.2); key.position.set(2.5, 3, 4); scene.add(key);
+    const rim = new T.DirectionalLight(0xbfd0ff, 0.8); rim.position.set(-3, -2, -3); scene.add(rim);
     const HOME = world.quaternion.clone().setFromAxisAngle(new T.Vector3(1, 0, 0), 0.32);
     world.quaternion.copy(HOME);
 
@@ -57,39 +63,37 @@ export function createGlobe3D(stage, S, on) {
     const glowMaterial = (colour, opacity) => new T.SpriteMaterial({ map: glowTexture, color: colour, blending: T.AdditiveBlending, depthWrite: false, transparent: true, opacity });
     const additive = (colour, opacity) => new T.MeshBasicMaterial({ color: colour, transparent: true, opacity, blending: T.AdditiveBlending, depthWrite: false });
 
-    /* ---------- scenery: three hoops (one per axis), a soft glow in the middle, and drifting dust ---------- */
+    /* ---------- scenery: a little gold dust drifting round the globe ---------- */
     {
-        const hoop = new T.TorusGeometry(1, 0.0022, 6, 160);
-        [[0, 0], [Math.PI / 2, 0], [0, Math.PI / 2]].forEach(([rx, ry]) => {
-            const m = new T.Mesh(hoop, additive(GOLD, 0.22)); m.rotation.set(rx, ry, 0); world.add(m);
-        });
-        const heart = new T.Sprite(glowMaterial(0xb07a1e, 0.1)); heart.scale.setScalar(3.4); world.add(heart);
-        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0xf2d9a0, 0.4), 260), o = new T.Object3D();
+        const dust = new T.InstancedMesh(new T.SphereGeometry(1, 6, 4), additive(0xf2c14e, 0.7), 200), o = new T.Object3D();
         let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;   // the same dust every time
-        for (let i = 0; i < 260; i++) {
-            const r = 1.35 + rnd() * 2.4, y = rnd() * 2 - 1, a = rnd() * Math.PI * 2, q = Math.sqrt(1 - y * y);
-            o.position.set(r * q * Math.cos(a), r * y, r * q * Math.sin(a)); o.scale.setScalar(0.004 + rnd() * 0.008); o.updateMatrix();
+        for (let i = 0; i < 200; i++) {
+            const r = 1.45 + rnd() * 2.4, y = rnd() * 2 - 1, a = rnd() * Math.PI * 2, q = Math.sqrt(1 - y * y);
+            o.position.set(r * q * Math.cos(a), r * y, r * q * Math.sin(a)); o.scale.setScalar(0.003 + rnd() * 0.006); o.updateMatrix();
             dust.setMatrixAt(i, o.matrix);
         }
         world.add(dust);
     }
 
     /* ---------- players ---------- */
-    const ball = new T.SphereGeometry(1, 24, 16), hitBall = new T.SphereGeometry(1, 10, 8);
+    // Each player is a glossy black sphere sitting in a gold rim. The rim always faces you.
+    const ball = new T.SphereGeometry(1, 32, 24), hitBall = new T.SphereGeometry(1, 10, 8), hoop = new T.TorusGeometry(1.08, 0.13, 14, 48);
     const unseen = new T.MeshBasicMaterial({ visible: false });
+    const goldMetal = new T.MeshPhysicalMaterial({ color: GOLD, metalness: 1, roughness: 0.22, envMapIntensity: 1.4 });
     const nodes = {};
     S.ids.forEach(id => {
         const p = new T.Vector3(...S.pos[id]);
-        const core = new T.Mesh(ball, new T.MeshBasicMaterial({ color: CREAM, transparent: true })); core.position.copy(p);
-        const glow = new T.Sprite(glowMaterial(GOLD, 0.6)); glow.position.copy(p);
+        const core = new T.Mesh(ball, new T.MeshPhysicalMaterial({ color: 0x0a0908, metalness: 0.2, roughness: 0.08, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.3, transparent: true })); core.position.copy(p);
+        const ring = new T.Mesh(hoop, goldMetal.clone()); ring.material.transparent = true; ring.position.copy(p);
+        const glow = new T.Sprite(glowMaterial(GOLD, 0)); glow.position.copy(p);
         const hit = new T.Mesh(hitBall, unseen); hit.position.copy(p); hit.scale.setScalar(0.13); hit.userData.id = id;
-        world.add(core, glow, hit);
+        world.add(core, ring, glow, hit);
         const label = document.createElement("span");
         label.textContent = S.names[id]; label.dataset.id = id;
         label.setAttribute("role", "button"); label.tabIndex = 0;
         label.setAttribute("aria-label", `Select ${S.names[id]}`);
         labels.appendChild(label);
-        nodes[id] = { id, p, core, glow, hit, label, w: 0, h: 0, r: 0.05, toR: 0.05, fade: 1, toFade: 1, lift: 0, toLift: 0, pulse: 0, depth: 0, sx: 0, sy: 0 };
+        nodes[id] = { id, p, core, ring, glow, hit, label, w: 0, h: 0, r: 0.05, toR: 0.05, fade: 1, toFade: 1, lift: 0, toLift: 0, pulse: 0, depth: 0, sx: 0, sy: 0 };
     });
 
     /* ---------- duos ---------- */
@@ -99,11 +103,9 @@ export function createGlobe3D(stage, S, on) {
         const [a, b] = k.split("-").map(Number), A = nodes[a].p, B = nodes[b].p;
         const curve = new T.QuadraticBezierCurve3(A, A.clone().add(B).multiplyScalar(0.2), B);   // bends in towards the middle
         const layer = (material, order) => { const m = new T.Mesh(undefined, material); m.visible = false; m.userData.k = k; m.renderOrder = order; world.add(m); return m; };
-        const core = layer(new T.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0 }), 2);
-        const halo = layer(new T.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0, blending: T.AdditiveBlending, depthWrite: false }), 1);
-        const wide = layer(new T.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0, blending: T.AdditiveBlending, depthWrite: false }), 1);
-        const spark = new T.Sprite(glowMaterial(0xffffff, 0)); spark.visible = false; world.add(spark);
-        return edges[k] = { k, curve, core, halo, wide, spark, radius: 0, level: 0, toLevel: 0, cA: new T.Color(0), cB: new T.Color(0), tA: new T.Color(), tB: new T.Color(), white: 0.04, toWhite: 0.04, dirty: true, phase: (a * 0.37 + b * 0.61) % 1, lit: false };
+        const core = layer(new T.MeshPhysicalMaterial({ vertexColors: true, metalness: 1, roughness: 0.3, envMapIntensity: 1.1, transparent: true, opacity: 0 }), 2);
+        const halo = layer(unseen, 1);                 // never drawn: a fatter copy that makes the tube easier to click
+        return edges[k] = { k, curve, core, halo, radius: 0, level: 0, toLevel: 0, cA: new T.Color(0), cB: new T.Color(0), tA: new T.Color(), tB: new T.Color(), white: 0, toWhite: 0, dirty: true, lit: false };
     }
     // Colour a tube along its length from one end's colour to the other's. white: how much the colour is washed towards white.
     const tmp = new T.Color();
@@ -120,25 +122,25 @@ export function createGlobe3D(stage, S, on) {
         Object.keys(S.edges).forEach(k => {
             const e = S.edges[k], g = edges[k] || makeEdge(k);
             const duo = e.state === "duo";
-            const radius = (0.005 + 0.014 * e.weight) * (duo ? 1.5 : 1);
+            const radius = (0.007 + 0.017 * e.weight) * (duo ? 1.35 : 1);
             if (Math.abs(radius - g.radius) > 0.0003) {
-                [[g.core, radius, 8], [g.halo, radius * 1.7 + 0.003, 6], [g.wide, radius * 3.4 + 0.008, 6]].forEach(([m, r, sides]) => {
+                [[g.core, radius, 12], [g.halo, radius * 1.8 + 0.006, 6]].forEach(([m, r, sides]) => {
                     if (m.geometry) m.geometry.dispose();
-                    m.geometry = new T.TubeGeometry(g.curve, 26, r, sides, false);
+                    m.geometry = new T.TubeGeometry(g.curve, 40, r, sides, false);
                 });
                 g.radius = radius; g.dirty = true;
             }
             if (e.byWinRate) { g.tA.set(COLOURS[band(e.wr)]); g.tB.copy(g.tA); }
-            else { g.tA.copy(BRONZE).lerp(GOLD, e.state === "dim" ? 0.15 : e.weight * e.weight); g.tB.copy(g.tA); }      // gold: the more maps together, the brighter
-            g.toWhite = duo ? 0.5 : 0.04;                  // lines keep their full colour; only the chosen duo is washed towards white
-            g.toLevel = duo ? 2.2 : e.state === "lit" ? 1.35 : e.state === "dim" ? 0.03 : 0.32 + 0.5 * e.weight;
+            else { g.tA.copy(BRONZE).lerp(GOLD, 0.35 + 0.65 * e.weight); g.tB.copy(g.tA); }      // gold: the more maps together, the brighter
+            g.toWhite = duo ? 0.25 : 0;
+            g.toLevel = e.state === "dim" ? 0 : 1;         // with a player picked, everyone else's lines are hidden
             g.lit = duo || e.state === "lit";
-            g.core.visible = g.halo.visible = g.wide.visible = true;
+            g.core.visible = g.halo.visible = e.state !== "dim" || g.level > 0.01;
         });
         Object.keys(edges).forEach(k => { if (!S.edges[k]) { edges[k].toLevel = 0; edges[k].lit = false; } });
         S.ids.forEach(id => {
             const n = nodes[id], v = S.nodes[id];
-            n.toR = (0.03 + 0.028 * v.size) * (v.picked ? 1.45 : 1);
+            n.toR = (0.034 + 0.03 * v.size) * (v.picked ? 1.3 : 1);
             n.toFade = v.faded ? 0.2 : 1; n.toLift = v.picked ? 1 : 0;
             n.label.classList.toggle("sel", v.picked); n.label.classList.toggle("faded", v.faded);
             if (opts && opts.pulse) n.pulse = 1;
@@ -147,7 +149,7 @@ export function createGlobe3D(stage, S, on) {
     }
 
     /* ---------- drawing ---------- */
-    const v = new T.Vector3(), axis = new T.Vector3(), dq = world.quaternion.clone();
+    const v = new T.Vector3(), axis = new T.Vector3(), dq = world.quaternion.clone(), unturn = world.quaternion.clone();
     let raf = null, running = false, w = 0, h = 0, ratio = 0, globePx = 100, tick = 0;
     let zoom = 1, toZoom = 1, intro = 1, homing = false;
     let autoSpin = !calm, spinAxis = new T.Vector3(0.22, 1, 0.1).normalize();
@@ -188,35 +190,25 @@ export function createGlobe3D(stage, S, on) {
         Object.values(edges).forEach(g => {
             const d = g.toLevel - g.level;
             g.level = Math.abs(d) > 0.003 ? g.level + d * 0.14 : g.toLevel;
-            if (g.level < 0.004 && g.toLevel === 0) { g.core.visible = g.halo.visible = g.wide.visible = g.spark.visible = false; return; }
-            g.core.material.opacity = Math.min(1, g.level * 3.2);          // solid for every line except the faded ones
-            g.core.material.depthWrite = g.level > 0.3;
-            g.halo.material.opacity = Math.min(0.4, g.level * 0.16);
-            g.wide.material.opacity = Math.min(0.2, g.level * g.level * 0.05);      // the widest glow is saved for the lines that are lit up
+            if (g.level < 0.004 && g.toLevel === 0) { g.core.visible = g.halo.visible = false; return; }
+            g.core.material.opacity = Math.min(1, g.level);
+            g.core.material.depthWrite = g.level > 0.5;
             // colours glide to their new values
             const off = Math.abs(g.cA.r - g.tA.r) + Math.abs(g.cA.g - g.tA.g) + Math.abs(g.cA.b - g.tA.b) + Math.abs(g.cB.r - g.tB.r) + Math.abs(g.cB.g - g.tB.g) + Math.abs(g.cB.b - g.tB.b) + Math.abs(g.white - g.toWhite);
             if (off > 0.004) { g.cA.lerp(g.tA, 0.2); g.cB.lerp(g.tB, 0.2); g.white += (g.toWhite - g.white) * 0.2; g.dirty = true; }
-            if (g.dirty && g.core.geometry) { paint(g.core, g.cA, g.cB, g.white); paint(g.halo, g.cA, g.cB, 0); paint(g.wide, g.cA, g.cB, 0); g.dirty = false; }
-            // a spark runs along the lit lines
-            const spark = g.lit && !calm;
-            g.spark.visible = spark;
-            if (spark) {
-                const t = (tick * 0.006 + g.phase) % 1;
-                g.curve.getPoint(t, g.spark.position);
-                g.spark.material.opacity = Math.sin(t * Math.PI) * 0.95;
-                g.spark.scale.setScalar(0.07 + g.radius * 6);
-            }
+            if (g.dirty && g.core.geometry) { paint(g.core, g.cA, g.cB, g.white); g.dirty = false; }
         });
 
         const order = [];
+        unturn.copy(world.quaternion).invert();          // undoes the globe's turn, so the rims stay facing you
         S.ids.forEach(id => {
             const n = nodes[id];
             n.pulse *= 0.9;
             n.r += (n.toR * (1 + n.pulse * 0.6) - n.r) * 0.2;
             n.fade += (n.toFade - n.fade) * 0.14; n.lift += (n.toLift - n.lift) * 0.14;
             n.core.scale.setScalar(n.r); n.core.material.opacity = n.fade;
-            n.glow.scale.setScalar(n.r * (4.5 + 4 * n.lift + (calm ? 0 : 0.6 * Math.sin(tick * 0.05 + id))));
-            n.glow.material.opacity = n.fade * (0.5 + 0.4 * n.lift);
+            n.ring.scale.setScalar(n.r); n.ring.material.opacity = n.fade; n.ring.quaternion.copy(unturn);
+            n.glow.scale.setScalar(n.r * 7); n.glow.material.opacity = n.fade * 0.55 * n.lift;      // only a picked player glows
             v.copy(n.p).applyMatrix4(world.matrixWorld);
             n.depth = v.z;
             v.project(camera);
@@ -270,7 +262,7 @@ export function createGlobe3D(stage, S, on) {
         return hit ? hit.object : null;
     }
     const nodeHits = S.ids.map(id => nodes[id].hit);
-    const shownTubes = () => Object.values(edges).filter(g => g.halo.visible && g.toLevel > 0.2).map(g => g.halo);
+    const shownTubes = () => Object.values(edges).filter(g => g.toLevel > 0.2 && g.halo.geometry).map(g => g.halo);
     const local = e => { const r = canvas.getBoundingClientRect(), k = w / r.width; return { x: (e.clientX - r.left) * k, y: (e.clientY - r.top) * k }; };
     const angleAt = p => Math.atan2(p.y - h / 2, p.x - w / 2);
     let mode = "", moved = 0, pinch = null;

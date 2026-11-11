@@ -1,7 +1,7 @@
 /* ======================================================
    DUO NETWORK
-   Every pairing of players, for any window of time, drawn as a gold
-   globe you can turn any way you like. Picked players light up in neon.
+   Every pairing of players, for any window of time, drawn as a globe
+   of polished gold you can turn any way you like.
 
    This file owns the data, the pop-up, the sliders and the side panel.
    The 3D drawing itself is js/duoNetwork3d.js.
@@ -17,15 +17,15 @@ const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 
 /* ---------- colours ---------- */
 // Change these to restyle the network.
-// With nobody picked, everything is the site's gold on black. Picking a player
-// lights their connections up in the three neon win-rate colours.
+// With nobody picked, everything is polished gold on black. Picking a player
+// shows only their connections, in the site's three win-rate colours.
 export const COLOURS = {
-    gold: "#f2c14e",     // the brightest lines and the glow round the players
-    bronze: "#6b4f1c",   // the faintest lines (duos with few maps together)
+    gold: "#eaa62e",     // the brightest lines and the rims round the players
+    bronze: "#7a5514",   // the faintest lines (duos with few maps together)
     cream: "#f1ead9",    // the players' dots and names
-    best: "#b8ff2e",     // duos that win BEST_FROM or more of their maps (neon lime)
-    win: "#19e6ff",      // duos that win at least half (neon cyan)
-    loss: "#ff2e7e"      // duos that lose more than they win (neon pink)
+    best: "#a855f7",     // duos that win BEST_FROM or more of their maps (purple, as on the rest of the site)
+    win: "#3fa866",      // duos that win at least half (green)
+    loss: "#c5332f"      // duos that lose more than they win (red)
 };
 const BEST_FROM = 0.57;
 export const band = wr => wr < 0.5 ? "loss" : wr >= BEST_FROM ? "best" : "win";
@@ -69,7 +69,7 @@ async function loadData() {
         S = {
             dates, events, ids, pos, names: Object.fromEntries(ids.map(id => [id, nm(id)])),
             lo: 0, hi: dates.length - 1, min: 5, selA: null, selB: null, playing: null,
-            byWinRate: false,        // false: gold lines until a player is picked; true: every line in its neon win-rate colour
+            byWinRate: false,        // false: gold lines until a player is picked; true: every line in its win-rate colour
             edges: {}, nodes: {}     // what the 3D drawing should show; filled in by update()
         };
         return S;
@@ -239,10 +239,10 @@ function update(opts) {
     ui.querySelector("#duoFrom").textContent = fmtDay(S.dates[S.lo]);
     ui.querySelector("#duoTo").textContent = fmtDay(S.dates[S.hi]);
     const f = ui.querySelector("#duoFill"); f.style.left = (last ? S.lo / last * 100 : 0) + "%"; f.style.width = (last ? (S.hi - S.lo) / last * 100 : 100) + "%";
-    const sw = (c, t) => `<span><i style="background:${c};box-shadow:0 0 10px ${c}"></i>${t}</span>`;
+    const sw = (c, t) => `<span><i style="background:${c}"></i>${t}</span>`;
     ui.querySelector("#duoLegend").innerHTML = S.byWinRate || focus !== null
         ? sw(COLOURS.best, `Wins ${Math.round(BEST_FROM * 100)}%+`) + sw(COLOURS.win, "Wins half or more") + sw(COLOURS.loss, "Loses more than wins") + "<span>Thicker line = more maps together</span>"
-        : "<span>Tap a player to light up their duos</span><span>Thicker line = more maps together</span>";
+        : "<span>Tap a player to see their duos</span><span>Thicker line = more maps together</span>";
     renderSide(agg);
 }
 

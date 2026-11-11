@@ -2411,7 +2411,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "3": {
+            "score": 5605,
+            "objScore": 985,
+            "time": 96,
+            "objectiveKills": 9,
+            "captures": 7,
+            "ratio": 2.37,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 4950,
+            "objScore": 890,
+            "time": 73,
+            "objectiveKills": 7,
+            "captures": 5,
+            "ratio": 1.63,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3960,
+            "objScore": 510,
+            "time": 64,
+            "objectiveKills": 5,
+            "captures": 2,
+            "ratio": 1.18,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 4265,
+            "objScore": 1050,
+            "time": 102,
+            "objectiveKills": 8,
+            "captures": 7,
+            "ratio": 1.03,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 4670,
+            "objScore": 1005,
+            "time": 88,
+            "objectiveKills": 4,
+            "captures": 9,
+            "ratio": 1.13,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 5040,
+            "objScore": 950,
+            "time": 93,
+            "objectiveKills": 14,
+            "captures": 5,
+            "ratio": 1.48,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 4300,
+            "objScore": 520,
+            "time": 55,
+            "objectiveKills": 5,
+            "captures": 3,
+            "ratio": 1.12,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "11": {
+            "score": 3500,
+            "objScore": 475,
+            "time": 74,
+            "objectiveKills": 6,
+            "captures": 1,
+            "ratio": 1.04,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-bccf5162d06d3587d8ec6579945f33149e947ad08054e5fec9a42c88aed7f5e7",
@@ -4192,7 +4278,78 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Fringe",
+        "players": {
+          "3": {
+            "score": 995,
+            "objScore": 250,
+            "plants": 1,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1650,
+            "objScore": 125,
+            "plants": 1,
+            "objectiveKills": 0,
+            "ratio": 4.67,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 625,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.2,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 900,
+            "objScore": 150,
+            "plants": 1,
+            "objectiveKills": 0,
+            "ratio": 1.8,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 775,
+            "objScore": 75,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 0.88,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 950,
+            "objScore": 100,
+            "plants": 0,
+            "objectiveKills": 1,
+            "ratio": 1.14,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 580,
+            "objScore": 225,
+            "plants": 2,
+            "objectiveKills": 0,
+            "ratio": 0.38,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 365,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 1,
+            "ratio": 0.43,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-8c18c94f057211954cf810a03bd24eed0c96c4e4c5098f8e30577c299fd63a49",
@@ -5973,7 +6130,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Exposure",
+        "players": {
+          "3": {
+            "score": 6025,
+            "objScore": 300,
+            "overloads": 0,
+            "objectiveKills": 9,
+            "ratio": 1.7,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 5860,
+            "objScore": 225,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 1.53,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 5710,
+            "objScore": 1225,
+            "overloads": 3,
+            "objectiveKills": 5,
+            "ratio": 1.16,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 5815,
+            "objScore": 300,
+            "overloads": 0,
+            "objectiveKills": 6,
+            "ratio": 1.35,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 7830,
+            "objScore": 925,
+            "overloads": 2,
+            "objectiveKills": 8,
+            "ratio": 2.19,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 5180,
+            "objScore": 575,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 1.08,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 6070,
+            "objScore": 625,
+            "overloads": 1,
+            "objectiveKills": 6,
+            "ratio": 1.36,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 4750,
+            "objScore": 600,
+            "overloads": 1,
+            "objectiveKills": 6,
+            "ratio": 1.03,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-9a731a90385460a261d2af2cbc8075a7c7d0f7703f5def7cd194bbc0a5baed24",
@@ -7754,7 +7981,92 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Scar",
+        "players": {
+          "3": {
+            "score": 6890,
+            "objScore": 1025,
+            "time": 77,
+            "objectiveKills": 12,
+            "captures": 7,
+            "ratio": 1.93,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 6315,
+            "objScore": 930,
+            "time": 85,
+            "objectiveKills": 12,
+            "captures": 6,
+            "ratio": 2.35,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4135,
+            "objScore": 555,
+            "time": 65,
+            "objectiveKills": 4,
+            "captures": 3,
+            "ratio": 1.09,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 5560,
+            "objScore": 1180,
+            "time": 111,
+            "objectiveKills": 10,
+            "captures": 10,
+            "ratio": 1.4,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 5950,
+            "objScore": 935,
+            "time": 47,
+            "objectiveKills": 2,
+            "captures": 9,
+            "ratio": 1.44,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 4615,
+            "objScore": 680,
+            "time": 85,
+            "objectiveKills": 2,
+            "captures": 7,
+            "ratio": 1.16,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 5255,
+            "objScore": 755,
+            "time": 52,
+            "objectiveKills": 6,
+            "captures": 5,
+            "ratio": 1.26,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "11": {
+            "score": 4425,
+            "objScore": 925,
+            "time": 100,
+            "objectiveKills": 8,
+            "captures": 6,
+            "ratio": 1.06,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     }
   ],
   "closingStats": {

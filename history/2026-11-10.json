@@ -2419,6 +2419,92 @@
           17,
           13
         ]
+      },
+      "extras": {
+        "backfilled": true,
+        "map": "Colossus",
+        "players": {
+          "3": {
+            "score": 5595,
+            "objScore": 1210,
+            "time": 102,
+            "objectiveKills": 16,
+            "captures": 8,
+            "ratio": 1.75,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 6865,
+            "objScore": 1430,
+            "time": 91,
+            "objectiveKills": 15,
+            "captures": 10,
+            "ratio": 2.17,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4775,
+            "objScore": 635,
+            "time": 69,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 1.29,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "17": {
+            "score": 4120,
+            "objScore": 940,
+            "time": 111,
+            "objectiveKills": 7,
+            "captures": 6,
+            "ratio": 1.03,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "2": {
+            "score": 4970,
+            "objScore": 915,
+            "time": 53,
+            "objectiveKills": 7,
+            "captures": 8,
+            "ratio": 1.19,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 5165,
+            "objScore": 1010,
+            "time": 68,
+            "objectiveKills": 10,
+            "captures": 10,
+            "ratio": 1.37,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "11": {
+            "score": 4130,
+            "objScore": 595,
+            "time": 56,
+            "objectiveKills": 4,
+            "captures": 3,
+            "ratio": 1.21,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "13": {
+            "score": 4760,
+            "objScore": 1045,
+            "time": 122,
+            "objectiveKills": 8,
+            "captures": 7,
+            "ratio": 1.09,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
       }
     },
     {
@@ -4208,6 +4294,76 @@
           17,
           13
         ]
+      },
+      "extras": {
+        "backfilled": true,
+        "map": "Express",
+        "players": {
+          "3": {
+            "score": 1125,
+            "objScore": 100,
+            "plants": 0,
+            "objectiveKills": 2,
+            "ratio": 1.38,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1060,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.25,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 855,
+            "objScore": 50,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 0.88,
+            "objScoreAgrees": true
+          },
+          "17": {
+            "score": 770,
+            "objScore": 50,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 0.78,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 1920,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 3.0,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 1550,
+            "objScore": 250,
+            "plants": 1,
+            "objectiveKills": 1,
+            "ratio": 1.5,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 845,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "13": {
+            "score": 375,
+            "objScore": 150,
+            "plants": 1,
+            "objectiveKills": 0,
+            "ratio": 0.25,
+            "objScoreAgrees": true
+          }
+        }
       }
     },
     {
@@ -5997,6 +6153,75 @@
           17,
           13
         ]
+      },
+      "extras": {
+        "backfilled": true,
+        "map": "Scar",
+        "players": {
+          "3": {
+            "score": 5280,
+            "objScore": 275,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 2.04,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 6640,
+            "objScore": 825,
+            "overloads": 2,
+            "objectiveKills": 6,
+            "ratio": 3.17,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 3915,
+            "objScore": 1175,
+            "overloads": 3,
+            "objectiveKills": 4,
+            "ratio": 1.04,
+            "objScoreAgrees": true
+          },
+          "17": {
+            "score": 3290,
+            "objScore": 1250,
+            "overloads": 3,
+            "objectiveKills": 2,
+            "ratio": 0.77,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 4670,
+            "objScore": 75,
+            "overloads": 0,
+            "objectiveKills": 1,
+            "ratio": 1.76
+          },
+          "9": {
+            "score": 4100,
+            "objScore": 650,
+            "overloads": 1,
+            "objectiveKills": 9,
+            "ratio": 1.26,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 4080,
+            "objScore": 850,
+            "overloads": 2,
+            "objectiveKills": 5,
+            "ratio": 1.14,
+            "objScoreAgrees": true
+          },
+          "13": {
+            "score": 1965,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 3,
+            "ratio": 0.58,
+            "objScoreAgrees": true
+          }
+        }
       }
     },
     {
@@ -7786,6 +8011,92 @@
           17,
           13
         ]
+      },
+      "extras": {
+        "backfilled": true,
+        "map": "Gridlock",
+        "players": {
+          "3": {
+            "score": 4560,
+            "objScore": 555,
+            "time": 73,
+            "objectiveKills": 6,
+            "captures": 2,
+            "ratio": 1.44,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 5550,
+            "objScore": 985,
+            "time": 63,
+            "objectiveKills": 7,
+            "captures": 7,
+            "ratio": 1.63,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3555,
+            "objScore": 695,
+            "time": 73,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 0.97,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "17": {
+            "score": 3890,
+            "objScore": 845,
+            "time": 86,
+            "objectiveKills": 6,
+            "captures": 6,
+            "ratio": 1.11,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "2": {
+            "score": 6195,
+            "objScore": 875,
+            "time": 69,
+            "objectiveKills": 4,
+            "captures": 6,
+            "ratio": 2.22,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 4975,
+            "objScore": 790,
+            "time": 101,
+            "objectiveKills": 7,
+            "captures": 5,
+            "ratio": 1.48,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "11": {
+            "score": 5005,
+            "objScore": 880,
+            "time": 108,
+            "objectiveKills": 4,
+            "captures": 6,
+            "ratio": 1.48,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "13": {
+            "score": 3485,
+            "objScore": 895,
+            "time": 149,
+            "objectiveKills": 5,
+            "captures": 4,
+            "ratio": 1.0,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
       }
     },
     {
@@ -9575,6 +9886,77 @@
           17,
           13
         ]
+      },
+      "extras": {
+        "backfilled": true,
+        "map": "Hacienda",
+        "players": {
+          "3": {
+            "score": 1480,
+            "objScore": 250,
+            "plants": 2,
+            "objectiveKills": 1,
+            "ratio": 1.57,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 335,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 0.33,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 870,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "17": {
+            "score": 875,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 1605,
+            "objScore": 125,
+            "plants": 1,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 2000,
+            "objScore": 100,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 3.6,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 400,
+            "objScore": 100,
+            "plants": 1,
+            "objectiveKills": 0,
+            "ratio": 0.33,
+            "objScoreAgrees": true
+          },
+          "13": {
+            "score": 785,
+            "objScore": 150,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.14,
+            "objScoreAgrees": true
+          }
+        }
       }
     },
     {
@@ -11356,7 +11738,92 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Hacienda",
+        "players": {
+          "2": {
+            "score": 4910,
+            "objScore": 955,
+            "time": 53,
+            "objectiveKills": 9,
+            "captures": 7,
+            "ratio": 1.39,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 4260,
+            "objScore": 830,
+            "time": 48,
+            "objectiveKills": 7,
+            "captures": 4,
+            "ratio": 1.22,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 3325,
+            "objScore": 615,
+            "time": 42,
+            "objectiveKills": 6,
+            "captures": 5,
+            "ratio": 0.84,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3315,
+            "objScore": 540,
+            "time": 42,
+            "captures": 4,
+            "ratio": 0.93,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 5340,
+            "objScore": 910,
+            "time": 99,
+            "objectiveKills": 10,
+            "captures": 5,
+            "ratio": 2.41,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 5130,
+            "objScore": 855,
+            "time": 76,
+            "objectiveKills": 8,
+            "captures": 4,
+            "ratio": 1.95,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 5920,
+            "objScore": 1420,
+            "time": 129,
+            "objectiveKills": 12,
+            "captures": 11,
+            "ratio": 2.0,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "17": {
+            "score": 4080,
+            "objScore": 825,
+            "time": 96,
+            "objectiveKills": 11,
+            "captures": 3,
+            "ratio": 1.14,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-6b88b7116941b046d464d15f7c1371ea4d9c338c66b8590299ba09c02d222f98",
@@ -13137,7 +13604,80 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Gridlock",
+        "players": {
+          "2": {
+            "score": 790,
+            "objScore": 50,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1410,
+            "objScore": 650,
+            "plants": 4,
+            "defuses": 2,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 745,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 440,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 0.5,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 1105,
+            "objScore": 25,
+            "plants": 0,
+            "objectiveKills": 0,
+            "ratio": 1.67,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1375,
+            "objScore": 125,
+            "plants": 0,
+            "defuses": 2,
+            "objectiveKills": 0,
+            "ratio": 3.0,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 1035,
+            "objScore": 350,
+            "plants": 2,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.2,
+            "objScoreAgrees": true
+          },
+          "17": {
+            "score": 755,
+            "objScore": 200,
+            "plants": 2,
+            "objectiveKills": 0,
+            "ratio": 0.71,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-1009d84d889ca9fb246f28ed0cf0b628f758250c3b900f7ad59d7ca720a8afea",
@@ -14918,7 +15458,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "2": {
+            "score": 3510,
+            "objScore": 175,
+            "overloads": 0,
+            "objectiveKills": 5,
+            "ratio": 1.6,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 2535,
+            "objScore": 25,
+            "overloads": 0,
+            "objectiveKills": 1,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 1875,
+            "objScore": 75,
+            "overloads": 0,
+            "objectiveKills": 0,
+            "ratio": 0.86,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 2420,
+            "objScore": 500,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 0.83,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 4370,
+            "objScore": 825,
+            "overloads": 2,
+            "objectiveKills": 4,
+            "ratio": 1.89,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 4420,
+            "objScore": 500,
+            "overloads": 1,
+            "objectiveKills": 7,
+            "ratio": 2.71,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 3440,
+            "objScore": 850,
+            "overloads": 2,
+            "objectiveKills": 4,
+            "ratio": 1.39,
+            "objScoreAgrees": true
+          },
+          "17": {
+            "score": 2845,
+            "objScore": 1025,
+            "overloads": 3,
+            "objectiveKills": 0,
+            "ratio": 0.9,
+            "objScoreAgrees": true
+          }
+        }
+      }
     }
   ],
   "closingStats": {

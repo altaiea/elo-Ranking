@@ -3,7 +3,6 @@
 ====================================================== */
 import { MODES } from "./config.js";
 import { totalLosses, totalWins } from "./data.js";
-import { cardRatings } from "./ratings.js";
 import { fillCard } from "./playerCard.js";
 
 let players = [];
@@ -55,6 +54,20 @@ function row(label, a, b, type = "number", better = "higher") {
     </div>`;
 }
 
+// One block of rows with a title and its score. wide = runs the full width (Lifetime).
+//   rows: [label, a's value, b's value, type, better]
+function section(title, a, b, rows, wide = false) {
+    const scoreA = rows.reduce((sum, [, x, y, , better = "higher"]) => sum + compareMetric(x, y, better), 0);
+    const scoreB = rows.length - scoreA;
+    return {
+        scoreA, scoreB,
+        html: `<div class="comparison-section${wide ? " wide" : ""}">
+            <div class="comparison-section-title">${title} <span class="mode-score">${a.name} ${num(scoreA, 1)} — ${num(scoreB, 1)} ${b.name}</span></div>
+            <div class="cs-rows">${rows.map(r => row(...r)).join("")}</div>
+        </div>`
+    };
+}
+
 function modeSection(mode, a, b) {
     const x = modeNumbers(a, mode);
     const y = modeNumbers(b, mode);
@@ -65,16 +78,7 @@ function modeSection(mode, a, b) {
         ["DAMAGE SHARE", "damageShare", "percent", "higher"],
         [mode.unitLabel, "avgModeUnit", "number", "higher"]
     ];
-    const scoreA = metrics.reduce((sum, [, key, , better]) => sum + compareMetric(x[key], y[key], better), 0);
-    const scoreB = metrics.length - scoreA;
-    return {
-        scoreA,
-        scoreB,
-        html: `<div class="comparison-section">
-            <div class="comparison-section-title">${mode.name.toUpperCase()} <span class="mode-score">${a.name} ${num(scoreA, 1)} — ${num(scoreB, 1)} ${b.name}</span></div>
-            ${metrics.map(([label, key, type, better]) => row(label, x[key], y[key], type, better)).join("")}
-        </div>`
-    };
+    return section(mode.name.toUpperCase(), a, b, metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]));
 }
 
 function cardStage(p) {
@@ -88,6 +92,7 @@ function cardStage(p) {
 // A face-up copy of the popup card, without the intro video.
 function buildCard(p) {
     const container = document.querySelector("#playerModal .container").cloneNode(true);
+    container.classList.remove("winged");          // the popup's wings are for the player it last showed
     container.removeAttribute("id");
     const card = container.querySelector(".card");
     card.querySelector(".card-back-video")?.remove();
@@ -117,10 +122,20 @@ function render() {
     empty.style.display = "none";
     content.style.display = "grid";
 
+    const kd = p => Number(p.lifetimeDeaths || 0) === 0 ? Number(p.lifetimeKills || 0) : p.lifetimeKills / p.lifetimeDeaths;
+    const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
+    const lifetime = section("LIFETIME", a, b, [
+        ["KILLS", a.lifetimeKills, b.lifetimeKills],
+        ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower"],
+        ["K/D", kd(a), kd(b)],
+        ["WINS", totalWins(a), totalWins(b)],
+        ["LOSSES", totalLosses(a), totalLosses(b), "number", "lower"],
+        ["WIN RATE", winRate(a), winRate(b), "percent"]
+    ], true);
     const modeResults = MODES.map(mode => modeSection(mode, a, b));
+    const sections = [lifetime, ...modeResults];
     const totalA = modeResults.reduce((sum, r) => sum + r.scoreA, 0);
     const totalB = modeResults.reduce((sum, r) => sum + r.scoreB, 0);
-    const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
 
     content.innerHTML = `
         <div class="comparison-card-pair">
@@ -134,25 +149,8 @@ function render() {
             <span>HEAD-TO-HEAD</span>
         </div>
 
-        <div class="comparison-section">
-            <div class="comparison-section-title">OVERALL</div>
-            ${row("ELO", a.elo, b.elo)}
-            ${row("CURRENT RANK", a.currentRank, b.currentRank, "number", "lower")}
-            ${row("OVERALL RATING", cardRatings(a, players).overall, cardRatings(b, players).overall)}
-            ${row("ELO CHANGE", a.eloChange, b.eloChange)}
-        </div>
-
-        <div class="comparison-section">
-            <div class="comparison-section-title">LIFETIME</div>
-            ${row("KILLS", a.lifetimeKills, b.lifetimeKills)}
-            ${row("DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower")}
-            ${row("K/D", ratio(a.lifetimeKills, a.lifetimeDeaths), ratio(b.lifetimeKills, b.lifetimeDeaths), "text")}
-            ${row("WINS", totalWins(a), totalWins(b))}
-            ${row("LOSSES", totalLosses(a), totalLosses(b), "number", "lower")}
-            ${row("WIN RATE", winRate(a), winRate(b), "percent")}
-        </div>
-
-        ${modeResults.map(r => r.html).join("")}
+        <!-- Lifetime runs the full width as one column; the three modes sit side by side under it -->
+        <div class="h2h-sections">${sections.map(sec => sec.html).join("")}</div>
     `;
 
     content.querySelectorAll(".comparison-card-stage").forEach(stage => {

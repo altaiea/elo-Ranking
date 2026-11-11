@@ -7,6 +7,7 @@
 
 import { createCardHand, showPlayerReadout } from "./cardHand.js";
 import { openPlayerModal } from "./playerCard.js";
+import { lastMonthWinner } from "./monthWinner.js";
 
 let players = [];
 let lockerHand = null, cardsHand = null;
@@ -18,6 +19,7 @@ function markLeaderboardRow() {
         const cell = row.querySelector(".player-name");
         row.classList.toggle("locker-pick", !!cell && Number(cell.dataset.id) === id);
     });
+    document.querySelectorAll("#lbAlt [data-id]").forEach(item => item.classList.toggle("locker-pick", Number(item.dataset.id) === id));
 }
 
 // onCompare(id) runs when a Compare button is pressed.
@@ -33,7 +35,7 @@ export function setupLocker({ onCompare }) {
     });
 
     const tbody = document.getElementById("table-body");
-    new MutationObserver(markLeaderboardRow).observe(tbody, { childList: true });   // the table is redrawn when the arrows arrive
+    new MutationObserver(() => setTimeout(markLeaderboardRow)).observe(tbody, { childList: true });   // the table is redrawn when the arrows arrive
     tbody.addEventListener("click", e => {
         if (e.target.closest("[data-dropdown-toggle]")) return;
         const cell = e.target.closest("tr")?.querySelector(".player-name");
@@ -48,8 +50,19 @@ export function setupLocker({ onCompare }) {
     });
 }
 
+// Last month's number one wears the wings behind their card, in both hands.
+let wingsDone = false;
+function giveWingsToLastMonthsWinner() {
+    if (wingsDone) return;
+    wingsDone = true;
+    lastMonthWinner().then(id => {
+        if (id) document.querySelectorAll(`.hand-card[data-id="${id}"]`).forEach(card => card.classList.add("winged"));
+    });
+}
+
 export function showLocker(list) {
     players = list;
+    giveWingsToLastMonthsWinner();
     showPlayerReadout(document.getElementById("lockerReadout"), byId(lockerHand.selected()));
     showPlayerReadout(document.getElementById("cardsReadout"), byId(cardsHand.selected()));
     markLeaderboardRow();

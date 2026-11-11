@@ -1,0 +1,16 @@
+/* Only Duo Network: no global theme or page changes. */
+.dn-box { container-type: inline-size; container-name: duo; }
+.dn-surround { pointer-events: none; }
+@container duo (max-width: 870px) {
+ .dn-main { flex-direction: column; }
+ .dn-stage { flex: none; width: min(600px, 100%); margin-inline: auto; }
+ .dn-svg { width: 100%; height: auto; aspect-ratio: 680 / 660; }
+ .dn-side { width: 100%; box-sizing: border-box; }
+ .dn-controls { flex-wrap: wrap; gap: 12px; }
+ .dn-range { min-width: 180px; }
+}
+.is-phone .dn-stage { width: 100%; }
+.is-phone .dn-svg { width: 100%; height: auto; aspect-ratio: 680 / 660; }
+.is-phone .dn-main { flex-direction: column; }
+.is-phone .dn-side { width: 100%; box-sizing: border-box; }
+

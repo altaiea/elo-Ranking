@@ -13,6 +13,7 @@ let rendered = false;
 
 function buildCard(p, pool) {
     const container = document.querySelector("#playerModal .container").cloneNode(true);
+    container.classList.remove("winged");          // the popup's wings are for the player it last showed
     container.removeAttribute("id");
     const card = container.querySelector(".card");
     card.querySelector(".card-back-video")?.remove();

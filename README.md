@@ -20,7 +20,10 @@ still: export from CODStats, then push with GitHub Desktop.
 | `js/cardHand.js`, `js/locker.js`, `locker.css` | The hand of cards (drag, flick, settle on a card), used at the top of Ranks (the Locker room) and on the Cards page |
 | `js/fightNight.js` | Head-to-Head: pick the two players from their cards |
 | `seamless.css` | Makes Monthly, History, the duo network, Head-to-Head and Match Day look like the main leaderboard. Loads last; remove its `<link>` in `index.html` to switch it off |
-| `headers/` | The pictures beside the Ranks and Players titles (set in `js/tabs.js`) |
+| `headers/` | The pictures beside the Ranks and Players titles (the file names are set in `js/tabs.js`) |
+| `js/duoNetwork.js` | The duo network: data, sliders, side panel and the flat drawing. A small icon beside the Ranks title opens it in a pop-up |
+| `js/duoNetwork3d.js` | The real 3D drawing of the duo network (tubes, spheres, lights). Only downloaded when the network is opened; if it cannot run, the flat drawing is used |
+| `vendor/three-duo.min.js` | three.js, the 3D library `duoNetwork3d.js` uses, cut down to the parts it needs. Not written by hand: do not edit |
 | `js/cardTape.js` | The tale of the tape: a player's numbers beside the card popup |
 | `js/carousel.js` | The old spinning ring for the Cards page. No longer loaded; kept in case you want it back |
 | `js/matchSetup.js` | The Match Day tab: tap-to-pick players, Bo5/Bo7/Bo9 maps. Uses `teams.js` (line-up reveal) and `maps.js` (map sets) |

@@ -27,7 +27,7 @@ export function showCardTape(p, players, place) {
         <div class="tape-rank">RANK ${p.currentRank}</div>
         <h4>${p.name}</h4>
         ${row("Elo", Math.round(p.elo), (p.elo - low) / (high - low || 1))}
-        ${row("Win %", Math.round(winRate * 100), winRate)}
+        ${row("Win rate", Math.round(winRate * 100) + "%", winRate)}
         ${kdRow("K/D")}
         ${kdRow("Hardpoint", "hp")}
         ${kdRow("S&amp;D", "snd")}

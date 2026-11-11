@@ -14,6 +14,7 @@ import { hideCardTape, showCardTape } from "./cardTape.js";
 import { openModeModal } from "./modeModal.js";
 import { loadMvpCounts } from "./knockoutMvp.js";
 import { loadModeStreaks, streakTier } from "./streaks.js";
+import { lastMonthWinner } from "./monthWinner.js";
 
 // Gold trophy for the Captain's Cup MVP badge (series MVPs won).
 // Each copy gets its own gradient id: a shared id can paint nothing when the
@@ -354,6 +355,12 @@ export function openPlayerModal(playerId) {
 
     const card = modal.querySelector(".card");
     const video = document.getElementById("cardBackVideo");
+
+    // Last month's number one opens with the wings round their card.
+    const holder = modal.querySelector(".container");
+    holder.classList.remove("winged");
+    holder.dataset.wingsFor = String(p.id);
+    lastMonthWinner().then(id => { if (holder.dataset.wingsFor === String(p.id)) holder.classList.toggle("winged", id === p.id); });
 
     // The same modal is reused for every player, so clear what the last one left behind.
     card.classList.remove("flipped");

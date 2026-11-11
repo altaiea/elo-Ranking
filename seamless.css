@@ -8,12 +8,19 @@
    the whole pass off.
 ====================================================== */
 
-/* ---------- picture beside the page title (js/tabs.js picks the file) ---------- */
-.theme-ko .page-head { display: flex; align-items: center; gap: 18px; min-height: 96px; }
-.ph-art { flex: none; height: 96px; width: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
+/* ---------- each group's symbol, with its name small beside it (js/tabs.js picks the file) ---------- */
+.theme-ko .page-head { display: flex; align-items: center; gap: 16px; min-height: 104px; }
+.ph-art { flex: none; height: 104px; width: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
 .ph-art[hidden] { display: none; }
-.is-phone .ph-art { height: 64px; }
-.theme-ko.is-phone .page-head { min-height: 64px; }
+.theme-ko .ph-title { font-size: 15px; line-height: 1; font-weight: 900; letter-spacing: .34em; color: var(--muted); text-shadow: none; }
+.is-phone .ph-art { height: 72px; }
+.theme-ko.is-phone .page-head { min-height: 72px; }
+.theme-ko.is-phone .ph-title { font-size: 13px; }
+
+/* the row under the header line: the page switch on the left, the DUOS icon on the right */
+.sub-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; }
+.sub-row .sub-tabs { margin: 0; }
+.sub-row:has(.sub-tabs[hidden]) { display: none; }
 
 /* ---------- shared pieces ---------- */
 /* quiet buttons: an outline that turns gold when you point at it */
@@ -92,8 +99,10 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .history-player-row:hover { background: rgba(var(--gold-rgb), .045); }
 
 /* ---------- Duo network ---------- */
-/* line colours: winning duos, losing duos (6-digit hex). js/duoNetwork.js reads these. */
-:root { --dn-win: #efe6d2; --dn-loss: #a3312f; }
+/* Champagne and oxblood. --dn-plain / --dn-loss: connections with nobody picked.
+   --dn-best / --dn-win / --dn-loss: a picked player's connections by win rate (purple, green, red).
+   --dn-node: the players. --dn-pick: whatever you have chosen. --dn-metal: the dial round the outside. */
+:root { --dn-plain: #ecdcb4; --dn-best: #a855f7; --dn-win: #4e9467; --dn-loss: #a3312f; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
 .dn-box { margin: 0 0 14px; }
 .dn-toggle { padding: 9px 14px; }
 .dn-body { background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 6px; margin-top: 6px; }
@@ -161,3 +170,112 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .ms .ms-seg { background: rgba(0, 0, 0, .45); border-color: #3a3122; }
 .theme-ko .ms-go:disabled { background: none; color: #a39a88; border-color: #3a3122; }
 .ms-addto-btn { border-color: #3a3122; color: #a39a88; }
+
+/* ---------- Duo network: the icon on Ranks and the pop-up it opens ---------- */
+.dn-icon { display: none; flex-direction: column; align-items: center; gap: 3px; margin: 0 0 0 auto; padding: 6px 12px 5px; background: none; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); cursor: pointer; font: 900 9px "Segoe UI", sans-serif; letter-spacing: .2em; transition: color .15s, border-color .15s; zoom: var(--ui-zoom); }
+.page-head[data-group="ranks"] ~ .sub-row .dn-icon { display: flex; }
+.dn-icon:hover, .dn-icon:focus-visible { color: var(--gold); border-color: var(--gold); outline: none; }
+.dn-icon svg { width: 44px; height: 44px; overflow: visible; }
+.dn-icon path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; opacity: .75; }
+.dn-icon circle { fill: #f1ead9; stroke: #0b0906; stroke-width: 1.5; }
+.dn-icon-spin { transform-origin: 24px 24px; animation: dnIconTurn 14s linear infinite; }
+.dn-icon:hover .dn-icon-spin { animation-duration: 4s; }
+@keyframes dnIconTurn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dn-icon-spin { animation: none; } }
+
+.dn-pop { position: fixed; inset: 0; z-index: 400; width: auto; margin: 0; overflow-y: auto; background: rgba(4, 3, 2, .9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.dn-pop[hidden] { display: none; }
+.dn-open, .dn-open body { overflow: hidden; }
+.dn-pop-inner { box-sizing: border-box; width: min(1060px, 100% - 32px); margin: 28px auto; padding: 18px 24px 22px; border: 1px solid var(--line); border-radius: 12px; background: #0b0906; box-shadow: 0 30px 80px rgba(0, 0, 0, .7); }
+.dn-pop-head { display: flex; align-items: center; justify-content: space-between; }
+.dn-pop-head h2 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: .14em; color: #fff; }
+.dn-close { margin: 0; padding: 6px 10px; background: none; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 15px; cursor: pointer; }
+.dn-close:hover, .dn-close:focus-visible { color: var(--gold); border-color: var(--gold); outline: none; }
+.dn-pop .dn-body { border-bottom: 0; }
+.is-phone .dn-pop-inner { width: auto; margin: 16px; zoom: var(--ui-zoom); }
+
+/* the real 3D drawing (js/duoNetwork3d.js) lies over the SVG, which then only shows the surround */
+.dn-gl { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 680 / 660; touch-action: pan-y; cursor: grab; }
+.dn-gl.grabbing { cursor: grabbing; }
+.dn-svg.dn-behind > g, .dn-svg.dn-behind .dn-surround { display: none; }
+.dn-gl-labels { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 680 / 660; pointer-events: none; overflow: visible; }
+.dn-gl-labels span { position: absolute; white-space: nowrap; color: #fff; font: 700 12.5px "Segoe UI", sans-serif; letter-spacing: .05em; text-shadow: 0 0 4px #0b0906, 0 0 4px #0b0906, 0 1px 2px #000; }
+.dn-gl-labels span.sel { color: var(--dn-pick); }
+.is-phone .dn-pop .dn-controls { flex-wrap: wrap; gap: 12px; }
+.is-phone .dn-pop .dn-range { order: 5; flex: 1 1 100%; }
+.is-phone .dn-stage { flex: none; }
+
+/* ---------- last month's number one: wings behind their card in the hands (js/locker.js adds .winged) ---------- */
+/* card_wings.webp is drawn on the card template's 1400 x 2000 canvas, where the card frame is x 147-1253, y 109-1831; these numbers line it up */
+.hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { content: ""; position: absolute; left: -13.29%; top: -6.33%; width: 126.58%; height: 116.14%; background: url("card_wings.webp") center / 100% 100% no-repeat; pointer-events: none; }
+#playerModal .container { position: relative; }
+/* the wings glow blue, so they read clearly against the card's gold glow */
+.hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { filter: brightness(1.35) saturate(1.25) drop-shadow(0 0 4px rgba(90, 170, 255, .95)) drop-shadow(0 0 14px rgba(40, 120, 255, .7)); animation: wingGlow 2.6s ease-in-out infinite; }
+@keyframes wingGlow { 50% { filter: brightness(1.6) saturate(1.3) drop-shadow(0 0 6px rgba(120, 190, 255, 1)) drop-shadow(0 0 22px rgba(40, 120, 255, .9)); } }
+@media (prefers-reduced-motion: reduce) { .hand-card.winged::before, #playerModal .container.winged::before, .lb-mini.winged::before { animation: none; } }
+
+/* ---------- Leaderboard: top three as a podium, everyone else as tiles (js/leaderboard.js draws #lbAlt) ---------- */
+/* The old table stays in the page, hidden: the card hand and the daily arrows still read it. */
+#leaderboard { display: none; }
+#lbAlt { zoom: var(--ui-zoom); }
+
+/* podium: second, first, third */
+.lb-podium { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: end; margin: 6px 0 14px; }
+.lb-pod { position: relative; display: grid; grid-template-columns: 74px 1fr; grid-template-rows: auto auto 1fr; column-gap: 14px; align-items: start; margin: 0; padding: 14px 14px 12px; text-align: left; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); border-top: 3px solid #d9dee3; border-radius: 10px; color: #fff; font: inherit; cursor: pointer; }
+.lb-pod-1 { border-top-color: var(--gold); padding-top: 22px; padding-bottom: 20px; }
+.lb-pod-3 { border-top-color: #d08a4a; }
+.lb-pod:hover, .lb-pod.locker-pick { background: rgba(var(--gold-rgb), .08); }
+.lb-pod-card { grid-row: 1 / 4; width: 74px; }
+.lb-pod-card img { border-radius: 5px; border: 1px solid var(--line); }
+.lb-pod-place { position: absolute; right: 12px; top: 8px; font: 400 34px/1 "Black Ops One", "Segoe UI", sans-serif; color: var(--line); }
+.lb-pod-1 .lb-pod-place { color: rgba(var(--gold-rgb), .5); }
+.lb-pod-name { color: var(--gold); font-size: 17px; font-weight: 900; letter-spacing: .04em; }
+.lb-pod-elo { font: 400 30px/1.15 "Black Ops One", "Segoe UI", sans-serif; }
+.lb-pod-1 .lb-pod-elo { font-size: 36px; }
+.lb-pod-elo span { font: 700 12px "Segoe UI", sans-serif; vertical-align: middle; }
+.lb-pod-stats { display: flex; gap: 16px; align-self: end; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+.lb-pod-stats > span { display: grid; }
+.lb-pod-stats b { font-size: 15px; }
+.lb-pod-stats i, .lb-t-stat i { font-style: normal; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
+
+/* tiles: one line per player, each number with its label */
+.lb-tiles { display: grid; gap: 6px; }
+.lb-tile { display: grid; grid-template-columns: 34px 44px 150px 1fr 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
+.lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
+.lb-tile.locker-pick { background: rgba(var(--gold-rgb), .12); border-color: var(--line); }
+.lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
+.lb-t-card { width: 44px; }
+.lb-t-card img { border-radius: 3px; border: 1px solid var(--gold-deep); box-shadow: 0 2px 6px rgba(0, 0, 0, .6); }
+/* a mini card: the card picture, with room for the wings round it */
+.lb-mini { position: relative; display: block; aspect-ratio: 2 / 3; }
+.lb-mini img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
+.lb-t-name { color: var(--gold); font-weight: 900; letter-spacing: .04em; }
+.lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
+.lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
+.lb-t-elo > span:not(.lb-bar) { font-size: 12px; font-weight: 700; }
+/* the Elo meter: a framed row of blocks, filled up to the player's Elo (the top player fills all of them) */
+.lb-bar { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; max-width: 300px; padding: 3px; border: 1px solid var(--gold-deep); border-radius: 2px; }
+.lb-bar i { height: 12px; border: 1px solid rgba(var(--gold-rgb), .28); box-sizing: border-box; }
+.lb-bar i.on { border-color: var(--gold); background: linear-gradient(180deg, var(--gold-hi), var(--gold)); box-shadow: 0 0 6px rgba(var(--gold-rgb), .35); }
+.lb-t-stat { display: grid; }
+.lb-t-stat b { font-size: 15px; }
+.is-phone .lb-podium { grid-template-columns: 1fr; gap: 8px; }
+.is-phone .lb-pod-1 { order: -1; }
+.is-phone .lb-tile { grid-template-columns: 26px 44px minmax(80px, 1fr) auto 50px 44px; gap: 10px; padding-right: 10px; }
+.is-phone .lb-t-elo { grid-template-columns: 58px 46px; row-gap: 3px; }
+.is-phone .lb-bar { grid-column: 1 / -1; }
+.is-phone .lb-bar i { height: 8px; }
+.lb-t-stat em { font-style: normal; }
+.is-phone .lb-t-stat em { display: none; }
+
+/* ---------- Head-to-Head: Lifetime under the score as one column, then the three modes side by side ---------- */
+.h2h-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.comparison-section { border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
+.comparison-section.wide { grid-column: 1 / -1; }
+.comparison-section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 2px; }
+.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
+.comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 34px; }
+.comparison-value { padding: 5px 8px; font-size: 14px; }
+.comparison-label { font-size: 9.5px; min-width: 100px; }
+.is-phone .h2h-sections { zoom: var(--ui-zoom); }
+.is-phone .comparison-section { grid-column: 1 / -1; }

@@ -68,6 +68,7 @@ export const cardAssets = {
     streakFire: tier => `cards/streak/fire_${tier}.webp`,
     wings: "wings.webp",
     wingsThumb: "wings_thumb.webp",
+    cardWings: "card_wings.webp",       // the wings that attach to the outside of a card (tools/make_card_wings.py)
     hands: "hands.webp",
     gun: "gun.webp"
 };

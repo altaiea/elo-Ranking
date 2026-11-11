@@ -1,9 +1,10 @@
 // ===============================
 // LEADERBOARD TAB
 // ===============================
-import { INACTIVE_PLAYER_IDS } from "./config.js";
+import { INACTIVE_PLAYER_IDS, cardAssets } from "./config.js";
 import { playerHasActivity, totalLosses, totalWins } from "./data.js";
 import { kdColor } from "./ui.js";
+import { lastMonthWinner } from "./monthWinner.js";
 
 let players = [];
 let showInactive = false;
@@ -69,6 +70,68 @@ function renderTable() {
         tr.innerHTML = rowHtml(p);
         return tr;
     }));
+    renderPodiumAndTiles(shown);
+}
+
+// ---------------------------
+// PODIUM AND TILES
+// ---------------------------
+// What you see: the top three as a podium, everyone else as a tile.
+// The table above is still filled in but hidden (seamless.css); the card hand reads it.
+function renderPodiumAndTiles(shown) {
+    let box = document.getElementById("lbAlt");
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "lbAlt";
+        document.getElementById("leaderboard").before(box);
+        // a click here does what a click on that player's table row does
+        box.addEventListener("click", e => {
+            const item = e.target.closest("[data-id]");
+            const cell = item && document.querySelector(`#table-body .player-name[data-id="${item.dataset.id}"]`);
+            if (cell) cell.click();
+        });
+    }
+    const numbers = p => {
+        const wins = totalWins(p), losses = totalLosses(p);
+        const wl = losses ? wins / losses : wins, kd = p.lifetimeDeaths ? p.lifetimeKills / p.lifetimeDeaths : p.lifetimeKills;
+        const today = !p.hasDailyComparison || !p.eloChange ? "<span></span>" :
+            `<span class="${p.eloChange > 0 ? "arrow-up" : "arrow-down"}">${p.eloChange > 0 ? "▲" : "▼"} ${Math.abs(p.eloChange).toFixed(1)}</span>`;
+        return { wins, losses, wl, kd, today };
+    };
+    const good = (value, text) => `<b style="color:${value >= 1 ? "#3ddc68" : "#ff5a4f"}">${text}</b>`;
+
+    const podium = [shown[1], shown[0], shown[2]].filter(Boolean).map(p => {
+        const n = numbers(p);
+        return `<button type="button" class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
+            <span class="lb-mini lb-pod-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
+            <span class="lb-pod-place">${p.currentRank}</span>
+            <span class="lb-pod-name">${p.name}</span>
+            <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
+            <span class="lb-pod-stats"><span>${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span>${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
+        </button>`;
+    }).join("");
+
+    // Elo meter: 12 blocks. The top player fills all of them; the scale starts a little under the lowest player.
+    const BLOCKS = 12;
+    const elos = shown.map(p => p.elo), low = Math.min(...elos) - 40, high = Math.max(...elos);
+    const meter = p => {
+        const lit = Math.max(1, Math.round((p.elo - low) / ((high - low) || 1) * BLOCKS));
+        return `<span class="lb-bar">${Array.from({ length: BLOCKS }, (_, i) => `<i class="${i < lit ? "on" : ""}"></i>`).join("")}</span>`;
+    };
+    const tiles = shown.slice(3).map(p => {
+        const n = numbers(p);
+        return `<div class="lb-tile" data-id="${p.id}">
+            <span class="lb-t-rank">${p.currentRank}</span>
+            <span class="lb-mini lb-t-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
+            <span class="lb-t-name">${p.name}</span>
+            <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
+            <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L<em> · ${n.wins}-${n.losses}</em></i></span>
+            <span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span>
+        </div>`;
+    }).join("");
+    box.innerHTML = `<div class="lb-podium">${podium}</div><div class="lb-tiles">${tiles}</div>`;
+    // last month's number one: wings on their mini card too
+    lastMonthWinner().then(id => box.querySelectorAll(`.lb-mini[data-mini="${id}"]`).forEach(el => el.classList.add("winged")));
 }
 
 export function setupLeaderboard() {

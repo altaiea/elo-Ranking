@@ -306,3 +306,17 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .is-phone .lb-t-stat i { white-space: normal; }
 .hand, .hand-card, .readout-buttons button, .lb-pod-name, .lb-t-name { -webkit-tap-highlight-color: transparent; }
 #playerModal { z-index: 500; }
+
+/* ---------- Phone fixes (Nov 2026 check) ---------- */
+/* The "Show Inactive Players" words toggle the switch too. */
+.toggle-label { cursor: pointer; }
+/* Match Day: the sticky "Find best match-up" button sat behind the bottom menu bar, so a tap on it opened Players. Keep it above the bar. */
+.ms-phone .ms-dock { bottom: 72px; }
+/* Monthly, History and Knockout were drawn at desktop size on the 1100px phone canvas, so their text was tiny. Zoom them like the other pages. */
+.is-phone #monthlyRoot { zoom: var(--ui-zoom); }
+.is-phone #historyList { zoom: var(--ui-zoom); }
+.is-phone #historyViewer { zoom: calc(var(--ui-zoom) * .72); }
+.is-phone .ko-poster { zoom: calc(var(--ui-zoom) * .72); }
+/* Podium on phones: the place number sat on the card picture's dark banner and could not be read. Give it a small badge on the card's corner. */
+.is-phone .lb-pod-place { left: 4px; top: 4px; display: grid; place-items: center; width: 26px; height: 26px; font-size: 16px; color: #fff; background: rgba(0, 0, 0, .8); border: 1px solid var(--line); border-radius: 50%; text-shadow: none; }
+.is-phone .lb-pod-1 .lb-pod-place { color: var(--gold); border-color: var(--gold); }

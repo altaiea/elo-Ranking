@@ -84,9 +84,9 @@ function renderPodiumAndTiles(shown) {
         box = document.createElement("div");
         box.id = "lbAlt";
         document.getElementById("leaderboard").before(box);
-        // Only a player's name navigates to their card.
+        // A click anywhere on a podium spot or a tile (card picture, numbers or name) opens that player's card.
         box.addEventListener("click", e => {
-            const item = e.target.closest(".lb-pod-name, .lb-t-name");
+            const item = e.target.closest(".lb-pod, .lb-tile");
             const cell = item && document.querySelector(`#table-body .player-name[data-id="${item.dataset.id}"]`);
             if (cell) cell.click();
         });

@@ -32,6 +32,7 @@ export function createCardHand(root, { onSelect = () => {}, onOpen = () => {}, o
         const card = document.createElement("div");
         card.className = "hand-card";
         card.dataset.i = i;
+        card.dataset.id = id;
         card.innerHTML = `<img src="${cardAssets.thumb(id)}" alt="" draggable="false" decoding="async">`;
         track.append(card);
         return card;

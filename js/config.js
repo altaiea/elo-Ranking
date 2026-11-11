@@ -68,6 +68,7 @@ export const cardAssets = {
     streakFire: tier => `cards/streak/fire_${tier}.webp`,
     wings: "wings.webp",
     wingsThumb: "wings_thumb.webp",
+    wingsCutout: "wings_cutout.webp",   // see-through copy for the card hands (tools/make_wings_cutout.py)
     hands: "hands.webp",
     gun: "gun.webp"
 };

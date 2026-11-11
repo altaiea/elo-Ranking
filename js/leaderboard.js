@@ -1,7 +1,7 @@
 // ===============================
 // LEADERBOARD TAB
 // ===============================
-import { INACTIVE_PLAYER_IDS } from "./config.js";
+import { INACTIVE_PLAYER_IDS, cardAssets } from "./config.js";
 import { playerHasActivity, totalLosses, totalWins } from "./data.js";
 import { kdColor } from "./ui.js";
 
@@ -69,7 +69,65 @@ function renderTable() {
         tr.innerHTML = rowHtml(p);
         return tr;
     }));
+    renderOtherLayouts(shown);
 }
+
+// ---------------------------
+// OTHER LAYOUTS (to compare)
+// ---------------------------
+// The same numbers laid out two other ways. Set data-lb on <html> to "podium"
+// (top three as blocks, the rest in the table) or "tiles" (one tile per player).
+// With no data-lb the plain table shows and these stay hidden (see seamless.css).
+function renderOtherLayouts(shown) {
+    let box = document.getElementById("lbAlt");
+    if (!box) {
+        box = document.createElement("div");
+        box.id = "lbAlt";
+        document.getElementById("leaderboard").before(box);
+        // a click here does what a click on that player's table row does
+        box.addEventListener("click", e => {
+            const item = e.target.closest("[data-id]");
+            const cell = item && document.querySelector(`#table-body .player-name[data-id="${item.dataset.id}"]`);
+            if (cell) cell.click();
+        });
+    }
+    const numbers = p => {
+        const wins = totalWins(p), losses = totalLosses(p);
+        const wl = losses ? wins / losses : wins, kd = p.lifetimeDeaths ? p.lifetimeKills / p.lifetimeDeaths : p.lifetimeKills;
+        const today = !p.hasDailyComparison || !p.eloChange ? "<span></span>" :
+            `<span class="${p.eloChange > 0 ? "arrow-up" : "arrow-down"}">${p.eloChange > 0 ? "▲" : "▼"} ${Math.abs(p.eloChange).toFixed(1)}</span>`;
+        return { wins, losses, wl, kd, today };
+    };
+    const good = (value, text) => `<b style="color:${value >= 1 ? "#3ddc68" : "#ff5a4f"}">${text}</b>`;
+
+    const podium = [shown[1], shown[0], shown[2]].filter(Boolean).map(p => {
+        const n = numbers(p);
+        return `<button type="button" class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
+            <img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy">
+            <span class="lb-pod-place">${p.currentRank}</span>
+            <span class="lb-pod-name">${p.name}</span>
+            <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
+            <span class="lb-pod-stats"><span>${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span>${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
+        </button>`;
+    }).join("");
+
+    const elos = shown.map(p => p.elo), low = Math.min(...elos) - 40, high = Math.max(...elos);
+    const tiles = shown.map(p => {
+        const n = numbers(p);
+        return `<div class="lb-tile" data-id="${p.id}">
+            <span class="lb-t-rank">${p.currentRank}</span>
+            <span class="lb-t-face"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
+            <span class="lb-t-name">${p.name}</span>
+            <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}<span class="lb-bar"><i style="width:${Math.max(4, (p.elo - low) / (high - low) * 100).toFixed(1)}%"></i></span></span>
+            <span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L · ${n.wins}-${n.losses}</i></span>
+            <span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span>
+        </div>`;
+    }).join("");
+    box.innerHTML = `<div class="lb-podium">${podium}</div><div class="lb-tiles">${tiles}</div>`;
+}
+
+// For the preview bar: redraw after data-lb changes.
+export const redrawLeaderboard = () => { if (players.length) renderTable(); };
 
 export function setupLeaderboard() {
     const toggle = document.getElementById("toggleInactive");

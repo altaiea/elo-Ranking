@@ -9,7 +9,7 @@ import { getPlayerName } from "./config.js";
 import { loadAllHistory } from "./data.js";
 
 const SVGNS = "http://www.w3.org/2000/svg";
-const CX = 340, CY = 330, R = 235;      // centre and size of the globe inside the 680 x 660 drawing
+const CX = 340, CY = 330, R = 186;      // centre and size of the globe inside the 680 x 660 drawing (small enough that names stay inside the dial)
 const CAMERA = 3.4;                      // how far away the viewer is, in globe radiuses (smaller = stronger 3D)
 const SPIN = 0.0022;                     // how fast it turns on its own before you touch it
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
@@ -19,10 +19,14 @@ const BG = [11, 9, 6];
 const hex = v => { const m = /^#?([0-9a-f]{6})$/i.exec(String(v).trim()); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
 let WIN = [239, 230, 210], LOSS = [163, 49, 47];
 function readColours() {
-    const css = getComputedStyle(document.documentElement);
+    const css = getComputedStyle(document.documentElement), get = (name, fallback) => hex(css.getPropertyValue(name)) ? css.getPropertyValue(name).trim() : fallback;
     WIN = hex(css.getPropertyValue("--dn-win")) || WIN;
     LOSS = hex(css.getPropertyValue("--dn-loss")) || LOSS;
+    // the 3D drawing's players, picked colour and metal dial
+    if (S) S.colours = { node: get("--dn-node", "#e9dfc8"), pick: get("--dn-pick", "#f2c14e"), metal: get("--dn-metal", "#c9a557") };
 }
+// Call after changing the --dn-… colours in CSS (seamless.css) to redraw with them.
+export function refreshDuoColours() { if (S && S.wrap) update(); }
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
 const winColour = wr => wr >= 0.5
@@ -167,7 +171,7 @@ function start3D(stage, svg) {
         });
         if (!gl) return;
         S.gl = gl;
-        svg.classList.add("dn-behind");      // the SVG now only shows the gold surround
+        svg.classList.add("dn-behind");      // the flat drawing and its surround are hidden; the 3D one has its own dial
         gl.sync();
     }).catch(err => console.warn("Duo network: using the flat drawing.", err));
 }
@@ -377,9 +381,9 @@ function renderSide(agg) {
 }
 
 /* ---------- mount ---------- */
-// A small icon beside the Ranks title opens the network in a full-screen panel.
+// A small icon on the Leaderboard / Monthly / History line opens the network in a full-screen panel.
 function mount() {
-    const head = document.getElementById("pageHead");
+    const head = document.getElementById("subRow");
     if (!head || document.getElementById("duoNet")) return;
     const icon = h(`<button type="button" class="dn-icon" id="duoIcon" aria-label="Open the duo network" title="Duo network">
 <svg viewBox="0 0 48 48" aria-hidden="true"><g class="dn-icon-spin"><path d="M24 7 L9 33 M24 7 L39 33 M9 33 L39 33 M24 7 Q24 26 31 20 M9 33 Q24 24 31 20 M39 33 L31 20"/><circle cx="24" cy="7" r="3.4"/><circle cx="9" cy="33" r="3.4"/><circle cx="39" cy="33" r="3.4"/><circle cx="31" cy="20" r="2.6"/></g></svg>

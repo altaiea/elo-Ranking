@@ -7,6 +7,9 @@
 
 import { createCardHand, showPlayerReadout } from "./cardHand.js";
 import { openPlayerModal } from "./playerCard.js";
+import { loadAllHistory } from "./data.js";
+import { buildMonthlyRankings } from "./monthly.js";
+import { monthKeyOf } from "./ui.js";
 
 let players = [];
 let lockerHand = null, cardsHand = null;
@@ -18,6 +21,7 @@ function markLeaderboardRow() {
         const cell = row.querySelector(".player-name");
         row.classList.toggle("locker-pick", !!cell && Number(cell.dataset.id) === id);
     });
+    document.querySelectorAll("#lbAlt [data-id]").forEach(item => item.classList.toggle("locker-pick", Number(item.dataset.id) === id));
 }
 
 // onCompare(id) runs when a Compare button is pressed.
@@ -33,7 +37,7 @@ export function setupLocker({ onCompare }) {
     });
 
     const tbody = document.getElementById("table-body");
-    new MutationObserver(markLeaderboardRow).observe(tbody, { childList: true });   // the table is redrawn when the arrows arrive
+    new MutationObserver(() => setTimeout(markLeaderboardRow)).observe(tbody, { childList: true });   // the table is redrawn when the arrows arrive
     tbody.addEventListener("click", e => {
         if (e.target.closest("[data-dropdown-toggle]")) return;
         const cell = e.target.closest("tr")?.querySelector(".player-name");
@@ -48,8 +52,28 @@ export function setupLocker({ onCompare }) {
     });
 }
 
+// Last month's number one wears the wings behind their card, in both hands.
+// "Last month" is the month before the newest day in the history.
+let wingsDone = false;
+async function giveWingsToLastMonthsWinner() {
+    if (wingsDone) return;
+    wingsDone = true;
+    try {
+        const days = (await loadAllHistory()).filter(d => d && d.date);
+        if (!days.length) return;
+        const newest = days.map(d => String(d.date)).sort().pop();
+        const lastMonth = monthKeyOf(new Date(Number(newest.slice(0, 4)), Number(newest.slice(5, 7)) - 2, 1));
+        const winner = buildMonthlyRankings(days, lastMonth).records.find(r => r.monthlyRank === 1);
+        if (!winner) return;
+        document.querySelectorAll(`.hand-card[data-id="${winner.playerId}"]`).forEach(card => card.classList.add("winged"));
+    } catch (error) {
+        console.warn("Could not work out last month's winner for the wings.", error);
+    }
+}
+
 export function showLocker(list) {
     players = list;
+    giveWingsToLastMonthsWinner();
     showPlayerReadout(document.getElementById("lockerReadout"), byId(lockerHand.selected()));
     showPlayerReadout(document.getElementById("cardsReadout"), byId(cardsHand.selected()));
     markLeaderboardRow();

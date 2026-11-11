@@ -8,14 +8,19 @@
    the whole pass off.
 ====================================================== */
 
-/* ---------- picture beside the page title (js/tabs.js picks the file) ---------- */
-.theme-ko .page-head { display: flex; align-items: center; gap: 18px; min-height: 96px; }
-.ph-art { flex: none; height: 96px; width: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
-.ph-art-right { height: 100px; }
+/* ---------- each group's symbol, with its name small beside it (js/tabs.js picks the file) ---------- */
+.theme-ko .page-head { display: flex; align-items: center; gap: 16px; min-height: 104px; }
+.ph-art { flex: none; height: 104px; width: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
 .ph-art[hidden] { display: none; }
-.is-phone .ph-art { height: 64px; }
-.is-phone .ph-art-right { height: 56px; }
-.theme-ko.is-phone .page-head { min-height: 64px; }
+.theme-ko .ph-title { font-size: 15px; line-height: 1; font-weight: 900; letter-spacing: .34em; color: var(--muted); text-shadow: none; }
+.is-phone .ph-art { height: 72px; }
+.theme-ko.is-phone .page-head { min-height: 72px; }
+.theme-ko.is-phone .ph-title { font-size: 13px; }
+
+/* the row under the header line: the page switch on the left, the DUOS icon on the right */
+.sub-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; }
+.sub-row .sub-tabs { margin: 0; }
+.sub-row:has(.sub-tabs[hidden]) { display: none; }
 
 /* ---------- shared pieces ---------- */
 /* quiet buttons: an outline that turns gold when you point at it */
@@ -95,7 +100,13 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 
 /* ---------- Duo network ---------- */
 /* line colours: winning duos, losing duos (6-digit hex). js/duoNetwork.js reads these. */
-:root { --dn-win: #efe6d2; --dn-loss: #a3312f; }
+/* --dn-node: the players. --dn-pick: whatever you have chosen. --dn-metal: the dial round the outside. */
+:root { --dn-win: #efe6d2; --dn-loss: #a3312f; --dn-node: #e9dfc8; --dn-pick: #f2c14e; --dn-metal: #c9a557; }
+/* other colour schemes to try: set data-duo on <html> (the preview bar does this) */
+:root[data-duo="brass"] { --dn-win: #d9b56c; --dn-loss: #3f8279; --dn-node: #e6d3a1; --dn-pick: #fff1c9; --dn-metal: #a8843f; }
+:root[data-duo="parchment"] { --dn-win: #e9dcbd; --dn-loss: #40577a; --dn-node: #efe4c8; --dn-pick: #f2c14e; --dn-metal: #8a6a3a; }
+:root[data-duo="champagne"] { --dn-win: #ecdcb4; --dn-loss: #7d2136; --dn-node: #f0e3c2; --dn-pick: #ffe9a8; --dn-metal: #d9c48f; }
+:root[data-duo="pewter"] { --dn-win: #cdd2d6; --dn-loss: #b96a3c; --dn-node: #dfe3e6; --dn-pick: #f2c14e; --dn-metal: #9aa0a6; }
 .dn-box { margin: 0 0 14px; }
 .dn-toggle { padding: 9px 14px; }
 .dn-body { background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 6px; margin-top: 6px; }
@@ -165,8 +176,8 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .ms-addto-btn { border-color: #3a3122; color: #a39a88; }
 
 /* ---------- Duo network: the icon on Ranks and the pop-up it opens ---------- */
-.dn-icon { display: none; flex-direction: column; align-items: center; gap: 4px; margin: 0 0 0 auto; padding: 8px 12px 6px; background: none; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); cursor: pointer; font: 900 10.5px "Segoe UI", sans-serif; letter-spacing: .16em; transition: color .15s, border-color .15s; }
-.page-head[data-tab="leaderboardPage"] .dn-icon, .page-head[data-tab="monthlyPage"] .dn-icon, .page-head[data-tab="historyPage"] .dn-icon { display: flex; }
+.dn-icon { display: none; flex-direction: column; align-items: center; gap: 3px; margin: 0 0 0 auto; padding: 6px 12px 5px; background: none; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); cursor: pointer; font: 900 9px "Segoe UI", sans-serif; letter-spacing: .2em; transition: color .15s, border-color .15s; zoom: var(--ui-zoom); }
+.page-head[data-group="ranks"] ~ .sub-row .dn-icon { display: flex; }
 .dn-icon:hover, .dn-icon:focus-visible { color: var(--gold); border-color: var(--gold); outline: none; }
 .dn-icon svg { width: 44px; height: 44px; overflow: visible; }
 .dn-icon path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; opacity: .75; }
@@ -190,10 +201,104 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 /* the real 3D drawing (js/duoNetwork3d.js) lies over the SVG, which then only shows the surround */
 .dn-gl { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 680 / 660; touch-action: pan-y; cursor: grab; }
 .dn-gl.grabbing { cursor: grabbing; }
-.dn-svg.dn-behind > g { display: none; }
+.dn-svg.dn-behind > g, .dn-svg.dn-behind .dn-surround { display: none; }
 .dn-gl-labels { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 680 / 660; pointer-events: none; overflow: visible; }
-.dn-gl-labels span { position: absolute; white-space: nowrap; color: #fff; font: 700 13.5px "Segoe UI", sans-serif; letter-spacing: .05em; text-shadow: 0 0 4px #0b0906, 0 0 4px #0b0906, 0 1px 2px #000; }
-.dn-gl-labels span.sel { color: var(--gold); }
+.dn-gl-labels span { position: absolute; white-space: nowrap; color: #fff; font: 700 12.5px "Segoe UI", sans-serif; letter-spacing: .05em; text-shadow: 0 0 4px #0b0906, 0 0 4px #0b0906, 0 1px 2px #000; }
+.dn-gl-labels span.sel { color: var(--dn-pick); }
 .is-phone .dn-pop .dn-controls { flex-wrap: wrap; gap: 12px; }
 .is-phone .dn-pop .dn-range { order: 5; flex: 1 1 100%; }
 .is-phone .dn-stage { flex: none; }
+
+/* ---------- last month's number one: wings behind their card in the hands (js/locker.js adds .winged) ---------- */
+.hand-card.winged::before { content: ""; position: absolute; left: 50%; top: 47%; width: 270%; height: 195%; transform: translate(-50%, -50%); background: url("wings_cutout.webp") center / contain no-repeat; pointer-events: none; }
+
+/* ======================================================
+   LAYOUTS TO COMPARE
+   Each is switched on by an attribute on <html> (the preview bar sets it).
+   Once one is chosen, the others can be deleted from here and from the js.
+====================================================== */
+
+/* ---------- Leaderboard: data-lb="podium" or "tiles" (js/leaderboard.js draws #lbAlt) ---------- */
+#lbAlt, .lb-podium, .lb-tiles { display: none; }
+[data-lb="podium"] #lbAlt, [data-lb="tiles"] #lbAlt { display: block; zoom: var(--ui-zoom); }
+[data-lb="podium"] .lb-podium { display: grid; }
+[data-lb="tiles"] .lb-tiles { display: grid; }
+[data-lb="tiles"] #leaderboard, [data-lb="podium"] #leaderboard tbody tr:nth-child(-n+3) { display: none; }
+
+/* podium: second, first, third */
+.lb-podium { grid-template-columns: 1fr 1.12fr 1fr; gap: 14px; align-items: end; margin: 6px 0 18px; }
+.lb-pod { position: relative; display: grid; grid-template-columns: 74px 1fr; grid-template-rows: auto auto 1fr; column-gap: 14px; align-items: start; margin: 0; padding: 14px 14px 12px; text-align: left; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); border-top: 3px solid #d9dee3; border-radius: 10px; color: #fff; font: inherit; cursor: pointer; }
+.lb-pod-1 { border-top-color: var(--gold); padding-top: 22px; padding-bottom: 20px; }
+.lb-pod-3 { border-top-color: #d08a4a; }
+.lb-pod:hover, .lb-pod.locker-pick { background: rgba(var(--gold-rgb), .08); }
+.lb-pod img { grid-row: 1 / 4; width: 74px; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 5px; border: 1px solid var(--line); }
+.lb-pod-place { position: absolute; right: 12px; top: 8px; font: 400 34px/1 "Black Ops One", "Segoe UI", sans-serif; color: var(--line); }
+.lb-pod-1 .lb-pod-place { color: rgba(var(--gold-rgb), .5); }
+.lb-pod-name { color: var(--gold); font-size: 17px; font-weight: 900; letter-spacing: .04em; }
+.lb-pod-elo { font: 400 30px/1.15 "Black Ops One", "Segoe UI", sans-serif; }
+.lb-pod-1 .lb-pod-elo { font-size: 36px; }
+.lb-pod-elo span { font: 700 12px "Segoe UI", sans-serif; vertical-align: middle; }
+.lb-pod-stats { display: flex; gap: 16px; align-self: end; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+.lb-pod-stats > span { display: grid; }
+.lb-pod-stats b { font-size: 15px; }
+.lb-pod-stats i, .lb-t-stat i { font-style: normal; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
+
+/* tiles: one line per player, each number with its label */
+.lb-tiles { gap: 6px; margin-top: 6px; }
+.lb-tile { display: grid; grid-template-columns: 34px 44px 150px 1fr 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-left: 3px solid transparent; border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
+.lb-tile:nth-child(1) { border-left-color: var(--gold); } .lb-tile:nth-child(2) { border-left-color: #d9dee3; } .lb-tile:nth-child(3) { border-left-color: #d08a4a; }
+.lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
+.lb-tile.locker-pick { background: rgba(var(--gold-rgb), .12); border-color: var(--line); }
+.lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
+.lb-t-face { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); overflow: hidden; }
+.lb-t-face img { display: block; width: 100%; transform: scale(2.1); transform-origin: 50% 12%; }
+.lb-t-name { color: var(--gold); font-weight: 900; letter-spacing: .04em; }
+.lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
+.lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
+.lb-t-elo > span:not(.lb-bar) { font-size: 12px; font-weight: 700; }
+.lb-bar { height: 5px; border-radius: 3px; background: var(--line-soft); overflow: hidden; }
+.lb-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #6f6857, var(--gold)); }
+.lb-t-stat { display: grid; }
+.lb-t-stat b { font-size: 15px; }
+
+/* ---------- Head-to-Head: data-h2h="tabs", "grid" or "fold" (js/comparisons.js) ---------- */
+.h2h-sections { display: grid; gap: 18px; }
+.h2h-tabs, .cs-bar { display: none; }
+.comparison-section-title { display: flex; align-items: center; gap: 12px; }
+.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
+:root:not([data-h2h]) .comparison-section:nth-child(-n+2) .mode-score, [data-h2h="list"] .comparison-section:nth-child(-n+2) .mode-score { display: none; }
+
+/* tabs: one block at a time */
+[data-h2h="tabs"] .h2h-tabs { display: flex; justify-content: center; gap: 3px; width: fit-content; margin: 0 auto; padding: 3px; border: 1px solid var(--line); border-radius: 7px; background: rgba(0, 0, 0, .45); }
+.h2h-tabs button { margin: 0; padding: 8px 14px; border: 0; border-radius: 5px; background: none; color: var(--muted); font: 900 12px "Segoe UI", sans-serif; letter-spacing: .12em; cursor: pointer; }
+.h2h-tabs button.on { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); }
+[data-h2h="tabs"] .comparison-section:not(.tab-on) { display: none; }
+
+/* grid: every block on screen at once, side by side */
+[data-h2h="grid"] .h2h-sections { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+[data-h2h="grid"] .comparison-section { grid-column: span 2; border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
+[data-h2h="grid"] .comparison-section:nth-child(-n+2) { grid-column: span 3; }
+[data-h2h="grid"] .comparison-section-title { flex-wrap: wrap; row-gap: 2px; padding: 10px 2px; }
+[data-h2h="grid"] .comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 32px; }
+[data-h2h="grid"] .comparison-value { padding: 5px 8px; font-size: 14px; }
+[data-h2h="grid"] .comparison-label { font-size: 9.5px; min-width: 96px; }
+.is-phone[data-h2h="grid"] .comparison-section, .is-phone[data-h2h="grid"] .comparison-section:nth-child(-n+2) { grid-column: 1 / -1; }
+
+/* fold: one line per block with who won it; click a line to open it */
+[data-h2h="fold"] .h2h-sections { gap: 0; }
+[data-h2h="fold"] .comparison-section-title { cursor: pointer; padding: 14px 8px; border-bottom: 1px solid var(--line-soft); }
+[data-h2h="fold"] .comparison-section-title:hover { background: rgba(var(--gold-rgb), .045); }
+[data-h2h="fold"] .cs-name { width: 170px; color: #fff; font-size: 13px; }
+[data-h2h="fold"] .cs-name::before { content: "\25B8"; display: inline-block; width: 16px; color: var(--muted); }
+[data-h2h="fold"] .open .cs-name::before { content: "\25BE"; }
+[data-h2h="fold"] .cs-bar { display: block; flex: 1; height: 6px; border-radius: 3px; background: #5b5548; overflow: hidden; }
+[data-h2h="fold"] .cs-bar i { display: block; height: 100%; background: #5b5548; border-right: 2px solid #0b0906; }
+[data-h2h="fold"] .cs-bar.a i { background: #3ddc68; }
+[data-h2h="fold"] .cs-bar.b { background: #3ddc68; }
+[data-h2h="fold"] .comparison-section-title .mode-score { margin-left: 0; width: 230px; text-align: right; color: #fff; font-size: 12px; }
+[data-h2h="fold"] .comparison-section:not(.open) .cs-rows { display: none; }
+[data-h2h="fold"] .cs-rows { background: rgba(0, 0, 0, .3); }
+.is-phone .lb-podium { grid-template-columns: 1fr; gap: 8px; }
+.is-phone .lb-pod-1 { order: -1; }
+.is-phone .lb-tile { grid-template-columns: 30px 44px 1fr 150px 130px 60px; }
+.is-phone .lb-bar { display: none; }

@@ -55,7 +55,25 @@ function row(label, a, b, type = "number", better = "higher") {
     </div>`;
 }
 
-function modeSection(mode, a, b) {
+// One block of rows with a title. Returns its html and how many rows each player won.
+//   rows: [label, a's value, b's value, type, better]
+let openTab = 0;                 // which block the "tabs" layout shows
+const openFolds = new Set();     // which blocks the "fold" layout has open
+function section(index, title, a, b, rows) {
+    const scoreA = rows.reduce((sum, [, x, y, , better = "higher"]) => sum + compareMetric(x, y, better), 0);
+    const scoreB = rows.length - scoreA;
+    return {
+        scoreA, scoreB, title,
+        html: `<div class="comparison-section${index === openTab ? " tab-on" : ""}${openFolds.has(index) ? " open" : ""}" data-section="${index}">
+            <div class="comparison-section-title"><span class="cs-name">${title}</span>
+                <span class="cs-bar ${scoreA > scoreB ? "a" : scoreB > scoreA ? "b" : ""}"><i style="width:${(scoreA / rows.length * 100).toFixed(0)}%"></i></span>
+                <span class="mode-score">${a.name} ${num(scoreA, 1)} — ${num(scoreB, 1)} ${b.name}</span></div>
+            <div class="cs-rows">${rows.map(r => row(...r)).join("")}</div>
+        </div>`
+    };
+}
+
+function modeSection(mode, a, b, index) {
     const x = modeNumbers(a, mode);
     const y = modeNumbers(b, mode);
     const metrics = [
@@ -65,16 +83,7 @@ function modeSection(mode, a, b) {
         ["DAMAGE SHARE", "damageShare", "percent", "higher"],
         [mode.unitLabel, "avgModeUnit", "number", "higher"]
     ];
-    const scoreA = metrics.reduce((sum, [, key, , better]) => sum + compareMetric(x[key], y[key], better), 0);
-    const scoreB = metrics.length - scoreA;
-    return {
-        scoreA,
-        scoreB,
-        html: `<div class="comparison-section">
-            <div class="comparison-section-title">${mode.name.toUpperCase()} <span class="mode-score">${a.name} ${num(scoreA, 1)} — ${num(scoreB, 1)} ${b.name}</span></div>
-            ${metrics.map(([label, key, type, better]) => row(label, x[key], y[key], type, better)).join("")}
-        </div>`
-    };
+    return section(index, mode.name.toUpperCase(), a, b, metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]));
 }
 
 function cardStage(p) {
@@ -117,10 +126,26 @@ function render() {
     empty.style.display = "none";
     content.style.display = "grid";
 
-    const modeResults = MODES.map(mode => modeSection(mode, a, b));
+    const kd = p => Number(p.lifetimeDeaths || 0) === 0 ? Number(p.lifetimeKills || 0) : p.lifetimeKills / p.lifetimeDeaths;
+    const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
+    const overall = section(0, "OVERALL", a, b, [
+        ["ELO", a.elo, b.elo],
+        ["CURRENT RANK", a.currentRank, b.currentRank, "number", "lower"],
+        ["OVERALL RATING", cardRatings(a, players).overall, cardRatings(b, players).overall],
+        ["ELO CHANGE", a.eloChange, b.eloChange]
+    ]);
+    const lifetime = section(1, "LIFETIME", a, b, [
+        ["KILLS", a.lifetimeKills, b.lifetimeKills],
+        ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower"],
+        ["K/D", kd(a), kd(b)],
+        ["WINS", totalWins(a), totalWins(b)],
+        ["LOSSES", totalLosses(a), totalLosses(b), "number", "lower"],
+        ["WIN RATE", winRate(a), winRate(b), "percent"]
+    ]);
+    const modeResults = MODES.map((mode, i) => modeSection(mode, a, b, i + 2));
+    const sections = [overall, lifetime, ...modeResults];
     const totalA = modeResults.reduce((sum, r) => sum + r.scoreA, 0);
     const totalB = modeResults.reduce((sum, r) => sum + r.scoreB, 0);
-    const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
 
     content.innerHTML = `
         <div class="comparison-card-pair">
@@ -134,25 +159,9 @@ function render() {
             <span>HEAD-TO-HEAD</span>
         </div>
 
-        <div class="comparison-section">
-            <div class="comparison-section-title">OVERALL</div>
-            ${row("ELO", a.elo, b.elo)}
-            ${row("CURRENT RANK", a.currentRank, b.currentRank, "number", "lower")}
-            ${row("OVERALL RATING", cardRatings(a, players).overall, cardRatings(b, players).overall)}
-            ${row("ELO CHANGE", a.eloChange, b.eloChange)}
-        </div>
-
-        <div class="comparison-section">
-            <div class="comparison-section-title">LIFETIME</div>
-            ${row("KILLS", a.lifetimeKills, b.lifetimeKills)}
-            ${row("DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower")}
-            ${row("K/D", ratio(a.lifetimeKills, a.lifetimeDeaths), ratio(b.lifetimeKills, b.lifetimeDeaths), "text")}
-            ${row("WINS", totalWins(a), totalWins(b))}
-            ${row("LOSSES", totalLosses(a), totalLosses(b), "number", "lower")}
-            ${row("WIN RATE", winRate(a), winRate(b), "percent")}
-        </div>
-
-        ${modeResults.map(r => r.html).join("")}
+        <!-- the page switch for the "tabs" layout (hidden in the others) -->
+        <div class="h2h-tabs">${sections.map((sec, i) => `<button type="button" data-section="${i}" class="${i === openTab ? "on" : ""}">${sec.title === "SEARCH & DESTROY" ? "S&amp;D" : sec.title}</button>`).join("")}</div>
+        <div class="h2h-sections">${sections.map(sec => sec.html).join("")}</div>
     `;
 
     content.querySelectorAll(".comparison-card-stage").forEach(stage => {
@@ -164,6 +173,20 @@ function render() {
 export function setupComparisons() {
     ["comparePlayerA", "comparePlayerB"].forEach(id =>
         document.getElementById(id).addEventListener("change", render));
+    // "tabs" layout: a button shows one block. "fold" layout: a title opens and closes its block.
+    document.getElementById("comparisonContent").addEventListener("click", e => {
+        const tab = e.target.closest(".h2h-tabs button"), title = e.target.closest(".comparison-section-title");
+        const content = e.currentTarget;
+        if (tab) {
+            openTab = Number(tab.dataset.section);
+            content.querySelectorAll(".h2h-tabs button").forEach(b => b.classList.toggle("on", b === tab));
+            content.querySelectorAll(".comparison-section").forEach(sec => sec.classList.toggle("tab-on", Number(sec.dataset.section) === openTab));
+        } else if (title && document.documentElement.dataset.h2h === "fold") {
+            const sec = title.parentElement, i = Number(sec.dataset.section);
+            openFolds.has(i) ? openFolds.delete(i) : openFolds.add(i);
+            sec.classList.toggle("open");
+        }
+    });
 }
 
 export function showComparisons(list) {

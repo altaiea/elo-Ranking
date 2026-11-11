@@ -17,7 +17,7 @@ const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
 // Winning (or even) duos use --dn-win, brighter the better they do; duos that lose more than they win use --dn-loss.
 const BG = [11, 9, 6];
 const hex = v => { const m = /^#?([0-9a-f]{6})$/i.exec(String(v).trim()); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
-let WIN = [61, 220, 104], LOSS = [255, 77, 77];
+let WIN = [239, 230, 210], LOSS = [163, 49, 47];
 function readColours() {
     const css = getComputedStyle(document.documentElement);
     WIN = hex(css.getPropertyValue("--dn-win")) || WIN;

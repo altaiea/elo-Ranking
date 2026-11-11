@@ -93,7 +93,7 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 
 /* ---------- Duo network ---------- */
 /* line colours: winning duos, losing duos (6-digit hex). js/duoNetwork.js reads these. */
-:root { --dn-win: #3ddc68; --dn-loss: #ff4d4d; }
+:root { --dn-win: #efe6d2; --dn-loss: #a3312f; }
 .dn-box { margin: 0 0 14px; }
 .dn-toggle { padding: 9px 14px; }
 .dn-body { background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 6px; margin-top: 6px; }

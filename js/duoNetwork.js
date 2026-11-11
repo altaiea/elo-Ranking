@@ -13,13 +13,21 @@ const CX = 340, CY = 330, R = 235;      // centre and size of the globe inside t
 const CAMERA = 3.4;                      // how far away the viewer is, in globe radiuses (smaller = stronger 3D)
 const SPIN = 0.0022;                     // how fast it turns on its own before you touch it
 const MODE_SHORT = { Hardpoint: "HP", SND: "SND", Overload: "OVL" };
-const GREEN = [61, 220, 104], DIM_GREEN = [40, 84, 52], RED = [255, 77, 77], DIM_RED = [110, 48, 52];
+// Line colours come from seamless.css (--dn-win and --dn-loss), so they can be changed there without touching this file.
+// Winning (or even) duos use --dn-win, brighter the better they do; duos that lose more than they win use --dn-loss.
+const BG = [11, 9, 6];
+const hex = v => { const m = /^#?([0-9a-f]{6})$/i.exec(String(v).trim()); return m ? [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16)) : null; };
+let WIN = [61, 220, 104], LOSS = [255, 77, 77];
+function readColours() {
+    const css = getComputedStyle(document.documentElement);
+    WIN = hex(css.getPropertyValue("--dn-win")) || WIN;
+    LOSS = hex(css.getPropertyValue("--dn-loss")) || LOSS;
+}
 const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const clamp01 = x => Math.max(0, Math.min(1, x));
-// winning (or even) duos are green, brighter the better they do; duos that lose more than they win are red (the leaderboard's colours)
 const winColour = wr => wr >= 0.5
-    ? `rgb(${mix(DIM_GREEN, GREEN, 0.35 + 0.65 * clamp01((wr - 0.5) / 0.22))})`
-    : `rgb(${mix(DIM_RED, RED, 0.35 + 0.65 * clamp01((0.5 - wr) / 0.22))})`;
+    ? `rgb(${mix(mix(BG, WIN, 0.3), WIN, 0.35 + 0.65 * clamp01((wr - 0.5) / 0.22))})`
+    : `rgb(${mix(mix(BG, LOSS, 0.3), LOSS, 0.35 + 0.65 * clamp01((0.5 - wr) / 0.22))})`;
 const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 const h = (html) => { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; };
 const nm = id => getPlayerName(id);
@@ -92,7 +100,6 @@ function build(root) {
 </div>`);
     root.appendChild(wrap);
     const svg = wrap.querySelector(".dn-svg");
-    S.globe = el("path", { class: "dn-globe", fill: "none", d: "M0,0" }, svg);
     el("g", { id: "dnRipples" }, svg);
     const gE = el("g", { id: "dnEdges" }, svg), gHit = el("g", { id: "dnHits" }, svg), gSel = el("g", { id: "dnSel" }, svg), gN = el("g", { id: "dnNodes" }, svg);
     // spread the players evenly over the globe (a spiral from top to bottom)
@@ -204,13 +211,6 @@ function layout() {
         const A = S.pos[e.a], B = S.pos[e.b], bend = project([0, 1, 2].map(i => (A.p[i] + B.p[i]) * 0.2));
         S.selPath.setAttribute("d", `M${pt(A)} Q${pt(bend)} ${pt(B)}`);
     }
-    // three hoops round the globe, so you can see it turn
-    let d = "";
-    for (let ring = 0; ring < 3; ring++) for (let i = 0; i <= 48; i++) {
-        const a = i / 48 * 2 * Math.PI, c = Math.cos(a), s = Math.sin(a);
-        d += (i ? "L" : "M") + pt(project(ring === 0 ? [c, 0, s] : ring === 1 ? [c, s, 0] : [0, c, s]));
-    }
-    S.globe.setAttribute("d", d);
 }
 
 // Keeps redrawing while the globe is moving (turning on its own, being dragged, or coasting after a flick).
@@ -258,6 +258,7 @@ function ripple(originId) {
 
 function update(opts) {
     opts = opts || {};
+    readColours();
     const agg = S.agg = aggregate(S.lo, S.hi);
     const maxG = Math.max(10, ...[...agg.values()].filter(p => p.g >= S.min).map(p => p.g));
     const n = S.ids.length;

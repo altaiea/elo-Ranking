@@ -142,16 +142,34 @@ function build(root) {
     gN.addEventListener("click", e => { const g = e.target.closest(".dn-node"); if (g && !S.dragged) pickNode(+g.dataset.id); });
     gHit.addEventListener("click", e => { if (S.dragged) return; const k = e.target.getAttribute("data-k"); if (!k) return; const [a, b] = k.split("-").map(Number); S.selA = a; S.selB = b; update({ ripple: true, origin: a }); });
     const tip = wrap.querySelector(".dn-tip"), stage = wrap.querySelector(".dn-stage");
-    gHit.addEventListener("mousemove", e => {
-        const k = e.target.getAttribute("data-k"); if (!k) { tip.style.display = "none"; return; }
-        const p = S.agg.get(k); const [a, b] = k.split("-").map(Number);
+    // the small box that follows the mouse over a line; k is "lowId-highId", or null to hide it
+    S.showTip = (k, x, y) => {
+        const p = k && S.agg.get(k);
         if (!p || p.g < S.min) { tip.style.display = "none"; return; }
-        const r = stage.getBoundingClientRect();
+        const [a, b] = k.split("-").map(Number), r = stage.getBoundingClientRect();
         tip.innerHTML = `<b>${nm(a)} + ${nm(b)}</b><br>${p.g} maps &nbsp;·&nbsp; ${p.w}–${p.d - p.w} (${p.d ? Math.round(100 * p.w / p.d) : 0}%)`;
-        tip.style.display = "block"; tip.style.left = (e.clientX - r.left + 14) + "px"; tip.style.top = (e.clientY - r.top + 14) + "px";
-    });
-    gHit.addEventListener("mouseleave", () => { tip.style.display = "none"; });
+        tip.style.display = "block"; tip.style.left = (x - r.left + 14) + "px"; tip.style.top = (y - r.top + 14) + "px";
+    };
+    gHit.addEventListener("mousemove", e => S.showTip(e.target.getAttribute("data-k"), e.clientX, e.clientY));
+    gHit.addEventListener("mouseleave", () => S.showTip(null));
     S.wrap = wrap;
+    start3D(stage, svg);
+}
+
+// Swap the flat drawing for the real 3D one (js/duoNetwork3d.js). If the file or WebGL
+// is not available, nothing happens and the flat drawing carries on.
+function start3D(stage, svg) {
+    import("./duoNetwork3d.js").then(m => {
+        const gl = m.createGlobe3D(stage, S, {
+            pickNode,
+            pickEdge: k => { const [a, b] = k.split("-").map(Number); S.selA = a; S.selB = b; update({ ripple: true, origin: a }); },
+            hoverEdge: (k, x, y) => S.showTip(k, x, y)
+        });
+        if (!gl) return;
+        S.gl = gl;
+        svg.classList.add("dn-behind");      // the SVG now only shows the gold surround
+        gl.sync();
+    }).catch(err => console.warn("Duo network: using the flat drawing.", err));
 }
 
 function pickNode(id) {
@@ -187,6 +205,7 @@ function project([x, y, z]) {
 const pt = q => q.x.toFixed(1) + "," + q.y.toFixed(1);
 
 function layout() {
+    if (S.gl) return;                                          // the 3D drawing has taken over
     S.ids.forEach(id => {
         const o = S.pos[id], q = project(o.p), nd = S.nodes[id];
         o.x = q.x; o.y = q.y; o.z = q.z;
@@ -217,9 +236,10 @@ function layout() {
 
 // Keeps redrawing while the globe is moving (turning on its own, being dragged, or coasting after a flick).
 function animate() {
-    if (S.raf) return;
+    if (S.raf || S.gl) return;
     const step = () => {
         S.raf = null;
+        if (S.gl) return;
         const visible = S.wrap && S.wrap.offsetParent !== null;
         if (!S.down) { S.yaw += S.vel; S.vel *= 0.94; if (Math.abs(S.vel) < 0.0004) S.vel = 0; }
         if (S.spin && !S.down) S.yaw += SPIN;
@@ -278,7 +298,7 @@ function update(opts) {
         const ia = S.pos[e.a].i, ib = S.pos[e.b].i;
         const ring = i => originI === null ? 0 : Math.min(Math.abs(i - originI), n - Math.abs(i - originI));
         const delay = opts.ripple ? (originI === null ? Math.abs(ia - ib) * 14 + (Math.min(ia, ib)) * 12 : Math.min(ring(ia), ring(ib)) * 70) : 0;
-        e.show = !!show;
+        e.show = !!show; e.style = style; e.dim = dim;
         const apply = () => { e.path.style.strokeWidth = style.sw + "px"; e.path.style.stroke = style.col; e.path.style.opacity = style.op; e.hit.style.pointerEvents = show ? "stroke" : "none"; };
         clearTimeout(e.t); delay ? (e.t = setTimeout(apply, delay)) : apply();
     });
@@ -293,7 +313,8 @@ function update(opts) {
     });
     S.selPath.style.opacity = S.selA !== null && S.selB !== null ? 1 : 0;    // the dotted line on the chosen duo
     layout(); animate();
-    if (opts.ripple) ripple(opts.origin);
+    if (S.gl) S.gl.sync(opts);
+    if (opts.ripple && !S.gl) ripple(opts.origin);
     // labels and range fill
     const w = S.wrap, last = S.dates.length - 1;
     w.querySelector("#dnFrom").textContent = fmtDay(S.dates[S.lo]);
@@ -356,22 +377,31 @@ function renderSide(agg) {
 }
 
 /* ---------- mount ---------- */
+// A small icon beside the Ranks title opens the network in a full-screen panel.
 function mount() {
-    const page = document.getElementById("historyPage");
-    if (!page || document.getElementById("duoNet")) return;
-    const box = h(`<div id="duoNet" class="dn-box"><button type="button" class="dn-toggle"><span>&#9672; DUO NETWORK</span><b>&#9662;</b></button><div class="dn-body"></div></div>`);
-    page.insertBefore(box, page.firstChild);
-    const body = box.querySelector(".dn-body"), toggle = box.querySelector(".dn-toggle");
+    const head = document.getElementById("pageHead");
+    if (!head || document.getElementById("duoNet")) return;
+    const icon = h(`<button type="button" class="dn-icon" id="duoIcon" aria-label="Open the duo network" title="Duo network">
+<svg viewBox="0 0 48 48" aria-hidden="true"><g class="dn-icon-spin"><path d="M24 7 L9 33 M24 7 L39 33 M9 33 L39 33 M24 7 Q24 26 31 20 M9 33 Q24 24 31 20 M39 33 L31 20"/><circle cx="24" cy="7" r="3.4"/><circle cx="9" cy="33" r="3.4"/><circle cx="39" cy="33" r="3.4"/><circle cx="31" cy="20" r="2.6"/></g></svg>
+<span>DUOS</span></button>`);
+    head.appendChild(icon);
+    const box = h(`<div id="duoNet" class="dn-box dn-pop" role="dialog" aria-modal="true" aria-label="Duo network" hidden>
+<div class="dn-pop-inner"><div class="dn-pop-head"><h2>DUO NETWORK</h2><button type="button" class="dn-close" aria-label="Close">&#10005;</button></div><div class="dn-body"></div></div></div>`);
+    document.body.appendChild(box);
+    const body = box.querySelector(".dn-body");
     let started = false;
-    toggle.addEventListener("click", async () => {
-        const open = box.classList.toggle("open");
-        if (!open || started) return;
+    const close = () => { box.hidden = true; box.classList.remove("open"); document.documentElement.classList.remove("dn-open"); if (S) stopPlay(); icon.focus(); };
+    icon.addEventListener("click", async () => {
+        box.hidden = false; box.classList.add("open"); document.documentElement.classList.add("dn-open");
+        box.querySelector(".dn-close").focus();
+        if (started) { if (S && S.gl) S.gl.wake(); else if (S) animate(); return; }
         started = true;
         body.innerHTML = "<div class='dn-loading'>Loading…</div>";
         try { await loadData(); body.innerHTML = ""; build(body); update({ ripple: true }); }
         catch (err) { console.error(err); body.innerHTML = "<div class='dn-loading'>Could not load the history.</div>"; started = false; }
     });
-    const listEl = document.getElementById("historyList");
-    if (listEl) new MutationObserver(() => { box.style.display = listEl.style.display === "none" ? "none" : ""; }).observe(listEl, { attributes: true, attributeFilter: ["style"] });
+    box.querySelector(".dn-close").addEventListener("click", close);
+    box.addEventListener("click", e => { if (e.target === box) close(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !box.hidden) close(); });
 }
 export const setupDuoNetwork = mount;

@@ -163,3 +163,37 @@ select#monthlyMonthSelect, .dn-min select { background: #0b0906; color: var(--te
 .ms .ms-seg { background: rgba(0, 0, 0, .45); border-color: #3a3122; }
 .theme-ko .ms-go:disabled { background: none; color: #a39a88; border-color: #3a3122; }
 .ms-addto-btn { border-color: #3a3122; color: #a39a88; }
+
+/* ---------- Duo network: the icon on Ranks and the pop-up it opens ---------- */
+.dn-icon { display: none; flex-direction: column; align-items: center; gap: 4px; margin: 0 0 0 auto; padding: 8px 12px 6px; background: none; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); cursor: pointer; font: 900 10.5px "Segoe UI", sans-serif; letter-spacing: .16em; transition: color .15s, border-color .15s; }
+.page-head[data-tab="leaderboardPage"] .dn-icon, .page-head[data-tab="monthlyPage"] .dn-icon, .page-head[data-tab="historyPage"] .dn-icon { display: flex; }
+.dn-icon:hover, .dn-icon:focus-visible { color: var(--gold); border-color: var(--gold); outline: none; }
+.dn-icon svg { width: 44px; height: 44px; overflow: visible; }
+.dn-icon path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; opacity: .75; }
+.dn-icon circle { fill: #f1ead9; stroke: #0b0906; stroke-width: 1.5; }
+.dn-icon-spin { transform-origin: 24px 24px; animation: dnIconTurn 14s linear infinite; }
+.dn-icon:hover .dn-icon-spin { animation-duration: 4s; }
+@keyframes dnIconTurn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dn-icon-spin { animation: none; } }
+
+.dn-pop { position: fixed; inset: 0; z-index: 400; width: auto; margin: 0; overflow-y: auto; background: rgba(4, 3, 2, .9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.dn-pop[hidden] { display: none; }
+.dn-open, .dn-open body { overflow: hidden; }
+.dn-pop-inner { box-sizing: border-box; width: min(1060px, 100% - 32px); margin: 28px auto; padding: 18px 24px 22px; border: 1px solid var(--line); border-radius: 12px; background: #0b0906; box-shadow: 0 30px 80px rgba(0, 0, 0, .7); }
+.dn-pop-head { display: flex; align-items: center; justify-content: space-between; }
+.dn-pop-head h2 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: .14em; color: #fff; }
+.dn-close { margin: 0; padding: 6px 10px; background: none; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 15px; cursor: pointer; }
+.dn-close:hover, .dn-close:focus-visible { color: var(--gold); border-color: var(--gold); outline: none; }
+.dn-pop .dn-body { border-bottom: 0; }
+.is-phone .dn-pop-inner { width: auto; margin: 16px; zoom: var(--ui-zoom); }
+
+/* the real 3D drawing (js/duoNetwork3d.js) lies over the SVG, which then only shows the surround */
+.dn-gl { position: absolute; left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 680 / 660; touch-action: pan-y; cursor: grab; }
+.dn-gl.grabbing { cursor: grabbing; }
+.dn-svg.dn-behind > g { display: none; }
+.dn-gl-labels { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 680 / 660; pointer-events: none; overflow: visible; }
+.dn-gl-labels span { position: absolute; white-space: nowrap; color: #fff; font: 700 13.5px "Segoe UI", sans-serif; letter-spacing: .05em; text-shadow: 0 0 4px #0b0906, 0 0 4px #0b0906, 0 1px 2px #000; }
+.dn-gl-labels span.sel { color: var(--gold); }
+.is-phone .dn-pop .dn-controls { flex-wrap: wrap; gap: 12px; }
+.is-phone .dn-pop .dn-range { order: 5; flex: 1 1 100%; }
+.is-phone .dn-stage { flex: none; }

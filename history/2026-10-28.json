@@ -2,82 +2,82 @@
   "date": "2026-10-28",
   "openingStats": {
     "1": {
-      "elo": 1114.5995924779775,
-      "lifetimeKills": 16830,
-      "lifetimeDeaths": 10333,
+      "elo": 1113.3977451832268,
+      "lifetimeKills": 16669,
+      "lifetimeDeaths": 10244,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 9705,
-      "hpDeaths": 5945,
-      "sndKills": 1790,
-      "sndDeaths": 1136,
-      "overloadKills": 5335,
-      "overloadDeaths": 3252,
-      "hpWins": 114,
+      "hpKills": 9619,
+      "hpDeaths": 5885,
+      "sndKills": 1774,
+      "sndDeaths": 1127,
+      "overloadKills": 5276,
+      "overloadDeaths": 3232,
+      "hpWins": 112,
       "hpLosses": 106,
       "sndWins": 87,
-      "sndLosses": 89,
-      "overloadWins": 82,
+      "sndLosses": 88,
+      "overloadWins": 81,
       "overloadLosses": 48,
       "seriesWins": 2,
       "seriesLosses": 1,
-      "hpMarginTotal": 1.6400000000000001,
-      "hpMarginCount": 220,
-      "sndMarginTotal": 1.4999999999999991,
-      "sndMarginCount": 176,
-      "overloadMarginTotal": 11.375,
-      "overloadMarginCount": 130,
+      "hpMarginTotal": 1.2650000000000001,
+      "hpMarginCount": 218,
+      "sndMarginTotal": 1.6666666666666659,
+      "sndMarginCount": 175,
+      "overloadMarginTotal": 10.75,
+      "overloadMarginCount": 129,
       "hpDamage": 5600.0,
       "hpDamageShare": 0.3684210526315789,
       "sndDamage": 1000.0,
       "sndDamageShare": 0.2777777777777778,
       "overloadDamage": 4500.0,
       "overloadDamageShare": 0.3358208955223881,
-      "hpLifetimeDamage": 920400.0,
-      "hpLifetimeTeamDamage": 3091100.0,
-      "sndLifetimeDamage": 169000.0,
-      "sndLifetimeTeamDamage": 538300.0,
-      "overloadLifetimeDamage": 505000.0,
-      "overloadLifetimeTeamDamage": 1729800.0
+      "hpLifetimeDamage": 911800.0,
+      "hpLifetimeTeamDamage": 3060100.0,
+      "sndLifetimeDamage": 167400.0,
+      "sndLifetimeTeamDamage": 534100.0,
+      "overloadLifetimeDamage": 499100.0,
+      "overloadLifetimeTeamDamage": 1712700.0
     },
     "2": {
-      "elo": 1121.4034899746014,
-      "lifetimeKills": 14695,
-      "lifetimeDeaths": 9051,
+      "elo": 1122.686737706565,
+      "lifetimeKills": 14551,
+      "lifetimeDeaths": 8956,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 8333,
-      "hpDeaths": 5164,
-      "sndKills": 1549,
-      "sndDeaths": 962,
-      "overloadKills": 4813,
-      "overloadDeaths": 2925,
+      "hpKills": 8233,
+      "hpDeaths": 5109,
+      "sndKills": 1545,
+      "sndDeaths": 953,
+      "overloadKills": 4773,
+      "overloadDeaths": 2894,
       "hpWins": 86,
-      "hpLosses": 105,
-      "sndWins": 98,
+      "hpLosses": 103,
+      "sndWins": 97,
       "sndLosses": 55,
       "overloadWins": 52,
-      "overloadLosses": 63,
+      "overloadLosses": 62,
       "seriesWins": 0,
       "seriesLosses": 3,
-      "hpMarginTotal": -1.7830000000000004,
-      "hpMarginCount": 191,
-      "sndMarginTotal": 19.83333333333333,
-      "sndMarginCount": 153,
-      "overloadMarginTotal": -3.25,
-      "overloadMarginCount": 115,
+      "hpMarginTotal": -1.4080000000000004,
+      "hpMarginCount": 189,
+      "sndMarginTotal": 19.66666666666666,
+      "sndMarginCount": 152,
+      "overloadMarginTotal": -2.625,
+      "overloadMarginCount": 114,
       "hpDamage": 3800.0,
       "hpDamageShare": 0.30158730158730157,
       "sndDamage": 1500.0,
       "sndDamageShare": 0.36585365853658536,
       "overloadDamage": 3200.0,
       "overloadDamageShare": 0.24427480916030533,
-      "hpLifetimeDamage": 792600.0,
-      "hpLifetimeTeamDamage": 2671500.0,
-      "sndLifetimeDamage": 149100.0,
-      "sndLifetimeTeamDamage": 489200.0,
-      "overloadLifetimeDamage": 463200.0,
-      "overloadLifetimeTeamDamage": 1539000.0
+      "hpLifetimeDamage": 782600.0,
+      "hpLifetimeTeamDamage": 2639800.0,
+      "sndLifetimeDamage": 148700.0,
+      "sndLifetimeTeamDamage": 485300.0,
+      "overloadLifetimeDamage": 459200.0,
+      "overloadLifetimeTeamDamage": 1526300.0
     },
     "3": {
       "elo": 1093.9114361657792,
@@ -197,43 +197,43 @@
       "overloadLifetimeTeamDamage": 1617700.0
     },
     "6": {
-      "elo": 1004.2497590207521,
-      "lifetimeKills": 10552,
-      "lifetimeDeaths": 7840,
+      "elo": 1005.9790726563778,
+      "lifetimeKills": 10442,
+      "lifetimeDeaths": 7745,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 5868,
-      "hpDeaths": 4535,
-      "sndKills": 1142,
-      "sndDeaths": 833,
-      "overloadKills": 3542,
-      "overloadDeaths": 2472,
+      "hpKills": 5798,
+      "hpDeaths": 4475,
+      "sndKills": 1131,
+      "sndDeaths": 825,
+      "overloadKills": 3513,
+      "overloadDeaths": 2445,
       "hpWins": 62,
-      "hpLosses": 103,
-      "sndWins": 72,
+      "hpLosses": 101,
+      "sndWins": 71,
       "sndLosses": 60,
       "overloadWins": 50,
-      "overloadLosses": 49,
+      "overloadLosses": 48,
       "seriesWins": 0,
       "seriesLosses": 1,
-      "hpMarginTotal": -19.023000000000017,
-      "hpMarginCount": 165,
-      "sndMarginTotal": 7.833333333333333,
-      "sndMarginCount": 132,
-      "overloadMarginTotal": 1.625,
-      "overloadMarginCount": 99,
+      "hpMarginTotal": -18.648000000000017,
+      "hpMarginCount": 163,
+      "sndMarginTotal": 7.666666666666666,
+      "sndMarginCount": 131,
+      "overloadMarginTotal": 2.25,
+      "overloadMarginCount": 98,
       "hpDamage": 4400.0,
       "hpDamageShare": 0.2875816993464052,
       "sndDamage": 1000.0,
       "sndDamageShare": 0.2702702702702703,
       "overloadDamage": 3800.0,
       "overloadDamageShare": 0.26573426573426573,
-      "hpLifetimeDamage": 552200.0,
-      "hpLifetimeTeamDamage": 2242000.0,
-      "sndLifetimeDamage": 107200.0,
-      "sndLifetimeTeamDamage": 423000.0,
-      "overloadLifetimeDamage": 334800.0,
-      "overloadLifetimeTeamDamage": 1310900.0
+      "hpLifetimeDamage": 545200.0,
+      "hpLifetimeTeamDamage": 2210300.0,
+      "sndLifetimeDamage": 106100.0,
+      "sndLifetimeTeamDamage": 419100.0,
+      "overloadLifetimeDamage": 331900.0,
+      "overloadLifetimeTeamDamage": 1298200.0
     },
     "7": {
       "elo": 950.2154632583364,
@@ -275,121 +275,121 @@
       "overloadLifetimeTeamDamage": 1231800.0
     },
     "8": {
-      "elo": 922.7901485188936,
-      "lifetimeKills": 12593,
-      "lifetimeDeaths": 10787,
+      "elo": 924.5107160241021,
+      "lifetimeKills": 12472,
+      "lifetimeDeaths": 10697,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7238,
-      "hpDeaths": 6157,
-      "sndKills": 1268,
-      "sndDeaths": 1218,
-      "overloadKills": 4087,
-      "overloadDeaths": 3412,
+      "hpKills": 7164,
+      "hpDeaths": 6101,
+      "sndKills": 1254,
+      "sndDeaths": 1212,
+      "overloadKills": 4054,
+      "overloadDeaths": 3384,
       "hpWins": 95,
-      "hpLosses": 125,
-      "sndWins": 90,
+      "hpLosses": 123,
+      "sndWins": 89,
       "sndLosses": 85,
       "overloadWins": 60,
-      "overloadLosses": 68,
+      "overloadLosses": 67,
       "seriesWins": 2,
       "seriesLosses": 1,
-      "hpMarginTotal": -13.172000000000002,
-      "hpMarginCount": 220,
-      "sndMarginTotal": 1.833333333333334,
-      "sndMarginCount": 175,
-      "overloadMarginTotal": -0.25,
-      "overloadMarginCount": 128,
+      "hpMarginTotal": -12.797000000000002,
+      "hpMarginCount": 218,
+      "sndMarginTotal": 1.6666666666666672,
+      "sndMarginCount": 174,
+      "overloadMarginTotal": 0.375,
+      "overloadMarginCount": 127,
       "hpDamage": 3100.0,
       "hpDamageShare": 0.18452380952380953,
       "sndDamage": 1200.0,
       "sndDamageShare": 0.2553191489361702,
       "overloadDamage": 2800.0,
       "overloadDamageShare": 0.23728813559322035,
-      "hpLifetimeDamage": 688000.0,
-      "hpLifetimeTeamDamage": 3017600.0,
-      "sndLifetimeDamage": 120900.0,
-      "sndLifetimeTeamDamage": 529600.0,
-      "overloadLifetimeDamage": 390800.0,
-      "overloadLifetimeTeamDamage": 1698100.0
+      "hpLifetimeDamage": 680600.0,
+      "hpLifetimeTeamDamage": 2985900.0,
+      "sndLifetimeDamage": 119500.0,
+      "sndLifetimeTeamDamage": 525700.0,
+      "overloadLifetimeDamage": 387500.0,
+      "overloadLifetimeTeamDamage": 1685400.0
     },
     "9": {
-      "elo": 1056.4394512614742,
-      "lifetimeKills": 13554,
-      "lifetimeDeaths": 10686,
+      "elo": 1054.7452628130789,
+      "lifetimeKills": 13429,
+      "lifetimeDeaths": 10599,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7819,
-      "hpDeaths": 6226,
-      "sndKills": 1455,
-      "sndDeaths": 1129,
-      "overloadKills": 4280,
-      "overloadDeaths": 3331,
-      "hpWins": 115,
+      "hpKills": 7743,
+      "hpDeaths": 6174,
+      "sndKills": 1445,
+      "sndDeaths": 1121,
+      "overloadKills": 4241,
+      "overloadDeaths": 3304,
+      "hpWins": 113,
       "hpLosses": 103,
       "sndWins": 92,
-      "sndLosses": 83,
-      "overloadWins": 62,
+      "sndLosses": 82,
+      "overloadWins": 61,
       "overloadLosses": 65,
       "seriesWins": 3,
       "seriesLosses": 0,
-      "hpMarginTotal": 3.922000000000001,
-      "hpMarginCount": 218,
-      "sndMarginTotal": 10.333333333333334,
-      "sndMarginCount": 175,
-      "overloadMarginTotal": 1.0,
-      "overloadMarginCount": 127,
+      "hpMarginTotal": 3.547000000000001,
+      "hpMarginCount": 216,
+      "sndMarginTotal": 10.5,
+      "sndMarginCount": 174,
+      "overloadMarginTotal": 0.375,
+      "overloadMarginCount": 126,
       "hpDamage": 3100.0,
       "hpDamageShare": 0.2080536912751678,
       "sndDamage": 800.0,
       "sndDamageShare": 0.27586206896551724,
       "overloadDamage": 2600.0,
       "overloadDamageShare": 0.22413793103448276,
-      "hpLifetimeDamage": 742200.0,
-      "hpLifetimeTeamDamage": 3027400.0,
-      "sndLifetimeDamage": 138600.0,
-      "sndLifetimeTeamDamage": 543900.0,
-      "overloadLifetimeDamage": 406200.0,
-      "overloadLifetimeTeamDamage": 1669300.0
+      "hpLifetimeDamage": 734600.0,
+      "hpLifetimeTeamDamage": 2996400.0,
+      "sndLifetimeDamage": 137600.0,
+      "sndLifetimeTeamDamage": 539700.0,
+      "overloadLifetimeDamage": 402300.0,
+      "overloadLifetimeTeamDamage": 1652200.0
     },
     "10": {
-      "elo": 910.3919704788832,
-      "lifetimeKills": 8809,
-      "lifetimeDeaths": 8079,
+      "elo": 908.6017848861688,
+      "lifetimeKills": 8693,
+      "lifetimeDeaths": 7995,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 5264,
-      "hpDeaths": 4658,
-      "sndKills": 844,
-      "sndDeaths": 960,
-      "overloadKills": 2701,
-      "overloadDeaths": 2461,
-      "hpWins": 86,
+      "hpKills": 5188,
+      "hpDeaths": 4603,
+      "sndKills": 838,
+      "sndDeaths": 953,
+      "overloadKills": 2667,
+      "overloadDeaths": 2439,
+      "hpWins": 84,
       "hpLosses": 82,
       "sndWins": 67,
-      "sndLosses": 69,
-      "overloadWins": 49,
+      "sndLosses": 68,
+      "overloadWins": 48,
       "overloadLosses": 46,
       "seriesWins": 1,
       "seriesLosses": 0,
-      "hpMarginTotal": 1.129000000000001,
-      "hpMarginCount": 168,
-      "sndMarginTotal": -2.166666666666667,
-      "sndMarginCount": 136,
-      "overloadMarginTotal": -0.875,
-      "overloadMarginCount": 95,
+      "hpMarginTotal": 0.7540000000000009,
+      "hpMarginCount": 166,
+      "sndMarginTotal": -2.0000000000000004,
+      "sndMarginCount": 135,
+      "overloadMarginTotal": -1.5,
+      "overloadMarginCount": 94,
       "hpDamage": 2700.0,
       "hpDamageShare": 0.2231404958677686,
       "sndDamage": 600.0,
       "sndDamageShare": 0.18181818181818182,
       "overloadDamage": 2700.0,
       "overloadDamageShare": 0.20300751879699247,
-      "hpLifetimeDamage": 511600.0,
-      "hpLifetimeTeamDamage": 2445100.0,
-      "sndLifetimeDamage": 81600.0,
-      "sndLifetimeTeamDamage": 427700.0,
-      "overloadLifetimeDamage": 262100.0,
-      "overloadLifetimeTeamDamage": 1279900.0
+      "hpLifetimeDamage": 504000.0,
+      "hpLifetimeTeamDamage": 2414100.0,
+      "sndLifetimeDamage": 81000.0,
+      "sndLifetimeTeamDamage": 423500.0,
+      "overloadLifetimeDamage": 258700.0,
+      "overloadLifetimeTeamDamage": 1262800.0
     },
     "11": {
       "elo": 942.3094350728483,
@@ -431,43 +431,43 @@
       "overloadLifetimeTeamDamage": 1124700.0
     },
     "12": {
-      "elo": 960.8505512316008,
-      "lifetimeKills": 12016,
-      "lifetimeDeaths": 10978,
+      "elo": 962.3829744965445,
+      "lifetimeKills": 11908,
+      "lifetimeDeaths": 10879,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7085,
-      "hpDeaths": 6342,
-      "sndKills": 1144,
-      "sndDeaths": 1243,
-      "overloadKills": 3787,
-      "overloadDeaths": 3393,
+      "hpKills": 7012,
+      "hpDeaths": 6282,
+      "sndKills": 1134,
+      "sndDeaths": 1235,
+      "overloadKills": 3762,
+      "overloadDeaths": 3362,
       "hpWins": 111,
-      "hpLosses": 117,
-      "sndWins": 99,
+      "hpLosses": 115,
+      "sndWins": 98,
       "sndLosses": 80,
       "overloadWins": 54,
-      "overloadLosses": 78,
+      "overloadLosses": 77,
       "seriesWins": 1,
       "seriesLosses": 1,
-      "hpMarginTotal": 1.7260000000000018,
-      "hpMarginCount": 228,
-      "sndMarginTotal": 2.1666666666666665,
-      "sndMarginCount": 179,
-      "overloadMarginTotal": -5.0,
-      "overloadMarginCount": 132,
+      "hpMarginTotal": 2.1010000000000018,
+      "hpMarginCount": 226,
+      "sndMarginTotal": 1.9999999999999998,
+      "sndMarginCount": 178,
+      "overloadMarginTotal": -4.375,
+      "overloadMarginCount": 131,
       "hpDamage": 3400.0,
       "hpDamageShare": 0.2809917355371901,
       "sndDamage": 200.0,
       "sndDamageShare": 0.06060606060606061,
       "overloadDamage": 3200.0,
       "overloadDamageShare": 0.24060150375939848,
-      "hpLifetimeDamage": 686600.0,
-      "hpLifetimeTeamDamage": 3271100.0,
-      "sndLifetimeDamage": 111200.0,
-      "sndLifetimeTeamDamage": 552700.0,
-      "overloadLifetimeDamage": 365200.0,
-      "overloadLifetimeTeamDamage": 1762000.0
+      "hpLifetimeDamage": 679300.0,
+      "hpLifetimeTeamDamage": 3239400.0,
+      "sndLifetimeDamage": 110200.0,
+      "sndLifetimeTeamDamage": 548800.0,
+      "overloadLifetimeDamage": 362700.0,
+      "overloadLifetimeTeamDamage": 1749300.0
     },
     "13": {
       "elo": 827.1414197459412,
@@ -587,43 +587,43 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 934.0332687610646,
-      "lifetimeKills": 3424,
-      "lifetimeDeaths": 2946,
+      "elo": 932.2631711647093,
+      "lifetimeKills": 3303,
+      "lifetimeDeaths": 2863,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 1981,
-      "hpDeaths": 1656,
-      "sndKills": 316,
-      "sndDeaths": 313,
-      "overloadKills": 1127,
-      "overloadDeaths": 977,
-      "hpWins": 32,
+      "hpKills": 1909,
+      "hpDeaths": 1601,
+      "sndKills": 306,
+      "sndDeaths": 306,
+      "overloadKills": 1088,
+      "overloadDeaths": 956,
+      "hpWins": 30,
       "hpLosses": 31,
       "sndWins": 21,
-      "sndLosses": 26,
-      "overloadWins": 16,
+      "sndLosses": 25,
+      "overloadWins": 15,
       "overloadLosses": 22,
       "seriesWins": 0,
       "seriesLosses": 0,
-      "hpMarginTotal": 0.7250000000000001,
-      "hpMarginCount": 63,
-      "sndMarginTotal": -2.3333333333333344,
-      "sndMarginCount": 47,
-      "overloadMarginTotal": -2.0,
-      "overloadMarginCount": 38,
+      "hpMarginTotal": 0.3500000000000001,
+      "hpMarginCount": 61,
+      "sndMarginTotal": -2.166666666666668,
+      "sndMarginCount": 46,
+      "overloadMarginTotal": -2.625,
+      "overloadMarginCount": 37,
       "hpDamage": 2800.0,
       "hpDamageShare": 0.2222222222222222,
       "sndDamage": 800.0,
       "sndDamageShare": 0.1951219512195122,
       "overloadDamage": 3100.0,
       "overloadDamageShare": 0.2366412213740458,
-      "hpLifetimeDamage": 198100.0,
-      "hpLifetimeTeamDamage": 928700.0,
-      "sndLifetimeDamage": 31600.0,
-      "sndLifetimeTeamDamage": 156100.0,
-      "overloadLifetimeDamage": 112700.0,
-      "overloadLifetimeTeamDamage": 545100.0
+      "hpLifetimeDamage": 190900.0,
+      "hpLifetimeTeamDamage": 897700.0,
+      "sndLifetimeDamage": 30600.0,
+      "sndLifetimeTeamDamage": 151900.0,
+      "overloadLifetimeDamage": 108800.0,
+      "overloadLifetimeTeamDamage": 528000.0
     }
   },
   "maps": [
@@ -889,9 +889,9 @@
         },
         {
           "playerId": 6,
-          "before": 1004.2497590207521,
+          "before": 1005.9790726563778,
           "change": -7.91254277871667,
-          "after": 996.3372162420354,
+          "after": 998.0665298776611,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -1082,9 +1082,9 @@
         },
         {
           "playerId": 8,
-          "before": 922.7901485188936,
+          "before": 924.5107160241021,
           "change": -6.86052746244718,
-          "after": 915.9296210564464,
+          "after": 917.6501885616549,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -1275,9 +1275,9 @@
         },
         {
           "playerId": 12,
-          "before": 960.8505512316008,
+          "before": 962.3829744965445,
           "change": -6.894999621172133,
-          "after": 953.9555516104286,
+          "after": 955.4879748753724,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -1661,9 +1661,9 @@
         },
         {
           "playerId": 9,
-          "before": 1056.4394512614742,
+          "before": 1054.7452628130789,
           "change": 5.8273049443896525,
-          "after": 1062.2667562058639,
+          "after": 1060.5725677574685,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
@@ -1854,9 +1854,9 @@
         },
         {
           "playerId": 10,
-          "before": 910.3919704788832,
+          "before": 908.6017848861688,
           "change": 7.896466739687185,
-          "after": 918.2884372185704,
+          "after": 916.498251625856,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Hardpoint",
@@ -2047,9 +2047,9 @@
         },
         {
           "playerId": 16,
-          "before": 934.0332687610646,
+          "before": 932.2631711647093,
           "change": 9.502439529358867,
-          "after": 943.5357082904235,
+          "after": 941.7656106940682,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -2238,7 +2238,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Gridlock",
+        "players": {
+          "5": {
+            "score": 3530,
+            "objScore": 390,
+            "time": 37,
+            "objectiveKills": 5,
+            "captures": 2,
+            "ratio": 1.43,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 2945,
+            "objScore": 410,
+            "time": 29,
+            "objectiveKills": 6,
+            "captures": 4,
+            "ratio": 1.09,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 2785,
+            "objScore": 475,
+            "time": 7,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 0.88,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 2995,
+            "objScore": 410,
+            "time": 77,
+            "objectiveKills": 4,
+            "captures": 1,
+            "ratio": 1.09,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 4395,
+            "objScore": 530,
+            "time": 55,
+            "objectiveKills": 4,
+            "captures": 4,
+            "ratio": 2.06,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 3835,
+            "objScore": 640,
+            "time": 88,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 1.72,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 3700,
+            "objScore": 760,
+            "time": 102,
+            "objectiveKills": 6,
+            "captures": 3,
+            "ratio": 1.65,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 3830,
+            "objScore": 790,
+            "time": 122,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 2.07,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-eb9ab3c69e16095bfba539d423549a9cf4967e3712e540b76d346b0f910f7f6f",
@@ -2502,9 +2588,9 @@
         },
         {
           "playerId": 6,
-          "before": 996.3372162420354,
+          "before": 998.0665298776611,
           "change": -2.1050078080899084,
-          "after": 994.2322084339455,
+          "after": 995.9615220695712,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Overload",
@@ -2695,9 +2781,9 @@
         },
         {
           "playerId": 8,
-          "before": 915.9296210564464,
+          "before": 917.6501885616549,
           "change": -1.7834501972558883,
-          "after": 914.1461708591905,
+          "after": 915.866738364399,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
@@ -2888,9 +2974,9 @@
         },
         {
           "playerId": 12,
-          "before": 953.9555516104286,
+          "before": 955.4879748753724,
           "change": -2.9420447325354644,
-          "after": 951.0135068778932,
+          "after": 952.5459301428369,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
@@ -3274,9 +3360,9 @@
         },
         {
           "playerId": 9,
-          "before": 1062.2667562058639,
+          "before": 1060.5725677574685,
           "change": 1.1890986128851182,
-          "after": 1063.455854818749,
+          "after": 1061.7616663703536,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Overload",
@@ -3467,9 +3553,9 @@
         },
         {
           "playerId": 10,
-          "before": 918.2884372185704,
+          "before": 916.498251625856,
           "change": 1.9945666329144842,
-          "after": 920.2830038514849,
+          "after": 918.4928182587705,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Overload",
@@ -3660,9 +3746,9 @@
         },
         {
           "playerId": 16,
-          "before": 943.5357082904235,
+          "before": 941.7656106940682,
           "change": 3.83013268554987,
-          "after": 947.3658409759734,
+          "after": 945.595743379618,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Overload",
@@ -3851,7 +3937,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Exposure",
+        "players": {
+          "5": {
+            "score": 3185,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 1.5,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 3920,
+            "objScore": 1025,
+            "overloads": 3,
+            "objectiveKills": 1,
+            "ratio": 1.47,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 2935,
+            "objScore": 425,
+            "overloads": 1,
+            "objectiveKills": 2,
+            "ratio": 1.41,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 1995,
+            "objScore": 450,
+            "overloads": 1,
+            "objectiveKills": 3,
+            "ratio": 0.83,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 3710,
+            "objScore": 400,
+            "overloads": 1,
+            "objectiveKills": 3,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 2595,
+            "objScore": 775,
+            "overloads": 2,
+            "objectiveKills": 2,
+            "ratio": 0.85,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 3185,
+            "objScore": 1375,
+            "overloads": 4,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 3240,
+            "objScore": 100,
+            "overloads": 0,
+            "objectiveKills": 1,
+            "ratio": 1.94,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-bd066b5a19c608088151bf78252aaa65d306a5f0f3e5600328835ac64264dcc9",
@@ -4115,9 +4271,9 @@
         },
         {
           "playerId": 6,
-          "before": 994.2322084339455,
+          "before": 995.9615220695712,
           "change": -1.473139668914996,
-          "after": 992.7590687650305,
+          "after": 994.4883824006562,
           "calculationTrace": {
             "playerId": 6,
             "mode": "SND",
@@ -4308,9 +4464,9 @@
         },
         {
           "playerId": 8,
-          "before": 914.1461708591905,
+          "before": 915.866738364399,
           "change": -0.8580688122011679,
-          "after": 913.2881020469894,
+          "after": 915.0086695521978,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -4501,9 +4657,9 @@
         },
         {
           "playerId": 12,
-          "before": 951.0135068778932,
+          "before": 952.5459301428369,
           "change": -2.068209640907753,
-          "after": 948.9452972369854,
+          "after": 950.4777205019292,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -4887,9 +5043,9 @@
         },
         {
           "playerId": 9,
-          "before": 1063.455854818749,
+          "before": 1061.7616663703536,
           "change": 1.4739298685619815,
-          "after": 1064.929784687311,
+          "after": 1063.2355962389156,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
@@ -5080,9 +5236,9 @@
         },
         {
           "playerId": 10,
-          "before": 920.2830038514849,
+          "before": 918.4928182587705,
           "change": 0.9183815617765276,
-          "after": 921.2013854132614,
+          "after": 919.411199820547,
           "calculationTrace": {
             "playerId": 10,
             "mode": "SND",
@@ -5273,9 +5429,9 @@
         },
         {
           "playerId": 16,
-          "before": 947.3658409759734,
+          "before": 945.595743379618,
           "change": 1.0962979172098812,
-          "after": 948.4621388931832,
+          "after": 946.6920412968279,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -5464,7 +5620,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Raid",
+        "players": {
+          "5": {
+            "score": 1250,
+            "objScore": 325,
+            "plants": 2,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 1015,
+            "objScore": 100,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 1225,
+            "objScore": 100,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.38,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 425,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.44,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1565,
+            "objScore": 100,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 2.5,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 1135,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.38,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 700,
+            "objScore": 300,
+            "plants": 3,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.67,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 680,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.75,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-3a582370f39681095fd992ae54103064194e778b6588286295d81194bb59d66f",
@@ -5728,9 +5962,9 @@
         },
         {
           "playerId": 6,
-          "before": 992.7590687650305,
+          "before": 994.4883824006562,
           "change": 1.6875314223032092,
-          "after": 994.4466001873337,
+          "after": 996.1759138229594,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -5921,9 +6155,9 @@
         },
         {
           "playerId": 8,
-          "before": 913.2881020469894,
+          "before": 915.0086695521978,
           "change": 1.7571508653554702,
-          "after": 915.0452529123448,
+          "after": 916.7658204175533,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -6114,9 +6348,9 @@
         },
         {
           "playerId": 12,
-          "before": 948.9452972369854,
+          "before": 950.4777205019292,
           "change": 1.5260242508059036,
-          "after": 950.4713214877913,
+          "after": 952.0037447527351,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -6500,9 +6734,9 @@
         },
         {
           "playerId": 9,
-          "before": 1064.929784687311,
+          "before": 1063.2355962389156,
           "change": -1.8132057933323722,
-          "after": 1063.1165788939786,
+          "after": 1061.4223904455832,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
@@ -6693,9 +6927,9 @@
         },
         {
           "playerId": 10,
-          "before": 921.2013854132614,
+          "before": 919.411199820547,
           "change": -2.0036293458271075,
-          "after": 919.1977560674343,
+          "after": 917.4075704747199,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Hardpoint",
@@ -6886,9 +7120,9 @@
         },
         {
           "playerId": 16,
-          "before": 948.4621388931832,
+          "before": 946.6920412968279,
           "change": -1.7082471060192574,
-          "after": 946.753891787164,
+          "after": 944.9837941908087,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -7077,7 +7311,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Hacienda",
+        "players": {
+          "5": {
+            "score": 6150,
+            "objScore": 1160,
+            "time": 96,
+            "objectiveKills": 12,
+            "captures": 7,
+            "ratio": 2.23,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 5575,
+            "objScore": 1390,
+            "time": 113,
+            "objectiveKills": 13,
+            "captures": 10,
+            "ratio": 1.38,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 4455,
+            "objScore": 660,
+            "time": 78,
+            "objectiveKills": 4,
+            "captures": 5,
+            "ratio": 1.16,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4665,
+            "objScore": 775,
+            "time": 73,
+            "objectiveKills": 9,
+            "captures": 4,
+            "ratio": 1.06,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 6295,
+            "objScore": 1150,
+            "time": 61,
+            "objectiveKills": 9,
+            "captures": 6,
+            "ratio": 2.17,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 5905,
+            "objScore": 1155,
+            "time": 132,
+            "objectiveKills": 8,
+            "captures": 7,
+            "ratio": 1.59,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 3895,
+            "objScore": 995,
+            "time": 116,
+            "objectiveKills": 6,
+            "captures": 6,
+            "ratio": 0.82,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 5310,
+            "objScore": 1290,
+            "time": 105,
+            "objectiveKills": 11,
+            "captures": 8,
+            "ratio": 1.22,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-ed03cfe9d349407860319dfbb46defe6c46aae8e2db35ddbebf32d5287e28167",
@@ -7148,9 +7468,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1114.5995924779775,
+          "before": 1113.3977451832268,
           "change": 10.392337017115151,
-          "after": 1124.9919294950926,
+          "after": 1123.7900822003419,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -7580,9 +7900,9 @@
         },
         {
           "playerId": 12,
-          "before": 950.4713214877913,
+          "before": 952.0037447527351,
           "change": 3.5093841896326228,
-          "after": 953.980705677424,
+          "after": 955.5131289423678,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -7796,9 +8116,9 @@
         },
         {
           "playerId": 16,
-          "before": 946.753891787164,
+          "before": 944.9837941908087,
           "change": 12.904361189180346,
-          "after": 959.6582529763443,
+          "after": 957.888155379989,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -8228,9 +8548,9 @@
         },
         {
           "playerId": 6,
-          "before": 994.4466001873337,
+          "before": 996.1759138229594,
           "change": -7.187272859432637,
-          "after": 987.2593273279011,
+          "after": 988.9886409635268,
           "calculationTrace": {
             "playerId": 6,
             "mode": "SND",
@@ -8444,9 +8764,9 @@
         },
         {
           "playerId": 8,
-          "before": 915.0452529123448,
+          "before": 916.7658204175533,
           "change": -9.462288002065906,
-          "after": 905.582964910279,
+          "after": 907.3035324154874,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -8660,9 +8980,9 @@
         },
         {
           "playerId": 9,
-          "before": 1063.1165788939786,
+          "before": 1061.4223904455832,
           "change": -9.041085767835826,
-          "after": 1054.0754931261429,
+          "after": 1052.3813046777475,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
@@ -8874,7 +9194,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Sake",
+        "players": {
+          "1": {
+            "score": 940,
+            "objScore": 125,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 10.0,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 550,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.5,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 875,
+            "objScore": 325,
+            "plants": 3,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.25,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 1000,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 3.0,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 640,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 400,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.67,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 100,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.17,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 570,
+            "objScore": 125,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.57,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-25e291d280b6a2794b9118a338e0099bca14e4fb96ec7838270d5a9f43c4c8eb",
@@ -8945,9 +9343,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1124.9919294950926,
+          "before": 1123.7900822003419,
           "change": -0.5527844871880916,
-          "after": 1124.4391450079045,
+          "after": 1123.2372977131538,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -9331,9 +9729,9 @@
         },
         {
           "playerId": 12,
-          "before": 953.980705677424,
+          "before": 955.5131289423678,
           "change": -0.5253307069344828,
-          "after": 953.4553749704895,
+          "after": 954.9877982354333,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -9524,9 +9922,9 @@
         },
         {
           "playerId": 16,
-          "before": 959.6582529763443,
+          "before": 957.888155379989,
           "change": -0.45806046270490697,
-          "after": 959.2001925136394,
+          "after": 957.4300949172841,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -9910,9 +10308,9 @@
         },
         {
           "playerId": 6,
-          "before": 987.2593273279011,
+          "before": 988.9886409635268,
           "change": 0.5885112713554008,
-          "after": 987.8478385992565,
+          "after": 989.5771522348822,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -10103,9 +10501,9 @@
         },
         {
           "playerId": 8,
-          "before": 905.5829649102789,
+          "before": 907.3035324154873,
           "change": 0.6389394909746215,
-          "after": 906.2219044012535,
+          "after": 907.942471906462,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -10296,9 +10694,9 @@
         },
         {
           "playerId": 9,
-          "before": 1054.0754931261429,
+          "before": 1052.3813046777475,
           "change": 0.44263838949700585,
-          "after": 1054.5181315156399,
+          "after": 1052.8239430672445,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
@@ -10487,7 +10885,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "1": {
+            "score": 5850,
+            "objScore": 690,
+            "time": 72,
+            "objectiveKills": 9,
+            "captures": 3,
+            "ratio": 1.63,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 4850,
+            "objScore": 815,
+            "time": 56,
+            "objectiveKills": 7,
+            "captures": 7,
+            "ratio": 1.23,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3980,
+            "objScore": 740,
+            "time": 96,
+            "objectiveKills": 5,
+            "captures": 4,
+            "ratio": 1.19,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 4970,
+            "objScore": 1070,
+            "time": 101,
+            "objectiveKills": 7,
+            "captures": 8,
+            "ratio": 1.41,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "5": {
+            "score": 5410,
+            "objScore": 815,
+            "time": 129,
+            "objectiveKills": 11,
+            "captures": 2,
+            "ratio": 2.1,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 5270,
+            "objScore": 1055,
+            "time": 79,
+            "objectiveKills": 7,
+            "captures": 9,
+            "ratio": 1.58,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 4840,
+            "objScore": 460,
+            "time": 39,
+            "objectiveKills": 2,
+            "captures": 4,
+            "ratio": 1.34,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 5600,
+            "objScore": 1390,
+            "time": 120,
+            "objectiveKills": 9,
+            "captures": 10,
+            "ratio": 1.37,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-bd0a372ace90b5dc493693fb5dfb66d373e6a29d0e4a14c5b53ebde0b2666085",
@@ -10558,9 +11042,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1124.4391450079045,
+          "before": 1123.2372977131538,
           "change": -1.2682779654669503,
-          "after": 1123.1708670424375,
+          "after": 1121.9690197476868,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Overload",
@@ -10944,9 +11428,9 @@
         },
         {
           "playerId": 12,
-          "before": 953.4553749704895,
+          "before": 954.9877982354333,
           "change": -1.3555387652005493,
-          "after": 952.099836205289,
+          "after": 953.6322594702327,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
@@ -11137,9 +11621,9 @@
         },
         {
           "playerId": 16,
-          "before": 959.2001925136394,
+          "before": 957.4300949172841,
           "change": -0.9378355197158044,
-          "after": 958.2623569939236,
+          "after": 956.4922593975683,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Overload",
@@ -11523,9 +12007,9 @@
         },
         {
           "playerId": 6,
-          "before": 987.8478385992565,
+          "before": 989.5771522348822,
           "change": 1.8141625082259907,
-          "after": 989.6620011074825,
+          "after": 991.3913147431082,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Overload",
@@ -11716,9 +12200,9 @@
         },
         {
           "playerId": 8,
-          "before": 906.2219044012535,
+          "before": 907.942471906462,
           "change": 1.3260927888582046,
-          "after": 907.5479971901117,
+          "after": 909.2685646953202,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
@@ -11909,9 +12393,9 @@
         },
         {
           "playerId": 9,
-          "before": 1054.5181315156399,
+          "before": 1052.8239430672445,
           "change": 1.267111059989702,
-          "after": 1055.7852425756296,
+          "after": 1054.0910541272342,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Overload",
@@ -12100,7 +12584,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Scar",
+        "players": {
+          "1": {
+            "score": 4655,
+            "objScore": 50,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 1.73,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 4155,
+            "objScore": 75,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 1.41,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 3120,
+            "objScore": 200,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 0.97,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 5370,
+            "objScore": 1275,
+            "overloads": 3,
+            "objectiveKills": 7,
+            "ratio": 1.6,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 3255,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 3,
+            "ratio": 1.03,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 6060,
+            "objScore": 1300,
+            "overloads": 3,
+            "objectiveKills": 10,
+            "ratio": 1.91,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 3170,
+            "objScore": 150,
+            "overloads": 0,
+            "objectiveKills": 3,
+            "ratio": 1.15,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 4490,
+            "objScore": 525,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 1.58,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-aaa0593953ae327796ebfb0056dd918630812b580cc1ee92c4fbd15d2625a8af",
@@ -12171,9 +12725,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1123.1708670424375,
+          "before": 1121.9690197476868,
           "change": 4.705327613318559,
-          "after": 1127.876194655756,
+          "after": 1126.6743473610054,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -12557,9 +13111,9 @@
         },
         {
           "playerId": 12,
-          "before": 952.099836205289,
+          "before": 953.6322594702327,
           "change": 1.1116500254105404,
-          "after": 953.2114862306995,
+          "after": 954.7439094956433,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -12750,9 +13304,9 @@
         },
         {
           "playerId": 16,
-          "before": 958.2623569939236,
+          "before": 956.4922593975683,
           "change": 3.502718764583392,
-          "after": 961.765075758507,
+          "after": 959.9949781621517,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -13136,9 +13690,9 @@
         },
         {
           "playerId": 6,
-          "before": 989.6620011074825,
+          "before": 991.3913147431082,
           "change": -4.126078819271584,
-          "after": 985.5359222882109,
+          "after": 987.2652359238366,
           "calculationTrace": {
             "playerId": 6,
             "mode": "SND",
@@ -13329,9 +13883,9 @@
         },
         {
           "playerId": 8,
-          "before": 907.5479971901117,
+          "before": 909.2685646953202,
           "change": -3.2109237417987515,
-          "after": 904.3370734483129,
+          "after": 906.0576409535214,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -13522,9 +14076,9 @@
         },
         {
           "playerId": 9,
-          "before": 1055.7852425756296,
+          "before": 1054.0910541272342,
           "change": -2.2877230080514437,
-          "after": 1053.4975195675781,
+          "after": 1051.8033311191828,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
@@ -13713,7 +14267,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Hacienda",
+        "players": {
+          "1": {
+            "score": 1770,
+            "objScore": 200,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 3.2,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1140,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.25,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 440,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.56,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 1255,
+            "objScore": 175,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.43,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 1505,
+            "objScore": 150,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.86,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 765,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.88,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 550,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.78,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 1700,
+            "objScore": 250,
+            "plants": 2,
+            "defuses": 0,
+            "objectiveKills": 1,
+            "ratio": 1.86,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-8bf620bd9fac97586186f849b5a045dd6af09117839bac9dcb1dd05ee2f6baad",
@@ -13784,9 +14416,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1127.876194655756,
+          "before": 1126.6743473610054,
           "change": 3.7533143706712053,
-          "after": 1131.6295090264273,
+          "after": 1130.4276617316766,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -14170,9 +14802,9 @@
         },
         {
           "playerId": 12,
-          "before": 953.2114862306995,
+          "before": 954.7439094956433,
           "change": 4.9390681047002545,
-          "after": 958.1505543353998,
+          "after": 959.6829776003435,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -14363,9 +14995,9 @@
         },
         {
           "playerId": 16,
-          "before": 961.765075758507,
+          "before": 959.9949781621517,
           "change": 3.5559596078096547,
-          "after": 965.3210353663167,
+          "after": 963.5509377699614,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -14749,9 +15381,9 @@
         },
         {
           "playerId": 6,
-          "before": 985.5359222882109,
+          "before": 987.2652359238366,
           "change": -4.987626477226627,
-          "after": 980.5482958109843,
+          "after": 982.27760944661,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -14942,9 +15574,9 @@
         },
         {
           "playerId": 8,
-          "before": 904.3370734483129,
+          "before": 906.0576409535214,
           "change": -3.4220164187851196,
-          "after": 900.9150570295278,
+          "after": 902.6356245347363,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -15135,9 +15767,9 @@
         },
         {
           "playerId": 9,
-          "before": 1053.4975195675781,
+          "before": 1051.8033311191828,
           "change": -5.456984428844407,
-          "after": 1048.0405351387337,
+          "after": 1046.3463466903384,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
@@ -15326,7 +15958,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Colossus",
+        "players": {
+          "1": {
+            "score": 5725,
+            "objScore": 1250,
+            "time": 126,
+            "objectiveKills": 11,
+            "captures": 7,
+            "ratio": 1.95,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 6280,
+            "objScore": 1050,
+            "time": 83,
+            "objectiveKills": 10,
+            "captures": 6,
+            "ratio": 2.0,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4590,
+            "objScore": 610,
+            "time": 68,
+            "objectiveKills": 7,
+            "captures": 3,
+            "ratio": 1.44,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 4005,
+            "objScore": 1000,
+            "time": 135,
+            "objectiveKills": 7,
+            "captures": 6,
+            "ratio": 1.16,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "5": {
+            "score": 5070,
+            "objScore": 820,
+            "time": 40,
+            "objectiveKills": 7,
+            "captures": 8,
+            "ratio": 1.78,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 3805,
+            "objScore": 480,
+            "time": 53,
+            "objectiveKills": 5,
+            "captures": 2,
+            "ratio": 0.94,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 3860,
+            "objScore": 640,
+            "time": 54,
+            "objectiveKills": 5,
+            "captures": 5,
+            "ratio": 1.14,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 4550,
+            "objScore": 940,
+            "time": 80,
+            "objectiveKills": 6,
+            "captures": 7,
+            "ratio": 1.1,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-06d0e8964081f87a6c4b10e99ebbf357198cbb67c2e3cd160c445e71198ae5e0",
@@ -15397,9 +16115,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1131.6295090264273,
+          "before": 1130.4276617316766,
           "change": -1.7008112209532555,
-          "after": 1129.928697805474,
+          "after": 1128.7268505107234,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Overload",
@@ -15590,9 +16308,9 @@
         },
         {
           "playerId": 2,
-          "before": 1121.4034899746014,
+          "before": 1122.686737706565,
           "change": -6.771452257715509,
-          "after": 1114.6320377168859,
+          "after": 1115.9152854488495,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Overload",
@@ -15783,9 +16501,9 @@
         },
         {
           "playerId": 12,
-          "before": 958.1505543353998,
+          "before": 959.6829776003435,
           "change": -4.974714229328129,
-          "after": 953.1758401060716,
+          "after": 954.7082633710154,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
@@ -15976,9 +16694,9 @@
         },
         {
           "playerId": 16,
-          "before": 965.3210353663167,
+          "before": 963.5509377699614,
           "change": -5.61451656278166,
-          "after": 959.706518803535,
+          "after": 957.9364212071797,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Overload",
@@ -16555,9 +17273,9 @@
         },
         {
           "playerId": 8,
-          "before": 900.9150570295278,
+          "before": 902.6356245347363,
           "change": 5.2099743473579565,
-          "after": 906.1250313768858,
+          "after": 907.8455988820942,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
@@ -16748,9 +17466,9 @@
         },
         {
           "playerId": 9,
-          "before": 1048.0405351387337,
+          "before": 1046.3463466903384,
           "change": 3.9542663452461966,
-          "after": 1051.99480148398,
+          "after": 1050.3006130355845,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Overload",
@@ -16939,7 +17657,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "1": {
+            "score": 3490,
+            "objScore": 50,
+            "overloads": 0,
+            "objectiveKills": 1,
+            "ratio": 2.62,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 2900,
+            "objScore": 50,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 1.24,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 2255,
+            "objScore": 200,
+            "overloads": 0,
+            "objectiveKills": 3,
+            "ratio": 1.05,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 2105,
+            "objScore": 375,
+            "overloads": 1,
+            "objectiveKills": 1,
+            "ratio": 0.89,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 3645,
+            "objScore": 425,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 1.82,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 3130,
+            "objScore": 225,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 1.75,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 2965,
+            "objScore": 725,
+            "overloads": 2,
+            "objectiveKills": 1,
+            "ratio": 1.1,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 2775,
+            "objScore": 725,
+            "overloads": 2,
+            "objectiveKills": 2,
+            "ratio": 1.25,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-ca8a2ad2b90c649a23712dc2fa6ee6ba42677f5f5f7e364f429ee6abd68048a9",
@@ -17010,9 +17798,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1129.928697805474,
+          "before": 1128.7268505107234,
           "change": -2.2275022537783116,
-          "after": 1127.7011955516957,
+          "after": 1126.499348256945,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -17203,9 +17991,9 @@
         },
         {
           "playerId": 2,
-          "before": 1114.6320377168859,
+          "before": 1115.9152854488495,
           "change": -4.041139920589558,
-          "after": 1110.5908977962963,
+          "after": 1111.87414552826,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
@@ -17396,9 +18184,9 @@
         },
         {
           "playerId": 12,
-          "before": 953.1758401060716,
+          "before": 954.7082633710154,
           "change": -5.923484525286881,
-          "after": 947.2523555807848,
+          "after": 948.7847788457285,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -17589,9 +18377,9 @@
         },
         {
           "playerId": 16,
-          "before": 959.706518803535,
+          "before": 957.9364212071797,
           "change": -5.550925518382428,
-          "after": 954.1555932851526,
+          "after": 952.3854956887973,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -18168,9 +18956,9 @@
         },
         {
           "playerId": 8,
-          "before": 906.1250313768858,
+          "before": 907.8455988820942,
           "change": 3.80112521121589,
-          "after": 909.9261565881017,
+          "after": 911.6467240933101,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -18361,9 +19149,9 @@
         },
         {
           "playerId": 9,
-          "before": 1051.99480148398,
+          "before": 1050.3006130355845,
           "change": 5.866623496640841,
-          "after": 1057.8614249806208,
+          "after": 1056.1672365322254,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
@@ -18552,7 +19340,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Raid",
+        "players": {
+          "1": {
+            "score": 965,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.57,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 1095,
+            "objScore": 150,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.33,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 210,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.29,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 500,
+            "objScore": 200,
+            "plants": 2,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.43,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1145,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 2.5,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 1265,
+            "objScore": 200,
+            "plants": 2,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 610,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.33,
+            "objScoreAgrees": true
+          },
+          "9": {
+            "score": 1080,
+            "objScore": 125,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 2.5,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-a4abf00e785d9bf260ff2f801de4b1c43a3826ba0489321dd07fb8f270cd9243",
@@ -18623,9 +19489,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1127.7011955516957,
+          "before": 1126.499348256945,
           "change": -4.555028697936905,
-          "after": 1123.1461668537588,
+          "after": 1121.9443195590081,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -18816,9 +19682,9 @@
         },
         {
           "playerId": 2,
-          "before": 1110.5908977962963,
+          "before": 1111.87414552826,
           "change": -5.495881515028259,
-          "after": 1105.095016281268,
+          "after": 1106.3782640132317,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
@@ -19009,9 +19875,9 @@
         },
         {
           "playerId": 12,
-          "before": 947.2523555807848,
+          "before": 948.7847788457285,
           "change": -4.379704808152269,
-          "after": 942.8726507726325,
+          "after": 944.4050740375762,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -19202,9 +20068,9 @@
         },
         {
           "playerId": 16,
-          "before": 954.1555932851526,
+          "before": 952.3854956887973,
           "change": -3.563826690427504,
-          "after": 950.5917665947251,
+          "after": 948.8216689983698,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -19781,9 +20647,9 @@
         },
         {
           "playerId": 8,
-          "before": 909.9261565881017,
+          "before": 911.6467240933101,
           "change": 3.629449488926184,
-          "after": 913.5556060770278,
+          "after": 915.2761735822363,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -19974,9 +20840,9 @@
         },
         {
           "playerId": 9,
-          "before": 1057.8614249806208,
+          "before": 1056.1672365322254,
           "change": 4.657580617961685,
-          "after": 1062.5190055985825,
+          "after": 1060.824817150187,
           "calculationTrace": {
             "playerId": 9,
             "mode": "Hardpoint",
@@ -20165,7 +21031,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Frequency",
+        "players": {
+          "1": {
+            "score": 3790,
+            "objScore": 710,
+            "time": 65,
+            "objectiveKills": 5,
+            "captures": 7,
+            "ratio": 1.53,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "2": {
+            "score": 3400,
+            "objScore": 545,
+            "time": 53,
+            "objectiveKills": 10,
+            "captures": 1,
+            "ratio": 1.24,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 2600,
+            "objScore": 675,
+            "time": 99,
+            "objectiveKills": 6,
+            "captures": 4,
+            "ratio": 0.86,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 2905,
+            "objScore": 635,
+            "time": 93,
+            "objectiveKills": 2,
+            "captures": 4,
+            "ratio": 1.29,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 3870,
+            "objScore": 600,
+            "time": 68,
+            "objectiveKills": 5,
+            "captures": 3,
+            "ratio": 2.13,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "5": {
+            "score": 3785,
+            "objScore": 430,
+            "time": 50,
+            "objectiveKills": 8,
+            "captures": 1,
+            "ratio": 1.68,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 2505,
+            "objScore": 575,
+            "time": 76,
+            "objectiveKills": 5,
+            "captures": 4,
+            "ratio": 1.06,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "9": {
+            "score": 4445,
+            "objScore": 1485,
+            "time": 196,
+            "objectiveKills": 6,
+            "captures": 9,
+            "ratio": 1.8,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-f19303eb48a73ab48ed160a7ad0f048667e71788e57b425fd1c82489e1ad432d",
@@ -20236,9 +21188,9 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1105.095016281268,
+          "before": 1106.3782640132317,
           "change": 5.1611708263862965,
-          "after": 1110.2561871076543,
+          "after": 1111.539434839618,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
@@ -20622,9 +21574,9 @@
         },
         {
           "playerId": 10,
-          "before": 919.1977560674343,
+          "before": 917.4075704747199,
           "change": 3.458506102749425,
-          "after": 922.6562621701837,
+          "after": 920.8660765774694,
           "calculationTrace": {
             "playerId": 10,
             "mode": "SND",
@@ -20815,9 +21767,9 @@
         },
         {
           "playerId": 12,
-          "before": 942.8726507726325,
+          "before": 944.4050740375762,
           "change": 5.890721440024549,
-          "after": 948.763372212657,
+          "after": 950.2957954776008,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -21008,9 +21960,9 @@
         },
         {
           "playerId": 1,
-          "before": 1123.1461668537588,
+          "before": 1121.9443195590081,
           "change": -5.360286195798153,
-          "after": 1117.7858806579607,
+          "after": 1116.58403336321,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -21394,9 +22346,9 @@
         },
         {
           "playerId": 8,
-          "before": 913.5556060770278,
+          "before": 915.2761735822363,
           "change": -4.456639935475323,
-          "after": 909.0989661415525,
+          "after": 910.819533646761,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -21587,9 +22539,9 @@
         },
         {
           "playerId": 16,
-          "before": 950.5917665947251,
+          "before": 948.8216689983698,
           "change": -9.02826389901395,
-          "after": 941.5635026957111,
+          "after": 939.7934050993558,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -21778,7 +22730,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "2": {
+            "score": 1040,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 1295,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 3.67,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 500,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.25,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 750,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.6,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 920,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 1,
+            "ratio": 1.33,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 680,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.17,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 675,
+            "objScore": 75,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.88,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 125,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.13,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-4625563b32190953dce203a0d090d382644c62ef25f707c526dbeee2aa3f3439",
@@ -21849,9 +22879,9 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1110.2561871076543,
+          "before": 1111.539434839618,
           "change": 1.2433383729210163,
-          "after": 1111.4995254805754,
+          "after": 1112.782773212539,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
@@ -22235,9 +23265,9 @@
         },
         {
           "playerId": 10,
-          "before": 922.6562621701837,
+          "before": 920.8660765774694,
           "change": 0.9994379557044795,
-          "after": 923.6557001258882,
+          "after": 921.8655145331738,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Hardpoint",
@@ -22428,9 +23458,9 @@
         },
         {
           "playerId": 12,
-          "before": 948.763372212657,
+          "before": 950.2957954776008,
           "change": 1.6045517177695956,
-          "after": 950.3679239304266,
+          "after": 951.9003471953704,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -22621,9 +23651,9 @@
         },
         {
           "playerId": 1,
-          "before": 1117.7858806579607,
+          "before": 1116.58403336321,
           "change": -1.483055520778862,
-          "after": 1116.3028251371818,
+          "after": 1115.1009778424311,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -23007,9 +24037,9 @@
         },
         {
           "playerId": 8,
-          "before": 909.0989661415525,
+          "before": 910.819533646761,
           "change": -1.060825467952668,
-          "after": 908.0381406735999,
+          "after": 909.7587081788083,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -23200,9 +24230,9 @@
         },
         {
           "playerId": 16,
-          "before": 941.5635026957111,
+          "before": 939.7934050993558,
           "change": -1.08345389336273,
-          "after": 940.4800488023484,
+          "after": 938.7099512059931,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -23391,7 +24421,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Scar",
+        "players": {
+          "2": {
+            "score": 7000,
+            "objScore": 800,
+            "time": 59,
+            "objectiveKills": 6,
+            "captures": 5,
+            "ratio": 1.9,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 5780,
+            "objScore": 545,
+            "time": 22,
+            "objectiveKills": 2,
+            "captures": 6,
+            "ratio": 1.61,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 4335,
+            "objScore": 1055,
+            "time": 110,
+            "objectiveKills": 5,
+            "captures": 7,
+            "ratio": 1.0,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 6075,
+            "objScore": 1155,
+            "time": 103,
+            "objectiveKills": 10,
+            "captures": 7,
+            "ratio": 1.55,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 5660,
+            "objScore": 850,
+            "time": 69,
+            "objectiveKills": 6,
+            "captures": 7,
+            "ratio": 1.44,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 6145,
+            "objScore": 1065,
+            "time": 85,
+            "objectiveKills": 7,
+            "captures": 8,
+            "ratio": 1.55,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 4695,
+            "objScore": 625,
+            "time": 72,
+            "objectiveKills": 2,
+            "captures": 6,
+            "ratio": 1.03,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 4300,
+            "objScore": 635,
+            "time": 81,
+            "objectiveKills": 6,
+            "captures": 3,
+            "ratio": 1.24,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-cedcb7f733c1b75c18337c7853fb245e6238c0b54bfd5192a45530bd8bdebb1b",
@@ -23462,9 +24578,9 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1111.4995254805754,
+          "before": 1112.782773212539,
           "change": -6.675791830041817,
-          "after": 1104.8237336505335,
+          "after": 1106.1069813824972,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Overload",
@@ -23848,9 +24964,9 @@
         },
         {
           "playerId": 10,
-          "before": 923.6557001258882,
+          "before": 921.8655145331738,
           "change": -3.880009143688312,
-          "after": 919.7756909821999,
+          "after": 917.9855053894855,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Overload",
@@ -24041,9 +25157,9 @@
         },
         {
           "playerId": 12,
-          "before": 950.3679239304266,
+          "before": 951.9003471953704,
           "change": -6.091569268465491,
-          "after": 944.2763546619611,
+          "after": 945.8087779269049,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
@@ -24234,9 +25350,9 @@
         },
         {
           "playerId": 1,
-          "before": 1116.3028251371818,
+          "before": 1115.1009778424311,
           "change": 7.4643094840675985,
-          "after": 1123.7671346212494,
+          "after": 1122.5652873264987,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Overload",
@@ -24620,9 +25736,9 @@
         },
         {
           "playerId": 8,
-          "before": 908.0381406735999,
+          "before": 909.7587081788083,
           "change": 10.482291399022074,
-          "after": 918.5204320726219,
+          "after": 920.2409995778304,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
@@ -24813,9 +25929,9 @@
         },
         {
           "playerId": 16,
-          "before": 940.4800488023484,
+          "before": 938.7099512059931,
           "change": 1.9442547556375303,
-          "after": 942.4243035579859,
+          "after": 940.6542059616306,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Overload",
@@ -25004,7 +26120,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Gridlock",
+        "players": {
+          "2": {
+            "score": 3130,
+            "objScore": 450,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 1.04,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 2140,
+            "objScore": 100,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 0.73,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 2840,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 1.08,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 1940,
+            "objScore": 200,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 0.61,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 5380,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 2,
+            "ratio": 2.78,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 4145,
+            "objScore": 1075,
+            "overloads": 3,
+            "objectiveKills": 3,
+            "ratio": 1.81,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 3985,
+            "objScore": 475,
+            "overloads": 1,
+            "objectiveKills": 4,
+            "ratio": 2.5,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 2950,
+            "objScore": 975,
+            "overloads": 2,
+            "objectiveKills": 5,
+            "ratio": 0.82,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-cb49f6c97ad22fef111139017e7dfc1fcb3ff53898a860b493e13671461cef33",
@@ -25075,9 +26261,9 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1104.8237336505335,
+          "before": 1106.1069813824972,
           "change": 4.771601475163834,
-          "after": 1109.5953351256974,
+          "after": 1110.878582857661,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
@@ -25461,9 +26647,9 @@
         },
         {
           "playerId": 10,
-          "before": 919.7756909821999,
+          "before": 917.9855053894855,
           "change": 7.23719440991681,
-          "after": 927.0128853921167,
+          "after": 925.2226997994023,
           "calculationTrace": {
             "playerId": 10,
             "mode": "SND",
@@ -25654,9 +26840,9 @@
         },
         {
           "playerId": 12,
-          "before": 944.2763546619611,
+          "before": 945.8087779269049,
           "change": 2.979620750778622,
-          "after": 947.2559754127398,
+          "after": 948.7883986776835,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -25847,9 +27033,9 @@
         },
         {
           "playerId": 1,
-          "before": 1123.7671346212494,
+          "before": 1122.5652873264987,
           "change": -2.0432492521181302,
-          "after": 1121.7238853691313,
+          "after": 1120.5220380743806,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -26233,9 +27419,9 @@
         },
         {
           "playerId": 8,
-          "before": 918.5204320726219,
+          "before": 920.2409995778304,
           "change": -5.418732639178643,
-          "after": 913.1016994334433,
+          "after": 914.8222669386518,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -26426,9 +27612,9 @@
         },
         {
           "playerId": 16,
-          "before": 942.4243035579859,
+          "before": 940.6542059616306,
           "change": -5.10146121281673,
-          "after": 937.3228423451692,
+          "after": 935.5527447488139,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -26617,7 +27803,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Raid",
+        "players": {
+          "2": {
+            "score": 1505,
+            "objScore": 325,
+            "plants": 3,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.83,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 985,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.8,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 805,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.8,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 635,
+            "objScore": 125,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.75,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 1410,
+            "objScore": 125,
+            "plants": 1,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1075,
+            "objScore": 150,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 425,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.5,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 500,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.71,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-ae89591bc1d9a7d12c13476fd2bab9334868f6b1aa9a4c9a39af061e9b7ec748",
@@ -26688,9 +27952,9 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1109.5953351256974,
+          "before": 1110.878582857661,
           "change": -2.557382746969324,
-          "after": 1107.037952378728,
+          "after": 1108.3212001106917,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
@@ -27074,9 +28338,9 @@
         },
         {
           "playerId": 10,
-          "before": 927.0128853921167,
+          "before": 925.2226997994023,
           "change": -1.7537926707015004,
-          "after": 925.2590927214152,
+          "after": 923.4689071287008,
           "calculationTrace": {
             "playerId": 10,
             "mode": "Hardpoint",
@@ -27267,9 +28531,9 @@
         },
         {
           "playerId": 12,
-          "before": 947.2559754127398,
+          "before": 948.7883986776835,
           "change": -1.9939199205085743,
-          "after": 945.2620554922312,
+          "after": 946.7944787571749,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -27460,9 +28724,9 @@
         },
         {
           "playerId": 1,
-          "before": 1121.7238853691313,
+          "before": 1120.5220380743806,
           "change": 2.118224113294673,
-          "after": 1123.842109482426,
+          "after": 1122.6402621876753,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -27846,9 +29110,9 @@
         },
         {
           "playerId": 8,
-          "before": 913.1016994334433,
+          "before": 914.8222669386518,
           "change": 1.9313287413510807,
-          "after": 915.0330281747944,
+          "after": 916.7535956800028,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -28039,9 +29303,9 @@
         },
         {
           "playerId": 16,
-          "before": 937.3228423451692,
+          "before": 935.5527447488139,
           "change": 1.917097926785118,
-          "after": 939.2399402719543,
+          "after": 937.469842675599,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -28230,7 +29494,93 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Colossus",
+        "players": {
+          "2": {
+            "score": 4750,
+            "objScore": 705,
+            "time": 55,
+            "objectiveKills": 8,
+            "captures": 5,
+            "ratio": 1.36,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 5320,
+            "objScore": 1145,
+            "time": 110,
+            "objectiveKills": 14,
+            "captures": 6,
+            "ratio": 1.6,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 4250,
+            "objScore": 650,
+            "time": 63,
+            "objectiveKills": 9,
+            "captures": 3,
+            "ratio": 1.17,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4105,
+            "objScore": 1015,
+            "time": 108,
+            "objectiveKills": 9,
+            "captures": 8,
+            "ratio": 1.07,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 6300,
+            "objScore": 1235,
+            "time": 143,
+            "objectiveKills": 12,
+            "captures": 6,
+            "ratio": 1.88,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 5245,
+            "objScore": 810,
+            "time": 72,
+            "objectiveKills": 4,
+            "captures": 6,
+            "ratio": 1.79,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 3795,
+            "objScore": 715,
+            "time": 97,
+            "objectiveKills": 6,
+            "captures": 5,
+            "ratio": 0.97,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 3415,
+            "objScore": 755,
+            "time": 66,
+            "objectiveKills": 5,
+            "captures": 7,
+            "ratio": 1.08,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-1499613691088419f270741cbb1d8adac94d6bd5b202337749bdbf42d8dc4352",
@@ -28301,9 +29651,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1123.842109482426,
+          "before": 1122.6402621876753,
           "change": 3.3211392897969745,
-          "after": 1127.163248772223,
+          "after": 1125.9614014774722,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -28494,9 +29844,9 @@
         },
         {
           "playerId": 2,
-          "before": 1107.037952378728,
+          "before": 1108.3212001106917,
           "change": 2.966758896603551,
-          "after": 1110.0047112753316,
+          "after": 1111.2879590072953,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
@@ -28687,9 +30037,9 @@
         },
         {
           "playerId": 8,
-          "before": 915.0330281747944,
+          "before": 916.7535956800028,
           "change": 3.3725318823292127,
-          "after": 918.4055600571236,
+          "after": 920.126127562332,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -28880,9 +30230,9 @@
         },
         {
           "playerId": 12,
-          "before": 945.2620554922312,
+          "before": 946.7944787571749,
           "change": 3.2314855593873517,
-          "after": 948.4935410516185,
+          "after": 950.0259643165623,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -29459,9 +30809,9 @@
         },
         {
           "playerId": 6,
-          "before": 980.5482958109843,
+          "before": 982.27760944661,
           "change": -1.7715252237989034,
-          "after": 978.7767705871854,
+          "after": 980.5060842228111,
           "calculationTrace": {
             "playerId": 6,
             "mode": "SND",
@@ -29652,9 +31002,9 @@
         },
         {
           "playerId": 16,
-          "before": 939.2399402719543,
+          "before": 937.469842675599,
           "change": -3.414304049523139,
-          "after": 935.8256362224312,
+          "after": 934.0555386260759,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -29843,7 +31193,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Gridlock",
+        "players": {
+          "1": {
+            "score": 995,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 2.4,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 1545,
+            "objScore": 225,
+            "plants": 2,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 1200,
+            "objScore": 150,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.43,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 1175,
+            "objScore": 150,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.43,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1105,
+            "objScore": 75,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.11,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 655,
+            "objScore": 75,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.86,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 1180,
+            "objScore": 125,
+            "plants": 0,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.67,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 640,
+            "objScore": 50,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.63,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-c321ecab75df453450b44b9735dc11bd7387cf4cbcfa74666de733b3d62c121e",
@@ -29914,9 +31342,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1127.163248772223,
+          "before": 1125.9614014774722,
           "change": -0.6493043555401528,
-          "after": 1126.5139444166828,
+          "after": 1125.312097121932,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -30107,9 +31535,9 @@
         },
         {
           "playerId": 2,
-          "before": 1110.0047112753316,
+          "before": 1111.2879590072953,
           "change": -1.1143304577726667,
-          "after": 1108.890380817559,
+          "after": 1110.1736285495226,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
@@ -30300,9 +31728,9 @@
         },
         {
           "playerId": 8,
-          "before": 918.4055600571236,
+          "before": 920.126127562332,
           "change": -0.7676796035759708,
-          "after": 917.6378804535476,
+          "after": 919.3584479587561,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -30493,9 +31921,9 @@
         },
         {
           "playerId": 12,
-          "before": 948.4935410516185,
+          "before": 950.0259643165623,
           "change": -0.8380391749641376,
-          "after": 947.6555018766544,
+          "after": 949.1879251415982,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -31072,9 +32500,9 @@
         },
         {
           "playerId": 6,
-          "before": 978.7767705871854,
+          "before": 980.5060842228111,
           "change": 0.9207658568739134,
-          "after": 979.6975364440593,
+          "after": 981.426850079685,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -31265,9 +32693,9 @@
         },
         {
           "playerId": 16,
-          "before": 935.8256362224312,
+          "before": 934.0555386260759,
           "change": 1.2428086938155047,
-          "after": 937.0684449162467,
+          "after": 935.2983473198914,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -31456,7 +32884,90 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Den",
+        "players": {
+          "1": {
+            "score": 6220,
+            "objScore": 1010,
+            "time": 100,
+            "captures": 7,
+            "ratio": 1.81,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "2": {
+            "score": 4635,
+            "objScore": 770,
+            "time": 61,
+            "objectiveKills": 3,
+            "captures": 6,
+            "ratio": 1.19,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 3420,
+            "objScore": 765,
+            "time": 84,
+            "objectiveKills": 3,
+            "captures": 6,
+            "ratio": 1.04,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3460,
+            "objScore": 595,
+            "time": 88,
+            "captures": 3,
+            "ratio": 0.97,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 5420,
+            "objScore": 1170,
+            "time": 129,
+            "captures": 8,
+            "ratio": 1.78,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 4125,
+            "objScore": 475,
+            "time": 70,
+            "objectiveKills": 3,
+            "captures": 3,
+            "ratio": 1.21,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 4655,
+            "objScore": 990,
+            "time": 92,
+            "objectiveKills": 7,
+            "captures": 5,
+            "ratio": 1.38,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 5105,
+            "objScore": 880,
+            "time": 81,
+            "objectiveKills": 5,
+            "captures": 6,
+            "ratio": 1.64,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-58fc8b79564e3ca81ae0f42d6434c81c0e259a0fd3715a69ffad819c26085eb8",
@@ -31527,9 +33038,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1126.5139444166828,
+          "before": 1125.312097121932,
           "change": -1.2093845120839433,
-          "after": 1125.3045599045988,
+          "after": 1124.1027126098481,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Overload",
@@ -31720,9 +33231,9 @@
         },
         {
           "playerId": 2,
-          "before": 1108.890380817559,
+          "before": 1110.1736285495226,
           "change": -1.3744791394772164,
-          "after": 1107.5159016780817,
+          "after": 1108.7991494100454,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Overload",
@@ -31913,9 +33424,9 @@
         },
         {
           "playerId": 8,
-          "before": 917.6378804535476,
+          "before": 919.3584479587561,
           "change": -0.9326028334229477,
-          "after": 916.7052776201247,
+          "after": 918.4258451253331,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Overload",
@@ -32106,9 +33617,9 @@
         },
         {
           "playerId": 12,
-          "before": 947.6555018766544,
+          "before": 949.1879251415982,
           "change": -1.2102991715401004,
-          "after": 946.4452027051143,
+          "after": 947.977625970058,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Overload",
@@ -32685,9 +34196,9 @@
         },
         {
           "playerId": 6,
-          "before": 979.6975364440593,
+          "before": 981.426850079685,
           "change": 1.3611964757270698,
-          "after": 981.0587329197864,
+          "after": 982.788046555412,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Overload",
@@ -32878,9 +34389,9 @@
         },
         {
           "playerId": 16,
-          "before": 937.0684449162467,
+          "before": 935.2983473198914,
           "change": 1.0358590344221739,
-          "after": 938.1043039506689,
+          "after": 936.3342063543136,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Overload",
@@ -33069,7 +34580,77 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Exposure",
+        "players": {
+          "1": {
+            "score": 6515,
+            "objScore": 425,
+            "overloads": 1,
+            "objectiveKills": 3,
+            "ratio": 1.71,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 5580,
+            "objScore": 350,
+            "overloads": 0,
+            "objectiveKills": 6,
+            "ratio": 1.53,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 5550,
+            "objScore": 600,
+            "overloads": 1,
+            "objectiveKills": 6,
+            "ratio": 1.26,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 4230,
+            "objScore": 375,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 0.97,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 7740,
+            "objScore": 950,
+            "overloads": 2,
+            "objectiveKills": 8,
+            "ratio": 2.0,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 4450,
+            "objScore": 175,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 1.28,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 5740,
+            "objScore": 675,
+            "overloads": 1,
+            "objectiveKills": 10,
+            "ratio": 1.33,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 4040,
+            "objScore": 325,
+            "overloads": 0,
+            "objectiveKills": 5,
+            "ratio": 0.88,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-b641b4ff7e60840e7e7695d2018ceeb2d76ab184309286c45b521360d7749c7d",
@@ -33140,9 +34721,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1125.3045599045988,
+          "before": 1124.1027126098481,
           "change": 4.126291563672794,
-          "after": 1129.4308514682716,
+          "after": 1128.229004173521,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
@@ -33333,9 +34914,9 @@
         },
         {
           "playerId": 2,
-          "before": 1107.5159016780817,
+          "before": 1108.7991494100454,
           "change": 9.024430770480421,
-          "after": 1116.5403324485621,
+          "after": 1117.8235801805258,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
@@ -33526,9 +35107,9 @@
         },
         {
           "playerId": 8,
-          "before": 916.7052776201247,
+          "before": 918.4258451253331,
           "change": 7.5009557119692545,
-          "after": 924.2062333320939,
+          "after": 925.9268008373024,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
@@ -33719,9 +35300,9 @@
         },
         {
           "playerId": 12,
-          "before": 946.4452027051143,
+          "before": 947.977625970058,
           "change": 4.804023763394298,
-          "after": 951.2492264685086,
+          "after": 952.7816497334524,
           "calculationTrace": {
             "playerId": 12,
             "mode": "SND",
@@ -34298,9 +35879,9 @@
         },
         {
           "playerId": 6,
-          "before": 981.0587329197864,
+          "before": 982.788046555412,
           "change": -7.03594065372647,
-          "after": 974.0227922660599,
+          "after": 975.7521059016856,
           "calculationTrace": {
             "playerId": 6,
             "mode": "SND",
@@ -34491,9 +36072,9 @@
         },
         {
           "playerId": 16,
-          "before": 938.1043039506689,
+          "before": 936.3342063543136,
           "change": -6.495769355961443,
-          "after": 931.6085345947074,
+          "after": 929.8384369983521,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
@@ -34682,7 +36263,85 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Express",
+        "players": {
+          "1": {
+            "score": 675,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.17,
+            "objScoreAgrees": true
+          },
+          "2": {
+            "score": 1425,
+            "objScore": 100,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 1,
+            "ratio": 2.33,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 1050,
+            "objScore": 250,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 1,
+            "ratio": 1.14,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 900,
+            "objScore": 350,
+            "plants": 3,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.83,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1030,
+            "objScore": 100,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.57,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 760,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.17,
+            "objScoreAgrees": true
+          },
+          "6": {
+            "score": 615,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.86,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 565,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.71,
+            "objScoreAgrees": true
+          }
+        }
+      }
     },
     {
       "mapId": "map-213297c4a488fe75519e89274c80dbd8bb9b16d21fdc7a6ddbf5d7436ba33def",
@@ -34753,9 +36412,9 @@
       "elo": [
         {
           "playerId": 1,
-          "before": 1129.4308514682716,
+          "before": 1128.229004173521,
           "change": 0.5762841419621054,
-          "after": 1130.0071356102337,
+          "after": 1128.805288315483,
           "calculationTrace": {
             "playerId": 1,
             "mode": "Hardpoint",
@@ -34946,9 +36605,9 @@
         },
         {
           "playerId": 2,
-          "before": 1116.5403324485621,
+          "before": 1117.8235801805258,
           "change": 0.7991115178069776,
-          "after": 1117.3394439663691,
+          "after": 1118.6226916983328,
           "calculationTrace": {
             "playerId": 2,
             "mode": "Hardpoint",
@@ -35139,9 +36798,9 @@
         },
         {
           "playerId": 8,
-          "before": 924.2062333320939,
+          "before": 925.9268008373024,
           "change": 1.0596518229117464,
-          "after": 925.2658851550057,
+          "after": 926.9864526602141,
           "calculationTrace": {
             "playerId": 8,
             "mode": "Hardpoint",
@@ -35332,9 +36991,9 @@
         },
         {
           "playerId": 12,
-          "before": 951.2492264685086,
+          "before": 952.7816497334524,
           "change": 0.8270313068583164,
-          "after": 952.0762577753669,
+          "after": 953.6086810403107,
           "calculationTrace": {
             "playerId": 12,
             "mode": "Hardpoint",
@@ -35911,9 +37570,9 @@
         },
         {
           "playerId": 6,
-          "before": 974.0227922660599,
+          "before": 975.7521059016856,
           "change": -0.8280801245756493,
-          "after": 973.1947121414843,
+          "after": 974.9240257771099,
           "calculationTrace": {
             "playerId": 6,
             "mode": "Hardpoint",
@@ -36104,9 +37763,9 @@
         },
         {
           "playerId": 16,
-          "before": 931.6085345947074,
+          "before": 929.8384369983521,
           "change": -0.5739219226920795,
-          "after": 931.0346126720153,
+          "after": 929.26451507566,
           "calculationTrace": {
             "playerId": 16,
             "mode": "Hardpoint",
@@ -36295,87 +37954,173 @@
             ]
           }
         }
-      ]
+      ],
+      "extras": {
+        "backfilled": true,
+        "map": "Hacienda",
+        "players": {
+          "1": {
+            "score": 4250,
+            "objScore": 360,
+            "time": 46,
+            "objectiveKills": 2,
+            "captures": 1,
+            "ratio": 1.24,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "2": {
+            "score": 5515,
+            "objScore": 1110,
+            "time": 63,
+            "objectiveKills": 5,
+            "captures": 10,
+            "ratio": 1.75,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 4115,
+            "objScore": 645,
+            "time": 87,
+            "objectiveKills": 6,
+            "captures": 3,
+            "ratio": 1.36,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 3830,
+            "objScore": 800,
+            "time": 121,
+            "objectiveKills": 7,
+            "captures": 4,
+            "ratio": 1.07,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 4785,
+            "objScore": 1110,
+            "time": 120,
+            "objectiveKills": 8,
+            "captures": 7,
+            "ratio": 1.4,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "4": {
+            "score": 4410,
+            "objScore": 645,
+            "time": 107,
+            "objectiveKills": 6,
+            "captures": 3,
+            "ratio": 1.54,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "6": {
+            "score": 4160,
+            "objScore": 500,
+            "time": 62,
+            "objectiveKills": 6,
+            "captures": 2,
+            "ratio": 1.17,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "16": {
+            "score": 5025,
+            "objScore": 925,
+            "time": 108,
+            "objectiveKills": 11,
+            "captures": 4,
+            "ratio": 1.43,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
     }
   ],
   "closingStats": {
     "1": {
-      "elo": 1130.0071356102337,
-      "lifetimeKills": 17392,
-      "lifetimeDeaths": 10644,
+      "elo": 1128.805288315483,
+      "lifetimeKills": 17231,
+      "lifetimeDeaths": 10555,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 10004,
-      "hpDeaths": 6129,
-      "sndKills": 1866,
-      "sndDeaths": 1172,
-      "overloadKills": 5522,
-      "overloadDeaths": 3343,
-      "hpWins": 117,
+      "hpKills": 9918,
+      "hpDeaths": 6069,
+      "sndKills": 1850,
+      "sndDeaths": 1163,
+      "overloadKills": 5463,
+      "overloadDeaths": 3323,
+      "hpWins": 115,
       "hpLosses": 110,
       "sndWins": 91,
-      "sndLosses": 92,
-      "overloadWins": 83,
+      "sndLosses": 91,
+      "overloadWins": 82,
       "overloadLosses": 51,
       "seriesWins": 2,
       "seriesLosses": 1,
-      "hpMarginTotal": 1.6600000000000001,
-      "hpMarginCount": 227,
-      "sndMarginTotal": 1.9999999999999996,
-      "sndMarginCount": 183,
-      "overloadMarginTotal": 11.25,
-      "overloadMarginCount": 134,
+      "hpMarginTotal": 1.2850000000000001,
+      "hpMarginCount": 225,
+      "sndMarginTotal": 2.166666666666666,
+      "sndMarginCount": 182,
+      "overloadMarginTotal": 10.625,
+      "overloadMarginCount": 133,
       "hpDamage": 3600.0,
       "hpDamageShare": 0.2535211267605634,
       "sndDamage": 700.0,
       "sndDamageShare": 0.20588235294117646,
       "overloadDamage": 5800.0,
       "overloadDamageShare": 0.29292929292929293,
-      "hpLifetimeDamage": 950300.0,
-      "hpLifetimeTeamDamage": 3192200.0,
-      "sndLifetimeDamage": 176600.0,
-      "sndLifetimeTeamDamage": 560900.0,
-      "overloadLifetimeDamage": 523700.0,
-      "overloadLifetimeTeamDamage": 1787700.0
+      "hpLifetimeDamage": 941700.0,
+      "hpLifetimeTeamDamage": 3161200.0,
+      "sndLifetimeDamage": 175000.0,
+      "sndLifetimeTeamDamage": 556700.0,
+      "overloadLifetimeDamage": 517800.0,
+      "overloadLifetimeTeamDamage": 1770600.0
     },
     "2": {
-      "elo": 1117.3394439663691,
-      "lifetimeKills": 15056,
-      "lifetimeDeaths": 9295,
+      "elo": 1118.6226916983328,
+      "lifetimeKills": 14912,
+      "lifetimeDeaths": 9200,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 8535,
-      "hpDeaths": 5299,
-      "sndKills": 1604,
-      "sndDeaths": 991,
-      "overloadKills": 4917,
-      "overloadDeaths": 3005,
+      "hpKills": 8435,
+      "hpDeaths": 5244,
+      "sndKills": 1600,
+      "sndDeaths": 982,
+      "overloadKills": 4877,
+      "overloadDeaths": 2974,
       "hpWins": 88,
-      "hpLosses": 108,
-      "sndWins": 102,
+      "hpLosses": 106,
+      "sndWins": 101,
       "sndLosses": 56,
       "overloadWins": 52,
-      "overloadLosses": 66,
+      "overloadLosses": 65,
       "seriesWins": 0,
       "seriesLosses": 3,
-      "hpMarginTotal": -2.3480000000000003,
-      "hpMarginCount": 196,
-      "sndMarginTotal": 21.499999999999996,
-      "sndMarginCount": 158,
-      "overloadMarginTotal": -4.5,
-      "overloadMarginCount": 118,
+      "hpMarginTotal": -1.9730000000000003,
+      "hpMarginCount": 194,
+      "sndMarginTotal": 21.33333333333333,
+      "sndMarginCount": 157,
+      "overloadMarginTotal": -3.875,
+      "overloadMarginCount": 117,
       "hpDamage": 4200.0,
       "hpDamageShare": 0.29577464788732394,
       "sndDamage": 1400.0,
       "sndDamageShare": 0.4117647058823529,
       "overloadDamage": 5200.0,
       "overloadDamageShare": 0.26262626262626265,
-      "hpLifetimeDamage": 812800.0,
-      "hpLifetimeTeamDamage": 2742400.0,
-      "sndLifetimeDamage": 154600.0,
-      "sndLifetimeTeamDamage": 506300.0,
-      "overloadLifetimeDamage": 473600.0,
-      "overloadLifetimeTeamDamage": 1577300.0
+      "hpLifetimeDamage": 802800.0,
+      "hpLifetimeTeamDamage": 2710700.0,
+      "sndLifetimeDamage": 154200.0,
+      "sndLifetimeTeamDamage": 502400.0,
+      "overloadLifetimeDamage": 469600.0,
+      "overloadLifetimeTeamDamage": 1564600.0
     },
     "3": {
       "elo": 1089.5513498288617,
@@ -36495,43 +38240,43 @@
       "overloadLifetimeTeamDamage": 1651800.0
     },
     "6": {
-      "elo": 973.1947121414843,
-      "lifetimeKills": 10916,
-      "lifetimeDeaths": 8120,
+      "elo": 974.9240257771099,
+      "lifetimeKills": 10806,
+      "lifetimeDeaths": 8025,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 6076,
-      "hpDeaths": 4702,
-      "sndKills": 1178,
-      "sndDeaths": 868,
-      "overloadKills": 3662,
-      "overloadDeaths": 2550,
+      "hpKills": 6006,
+      "hpDeaths": 4642,
+      "sndKills": 1167,
+      "sndDeaths": 860,
+      "overloadKills": 3633,
+      "overloadDeaths": 2523,
       "hpWins": 65,
-      "hpLosses": 106,
-      "sndWins": 72,
+      "hpLosses": 104,
+      "sndWins": 71,
       "sndLosses": 65,
       "overloadWins": 52,
-      "overloadLosses": 50,
+      "overloadLosses": 49,
       "seriesWins": 0,
       "seriesLosses": 1,
-      "hpMarginTotal": -20.013000000000016,
-      "hpMarginCount": 171,
-      "sndMarginTotal": 5.5,
-      "sndMarginCount": 137,
-      "overloadMarginTotal": 1.625,
-      "overloadMarginCount": 102,
+      "hpMarginTotal": -19.638000000000016,
+      "hpMarginCount": 169,
+      "sndMarginTotal": 5.333333333333333,
+      "sndMarginCount": 136,
+      "overloadMarginTotal": 2.25,
+      "overloadMarginCount": 101,
       "hpDamage": 3400.0,
       "hpDamageShare": 0.2328767123287671,
       "sndDamage": 600.0,
       "sndDamageShare": 0.20689655172413793,
       "overloadDamage": 4800.0,
       "overloadDamageShare": 0.2513089005235602,
-      "hpLifetimeDamage": 573000.0,
-      "hpLifetimeTeamDamage": 2329300.0,
-      "sndLifetimeDamage": 110800.0,
-      "sndLifetimeTeamDamage": 437800.0,
-      "overloadLifetimeDamage": 346800.0,
-      "overloadLifetimeTeamDamage": 1354000.0
+      "hpLifetimeDamage": 566000.0,
+      "hpLifetimeTeamDamage": 2297600.0,
+      "sndLifetimeDamage": 109700.0,
+      "sndLifetimeTeamDamage": 433900.0,
+      "overloadLifetimeDamage": 343900.0,
+      "overloadLifetimeTeamDamage": 1341300.0
     },
     "7": {
       "elo": 950.2154632583364,
@@ -36573,121 +38318,121 @@
       "overloadLifetimeTeamDamage": 1231800.0
     },
     "8": {
-      "elo": 925.2658851550057,
-      "lifetimeKills": 13093,
-      "lifetimeDeaths": 11218,
+      "elo": 926.9864526602141,
+      "lifetimeKills": 12972,
+      "lifetimeDeaths": 11128,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7522,
-      "hpDeaths": 6413,
-      "sndKills": 1324,
-      "sndDeaths": 1277,
-      "overloadKills": 4247,
-      "overloadDeaths": 3528,
+      "hpKills": 7448,
+      "hpDeaths": 6357,
+      "sndKills": 1310,
+      "sndDeaths": 1271,
+      "overloadKills": 4214,
+      "overloadDeaths": 3500,
       "hpWins": 100,
-      "hpLosses": 129,
-      "sndWins": 93,
+      "hpLosses": 127,
+      "sndWins": 92,
       "sndLosses": 90,
       "overloadWins": 63,
-      "overloadLosses": 70,
+      "overloadLosses": 69,
       "seriesWins": 2,
       "seriesLosses": 1,
-      "hpMarginTotal": -13.612000000000004,
-      "hpMarginCount": 229,
-      "sndMarginTotal": 0.8333333333333337,
-      "sndMarginCount": 183,
-      "overloadMarginTotal": 0.625,
-      "overloadMarginCount": 133,
+      "hpMarginTotal": -13.237000000000004,
+      "hpMarginCount": 227,
+      "sndMarginTotal": 0.6666666666666671,
+      "sndMarginCount": 182,
+      "overloadMarginTotal": 1.25,
+      "overloadMarginCount": 132,
       "hpDamage": 3400.0,
       "hpDamageShare": 0.23943661971830985,
       "sndDamage": 800.0,
       "sndDamageShare": 0.23529411764705882,
       "overloadDamage": 4900.0,
       "overloadDamageShare": 0.2474747474747475,
-      "hpLifetimeDamage": 716400.0,
-      "hpLifetimeTeamDamage": 3146000.0,
-      "sndLifetimeDamage": 126500.0,
-      "sndLifetimeTeamDamage": 555300.0,
-      "overloadLifetimeDamage": 406800.0,
-      "overloadLifetimeTeamDamage": 1765200.0
+      "hpLifetimeDamage": 709000.0,
+      "hpLifetimeTeamDamage": 3114300.0,
+      "sndLifetimeDamage": 125100.0,
+      "sndLifetimeTeamDamage": 551400.0,
+      "overloadLifetimeDamage": 403500.0,
+      "overloadLifetimeTeamDamage": 1752500.0
     },
     "9": {
-      "elo": 1062.5190055985825,
-      "lifetimeKills": 13846,
-      "lifetimeDeaths": 10895,
+      "elo": 1060.824817150187,
+      "lifetimeKills": 13721,
+      "lifetimeDeaths": 10808,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7998,
-      "hpDeaths": 6349,
-      "sndKills": 1493,
-      "sndDeaths": 1155,
-      "overloadKills": 4355,
-      "overloadDeaths": 3391,
-      "hpWins": 118,
+      "hpKills": 7922,
+      "hpDeaths": 6297,
+      "sndKills": 1483,
+      "sndDeaths": 1147,
+      "overloadKills": 4316,
+      "overloadDeaths": 3364,
+      "hpWins": 116,
       "hpLosses": 105,
       "sndWins": 94,
-      "sndLosses": 85,
-      "overloadWins": 65,
+      "sndLosses": 84,
+      "overloadWins": 64,
       "overloadLosses": 65,
       "seriesWins": 3,
       "seriesLosses": 0,
-      "hpMarginTotal": 4.562,
-      "hpMarginCount": 223,
-      "sndMarginTotal": 9.833333333333332,
-      "sndMarginCount": 179,
-      "overloadMarginTotal": 1.875,
-      "overloadMarginCount": 130,
+      "hpMarginTotal": 4.187,
+      "hpMarginCount": 221,
+      "sndMarginTotal": 9.999999999999998,
+      "sndMarginCount": 178,
+      "overloadMarginTotal": 1.25,
+      "overloadMarginCount": 129,
       "hpDamage": 2700.0,
       "hpDamageShare": 0.24545454545454545,
       "sndDamage": 1000.0,
       "sndDamageShare": 0.2631578947368421,
       "overloadDamage": 2000.0,
       "overloadDamageShare": 0.19801980198019803,
-      "hpLifetimeDamage": 760100.0,
-      "hpLifetimeTeamDamage": 3097900.0,
-      "sndLifetimeDamage": 142400.0,
-      "sndLifetimeTeamDamage": 556800.0,
-      "overloadLifetimeDamage": 413700.0,
-      "overloadLifetimeTeamDamage": 1703400.0
+      "hpLifetimeDamage": 752500.0,
+      "hpLifetimeTeamDamage": 3066900.0,
+      "sndLifetimeDamage": 141400.0,
+      "sndLifetimeTeamDamage": 552600.0,
+      "overloadLifetimeDamage": 409800.0,
+      "overloadLifetimeTeamDamage": 1686300.0
     },
     "10": {
-      "elo": 925.2590927214152,
-      "lifetimeKills": 8991,
-      "lifetimeDeaths": 8246,
+      "elo": 923.4689071287008,
+      "lifetimeKills": 8875,
+      "lifetimeDeaths": 8162,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 5385,
-      "hpDeaths": 4769,
-      "sndKills": 862,
-      "sndDeaths": 975,
-      "overloadKills": 2744,
-      "overloadDeaths": 2502,
-      "hpWins": 88,
+      "hpKills": 5309,
+      "hpDeaths": 4714,
+      "sndKills": 856,
+      "sndDeaths": 968,
+      "overloadKills": 2710,
+      "overloadDeaths": 2480,
+      "hpWins": 86,
       "hpLosses": 84,
       "sndWins": 70,
-      "sndLosses": 69,
-      "overloadWins": 50,
+      "sndLosses": 68,
+      "overloadWins": 49,
       "overloadLosses": 47,
       "seriesWins": 1,
       "seriesLosses": 0,
-      "hpMarginTotal": 1.6240000000000008,
-      "hpMarginCount": 172,
-      "sndMarginTotal": -0.8333333333333339,
-      "sndMarginCount": 139,
-      "overloadMarginTotal": -1.25,
-      "overloadMarginCount": 97,
+      "hpMarginTotal": 1.2490000000000008,
+      "hpMarginCount": 170,
+      "sndMarginTotal": -0.6666666666666673,
+      "sndMarginCount": 138,
+      "overloadMarginTotal": -1.875,
+      "overloadMarginCount": 96,
       "hpDamage": 3500.0,
       "hpDamageShare": 0.24475524475524477,
       "sndDamage": 900.0,
       "sndDamageShare": 0.2571428571428571,
       "overloadDamage": 2600.0,
       "overloadDamageShare": 0.29545454545454547,
-      "hpLifetimeDamage": 523700.0,
-      "hpLifetimeTeamDamage": 2506900.0,
-      "sndLifetimeDamage": 83400.0,
-      "sndLifetimeTeamDamage": 438200.0,
-      "overloadLifetimeDamage": 266400.0,
-      "overloadLifetimeTeamDamage": 1298400.0
+      "hpLifetimeDamage": 516100.0,
+      "hpLifetimeTeamDamage": 2475900.0,
+      "sndLifetimeDamage": 82800.0,
+      "sndLifetimeTeamDamage": 434000.0,
+      "overloadLifetimeDamage": 263000.0,
+      "overloadLifetimeTeamDamage": 1281300.0
     },
     "11": {
       "elo": 942.3094350728483,
@@ -36729,43 +38474,43 @@
       "overloadLifetimeTeamDamage": 1124700.0
     },
     "12": {
-      "elo": 952.0762577753669,
-      "lifetimeKills": 12469,
-      "lifetimeDeaths": 11418,
+      "elo": 953.6086810403107,
+      "lifetimeKills": 12361,
+      "lifetimeDeaths": 11319,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 7373,
-      "hpDeaths": 6592,
-      "sndKills": 1189,
-      "sndDeaths": 1298,
-      "overloadKills": 3907,
-      "overloadDeaths": 3528,
+      "hpKills": 7300,
+      "hpDeaths": 6532,
+      "sndKills": 1179,
+      "sndDeaths": 1290,
+      "overloadKills": 3882,
+      "overloadDeaths": 3497,
       "hpWins": 115,
-      "hpLosses": 122,
-      "sndWins": 105,
+      "hpLosses": 120,
+      "sndWins": 104,
       "sndLosses": 82,
       "overloadWins": 54,
-      "overloadLosses": 83,
+      "overloadLosses": 82,
       "seriesWins": 1,
       "seriesLosses": 1,
-      "hpMarginTotal": 0.9960000000000014,
-      "hpMarginCount": 237,
-      "sndMarginTotal": 4.833333333333333,
-      "sndMarginCount": 187,
-      "overloadMarginTotal": -6.625,
-      "overloadMarginCount": 137,
+      "hpMarginTotal": 1.3710000000000013,
+      "hpMarginCount": 235,
+      "sndMarginTotal": 4.666666666666666,
+      "sndMarginCount": 186,
+      "overloadMarginTotal": -6.0,
+      "overloadMarginCount": 136,
       "hpDamage": 3000.0,
       "hpDamageShare": 0.2112676056338028,
       "sndDamage": 500.0,
       "sndDamageShare": 0.14705882352941177,
       "overloadDamage": 3900.0,
       "overloadDamageShare": 0.19696969696969696,
-      "hpLifetimeDamage": 715400.0,
-      "hpLifetimeTeamDamage": 3400100.0,
-      "sndLifetimeDamage": 115700.0,
-      "sndLifetimeTeamDamage": 580200.0,
-      "overloadLifetimeDamage": 377200.0,
-      "overloadLifetimeTeamDamage": 1825200.0
+      "hpLifetimeDamage": 708100.0,
+      "hpLifetimeTeamDamage": 3368400.0,
+      "sndLifetimeDamage": 114700.0,
+      "sndLifetimeTeamDamage": 576300.0,
+      "overloadLifetimeDamage": 374700.0,
+      "overloadLifetimeTeamDamage": 1812500.0
     },
     "13": {
       "elo": 827.1414197459412,
@@ -36885,43 +38630,43 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 931.0346126720153,
-      "lifetimeKills": 3910,
-      "lifetimeDeaths": 3345,
+      "elo": 929.26451507566,
+      "lifetimeKills": 3789,
+      "lifetimeDeaths": 3262,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 2281,
-      "hpDeaths": 1877,
-      "sndKills": 360,
-      "sndDeaths": 368,
-      "overloadKills": 1269,
-      "overloadDeaths": 1100,
-      "hpWins": 36,
+      "hpKills": 2209,
+      "hpDeaths": 1822,
+      "sndKills": 350,
+      "sndDeaths": 361,
+      "overloadKills": 1230,
+      "overloadDeaths": 1079,
+      "hpWins": 34,
       "hpLosses": 36,
       "sndWins": 24,
-      "sndLosses": 31,
-      "overloadWins": 19,
+      "sndLosses": 30,
+      "overloadWins": 18,
       "overloadLosses": 24,
       "seriesWins": 0,
       "seriesLosses": 0,
-      "hpMarginTotal": 1.3350000000000004,
-      "hpMarginCount": 72,
-      "sndMarginTotal": -3.666666666666668,
-      "sndMarginCount": 55,
-      "overloadMarginTotal": -1.625,
-      "overloadMarginCount": 43,
+      "hpMarginTotal": 0.9600000000000004,
+      "hpMarginCount": 70,
+      "sndMarginTotal": -3.5000000000000013,
+      "sndMarginCount": 54,
+      "overloadMarginTotal": -2.25,
+      "overloadMarginCount": 42,
       "hpDamage": 4000.0,
       "hpDamageShare": 0.273972602739726,
       "sndDamage": 500.0,
       "sndDamageShare": 0.1724137931034483,
       "overloadDamage": 3600.0,
       "overloadDamageShare": 0.18848167539267016,
-      "hpLifetimeDamage": 228100.0,
-      "hpLifetimeTeamDamage": 1060200.0,
-      "sndLifetimeDamage": 36000.0,
-      "sndLifetimeTeamDamage": 180500.0,
-      "overloadLifetimeDamage": 126900.0,
-      "overloadLifetimeTeamDamage": 612000.0
+      "hpLifetimeDamage": 220900.0,
+      "hpLifetimeTeamDamage": 1029200.0,
+      "sndLifetimeDamage": 35000.0,
+      "sndLifetimeTeamDamage": 176300.0,
+      "overloadLifetimeDamage": 123000.0,
+      "overloadLifetimeTeamDamage": 594900.0
     }
   },
   "updatedAt": "2026-10-28T23:06:59.550244800Z"

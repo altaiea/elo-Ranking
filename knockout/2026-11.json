@@ -136,8 +136,8 @@
     {
       "id": "2026-11-13-17",
       "captains": [
-        17,
-        13
+        13,
+        17
       ],
       "tier": 2,
       "tierPlayers": [
@@ -152,26 +152,60 @@
       "format": "2x Bo5",
       "wager": false,
       "score": [
-        2,
-        3
+        6,
+        2
       ],
       "sets": [
         [
-          2,
-          3
+          3,
+          2
+        ],
+        [
+          3,
+          0
         ]
       ],
       "dates": [
-        "2026-11-10"
+        "2026-11-10",
+        "2026-11-12"
       ],
       "mapIds": [
         "map-d764d551b545b02344949951c607c103732f013e4c4951aaa80dfc5e6fece955",
         "map-8f4e30d2008be393d4e518eba55d3e4f9a504d774df1e0adcbfdb2e958c04927",
         "map-8767bcd555f34e3724d46a3821cd7aa7a8fc986571b79853b866aca69fc28539",
         "map-16d6af78d03c96bc57553cc0b1008d138d2eac96efd6e090dbf1c8232fbcdbaa",
-        "map-37911ebc2e61e6f84b0fdcf4bdce0125ff26b5f73a6f1bad8bbd088118047613"
+        "map-37911ebc2e61e6f84b0fdcf4bdce0125ff26b5f73a6f1bad8bbd088118047613",
+        "map-de1e6c5941672926246bc8bb519d306e04b4c838a6b3da0d5c3461bd62fd166b",
+        "map-8797019bea9095aa7d4787966fc3fdbdacaf379fc72d0386beb28c219c028f17",
+        "map-f6ae5a8da791eae6abe783b847f0509003fb27ce350ce8ce613bcac690463b33"
       ],
-      "complete": false
+      "complete": true,
+      "winner": 13,
+      "decidedBy": "sets",
+      "captainElo": {
+        "13": {
+          "seriesTotal": 13.251621977586865,
+          "extra": 6.625810988793432,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        },
+        "17": {
+          "seriesTotal": -18.786940056900562,
+          "extra": -9.393470028450281,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        }
+      },
+      "balance": {
+        "1": 0.17297868997855304,
+        "2": 0.4612765066094748,
+        "3": 0.4612765066094748,
+        "4": 0.28829781663092174,
+        "9": 0.4612765066094748,
+        "10": 0.17297868997855304,
+        "11": 0.4612765066094748,
+        "12": 0.28829781663092174
+      }
     }
   ],
   "tiers": [
@@ -197,5 +231,5 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-10T14:19:52.776287Z"
+  "updatedAt": "2026-11-12T23:06:02.017176Z"
 }

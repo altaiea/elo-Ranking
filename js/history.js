@@ -1,7 +1,8 @@
 /* ======================================================
    HISTORY TAB
    Days grouped by week; open a day to see every map, each player's Elo
-   change and the full calculation the Java engine recorded.
+   change and the full calculation the Elo engine recorded (the Java engine before
+   30 Oct 2026, the CODStats v4 Python engine since).
 ====================================================== */
 import { getPlayerName } from "./config.js";
 import { loadHistoryDay, loadHistoryIndex } from "./data.js";
@@ -289,7 +290,7 @@ function buildHistoryTeam(label, players, eloByPlayer, won) {
 }
 
 function buildCalculationTrace(trace) {
-    // Presentation only: all displayed values come from Java's saved trace.
+    // Presentation only: all displayed values come from the engine's saved trace.
     const container = document.createElement("div");
     container.className = "history-calculation history-calc-grouped";
     const recordedSteps = Array.isArray(trace?.steps) ? trace.steps : [];
@@ -334,7 +335,7 @@ function buildCalculationTrace(trace) {
 
     const note = document.createElement("p");
     note.className = "history-calc-note";
-    note.textContent = "Green = Elo gained or a positive adjustment · Red = Elo lost or a negative adjustment. Values are recorded by the Java engine; the summary is rounded for display.";
+    note.textContent = "Green = Elo gained or a positive adjustment · Red = Elo lost or a negative adjustment. Values are recorded by the Elo engine when the map is imported; the summary is rounded for display.";
     container.appendChild(note);
 
     const details = document.createElement("details");

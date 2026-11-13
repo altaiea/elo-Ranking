@@ -11,7 +11,8 @@
     --line: #3a3122; --line-soft: #221d15; --panel: rgba(10, 8, 5, .85); --text: #f1ead9; --muted: #a39a88; --rival: #ff3b3b;
     --ui-zoom: 1;
 }
-@font-face { font-family: "Black Ops One"; src: url("fonts/BlackOpsOne-Regular.ttf"); font-display: swap; }
+/* WOFF2 is the same font at a third of the size (56 KB, 13 Nov 2026); the .ttf is the fallback. */
+@font-face { font-family: "Black Ops One"; src: url("fonts/BlackOpsOne-Regular.woff2") format("woff2"), url("fonts/BlackOpsOne-Regular.ttf") format("truetype"); font-display: swap; }
 
 /* ---------- gold switch and buttons ---------- */
 .sub-tabs { display: inline-flex; flex-wrap: wrap; gap: 3px; margin: 0 0 16px; padding: 3px; border: 1px solid var(--line); border-radius: 7px; background: rgba(0, 0, 0, .45); zoom: var(--ui-zoom); }
@@ -43,7 +44,6 @@
 /* Locker room: the hand above the leaderboard */
 .locker { margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
 #table-body tr { cursor: pointer; }
-#table-body tr.locker-pick td { background: rgba(var(--gold-rgb), .12) !important; }
 
 /* Cards page */
 .theme-ko #cardsPage { padding: 0; overflow: hidden; }
@@ -83,6 +83,5 @@
 .tape-row u { display: block; height: 100%; background: var(--gold); }
 @keyframes tapeSlide { from { opacity: 0; transform: translateX(26px); } }
 .is-phone #cardTape { left: 9%; width: 82%; top: calc(var(--cy) + var(--h) / 2 + 70px); font-size: 34px; }
-#cardHands { display: none !important; }     /* the hands under the card are replaced by the tape */
 
 @media (prefers-reduced-motion: reduce) { .tape-row { animation: none; } }

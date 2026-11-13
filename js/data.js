@@ -77,6 +77,7 @@ export function loadHistoryDay(entry) {
 export function clearHistoryCache() {
     dayCache.clear();
     summaryPromise = null;
+    summaryFilePromise = null;
     indexPromise = null;
 }
 
@@ -108,13 +109,25 @@ function summaryMatches(summary, index) {
 
 let summaryPromise = null;
 
+// history/summary.json is fetched once and shared: the leaderboard's arrows and the
+// full history both need it, and it is the biggest file the site loads (about 570 KB).
+// Before 13 Nov 2026 each of them fetched it separately, so it was downloaded twice.
+let summaryFilePromise = null;
+function loadSummaryFile() {
+    if (!summaryFilePromise) {
+        summaryFilePromise = fetchJson(`${HISTORY_FOLDER}/summary.json`)
+            .catch(error => { summaryFilePromise = null; throw error; });
+    }
+    return summaryFilePromise;
+}
+
 // Every day of history, oldest first, in the compact shape above.
 export function loadAllHistory() {
     if (!summaryPromise) {
         summaryPromise = (async () => {
             const index = await loadHistoryIndex();
             try {
-                const summary = await fetchJson(`${HISTORY_FOLDER}/summary.json`);
+                const summary = await loadSummaryFile();
                 if (summaryMatches(summary, index)) {
                     const byDate = new Map(summary.days.map(d => [d.date, d]));
                     return index.map(entry => {
@@ -140,7 +153,7 @@ async function loadLatestOpeningElo() {
     const latest = index[index.length - 1];
     if (!latest) return null;
     try {
-        const summary = await fetchJson(`${HISTORY_FOLDER}/summary.json`);
+        const summary = await loadSummaryFile();
         if (summaryMatches(summary, index)) {
             const day = summary.days.find(d => d.date === latest.date);
             if (day?.openingElo && Object.keys(day.openingElo).length) return day.openingElo;

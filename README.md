@@ -25,16 +25,18 @@ still: export from CODStats, then push with GitHub Desktop.
 | `js/duoNetwork3d.js` | The 3D drawing of the duo network: a neon globe you can spin, roll and zoom. Downloaded in the background after the page has loaded |
 | `vendor/three-duo.min.js` | three.js, the 3D library `duoNetwork3d.js` uses, cut down to the parts it needs. Not written by hand: do not edit |
 | `js/cardTape.js` | The tale of the tape: a player's numbers beside the card popup |
-| `js/carousel.js` | The old spinning ring for the Cards page. No longer loaded; kept in case you want it back |
 | `js/matchSetup.js` | The Match Day tab: tap-to-pick players, Bo5/Bo7/Bo9 maps. Uses `teams.js` (line-up reveal) and `maps.js` (map sets) |
 | `js/layout.js`, `layout.css` | Side menu (bottom bar on phones) and the Knockout-style gold theme |
 | `js/playerCard.js`, `js/modeModal.js` | The card popup (float, flip, intro video) and the mode wheel |
-| `js/ui.js` | Shared helpers: formatting, colours, click sound, popup |
+| `js/ui.js` | Shared helpers: formatting, colours, popup |
 | `js/knockout.js` | The Knockout tab (Captain's Cup): tiers, brackets, seeding table |
 | `js/knockoutRules.js` | Cup rules and bracket maths (tiers, seeding, 1.5x / 2x, +20). No page code |
 | `js/knockoutCards.js` | Stats for the Knockout card (cup maps only). No page code |
+| `js/knockoutCardsView.js`, `knockoutRulesView.js`, `knockoutHistoryView.js`, `knockoutPanels.js` | The three Knockout panels (Cards, Rules, History) and the code they share |
+| `js/knockoutData.js`, `js/knockoutMvp.js` | Reads `knockout/`; the carry and match rating behind the series MVP. No page code |
+| `js/monthWinner.js`, `js/streaks.js` | Last month's number one (the wings) and win streaks (the fire on a card) |
 
-`config.js`, `data.js` and `ratings.js` have no page code on purpose: the
+`config.js`, `data.js`, `ratings.js` and `knockoutMvp.js` have no page code on purpose: the
 Three.js game can `import` them and show exactly the same names, numbers and
 ratings as the site.
 
@@ -51,18 +53,30 @@ ratings as the site.
   load slower. Rebuild it with `python tools/build_history_summary.py`.
 - `knockout/YYYY-MM.json` and `knockout/index.json`: Captain's Cup results
   (series played, winners, map ids). See `knockout/README.md`.
-- `daily_stats/`, `previous_stats*.json`: kept for the exporter; the site does not read them.
+- `daily_stats/`, `previous_stats.json`: kept for the exporter; the site does not read them.
 
 ## Card pictures and intro videos
 
 The originals stay in `cards/` (`N_back.png`, `N_back.webp`, `N_intro.mp4`).
 The site loads smaller copies from `cards/web/`:
 
-- `N_thumb.webp` (300 px wide) for the carousel and team line-ups
+- `N_thumb.webp` (300 px wide) for the card hands and team line-ups
 - `N_card.webp` (up to 840 x 1200) for the card popup
 - `N_intro.mp4` re-encoded without sound and set to start playing while it downloads
 
 After adding or changing a card or intro, run `python tools/optimize_media.py`
 (needs Pillow and ffmpeg), then add the player to `js/config.js`.
+The originals are never downloaded by visitors; only `cards/web/` is.
 
-Empty
+## Clean-up, 13 Nov 2026
+
+Removed because nothing used them (all still in git history): the old card carousel
+(`js/carousel.js`) and its click sound, the hidden hands image under the card popup,
+about 235 CSS rules for pages that no longer exist (the first team generator, the 2D duo
+network, the old maps page), `CircleC.png`, `hands.webp`, `headers/players.webp`,
+`headers/ranks.webp`, `assets/duo-gold-surround.svg` and `previous_stats_monthly_tab.json`.
+Every tab was screenshotted before and after: identical.
+
+Faster: `history/summary.json` is now downloaded once per visit instead of twice, and the
+font is WOFF2 (56 KB instead of 163 KB). Functions in `data.js` and `knockoutMvp.js` that the
+site itself does not call (`loadPlayers`, `carryRating`, ...) are kept for the game.

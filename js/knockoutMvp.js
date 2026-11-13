@@ -5,7 +5,9 @@
 // 57-99 scale. Used on the Knockout tab only; normal maps, Elo and the
 // cards are not affected. No page code, so the Three.js game can import it.
 //
-// Carry uses the Elo engine's own team-relative terms (EloCalculator.java):
+// Carry uses the team-relative terms of the first (Java) Elo engine, rules version 1.
+// Note: the current engine (CODStats v4, codstats/elo/rules.py) weighs K/D 0.36 and
+// kills 2.5 instead; this MVP rating still uses the old 0.5 / 1.5 (flagged 13 Nov 2026).
 //   KD carry     = your map KD - your team's average map KD  (SND KD capped at 4)
 //   Kill carry   = your share of your team's kills - 1 / team size
 //   carry        = 10 x (KD carry x 0.5 + kill carry x 1.5)

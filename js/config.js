@@ -38,7 +38,7 @@ export const PLACEHOLDER_PLAYER_IDS = [15, 16, 17];
 // Must match the starting Elo set for that player in CODStats (stats.json).
 export const PLACEHOLDER_STARTING_ELO = { 17: 925 }; // HAMZ
 
-// Every player with a card, in carousel order.
+// Every player with a card, in the order the card hands deal them.
 export const CARD_PLAYER_IDS = Array.from({ length: 17 }, (_, i) => i + 1);
 
 // Intro videos are PAUSED until the new intros are made (Nov 2026): cards open
@@ -69,7 +69,6 @@ export const cardAssets = {
     wings: "wings.webp",
     wingsThumb: "wings_thumb.webp",
     cardWings: "card_wings.webp",       // the wings that attach to the outside of a card (tools/make_card_wings.py)
-    hands: "hands.webp",
     gun: "gun.webp"
 };
 

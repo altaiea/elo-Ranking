@@ -153,7 +153,7 @@ function waitForVideo(video, src) {
 /* ---------------------------
    FLOATING CARD
 ---------------------------- */
-let cardEnterAnim = null, cardFloatAnim = null, cardTapHandler = null, cardTapBox = null, handsAnim = null, cardPulseAnim = null;
+let cardEnterAnim = null, cardFloatAnim = null, cardTapHandler = null, cardTapBox = null, cardPulseAnim = null;
 
 // Everything is laid out for a 1100 x 700 window and scaled to fit the real one.
 function floatLayout(box) {
@@ -175,26 +175,6 @@ function floatLayout(box) {
     return { place, a: pose(-9, -1, 19, -3), b: pose(9, 1, 15, 3), ua: up(-10, -1.2, -3), ub: up(10, 1.2, 3) };
 }
 
-export function cardHandsEl() {
-    let el = document.getElementById("cardHands");
-    if (!el) {
-        el = document.createElement("img");
-        el.id = "cardHands";
-        el.src = cardAssets.hands;
-        el.alt = "";
-        el.draggable = false;
-        document.getElementById("playerModal").appendChild(el);
-    }
-    return el;
-}
-
-function hideCardHands() {
-    const el = document.getElementById("cardHands");
-    if (!el) return;
-    if (handsAnim) { handsAnim.cancel(); handsAnim = null; }
-    el.style.display = "none";
-}
-
 function stopCardFloat() {
     if (cardEnterAnim) { cardEnterAnim.cancel(); cardEnterAnim = null; }
     if (cardFloatAnim) { cardFloatAnim.cancel(); cardFloatAnim = null; }
@@ -202,11 +182,10 @@ function stopCardFloat() {
     if (cardPulseAnim) { cardPulseAnim.cancel(); cardPulseAnim = null; }
     if (cardTapBox) cardTapBox.classList.remove("floating-card", "awaiting-tap");
     cardTapHandler = cardTapBox = null;
-    hideCardHands();
     hideCardTape();
 }
 
-// Swing in from the carousel and settle into the floating pose. Resolves when it is hovering.
+// Swing in from the card hand and settle into the floating pose. Resolves when it is hovering.
 function startCardFloat(box) {
     stopCardFloat();
     const L = floatLayout(box);
@@ -341,7 +320,7 @@ export function openPlayerModal(playerId) {
 
     modal.style.display = "block";
 
-    // Entrance: the card swings in from the carousel and settles in front.
+    // Entrance: the card swings in from the card hand and settles in front.
     const modalBox = modal.querySelector(".modal-content");
     const motion = !reduceMotion();
     modalBox.classList.remove("modal-enter");

@@ -66,7 +66,6 @@
         rgba(10, 8, 5,.72);
     box-shadow: 0 20px 50px rgba(0,0,0,.45);
 }
-.theme-ko #carouselPage { overflow: hidden; }
 
 /* tables: Knockout standings style */
 .theme-ko #leaderboard { width: 100%; background: transparent; border: 0; box-shadow: none; border-collapse: collapse; }
@@ -79,9 +78,8 @@
 .theme-ko #leaderboard tbody tr:nth-child(3) td:first-child { border-left-color: #d08a4a; }
 
 /* buttons: Knockout's letter-spaced pills, in blue */
-.theme-ko .monthly-rankings-button,
-.theme-ko .ms-link, .theme-ko .ms-seg button { letter-spacing: .12em; text-transform: uppercase; font-size: 12.5px; }
-.theme-ko .monthly-rankings-button { background: transparent; color: #f2c14e; border: 1px solid #f2c14e; border-radius: 6px; padding: 9px 20px; font-weight: 900; }
+.theme-ko .ms-link,
+.theme-ko .ms-seg button { letter-spacing: .12em; text-transform: uppercase; font-size: 12.5px; }
 .theme-ko .ms-go, .theme-ko .map-series-btn.ms-roll {
     background: linear-gradient(180deg, #f6cf68, #c99632); color: #120e07; border: 1px solid #ffe29a; border-radius: 6px;
     font-weight: 900; letter-spacing: .16em; text-transform: uppercase; font-size: 14px; box-shadow: 0 0 26px rgba(242, 193, 78,.28);
@@ -96,6 +94,5 @@
 .theme-ko.is-phone .ph-title { font-size: 34px; }
 
 /* fit fixes inside the poster panel */
-.theme-ko #carouselPage { box-sizing: border-box; padding: 0; }
 .theme-ko .comparison-header { display: none; }   /* the page header already says Head-to-Head */
 .theme-ko .ko-q { display: none; }                  /* minimal: no tagline under the Knockout title */

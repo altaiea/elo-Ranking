@@ -3,7 +3,7 @@
    A card per player built from Captain's Cup maps only, with "KO" in the
    bottom right and the tier and month they fought in at the bottom left.
    It copies the existing card face (the same artwork and rating maths)
-   without changing the popup, the carousel or Head-to-Head.
+   without changing the popup, the card hands or Head-to-Head.
 ====================================================== */
 import { fillCard } from "./playerCard.js";
 import { loadKnockoutCardPool } from "./knockoutCards.js";

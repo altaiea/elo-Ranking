@@ -8077,10 +8077,10 @@
           "type": "score",
           "score": {
             "teamA": 6,
-            "teamB": 2
+            "teamB": 4
           },
           "winningTeam": 1,
-          "scoreDifference": 4
+          "scoreDifference": 2
         },
         "teams": {
           "A": [
@@ -8133,18 +8133,18 @@
         {
           "playerId": 2,
           "before": 1127.944755906008,
-          "change": 5.412250475965266,
-          "after": 1133.3570063819732,
+          "change": 2.706125237982633,
+          "after": 1130.6508811439905,
           "calculationTrace": {
             "playerId": 2,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 1127.944755906008,
-            "change": 5.412250475965268,
-            "after": 1133.3570063819732,
+            "change": 2.706125237982634,
+            "after": 1130.6508811439905,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -8190,9 +8190,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -8226,17 +8226,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": 6.96975637854224,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 4.646504252361493
+                "result": 2.3232521261807464
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": 4.646504252361493
+                  "baseAfterMargin": 2.3232521261807464
                 },
-                "result": 4.646504252361493
+                "result": 2.3232521261807464
               },
               {
                 "name": "Player damage",
@@ -8286,23 +8286,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 4.646504252361493,
+                  "pool": 2.3232521261807464,
                   "kdCarry": 0.1607142857142858,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": 0.26883346031520083
+                "result": 0.13441673015760042
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 4.646504252361493,
+                  "pool": 2.3232521261807464,
                   "damageCarry": 0.047297297297297314,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": 0.5494177325427443
+                "result": 0.27470886627137214
               },
               {
                 "name": "Winner guard scale",
@@ -8316,30 +8316,30 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
-                "result": -0.05250496925416971
+                "result": -0.026252484627084856
               },
               {
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": 4.646504252361493,
-                  "kdAdjustment": 0.26883346031520083,
-                  "damageAdjustment": 0.5494177325427443,
-                  "leakShare": -0.05250496925416971
+                  "baseAfterMargin": 2.3232521261807464,
+                  "kdAdjustment": 0.13441673015760042,
+                  "damageAdjustment": 0.27470886627137214,
+                  "leakShare": -0.026252484627084856
                 },
-                "result": 5.412250475965268
+                "result": 2.706125237982634
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 1127.944755906008,
-                  "finalChange": 5.412250475965268
+                  "finalChange": 2.706125237982634
                 },
-                "result": 1133.3570063819732
+                "result": 1130.6508811439905
               }
             ]
           }
@@ -8347,18 +8347,18 @@
         {
           "playerId": 3,
           "before": 1140.406130423847,
-          "change": 5.162133457693244,
-          "after": 1145.5682638815401,
+          "change": 2.5810667288465083,
+          "after": 1142.9871971526934,
           "calculationTrace": {
             "playerId": 3,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 1140.406130423847,
-            "change": 5.162133457693181,
-            "after": 1145.5682638815401,
+            "change": 2.5810667288465905,
+            "after": 1142.9871971526934,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -8404,9 +8404,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -8440,17 +8440,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": 6.647662142285937,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 4.4317747615239576
+                "result": 2.2158873807619788
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": 4.4317747615239576
+                  "baseAfterMargin": 2.2158873807619788
                 },
-                "result": 4.4317747615239576
+                "result": 2.2158873807619788
               },
               {
                 "name": "Player damage",
@@ -8500,23 +8500,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 4.4317747615239576,
+                  "pool": 2.2158873807619788,
                   "kdCarry": 0.1607142857142858,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": 0.256409825488172
+                "result": 0.128204912744086
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 4.4317747615239576,
+                  "pool": 2.2158873807619788,
                   "damageCarry": 0.047297297297297314,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": 0.5240274211261438
+                "result": 0.2620137105630719
               },
               {
                 "name": "Winner guard scale",
@@ -8530,30 +8530,30 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
-                "result": -0.05007855044509225
+                "result": -0.025039275222546124
               },
               {
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": 4.4317747615239576,
-                  "kdAdjustment": 0.256409825488172,
-                  "damageAdjustment": 0.5240274211261438,
-                  "leakShare": -0.05007855044509225
+                  "baseAfterMargin": 2.2158873807619788,
+                  "kdAdjustment": 0.128204912744086,
+                  "damageAdjustment": 0.2620137105630719,
+                  "leakShare": -0.025039275222546124
                 },
-                "result": 5.162133457693181
+                "result": 2.5810667288465905
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 1140.406130423847,
-                  "finalChange": 5.162133457693181
+                  "finalChange": 2.5810667288465905
                 },
-                "result": 1145.5682638815401
+                "result": 1142.9871971526934
               }
             ]
           }
@@ -8561,18 +8561,18 @@
         {
           "playerId": 11,
           "before": 908.5940315887636,
-          "change": 8.76890901795889,
-          "after": 917.3629406067225,
+          "change": 4.384454508979502,
+          "after": 912.9784860977431,
           "calculationTrace": {
             "playerId": 11,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 908.5940315887636,
-            "change": 8.768909017958903,
-            "after": 917.3629406067225,
+            "change": 4.384454508979451,
+            "after": 912.9784860977431,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -8618,9 +8618,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -8654,17 +8654,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": 13.081461164623992,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 8.720974109749328
+                "result": 4.360487054874664
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": 8.720974109749328
+                  "baseAfterMargin": 4.360487054874664
                 },
-                "result": 8.720974109749328
+                "result": 4.360487054874664
               },
               {
                 "name": "Player damage",
@@ -8714,23 +8714,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 8.720974109749328,
+                  "pool": 4.360487054874664,
                   "kdCarry": 0.08928571428571441,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": 0.2803170249562288
+                "result": 0.1401585124781144
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 8.720974109749328,
+                  "pool": 4.360487054874664,
                   "damageCarry": -0.006756756756756743,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": -0.1473137518538735
+                "result": -0.07365687592693675
               },
               {
                 "name": "Winner guard scale",
@@ -8744,30 +8744,30 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
-                "result": -0.08506836489278145
+                "result": -0.04253418244639073
               },
               {
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": 8.720974109749328,
-                  "kdAdjustment": 0.2803170249562288,
-                  "damageAdjustment": -0.1473137518538735,
-                  "leakShare": -0.08506836489278145
+                  "baseAfterMargin": 4.360487054874664,
+                  "kdAdjustment": 0.1401585124781144,
+                  "damageAdjustment": -0.07365687592693675,
+                  "leakShare": -0.04253418244639073
                 },
-                "result": 8.768909017958903
+                "result": 4.384454508979451
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 908.5940315887636,
-                  "finalChange": 8.768909017958903
+                  "finalChange": 4.384454508979451
                 },
-                "result": 917.3629406067225
+                "result": 912.9784860977431
               }
             ]
           }
@@ -8775,18 +8775,18 @@
         {
           "playerId": 17,
           "before": 879.0674479476874,
-          "change": 5.775737788469542,
-          "after": 884.8431857361569,
+          "change": 2.887868894234771,
+          "after": 881.9553168419221,
           "calculationTrace": {
             "playerId": 17,
             "mode": "SND",
             "teamWon": true,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 879.0674479476874,
-            "change": 5.775737788469495,
-            "after": 884.8431857361569,
+            "change": 2.8878688942347477,
+            "after": 881.9553168419221,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -8832,9 +8832,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -8868,17 +8868,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": 13.829226975108531,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 9.219484650072353
+                "result": 4.609742325036176
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": 9.219484650072353
+                  "baseAfterMargin": 4.609742325036176
                 },
-                "result": 9.219484650072353
+                "result": 4.609742325036176
               },
               {
                 "name": "Player damage",
@@ -8928,23 +8928,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 9.219484650072353,
+                  "pool": 4.609742325036176,
                   "kdCarry": -0.4107142857142856,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": -1.3631666589749831
+                "result": -0.6815833294874916
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 9.219484650072353,
+                  "pool": 4.609742325036176,
                   "damageCarry": -0.08783783783783783,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": -2.024548994103726
+                "result": -1.012274497051863
               },
               {
                 "name": "Winner guard scale",
@@ -8958,30 +8958,30 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
-                "result": -0.05603120852414943
+                "result": -0.028015604262074716
               },
               {
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": 9.219484650072353,
-                  "kdAdjustment": -1.3631666589749831,
-                  "damageAdjustment": -2.024548994103726,
-                  "leakShare": -0.05603120852414943
+                  "baseAfterMargin": 4.609742325036176,
+                  "kdAdjustment": -0.6815833294874916,
+                  "damageAdjustment": -1.012274497051863,
+                  "leakShare": -0.028015604262074716
                 },
-                "result": 5.775737788469495
+                "result": 2.8878688942347477
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 879.0674479476874,
-                  "finalChange": 5.775737788469495
+                  "finalChange": 2.8878688942347477
                 },
-                "result": 884.8431857361569
+                "result": 881.9553168419221
               }
             ]
           }
@@ -8989,18 +8989,18 @@
         {
           "playerId": 1,
           "before": 1146.9746895339254,
-          "change": -7.4611182794867545,
-          "after": 1139.5135712544386,
+          "change": -3.730559139743491,
+          "after": 1143.2441303941819,
           "calculationTrace": {
             "playerId": 1,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 1146.9746895339254,
-            "change": -7.461118279486829,
-            "after": 1139.5135712544386,
+            "change": -3.7305591397434146,
+            "after": 1143.2441303941819,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -9046,9 +9046,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -9082,17 +9082,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": -13.650699206921526,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": -9.100466137947684
+                "result": -4.550233068973842
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": -9.100466137947684
+                  "baseAfterMargin": -4.550233068973842
                 },
-                "result": 9.100466137947684
+                "result": 4.550233068973842
               },
               {
                 "name": "Player damage",
@@ -9142,23 +9142,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 9.100466137947684,
+                  "pool": 4.550233068973842,
                   "kdCarry": 0.11458333333333348,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": 0.3753942281903424
+                "result": 0.1876971140951712
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 9.100466137947684,
+                  "pool": 4.550233068973842,
                   "damageCarry": 0.05555555555555558,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": 1.2639536302705123
+                "result": 0.6319768151352562
               },
               {
                 "name": "Winner guard scale",
@@ -9172,8 +9172,8 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
                 "result": 0.0
               },
@@ -9181,21 +9181,21 @@
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": -9.100466137947684,
-                  "kdAdjustment": 0.3753942281903424,
-                  "damageAdjustment": 1.2639536302705123,
+                  "baseAfterMargin": -4.550233068973842,
+                  "kdAdjustment": 0.1876971140951712,
+                  "damageAdjustment": 0.6319768151352562,
                   "leakShare": 0.0
                 },
-                "result": -7.461118279486829
+                "result": -3.7305591397434146
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 1146.9746895339254,
-                  "finalChange": -7.461118279486829
+                  "finalChange": -3.7305591397434146
                 },
-                "result": 1139.5135712544386
+                "result": 1143.2441303941819
               }
             ]
           }
@@ -9203,18 +9203,18 @@
         {
           "playerId": 8,
           "before": 954.5749190788921,
-          "change": -8.342154700013452,
-          "after": 946.2327643788786,
+          "change": -4.171077350006726,
+          "after": 950.4038417288854,
           "calculationTrace": {
             "playerId": 8,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 954.5749190788921,
-            "change": -8.342154700013483,
-            "after": 946.2327643788786,
+            "change": -4.171077350006741,
+            "after": 950.4038417288854,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -9260,9 +9260,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -9296,17 +9296,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": -8.306008182921142,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": -5.537338788614094
+                "result": -2.768669394307047
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": -5.537338788614094
+                  "baseAfterMargin": -2.768669394307047
                 },
-                "result": 5.537338788614094
+                "result": 2.768669394307047
               },
               {
                 "name": "Player damage",
@@ -9356,23 +9356,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 5.537338788614094,
+                  "pool": 2.768669394307047,
                   "kdCarry": -0.6354166666666665,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": -1.2666662478954738
+                "result": -0.6333331239477369
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 5.537338788614094,
+                  "pool": 2.768669394307047,
                   "damageCarry": -0.1111111111111111,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": -1.538149663503915
+                "result": -0.7690748317519575
               },
               {
                 "name": "Winner guard scale",
@@ -9386,8 +9386,8 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
                 "result": 0.0
               },
@@ -9395,21 +9395,21 @@
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": -5.537338788614094,
-                  "kdAdjustment": -1.2666662478954738,
-                  "damageAdjustment": -1.538149663503915,
+                  "baseAfterMargin": -2.768669394307047,
+                  "kdAdjustment": -0.6333331239477369,
+                  "damageAdjustment": -0.7690748317519575,
                   "leakShare": 0.0
                 },
-                "result": -8.342154700013483
+                "result": -4.171077350006741
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 954.5749190788921,
-                  "finalChange": -8.342154700013483
+                  "finalChange": -4.171077350006741
                 },
-                "result": 946.2327643788786
+                "result": 950.4038417288854
               }
             ]
           }
@@ -9417,18 +9417,18 @@
         {
           "playerId": 9,
           "before": 1049.2990299550668,
-          "change": -2.907074491693038,
-          "after": 1046.3919554633737,
+          "change": -1.453537245846519,
+          "after": 1047.8454927092203,
           "calculationTrace": {
             "playerId": 9,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 1049.2990299550668,
-            "change": -2.907074491693117,
-            "after": 1046.3919554633737,
+            "change": -1.4535372458465585,
+            "after": 1047.8454927092203,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -9474,9 +9474,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -9510,17 +9510,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": -11.012418277897462,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": -7.3416121852649745
+                "result": -3.6708060926324872
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": -7.3416121852649745
+                  "baseAfterMargin": -3.6708060926324872
                 },
-                "result": 7.3416121852649745
+                "result": 3.6708060926324872
               },
               {
                 "name": "Player damage",
@@ -9570,23 +9570,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 7.3416121852649745,
+                  "pool": 3.6708060926324872,
                   "kdCarry": 0.90625,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": 2.3952009754426977
+                "result": 1.1976004877213489
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 7.3416121852649745,
+                  "pool": 3.6708060926324872,
                   "damageCarry": 0.1111111111111111,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": 2.0393367181291593
+                "result": 1.0196683590645796
               },
               {
                 "name": "Winner guard scale",
@@ -9600,8 +9600,8 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
                 "result": 0.0
               },
@@ -9609,21 +9609,21 @@
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": -7.3416121852649745,
-                  "kdAdjustment": 2.3952009754426977,
-                  "damageAdjustment": 2.0393367181291593,
+                  "baseAfterMargin": -3.6708060926324872,
+                  "kdAdjustment": 1.1976004877213489,
+                  "damageAdjustment": 1.0196683590645796,
                   "leakShare": 0.0
                 },
-                "result": -2.907074491693117
+                "result": -1.4535372458465585
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 1049.2990299550668,
-                  "finalChange": -2.907074491693117
+                  "finalChange": -1.4535372458465585
                 },
-                "result": 1046.3919554633737
+                "result": 1047.8454927092203
               }
             ]
           }
@@ -9631,18 +9631,18 @@
         {
           "playerId": 16,
           "before": 926.1544848505317,
-          "change": -6.408683268893469,
-          "after": 919.7458015816383,
+          "change": -3.2043416344466777,
+          "after": 922.950143216085,
           "calculationTrace": {
             "playerId": 16,
             "mode": "SND",
             "teamWon": false,
             "teamSize": 4,
-            "scoreDifferenceMargin": 0.6666666666666666,
+            "scoreDifferenceMargin": 0.3333333333333333,
             "rulesVersion": 2,
             "before": 926.1544848505317,
-            "change": -6.408683268893418,
-            "after": 919.7458015816383,
+            "change": -3.204341634446709,
+            "after": 922.950143216085,
             "steps": [
               {
                 "name": "Starting Elo",
@@ -9688,9 +9688,9 @@
                 "name": "Margin multiplier",
                 "formula": "marginT(scoreDifference, mode)",
                 "inputs": {
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": 0.6666666666666666
+                "result": 0.3333333333333333
               },
               {
                 "name": "Expected score",
@@ -9724,17 +9724,17 @@
                 "formula": "base * marginT",
                 "inputs": {
                   "base": -7.524054712908895,
-                  "marginT": 0.6666666666666666
+                  "marginT": 0.3333333333333333
                 },
-                "result": -5.016036475272596
+                "result": -2.508018237636298
               },
               {
                 "name": "Adjustment pool",
                 "formula": "abs(baseAfterMargin)",
                 "inputs": {
-                  "baseAfterMargin": -5.016036475272596
+                  "baseAfterMargin": -2.508018237636298
                 },
-                "result": 5.016036475272596
+                "result": 2.508018237636298
               },
               {
                 "name": "Player damage",
@@ -9784,23 +9784,23 @@
                 "name": "KD adjustment",
                 "formula": "pool * kdCarry * KD_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 5.016036475272596,
+                  "pool": 2.508018237636298,
                   "kdCarry": -0.3854166666666665,
                   "KD_WEIGHT": 0.36,
                   "guardScale": 1.0
                 },
-                "result": -0.6959750609440724
+                "result": -0.3479875304720362
               },
               {
                 "name": "Damage adjustment",
                 "formula": "pool * damageCarry * DAMAGE_WEIGHT * guardScale",
                 "inputs": {
-                  "pool": 5.016036475272596,
+                  "pool": 2.508018237636298,
                   "damageCarry": -0.05555555555555555,
                   "DAMAGE_WEIGHT": 2.5,
                   "guardScale": 1.0
                 },
-                "result": -0.6966717326767493
+                "result": -0.34833586633837466
               },
               {
                 "name": "Winner guard scale",
@@ -9814,8 +9814,8 @@
                 "name": "Leak share",
                 "formula": "winners only: -mapTotal * playerChange / winnersChange",
                 "inputs": {
-                  "mapTotal": 0.24368309311619285,
-                  "winnersChange": 25.36271383320304
+                  "mapTotal": 0.12184154655809643,
+                  "winnersChange": 12.68135691660152
                 },
                 "result": 0.0
               },
@@ -9823,21 +9823,21 @@
                 "name": "Final change",
                 "formula": "baseAfterMargin + kdAdjustment + damageAdjustment + leakShare",
                 "inputs": {
-                  "baseAfterMargin": -5.016036475272596,
-                  "kdAdjustment": -0.6959750609440724,
-                  "damageAdjustment": -0.6966717326767493,
+                  "baseAfterMargin": -2.508018237636298,
+                  "kdAdjustment": -0.3479875304720362,
+                  "damageAdjustment": -0.34833586633837466,
                   "leakShare": 0.0
                 },
-                "result": -6.408683268893418
+                "result": -3.204341634446709
               },
               {
                 "name": "Updated Elo",
                 "formula": "startingElo + finalChange",
                 "inputs": {
                   "startingElo": 926.1544848505317,
-                  "finalChange": -6.408683268893418
+                  "finalChange": -3.204341634446709
                 },
-                "result": 919.7458015816383
+                "result": 922.950143216085
               }
             ]
           }
@@ -9919,12 +9919,18 @@
             "objScoreAgrees": true
           }
         }
+      },
+      "scoreCorrection": {
+        "original": "6-2",
+        "corrected": "6-4",
+        "at": "2026-11-13",
+        "why": "final board OCR read only the 6; a fallback filled 2; the score check disagreed. Corrected by hand from the video."
       }
     }
   ],
   "closingStats": {
     "1": {
-      "elo": 1139.5135712544386,
+      "elo": 1143.2441303941819,
       "lifetimeKills": 19284,
       "lifetimeDeaths": 11762,
       "mapKills": 0,
@@ -9943,7 +9949,7 @@
       "overloadLosses": 58,
       "hpMarginTotal": 3.09,
       "hpMarginCount": 251,
-      "sndMarginTotal": 5.833333333333334,
+      "sndMarginTotal": 6.166666666666668,
       "sndMarginCount": 204,
       "overloadMarginTotal": 10.5,
       "overloadMarginCount": 150,
@@ -9961,7 +9967,7 @@
       "overloadLifetimeTeamDamage": 2009000.0
     },
     "2": {
-      "elo": 1133.3570063819732,
+      "elo": 1130.6508811439905,
       "lifetimeKills": 16716,
       "lifetimeDeaths": 10339,
       "mapKills": 0,
@@ -9980,7 +9986,7 @@
       "overloadLosses": 74,
       "hpMarginTotal": -4.078000000000001,
       "hpMarginCount": 217,
-      "sndMarginTotal": 26.33333333333332,
+      "sndMarginTotal": 25.999999999999986,
       "sndMarginCount": 177,
       "overloadMarginTotal": -4.875,
       "overloadMarginCount": 133,
@@ -9998,7 +10004,7 @@
       "overloadLifetimeTeamDamage": 1786100.0
     },
     "3": {
-      "elo": 1145.5682638815401,
+      "elo": 1142.9871971526934,
       "lifetimeKills": 18608,
       "lifetimeDeaths": 10457,
       "mapKills": 0,
@@ -10017,7 +10023,7 @@
       "overloadLosses": 68,
       "hpMarginTotal": 8.004000000000003,
       "hpMarginCount": 242,
-      "sndMarginTotal": -13.333333333333337,
+      "sndMarginTotal": -13.66666666666667,
       "sndMarginCount": 202,
       "overloadMarginTotal": 3.75,
       "overloadMarginCount": 145,
@@ -10183,7 +10189,7 @@
       "overloadLifetimeTeamDamage": 1340600.0
     },
     "8": {
-      "elo": 946.2327643788786,
+      "elo": 950.4038417288854,
       "lifetimeKills": 14262,
       "lifetimeDeaths": 12220,
       "mapKills": 0,
@@ -10202,7 +10208,7 @@
       "overloadLosses": 75,
       "hpMarginTotal": -10.407000000000005,
       "hpMarginCount": 248,
-      "sndMarginTotal": 1.0000000000000004,
+      "sndMarginTotal": 1.3333333333333337,
       "sndMarginCount": 200,
       "overloadMarginTotal": -0.375,
       "overloadMarginCount": 147,
@@ -10220,7 +10226,7 @@
       "overloadLifetimeTeamDamage": 1950800.0
     },
     "9": {
-      "elo": 1046.3919554633737,
+      "elo": 1047.8454927092203,
       "lifetimeKills": 16152,
       "lifetimeDeaths": 12674,
       "mapKills": 0,
@@ -10239,7 +10245,7 @@
       "overloadLosses": 77,
       "hpMarginTotal": 5.966999999999998,
       "hpMarginCount": 258,
-      "sndMarginTotal": 8.66666666666666,
+      "sndMarginTotal": 8.999999999999993,
       "sndMarginCount": 209,
       "overloadMarginTotal": 0.75,
       "overloadMarginCount": 153,
@@ -10294,7 +10300,7 @@
       "overloadLifetimeTeamDamage": 1440000.0
     },
     "11": {
-      "elo": 917.3629406067225,
+      "elo": 912.9784860977431,
       "lifetimeKills": 8311,
       "lifetimeDeaths": 7484,
       "mapKills": 0,
@@ -10313,7 +10319,7 @@
       "overloadLosses": 43,
       "hpMarginTotal": 6.693000000000002,
       "hpMarginCount": 166,
-      "sndMarginTotal": -12.66666666666666,
+      "sndMarginTotal": -12.999999999999993,
       "sndMarginCount": 135,
       "overloadMarginTotal": 0.625,
       "overloadMarginCount": 99,
@@ -10479,7 +10485,7 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 919.7458015816383,
+      "elo": 922.950143216085,
       "lifetimeKills": 5128,
       "lifetimeDeaths": 4398,
       "mapKills": 0,
@@ -10498,7 +10504,7 @@
       "overloadLosses": 35,
       "hpMarginTotal": -1.5099999999999993,
       "hpMarginCount": 93,
-      "sndMarginTotal": -0.9999999999999999,
+      "sndMarginTotal": -0.6666666666666665,
       "sndMarginCount": 72,
       "overloadMarginTotal": -3.25,
       "overloadMarginCount": 58,
@@ -10516,7 +10522,7 @@
       "overloadLifetimeTeamDamage": 823300.0
     },
     "17": {
-      "elo": 884.8431857361569,
+      "elo": 881.9553168419221,
       "lifetimeKills": 681,
       "lifetimeDeaths": 703,
       "mapKills": 0,
@@ -10535,7 +10541,7 @@
       "overloadLosses": 5,
       "hpMarginTotal": -0.6299999999999998,
       "hpMarginCount": 14,
-      "sndMarginTotal": -2.6666666666666665,
+      "sndMarginTotal": -2.9999999999999996,
       "sndMarginCount": 12,
       "overloadMarginTotal": 0.375,
       "overloadMarginCount": 9,

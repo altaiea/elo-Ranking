@@ -1,7 +1,7 @@
 {
   "players": {
     "1": {
-      "elo": 1139.5135712544386,
+      "elo": 1143.2441303941819,
       "lifetimeKills": 19284,
       "lifetimeDeaths": 11762,
       "mapKills": 0,
@@ -20,7 +20,7 @@
       "overloadLosses": 58,
       "hpMarginTotal": 3.09,
       "hpMarginCount": 251,
-      "sndMarginTotal": 5.833333333333334,
+      "sndMarginTotal": 6.166666666666668,
       "sndMarginCount": 204,
       "overloadMarginTotal": 10.5,
       "overloadMarginCount": 150,
@@ -38,7 +38,7 @@
       "overloadLifetimeTeamDamage": 2009000.0
     },
     "2": {
-      "elo": 1133.3570063819732,
+      "elo": 1130.6508811439905,
       "lifetimeKills": 16716,
       "lifetimeDeaths": 10339,
       "mapKills": 0,
@@ -57,7 +57,7 @@
       "overloadLosses": 74,
       "hpMarginTotal": -4.078000000000001,
       "hpMarginCount": 217,
-      "sndMarginTotal": 26.33333333333332,
+      "sndMarginTotal": 25.999999999999986,
       "sndMarginCount": 177,
       "overloadMarginTotal": -4.875,
       "overloadMarginCount": 133,
@@ -75,7 +75,7 @@
       "overloadLifetimeTeamDamage": 1786100.0
     },
     "3": {
-      "elo": 1145.5682638815401,
+      "elo": 1142.9871971526934,
       "lifetimeKills": 18608,
       "lifetimeDeaths": 10457,
       "mapKills": 0,
@@ -94,7 +94,7 @@
       "overloadLosses": 68,
       "hpMarginTotal": 8.004000000000003,
       "hpMarginCount": 242,
-      "sndMarginTotal": -13.333333333333337,
+      "sndMarginTotal": -13.66666666666667,
       "sndMarginCount": 202,
       "overloadMarginTotal": 3.75,
       "overloadMarginCount": 145,
@@ -260,7 +260,7 @@
       "overloadLifetimeTeamDamage": 1340600.0
     },
     "8": {
-      "elo": 946.2327643788786,
+      "elo": 950.4038417288854,
       "lifetimeKills": 14262,
       "lifetimeDeaths": 12220,
       "mapKills": 0,
@@ -279,7 +279,7 @@
       "overloadLosses": 75,
       "hpMarginTotal": -10.407000000000005,
       "hpMarginCount": 248,
-      "sndMarginTotal": 1.0000000000000004,
+      "sndMarginTotal": 1.3333333333333337,
       "sndMarginCount": 200,
       "overloadMarginTotal": -0.375,
       "overloadMarginCount": 147,
@@ -297,7 +297,7 @@
       "overloadLifetimeTeamDamage": 1950800.0
     },
     "9": {
-      "elo": 1046.3919554633737,
+      "elo": 1047.8454927092203,
       "lifetimeKills": 16152,
       "lifetimeDeaths": 12674,
       "mapKills": 0,
@@ -316,7 +316,7 @@
       "overloadLosses": 77,
       "hpMarginTotal": 5.966999999999998,
       "hpMarginCount": 258,
-      "sndMarginTotal": 8.66666666666666,
+      "sndMarginTotal": 8.999999999999993,
       "sndMarginCount": 209,
       "overloadMarginTotal": 0.75,
       "overloadMarginCount": 153,
@@ -371,7 +371,7 @@
       "overloadLifetimeTeamDamage": 1440000.0
     },
     "11": {
-      "elo": 917.3629406067225,
+      "elo": 912.9784860977431,
       "lifetimeKills": 8311,
       "lifetimeDeaths": 7484,
       "mapKills": 0,
@@ -390,7 +390,7 @@
       "overloadLosses": 43,
       "hpMarginTotal": 6.693000000000002,
       "hpMarginCount": 166,
-      "sndMarginTotal": -12.66666666666666,
+      "sndMarginTotal": -12.999999999999993,
       "sndMarginCount": 135,
       "overloadMarginTotal": 0.625,
       "overloadMarginCount": 99,
@@ -556,7 +556,7 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 919.7458015816383,
+      "elo": 922.950143216085,
       "lifetimeKills": 5128,
       "lifetimeDeaths": 4398,
       "mapKills": 0,
@@ -575,7 +575,7 @@
       "overloadLosses": 35,
       "hpMarginTotal": -1.5099999999999993,
       "hpMarginCount": 93,
-      "sndMarginTotal": -0.9999999999999999,
+      "sndMarginTotal": -0.6666666666666665,
       "sndMarginCount": 72,
       "overloadMarginTotal": -3.25,
       "overloadMarginCount": 58,
@@ -593,7 +593,7 @@
       "overloadLifetimeTeamDamage": 823300.0
     },
     "17": {
-      "elo": 884.8431857361569,
+      "elo": 881.9553168419221,
       "lifetimeKills": 681,
       "lifetimeDeaths": 703,
       "mapKills": 0,
@@ -612,7 +612,7 @@
       "overloadLosses": 5,
       "hpMarginTotal": -0.6299999999999998,
       "hpMarginCount": 14,
-      "sndMarginTotal": -2.6666666666666665,
+      "sndMarginTotal": -2.9999999999999996,
       "sndMarginCount": 12,
       "overloadMarginTotal": 0.375,
       "overloadMarginCount": 9,
@@ -1133,7 +1133,8 @@
     "2026-11-13|1a1d24cf41882-master_playlist.mp4": "432c1958a52668cc5fe4f4545ac35bbe5ccd69b8181e94aab255834b6a771b9e",
     "2026-11-13|1a1d24cf41838-master_playlist.mp4": "669b49e47efa5eee81ae82cc5a54b2e5c7972d3fc5c8b35a472e9de2e3f8e38d",
     "2026-11-13|1a1d24cf41821-master_playlist.mp4": "5a134785d4e6ea2d75e149fcbe3e4439ee41e707baa2d186fa7683035688ba63",
-    "2026-11-13|1a1d24cf41811-master_playlist.mp4": "518e346a51630e1afee089c4a858b17a6f2ddf62e5c59fbb73006bffb4fa864e"
+    "2026-11-13|1a1d24cf41811-master_playlist.mp4": "518e346a51630e1afee089c4a858b17a6f2ddf62e5c59fbb73006bffb4fa864e",
+    "2026-11-13|1a1d24cf41811-master_playlist.mp4#corrected": "5ba9b3d13d35940c435a61a767c30fc14e4ddd4e2130c125d7059cdb48a1c7d3"
   },
   "importTrackingVersion": 1
 }

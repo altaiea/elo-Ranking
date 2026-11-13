@@ -5,12 +5,14 @@
 // 57-99 scale. Used on the Knockout tab only; normal maps, Elo and the
 // cards are not affected. No page code, so the Three.js game can import it.
 //
-// Carry uses the team-relative terms of the first (Java) Elo engine, rules version 1.
-// Note: the current engine (CODStats v4, codstats/elo/rules.py) weighs K/D 0.36 and
-// kills 2.5 instead; this MVP rating still uses the old 0.5 / 1.5 (flagged 13 Nov 2026).
+// Carry uses the same team-relative terms and weights as the Elo engine
+// (CODStats v4, codstats/elo/rules.py, KD_WEIGHT and DAMAGE_WEIGHT):
 //   KD carry     = your map KD - your team's average map KD  (SND KD capped at 4)
 //   Kill carry   = your share of your team's kills - 1 / team size
-//   carry        = 10 x (KD carry x 0.5 + kill carry x 1.5)
+//   carry        = 10 x (KD carry x 0.36 + kill carry x 2.5)
+// Aligned with the engine on 13 Nov 2026 (before: 0.5 and 1.5, the first Java engine's).
+// Over all 2,944 player-maps in history the match ratings barely moved: 90% still land
+// between 3.8 and 8.5 (before: 3.7 to 8.7). If the engine's weights change, change these too.
 // The 10 is the engine's "pool" for an even, full-margin map, fixed here so
 // winning, losing and the score margin do not change it: it only says how
 // much better or worse you played than your own teammates.
@@ -28,8 +30,8 @@ import { percentile, scaleRating } from "./ratings.js";
 import { loadAllHistory } from "./data.js";
 import { loadAllKnockoutMonths } from "./knockoutData.js";
 
-const KD_WEIGHT = 0.5;        // PerformanceCalculator.KD_WEIGHT
-const KILL_WEIGHT = 1.5;      // PerformanceCalculator.DAMAGE_WEIGHT
+const KD_WEIGHT = 0.36;       // rules.py KD_WEIGHT
+const KILL_WEIGHT = 2.5;      // rules.py DAMAGE_WEIGHT ("damage" = kills x 100, so its share = kill share)
 const POOL = 10;              // K_FACTOR 20 x (1 - 0.5 expected) x margin 1
 
 function mapKd(player, mode) {
@@ -114,7 +116,7 @@ export function seriesCarryTotals(maps) {
 
 // Match rating out of 10, like a football player rating, so it never reads
 // as Elo: 6 is an average game for your team, 7+ good, 8+ a carry, under 5
-// a rough night. Over all history most maps land between 3.6 and 8.6.
+// a rough night. Over all history 90% of player-maps land between 3.8 and 8.5.
 export const matchRating = carry => Math.min(10, Math.max(1, 6 + carry / 2));
 
 // { playerId: rating out of 10 } for one map.

@@ -171,7 +171,7 @@ function openMvpExplainer(seriesIndex) {
         <div class="koh-steps">
             <div><b>1 · KD</b><span>Your KD on the map minus the average KD, once for your team and once for the whole lobby (SND KD counts up to 4).</span></div>
             <div><b>2 · Kills</b><span>Your share of the kills minus an even share: ¼ of your team's, ⅛ of the lobby's in a 4v4.</span></div>
-            <div><b>3 · Map rating</b><span>Starts at 6.0 and moves with those two, using the same weights the Elo engine uses for its performance part: 6 + 5 × (KD × 0.5 + kills × 1.5), done for team and lobby and split 50/50, kept between 1 and 10.</span></div>
+            <div><b>3 · Map rating</b><span>Starts at 6.0 and moves with those two, using the same weights the Elo engine uses for its performance part: 6 + 5 × (KD × 0.36 + kills × 2.5), done for team and lobby and split 50/50, kept between 1 and 10.</span></div>
             <div><b>4 · Series rating</b><span>The average of your map ratings, so steady games beat one big map. The best average is the Series MVP and adds one to the trophy count on their card.</span></div>
         </div>
         <p class="koh-note">Winning, losing and the score margin don't change it, so the best player on the losing team can still be MVP. Only Captain's Cup series count.</p>

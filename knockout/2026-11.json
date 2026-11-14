@@ -206,6 +206,45 @@
         "11": 0.4612765066094748,
         "12": 0.28829781663092174
       }
+    },
+    {
+      "id": "2026-11-13-16",
+      "captains": [
+        13,
+        16
+      ],
+      "tier": 2,
+      "tierPlayers": [
+        16,
+        10,
+        11,
+        13,
+        17
+      ],
+      "round": 1,
+      "final": false,
+      "format": "2x Bo5",
+      "wager": false,
+      "score": [
+        1,
+        3
+      ],
+      "sets": [
+        [
+          1,
+          3
+        ]
+      ],
+      "dates": [
+        "2026-11-13"
+      ],
+      "mapIds": [
+        "map-eb6784f6a0bd090aa60f897a29602e7e830daac13f82a8800964ec954cbd9efe",
+        "map-8a71a3e5624430ad68af31e2fd4bae40d5824c23a134f56986bb3a0d07b87092",
+        "map-2fca6ab63d1402e4b7eaba353d8096acc707d0d40394ae2a328f2083cca0dc3f",
+        "map-545affbc97689852bcfe0d39ea42443e1f8ac65165c6a0bc757e0a7c5c23cd13"
+      ],
+      "complete": false
     }
   ],
   "tiers": [
@@ -231,5 +270,5 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-12T23:06:02.017176Z"
+  "updatedAt": "2026-11-14T00:13:06.884287Z"
 }

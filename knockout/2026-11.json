@@ -245,6 +245,72 @@
         "map-545affbc97689852bcfe0d39ea42443e1f8ac65165c6a0bc757e0a7c5c23cd13"
       ],
       "complete": false
+    },
+    {
+      "id": "2026-11-3-9",
+      "captains": [
+        3,
+        9
+      ],
+      "tier": 0,
+      "tierPlayers": [
+        3,
+        1,
+        2,
+        5,
+        9,
+        4
+      ],
+      "round": 1,
+      "final": false,
+      "format": "1x Bo9",
+      "wager": false,
+      "score": [
+        5,
+        1
+      ],
+      "sets": [
+        [
+          5,
+          1
+        ]
+      ],
+      "dates": [
+        "2026-11-15"
+      ],
+      "mapIds": [
+        "map-d8a30ee19d3192946100b4a51715e30d64e6dc204e77a92d06c6a2965dffdc82",
+        "map-23d5661fe3c64c5737ef2f47ab3328bcfd5cdd40a6509922c35207679b507461",
+        "map-8a645d6ad118280d57f4f813fb40c7417693e9e5bcbc80dd0bd7767d5465d99e",
+        "map-a4ee6db1baee017d7c0aab0d5301ea066a746094d62dd2ec87135d5067c67513",
+        "map-27982d120131b7cffcb3e38da32eafcdd8e83ef8ee83452ecf851d53efadb683",
+        "map-5b9b677a7156e02d9932983c47392a863ef2eda38ef782d21c1ec5805acbb85a"
+      ],
+      "complete": true,
+      "winner": 3,
+      "decidedBy": "maps",
+      "captainElo": {
+        "3": {
+          "seriesTotal": 10.352010682668151,
+          "extra": 5.176005341334076,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        },
+        "9": {
+          "seriesTotal": -21.366298991404165,
+          "extra": -10.683149495702082,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        }
+      },
+      "balance": {
+        "1": 0.9178573590613345,
+        "2": 0.9178573590613345,
+        "8": 0.9178573590613345,
+        "10": 0.9178573590613345,
+        "12": 0.9178573590613345,
+        "16": 0.9178573590613345
+      }
     }
   ],
   "tiers": [
@@ -270,5 +336,5 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-14T00:13:06.884287Z"
+  "updatedAt": "2026-11-16T14:10:45.671526Z"
 }

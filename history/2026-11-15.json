@@ -17351,6 +17351,14 @@
             "objScoreAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     },
     {
@@ -19209,6 +19217,14 @@
             "objScoreAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     },
     {
@@ -21075,6 +21091,14 @@
             "timeAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     },
     {
@@ -22925,6 +22949,14 @@
             "objScoreAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     },
     {
@@ -24783,6 +24815,14 @@
             "objScoreAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     },
     {
@@ -26649,12 +26689,20 @@
             "timeAgrees": true
           }
         }
+      },
+      "cup": {
+        "month": "2026-11",
+        "seriesId": "2026-11-3-9",
+        "captains": [
+          3,
+          9
+        ]
       }
     }
   ],
   "closingStats": {
     "1": {
-      "elo": 1116.1400522672816,
+      "elo": 1117.057909626343,
       "lifetimeKills": 19889,
       "lifetimeDeaths": 12184,
       "mapKills": 0,
@@ -26691,7 +26739,7 @@
       "overloadLifetimeTeamDamage": 2083900.0
     },
     "2": {
-      "elo": 1136.7330132004429,
+      "elo": 1137.6508705595043,
       "lifetimeKills": 17223,
       "lifetimeDeaths": 10616,
       "mapKills": 0,
@@ -26728,7 +26776,7 @@
       "overloadLifetimeTeamDamage": 1848300.0
     },
     "3": {
-      "elo": 1161.6108844224434,
+      "elo": 1166.7868897637775,
       "lifetimeKills": 18989,
       "lifetimeDeaths": 10665,
       "mapKills": 0,
@@ -26913,7 +26961,7 @@
       "overloadLifetimeTeamDamage": 1340600.0
     },
     "8": {
-      "elo": 959.2916483000884,
+      "elo": 960.2095056591497,
       "lifetimeKills": 14784,
       "lifetimeDeaths": 12623,
       "mapKills": 0,
@@ -26950,7 +26998,7 @@
       "overloadLifetimeTeamDamage": 2032500.0
     },
     "9": {
-      "elo": 1027.860373557466,
+      "elo": 1017.1772240617638,
       "lifetimeKills": 16630,
       "lifetimeDeaths": 13031,
       "mapKills": 0,
@@ -26987,7 +27035,7 @@
       "overloadLifetimeTeamDamage": 2086000.0
     },
     "10": {
-      "elo": 924.9480934665667,
+      "elo": 925.865950825628,
       "lifetimeKills": 10049,
       "lifetimeDeaths": 9207,
       "mapKills": 0,
@@ -27061,7 +27109,7 @@
       "overloadLifetimeTeamDamage": 1313800.0
     },
     "12": {
-      "elo": 914.2423312219184,
+      "elo": 915.1601885809798,
       "lifetimeKills": 13995,
       "lifetimeDeaths": 12724,
       "mapKills": 0,
@@ -27209,7 +27257,7 @@
       "overloadLifetimeTeamDamage": 99700.0
     },
     "16": {
-      "elo": 915.6662117105154,
+      "elo": 916.5840690695768,
       "lifetimeKills": 5626,
       "lifetimeDeaths": 4796,
       "mapKills": 0,
@@ -27283,5 +27331,95 @@
       "overloadLifetimeTeamDamage": 162600.0
     }
   },
-  "updatedAt": "2026-11-16T13:31:16.885427Z"
+  "updatedAt": "2026-11-16T13:31:16.885427Z",
+  "adjustments": [
+    {
+      "type": "cupSeries",
+      "seriesId": "2026-11-3-9",
+      "playerId": 3,
+      "seriesTotal": 10.352010682668151,
+      "multiplier": 1.5,
+      "change": 5.176005341334076,
+      "before": 1161.6108844224434,
+      "after": 1166.7868897637775,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupSeries",
+      "seriesId": "2026-11-3-9",
+      "playerId": 9,
+      "seriesTotal": -21.366298991404165,
+      "multiplier": 1.5,
+      "change": -10.683149495702082,
+      "before": 1027.860373557466,
+      "after": 1017.1772240617638,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 1,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 1116.1400522672816,
+      "after": 1117.057909626343,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 2,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 1136.7330132004429,
+      "after": 1137.6508705595043,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 8,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 959.2916483000884,
+      "after": 960.2095056591497,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 10,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 924.9480934665667,
+      "after": 925.865950825628,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 12,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 914.2423312219184,
+      "after": 915.1601885809798,
+      "at": "2026-11-16T14:10:45.671526Z"
+    },
+    {
+      "type": "cupBalance",
+      "seriesId": "2026-11-3-9",
+      "playerId": 16,
+      "mapsPlayed": 6,
+      "seriesNet": -5.507144154368007,
+      "change": 0.9178573590613345,
+      "before": 915.6662117105154,
+      "after": 916.5840690695768,
+      "at": "2026-11-16T14:10:45.671526Z"
+    }
+  ]
 }

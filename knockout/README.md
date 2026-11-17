@@ -28,8 +28,8 @@ month's file only needs the series that have been played.
 - `score`: maps won by each captain, in the same order as `captains`.
   For "2x Bo5" give the combined map score.
 - `format`: "2x Bo5", "1x Bo7" or "1x Bo9". The final is always "1x Bo9".
-- `wager`: true when both captains agreed the 2x Elo wager for this series
-  (allowed in any series). Otherwise the captains get 1.5x. The multiplier
+- `wager`: always false. The 2x wager was dropped on 17 Nov 2026, so the
+  captains always get 1.5x. The multiplier
   applies to each captain's total Elo change over the whole series (all maps,
   both sets for 2x Bo5), not map by map.
 - `dates`: the history days the series' maps were played on.
@@ -39,6 +39,6 @@ month's file only needs the series that have been played.
 - Optional `tiers`: `[[ids], [ids], ...]` overrides the automatic tiers for
   the month, for example when someone is away.
 
-The Elo side (1.5x / 2x for captains and the +20 tier-winner bonus) is not
+The Elo side (1.5x for captains and the +20 tier-winner bonus) is not
 applied by the site. It belongs in the CODStats Elo engine; the numbers are
 in `js/knockoutRules.js`.

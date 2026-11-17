@@ -39,7 +39,6 @@
       "sndLifetimeTeamDamage": 513300.0,
       "overloadLifetimeDamage": 481600.0,
       "overloadLifetimeTeamDamage": 1657600.0,
-      "classicElo": 1055.2327463714869,
       "modeElo": {
         "Hardpoint": 1128.7224664411656,
         "SND": 1115.2262863646997,
@@ -84,7 +83,6 @@
       "sndLifetimeTeamDamage": 429900.0,
       "overloadLifetimeDamage": 417200.0,
       "overloadLifetimeTeamDamage": 1377900.0,
-      "classicElo": 1058.0930911104017,
       "modeElo": {
         "Hardpoint": 1118.0356540351397,
         "SND": 1190.7795910781333,
@@ -129,7 +127,6 @@
       "sndLifetimeTeamDamage": 474600.0,
       "overloadLifetimeDamage": 466800.0,
       "overloadLifetimeTeamDamage": 1522600.0,
-      "classicElo": 1089.0021349400404,
       "modeElo": {
         "Hardpoint": 1174.783573284136,
         "SND": 1096.7561545983383,
@@ -174,7 +171,6 @@
       "sndLifetimeTeamDamage": 240400.0,
       "overloadLifetimeDamage": 223300.0,
       "overloadLifetimeTeamDamage": 806600.0,
-      "classicElo": 1023.2541765612908,
       "modeElo": {
         "Hardpoint": 1074.7513245999141,
         "SND": 1077.9471682401997,
@@ -219,7 +215,6 @@
       "sndLifetimeTeamDamage": 454200.0,
       "overloadLifetimeDamage": 421800.0,
       "overloadLifetimeTeamDamage": 1481000.0,
-      "classicElo": 1050.2366948920258,
       "modeElo": {
         "Hardpoint": 1189.358763146878,
         "SND": 1095.7533138546091,
@@ -264,7 +259,6 @@
       "sndLifetimeTeamDamage": 408400.0,
       "overloadLifetimeDamage": 324300.0,
       "overloadLifetimeTeamDamage": 1270500.0,
-      "classicElo": 959.6198987203987,
       "modeElo": {
         "Hardpoint": 941.7934133404359,
         "SND": 1060.3216184278378,
@@ -309,7 +303,6 @@
       "sndLifetimeTeamDamage": 388500.0,
       "overloadLifetimeDamage": 255800.0,
       "overloadLifetimeTeamDamage": 1152800.0,
-      "classicElo": 939.0595658215981,
       "modeElo": {
         "Hardpoint": 967.2710769442555,
         "SND": 911.1249671434971,
@@ -354,7 +347,6 @@
       "sndLifetimeTeamDamage": 486900.0,
       "overloadLifetimeDamage": 359100.0,
       "overloadLifetimeTeamDamage": 1559400.0,
-      "classicElo": 892.2759913571655,
       "modeElo": {
         "Hardpoint": 922.1296443542898,
         "SND": 968.5249073528362,
@@ -399,7 +391,6 @@
       "sndLifetimeTeamDamage": 515400.0,
       "overloadLifetimeDamage": 380400.0,
       "overloadLifetimeTeamDamage": 1570700.0,
-      "classicElo": 1061.1400897715712,
       "modeElo": {
         "Hardpoint": 1061.656118705147,
         "SND": 1101.725819137072,
@@ -444,7 +435,6 @@
       "sndLifetimeTeamDamage": 386700.0,
       "overloadLifetimeDamage": 237200.0,
       "overloadLifetimeTeamDamage": 1158400.0,
-      "classicElo": 895.3309358346065,
       "modeElo": {
         "Hardpoint": 953.7122873584669,
         "SND": 963.1564368105512,
@@ -489,7 +479,6 @@
       "sndLifetimeTeamDamage": 296200.0,
       "overloadLifetimeDamage": 197000.0,
       "overloadLifetimeTeamDamage": 1003700.0,
-      "classicElo": 882.544177096003,
       "modeElo": {
         "Hardpoint": 949.965713905843,
         "SND": 868.5049197592745,
@@ -534,7 +523,6 @@
       "sndLifetimeTeamDamage": 510300.0,
       "overloadLifetimeDamage": 335600.0,
       "overloadLifetimeTeamDamage": 1627600.0,
-      "classicElo": 931.2198420689261,
       "modeElo": {
         "Hardpoint": 933.6181396150015,
         "SND": 919.1860091107843,
@@ -579,7 +567,6 @@
       "sndLifetimeTeamDamage": 155500.0,
       "overloadLifetimeDamage": 81600.0,
       "overloadLifetimeTeamDamage": 480000.0,
-      "classicElo": 786.3233494300881,
       "modeElo": {
         "Hardpoint": 768.0277375076737,
         "SND": 804.1942210753521,
@@ -624,7 +611,6 @@
       "sndLifetimeTeamDamage": 43300.0,
       "overloadLifetimeDamage": 40300.0,
       "overloadLifetimeTeamDamage": 121900.0,
-      "classicElo": 1052.2763370537898,
       "modeElo": {
         "Hardpoint": 1096.5968498743027,
         "SND": 1086.2763370537898,
@@ -669,7 +655,6 @@
       "sndLifetimeTeamDamage": 30300.0,
       "overloadLifetimeDamage": 20700.0,
       "overloadLifetimeTeamDamage": 99700.0,
-      "classicElo": 877.333436311277,
       "modeElo": {
         "Hardpoint": 895.911561311277,
         "SND": 927.3884821828366,
@@ -714,7 +699,6 @@
       "sndLifetimeTeamDamage": 131300.0,
       "overloadLifetimeDamage": 95300.0,
       "overloadLifetimeTeamDamage": 461600.0,
-      "classicElo": 880.0898784141657,
       "modeElo": {
         "Hardpoint": 887.7096250021646,
         "SND": 885.0437317518105,
@@ -885,11 +869,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1058.0930911104017,
-            "change": 3.258449482987089,
-            "after": 1061.3515405933888
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1118.0356540351397,
@@ -991,11 +970,6 @@
                 "result": 0.7929520998491171
               }
             ]
-          },
-          "classic": {
-            "before": 1023.2541765612908,
-            "change": 4.7382568198835315,
-            "after": 1027.9924333811744
           },
           "mode": {
             "name": "Hardpoint",
@@ -1099,11 +1073,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1050.2366948920258,
-            "change": 2.8383551917720524,
-            "after": 1053.0750500837978
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1189.358763146878,
@@ -1205,11 +1174,6 @@
                 "result": 0.7489603051279801
               }
             ]
-          },
-          "classic": {
-            "before": 880.0898784141657,
-            "change": 4.522763362984733,
-            "after": 884.6126417771504
           },
           "mode": {
             "name": "Hardpoint",
@@ -1313,11 +1277,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1089.0021349400404,
-            "change": -2.614210147505446,
-            "after": 1086.387924792535
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1174.783573284136,
@@ -1419,11 +1378,6 @@
                 "result": -0.7779886936166349
               }
             ]
-          },
-          "classic": {
-            "before": 1061.1400897715712,
-            "change": -5.255802987295283,
-            "after": 1055.884286784276
           },
           "mode": {
             "name": "Hardpoint",
@@ -1527,11 +1481,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 882.544177096003,
-            "change": -3.571540570733873,
-            "after": 878.9726365252691
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 949.965713905843,
@@ -1633,11 +1582,6 @@
                 "result": -0.7996747896056604
               }
             ]
-          },
-          "classic": {
-            "before": 892.2759913571655,
-            "change": -3.1997902317096987,
-            "after": 889.0762011254558
           },
           "mode": {
             "name": "Hardpoint",
@@ -1810,11 +1754,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1086.387924792535,
-            "change": 11.046045053727767,
-            "after": 1097.4339698462627
-          },
           "mode": {
             "name": "SND",
             "before": 1096.7561545983383,
@@ -1916,11 +1855,6 @@
                 "result": 2.5357478145035657
               }
             ]
-          },
-          "classic": {
-            "before": 1055.884286784276,
-            "change": 5.549075153795911,
-            "after": 1061.4333619380718
           },
           "mode": {
             "name": "SND",
@@ -2024,11 +1958,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 889.0762011254558,
-            "change": 5.276580946230524,
-            "after": 894.3527820716863
-          },
           "mode": {
             "name": "SND",
             "before": 968.5249073528362,
@@ -2130,11 +2059,6 @@
                 "result": 2.359347966538053
               }
             ]
-          },
-          "classic": {
-            "before": 878.9726365252691,
-            "change": 11.683642391658054,
-            "after": 890.6562789169271
           },
           "mode": {
             "name": "SND",
@@ -2238,11 +2162,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1061.3515405933888,
-            "change": -14.903678667601298,
-            "after": 1046.4478619257875
-          },
           "mode": {
             "name": "SND",
             "before": 1190.7795910781333,
@@ -2344,11 +2263,6 @@
                 "result": -2.389521624742656
               }
             ]
-          },
-          "classic": {
-            "before": 1027.9924333811744,
-            "change": -7.574297237419614,
-            "after": 1020.4181361437547
           },
           "mode": {
             "name": "SND",
@@ -2452,11 +2366,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1053.0750500837978,
-            "change": -4.735879392043671,
-            "after": 1048.3391706917541
-          },
           "mode": {
             "name": "SND",
             "before": 1095.7533138546091,
@@ -2558,11 +2467,6 @@
                 "result": -2.793384434558334
               }
             ]
-          },
-          "classic": {
-            "before": 884.6126417771504,
-            "change": -7.968366196621787,
-            "after": 876.6442755805286
           },
           "mode": {
             "name": "SND",
@@ -2735,11 +2639,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1046.4478619257875,
-            "change": 1.0429429912635442,
-            "after": 1047.490804917051
-          },
           "mode": {
             "name": "Overload",
             "before": 1102.6645473916099,
@@ -2841,11 +2740,6 @@
                 "result": 0.0
               }
             ]
-          },
-          "classic": {
-            "before": 1020.4181361437547,
-            "change": 1.4570429486868761,
-            "after": 1021.8751790924416
           },
           "mode": {
             "name": "Overload",
@@ -2949,11 +2843,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1048.3391706917541,
-            "change": 1.0353339623238753,
-            "after": 1049.374504654078
-          },
           "mode": {
             "name": "Overload",
             "before": 1164.1550606919677,
@@ -3055,11 +2944,6 @@
                 "result": 0.0
               }
             ]
-          },
-          "classic": {
-            "before": 876.6442755805286,
-            "change": 1.1301842103486024,
-            "after": 877.7744597908772
           },
           "mode": {
             "name": "Overload",
@@ -3163,11 +3047,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1097.4339698462627,
-            "change": -1.0747540546656182,
-            "after": 1096.359215791597
-          },
           "mode": {
             "name": "Overload",
             "before": 1125.4018184165477,
@@ -3269,11 +3148,6 @@
                 "result": 0.0
               }
             ]
-          },
-          "classic": {
-            "before": 1061.4333619380718,
-            "change": -1.5298524184684084,
-            "after": 1059.9035095196034
           },
           "mode": {
             "name": "Overload",
@@ -3377,11 +3251,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 894.3527820716863,
-            "change": -1.0657437978471762,
-            "after": 893.2870382738391
-          },
           "mode": {
             "name": "Overload",
             "before": 950.439564495101,
@@ -3483,11 +3352,6 @@
                 "result": 0.0
               }
             ]
-          },
-          "classic": {
-            "before": 890.6562789169271,
-            "change": -0.9527600815521282,
-            "after": 889.703518835375
           },
           "mode": {
             "name": "Overload",
@@ -3660,11 +3524,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1096.359215791597,
-            "change": -9.96726424603412,
-            "after": 1086.391951545563
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1173.1479933282117,
@@ -3766,11 +3625,6 @@
                 "result": -2.4545747512025855
               }
             ]
-          },
-          "classic": {
-            "before": 893.2870382738391,
-            "change": -6.761116652485384,
-            "after": 886.5259216213537
           },
           "mode": {
             "name": "Hardpoint",
@@ -3874,11 +3728,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1059.9035095196034,
-            "change": -11.75801127398745,
-            "after": 1048.145498245616
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1059.7859535762611,
@@ -3980,11 +3829,6 @@
                 "result": -2.683974260660648
               }
             ]
-          },
-          "classic": {
-            "before": 889.703518835375,
-            "change": -8.716421655020895,
-            "after": 880.9870971803541
           },
           "mode": {
             "name": "Hardpoint",
@@ -4088,11 +3932,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1047.490804917051,
-            "change": 10.198656278533235,
-            "after": 1057.6894611955843
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1119.920638989238,
@@ -4194,11 +4033,6 @@
                 "result": 2.4662532716840815
               }
             ]
-          },
-          "classic": {
-            "before": 1021.8751790924416,
-            "change": 9.602621414338955,
-            "after": 1031.4778005067806
           },
           "mode": {
             "name": "Hardpoint",
@@ -4302,11 +4136,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1049.374504654078,
-            "change": 10.398788131207539,
-            "after": 1059.7732927852855
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1191.1697234463973,
@@ -4408,11 +4237,6 @@
                 "result": 2.28607038425514
               }
             ]
-          },
-          "classic": {
-            "before": 877.7744597908772,
-            "change": 5.429262606069301,
-            "after": 883.2037223969465
           },
           "mode": {
             "name": "Hardpoint",
@@ -4585,11 +4409,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1057.6894611955843,
-            "change": 8.26131983578125,
-            "after": 1065.9507810313655
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1125.9574154160198,
@@ -4691,11 +4510,6 @@
                 "result": 2.7895585555647813
               }
             ]
-          },
-          "classic": {
-            "before": 1059.7732927852855,
-            "change": 11.74215249831991,
-            "after": 1071.5154452836055
           },
           "mode": {
             "name": "Hardpoint",
@@ -4799,11 +4613,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 880.9870971803541,
-            "change": 8.287909747342724,
-            "after": 889.2750069276968
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 941.5394274965743,
@@ -4905,11 +4714,6 @@
                 "result": 2.4758732561439274
               }
             ]
-          },
-          "classic": {
-            "before": 883.2037223969465,
-            "change": 7.769212736235886,
-            "after": 890.9729351331824
           },
           "mode": {
             "name": "Hardpoint",
@@ -5013,11 +4817,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1031.4778005067806,
-            "change": -11.269097614936527,
-            "after": 1020.208702891844
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1082.5859528968688,
@@ -5119,11 +4918,6 @@
                 "result": -2.7482841740620643
               }
             ]
-          },
-          "classic": {
-            "before": 886.5259216213537,
-            "change": -8.5262318581822,
-            "after": 877.9996897631715
           },
           "mode": {
             "name": "Hardpoint",
@@ -5227,11 +5021,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1048.145498245616,
-            "change": -11.520896055826825,
-            "after": 1036.6246021897891
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1053.885533501255,
@@ -5333,11 +5122,6 @@
                 "result": -2.6091305449957645
               }
             ]
-          },
-          "classic": {
-            "before": 895.3309358346065,
-            "change": -7.74526501717105,
-            "after": 887.5856708174355
           },
           "mode": {
             "name": "Hardpoint",
@@ -5510,11 +5294,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1065.9507810313655,
-            "change": 2.8669353592949847,
-            "after": 1068.8177163906605
-          },
           "mode": {
             "name": "SND",
             "before": 1182.0911478402593,
@@ -5616,11 +5395,6 @@
                 "result": 2.2000004990345587
               }
             ]
-          },
-          "classic": {
-            "before": 1071.5154452836055,
-            "change": 3.955775013854918,
-            "after": 1075.4712202974604
           },
           "mode": {
             "name": "SND",
@@ -5724,11 +5498,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 889.2750069276968,
-            "change": 5.3712994606041775,
-            "after": 894.646306388301
-          },
           "mode": {
             "name": "SND",
             "before": 875.5059523009304,
@@ -5830,11 +5599,6 @@
                 "result": 2.0557381712289953
               }
             ]
-          },
-          "classic": {
-            "before": 890.9729351331824,
-            "change": 12.430937243304584,
-            "after": 903.403872376487
           },
           "mode": {
             "name": "SND",
@@ -5938,11 +5702,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1020.208702891844,
-            "change": -5.319887749665327,
-            "after": 1014.8888151421787
-          },
           "mode": {
             "name": "SND",
             "before": 1070.8565996207853,
@@ -6044,11 +5803,6 @@
                 "result": -2.4163939907427903
               }
             ]
-          },
-          "classic": {
-            "before": 877.9996897631715,
-            "change": -7.892911029234483,
-            "after": 870.1067787339371
           },
           "mode": {
             "name": "SND",
@@ -6152,11 +5906,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1036.6246021897891,
-            "change": -9.478306846342207,
-            "after": 1027.146295343447
-          },
           "mode": {
             "name": "SND",
             "before": 1109.2502933640853,
@@ -6258,11 +6007,6 @@
                 "result": -2.2721316629373405
               }
             ]
-          },
-          "classic": {
-            "before": 887.5856708174355,
-            "change": -7.001683546990307,
-            "after": 880.5839872704452
           },
           "mode": {
             "name": "SND",
@@ -6435,11 +6179,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1068.8177163906605,
-            "change": -2.95340534612842,
-            "after": 1065.864311044532
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1132.663085020743,
@@ -6541,11 +6280,6 @@
                 "result": -0.7316685793975921
               }
             ]
-          },
-          "classic": {
-            "before": 870.1067787339371,
-            "change": -2.2965645381523245,
-            "after": 867.8102141957847
           },
           "mode": {
             "name": "Hardpoint",
@@ -6649,11 +6383,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1027.146295343447,
-            "change": -4.708263893585581,
-            "after": 1022.4380314498615
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1047.6972110547908,
@@ -6755,11 +6484,6 @@
                 "result": -0.7740841492177424
               }
             ]
-          },
-          "classic": {
-            "before": 894.646306388301,
-            "change": -2.892663883492901,
-            "after": 891.7536425048081
           },
           "mode": {
             "name": "Hardpoint",
@@ -6863,11 +6587,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1014.8888151421787,
-            "change": 3.22450370765921,
-            "after": 1018.1133188498379
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1076.230378492392,
@@ -6969,11 +6688,6 @@
                 "result": 0.7660049930616424
               }
             ]
-          },
-          "classic": {
-            "before": 1075.4712202974604,
-            "change": 2.943997437092321,
-            "after": 1078.4152177345527
           },
           "mode": {
             "name": "Hardpoint",
@@ -7077,11 +6791,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 939.0595658215981,
-            "change": 3.3737704071025973,
-            "after": 942.4333362287007
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 967.2710769442555,
@@ -7183,11 +6892,6 @@
                 "result": 0.7199986871719375
               }
             ]
-          },
-          "classic": {
-            "before": 903.403872376487,
-            "change": 3.0256705561158697,
-            "after": 906.4295429326029
           },
           "mode": {
             "name": "Hardpoint",
@@ -7360,11 +7064,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1065.864311044532,
-            "change": -4.376267959078177,
-            "after": 1061.488043085454
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1131.0062268246434,
@@ -7466,11 +7165,6 @@
                 "result": -0.5977630663928721
               }
             ]
-          },
-          "classic": {
-            "before": 867.8102141957847,
-            "change": -2.1857897605009384,
-            "after": 865.6244244352838
           },
           "mode": {
             "name": "Hardpoint",
@@ -7574,11 +7268,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1022.4380314498615,
-            "change": -3.2540233187961576,
-            "after": 1019.1840081310652
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1045.8073002772621,
@@ -7680,11 +7369,6 @@
                 "result": -0.6113485906290634
               }
             ]
-          },
-          "classic": {
-            "before": 891.7536425048081,
-            "change": -2.6276282009686156,
-            "after": 889.1260143038395
           },
           "mode": {
             "name": "Hardpoint",
@@ -7788,11 +7472,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1018.1133188498379,
-            "change": 4.186898034724777,
-            "after": 1022.3002168845627
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 1078.0385590243502,
@@ -7894,11 +7573,6 @@
                 "result": 0.5828189897329139
               }
             ]
-          },
-          "classic": {
-            "before": 1078.4152177345527,
-            "change": 1.7512984690661142,
-            "after": 1080.1665162036188
           },
           "mode": {
             "name": "Hardpoint",
@@ -8002,11 +7676,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 942.4333362287007,
-            "change": 3.3501172858660766,
-            "after": 945.7834535145668
-          },
           "mode": {
             "name": "Hardpoint",
             "before": 969.0571390599207,
@@ -8108,11 +7777,6 @@
                 "result": 0.579082970568038
               }
             ]
-          },
-          "classic": {
-            "before": 906.4295429326029,
-            "change": 2.9882503060607633,
-            "after": 909.4177932386636
           },
           "mode": {
             "name": "Hardpoint",
@@ -8285,11 +7949,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1061.488043085454,
-            "change": -1.4329742923530375,
-            "after": 1060.0550687931009
-          },
           "mode": {
             "name": "Overload",
             "before": 1102.6645473916099,
@@ -8391,11 +8050,6 @@
                 "result": -0.06483898077385675
               }
             ]
-          },
-          "classic": {
-            "before": 865.6244244352838,
-            "change": -0.9738902503619329,
-            "after": 864.6505341849219
           },
           "mode": {
             "name": "Overload",
@@ -8499,11 +8153,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1019.1840081310652,
-            "change": -1.3889977578041908,
-            "after": 1017.795010373261
-          },
           "mode": {
             "name": "Overload",
             "before": 1045.7004796261622,
@@ -8605,11 +8254,6 @@
                 "result": -0.06245519471599437
               }
             ]
-          },
-          "classic": {
-            "before": 889.1260143038395,
-            "change": -0.7419451726296984,
-            "after": 888.3840691312098
           },
           "mode": {
             "name": "Overload",
@@ -8713,11 +8357,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1022.3002168845627,
-            "change": 1.1464829836920671,
-            "after": 1023.4466998682548
-          },
           "mode": {
             "name": "Overload",
             "before": 1066.0979029965847,
@@ -8819,11 +8458,6 @@
                 "result": 0.06460567405338224
               }
             ]
-          },
-          "classic": {
-            "before": 1080.1665162036188,
-            "change": 0.9305679145656995,
-            "after": 1081.0970841181845
           },
           "mode": {
             "name": "Overload",
@@ -8927,11 +8561,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 945.7834535145668,
-            "change": 1.327648335660001,
-            "after": 947.1111018502268
-          },
           "mode": {
             "name": "Overload",
             "before": 977.5476769485731,
@@ -9033,11 +8662,6 @@
                 "result": 0.058803437350889
               }
             ]
-          },
-          "classic": {
-            "before": 909.4177932386636,
-            "change": 1.0206822897413304,
-            "after": 910.438475528405
           },
           "mode": {
             "name": "Overload",
@@ -9210,11 +8834,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1060.0550687931009,
-            "change": 3.711215936672943,
-            "after": 1063.7662847297738
-          },
           "mode": {
             "name": "SND",
             "before": 1188.4053001700272,
@@ -9316,11 +8935,6 @@
                 "result": 0.36171188027481094
               }
             ]
-          },
-          "classic": {
-            "before": 864.6505341849219,
-            "change": 0.9879841563915761,
-            "after": 865.6385183413134
           },
           "mode": {
             "name": "SND",
@@ -9424,11 +9038,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1017.795010373261,
-            "change": 2.935629615478092,
-            "after": 1020.7306399887391
-          },
           "mode": {
             "name": "SND",
             "before": 1102.9361410343174,
@@ -9530,11 +9139,6 @@
                 "result": 0.4317206312957751
               }
             ]
-          },
-          "classic": {
-            "before": 888.3840691312098,
-            "change": 6.276231954611831,
-            "after": 894.6603010858216
           },
           "mode": {
             "name": "SND",
@@ -9638,11 +9242,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 1023.4466998682548,
-            "change": -0.7030520325829457,
-            "after": 1022.7436478356718
-          },
           "mode": {
             "name": "SND",
             "before": 1065.3986035391215,
@@ -9744,11 +9343,6 @@
                 "result": -0.4410551314317672
               }
             ]
-          },
-          "classic": {
-            "before": 1081.0970841181845,
-            "change": -5.850217756408711,
-            "after": 1075.2468663617758
           },
           "mode": {
             "name": "SND",
@@ -9852,11 +9446,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 947.1111018502268,
-            "change": -2.812066495120007,
-            "after": 944.2990353551068
-          },
           "mode": {
             "name": "SND",
             "before": 911.1249671434971,
@@ -9959,11 +9548,6 @@
               }
             ]
           },
-          "classic": {
-            "before": 910.438475528405,
-            "change": -4.80400617837131,
-            "after": 905.6344693500337
-          },
           "mode": {
             "name": "SND",
             "before": 882.8548704362933,
@@ -10013,7 +9597,6 @@
       "sndLifetimeTeamDamage": 513300.0,
       "overloadLifetimeDamage": 481600.0,
       "overloadLifetimeTeamDamage": 1657600.0,
-      "classicElo": 1055.2327463714869,
       "modeElo": {
         "Hardpoint": 1128.7224664411656,
         "SND": 1115.2262863646997,
@@ -10058,7 +9641,6 @@
       "sndLifetimeTeamDamage": 438400.0,
       "overloadLifetimeDamage": 424200.0,
       "overloadLifetimeTeamDamage": 1404500.0,
-      "classicElo": 1063.7662847297738,
       "modeElo": {
         "Hardpoint": 1129.5366388664004,
         "SND": 1189.720993809392,
@@ -10103,7 +9685,6 @@
       "sndLifetimeTeamDamage": 477500.0,
       "overloadLifetimeDamage": 471300.0,
       "overloadLifetimeTeamDamage": 1536900.0,
-      "classicElo": 1086.391951545563,
       "modeElo": {
         "Hardpoint": 1167.5784379303088,
         "SND": 1105.0657913533878,
@@ -10148,7 +9729,6 @@
       "sndLifetimeTeamDamage": 246800.0,
       "overloadLifetimeDamage": 231500.0,
       "overloadLifetimeTeamDamage": 834100.0,
-      "classicElo": 1022.7436478356718,
       "modeElo": {
         "Hardpoint": 1079.5742784407141,
         "SND": 1064.3391239242646,
@@ -10193,7 +9773,6 @@
       "sndLifetimeTeamDamage": 462100.0,
       "overloadLifetimeDamage": 429000.0,
       "overloadLifetimeTeamDamage": 1508500.0,
-      "classicElo": 1075.2468663617758,
       "modeElo": {
         "Hardpoint": 1207.47938377686,
         "SND": 1094.6811050002186,
@@ -10238,7 +9817,6 @@
       "sndLifetimeTeamDamage": 408400.0,
       "overloadLifetimeDamage": 324300.0,
       "overloadLifetimeTeamDamage": 1270500.0,
-      "classicElo": 959.6198987203987,
       "modeElo": {
         "Hardpoint": 941.7934133404359,
         "SND": 1060.3216184278378,
@@ -10283,7 +9861,6 @@
       "sndLifetimeTeamDamage": 391500.0,
       "overloadLifetimeDamage": 259400.0,
       "overloadLifetimeTeamDamage": 1166900.0,
-      "classicElo": 944.2990353551068,
       "modeElo": {
         "Hardpoint": 970.4761078773797,
         "SND": 909.9408428680688,
@@ -10328,7 +9905,6 @@
       "sndLifetimeTeamDamage": 494900.0,
       "overloadLifetimeDamage": 364800.0,
       "overloadLifetimeTeamDamage": 1586900.0,
-      "classicElo": 865.6385183413134,
       "modeElo": {
         "Hardpoint": 904.5047276219319,
         "SND": 969.9524020235648,
@@ -10373,7 +9949,6 @@
       "sndLifetimeTeamDamage": 523400.0,
       "overloadLifetimeDamage": 387600.0,
       "overloadLifetimeTeamDamage": 1598200.0,
-      "classicElo": 1020.7306399887391,
       "modeElo": {
         "Hardpoint": 1044.4356848495686,
         "SND": 1104.2518346736822,
@@ -10418,7 +9993,6 @@
       "sndLifetimeTeamDamage": 388200.0,
       "overloadLifetimeDamage": 237200.0,
       "overloadLifetimeTeamDamage": 1158400.0,
-      "classicElo": 880.5839872704452,
       "modeElo": {
         "Hardpoint": 947.4403389329965,
         "SND": 956.4142063567313,
@@ -10463,7 +10037,6 @@
       "sndLifetimeTeamDamage": 305700.0,
       "overloadLifetimeDamage": 203500.0,
       "overloadLifetimeTeamDamage": 1031200.0,
-      "classicElo": 894.6603010858216,
       "modeElo": {
         "Hardpoint": 944.2684003377491,
         "SND": 883.5292528772898,
@@ -10508,7 +10081,6 @@
       "sndLifetimeTeamDamage": 510300.0,
       "overloadLifetimeDamage": 335600.0,
       "overloadLifetimeTeamDamage": 1627600.0,
-      "classicElo": 931.2198420689261,
       "modeElo": {
         "Hardpoint": 933.6181396150015,
         "SND": 919.1860091107843,
@@ -10553,7 +10125,6 @@
       "sndLifetimeTeamDamage": 155500.0,
       "overloadLifetimeDamage": 81600.0,
       "overloadLifetimeTeamDamage": 480000.0,
-      "classicElo": 786.3233494300881,
       "modeElo": {
         "Hardpoint": 768.0277375076737,
         "SND": 804.1942210753521,
@@ -10598,7 +10169,6 @@
       "sndLifetimeTeamDamage": 43300.0,
       "overloadLifetimeDamage": 40300.0,
       "overloadLifetimeTeamDamage": 121900.0,
-      "classicElo": 1052.2763370537898,
       "modeElo": {
         "Hardpoint": 1096.5968498743027,
         "SND": 1086.2763370537898,
@@ -10643,7 +10213,6 @@
       "sndLifetimeTeamDamage": 30300.0,
       "overloadLifetimeDamage": 20700.0,
       "overloadLifetimeTeamDamage": 99700.0,
-      "classicElo": 877.333436311277,
       "modeElo": {
         "Hardpoint": 895.911561311277,
         "SND": 927.3884821828366,
@@ -10688,7 +10257,6 @@
       "sndLifetimeTeamDamage": 139200.0,
       "overloadLifetimeDamage": 100400.0,
       "overloadLifetimeTeamDamage": 489100.0,
-      "classicElo": 905.6344693500337,
       "modeElo": {
         "Hardpoint": 904.0797827023255,
         "SND": 881.421456839722,
@@ -10696,5 +10264,6 @@
       }
     }
   },
-  "updatedAt": "2026-10-17T11:09:02.248223Z"
+  "updatedAt": "2026-10-17T11:09:02.248223Z",
+  "eloModel": "model-r-kill25-v1"
 }

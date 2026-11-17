@@ -17,8 +17,7 @@
 //   - Elo works as normal for everyone. For the two captains a cup series is
 //     counted as one result: their Elo changes from every map in the series
 //     (both sets for 2x Bo5) are added up, and that series total is
-//     multiplied by 1.5 (win or loss). In any series the two captains can
-//     agree a wager to make it 2x instead.
+//     multiplied by 1.5 (win or loss). There is no wager (dropped 17 Nov 2026).
 //   - The tier winner gets +20 Elo.
 
 export const KNOCKOUT_RULES = {
@@ -26,7 +25,7 @@ export const KNOCKOUT_RULES = {
     tierSize: 4,
     tierNames: ["Premier", "Swing", "Challenger"],
     captainMultiplier: 1.5,
-    wagerMultiplier: 2,
+    wagerMultiplier: 1.5,     // no 2x wager any more (17 Nov 2026): every series is 1.5x
     tierWinnerBonus: 20,
     earlyRoundFormats: ["2x Bo5", "1x Bo7", "1x Bo9"],
     preferredEarlyFormat: "1x Bo9",
@@ -113,7 +112,7 @@ export function buildBracket(playerIds, series = []) {
     return { size, rounds, champion: current[0] || null };
 }
 
-// Multiplier on a captain's series total Elo change (1.5 normally, 2 with a wager).
+// Multiplier on a captain's series total Elo change (always 1.5: the wager was dropped).
 export function captainMultiplier(seriesEntry, rules = KNOCKOUT_RULES) {
     return seriesEntry?.wager ? rules.wagerMultiplier : rules.captainMultiplier;
 }

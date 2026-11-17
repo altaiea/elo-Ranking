@@ -103,20 +103,48 @@ export function ratingTierClass(overall) {
 
 /* ---------------------------
    TEAM MATHS (auto + manual builders)
-   Elo's expected-score formula compares two ratings, so each team is
-   represented by its AVERAGE rating (the same way the Elo engine does it).
+   The same prediction the site's Elo uses (Model R + kill share, 17 Nov 2026):
+   each mode is predicted from the players' rating in that mode, and a team's
+   strength is 1.25 x its average - 0.25 x its weakest player (one weak link
+   costs a team more than an average would show). Win chance in a mode =
+   1 / (1 + 10^(-(strength A - strength B) / 400)). The overall win chance is
+   the expected share of maps won on a usual night: 41.6% HP, 33.7% SND and
+   24.7% Overload, the same weights as the overall rating.
 ---------------------------- */
+export const MODE_WEIGHTS = { Hardpoint: 0.416, SND: 0.337, Overload: 0.247 };
+
+const modeRating = (p, mode) => {
+    const value = Number(p?.modeElo?.[mode]);
+    return Number.isFinite(value) ? value : Number(p?.elo) || 0;     // no mode rating yet: use the overall
+};
+
+function teamStrength(team, mode) {
+    const values = team.map(p => modeRating(p, mode));
+    const mean = values.reduce((s, v) => s + v, 0) / values.length;
+    return 1.25 * mean - 0.25 * Math.min(...values);
+}
+
+export function modeWinChances(teamA, teamB) {
+    const out = {};
+    Object.keys(MODE_WEIGHTS).forEach(mode => {
+        out[mode] = 1 / (1 + Math.pow(10, -(teamStrength(teamA, mode) - teamStrength(teamB, mode)) / 400));
+    });
+    return out;
+}
+
 export function teamStats(teamA, teamB) {
     const sum = team => team.reduce((s, p) => s + p.elo, 0);
     const eloA = sum(teamA);
     const eloB = sum(teamB);
     const avgA = eloA / teamA.length;
     const avgB = eloB / teamB.length;
-    const probA = 1 / (1 + Math.pow(10, (avgB - avgA) / 400));
-    return { eloA, eloB, avgA, avgB, probA, probB: 1 - probA };
+    const modes = modeWinChances(teamA, teamB);
+    const probA = Object.entries(MODE_WEIGHTS).reduce((s, [mode, w]) => s + w * modes[mode], 0);
+    return { eloA, eloB, avgA, avgB, probA, probB: 1 - probA, modes };
 }
 
-// The 4 v 4 split of 8 players with the smallest total Elo difference.
+// The fairest 4 v 4 split of 8 players: the one whose predicted win chance is closest
+// to 50 / 50 (ties: the smaller total Elo difference).
 export function bestSplit(players) {
     const combos = [];
     (function helper(start, combo) {
@@ -125,12 +153,13 @@ export function bestSplit(players) {
     })(0, []);
 
     let best = null;
-    let bestDiff = Infinity;
+    let bestKey = [Infinity, Infinity];
     combos.forEach(teamA => {
         const teamB = players.filter(p => !teamA.includes(p));
-        const diff = Math.abs(teamA.reduce((s, p) => s + p.elo, 0) - teamB.reduce((s, p) => s + p.elo, 0));
-        if (diff < bestDiff) {
-            bestDiff = diff;
+        const key = [Math.abs(teamStats(teamA, teamB).probA - 0.5),
+                     Math.abs(teamA.reduce((s, p) => s + p.elo, 0) - teamB.reduce((s, p) => s + p.elo, 0))];
+        if (key[0] < bestKey[0] - 1e-12 || (Math.abs(key[0] - bestKey[0]) <= 1e-12 && key[1] < bestKey[1])) {
+            bestKey = key;
             best = { teamA, teamB };
         }
     });

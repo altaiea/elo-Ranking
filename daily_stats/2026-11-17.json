@@ -1,7 +1,7 @@
 {
   "players": {
     "1": {
-      "elo": 1149.9852190226934,
+      "elo": 1150.0274616369168,
       "lifetimeKills": 19999,
       "lifetimeDeaths": 12267,
       "mapKills": 0,
@@ -36,15 +36,14 @@
       "sndLifetimeTeamDamage": 659800.0,
       "overloadLifetimeDamage": 617000.0,
       "overloadLifetimeTeamDamage": 2096800.0,
-      "classicElo": 1095.9174065996901,
       "modeElo": {
-        "Hardpoint": 1140.4111618458373,
-        "SND": 1159.6269049859147,
-        "Overload": 1152.9550960104118
+        "Hardpoint": 1140.454115952289,
+        "SND": 1159.656688427255,
+        "Overload": 1153.0131392744113
       }
     },
     "2": {
-      "elo": 1162.3536392077683,
+      "elo": 1159.0799469404024,
       "lifetimeKills": 17456,
       "lifetimeDeaths": 10789,
       "mapKills": 0,
@@ -79,15 +78,14 @@
       "sndLifetimeTeamDamage": 592900.0,
       "overloadLifetimeDamage": 560300.0,
       "overloadLifetimeTeamDamage": 1876500.0,
-      "classicElo": 1117.9456344076414,
       "modeElo": {
-        "Hardpoint": 1134.9675486886651,
-        "SND": 1233.9769085764867,
-        "Overload": 1110.7567642227032
+        "Hardpoint": 1131.0659832028516,
+        "SND": 1230.1326582417712,
+        "Overload": 1109.318996358458
       }
     },
     "3": {
-      "elo": 1162.409119841493,
+      "elo": 1163.8642933836475,
       "lifetimeKills": 19265,
       "lifetimeDeaths": 10783,
       "mapKills": 0,
@@ -122,15 +120,14 @@
       "sndLifetimeTeamDamage": 626500.0,
       "overloadLifetimeDamage": 617000.0,
       "overloadLifetimeTeamDamage": 2027900.0,
-      "classicElo": 1202.136761718969,
       "modeElo": {
-        "Hardpoint": 1192.9822818058442,
-        "SND": 1113.6738354186589,
-        "Overload": 1177.410559004753
+        "Hardpoint": 1193.0978327138475,
+        "SND": 1116.1474749591596,
+        "Overload": 1179.732372119231
       }
     },
     "4": {
-      "elo": 1079.0634738966417,
+      "elo": 1083.3315360352162,
       "lifetimeKills": 10640,
       "lifetimeDeaths": 6471,
       "mapKills": 0,
@@ -165,15 +162,14 @@
       "sndLifetimeTeamDamage": 384900.0,
       "overloadLifetimeDamage": 358400.0,
       "overloadLifetimeTeamDamage": 1278300.0,
-      "classicElo": 1114.4236706566462,
       "modeElo": {
-        "Hardpoint": 1091.1485636740053,
-        "SND": 1065.8012330417473,
-        "Overload": 1076.804274790229
+        "Hardpoint": 1095.5392652216774,
+        "SND": 1071.74596627142,
+        "Overload": 1078.578182467732
       }
     },
     "5": {
-      "elo": 1130.735077541267,
+      "elo": 1129.1397519248085,
       "lifetimeKills": 17287,
       "lifetimeDeaths": 10539,
       "mapKills": 0,
@@ -208,15 +204,14 @@
       "sndLifetimeTeamDamage": 554600.0,
       "overloadLifetimeDamage": 512400.0,
       "overloadLifetimeTeamDamage": 1808400.0,
-      "classicElo": 1015.7375117498625,
       "modeElo": {
-        "Hardpoint": 1179.2264238995663,
-        "SND": 1057.1643783345914,
-        "Overload": 1149.4432781388266
+        "Hardpoint": 1178.5184394947867,
+        "SND": 1054.6748775058395,
+        "Overload": 1147.5734711559076
       }
     },
     "6": {
-      "elo": 1015.3989502246621,
+      "elo": 1018.1132011442882,
       "lifetimeKills": 12347,
       "lifetimeDeaths": 9193,
       "mapKills": 0,
@@ -251,15 +246,14 @@
       "sndLifetimeTeamDamage": 502800.0,
       "overloadLifetimeDamage": 390400.0,
       "overloadLifetimeTeamDamage": 1549500.0,
-      "classicElo": 1039.2789249296104,
       "modeElo": {
-        "Hardpoint": 965.8330900375851,
-        "SND": 1069.2549784222754,
-        "Overload": 1025.3986115008906
+        "Hardpoint": 970.5267344314843,
+        "SND": 1071.3777563847325,
+        "Overload": 1025.5861365147198
       }
     },
     "7": {
-      "elo": 960.6367773226941,
+      "elo": 960.6244850160754,
       "lifetimeKills": 9660,
       "lifetimeDeaths": 8372,
       "mapKills": 0,
@@ -294,15 +288,14 @@
       "sndLifetimeTeamDamage": 457800.0,
       "overloadLifetimeDamage": 303200.0,
       "overloadLifetimeTeamDamage": 1355200.0,
-      "classicElo": 1022.279132263679,
       "modeElo": {
-        "Hardpoint": 968.4903613188263,
-        "SND": 932.5840225099603,
-        "Overload": 985.6840948510353
+        "Hardpoint": 968.5374163578225,
+        "SND": 932.502517024075,
+        "Overload": 985.6662816765504
       }
     },
     "8": {
-      "elo": 936.9415433056721,
+      "elo": 936.9753844454751,
       "lifetimeKills": 14864,
       "lifetimeDeaths": 12718,
       "mapKills": 0,
@@ -337,15 +330,14 @@
       "sndLifetimeTeamDamage": 637200.0,
       "overloadLifetimeDamage": 470500.0,
       "overloadLifetimeTeamDamage": 2045400.0,
-      "classicElo": 939.3781821577679,
       "modeElo": {
-        "Hardpoint": 905.8814357962552,
-        "SND": 961.9320553910934,
-        "Overload": 955.1569366300869
+        "Hardpoint": 905.8728354675054,
+        "SND": 961.9458788207609,
+        "Overload": 955.2895697505929
       }
     },
     "9": {
-      "elo": 1065.5898039290894,
+      "elo": 1065.9784257649485,
       "lifetimeKills": 16630,
       "lifetimeDeaths": 13031,
       "mapKills": 0,
@@ -380,15 +372,14 @@
       "sndLifetimeTeamDamage": 667300.0,
       "overloadLifetimeDamage": 510000.0,
       "overloadLifetimeTeamDamage": 2086000.0,
-      "classicElo": 1017.1772240617638,
       "modeElo": {
-        "Hardpoint": 1066.693792598782,
-        "SND": 1077.3776327118367,
-        "Overload": 1047.6474655227014
+        "Hardpoint": 1067.5055747483289,
+        "SND": 1077.7562567377531,
+        "Overload": 1047.3370370405707
       }
     },
     "10": {
-      "elo": 934.5222077097726,
+      "elo": 935.6983774434293,
       "lifetimeKills": 10049,
       "lifetimeDeaths": 9207,
       "mapKills": 0,
@@ -423,15 +414,14 @@
       "sndLifetimeTeamDamage": 485200.0,
       "overloadLifetimeDamage": 305400.0,
       "overloadLifetimeTeamDamage": 1479300.0,
-      "classicElo": 925.865950825628,
       "modeElo": {
-        "Hardpoint": 924.6327951470118,
-        "SND": 935.860166041314,
-        "Overload": 949.3525869339794
+        "Hardpoint": 925.2621461179081,
+        "SND": 937.6542773162938,
+        "Overload": 950.6066121570384
       }
     },
     "11": {
-      "elo": 912.584314716512,
+      "elo": 911.3384870947738,
       "lifetimeKills": 8418,
       "lifetimeDeaths": 7581,
       "mapKills": 0,
@@ -466,15 +456,14 @@
       "sndLifetimeTeamDamage": 397400.0,
       "overloadLifetimeDamage": 260400.0,
       "overloadLifetimeTeamDamage": 1313800.0,
-      "classicElo": 901.090520567183,
       "modeElo": {
-        "Hardpoint": 949.7896516297386,
-        "SND": 853.3647137247691,
-        "Overload": 930.7202879080713
+        "Hardpoint": 949.0967029216263,
+        "SND": 851.622601384589,
+        "Overload": 929.220413007169
       }
     },
     "12": {
-      "elo": 900.9297571750709,
+      "elo": 897.9113457986427,
       "lifetimeKills": 14166,
       "lifetimeDeaths": 12910,
       "mapKills": 0,
@@ -509,15 +498,14 @@
       "sndLifetimeTeamDamage": 656700.0,
       "overloadLifetimeDamage": 436100.0,
       "overloadLifetimeTeamDamage": 2092900.0,
-      "classicElo": 870.6379608463809,
       "modeElo": {
-        "Hardpoint": 898.0759424283718,
-        "SND": 927.752500624974,
-        "Overload": 869.1399692884697
+        "Hardpoint": 893.1019810848721,
+        "SND": 924.9918275662735,
+        "Overload": 869.0634646862418
       }
     },
     "13": {
-      "elo": 786.205531876235,
+      "elo": 788.2623858672276,
       "lifetimeKills": 3396,
       "lifetimeDeaths": 4188,
       "mapKills": 0,
@@ -552,11 +540,10 @@
       "sndLifetimeTeamDamage": 206300.0,
       "overloadLifetimeDamage": 104600.0,
       "overloadLifetimeTeamDamage": 624900.0,
-      "classicElo": 848.3883370114936,
       "modeElo": {
-        "Hardpoint": 770.1005031526088,
-        "SND": 816.0404398617652,
-        "Overload": 772.623863689615
+        "Hardpoint": 772.06541730272,
+        "SND": 821.4366091595328,
+        "Overload": 770.2794938564111
       }
     },
     "14": {
@@ -595,7 +582,6 @@
       "sndLifetimeTeamDamage": 43300.0,
       "overloadLifetimeDamage": 40300.0,
       "overloadLifetimeTeamDamage": 121900.0,
-      "classicElo": 1090.1695291275294,
       "modeElo": {
         "Hardpoint": 1096.5968498743027,
         "SND": 1086.2763370537898,
@@ -638,7 +624,6 @@
       "sndLifetimeTeamDamage": 30300.0,
       "overloadLifetimeDamage": 20700.0,
       "overloadLifetimeTeamDamage": 99700.0,
-      "classicElo": 915.2266283850165,
       "modeElo": {
         "Hardpoint": 895.911561311277,
         "SND": 927.3884821828366,
@@ -646,7 +631,7 @@
       }
     },
     "16": {
-      "elo": 898.2577617830935,
+      "elo": 898.0105648581488,
       "lifetimeKills": 5722,
       "lifetimeDeaths": 4867,
       "mapKills": 0,
@@ -681,15 +666,14 @@
       "sndLifetimeTeamDamage": 262500.0,
       "overloadLifetimeDamage": 194900.0,
       "overloadLifetimeTeamDamage": 917700.0,
-      "classicElo": 947.0024358401308,
       "modeElo": {
-        "Hardpoint": 909.1055154039732,
-        "SND": 884.1757959107427,
-        "Overload": 899.2009075025117
+        "Hardpoint": 908.9561533044963,
+        "SND": 883.6419016524551,
+        "Overload": 899.1800980834048
       }
     },
     "17": {
-      "elo": 909.9412093794588,
+      "elo": 907.1987395781252,
       "lifetimeKills": 991,
       "lifetimeDeaths": 998,
       "mapKills": 0,
@@ -724,11 +708,10 @@
       "sndLifetimeTeamDamage": 52500.0,
       "overloadLifetimeDamage": 36000.0,
       "overloadLifetimeTeamDamage": 176200.0,
-      "classicElo": 874.7405693110111,
       "modeElo": {
-        "Hardpoint": 908.1964708134398,
-        "SND": 903.659579148866,
-        "Overload": 921.4501997890687
+        "Hardpoint": 905.9349399182962,
+        "SND": 896.9578532530857,
+        "Overload": 923.2996276349157
       }
     }
   },

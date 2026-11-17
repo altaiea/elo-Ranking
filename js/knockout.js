@@ -79,7 +79,11 @@ async function renderMonth(monthKey) {
     standingsBox.innerHTML = "";
 
     const [history, cup] = await Promise.all([loadAllHistory(), loadKnockoutMonth(monthKey)]);
-    const monthly = buildMonthlyRankings(history, seedMonth);
+    // Months seeded before Model R (up to November 2026) carry the ranking they were really
+    // seeded from; later months are worked out from the history as before.
+    const monthly = cup.seedRanking
+        ? { ...cup.seedRanking, records: cup.seedRanking.records.map(r => ({ ...r, name: getPlayerName(r.playerId) })) }
+        : buildMonthlyRankings(history, seedMonth);
     const ranked = monthly.records.filter(r => r.qualified);
     if (!ranked.length) {
         tiersBox.innerHTML = `<div class="ko-empty">There are no final rankings for ${monthLabel(seedMonth)}, so ${monthLabel(monthKey)} has no knockout.</div>`;

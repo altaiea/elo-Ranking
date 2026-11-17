@@ -35,17 +35,14 @@ function rulesHtml() {
             <p>For the two <b>captains</b>, the whole series counts as one result. Their Elo changes from every map in the series are added together (both sets for 2x Bo5), and that series total is multiplied by <b>${R.captainMultiplier}x</b>, whether they win or lose.</p>
             <p>The winner of each tier's final is that tier's MVP and gets a <b>+${R.tierWinnerBonus} Elo</b> bonus.</p>
             <p><b>Nothing is created or lost.</b> The captains' extra is paid back by the other players in the series, shared by how many of its maps each played. The +${R.tierWinnerBonus} is split evenly across the rest of the winner's tier. The total Elo of everyone stays the same.</p></section>
-        <section><h4>6 · Wager</h4>
-            <p>Before any series, a captain can offer the other captain a wager. Only the two captains can wager, and only with each other.</p>
-            <p>If both agree, their series total counts <b>${R.wagerMultiplier}x</b> instead of ${R.captainMultiplier}x. ${R.captainMultiplier}x is the default, and a wager is never forced on anyone.</p></section>
-        <section><h4>7 · Knock-out Cards</h4>
+        <section><h4>6 · Knock-out Cards</h4>
             <p>Every player's Knock-out Card starts from zero. It only counts maps from Captain's Cup series and compares you with everyone else's Cup maps.</p>
             <p>Your normal card still counts every map, Cup maps included. The bottom left of the card shows the tier you fought in.</p></section>
-        <section><h4>8 · Series MVP (the trophy)</h4>
+        <section><h4>7 · Series MVP (the trophy)</h4>
             <p>Every map gives you a score out of 10 (6 is average, 8+ is a carry). It is <b>not Elo</b>. Half of it compares your KD and kills with <b>your own team</b>, half with <b>everyone in the lobby</b> (both teams). Winning or losing doesn't change it.</p>
             <p>Your series score is the average of your maps. The highest is the Series MVP and gets a trophy on their card.</p>
             <p><b>Example (SND):</b> Player 1 goes 9/5. Against their own team they carried: <b>8.5</b>. Against the whole lobby they were a bit above average: <b>6.5</b>. Half and half: <b>7.5</b> for that map.</p></section>
-        <section><h4>9 · MVP questions</h4>
+        <section><h4>8 · MVP questions</h4>
             <p><b>Is this Elo?</b><br>No. It never adds or takes away Elo. It's just a match rating.</p>
             <p><b>I won the series. Why am I not MVP?</b><br>Winning doesn't count. It's only about how well you played compared with the others.</p>
             <p><b>I had a good KD. Why is my score low?</b><br>It's relative. If your teammates or the lobby did even better, your score drops.</p>

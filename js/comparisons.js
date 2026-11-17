@@ -2,10 +2,66 @@
    HEAD-TO-HEAD TAB
 ====================================================== */
 import { MODES } from "./config.js";
-import { totalLosses, totalWins } from "./data.js";
+import { loadAllHistory, totalLosses, totalWins } from "./data.js";
 import { fillCard } from "./playerCard.js";
 
 let players = [];
+
+// ---------------------------
+// EXTRA STATS (Nov 2026)
+// ---------------------------
+// Per-map averages of the extra stats the video parser reads (scoreboard photos
+// fill the same ones). Only maps where a player's stat was read count, and a row
+// is shown only when both players have it.
+const EXTRA_ROWS = {
+    hp: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["HILL TIME / MAP (S)", "time"],
+         ["CAPTURES / MAP", "captures"], ["OBJ KILLS / MAP", "objectiveKills"]],
+    snd: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["PLANTS / MAP", "plants"],
+          ["DEFUSES / MAP", "defuses"], ["OBJ KILLS / MAP", "objectiveKills"]],
+    overload: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["OVERLOADS / MAP", "overloads"],
+               ["OBJ KILLS / MAP", "objectiveKills"]]
+};
+const GAME_MODE_PREFIX = { Hardpoint: "hp", SND: "snd", Overload: "overload" };
+let extraAverages = null;      // prefix -> playerId -> stat -> { total, maps }
+let extraLoading = null;
+
+function loadExtraAverages() {
+    if (extraLoading) return extraLoading;
+    extraLoading = loadAllHistory().then(days => {
+        const out = { hp: {}, snd: {}, overload: {} };
+        days.forEach(day => (day.maps || []).forEach(map => {
+            const prefix = GAME_MODE_PREFIX[map.gameMode || map.game?.gameMode];
+            const stats = map.extras?.players;
+            if (!prefix || !stats) return;
+            Object.entries(stats).forEach(([id, values]) => {
+                const player = out[prefix][id] || (out[prefix][id] = {});
+                EXTRA_ROWS[prefix].forEach(([, key]) => {
+                    const value = Number(values?.[key]);
+                    if (values?.[key] === null || values?.[key] === undefined || !Number.isFinite(value)) return;
+                    const cell = player[key] || (player[key] = { total: 0, maps: 0 });
+                    cell.total += value; cell.maps += 1;
+                });
+            });
+        }));
+        extraAverages = out;
+        render();
+    }).catch(error => {
+        console.warn("Head-to-head extra stats unavailable:", error);
+    });
+    return extraLoading;
+}
+
+function extraRows(prefix, a, b) {
+    if (!extraAverages) return [];
+    const of = (p, key) => {
+        const cell = extraAverages[prefix]?.[String(p.id)]?.[key];
+        return cell && cell.maps ? cell.total / cell.maps : null;
+    };
+    return (EXTRA_ROWS[prefix] || [])
+        .map(([label, key]) => [label, of(a, key), of(b, key)])
+        .filter(([, x, y]) => x !== null && y !== null)
+        .map(([label, x, y]) => [label, x, y, "number", "higher"]);
+}
 
 const num = (value, decimals = 2) => {
     const n = Number(value);
@@ -78,7 +134,8 @@ function modeSection(mode, a, b) {
         ["DAMAGE SHARE", "damageShare", "percent", "higher"],
         [mode.unitLabel, "avgModeUnit", "number", "higher"]
     ];
-    return section(mode.name.toUpperCase(), a, b, metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]));
+    const rows = metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]);
+    return section(mode.name.toUpperCase(), a, b, rows.concat(extraRows(mode.prefix, a, b)));
 }
 
 function cardStage(p) {
@@ -166,6 +223,7 @@ export function setupComparisons() {
 
 export function showComparisons(list) {
     players = list;
+    loadExtraAverages();
     const sorted = list.slice().sort((x, y) => x.name.localeCompare(y.name));
     ["comparePlayerA", "comparePlayerB"].forEach(id => {
         const select = document.getElementById(id);

@@ -86,6 +86,9 @@ function renderPodiumAndTiles(shown) {
         document.getElementById("leaderboard").before(box);
         // A click anywhere on a podium spot or a tile (card picture, numbers or name) opens that player's card.
         box.addEventListener("click", e => {
+            // Clicking the overall Elo shows the player's rating in each mode instead of opening the card.
+            const eloNumber = e.target.closest("[data-modes]");
+            if (eloNumber) { e.stopPropagation(); toggleModeRatings(eloNumber); return; }
             const item = e.target.closest(".lb-pod, .lb-tile");
             const cell = item && document.querySelector(`#table-body .player-name[data-id="${item.dataset.id}"]`);
             if (cell) cell.click();
@@ -107,7 +110,7 @@ function renderPodiumAndTiles(shown) {
         return `<div class="lb-pod lb-pod-${p.currentRank}" data-id="${p.id}">
             <span class="lb-mini lb-pod-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <button type="button" class="lb-pod-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
-            <span class="lb-pod-elo">${Math.round(p.elo)} ${n.today}</span>
+            <span class="lb-pod-elo"><b class="lb-elo-num" data-modes="${p.id}">${Math.round(p.elo)}</b> ${n.today}</span>
             <span class="lb-pod-stats"><span>${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span>${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
             <span class="lb-pod-step"><span class="lb-pod-place">${p.currentRank}</span></span>
         </div>`;
@@ -126,7 +129,7 @@ function renderPodiumAndTiles(shown) {
             <span class="lb-t-rank">${p.currentRank}</span>
             <span class="lb-mini lb-t-card" data-mini="${p.id}"><img src="${cardAssets.thumb(p.id)}" alt="" loading="lazy"></span>
             <button type="button" class="lb-t-name" data-id="${p.id}" aria-label="Open ${p.name} card">${p.name}</button>
-            <span class="lb-t-elo"><b>${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
+            <span class="lb-t-elo"><b class="lb-elo-num" data-modes="${p.id}">${Math.round(p.elo)}</b>${n.today}${meter(p)}</span>
             <span class="lb-t-stats"><span class="lb-t-stat">${good(n.wl, n.wl.toFixed(2))}<i>W/L</i></span><span class="lb-t-stat"><b>${n.wins}-${n.losses}</b><i>RECORD</i></span><span class="lb-t-stat">${good(n.kd, n.kd.toFixed(2))}<i>K/D</i></span></span>
         </div>`;
     }).join("");
@@ -134,6 +137,44 @@ function renderPodiumAndTiles(shown) {
     // last month's number one: wings on their mini card too
     lastMonthWinner().then(id => box.querySelectorAll(`.lb-mini[data-mini="${id}"]`).forEach(el => el.classList.add("winged")));
 }
+
+// ---------------------------
+// RATING PER MODE (Model R, Nov 2026)
+// ---------------------------
+// The overall Elo is 41.6% Hardpoint + 33.7% S&D + 24.7% Overload. Clicking it shows the three.
+const MODE_ROWS = [["Hardpoint", "HP"], ["SND", "S&D"], ["Overload", "OL"]];
+let modePopup = null;
+
+function closeModeRatings() {
+    if (modePopup) { modePopup.remove(); modePopup = null; }
+}
+
+function toggleModeRatings(anchor) {
+    const id = Number(anchor.dataset.modes);
+    if (modePopup && modePopup.dataset.player === String(id)) { closeModeRatings(); return; }
+    closeModeRatings();
+    const p = players.find(x => x.id === id);
+    const modes = p && p.modeElo;
+    if (!modes) return;
+    modePopup = document.createElement("div");
+    modePopup.className = "lb-mode-elo";
+    modePopup.dataset.player = String(id);
+    modePopup.innerHTML = `<div class="lb-mode-elo-title">${p.name} · ${Math.round(p.elo)}</div>` +
+        MODE_ROWS.map(([key, label]) => `<div class="lb-mode-elo-row"><span>${label}</span><b>${Math.round(Number(modes[key]) || 0)}</b></div>`).join("");
+    document.body.appendChild(modePopup);
+    const r = anchor.getBoundingClientRect();
+    const w = modePopup.offsetWidth;
+    const left = Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2));
+    modePopup.style.left = `${left}px`;
+    modePopup.style.top = `${r.bottom + 6}px`;
+}
+
+document.addEventListener("click", e => {
+    if (modePopup && !e.target.closest(".lb-mode-elo, [data-modes]")) closeModeRatings();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModeRatings(); });
+window.addEventListener("scroll", closeModeRatings, { passive: true });
+window.addEventListener("resize", closeModeRatings);
 
 export function setupLeaderboard() {
     const toggle = document.getElementById("toggleInactive");

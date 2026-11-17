@@ -311,6 +311,134 @@
         "12": 0.9178573590613345,
         "16": 0.9178573590613345
       }
+    },
+    {
+      "id": "2026-11-2-4",
+      "captains": [
+        2,
+        4
+      ],
+      "tier": 0,
+      "tierPlayers": [
+        3,
+        1,
+        2,
+        5,
+        9,
+        4
+      ],
+      "round": 0,
+      "final": false,
+      "format": "1x Bo9",
+      "wager": false,
+      "score": [
+        0,
+        5
+      ],
+      "sets": [
+        [
+          0,
+          5
+        ]
+      ],
+      "dates": [
+        "2026-11-17"
+      ],
+      "mapIds": [
+        "map-f6746386c97e7ae3444ba1f48ebf9078066959d5fd28f9a2f394e3a55a7b3a27",
+        "map-9a490ac1d81a66482b20a37d0201d628845646cf3a6b4add4f4f0bd206a25ccf",
+        "map-207a44ad1006e6c11515ca893057e10177026f6d1fa1eddb90fb3fcd77db860b",
+        "map-98897163c7949bb2dd48cd9b90820bf3b188c87f04ab12553dba6bbb8be793b4",
+        "map-01f3516004cae3cd597567b79cdfc086e001646d2cce49f26194e8377538a6ea"
+      ],
+      "complete": true,
+      "winner": 4,
+      "decidedBy": "maps",
+      "captainElo": {
+        "2": {
+          "seriesTotal": -24.265530478156506,
+          "extra": -12.132765239078253,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        },
+        "4": {
+          "seriesTotal": 28.18388644684842,
+          "extra": 14.09194322342421,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        }
+      },
+      "balance": {
+        "3": -0.3265296640576594,
+        "5": -0.3265296640576594,
+        "6": -0.3265296640576594,
+        "12": -0.3265296640576594,
+        "16": -0.3265296640576594,
+        "17": -0.3265296640576594
+      }
+    },
+    {
+      "id": "2026-11-6-12",
+      "captains": [
+        6,
+        12
+      ],
+      "tier": 1,
+      "tierPlayers": [
+        6,
+        8,
+        7,
+        12
+      ],
+      "round": 0,
+      "final": false,
+      "format": "1x Bo9",
+      "wager": false,
+      "score": [
+        5,
+        0
+      ],
+      "sets": [
+        [
+          5,
+          0
+        ]
+      ],
+      "dates": [
+        "2026-11-17"
+      ],
+      "mapIds": [
+        "map-309de9e590c0f170f22ae97b539df953ef9e02dbf5db5c5e45c5dff877e3be42",
+        "map-8d3305d535eb198206590504b9ec488b13d0eb599481d6f91c779a1208e64968",
+        "map-077e8cdb4dd98891f0f0d71aa0a4b820ee622363bd34f4e9a4bee4ccb663eb8d",
+        "map-3bfdec8803ac7c6c005fbcb06bdb5ea6d5b2e1e75d83515c693e5fcb2da42276",
+        "map-a9460d28e55f5110c2a1f2fa1fb35a89ca0c8f5e4c35c83d29d2d77ac3c95110"
+      ],
+      "complete": true,
+      "winner": 6,
+      "decidedBy": "maps",
+      "captainElo": {
+        "6": {
+          "seriesTotal": 18.6837247588511,
+          "extra": 9.34186237942555,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        },
+        "12": {
+          "seriesTotal": -15.137822411162006,
+          "extra": -7.568911205581003,
+          "bonus": 0.0,
+          "multiplier": 1.5
+        }
+      },
+      "balance": {
+        "1": -0.29549186230742447,
+        "2": -0.29549186230742447,
+        "3": -0.29549186230742447,
+        "5": -0.29549186230742447,
+        "7": -0.29549186230742447,
+        "8": -0.29549186230742447
+      }
     }
   ],
   "tiers": [
@@ -336,5 +464,5 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-16T14:10:45.671526Z"
+  "updatedAt": "2026-11-17T15:05:50.047028Z"
 }

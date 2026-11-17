@@ -302,3 +302,13 @@ html { -webkit-tap-highlight-color: transparent; }
 .lb-t-stat b { color: #fff; }
 .is-phone .lb-tile { grid-template-columns: 26px 46px minmax(0, 1fr) 156px 68px; }
 .is-phone .lb-t-stat i { white-space: nowrap; }
+
+/* Rating per mode: shown when the overall Elo on the leaderboard is clicked (Model R, Nov 2026) */
+.lb-elo-num { font-weight: inherit; cursor: pointer; }
+.lb-mode-elo { position: fixed; z-index: 9999; min-width: 150px; padding: 10px 12px; border-radius: 10px;
+               background: #0b0906; border: 1px solid rgba(var(--gold-rgb), .45); box-shadow: 0 8px 24px rgba(0, 0, 0, .5);
+               color: #d9dee3; font: 600 13px "Segoe UI", sans-serif; }
+.lb-mode-elo-title { color: var(--gold); font-weight: 700; margin-bottom: 6px; white-space: nowrap; }
+.lb-mode-elo-row { display: flex; justify-content: space-between; gap: 18px; padding: 2px 0; }
+.lb-mode-elo-row span { color: #a39a88; }
+.lb-mode-elo-row b { font: 400 16px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }

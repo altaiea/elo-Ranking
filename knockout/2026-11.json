@@ -472,6 +472,46 @@
         "9": 0.11554851166206553,
         "5": 0.05138555868980899
       }
+    },
+    {
+      "id": "2026-11-7-8",
+      "captains": [
+        8,
+        7
+      ],
+      "tier": 1,
+      "tierPlayers": [
+        6,
+        8,
+        7,
+        12
+      ],
+      "round": 0,
+      "final": false,
+      "format": "1x Bo9",
+      "wager": false,
+      "score": [
+        3,
+        3
+      ],
+      "sets": [
+        [
+          3,
+          3
+        ]
+      ],
+      "dates": [
+        "2026-11-18"
+      ],
+      "mapIds": [
+        "map-5fcf007a02d833ace91618f5839a68a26cc06556c8420cac788198963f1163b9",
+        "map-b7ff185dd9c5ea2d609bc846bfc751b3ebe0168e4e4aa3b53159f474a6c01f3d",
+        "map-b7dbccc44b9f34ed605f7ed67eaaa8865cfe68c6be4ffe1cebecd078609c3273",
+        "map-9d61d96be447d44c472ec605c733a4f60fb0a9af9453b63c6bb1d9cca4fc6014",
+        "map-4eee425917bf3fbfd29b514034529452e125feda9cc093cb25f51e9f193ae671",
+        "map-da73bce1f9490a6faffc056d780a1a36b80ae82fb22d249461f9217ec435786d"
+      ],
+      "complete": false
     }
   ],
   "tiers": [
@@ -497,7 +537,7 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-18T12:57:23.370095Z",
+  "updatedAt": "2026-11-19T00:48:03.971214Z",
   "eloModel": {
     "version": "model-r-kill25-v1",
     "captainMultiplier": 1.5,

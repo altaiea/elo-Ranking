@@ -512,6 +512,73 @@
         "map-da73bce1f9490a6faffc056d780a1a36b80ae82fb22d249461f9217ec435786d"
       ],
       "complete": false
+    },
+    {
+      "id": "2026-11-10-16",
+      "captains": [
+        10,
+        16
+      ],
+      "tier": 2,
+      "tierPlayers": [
+        16,
+        10,
+        11,
+        13,
+        17
+      ],
+      "round": 2,
+      "final": true,
+      "format": "1x Bo9",
+      "wager": false,
+      "score": [
+        5,
+        0
+      ],
+      "sets": [
+        [
+          5,
+          0
+        ]
+      ],
+      "dates": [
+        "2026-11-22"
+      ],
+      "mapIds": [
+        "map-9123cfbbc57b566262048fda9de39baadc20f3ddf7f3abcebc945a6cccec58c7",
+        "map-0f56e5d135da7442fc1fd1bce6a1271d5745461eace907cc6c08b054d7becca6",
+        "map-d3b3f4b791436d29fc192f9d680f66b9cab82d6c44b7e29c5b6175244d372dfd",
+        "map-0b38938acba678d17d867aeb8d2afd8ad2398ffee6a7401128f2415786800271",
+        "map-e385bec4f2c15bff9addc6197136e8e4f41e90df00de5b773da4bbf49a7db5d5"
+      ],
+      "complete": true,
+      "winner": 10,
+      "decidedBy": "maps",
+      "captainElo": {
+        "10": {
+          "seriesTotal": 5.0604865899978355,
+          "extra": 2.5302432949989178,
+          "bonus": 20.0,
+          "multiplier": 1.5
+        },
+        "16": {
+          "seriesTotal": -5.218934077202793,
+          "extra": -2.6094670386013963,
+          "bonus": 0,
+          "multiplier": 1.5
+        }
+      },
+      "balance": {
+        "5": 0.013203957267079751,
+        "7": 0.013203957267079751,
+        "11": -4.98679604273292,
+        "1": 0.013203957267079751,
+        "8": 0.013203957267079751,
+        "12": 0.013203957267079751,
+        "16": -5.0,
+        "13": -5.0,
+        "17": -5.0
+      }
     }
   ],
   "tiers": [
@@ -537,7 +604,7 @@
       17
     ]
   ],
-  "updatedAt": "2026-11-19T00:48:03.971214Z",
+  "updatedAt": "2026-11-20T15:44:02.641015Z",
   "eloModel": {
     "version": "model-r-kill25-v1",
     "captainMultiplier": 1.5,

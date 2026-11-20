@@ -1,7 +1,7 @@
 {
   "players": {
     "1": {
-      "elo": 1149.2570494121285,
+      "elo": 1149.302311121297,
       "lifetimeKills": 20675,
       "lifetimeDeaths": 12708,
       "mapKills": 0,
@@ -33,12 +33,12 @@
       "hpLifetimeDamage": 1124900.0,
       "hpLifetimeTeamDamage": 3812500.0,
       "sndLifetimeDamage": 213700.0,
-      "sndLifetimeTeamDamage": 682100.0,
+      "sndLifetimeTeamDamage": 681900.0,
       "overloadLifetimeDamage": 640300.0,
       "overloadLifetimeTeamDamage": 2180000.0,
       "modeElo": {
         "Hardpoint": 1137.9157628241103,
-        "SND": 1163.6127079295115,
+        "SND": 1163.747015671851,
         "Overload": 1148.7716984010249
       }
     },
@@ -169,15 +169,15 @@
       }
     },
     "5": {
-      "elo": 1132.316512015697,
-      "lifetimeKills": 17956,
-      "lifetimeDeaths": 10939,
+      "elo": 1132.4272400026202,
+      "lifetimeKills": 17965,
+      "lifetimeDeaths": 10945,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 10489,
       "hpDeaths": 6053,
-      "sndKills": 1790,
-      "sndDeaths": 1231,
+      "sndKills": 1799,
+      "sndDeaths": 1237,
       "overloadKills": 5677,
       "overloadDeaths": 3655,
       "hpWins": 138,
@@ -200,13 +200,13 @@
       "overloadDamageShare": 0.30344827586206896,
       "hpLifetimeDamage": 988800.0,
       "hpLifetimeTeamDamage": 3389500.0,
-      "sndLifetimeDamage": 169200.0,
-      "sndLifetimeTeamDamage": 575800.0,
+      "sndLifetimeDamage": 170100.0,
+      "sndLifetimeTeamDamage": 578500.0,
       "overloadLifetimeDamage": 535500.0,
       "overloadLifetimeTeamDamage": 1886300.0,
       "modeElo": {
         "Hardpoint": 1170.4231207354762,
-        "SND": 1069.6334642000436,
+        "SND": 1069.9620338941777,
         "Overload": 1153.6599852401791
       }
     },
@@ -253,15 +253,15 @@
       }
     },
     "7": {
-      "elo": 967.2783283397437,
-      "lifetimeKills": 9975,
-      "lifetimeDeaths": 8571,
+      "elo": 967.6380219445739,
+      "lifetimeKills": 9984,
+      "lifetimeDeaths": 8576,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 5753,
       "hpDeaths": 4832,
-      "sndKills": 1027,
-      "sndDeaths": 995,
+      "sndKills": 1036,
+      "sndDeaths": 1000,
       "overloadKills": 3195,
       "overloadDeaths": 2744,
       "hpWins": 89,
@@ -284,18 +284,18 @@
       "overloadDamageShare": 0.2827586206896552,
       "hpLifetimeDamage": 563400.0,
       "hpLifetimeTeamDamage": 2432100.0,
-      "sndLifetimeDamage": 101200.0,
-      "sndLifetimeTeamDamage": 467400.0,
+      "sndLifetimeDamage": 102100.0,
+      "sndLifetimeTeamDamage": 470100.0,
       "overloadLifetimeDamage": 314400.0,
       "overloadLifetimeTeamDamage": 1400100.0,
       "modeElo": {
         "Hardpoint": 973.5535874274724,
-        "SND": 941.3803669607358,
+        "SND": 942.447707034416,
         "Overload": 992.0439364540371
       }
     },
     "8": {
-      "elo": 940.9595200760596,
+      "elo": 941.0065409200745,
       "lifetimeKills": 15552,
       "lifetimeDeaths": 13193,
       "mapKills": 0,
@@ -327,12 +327,12 @@
       "hpLifetimeDamage": 853000.0,
       "hpLifetimeTeamDamage": 3714600.0,
       "sndLifetimeDamage": 148000.0,
-      "sndLifetimeTeamDamage": 660900.0,
+      "sndLifetimeTeamDamage": 660700.0,
       "overloadLifetimeDamage": 494600.0,
       "overloadLifetimeTeamDamage": 2142800.0,
       "modeElo": {
         "Hardpoint": 918.6450142379091,
-        "SND": 955.6531792337712,
+        "SND": 955.7927069608184,
         "Overload": 958.4942216652165
       }
     },
@@ -379,15 +379,15 @@
       }
     },
     "10": {
-      "elo": 974.954604291795,
-      "lifetimeKills": 10494,
-      "lifetimeDeaths": 9518,
+      "elo": 974.4285463537714,
+      "lifetimeKills": 10498,
+      "lifetimeDeaths": 9526,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 6209,
       "hpDeaths": 5470,
-      "sndKills": 989,
-      "sndDeaths": 1107,
+      "sndKills": 993,
+      "sndDeaths": 1115,
       "overloadKills": 3296,
       "overloadDeaths": 2941,
       "hpWins": 100,
@@ -410,26 +410,26 @@
       "overloadDamageShare": 0.18620689655172415,
       "hpLifetimeDamage": 606100.0,
       "hpLifetimeTeamDamage": 2879400.0,
-      "sndLifetimeDamage": 96100.0,
-      "sndLifetimeTeamDamage": 502400.0,
+      "sndLifetimeDamage": 96500.0,
+      "sndLifetimeTeamDamage": 505100.0,
       "overloadLifetimeDamage": 321600.0,
       "overloadLifetimeTeamDamage": 1548700.0,
       "modeElo": {
         "Hardpoint": 962.5076328106811,
-        "SND": 979.1593380886239,
+        "SND": 977.598335305171,
         "Overload": 990.1811016464998
       }
     },
     "11": {
-      "elo": 903.1306388317888,
-      "lifetimeKills": 8660,
-      "lifetimeDeaths": 7788,
+      "elo": 903.0939189559173,
+      "lifetimeKills": 8665,
+      "lifetimeDeaths": 7795,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 4972,
       "hpDeaths": 4391,
-      "sndKills": 845,
-      "sndDeaths": 929,
+      "sndKills": 850,
+      "sndDeaths": 936,
       "overloadKills": 2843,
       "overloadDeaths": 2468,
       "hpWins": 94,
@@ -452,26 +452,26 @@
       "overloadDamageShare": 0.22758620689655173,
       "hpLifetimeDamage": 471500.0,
       "hpLifetimeTeamDamage": 2377900.0,
-      "sndLifetimeDamage": 79800.0,
-      "sndLifetimeTeamDamage": 404700.0,
+      "sndLifetimeDamage": 80300.0,
+      "sndLifetimeTeamDamage": 407400.0,
       "overloadLifetimeDamage": 269800.0,
       "overloadLifetimeTeamDamage": 1356800.0,
       "modeElo": {
         "Hardpoint": 944.8951040246462,
-        "SND": 839.5821637006412,
+        "SND": 839.4732026446427,
         "Overload": 919.494276884291
       }
     },
     "12": {
-      "elo": 888.1219358534483,
-      "lifetimeKills": 14610,
-      "lifetimeDeaths": 13303,
+      "elo": 888.1037804675445,
+      "lifetimeKills": 14608,
+      "lifetimeDeaths": 13301,
       "mapKills": 0,
       "mapDeaths": 0,
       "hpKills": 8570,
       "hpDeaths": 7646,
-      "sndKills": 1396,
-      "sndDeaths": 1515,
+      "sndKills": 1394,
+      "sndDeaths": 1513,
       "overloadKills": 4644,
       "overloadDeaths": 4142,
       "hpWins": 129,
@@ -494,13 +494,13 @@
       "overloadDamageShare": 0.2426470588235294,
       "hpLifetimeDamage": 835100.0,
       "hpLifetimeTeamDamage": 3917600.0,
-      "sndLifetimeDamage": 136400.0,
-      "sndLifetimeTeamDamage": 675200.0,
+      "sndLifetimeDamage": 136200.0,
+      "sndLifetimeTeamDamage": 675000.0,
       "overloadLifetimeDamage": 450900.0,
       "overloadLifetimeTeamDamage": 2154300.0,
       "modeElo": {
         "Hardpoint": 874.4746568251959,
-        "SND": 924.6568749052001,
+        "SND": 924.6030013565239,
         "Overload": 861.259561826374
       }
     },
@@ -631,7 +631,7 @@
       }
     },
     "16": {
-      "elo": 894.883968337604,
+      "elo": 894.9021973924663,
       "lifetimeKills": 6136,
       "lifetimeDeaths": 5242,
       "mapKills": 0,
@@ -663,12 +663,12 @@
       "hpLifetimeDamage": 346400.0,
       "hpLifetimeTeamDamage": 1609500.0,
       "sndLifetimeDamage": 58100.0,
-      "sndLifetimeTeamDamage": 280900.0,
+      "sndLifetimeTeamDamage": 280700.0,
       "overloadLifetimeDamage": 209100.0,
       "overloadLifetimeTeamDamage": 992500.0,
       "modeElo": {
         "Hardpoint": 911.2509918344178,
-        "SND": 872.5781670525716,
+        "SND": 872.6322592034985,
         "Overload": 897.7518762662733
       }
     },
@@ -1271,7 +1271,7 @@
     "2026-11-18|1a1f13397d465-master_playlist.mp4": "1ed7c8bf8313d472eafec5fa370e150b252da255346327a428a6454815f580bb",
     "2026-11-18|1a1f133681424-master_playlist.mp4": "ab1e227faa02e4644de69c93452be000914fdbce0404b1d97f53ac88af1bf66d",
     "2026-11-18|1a1f133d19849-master_playlist.mp4": "c58e497b60d9b46acd924d98deb555a29c2e30878d3691d9b10e6b88e0cb6297",
-    "2026-11-22|1a1f887d9ca25-master_playlist.mp4": "9123cfbbc57b566262048fda9de39baadc20f3ddf7f3abcebc945a6cccec58c7",
+    "2026-11-22|1a1f887d9ca25-master_playlist.mp4": "823ae297f4d94dc82714b4647c3f432d346b38ea27c782f39d95e9194a9f3d34",
     "2026-11-22|1a1f887d9ca1-master_playlist.mp4": "0f56e5d135da7442fc1fd1bce6a1271d5745461eace907cc6c08b054d7becca6",
     "2026-11-22|1a1f904a33075-master_playlist.mp4": "d3b3f4b791436d29fc192f9d680f66b9cab82d6c44b7e29c5b6175244d372dfd",
     "2026-11-22|1a1f904a33097-master_playlist.mp4": "0b38938acba678d17d867aeb8d2afd8ad2398ffee6a7401128f2415786800271",

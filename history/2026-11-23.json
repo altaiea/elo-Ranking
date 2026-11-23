@@ -1,0 +1,2393 @@
+{
+  "date": "2026-11-23",
+  "openingStats": {
+    "1": {
+      "elo": 1147.830504180386,
+      "lifetimeKills": 20760,
+      "lifetimeDeaths": 12760,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 11835,
+      "hpDeaths": 7318,
+      "sndKills": 2237,
+      "sndDeaths": 1376,
+      "overloadKills": 6688,
+      "overloadDeaths": 4066,
+      "hpWins": 137,
+      "hpLosses": 135,
+      "sndWins": 114,
+      "sndLosses": 106,
+      "overloadWins": 96,
+      "overloadLosses": 67,
+      "hpMarginTotal": -1.0650000000000008,
+      "hpMarginCount": 272,
+      "sndMarginTotal": 7.000000000000003,
+      "sndMarginCount": 220,
+      "overloadMarginTotal": 7.5,
+      "overloadMarginCount": 163,
+      "hpDamage": 4200.0,
+      "hpDamageShare": 0.35294117647058826,
+      "sndDamage": 1200.0,
+      "sndDamageShare": 0.42857142857142855,
+      "overloadDamage": 3900.0,
+      "overloadDamageShare": 0.2867647058823529,
+      "hpLifetimeDamage": 1133400.0,
+      "hpLifetimeTeamDamage": 3839600.0,
+      "sndLifetimeDamage": 213700.0,
+      "sndLifetimeTeamDamage": 681900.0,
+      "overloadLifetimeDamage": 640300.0,
+      "overloadLifetimeTeamDamage": 2180000.0,
+      "modeElo": {
+        "Hardpoint": 1134.377765369998,
+        "SND": 1163.747015671851,
+        "Overload": 1148.7716984010249
+      }
+    },
+    "2": {
+      "elo": 1162.4060194415952,
+      "lifetimeKills": 17748,
+      "lifetimeDeaths": 10962,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 9965,
+      "hpDeaths": 6222,
+      "sndKills": 1911,
+      "sndDeaths": 1165,
+      "overloadKills": 5872,
+      "overloadDeaths": 3575,
+      "hpWins": 107,
+      "hpLosses": 124,
+      "sndWins": 121,
+      "sndLosses": 67,
+      "overloadWins": 64,
+      "overloadLosses": 77,
+      "hpMarginTotal": -1.4830000000000005,
+      "hpMarginCount": 231,
+      "sndMarginTotal": 24.499999999999993,
+      "sndMarginCount": 188,
+      "overloadMarginTotal": -3.375,
+      "overloadMarginCount": 141,
+      "hpDamage": 3800.0,
+      "hpDamageShare": 0.26573426573426573,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.3225806451612903,
+      "overloadDamage": 5700.0,
+      "overloadDamageShare": 0.3333333333333333,
+      "hpLifetimeDamage": 955800.0,
+      "hpLifetimeTeamDamage": 3240300.0,
+      "sndLifetimeDamage": 185300.0,
+      "sndLifetimeTeamDamage": 598800.0,
+      "overloadLifetimeDamage": 569100.0,
+      "overloadLifetimeTeamDamage": 1906500.0,
+      "modeElo": {
+        "Hardpoint": 1134.5913207220406,
+        "SND": 1233.2730904843647,
+        "Overload": 1112.5627470769048
+      }
+    },
+    "3": {
+      "elo": 1160.7764863844545,
+      "lifetimeKills": 19828,
+      "lifetimeDeaths": 11081,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 11166,
+      "hpDeaths": 6174,
+      "sndKills": 1976,
+      "sndDeaths": 1325,
+      "overloadKills": 6686,
+      "overloadDeaths": 3582,
+      "hpWins": 139,
+      "hpLosses": 119,
+      "sndWins": 100,
+      "sndLosses": 115,
+      "overloadWins": 85,
+      "overloadLosses": 71,
+      "hpMarginTotal": 10.269000000000004,
+      "hpMarginCount": 258,
+      "sndMarginTotal": -10.83333333333334,
+      "sndMarginCount": 215,
+      "overloadMarginTotal": 5.25,
+      "overloadMarginCount": 156,
+      "hpDamage": 4800.0,
+      "hpDamageShare": 0.3333333333333333,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.24,
+      "overloadDamage": 4800.0,
+      "overloadDamageShare": 0.3287671232876712,
+      "hpLifetimeDamage": 1058300.0,
+      "hpLifetimeTeamDamage": 3583000.0,
+      "sndLifetimeDamage": 190400.0,
+      "sndLifetimeTeamDamage": 638400.0,
+      "overloadLifetimeDamage": 637400.0,
+      "overloadLifetimeTeamDamage": 2094700.0,
+      "modeElo": {
+        "Hardpoint": 1196.4978140576106,
+        "SND": 1102.4986312911226,
+        "Overload": 1180.1269513821055
+      }
+    },
+    "4": {
+      "elo": 1081.811444662616,
+      "lifetimeKills": 10717,
+      "lifetimeDeaths": 6525,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6096,
+      "hpDeaths": 3689,
+      "sndKills": 1037,
+      "sndDeaths": 726,
+      "overloadKills": 3584,
+      "overloadDeaths": 2110,
+      "hpWins": 82,
+      "hpLosses": 67,
+      "sndWins": 57,
+      "sndLosses": 65,
+      "overloadWins": 46,
+      "overloadLosses": 43,
+      "hpMarginTotal": 4.38,
+      "hpMarginCount": 149,
+      "sndMarginTotal": -5.166666666666666,
+      "sndMarginCount": 122,
+      "overloadMarginTotal": 0.125,
+      "overloadMarginCount": 89,
+      "hpDamage": 3200.0,
+      "hpDamageShare": 0.2689075630252101,
+      "sndDamage": 900.0,
+      "sndDamageShare": 0.28125,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.2827586206896552,
+      "hpLifetimeDamage": 609600.0,
+      "hpLifetimeTeamDamage": 2188000.0,
+      "sndLifetimeDamage": 103700.0,
+      "sndLifetimeTeamDamage": 384900.0,
+      "overloadLifetimeDamage": 358400.0,
+      "overloadLifetimeTeamDamage": 1278300.0,
+      "modeElo": {
+        "Hardpoint": 1091.7923913346403,
+        "SND": 1071.8174071038607,
+        "Overload": 1078.6370189206666
+      }
+    },
+    "5": {
+      "elo": 1134.0116090882618,
+      "lifetimeKills": 18038,
+      "lifetimeDeaths": 10994,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 10562,
+      "hpDeaths": 6102,
+      "sndKills": 1799,
+      "sndDeaths": 1237,
+      "overloadKills": 5677,
+      "overloadDeaths": 3655,
+      "hpWins": 140,
+      "hpLosses": 102,
+      "sndWins": 79,
+      "sndLosses": 112,
+      "overloadWins": 76,
+      "overloadLosses": 68,
+      "hpMarginTotal": 16.953999999999994,
+      "hpMarginCount": 242,
+      "sndMarginTotal": -15.33333333333333,
+      "sndMarginCount": 191,
+      "overloadMarginTotal": 4.5,
+      "overloadMarginCount": 144,
+      "hpDamage": 3200.0,
+      "hpDamageShare": 0.22377622377622378,
+      "sndDamage": 1500.0,
+      "sndDamageShare": 0.3488372093023256,
+      "overloadDamage": 4400.0,
+      "overloadDamageShare": 0.30344827586206896,
+      "hpLifetimeDamage": 996100.0,
+      "hpLifetimeTeamDamage": 3420500.0,
+      "sndLifetimeDamage": 170100.0,
+      "sndLifetimeTeamDamage": 578500.0,
+      "overloadLifetimeDamage": 535500.0,
+      "overloadLifetimeTeamDamage": 1886300.0,
+      "modeElo": {
+        "Hardpoint": 1174.2317002682685,
+        "SND": 1069.9620338941777,
+        "Overload": 1153.6599852401791
+      }
+    },
+    "6": {
+      "elo": 1018.1132011442882,
+      "lifetimeKills": 12347,
+      "lifetimeDeaths": 9193,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6924,
+      "hpDeaths": 5293,
+      "sndKills": 1325,
+      "sndDeaths": 987,
+      "overloadKills": 4098,
+      "overloadDeaths": 2913,
+      "hpWins": 82,
+      "hpLosses": 112,
+      "sndWins": 85,
+      "sndLosses": 72,
+      "overloadWins": 58,
+      "overloadLosses": 58,
+      "hpMarginTotal": -17.79300000000002,
+      "hpMarginCount": 194,
+      "sndMarginTotal": 11.166666666666664,
+      "sndMarginCount": 157,
+      "overloadMarginTotal": 1.375,
+      "overloadMarginCount": 116,
+      "hpDamage": 3000.0,
+      "hpDamageShare": 0.23809523809523808,
+      "sndDamage": 500.0,
+      "sndDamageShare": 0.16129032258064516,
+      "overloadDamage": 3500.0,
+      "overloadDamageShare": 0.23972602739726026,
+      "hpLifetimeDamage": 657800.0,
+      "hpLifetimeTeamDamage": 2658400.0,
+      "sndLifetimeDamage": 125500.0,
+      "sndLifetimeTeamDamage": 502800.0,
+      "overloadLifetimeDamage": 390400.0,
+      "overloadLifetimeTeamDamage": 1549500.0,
+      "modeElo": {
+        "Hardpoint": 970.5267344314843,
+        "SND": 1071.3777563847325,
+        "Overload": 1025.5861365147198
+      }
+    },
+    "7": {
+      "elo": 967.6380219445739,
+      "lifetimeKills": 9984,
+      "lifetimeDeaths": 8576,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 5753,
+      "hpDeaths": 4832,
+      "sndKills": 1036,
+      "sndDeaths": 1000,
+      "overloadKills": 3195,
+      "overloadDeaths": 2744,
+      "hpWins": 89,
+      "hpLosses": 81,
+      "sndWins": 73,
+      "sndLosses": 75,
+      "overloadWins": 58,
+      "overloadLosses": 47,
+      "hpMarginTotal": 0.9750000000000008,
+      "hpMarginCount": 170,
+      "sndMarginTotal": -1.8333333333333335,
+      "sndMarginCount": 148,
+      "overloadMarginTotal": 4.625,
+      "overloadMarginCount": 105,
+      "hpDamage": 4600.0,
+      "hpDamageShare": 0.2929936305732484,
+      "sndDamage": 800.0,
+      "sndDamageShare": 0.18604651162790697,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.2827586206896552,
+      "hpLifetimeDamage": 563400.0,
+      "hpLifetimeTeamDamage": 2432100.0,
+      "sndLifetimeDamage": 102100.0,
+      "sndLifetimeTeamDamage": 470100.0,
+      "overloadLifetimeDamage": 314400.0,
+      "overloadLifetimeTeamDamage": 1400100.0,
+      "modeElo": {
+        "Hardpoint": 973.5535874274724,
+        "SND": 942.447707034416,
+        "Overload": 992.0439364540371
+      }
+    },
+    "8": {
+      "elo": 941.0065409200745,
+      "lifetimeKills": 15552,
+      "lifetimeDeaths": 13193,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 8888,
+      "hpDeaths": 7447,
+      "sndKills": 1539,
+      "sndDeaths": 1504,
+      "overloadKills": 5125,
+      "overloadDeaths": 4242,
+      "hpWins": 125,
+      "hpLosses": 143,
+      "sndWins": 108,
+      "sndLosses": 109,
+      "overloadWins": 79,
+      "overloadLosses": 82,
+      "hpMarginTotal": -11.247000000000007,
+      "hpMarginCount": 268,
+      "sndMarginTotal": -0.3333333333333334,
+      "sndMarginCount": 217,
+      "overloadMarginTotal": 0.625,
+      "overloadMarginCount": 161,
+      "hpDamage": 3400.0,
+      "hpDamageShare": 0.26153846153846155,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.21428571428571427,
+      "overloadDamage": 3800.0,
+      "overloadDamageShare": 0.27941176470588236,
+      "hpLifetimeDamage": 853000.0,
+      "hpLifetimeTeamDamage": 3714600.0,
+      "sndLifetimeDamage": 148000.0,
+      "sndLifetimeTeamDamage": 660700.0,
+      "overloadLifetimeDamage": 494600.0,
+      "overloadLifetimeTeamDamage": 2142800.0,
+      "modeElo": {
+        "Hardpoint": 918.6450142379091,
+        "SND": 955.7927069608184,
+        "Overload": 958.4942216652165
+      }
+    },
+    "9": {
+      "elo": 1065.0344422055355,
+      "lifetimeKills": 17013,
+      "lifetimeDeaths": 13322,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 9722,
+      "hpDeaths": 7685,
+      "sndKills": 1837,
+      "sndDeaths": 1417,
+      "overloadKills": 5454,
+      "overloadDeaths": 4220,
+      "hpWins": 143,
+      "hpLosses": 128,
+      "sndWins": 113,
+      "sndLosses": 106,
+      "overloadWins": 79,
+      "overloadLosses": 83,
+      "hpMarginTotal": 6.746999999999999,
+      "hpMarginCount": 271,
+      "sndMarginTotal": 7.333333333333329,
+      "sndMarginCount": 219,
+      "overloadMarginTotal": -0.25,
+      "overloadMarginCount": 162,
+      "hpDamage": 3900.0,
+      "hpDamageShare": 0.28888888888888886,
+      "sndDamage": 400.0,
+      "sndDamageShare": 0.10810810810810811,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.2789115646258503,
+      "hpLifetimeDamage": 932500.0,
+      "hpLifetimeTeamDamage": 3799500.0,
+      "sndLifetimeDamage": 176800.0,
+      "sndLifetimeTeamDamage": 678200.0,
+      "overloadLifetimeDamage": 523600.0,
+      "overloadLifetimeTeamDamage": 2136400.0,
+      "modeElo": {
+        "Hardpoint": 1075.846747213673,
+        "SND": 1068.4642925264982,
+        "Overload": 1042.1446509442005
+      }
+    },
+    "10": {
+      "elo": 972.7337380280628,
+      "lifetimeKills": 10562,
+      "lifetimeDeaths": 9586,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6273,
+      "hpDeaths": 5530,
+      "sndKills": 993,
+      "sndDeaths": 1115,
+      "overloadKills": 3296,
+      "overloadDeaths": 2941,
+      "hpWins": 100,
+      "hpLosses": 99,
+      "sndWins": 85,
+      "sndLosses": 75,
+      "overloadWins": 62,
+      "overloadLosses": 53,
+      "hpMarginTotal": 1.5090000000000008,
+      "hpMarginCount": 199,
+      "sndMarginTotal": 0.8333333333333321,
+      "sndMarginCount": 160,
+      "overloadMarginTotal": 2.25,
+      "overloadMarginCount": 115,
+      "hpDamage": 2300.0,
+      "hpDamageShare": 0.19327731092436976,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.23255813953488372,
+      "overloadDamage": 2700.0,
+      "overloadDamageShare": 0.18620689655172415,
+      "hpLifetimeDamage": 612500.0,
+      "hpLifetimeTeamDamage": 2906500.0,
+      "sndLifetimeDamage": 96500.0,
+      "sndLifetimeTeamDamage": 505100.0,
+      "overloadLifetimeDamage": 321600.0,
+      "overloadLifetimeTeamDamage": 1548700.0,
+      "modeElo": {
+        "Hardpoint": 958.4335743354201,
+        "SND": 977.598335305171,
+        "Overload": 990.1811016464998
+      }
+    },
+    "11": {
+      "elo": 904.6916698040129,
+      "lifetimeKills": 8736,
+      "lifetimeDeaths": 7848,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 5043,
+      "hpDeaths": 4444,
+      "sndKills": 850,
+      "sndDeaths": 936,
+      "overloadKills": 2843,
+      "overloadDeaths": 2468,
+      "hpWins": 96,
+      "hpLosses": 78,
+      "sndWins": 57,
+      "sndLosses": 84,
+      "overloadWins": 57,
+      "overloadLosses": 46,
+      "hpMarginTotal": 8.243000000000002,
+      "hpMarginCount": 174,
+      "sndMarginTotal": -15.66666666666666,
+      "sndMarginCount": 141,
+      "overloadMarginTotal": 0.0,
+      "overloadMarginCount": 103,
+      "hpDamage": 3400.0,
+      "hpDamageShare": 0.23776223776223776,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.23255813953488372,
+      "overloadDamage": 3300.0,
+      "overloadDamageShare": 0.22758620689655173,
+      "hpLifetimeDamage": 478600.0,
+      "hpLifetimeTeamDamage": 2408900.0,
+      "sndLifetimeDamage": 80300.0,
+      "sndLifetimeTeamDamage": 407400.0,
+      "overloadLifetimeDamage": 269800.0,
+      "overloadLifetimeTeamDamage": 1356800.0,
+      "modeElo": {
+        "Hardpoint": 948.7358512556453,
+        "SND": 839.4732026446427,
+        "Overload": 919.494276884291
+      }
+    },
+    "12": {
+      "elo": 886.3683834996239,
+      "lifetimeKills": 14653,
+      "lifetimeDeaths": 13363,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 8615,
+      "hpDeaths": 7708,
+      "sndKills": 1394,
+      "sndDeaths": 1513,
+      "overloadKills": 4644,
+      "overloadDeaths": 4142,
+      "hpWins": 129,
+      "hpLosses": 147,
+      "sndWins": 115,
+      "sndLosses": 103,
+      "overloadWins": 62,
+      "overloadLosses": 99,
+      "hpMarginTotal": -7.193999999999999,
+      "hpMarginCount": 276,
+      "sndMarginTotal": 1.8333333333333335,
+      "sndMarginCount": 218,
+      "overloadMarginTotal": -9.75,
+      "overloadMarginCount": 161,
+      "hpDamage": 2200.0,
+      "hpDamageShare": 0.18487394957983194,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.21428571428571427,
+      "overloadDamage": 3300.0,
+      "overloadDamageShare": 0.2426470588235294,
+      "hpLifetimeDamage": 839600.0,
+      "hpLifetimeTeamDamage": 3944700.0,
+      "sndLifetimeDamage": 136200.0,
+      "sndLifetimeTeamDamage": 675000.0,
+      "overloadLifetimeDamage": 450900.0,
+      "overloadLifetimeTeamDamage": 2154300.0,
+      "modeElo": {
+        "Hardpoint": 870.3030294984638,
+        "SND": 924.6030013565239,
+        "Overload": 861.259561826374
+      }
+    },
+    "13": {
+      "elo": 769.0382202515992,
+      "lifetimeKills": 3591,
+      "lifetimeDeaths": 4430,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 2117,
+      "hpDeaths": 2538,
+      "sndKills": 349,
+      "sndDeaths": 475,
+      "overloadKills": 1125,
+      "overloadDeaths": 1417,
+      "hpWins": 29,
+      "hpLosses": 55,
+      "sndWins": 30,
+      "sndLosses": 37,
+      "overloadWins": 21,
+      "overloadLosses": 29,
+      "hpMarginTotal": -8.150000000000004,
+      "hpMarginCount": 84,
+      "sndMarginTotal": -0.666666666666667,
+      "sndMarginCount": 67,
+      "overloadMarginTotal": -6.25,
+      "overloadMarginCount": 50,
+      "hpDamage": 2100.0,
+      "hpDamageShare": 0.14583333333333334,
+      "sndDamage": 200.0,
+      "sndDamageShare": 0.08,
+      "overloadDamage": 1800.0,
+      "overloadDamageShare": 0.1232876712328767,
+      "hpLifetimeDamage": 211700.0,
+      "hpLifetimeTeamDamage": 1212300.0,
+      "sndLifetimeDamage": 34900.0,
+      "sndLifetimeTeamDamage": 212400.0,
+      "overloadLifetimeDamage": 112500.0,
+      "overloadLifetimeTeamDamage": 667600.0,
+      "modeElo": {
+        "Hardpoint": 751.2308192920667,
+        "SND": 802.7552513408151,
+        "Overload": 753.027043417995
+      }
+    },
+    "14": {
+      "elo": 1091.1645098366644,
+      "lifetimeKills": 1349,
+      "lifetimeDeaths": 731,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 808,
+      "hpDeaths": 435,
+      "sndKills": 138,
+      "sndDeaths": 83,
+      "overloadKills": 403,
+      "overloadDeaths": 213,
+      "hpWins": 8,
+      "hpLosses": 9,
+      "sndWins": 6,
+      "sndLosses": 7,
+      "overloadWins": 5,
+      "overloadLosses": 4,
+      "hpMarginTotal": 1.15,
+      "hpMarginCount": 17,
+      "sndMarginTotal": -2.220446049250313e-16,
+      "sndMarginCount": 13,
+      "overloadMarginTotal": 0.25,
+      "overloadMarginCount": 9,
+      "hpDamage": 3000.0,
+      "hpDamageShare": 0.3,
+      "sndDamage": 1300.0,
+      "sndDamageShare": 0.38235294117647056,
+      "overloadDamage": 4300.0,
+      "overloadDamageShare": 0.32575757575757575,
+      "hpLifetimeDamage": 80800.0,
+      "hpLifetimeTeamDamage": 259500.0,
+      "sndLifetimeDamage": 13800.0,
+      "sndLifetimeTeamDamage": 43300.0,
+      "overloadLifetimeDamage": 40300.0,
+      "overloadLifetimeTeamDamage": 121900.0,
+      "modeElo": {
+        "Hardpoint": 1096.5968498743027,
+        "SND": 1086.2763370537898,
+        "Overload": 1088.6845939345237
+      }
+    },
+    "15": {
+      "elo": 903.1243201033259,
+      "lifetimeKills": 553,
+      "lifetimeDeaths": 572,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 294,
+      "hpDeaths": 312,
+      "sndKills": 52,
+      "sndDeaths": 57,
+      "overloadKills": 207,
+      "overloadDeaths": 203,
+      "hpWins": 6,
+      "hpLosses": 6,
+      "sndWins": 5,
+      "sndLosses": 4,
+      "overloadWins": 2,
+      "overloadLosses": 6,
+      "hpMarginTotal": -1.645,
+      "hpMarginCount": 12,
+      "sndMarginTotal": 1.6666666666666672,
+      "sndMarginCount": 9,
+      "overloadMarginTotal": -3.0,
+      "overloadMarginCount": 8,
+      "hpDamage": 1800.0,
+      "hpDamageShare": 0.14516129032258066,
+      "sndDamage": 500.0,
+      "sndDamageShare": 0.17857142857142858,
+      "overloadDamage": 2100.0,
+      "overloadDamageShare": 0.1826086956521739,
+      "hpLifetimeDamage": 29400.0,
+      "hpLifetimeTeamDamage": 154200.0,
+      "sndLifetimeDamage": 5200.0,
+      "sndLifetimeTeamDamage": 30300.0,
+      "overloadLifetimeDamage": 20700.0,
+      "overloadLifetimeTeamDamage": 99700.0,
+      "modeElo": {
+        "Hardpoint": 895.911561311277,
+        "SND": 927.3884821828366,
+        "Overload": 882.1667696446103
+      }
+    },
+    "16": {
+      "elo": 896.5480774949212,
+      "lifetimeKills": 6212,
+      "lifetimeDeaths": 5294,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 3540,
+      "hpDeaths": 2943,
+      "sndKills": 581,
+      "sndDeaths": 568,
+      "overloadKills": 2091,
+      "overloadDeaths": 1783,
+      "hpWins": 57,
+      "hpLosses": 55,
+      "sndWins": 41,
+      "sndLosses": 46,
+      "overloadWins": 28,
+      "overloadLosses": 42,
+      "hpMarginTotal": 1.5500000000000007,
+      "hpMarginCount": 112,
+      "sndMarginTotal": -2.166666666666667,
+      "sndMarginCount": 87,
+      "overloadMarginTotal": -2.0,
+      "overloadMarginCount": 70,
+      "hpDamage": 3900.0,
+      "hpDamageShare": 0.2727272727272727,
+      "sndDamage": 400.0,
+      "sndDamageShare": 0.14285714285714285,
+      "overloadDamage": 2600.0,
+      "overloadDamageShare": 0.19117647058823528,
+      "hpLifetimeDamage": 354000.0,
+      "hpLifetimeTeamDamage": 1640500.0,
+      "sndLifetimeDamage": 58100.0,
+      "sndLifetimeTeamDamage": 280700.0,
+      "overloadLifetimeDamage": 209100.0,
+      "overloadLifetimeTeamDamage": 992500.0,
+      "modeElo": {
+        "Hardpoint": 915.2074343883962,
+        "SND": 872.6322592034985,
+        "Overload": 897.7518762662733
+      }
+    },
+    "17": {
+      "elo": 897.5460278821199,
+      "lifetimeKills": 1136,
+      "lifetimeDeaths": 1137,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 627,
+      "hpDeaths": 597,
+      "sndKills": 112,
+      "sndDeaths": 131,
+      "overloadKills": 397,
+      "overloadDeaths": 409,
+      "hpWins": 7,
+      "hpLosses": 16,
+      "sndWins": 7,
+      "sndLosses": 13,
+      "overloadWins": 6,
+      "overloadLosses": 9,
+      "hpMarginTotal": -3.1999999999999997,
+      "hpMarginCount": 23,
+      "sndMarginTotal": -2.3333333333333326,
+      "sndMarginCount": 20,
+      "overloadMarginTotal": -1.875,
+      "overloadMarginCount": 15,
+      "hpDamage": 2900.0,
+      "hpDamageShare": 0.21323529411764705,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.37037037037037035,
+      "overloadDamage": 1600.0,
+      "overloadDamageShare": 0.1951219512195122,
+      "hpLifetimeDamage": 62700.0,
+      "hpLifetimeTeamDamage": 314200.0,
+      "sndLifetimeDamage": 11200.0,
+      "sndLifetimeTeamDamage": 58700.0,
+      "overloadLifetimeDamage": 39700.0,
+      "overloadLifetimeTeamDamage": 197100.0,
+      "modeElo": {
+        "Hardpoint": 891.5617544074232,
+        "SND": 895.8024535025042,
+        "Overload": 910.0036891428662
+      }
+    }
+  },
+  "maps": [
+    {
+      "mapId": "map-493537789cdc250001068c7dc95603e813fbbc2704f0f234237f4d50585eecc2",
+      "date": "2026-11-23",
+      "source": "1a20a1f355538-master_playlist.mp4",
+      "fingerprint": "493537789cdc250001068c7dc95603e813fbbc2704f0f234237f4d50585eecc2",
+      "importedAt": "2026-11-23T20:41:09.944943Z",
+      "gameMode": "Overload",
+      "game": {
+        "source": "1a20a1f355538-master_playlist.mp4",
+        "gameMode": "Overload",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 4,
+            "teamB": 1
+          },
+          "winningTeam": 1,
+          "scoreDifference": 3
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 2,
+              "kills": 41,
+              "deaths": 30
+            },
+            {
+              "playerId": 5,
+              "kills": 45,
+              "deaths": 23
+            },
+            {
+              "playerId": 11,
+              "kills": 33,
+              "deaths": 21
+            },
+            {
+              "playerId": 16,
+              "kills": 33,
+              "deaths": 24
+            }
+          ],
+          "B": [
+            {
+              "playerId": 1,
+              "kills": 37,
+              "deaths": 27
+            },
+            {
+              "playerId": 4,
+              "kills": 44,
+              "deaths": 29
+            },
+            {
+              "playerId": 10,
+              "kills": 30,
+              "deaths": 33
+            },
+            {
+              "playerId": 12,
+              "kills": 36,
+              "deaths": 29
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 2,
+          "before": 1162.4060194415952,
+          "change": 0.7501462108198211,
+          "after": 1163.156165652415,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1162.4060194415952,
+            "change": 0.7501462108198211,
+            "after": 1163.156165652415,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1022.1860175926722
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1051.6460576420718,
+                  "otherTeam": 1059.325541041708
+                },
+                "result": 1051.6460576420718
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.48895013443982127
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": true
+                },
+                "result": 0.6875
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.26973684210526316
+                },
+                "result": 0.05878121019873714
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1112.5627470769048
+                },
+                "result": 1115.5997762705063
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.014518958919088073
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.7501462108198211
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1112.5627470769048,
+            "change": 3.0370291936014837,
+            "after": 1115.5997762705063
+          }
+        },
+        {
+          "playerId": 5,
+          "before": 1134.0116090882618,
+          "change": 0.769504822711724,
+          "after": 1134.7811139109735,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1134.0116090882618,
+            "change": 0.769504822711724,
+            "after": 1134.7811139109735,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1022.1860175926722
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1051.6460576420718,
+                  "otherTeam": 1059.325541041708
+                },
+                "result": 1051.6460576420718
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.48895013443982127
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": true
+                },
+                "result": 0.6875
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.29605263157894735
+                },
+                "result": 0.13715615713038654
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1153.6599852401791
+                },
+                "result": 1156.775389380712
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.033877570811205474
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.769504822711724
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1153.6599852401791,
+            "change": 3.1154041405329735,
+            "after": 1156.775389380712
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 904.6916698040129,
+          "change": 0.7114289870353332,
+          "after": 905.4030987910483,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 904.6916698040129,
+            "change": 0.7114289870353332,
+            "after": 905.4030987910483,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1022.1860175926722
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1051.6460576420718,
+                  "otherTeam": 1059.325541041708
+                },
+                "result": 1051.6460576420718
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.48895013443982127
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": true
+                },
+                "result": 0.6875
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.21710526315789475
+                },
+                "result": -0.09796868366456184
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 919.494276884291
+                },
+                "result": 922.3745561840292
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.024198264865146774
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.7114289870353332
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 919.494276884291,
+            "change": 2.880279299738163,
+            "after": 922.3745561840292
+          }
+        },
+        {
+          "playerId": 16,
+          "before": 896.5480774949212,
+          "change": 0.7114289870353332,
+          "after": 897.2595064819566,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 896.5480774949212,
+            "change": 0.7114289870353332,
+            "after": 897.2595064819566,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1022.1860175926722
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1051.6460576420718,
+                  "otherTeam": 1059.325541041708
+                },
+                "result": 1051.6460576420718
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.48895013443982127
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": true
+                },
+                "result": 0.6875
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.21710526315789475
+                },
+                "result": -0.09796868366456184
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 897.7518762662733
+                },
+                "result": 900.6321555660114
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.024198264865146774
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.7114289870353332
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 897.7518762662733,
+            "change": 2.880279299738163,
+            "after": 900.6321555660114
+          }
+        },
+        {
+          "playerId": 1,
+          "before": 1147.830504180386,
+          "change": -0.7343761851454929,
+          "after": 1147.0961279952405,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1147.830504180386,
+            "change": -0.7343761851454929,
+            "after": 1147.0961279952405,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.4143439571978
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1059.325541041708,
+                  "otherTeam": 1051.6460576420718
+                },
+                "result": 1059.325541041708
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5110498655601787
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": false
+                },
+                "result": 0.3125
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.25170068027210885
+                },
+                "result": 0.005065047590820891
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1148.7716984010249
+                },
+                "result": 1145.798515465213
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.00125106675493276
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.7343761851454929
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1148.7716984010249,
+            "change": -2.973182935811792,
+            "after": 1145.798515465213
+          }
+        },
+        {
+          "playerId": 4,
+          "before": 1081.811444662616,
+          "change": -0.6993463160072224,
+          "after": 1081.1120983466087,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1081.811444662616,
+            "change": -0.6993463160072224,
+            "after": 1081.1120983466087,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.4143439571978
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1059.325541041708,
+                  "otherTeam": 1051.6460576420718
+                },
+                "result": 1059.325541041708
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5110498655601787
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": false
+                },
+                "result": 0.3125
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.29931972789115646
+                },
+                "result": 0.14688638013380567
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1078.6370189206666
+                },
+                "result": 1075.8056573173976
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.03628093589305
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.6993463160072224
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1078.6370189206666,
+            "change": -2.831361603268988,
+            "after": 1075.8056573173976
+          }
+        },
+        {
+          "playerId": 10,
+          "before": 972.7337380280628,
+          "change": -0.7694060542836496,
+          "after": 971.9643319737792,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 972.7337380280628,
+            "change": -0.7694060542836496,
+            "after": 971.9643319737792,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.4143439571978
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1059.325541041708,
+                  "otherTeam": 1051.6460576420718
+                },
+                "result": 1059.325541041708
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5110498655601787
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": false
+                },
+                "result": 0.3125
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.20408163265306123
+                },
+                "result": -0.1367562849521639
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 990.1811016464998
+                },
+                "result": 987.066097378145
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.03377880238318449
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.7694060542836496
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 990.1811016464998,
+            "change": -3.1150042683548236,
+            "after": 987.066097378145
+          }
+        },
+        {
+          "playerId": 12,
+          "before": 886.3683834996239,
+          "change": -0.7393804521652783,
+          "after": 885.6290030474586,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 886.3683834996239,
+            "change": -0.7393804521652783,
+            "after": 885.6290030474586,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.4143439571978
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1059.325541041708,
+                  "otherTeam": 1051.6460576420718
+                },
+                "result": 1059.325541041708
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5110498655601787
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.375,
+                  "won": false
+                },
+                "result": 0.3125
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.9782479834026807
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.24489795918367346
+                },
+                "result": -0.015195142772462674
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 861.259561826374
+                },
+                "result": 858.2661187001988
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.7356272519004621
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.0037532002647982805
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.7393804521652783
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 861.259561826374,
+            "change": -2.9934431261751797,
+            "after": 858.2661187001988
+          }
+        }
+      ],
+      "extras": {
+        "map": "Scar",
+        "players": {
+          "2": {
+            "score": 5020,
+            "objScore": 425,
+            "overloads": 1,
+            "objectiveKills": 2,
+            "ratio": 1.37,
+            "objScoreAgrees": true
+          },
+          "5": {
+            "score": 5495,
+            "objScore": 800,
+            "overloads": 2,
+            "objectiveKills": 3,
+            "ratio": 1.96,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 4285,
+            "objScore": 825,
+            "overloads": 1,
+            "objectiveKills": 8,
+            "ratio": 1.57,
+            "objScoreAgrees": true
+          },
+          "16": {
+            "score": 3475,
+            "objScore": 100,
+            "overloads": 0,
+            "objectiveKills": 0,
+            "ratio": 1.38,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 4455,
+            "objScore": 550,
+            "overloads": 1,
+            "objectiveKills": 6,
+            "ratio": 1.37,
+            "objScoreAgrees": true
+          },
+          "4": {
+            "score": 4850,
+            "objScore": 250,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 1.52,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 3185,
+            "objScore": 125,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 0.91,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 3930,
+            "objScore": 175,
+            "overloads": 0,
+            "objectiveKills": 4,
+            "ratio": 1.24,
+            "objScoreAgrees": true
+          }
+        }
+      }
+    }
+  ],
+  "closingStats": {
+    "1": {
+      "elo": 1147.0961279952405,
+      "lifetimeKills": 20797,
+      "lifetimeDeaths": 12787,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 11835,
+      "hpDeaths": 7318,
+      "sndKills": 2237,
+      "sndDeaths": 1376,
+      "overloadKills": 6725,
+      "overloadDeaths": 4093,
+      "hpWins": 137,
+      "hpLosses": 135,
+      "sndWins": 114,
+      "sndLosses": 106,
+      "overloadWins": 96,
+      "overloadLosses": 68,
+      "hpMarginTotal": -1.0650000000000008,
+      "hpMarginCount": 272,
+      "sndMarginTotal": 7.000000000000003,
+      "sndMarginCount": 220,
+      "overloadMarginTotal": 7.125,
+      "overloadMarginCount": 164,
+      "hpDamage": 4200.0,
+      "hpDamageShare": 0.35294117647058826,
+      "sndDamage": 1200.0,
+      "sndDamageShare": 0.42857142857142855,
+      "overloadDamage": 3700.0,
+      "overloadDamageShare": 0.25170068027210885,
+      "hpLifetimeDamage": 1133400.0,
+      "hpLifetimeTeamDamage": 3839600.0,
+      "sndLifetimeDamage": 213700.0,
+      "sndLifetimeTeamDamage": 681900.0,
+      "overloadLifetimeDamage": 644000.0,
+      "overloadLifetimeTeamDamage": 2194700.0,
+      "modeElo": {
+        "Hardpoint": 1134.377765369998,
+        "SND": 1163.747015671851,
+        "Overload": 1145.798515465213
+      }
+    },
+    "2": {
+      "elo": 1163.156165652415,
+      "lifetimeKills": 17789,
+      "lifetimeDeaths": 10992,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 9965,
+      "hpDeaths": 6222,
+      "sndKills": 1911,
+      "sndDeaths": 1165,
+      "overloadKills": 5913,
+      "overloadDeaths": 3605,
+      "hpWins": 107,
+      "hpLosses": 124,
+      "sndWins": 121,
+      "sndLosses": 67,
+      "overloadWins": 65,
+      "overloadLosses": 77,
+      "hpMarginTotal": -1.4830000000000005,
+      "hpMarginCount": 231,
+      "sndMarginTotal": 24.499999999999993,
+      "sndMarginCount": 188,
+      "overloadMarginTotal": -3.0,
+      "overloadMarginCount": 142,
+      "hpDamage": 3800.0,
+      "hpDamageShare": 0.26573426573426573,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.3225806451612903,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.26973684210526316,
+      "hpLifetimeDamage": 955800.0,
+      "hpLifetimeTeamDamage": 3240300.0,
+      "sndLifetimeDamage": 185300.0,
+      "sndLifetimeTeamDamage": 598800.0,
+      "overloadLifetimeDamage": 573200.0,
+      "overloadLifetimeTeamDamage": 1921700.0,
+      "modeElo": {
+        "Hardpoint": 1134.5913207220406,
+        "SND": 1233.2730904843647,
+        "Overload": 1115.5997762705063
+      }
+    },
+    "3": {
+      "elo": 1160.7764863844545,
+      "lifetimeKills": 19828,
+      "lifetimeDeaths": 11081,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 11166,
+      "hpDeaths": 6174,
+      "sndKills": 1976,
+      "sndDeaths": 1325,
+      "overloadKills": 6686,
+      "overloadDeaths": 3582,
+      "hpWins": 139,
+      "hpLosses": 119,
+      "sndWins": 100,
+      "sndLosses": 115,
+      "overloadWins": 85,
+      "overloadLosses": 71,
+      "hpMarginTotal": 10.269000000000004,
+      "hpMarginCount": 258,
+      "sndMarginTotal": -10.83333333333334,
+      "sndMarginCount": 215,
+      "overloadMarginTotal": 5.25,
+      "overloadMarginCount": 156,
+      "hpDamage": 4800.0,
+      "hpDamageShare": 0.3333333333333333,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.24,
+      "overloadDamage": 4800.0,
+      "overloadDamageShare": 0.3287671232876712,
+      "hpLifetimeDamage": 1058300.0,
+      "hpLifetimeTeamDamage": 3583000.0,
+      "sndLifetimeDamage": 190400.0,
+      "sndLifetimeTeamDamage": 638400.0,
+      "overloadLifetimeDamage": 637400.0,
+      "overloadLifetimeTeamDamage": 2094700.0,
+      "modeElo": {
+        "Hardpoint": 1196.4978140576106,
+        "SND": 1102.4986312911226,
+        "Overload": 1180.1269513821055
+      }
+    },
+    "4": {
+      "elo": 1081.1120983466087,
+      "lifetimeKills": 10761,
+      "lifetimeDeaths": 6554,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6096,
+      "hpDeaths": 3689,
+      "sndKills": 1037,
+      "sndDeaths": 726,
+      "overloadKills": 3628,
+      "overloadDeaths": 2139,
+      "hpWins": 82,
+      "hpLosses": 67,
+      "sndWins": 57,
+      "sndLosses": 65,
+      "overloadWins": 46,
+      "overloadLosses": 44,
+      "hpMarginTotal": 4.38,
+      "hpMarginCount": 149,
+      "sndMarginTotal": -5.166666666666666,
+      "sndMarginCount": 122,
+      "overloadMarginTotal": -0.25,
+      "overloadMarginCount": 90,
+      "hpDamage": 3200.0,
+      "hpDamageShare": 0.2689075630252101,
+      "sndDamage": 900.0,
+      "sndDamageShare": 0.28125,
+      "overloadDamage": 4400.0,
+      "overloadDamageShare": 0.29931972789115646,
+      "hpLifetimeDamage": 609600.0,
+      "hpLifetimeTeamDamage": 2188000.0,
+      "sndLifetimeDamage": 103700.0,
+      "sndLifetimeTeamDamage": 384900.0,
+      "overloadLifetimeDamage": 362800.0,
+      "overloadLifetimeTeamDamage": 1293000.0,
+      "modeElo": {
+        "Hardpoint": 1091.7923913346403,
+        "SND": 1071.8174071038607,
+        "Overload": 1075.8056573173976
+      }
+    },
+    "5": {
+      "elo": 1134.7811139109735,
+      "lifetimeKills": 18083,
+      "lifetimeDeaths": 11017,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 10562,
+      "hpDeaths": 6102,
+      "sndKills": 1799,
+      "sndDeaths": 1237,
+      "overloadKills": 5722,
+      "overloadDeaths": 3678,
+      "hpWins": 140,
+      "hpLosses": 102,
+      "sndWins": 79,
+      "sndLosses": 112,
+      "overloadWins": 77,
+      "overloadLosses": 68,
+      "hpMarginTotal": 16.953999999999994,
+      "hpMarginCount": 242,
+      "sndMarginTotal": -15.33333333333333,
+      "sndMarginCount": 191,
+      "overloadMarginTotal": 4.875,
+      "overloadMarginCount": 145,
+      "hpDamage": 3200.0,
+      "hpDamageShare": 0.22377622377622378,
+      "sndDamage": 1500.0,
+      "sndDamageShare": 0.3488372093023256,
+      "overloadDamage": 4500.0,
+      "overloadDamageShare": 0.29605263157894735,
+      "hpLifetimeDamage": 996100.0,
+      "hpLifetimeTeamDamage": 3420500.0,
+      "sndLifetimeDamage": 170100.0,
+      "sndLifetimeTeamDamage": 578500.0,
+      "overloadLifetimeDamage": 540000.0,
+      "overloadLifetimeTeamDamage": 1901500.0,
+      "modeElo": {
+        "Hardpoint": 1174.2317002682685,
+        "SND": 1069.9620338941777,
+        "Overload": 1156.775389380712
+      }
+    },
+    "6": {
+      "elo": 1018.1132011442882,
+      "lifetimeKills": 12347,
+      "lifetimeDeaths": 9193,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6924,
+      "hpDeaths": 5293,
+      "sndKills": 1325,
+      "sndDeaths": 987,
+      "overloadKills": 4098,
+      "overloadDeaths": 2913,
+      "hpWins": 82,
+      "hpLosses": 112,
+      "sndWins": 85,
+      "sndLosses": 72,
+      "overloadWins": 58,
+      "overloadLosses": 58,
+      "hpMarginTotal": -17.79300000000002,
+      "hpMarginCount": 194,
+      "sndMarginTotal": 11.166666666666664,
+      "sndMarginCount": 157,
+      "overloadMarginTotal": 1.375,
+      "overloadMarginCount": 116,
+      "hpDamage": 3000.0,
+      "hpDamageShare": 0.23809523809523808,
+      "sndDamage": 500.0,
+      "sndDamageShare": 0.16129032258064516,
+      "overloadDamage": 3500.0,
+      "overloadDamageShare": 0.23972602739726026,
+      "hpLifetimeDamage": 657800.0,
+      "hpLifetimeTeamDamage": 2658400.0,
+      "sndLifetimeDamage": 125500.0,
+      "sndLifetimeTeamDamage": 502800.0,
+      "overloadLifetimeDamage": 390400.0,
+      "overloadLifetimeTeamDamage": 1549500.0,
+      "modeElo": {
+        "Hardpoint": 970.5267344314843,
+        "SND": 1071.3777563847325,
+        "Overload": 1025.5861365147198
+      }
+    },
+    "7": {
+      "elo": 967.6380219445739,
+      "lifetimeKills": 9984,
+      "lifetimeDeaths": 8576,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 5753,
+      "hpDeaths": 4832,
+      "sndKills": 1036,
+      "sndDeaths": 1000,
+      "overloadKills": 3195,
+      "overloadDeaths": 2744,
+      "hpWins": 89,
+      "hpLosses": 81,
+      "sndWins": 73,
+      "sndLosses": 75,
+      "overloadWins": 58,
+      "overloadLosses": 47,
+      "hpMarginTotal": 0.9750000000000008,
+      "hpMarginCount": 170,
+      "sndMarginTotal": -1.8333333333333335,
+      "sndMarginCount": 148,
+      "overloadMarginTotal": 4.625,
+      "overloadMarginCount": 105,
+      "hpDamage": 4600.0,
+      "hpDamageShare": 0.2929936305732484,
+      "sndDamage": 800.0,
+      "sndDamageShare": 0.18604651162790697,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.2827586206896552,
+      "hpLifetimeDamage": 563400.0,
+      "hpLifetimeTeamDamage": 2432100.0,
+      "sndLifetimeDamage": 102100.0,
+      "sndLifetimeTeamDamage": 470100.0,
+      "overloadLifetimeDamage": 314400.0,
+      "overloadLifetimeTeamDamage": 1400100.0,
+      "modeElo": {
+        "Hardpoint": 973.5535874274724,
+        "SND": 942.447707034416,
+        "Overload": 992.0439364540371
+      }
+    },
+    "8": {
+      "elo": 941.0065409200745,
+      "lifetimeKills": 15552,
+      "lifetimeDeaths": 13193,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 8888,
+      "hpDeaths": 7447,
+      "sndKills": 1539,
+      "sndDeaths": 1504,
+      "overloadKills": 5125,
+      "overloadDeaths": 4242,
+      "hpWins": 125,
+      "hpLosses": 143,
+      "sndWins": 108,
+      "sndLosses": 109,
+      "overloadWins": 79,
+      "overloadLosses": 82,
+      "hpMarginTotal": -11.247000000000007,
+      "hpMarginCount": 268,
+      "sndMarginTotal": -0.3333333333333334,
+      "sndMarginCount": 217,
+      "overloadMarginTotal": 0.625,
+      "overloadMarginCount": 161,
+      "hpDamage": 3400.0,
+      "hpDamageShare": 0.26153846153846155,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.21428571428571427,
+      "overloadDamage": 3800.0,
+      "overloadDamageShare": 0.27941176470588236,
+      "hpLifetimeDamage": 853000.0,
+      "hpLifetimeTeamDamage": 3714600.0,
+      "sndLifetimeDamage": 148000.0,
+      "sndLifetimeTeamDamage": 660700.0,
+      "overloadLifetimeDamage": 494600.0,
+      "overloadLifetimeTeamDamage": 2142800.0,
+      "modeElo": {
+        "Hardpoint": 918.6450142379091,
+        "SND": 955.7927069608184,
+        "Overload": 958.4942216652165
+      }
+    },
+    "9": {
+      "elo": 1065.0344422055355,
+      "lifetimeKills": 17013,
+      "lifetimeDeaths": 13322,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 9722,
+      "hpDeaths": 7685,
+      "sndKills": 1837,
+      "sndDeaths": 1417,
+      "overloadKills": 5454,
+      "overloadDeaths": 4220,
+      "hpWins": 143,
+      "hpLosses": 128,
+      "sndWins": 113,
+      "sndLosses": 106,
+      "overloadWins": 79,
+      "overloadLosses": 83,
+      "hpMarginTotal": 6.746999999999999,
+      "hpMarginCount": 271,
+      "sndMarginTotal": 7.333333333333329,
+      "sndMarginCount": 219,
+      "overloadMarginTotal": -0.25,
+      "overloadMarginCount": 162,
+      "hpDamage": 3900.0,
+      "hpDamageShare": 0.28888888888888886,
+      "sndDamage": 400.0,
+      "sndDamageShare": 0.10810810810810811,
+      "overloadDamage": 4100.0,
+      "overloadDamageShare": 0.2789115646258503,
+      "hpLifetimeDamage": 932500.0,
+      "hpLifetimeTeamDamage": 3799500.0,
+      "sndLifetimeDamage": 176800.0,
+      "sndLifetimeTeamDamage": 678200.0,
+      "overloadLifetimeDamage": 523600.0,
+      "overloadLifetimeTeamDamage": 2136400.0,
+      "modeElo": {
+        "Hardpoint": 1075.846747213673,
+        "SND": 1068.4642925264982,
+        "Overload": 1042.1446509442005
+      }
+    },
+    "10": {
+      "elo": 971.9643319737792,
+      "lifetimeKills": 10592,
+      "lifetimeDeaths": 9619,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 6273,
+      "hpDeaths": 5530,
+      "sndKills": 993,
+      "sndDeaths": 1115,
+      "overloadKills": 3326,
+      "overloadDeaths": 2974,
+      "hpWins": 100,
+      "hpLosses": 99,
+      "sndWins": 85,
+      "sndLosses": 75,
+      "overloadWins": 62,
+      "overloadLosses": 54,
+      "hpMarginTotal": 1.5090000000000008,
+      "hpMarginCount": 199,
+      "sndMarginTotal": 0.8333333333333321,
+      "sndMarginCount": 160,
+      "overloadMarginTotal": 1.875,
+      "overloadMarginCount": 116,
+      "hpDamage": 2300.0,
+      "hpDamageShare": 0.19327731092436976,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.23255813953488372,
+      "overloadDamage": 3000.0,
+      "overloadDamageShare": 0.20408163265306123,
+      "hpLifetimeDamage": 612500.0,
+      "hpLifetimeTeamDamage": 2906500.0,
+      "sndLifetimeDamage": 96500.0,
+      "sndLifetimeTeamDamage": 505100.0,
+      "overloadLifetimeDamage": 324600.0,
+      "overloadLifetimeTeamDamage": 1563400.0,
+      "modeElo": {
+        "Hardpoint": 958.4335743354201,
+        "SND": 977.598335305171,
+        "Overload": 987.066097378145
+      }
+    },
+    "11": {
+      "elo": 905.4030987910483,
+      "lifetimeKills": 8769,
+      "lifetimeDeaths": 7869,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 5043,
+      "hpDeaths": 4444,
+      "sndKills": 850,
+      "sndDeaths": 936,
+      "overloadKills": 2876,
+      "overloadDeaths": 2489,
+      "hpWins": 96,
+      "hpLosses": 78,
+      "sndWins": 57,
+      "sndLosses": 84,
+      "overloadWins": 58,
+      "overloadLosses": 46,
+      "hpMarginTotal": 8.243000000000002,
+      "hpMarginCount": 174,
+      "sndMarginTotal": -15.66666666666666,
+      "sndMarginCount": 141,
+      "overloadMarginTotal": 0.375,
+      "overloadMarginCount": 104,
+      "hpDamage": 3400.0,
+      "hpDamageShare": 0.23776223776223776,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.23255813953488372,
+      "overloadDamage": 3300.0,
+      "overloadDamageShare": 0.21710526315789475,
+      "hpLifetimeDamage": 478600.0,
+      "hpLifetimeTeamDamage": 2408900.0,
+      "sndLifetimeDamage": 80300.0,
+      "sndLifetimeTeamDamage": 407400.0,
+      "overloadLifetimeDamage": 273100.0,
+      "overloadLifetimeTeamDamage": 1372000.0,
+      "modeElo": {
+        "Hardpoint": 948.7358512556453,
+        "SND": 839.4732026446427,
+        "Overload": 922.3745561840292
+      }
+    },
+    "12": {
+      "elo": 885.6290030474586,
+      "lifetimeKills": 14689,
+      "lifetimeDeaths": 13392,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 8615,
+      "hpDeaths": 7708,
+      "sndKills": 1394,
+      "sndDeaths": 1513,
+      "overloadKills": 4680,
+      "overloadDeaths": 4171,
+      "hpWins": 129,
+      "hpLosses": 147,
+      "sndWins": 115,
+      "sndLosses": 103,
+      "overloadWins": 62,
+      "overloadLosses": 100,
+      "hpMarginTotal": -7.193999999999999,
+      "hpMarginCount": 276,
+      "sndMarginTotal": 1.8333333333333335,
+      "sndMarginCount": 218,
+      "overloadMarginTotal": -10.125,
+      "overloadMarginCount": 162,
+      "hpDamage": 2200.0,
+      "hpDamageShare": 0.18487394957983194,
+      "sndDamage": 600.0,
+      "sndDamageShare": 0.21428571428571427,
+      "overloadDamage": 3600.0,
+      "overloadDamageShare": 0.24489795918367346,
+      "hpLifetimeDamage": 839600.0,
+      "hpLifetimeTeamDamage": 3944700.0,
+      "sndLifetimeDamage": 136200.0,
+      "sndLifetimeTeamDamage": 675000.0,
+      "overloadLifetimeDamage": 454500.0,
+      "overloadLifetimeTeamDamage": 2169000.0,
+      "modeElo": {
+        "Hardpoint": 870.3030294984638,
+        "SND": 924.6030013565239,
+        "Overload": 858.2661187001988
+      }
+    },
+    "13": {
+      "elo": 769.0382202515992,
+      "lifetimeKills": 3591,
+      "lifetimeDeaths": 4430,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 2117,
+      "hpDeaths": 2538,
+      "sndKills": 349,
+      "sndDeaths": 475,
+      "overloadKills": 1125,
+      "overloadDeaths": 1417,
+      "hpWins": 29,
+      "hpLosses": 55,
+      "sndWins": 30,
+      "sndLosses": 37,
+      "overloadWins": 21,
+      "overloadLosses": 29,
+      "hpMarginTotal": -8.150000000000004,
+      "hpMarginCount": 84,
+      "sndMarginTotal": -0.666666666666667,
+      "sndMarginCount": 67,
+      "overloadMarginTotal": -6.25,
+      "overloadMarginCount": 50,
+      "hpDamage": 2100.0,
+      "hpDamageShare": 0.14583333333333334,
+      "sndDamage": 200.0,
+      "sndDamageShare": 0.08,
+      "overloadDamage": 1800.0,
+      "overloadDamageShare": 0.1232876712328767,
+      "hpLifetimeDamage": 211700.0,
+      "hpLifetimeTeamDamage": 1212300.0,
+      "sndLifetimeDamage": 34900.0,
+      "sndLifetimeTeamDamage": 212400.0,
+      "overloadLifetimeDamage": 112500.0,
+      "overloadLifetimeTeamDamage": 667600.0,
+      "modeElo": {
+        "Hardpoint": 751.2308192920667,
+        "SND": 802.7552513408151,
+        "Overload": 753.027043417995
+      }
+    },
+    "14": {
+      "elo": 1091.1645098366644,
+      "lifetimeKills": 1349,
+      "lifetimeDeaths": 731,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 808,
+      "hpDeaths": 435,
+      "sndKills": 138,
+      "sndDeaths": 83,
+      "overloadKills": 403,
+      "overloadDeaths": 213,
+      "hpWins": 8,
+      "hpLosses": 9,
+      "sndWins": 6,
+      "sndLosses": 7,
+      "overloadWins": 5,
+      "overloadLosses": 4,
+      "hpMarginTotal": 1.15,
+      "hpMarginCount": 17,
+      "sndMarginTotal": -2.220446049250313e-16,
+      "sndMarginCount": 13,
+      "overloadMarginTotal": 0.25,
+      "overloadMarginCount": 9,
+      "hpDamage": 3000.0,
+      "hpDamageShare": 0.3,
+      "sndDamage": 1300.0,
+      "sndDamageShare": 0.38235294117647056,
+      "overloadDamage": 4300.0,
+      "overloadDamageShare": 0.32575757575757575,
+      "hpLifetimeDamage": 80800.0,
+      "hpLifetimeTeamDamage": 259500.0,
+      "sndLifetimeDamage": 13800.0,
+      "sndLifetimeTeamDamage": 43300.0,
+      "overloadLifetimeDamage": 40300.0,
+      "overloadLifetimeTeamDamage": 121900.0,
+      "modeElo": {
+        "Hardpoint": 1096.5968498743027,
+        "SND": 1086.2763370537898,
+        "Overload": 1088.6845939345237
+      }
+    },
+    "15": {
+      "elo": 903.1243201033259,
+      "lifetimeKills": 553,
+      "lifetimeDeaths": 572,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 294,
+      "hpDeaths": 312,
+      "sndKills": 52,
+      "sndDeaths": 57,
+      "overloadKills": 207,
+      "overloadDeaths": 203,
+      "hpWins": 6,
+      "hpLosses": 6,
+      "sndWins": 5,
+      "sndLosses": 4,
+      "overloadWins": 2,
+      "overloadLosses": 6,
+      "hpMarginTotal": -1.645,
+      "hpMarginCount": 12,
+      "sndMarginTotal": 1.6666666666666672,
+      "sndMarginCount": 9,
+      "overloadMarginTotal": -3.0,
+      "overloadMarginCount": 8,
+      "hpDamage": 1800.0,
+      "hpDamageShare": 0.14516129032258066,
+      "sndDamage": 500.0,
+      "sndDamageShare": 0.17857142857142858,
+      "overloadDamage": 2100.0,
+      "overloadDamageShare": 0.1826086956521739,
+      "hpLifetimeDamage": 29400.0,
+      "hpLifetimeTeamDamage": 154200.0,
+      "sndLifetimeDamage": 5200.0,
+      "sndLifetimeTeamDamage": 30300.0,
+      "overloadLifetimeDamage": 20700.0,
+      "overloadLifetimeTeamDamage": 99700.0,
+      "modeElo": {
+        "Hardpoint": 895.911561311277,
+        "SND": 927.3884821828366,
+        "Overload": 882.1667696446103
+      }
+    },
+    "16": {
+      "elo": 897.2595064819566,
+      "lifetimeKills": 6245,
+      "lifetimeDeaths": 5318,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 3540,
+      "hpDeaths": 2943,
+      "sndKills": 581,
+      "sndDeaths": 568,
+      "overloadKills": 2124,
+      "overloadDeaths": 1807,
+      "hpWins": 57,
+      "hpLosses": 55,
+      "sndWins": 41,
+      "sndLosses": 46,
+      "overloadWins": 29,
+      "overloadLosses": 42,
+      "hpMarginTotal": 1.5500000000000007,
+      "hpMarginCount": 112,
+      "sndMarginTotal": -2.166666666666667,
+      "sndMarginCount": 87,
+      "overloadMarginTotal": -1.625,
+      "overloadMarginCount": 71,
+      "hpDamage": 3900.0,
+      "hpDamageShare": 0.2727272727272727,
+      "sndDamage": 400.0,
+      "sndDamageShare": 0.14285714285714285,
+      "overloadDamage": 3300.0,
+      "overloadDamageShare": 0.21710526315789475,
+      "hpLifetimeDamage": 354000.0,
+      "hpLifetimeTeamDamage": 1640500.0,
+      "sndLifetimeDamage": 58100.0,
+      "sndLifetimeTeamDamage": 280700.0,
+      "overloadLifetimeDamage": 212400.0,
+      "overloadLifetimeTeamDamage": 1007700.0,
+      "modeElo": {
+        "Hardpoint": 915.2074343883962,
+        "SND": 872.6322592034985,
+        "Overload": 900.6321555660114
+      }
+    },
+    "17": {
+      "elo": 897.5460278821199,
+      "lifetimeKills": 1136,
+      "lifetimeDeaths": 1137,
+      "mapKills": 0,
+      "mapDeaths": 0,
+      "hpKills": 627,
+      "hpDeaths": 597,
+      "sndKills": 112,
+      "sndDeaths": 131,
+      "overloadKills": 397,
+      "overloadDeaths": 409,
+      "hpWins": 7,
+      "hpLosses": 16,
+      "sndWins": 7,
+      "sndLosses": 13,
+      "overloadWins": 6,
+      "overloadLosses": 9,
+      "hpMarginTotal": -3.1999999999999997,
+      "hpMarginCount": 23,
+      "sndMarginTotal": -2.3333333333333326,
+      "sndMarginCount": 20,
+      "overloadMarginTotal": -1.875,
+      "overloadMarginCount": 15,
+      "hpDamage": 2900.0,
+      "hpDamageShare": 0.21323529411764705,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.37037037037037035,
+      "overloadDamage": 1600.0,
+      "overloadDamageShare": 0.1951219512195122,
+      "hpLifetimeDamage": 62700.0,
+      "hpLifetimeTeamDamage": 314200.0,
+      "sndLifetimeDamage": 11200.0,
+      "sndLifetimeTeamDamage": 58700.0,
+      "overloadLifetimeDamage": 39700.0,
+      "overloadLifetimeTeamDamage": 197100.0,
+      "modeElo": {
+        "Hardpoint": 891.5617544074232,
+        "SND": 895.8024535025042,
+        "Overload": 910.0036891428662
+      }
+    }
+  },
+  "updatedAt": "2026-11-23T20:41:09.945954Z",
+  "eloModel": "model-r-kill25-v1"
+}

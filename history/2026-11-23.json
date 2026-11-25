@@ -1670,133 +1670,3957 @@
           }
         }
       }
+    },
+    {
+      "mapId": "map-2e5a88ceb23e81efd3c7f40207bd9e41202d7f329079c837a440d2a9c263cc59",
+      "date": "2026-11-23",
+      "source": "1a20ffce17734-master_playlist.mp4",
+      "fingerprint": "2e5a88ceb23e81efd3c7f40207bd9e41202d7f329079c837a440d2a9c263cc59",
+      "importedAt": "2026-11-25T00:20:59.609254Z",
+      "gameMode": "Overload",
+      "game": {
+        "source": "1a20ffce17734-master_playlist.mp4",
+        "gameMode": "Overload",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 4,
+            "teamB": 3
+          },
+          "winningTeam": 1,
+          "scoreDifference": 1
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 2,
+              "kills": 31,
+              "deaths": 26
+            },
+            {
+              "playerId": 7,
+              "kills": 27,
+              "deaths": 24
+            },
+            {
+              "playerId": 8,
+              "kills": 40,
+              "deaths": 24
+            },
+            {
+              "playerId": 10,
+              "kills": 29,
+              "deaths": 24
+            }
+          ],
+          "B": [
+            {
+              "playerId": 1,
+              "kills": 37,
+              "deaths": 26
+            },
+            {
+              "playerId": 3,
+              "kills": 44,
+              "deaths": 21
+            },
+            {
+              "playerId": 11,
+              "kills": 27,
+              "deaths": 26
+            },
+            {
+              "playerId": 12,
+              "kills": 25,
+              "deaths": 23
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 2,
+          "before": 1163.156165652415,
+          "change": 0.45033870351562655,
+          "after": 1163.6065043559306,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1163.156165652415,
+            "change": 0.45033870351562655,
+            "after": 1163.6065043559306,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.7261790545504
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1027.002704511166,
+                  "otherTeam": 1068.7353896160587
+                },
+                "result": 1027.002704511166
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.44022901944868303
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": true
+                },
+                "result": 0.5625
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2440944881889764
+                },
+                "result": -0.010831090796868623
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1115.5997762705063
+                },
+                "result": 1117.423009887979
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.00267527942682655
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.45033870351562655
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1115.5997762705063,
+            "change": 1.8232336174728516,
+            "after": 1117.423009887979
+          }
+        },
+        {
+          "playerId": 7,
+          "before": 967.6380219445739,
+          "change": 0.4360705465727506,
+          "after": 968.0740924911466,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 967.6380219445739,
+            "change": 0.4360705465727506,
+            "after": 968.0740924911466,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.7261790545504
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1027.002704511166,
+                  "otherTeam": 1068.7353896160587
+                },
+                "result": 1027.002704511166
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.44022901944868303
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": true
+                },
+                "result": 0.5625
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2125984251968504
+                },
+                "result": -0.06859690838016798
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 992.0439364540371
+                },
+                "result": 993.8094042539267
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.01694343636990149
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.4360705465727506
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 992.0439364540371,
+            "change": 1.7654677998896204,
+            "after": 993.8094042539267
+          }
+        },
+        {
+          "playerId": 8,
+          "before": 941.0065409200745,
+          "change": 0.4824420566376375,
+          "after": 941.4889829767121,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 941.0065409200745,
+            "change": 0.4824420566376375,
+            "after": 941.4889829767121,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.7261790545504
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1027.002704511166,
+                  "otherTeam": 1068.7353896160587
+                },
+                "result": 1027.002704511166
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.44022901944868303
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": true
+                },
+                "result": 0.5625
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.31496062992125984
+                },
+                "result": 0.11914199876555491
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 958.4942216652165
+                },
+                "result": 960.4474283722518
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.029428073695092063
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.4824420566376375
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 958.4942216652165,
+            "change": 1.9532067070352923,
+            "after": 960.4474283722518
+          }
+        },
+        {
+          "playerId": 10,
+          "before": 971.9643319737792,
+          "change": 0.4432046250442454,
+          "after": 972.4075365988234,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 971.9643319737792,
+            "change": 0.4432046250442454,
+            "after": 972.4075365988234,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.7261790545504
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1027.002704511166,
+                  "otherTeam": 1068.7353896160587
+                },
+                "result": 1027.002704511166
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.44022901944868303
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": true
+                },
+                "result": 0.5625
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2283464566929134
+                },
+                "result": -0.0397139995885183
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 987.066097378145
+                },
+                "result": 988.8604480868262
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.009809357898364022
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.4432046250442454
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 987.066097378145,
+            "change": 1.794350708681236,
+            "after": 988.8604480868262
+          }
+        },
+        {
+          "playerId": 1,
+          "before": 1147.0961279952405,
+          "change": -0.44024103229571665,
+          "after": 1146.6558869629448,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1147.0961279952405,
+            "change": -0.44024103229571665,
+            "after": 1146.6558869629448,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1010.9412651227107
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1068.7353896160587,
+                  "otherTeam": 1027.002704511166
+                },
+                "result": 1068.7353896160587
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5597709805513169
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": false
+                },
+                "result": 0.4375
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2781954887218045
+                },
+                "result": 0.051712350797079545
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1145.798515465213
+                },
+                "result": 1144.0161631077403
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.012772950646878648
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.44024103229571665
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1145.798515465213,
+            "change": -1.782352357472746,
+            "after": 1144.0161631077403
+          }
+        },
+        {
+          "playerId": 3,
+          "before": 1160.7764863844545,
+          "change": -0.41639819108831944,
+          "after": 1160.3600881933662,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1160.7764863844545,
+            "change": -0.41639819108831944,
+            "after": 1160.3600881933662,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1010.9412651227107
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1068.7353896160587,
+                  "otherTeam": 1027.002704511166
+                },
+                "result": 1068.7353896160587
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5597709805513169
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": false
+                },
+                "result": 0.4375
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.3308270676691729
+                },
+                "result": 0.14824207228496136
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1180.1269513821055
+                },
+                "result": 1178.4411287461207
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": 0.03661579185438545
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.41639819108831944
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 1180.1269513821055,
+            "change": -1.6858226359847777,
+            "after": 1178.4411287461207
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 905.4030987910483,
+          "change": -0.4743022340207972,
+          "after": 904.9287965570275,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 905.4030987910483,
+            "change": -0.4743022340207972,
+            "after": 904.9287965570275,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1010.9412651227107
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1068.7353896160587,
+                  "otherTeam": 1027.002704511166
+                },
+                "result": 1068.7353896160587
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5597709805513169
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": false
+                },
+                "result": 0.4375
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.20300751879699247
+                },
+                "result": -0.0861872513284659
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 922.3745561840292
+                },
+                "result": 920.454304224431
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.021288251078131076
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.4743022340207972
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 922.3745561840292,
+            "change": -1.920251959598204,
+            "after": 920.454304224431
+          }
+        },
+        {
+          "playerId": 12,
+          "before": 885.6290030474586,
+          "change": -0.4811144743657678,
+          "after": 885.1478885730928,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 885.6290030474586,
+            "change": -0.4811144743657678,
+            "after": 885.1478885730928,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Overload",
+                  "modeWeight": 0.247
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1010.9412651227107
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1068.7353896160587,
+                  "otherTeam": 1027.002704511166
+                },
+                "result": 1068.7353896160587
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5597709805513169
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.125,
+                  "won": false
+                },
+                "result": 0.4375
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -1.8340647082697545
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.18796992481203006
+                },
+                "result": -0.113767171753575
+              },
+              {
+                "name": "Overload rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 858.2661187001988
+                },
+                "result": 856.3182868201754
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.45301398294262935
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.247",
+                "inputs": {},
+                "result": -0.028100491423133023
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.4811144743657678
+              }
+            ]
+          },
+          "mode": {
+            "name": "Overload",
+            "before": 858.2661187001988,
+            "change": -1.9478318800233865,
+            "after": 856.3182868201754
+          }
+        }
+      ],
+      "extras": {
+        "map": "Gridlock",
+        "players": {
+          "2": {
+            "score": 4330,
+            "objScore": 1100,
+            "overloads": 3,
+            "objectiveKills": 4,
+            "ratio": 1.19,
+            "objScoreAgrees": true
+          },
+          "7": {
+            "score": 3205,
+            "objScore": 325,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 1.13,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 4225,
+            "objScore": 175,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 1.67,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 3550,
+            "objScore": 550,
+            "overloads": 1,
+            "objectiveKills": 5,
+            "ratio": 1.21,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 4480,
+            "objScore": 425,
+            "overloads": 1,
+            "objectiveKills": 3,
+            "ratio": 1.42,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 4750,
+            "objScore": 200,
+            "overloads": 0,
+            "objectiveKills": 7,
+            "ratio": 2.1,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 3440,
+            "objScore": 625,
+            "overloads": 1,
+            "objectiveKills": 6,
+            "ratio": 1.04,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 3015,
+            "objScore": 450,
+            "overloads": 1,
+            "objectiveKills": 1,
+            "ratio": 1.09,
+            "objScoreAgrees": true
+          }
+        }
+      }
+    },
+    {
+      "mapId": "map-b0ff673ce2207dce66afeee5c4acbc0db59ee3c0e161c2243fef184c243fd23c",
+      "date": "2026-11-23",
+      "source": "1a20ffc6d8985-master_playlist.mp4",
+      "fingerprint": "b0ff673ce2207dce66afeee5c4acbc0db59ee3c0e161c2243fef184c243fd23c",
+      "importedAt": "2026-11-25T00:20:59.610368Z",
+      "gameMode": "Hardpoint",
+      "game": {
+        "source": "1a20ffc6d8985-master_playlist.mp4",
+        "gameMode": "Hardpoint",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 249,
+            "teamB": 250
+          },
+          "winningTeam": 2,
+          "scoreDifference": 1
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 2,
+              "kills": 50,
+              "deaths": 31
+            },
+            {
+              "playerId": 7,
+              "kills": 29,
+              "deaths": 35
+            },
+            {
+              "playerId": 8,
+              "kills": 42,
+              "deaths": 35
+            },
+            {
+              "playerId": 10,
+              "kills": 46,
+              "deaths": 32
+            }
+          ],
+          "B": [
+            {
+              "playerId": 1,
+              "kills": 50,
+              "deaths": 35
+            },
+            {
+              "playerId": 3,
+              "kills": 53,
+              "deaths": 29
+            },
+            {
+              "playerId": 11,
+              "kills": 35,
+              "deaths": 25
+            },
+            {
+              "playerId": 12,
+              "kills": 43,
+              "deaths": 34
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 2,
+          "before": 1163.6065043559306,
+          "change": 0.0,
+          "after": 1163.6065043559306,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1163.6065043559306,
+            "change": 0.0,
+            "after": 1163.6065043559306,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1015.721089166411,
+                  "otherTeam": 1079.2725114321709
+                },
+                "result": 1015.721089166411
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.409548686493269
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": false
+                },
+                "result": 0.4975
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2994011976047904
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1134.5913207220406
+                },
+                "result": 1134.5913207220406
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1134.5913207220406,
+            "change": 0.0,
+            "after": 1134.5913207220406
+          }
+        },
+        {
+          "playerId": 7,
+          "before": 968.0740924911466,
+          "change": 0.0,
+          "after": 968.0740924911466,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 968.0740924911466,
+            "change": 0.0,
+            "after": 968.0740924911466,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1015.721089166411,
+                  "otherTeam": 1079.2725114321709
+                },
+                "result": 1015.721089166411
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.409548686493269
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": false
+                },
+                "result": 0.4975
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.17365269461077845
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 973.5535874274724
+                },
+                "result": 973.5535874274724
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 973.5535874274724,
+            "change": 0.0,
+            "after": 973.5535874274724
+          }
+        },
+        {
+          "playerId": 8,
+          "before": 941.4889829767121,
+          "change": 0.0,
+          "after": 941.4889829767121,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 941.4889829767121,
+            "change": 0.0,
+            "after": 941.4889829767121,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1015.721089166411,
+                  "otherTeam": 1079.2725114321709
+                },
+                "result": 1015.721089166411
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.409548686493269
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": false
+                },
+                "result": 0.4975
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.25149700598802394
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 918.6450142379091
+                },
+                "result": 918.6450142379091
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 918.6450142379091,
+            "change": 0.0,
+            "after": 918.6450142379091
+          }
+        },
+        {
+          "playerId": 10,
+          "before": 972.4075365988234,
+          "change": 0.0,
+          "after": 972.4075365988234,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 972.4075365988234,
+            "change": 0.0,
+            "after": 972.4075365988234,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1015.721089166411,
+                  "otherTeam": 1079.2725114321709
+                },
+                "result": 1015.721089166411
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.409548686493269
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": false
+                },
+                "result": 0.4975
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2754491017964072
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 958.4335743354201
+                },
+                "result": 958.4335743354201
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 958.4335743354201,
+            "change": 0.0,
+            "after": 958.4335743354201
+          }
+        },
+        {
+          "playerId": 1,
+          "before": 1146.6558869629448,
+          "change": 0.0,
+          "after": 1146.6558869629448,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1146.6558869629448,
+            "change": 0.0,
+            "after": 1146.6558869629448,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1079.2725114321709,
+                  "otherTeam": 1015.721089166411
+                },
+                "result": 1079.2725114321709
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5904513135067311
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": true
+                },
+                "result": 0.5025
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.27624309392265195
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1134.377765369998
+                },
+                "result": 1134.377765369998
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1134.377765369998,
+            "change": 0.0,
+            "after": 1134.377765369998
+          }
+        },
+        {
+          "playerId": 3,
+          "before": 1160.3600881933662,
+          "change": 0.0,
+          "after": 1160.3600881933662,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1160.3600881933662,
+            "change": 0.0,
+            "after": 1160.3600881933662,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1079.2725114321709,
+                  "otherTeam": 1015.721089166411
+                },
+                "result": 1079.2725114321709
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5904513135067311
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": true
+                },
+                "result": 0.5025
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.292817679558011
+                },
+                "result": 0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1196.4978140576106
+                },
+                "result": 1196.4978140576106
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1196.4978140576106,
+            "change": 0.0,
+            "after": 1196.4978140576106
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 904.9287965570275,
+          "change": 0.0,
+          "after": 904.9287965570275,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 904.9287965570275,
+            "change": 0.0,
+            "after": 904.9287965570275,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1079.2725114321709,
+                  "otherTeam": 1015.721089166411
+                },
+                "result": 1079.2725114321709
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5904513135067311
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": true
+                },
+                "result": 0.5025
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.19337016574585636
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 948.7358512556453
+                },
+                "result": 948.7358512556453
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 948.7358512556453,
+            "change": 0.0,
+            "after": 948.7358512556453
+          }
+        },
+        {
+          "playerId": 12,
+          "before": 885.1478885730928,
+          "change": 0.0,
+          "after": 885.1478885730928,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 885.1478885730928,
+            "change": 0.0,
+            "after": 885.1478885730928,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1079.2725114321709,
+                  "otherTeam": 1015.721089166411
+                },
+                "result": 1079.2725114321709
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5904513135067311
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.005,
+                  "won": true
+                },
+                "result": 0.5025
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": true
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.23756906077348067
+                },
+                "result": -0.0
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 870.3030294984638
+                },
+                "result": 870.3030294984638
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.0
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.0
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 870.3030294984638,
+            "change": 0.0,
+            "after": 870.3030294984638
+          }
+        }
+      ],
+      "extras": {
+        "map": "Colossus",
+        "players": {
+          "2": {
+            "score": 6400,
+            "objScore": 1090,
+            "time": 90,
+            "objectiveKills": 10,
+            "captures": 7,
+            "ratio": 1.61,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "7": {
+            "score": 3895,
+            "objScore": 810,
+            "time": 120,
+            "objectiveKills": 9,
+            "captures": 5,
+            "ratio": 0.83,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "8": {
+            "score": 5585,
+            "objScore": 1360,
+            "time": 79,
+            "objectiveKills": 7,
+            "captures": 13,
+            "ratio": 1.2,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "10": {
+            "score": 5955,
+            "objScore": 1075,
+            "time": 107,
+            "objectiveKills": 13,
+            "captures": 6,
+            "ratio": 1.44,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "1": {
+            "score": 7140,
+            "objScore": 1755,
+            "time": 146,
+            "objectiveKills": 13,
+            "captures": 15,
+            "ratio": 1.43,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "3": {
+            "score": 6725,
+            "objScore": 1130,
+            "time": 66,
+            "objectiveKills": 6,
+            "captures": 8,
+            "ratio": 1.83,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "11": {
+            "score": 4945,
+            "objScore": 1255,
+            "time": 110,
+            "objectiveKills": 13,
+            "captures": 7,
+            "ratio": 1.4,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          },
+          "12": {
+            "score": 4885,
+            "objScore": 480,
+            "time": 59,
+            "objectiveKills": 6,
+            "captures": 2,
+            "ratio": 1.26,
+            "objScoreAgrees": true,
+            "timeAgrees": true
+          }
+        }
+      }
+    },
+    {
+      "mapId": "map-e2ae3abc3baaee1e4f7fdcc2b979edefb00d2791d64b13aab48706bda000509d",
+      "date": "2026-11-23",
+      "source": "1a20ffc6d8935-master_playlist.mp4",
+      "fingerprint": "e2ae3abc3baaee1e4f7fdcc2b979edefb00d2791d64b13aab48706bda000509d",
+      "importedAt": "2026-11-25T00:20:59.611360Z",
+      "gameMode": "SND",
+      "game": {
+        "source": "1a20ffc6d8935-master_playlist.mp4",
+        "gameMode": "SND",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 6,
+            "teamB": 4
+          },
+          "winningTeam": 1,
+          "scoreDifference": 2
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 2,
+              "kills": 13,
+              "deaths": 9
+            },
+            {
+              "playerId": 7,
+              "kills": 10,
+              "deaths": 6
+            },
+            {
+              "playerId": 8,
+              "kills": 16,
+              "deaths": 4
+            },
+            {
+              "playerId": 10,
+              "kills": 3,
+              "deaths": 8
+            }
+          ],
+          "B": [
+            {
+              "playerId": 1,
+              "kills": 12,
+              "deaths": 9
+            },
+            {
+              "playerId": 3,
+              "kills": 9,
+              "deaths": 7
+            },
+            {
+              "playerId": 11,
+              "kills": 7,
+              "deaths": 7
+            },
+            {
+              "playerId": 12,
+              "kills": 5,
+              "deaths": 8
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 2,
+          "before": 1163.6065043559306,
+          "change": 0.901294982764739,
+          "after": 1164.5077993386953,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1163.6065043559306,
+            "change": 0.901294982764739,
+            "after": 1164.5077993386953,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1048.4855231741367,
+                  "otherTeam": 1049.6072777651332
+                },
+                "result": 1048.4855231741367
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.49838567098489905
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": true
+                },
+                "result": 0.6666666666666666
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.30952380952380953
+                },
+                "result": 0.15025088900157824
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1233.2730904843647
+                },
+                "result": 1235.9475563085928
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": 0.05063454959353187
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.901294982764739
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 1233.2730904843647,
+            "change": 2.6744658242280366,
+            "after": 1235.9475563085928
+          }
+        },
+        {
+          "playerId": 7,
+          "before": 968.0740924911466,
+          "change": 0.8405335232525886,
+          "after": 968.9146260143992,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 968.0740924911466,
+            "change": 0.8405335232525886,
+            "after": 968.9146260143992,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1048.4855231741367,
+                  "otherTeam": 1049.6072777651332
+                },
+                "result": 1048.4855231741367
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.49838567098489905
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": true
+                },
+                "result": 0.6666666666666666
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.23809523809523808
+                },
+                "result": -0.030050177800315655
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 942.447707034416
+                },
+                "result": 944.9418717918422
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": -0.010126909918706377
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.8405335232525886
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 942.447707034416,
+            "change": 2.4941647574262333,
+            "after": 944.9418717918422
+          }
+        },
+        {
+          "playerId": 8,
+          "before": 941.4889829767121,
+          "change": 0.9620564422771167,
+          "after": 942.4510394189892,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 941.4889829767121,
+            "change": 0.9620564422771167,
+            "after": 942.4510394189892,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1048.4855231741367,
+                  "otherTeam": 1049.6072777651332
+                },
+                "result": 1048.4855231741367
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.49838567098489905
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": true
+                },
+                "result": 0.6666666666666666
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.38095238095238093
+                },
+                "result": 0.33055195580347196
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 955.7927069608184
+                },
+                "result": 958.6474738518483
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": 0.11139600910577006
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.9620564422771167
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 955.7927069608184,
+            "change": 2.8547668910299535,
+            "after": 958.6474738518483
+          }
+        },
+        {
+          "playerId": 10,
+          "before": 972.4075365988234,
+          "change": 0.6987567843907527,
+          "after": 973.1062933832142,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 972.4075365988234,
+            "change": 0.6987567843907527,
+            "after": 973.1062933832142,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1024.2731650716078
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1048.4855231741367,
+                  "otherTeam": 1049.6072777651332
+                },
+                "result": 1048.4855231741367
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.49838567098489905
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": true
+                },
+                "result": 0.6666666666666666
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.07142857142857142
+                },
+                "result": -0.4507526670047346
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 977.598335305171
+                },
+                "result": 979.6717975733927
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": -0.15190364878059556
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.6987567843907527
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 977.598335305171,
+            "change": 2.0734622682217605,
+            "after": 979.6717975733927
+          }
+        },
+        {
+          "playerId": 1,
+          "before": 1146.6558869629448,
+          "change": -0.7539944748564267,
+          "after": 1145.9018924880884,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1146.6558869629448,
+            "change": -0.7539944748564267,
+            "after": 1145.9018924880884,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1049.6072777651332,
+                  "otherTeam": 1048.4855231741367
+                },
+                "result": 1049.6072777651332
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.501614329015101
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": false
+                },
+                "result": 0.33333333333333337
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.36363636363636365
+                },
+                "result": 0.2868426062757402
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1163.747015671851
+                },
+                "result": 1161.5096433429
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": 0.09666595831492446
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.7539944748564267
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 1163.747015671851,
+            "change": -2.237372328950869,
+            "after": 1161.5096433429
+          }
+        },
+        {
+          "playerId": 3,
+          "before": 1160.3600881933662,
+          "change": -0.8313272415084612,
+          "after": 1159.5287609518577,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1160.3600881933662,
+            "change": -0.8313272415084612,
+            "after": 1159.5287609518577,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1049.6072777651332,
+                  "otherTeam": 1048.4855231741367
+                },
+                "result": 1049.6072777651332
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.501614329015101
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": false
+                },
+                "result": 0.33333333333333337
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.2727272727272727
+                },
+                "result": 0.05736852125514799
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1102.4986312911226
+                },
+                "result": 1100.0317848771513
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": 0.019333191662984875
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.8313272415084612
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 1102.4986312911226,
+            "change": -2.466846413971325,
+            "after": 1100.0317848771513
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 904.9287965570275,
+          "change": -0.8828824192762568,
+          "after": 904.0459141377512,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 904.9287965570275,
+            "change": -0.8828824192762568,
+            "after": 904.0459141377512,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1049.6072777651332,
+                  "otherTeam": 1048.4855231741367
+                },
+                "result": 1049.6072777651332
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.501614329015101
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": false
+                },
+                "result": 0.33333333333333337
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.21212121212121213
+                },
+                "result": -0.09561420209191339
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 839.4732026446427
+                },
+                "result": 836.8533735073242
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": -0.032221986104974815
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.8828824192762568
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 839.4732026446427,
+            "change": -2.6198291373184475,
+            "after": 836.8533735073242
+          }
+        },
+        {
+          "playerId": 12,
+          "before": 885.1478885730928,
+          "change": -0.9344375970442798,
+          "after": 884.2134509760485,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 885.1478885730928,
+            "change": -0.9344375970442798,
+            "after": 884.2134509760485,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "SND",
+                  "modeWeight": 0.337
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1011.3942791056531
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1049.6072777651332,
+                  "otherTeam": 1048.4855231741367
+                },
+                "result": 1049.6072777651332
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.501614329015101
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.3333333333333333,
+                  "won": false
+                },
+                "result": 0.33333333333333337
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.5242149352265137
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.15151515151515152
+                },
+                "result": -0.24859692543897483
+              },
+              {
+                "name": "SND rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 924.6030013565239
+                },
+                "result": 921.8301894958585
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8506604331713352
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.337",
+                "inputs": {},
+                "result": -0.08377716387293452
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.9344375970442798
+              }
+            ]
+          },
+          "mode": {
+            "name": "SND",
+            "before": 924.6030013565239,
+            "change": -2.772811860665456,
+            "after": 921.8301894958585
+          }
+        }
+      ],
+      "extras": {
+        "map": "Fringe",
+        "players": {
+          "2": {
+            "score": 1150,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.44,
+            "objScoreAgrees": true
+          },
+          "7": {
+            "score": 1085,
+            "objScore": 100,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.67,
+            "objScoreAgrees": true
+          },
+          "8": {
+            "score": 1875,
+            "objScore": 275,
+            "plants": 1,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 4.0,
+            "objScoreAgrees": true
+          },
+          "10": {
+            "score": 340,
+            "objScore": 0,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.38,
+            "objScoreAgrees": true
+          },
+          "1": {
+            "score": 1250,
+            "objScore": 125,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 1,
+            "ratio": 1.33,
+            "objScoreAgrees": true
+          },
+          "3": {
+            "score": 1030,
+            "objScore": 175,
+            "plants": 1,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 1.29,
+            "objScoreAgrees": true
+          },
+          "11": {
+            "score": 1000,
+            "objScore": 200,
+            "plants": 1,
+            "defuses": 1,
+            "objectiveKills": 0,
+            "ratio": 1.0,
+            "objScoreAgrees": true
+          },
+          "12": {
+            "score": 550,
+            "objScore": 25,
+            "plants": 0,
+            "defuses": 0,
+            "objectiveKills": 0,
+            "ratio": 0.63,
+            "objScoreAgrees": true
+          }
+        }
+      }
+    },
+    {
+      "mapId": "map-3eb1bb5b4f6593fc9762c731c4a90b0b3fc9a945010e6dbb7b94b8d76ae20b3b",
+      "date": "2026-11-23",
+      "source": "1a20ffc6d899-master_playlist.mp4",
+      "fingerprint": "3eb1bb5b4f6593fc9762c731c4a90b0b3fc9a945010e6dbb7b94b8d76ae20b3b",
+      "importedAt": "2026-11-25T00:20:59.612357Z",
+      "gameMode": "Hardpoint",
+      "game": {
+        "source": "1a20ffc6d899-master_playlist.mp4",
+        "gameMode": "Hardpoint",
+        "result": {
+          "type": "score",
+          "score": {
+            "teamA": 250,
+            "teamB": 226
+          },
+          "winningTeam": 1,
+          "scoreDifference": 24
+        },
+        "teams": {
+          "A": [
+            {
+              "playerId": 2,
+              "kills": 57,
+              "deaths": 29
+            },
+            {
+              "playerId": 7,
+              "kills": 35,
+              "deaths": 28
+            },
+            {
+              "playerId": 8,
+              "kills": 28,
+              "deaths": 28
+            },
+            {
+              "playerId": 10,
+              "kills": 34,
+              "deaths": 29
+            }
+          ],
+          "B": [
+            {
+              "playerId": 1,
+              "kills": 43,
+              "deaths": 28
+            },
+            {
+              "playerId": 3,
+              "kills": 51,
+              "deaths": 24
+            },
+            {
+              "playerId": 11,
+              "kills": 30,
+              "deaths": 32
+            },
+            {
+              "playerId": 12,
+              "kills": 28,
+              "deaths": 33
+            }
+          ]
+        }
+      },
+      "elo": [
+        {
+          "playerId": 2,
+          "before": 1164.5077993386953,
+          "change": 0.9828947549135592,
+          "after": 1165.490694093609,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1164.5077993386953,
+            "change": 0.9828947549135592,
+            "after": 1165.490694093609,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1023.4225046384365
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1019.2391417066802,
+                  "otherTeam": 1075.7544588919015
+                },
+                "result": 1019.2391417066802
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.4193777478105751
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": true
+                },
+                "result": 0.56
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.37012987012987014
+                },
+                "result": 0.25339399339328206
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1134.5913207220406
+                },
+                "result": 1136.9540484982751
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.10541190125160534
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.9828947549135592
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1134.5913207220406,
+            "change": 2.3627277762345784,
+            "after": 1136.9540484982751
+          }
+        },
+        {
+          "playerId": 7,
+          "before": 968.9146260143992,
+          "change": 0.8575400615333137,
+          "after": 969.7721660759325,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 968.9146260143992,
+            "change": 0.8575400615333137,
+            "after": 969.7721660759325,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1023.4225046384365
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1019.2391417066802,
+                  "otherTeam": 1075.7544588919015
+                },
+                "result": 1019.2391417066802
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.4193777478105751
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": true
+                },
+                "result": 0.56
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.22727272727272727
+                },
+                "result": -0.0479394041554858
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 973.5535874274724
+                },
+                "result": 975.6149818061583
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.019942792128682094
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.8575400615333137
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 973.5535874274724,
+            "change": 2.061394378685918,
+            "after": 975.6149818061583
+          }
+        },
+        {
+          "playerId": 8,
+          "before": 942.4510394189892,
+          "change": 0.8176544772759371,
+          "after": 943.2686938962652,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 942.4510394189892,
+            "change": 0.8176544772759371,
+            "after": 943.2686938962652,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1023.4225046384365
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1019.2391417066802,
+                  "otherTeam": 1075.7544588919015
+                },
+                "result": 1019.2391417066802
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.4193777478105751
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": true
+                },
+                "result": 0.56
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.18181818181818182
+                },
+                "result": -0.14381821246645735
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 918.6450142379091
+                },
+                "result": 920.610529808284
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.05982837638604625
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.8176544772759371
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 918.6450142379091,
+            "change": 1.9655155703749188,
+            "after": 920.610529808284
+          }
+        },
+        {
+          "playerId": 10,
+          "before": 973.1062933832142,
+          "change": 0.8518421209251983,
+          "after": 973.9581355041394,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 973.1062933832142,
+            "change": 0.8518421209251983,
+            "after": 973.9581355041394,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1023.4225046384365
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1019.2391417066802,
+                  "otherTeam": 1075.7544588919015
+                },
+                "result": 1019.2391417066802
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.4193777478105751
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": true
+                },
+                "result": 0.56
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": 2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.22077922077922077
+                },
+                "result": -0.061636376771338895
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 958.4335743354201
+                },
+                "result": 960.4812717414901
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": 0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.02564073273687698
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": 0.8518421209251983
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 958.4335743354201,
+            "change": 2.0476974060700286,
+            "after": 960.4812717414901
+          }
+        },
+        {
+          "playerId": 1,
+          "before": 1145.9018924880884,
+          "change": -0.8486182861074667,
+          "after": 1145.053274201981,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1145.9018924880884,
+            "change": -0.8486182861074667,
+            "after": 1145.053274201981,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1012.2449395388245
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1075.7544588919015,
+                  "otherTeam": 1019.2391417066802
+                },
+                "result": 1075.7544588919015
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5806222521894249
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": false
+                },
+                "result": 0.43999999999999995
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.28289473684210525
+                },
+                "result": 0.06938597969872942
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1134.377765369998
+                },
+                "result": 1132.3378175668554
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.028864567554671438
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.8486182861074667
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1134.377765369998,
+            "change": -2.039947803142695,
+            "after": 1132.3378175668554
+          }
+        },
+        {
+          "playerId": 3,
+          "before": 1159.5287609518577,
+          "change": -0.8024349780198463,
+          "after": 1158.726325973838,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 1159.5287609518577,
+            "change": -0.8024349780198463,
+            "after": 1158.726325973838,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1012.2449395388245
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1075.7544588919015,
+                  "otherTeam": 1019.2391417066802
+                },
+                "result": 1075.7544588919015
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5806222521894249
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": false
+                },
+                "result": 0.43999999999999995
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.3355263157894737
+                },
+                "result": 0.1804035472166965
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 1196.4978140576106
+                },
+                "result": 1194.568883821986
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": 0.07504787564214574
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.8024349780198463
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 1196.4978140576106,
+            "change": -1.928930235624648,
+            "after": 1194.568883821986
+          }
+        },
+        {
+          "playerId": 11,
+          "before": 904.0459141377512,
+          "change": -0.9236661617494519,
+          "after": 903.1222479760017,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 904.0459141377512,
+            "change": -0.9236661617494519,
+            "after": 903.1222479760017,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1012.2449395388245
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1075.7544588919015,
+                  "otherTeam": 1019.2391417066802
+                },
+                "result": 1075.7544588919015
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5806222521894249
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": false
+                },
+                "result": 0.43999999999999995
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.19736842105263158
+                },
+                "result": -0.11101756751796707
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 948.7358512556453
+                },
+                "result": 946.515499905286
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.0461833080874743
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.9236661617494519
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 948.7358512556453,
+            "change": -2.2203513503593513,
+            "after": 946.515499905286
+          }
+        },
+        {
+          "playerId": 12,
+          "before": 884.2134509760485,
+          "change": -0.9352119887712433,
+          "after": 883.2782389872773,
+          "calculationTrace": {
+            "rulesVersion": 3,
+            "model": "model-r-kill25-v1",
+            "before": 884.2134509760485,
+            "change": -0.9352119887712433,
+            "after": 883.2782389872773,
+            "steps": [
+              {
+                "name": "Model",
+                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "inputs": {
+                  "mode": "Hardpoint",
+                  "modeWeight": 0.416
+                },
+                "result": "model-r-kill25-v1"
+              },
+              {
+                "name": "Opponent average Elo",
+                "formula": "average overall rating of the other team",
+                "inputs": {},
+                "result": 1012.2449395388245
+              },
+              {
+                "name": "Team strength",
+                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "inputs": {
+                  "ownTeam": 1075.7544588919015,
+                  "otherTeam": 1019.2391417066802
+                },
+                "result": 1075.7544588919015
+              },
+              {
+                "name": "Expected result",
+                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "inputs": {},
+                "result": 0.5806222521894249
+              },
+              {
+                "name": "Actual result",
+                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "inputs": {
+                  "margin": 0.12,
+                  "won": false
+                },
+                "result": 0.43999999999999995
+              },
+              {
+                "name": "Team change (mode)",
+                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "inputs": {
+                  "noChange": false
+                },
+                "result": -2.1093337828413747
+              },
+              {
+                "name": "Kill share (mode)",
+                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "inputs": {
+                  "shareOfTeamKills": 0.18421052631578946
+                },
+                "result": -0.1387719593974589
+              },
+              {
+                "name": "Hardpoint rating",
+                "formula": "rating before + team change + kill share",
+                "inputs": {
+                  "before": 870.3030294984638
+                },
+                "result": 868.054923756225
+              },
+              {
+                "name": "Base Elo",
+                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "inputs": {},
+                "result": -0.8774828536620118
+              },
+              {
+                "name": "Damage adjustment",
+                "formula": "kill share x 0.416",
+                "inputs": {},
+                "result": -0.0577291351093429
+              },
+              {
+                "name": "Final change",
+                "formula": "Base Elo + Damage adjustment",
+                "inputs": {},
+                "result": -0.9352119887712433
+              }
+            ]
+          },
+          "mode": {
+            "name": "Hardpoint",
+            "before": 870.3030294984638,
+            "change": -2.248105742238863,
+            "after": 868.054923756225
+          }
+        }
+      ],
+      "extras": {
+        "map": "Hacienda",
+        "players": {
+          "2": {
+            "score": 6835,
+            "objScore": 1215,
+            "time": 71,
+            "ratio": 1.97
+          },
+          "7": {
+            "score": 4470,
+            "objScore": 845,
+            "time": 86,
+            "ratio": 1.25
+          },
+          "8": {
+            "score": 3820,
+            "objScore": 930,
+            "time": 115,
+            "ratio": 1.0
+          },
+          "10": {
+            "score": 4170,
+            "objScore": 680,
+            "time": 83,
+            "ratio": 1.17
+          },
+          "1": {
+            "score": 5550,
+            "objScore": 1000,
+            "time": 129,
+            "ratio": 1.54
+          },
+          "3": {
+            "score": 6300,
+            "objScore": 1000,
+            "time": 62,
+            "ratio": 2.13
+          },
+          "11": {
+            "score": 3995,
+            "objScore": 965,
+            "time": 89,
+            "ratio": 0.94
+          },
+          "12": {
+            "score": 3375,
+            "objScore": 515,
+            "time": 92,
+            "ratio": 0.85
+          }
+        }
+      }
     }
   ],
   "closingStats": {
     "1": {
-      "elo": 1147.0961279952405,
-      "lifetimeKills": 20797,
-      "lifetimeDeaths": 12787,
+      "elo": 1145.053274201981,
+      "lifetimeKills": 20939,
+      "lifetimeDeaths": 12885,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 11835,
-      "hpDeaths": 7318,
-      "sndKills": 2237,
-      "sndDeaths": 1376,
-      "overloadKills": 6725,
-      "overloadDeaths": 4093,
-      "hpWins": 137,
-      "hpLosses": 135,
+      "hpKills": 11928,
+      "hpDeaths": 7381,
+      "sndKills": 2249,
+      "sndDeaths": 1385,
+      "overloadKills": 6762,
+      "overloadDeaths": 4119,
+      "hpWins": 138,
+      "hpLosses": 136,
       "sndWins": 114,
-      "sndLosses": 106,
+      "sndLosses": 107,
       "overloadWins": 96,
-      "overloadLosses": 68,
-      "hpMarginTotal": -1.0650000000000008,
-      "hpMarginCount": 272,
-      "sndMarginTotal": 7.000000000000003,
-      "sndMarginCount": 220,
-      "overloadMarginTotal": 7.125,
-      "overloadMarginCount": 164,
-      "hpDamage": 4200.0,
-      "hpDamageShare": 0.35294117647058826,
+      "overloadLosses": 69,
+      "hpMarginTotal": -1.180000000000001,
+      "hpMarginCount": 274,
+      "sndMarginTotal": 6.66666666666667,
+      "sndMarginCount": 221,
+      "overloadMarginTotal": 7.0,
+      "overloadMarginCount": 165,
+      "hpDamage": 4300.0,
+      "hpDamageShare": 0.28289473684210525,
       "sndDamage": 1200.0,
-      "sndDamageShare": 0.42857142857142855,
+      "sndDamageShare": 0.36363636363636365,
       "overloadDamage": 3700.0,
-      "overloadDamageShare": 0.25170068027210885,
-      "hpLifetimeDamage": 1133400.0,
-      "hpLifetimeTeamDamage": 3839600.0,
-      "sndLifetimeDamage": 213700.0,
-      "sndLifetimeTeamDamage": 681900.0,
-      "overloadLifetimeDamage": 644000.0,
-      "overloadLifetimeTeamDamage": 2194700.0,
+      "overloadDamageShare": 0.2781954887218045,
+      "hpLifetimeDamage": 1142700.0,
+      "hpLifetimeTeamDamage": 3872900.0,
+      "sndLifetimeDamage": 214900.0,
+      "sndLifetimeTeamDamage": 685200.0,
+      "overloadLifetimeDamage": 647700.0,
+      "overloadLifetimeTeamDamage": 2208000.0,
       "modeElo": {
-        "Hardpoint": 1134.377765369998,
-        "SND": 1163.747015671851,
-        "Overload": 1145.798515465213
+        "Hardpoint": 1132.3378175668554,
+        "SND": 1161.5096433429,
+        "Overload": 1144.0161631077403
       }
     },
     "2": {
-      "elo": 1163.156165652415,
-      "lifetimeKills": 17789,
-      "lifetimeDeaths": 10992,
+      "elo": 1165.490694093609,
+      "lifetimeKills": 17940,
+      "lifetimeDeaths": 11087,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 9965,
-      "hpDeaths": 6222,
-      "sndKills": 1911,
-      "sndDeaths": 1165,
-      "overloadKills": 5913,
-      "overloadDeaths": 3605,
-      "hpWins": 107,
-      "hpLosses": 124,
-      "sndWins": 121,
+      "hpKills": 10072,
+      "hpDeaths": 6282,
+      "sndKills": 1924,
+      "sndDeaths": 1174,
+      "overloadKills": 5944,
+      "overloadDeaths": 3631,
+      "hpWins": 108,
+      "hpLosses": 125,
+      "sndWins": 122,
       "sndLosses": 67,
-      "overloadWins": 65,
+      "overloadWins": 66,
       "overloadLosses": 77,
-      "hpMarginTotal": -1.4830000000000005,
-      "hpMarginCount": 231,
-      "sndMarginTotal": 24.499999999999993,
-      "sndMarginCount": 188,
-      "overloadMarginTotal": -3.0,
-      "overloadMarginCount": 142,
-      "hpDamage": 3800.0,
-      "hpDamageShare": 0.26573426573426573,
-      "sndDamage": 1000.0,
-      "sndDamageShare": 0.3225806451612903,
-      "overloadDamage": 4100.0,
-      "overloadDamageShare": 0.26973684210526316,
-      "hpLifetimeDamage": 955800.0,
-      "hpLifetimeTeamDamage": 3240300.0,
-      "sndLifetimeDamage": 185300.0,
-      "sndLifetimeTeamDamage": 598800.0,
-      "overloadLifetimeDamage": 573200.0,
-      "overloadLifetimeTeamDamage": 1921700.0,
+      "hpMarginTotal": -1.3680000000000003,
+      "hpMarginCount": 233,
+      "sndMarginTotal": 24.833333333333325,
+      "sndMarginCount": 189,
+      "overloadMarginTotal": -2.875,
+      "overloadMarginCount": 143,
+      "hpDamage": 5700.0,
+      "hpDamageShare": 0.37012987012987014,
+      "sndDamage": 1300.0,
+      "sndDamageShare": 0.30952380952380953,
+      "overloadDamage": 3100.0,
+      "overloadDamageShare": 0.2440944881889764,
+      "hpLifetimeDamage": 966500.0,
+      "hpLifetimeTeamDamage": 3272400.0,
+      "sndLifetimeDamage": 186600.0,
+      "sndLifetimeTeamDamage": 603000.0,
+      "overloadLifetimeDamage": 576300.0,
+      "overloadLifetimeTeamDamage": 1934400.0,
       "modeElo": {
-        "Hardpoint": 1134.5913207220406,
-        "SND": 1233.2730904843647,
-        "Overload": 1115.5997762705063
+        "Hardpoint": 1136.9540484982751,
+        "SND": 1235.9475563085928,
+        "Overload": 1117.423009887979
       }
     },
     "3": {
-      "elo": 1160.7764863844545,
-      "lifetimeKills": 19828,
-      "lifetimeDeaths": 11081,
+      "elo": 1158.726325973838,
+      "lifetimeKills": 19985,
+      "lifetimeDeaths": 11162,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 11166,
-      "hpDeaths": 6174,
-      "sndKills": 1976,
-      "sndDeaths": 1325,
-      "overloadKills": 6686,
-      "overloadDeaths": 3582,
-      "hpWins": 139,
-      "hpLosses": 119,
+      "hpKills": 11270,
+      "hpDeaths": 6227,
+      "sndKills": 1985,
+      "sndDeaths": 1332,
+      "overloadKills": 6730,
+      "overloadDeaths": 3603,
+      "hpWins": 140,
+      "hpLosses": 120,
       "sndWins": 100,
-      "sndLosses": 115,
+      "sndLosses": 116,
       "overloadWins": 85,
-      "overloadLosses": 71,
-      "hpMarginTotal": 10.269000000000004,
-      "hpMarginCount": 258,
-      "sndMarginTotal": -10.83333333333334,
-      "sndMarginCount": 215,
-      "overloadMarginTotal": 5.25,
-      "overloadMarginCount": 156,
-      "hpDamage": 4800.0,
-      "hpDamageShare": 0.3333333333333333,
-      "sndDamage": 600.0,
-      "sndDamageShare": 0.24,
-      "overloadDamage": 4800.0,
-      "overloadDamageShare": 0.3287671232876712,
-      "hpLifetimeDamage": 1058300.0,
-      "hpLifetimeTeamDamage": 3583000.0,
-      "sndLifetimeDamage": 190400.0,
-      "sndLifetimeTeamDamage": 638400.0,
-      "overloadLifetimeDamage": 637400.0,
-      "overloadLifetimeTeamDamage": 2094700.0,
+      "overloadLosses": 72,
+      "hpMarginTotal": 10.154000000000005,
+      "hpMarginCount": 260,
+      "sndMarginTotal": -11.166666666666673,
+      "sndMarginCount": 216,
+      "overloadMarginTotal": 5.125,
+      "overloadMarginCount": 157,
+      "hpDamage": 5100.0,
+      "hpDamageShare": 0.3355263157894737,
+      "sndDamage": 900.0,
+      "sndDamageShare": 0.2727272727272727,
+      "overloadDamage": 4400.0,
+      "overloadDamageShare": 0.3308270676691729,
+      "hpLifetimeDamage": 1068700.0,
+      "hpLifetimeTeamDamage": 3616300.0,
+      "sndLifetimeDamage": 191300.0,
+      "sndLifetimeTeamDamage": 641700.0,
+      "overloadLifetimeDamage": 641800.0,
+      "overloadLifetimeTeamDamage": 2108000.0,
       "modeElo": {
-        "Hardpoint": 1196.4978140576106,
-        "SND": 1102.4986312911226,
-        "Overload": 1180.1269513821055
+        "Hardpoint": 1194.568883821986,
+        "SND": 1100.0317848771513,
+        "Overload": 1178.4411287461207
       }
     },
     "4": {
@@ -1926,87 +5750,87 @@
       }
     },
     "7": {
-      "elo": 967.6380219445739,
-      "lifetimeKills": 9984,
-      "lifetimeDeaths": 8576,
+      "elo": 969.7721660759325,
+      "lifetimeKills": 10085,
+      "lifetimeDeaths": 8669,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 5753,
-      "hpDeaths": 4832,
-      "sndKills": 1036,
-      "sndDeaths": 1000,
-      "overloadKills": 3195,
-      "overloadDeaths": 2744,
-      "hpWins": 89,
-      "hpLosses": 81,
-      "sndWins": 73,
+      "hpKills": 5817,
+      "hpDeaths": 4895,
+      "sndKills": 1046,
+      "sndDeaths": 1006,
+      "overloadKills": 3222,
+      "overloadDeaths": 2768,
+      "hpWins": 90,
+      "hpLosses": 82,
+      "sndWins": 74,
       "sndLosses": 75,
-      "overloadWins": 58,
+      "overloadWins": 59,
       "overloadLosses": 47,
-      "hpMarginTotal": 0.9750000000000008,
-      "hpMarginCount": 170,
-      "sndMarginTotal": -1.8333333333333335,
-      "sndMarginCount": 148,
-      "overloadMarginTotal": 4.625,
-      "overloadMarginCount": 105,
-      "hpDamage": 4600.0,
-      "hpDamageShare": 0.2929936305732484,
-      "sndDamage": 800.0,
-      "sndDamageShare": 0.18604651162790697,
-      "overloadDamage": 4100.0,
-      "overloadDamageShare": 0.2827586206896552,
-      "hpLifetimeDamage": 563400.0,
-      "hpLifetimeTeamDamage": 2432100.0,
-      "sndLifetimeDamage": 102100.0,
-      "sndLifetimeTeamDamage": 470100.0,
-      "overloadLifetimeDamage": 314400.0,
-      "overloadLifetimeTeamDamage": 1400100.0,
+      "hpMarginTotal": 1.0900000000000007,
+      "hpMarginCount": 172,
+      "sndMarginTotal": -1.5000000000000002,
+      "sndMarginCount": 149,
+      "overloadMarginTotal": 4.75,
+      "overloadMarginCount": 106,
+      "hpDamage": 3500.0,
+      "hpDamageShare": 0.22727272727272727,
+      "sndDamage": 1000.0,
+      "sndDamageShare": 0.23809523809523808,
+      "overloadDamage": 2700.0,
+      "overloadDamageShare": 0.2125984251968504,
+      "hpLifetimeDamage": 569800.0,
+      "hpLifetimeTeamDamage": 2464200.0,
+      "sndLifetimeDamage": 103100.0,
+      "sndLifetimeTeamDamage": 474300.0,
+      "overloadLifetimeDamage": 317100.0,
+      "overloadLifetimeTeamDamage": 1412800.0,
       "modeElo": {
-        "Hardpoint": 973.5535874274724,
-        "SND": 942.447707034416,
-        "Overload": 992.0439364540371
+        "Hardpoint": 975.6149818061583,
+        "SND": 944.9418717918422,
+        "Overload": 993.8094042539267
       }
     },
     "8": {
-      "elo": 941.0065409200745,
-      "lifetimeKills": 15552,
-      "lifetimeDeaths": 13193,
+      "elo": 943.2686938962652,
+      "lifetimeKills": 15678,
+      "lifetimeDeaths": 13284,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 8888,
-      "hpDeaths": 7447,
-      "sndKills": 1539,
-      "sndDeaths": 1504,
-      "overloadKills": 5125,
-      "overloadDeaths": 4242,
-      "hpWins": 125,
-      "hpLosses": 143,
-      "sndWins": 108,
+      "hpKills": 8958,
+      "hpDeaths": 7510,
+      "sndKills": 1555,
+      "sndDeaths": 1508,
+      "overloadKills": 5165,
+      "overloadDeaths": 4266,
+      "hpWins": 126,
+      "hpLosses": 144,
+      "sndWins": 109,
       "sndLosses": 109,
-      "overloadWins": 79,
+      "overloadWins": 80,
       "overloadLosses": 82,
-      "hpMarginTotal": -11.247000000000007,
-      "hpMarginCount": 268,
-      "sndMarginTotal": -0.3333333333333334,
-      "sndMarginCount": 217,
-      "overloadMarginTotal": 0.625,
-      "overloadMarginCount": 161,
-      "hpDamage": 3400.0,
-      "hpDamageShare": 0.26153846153846155,
-      "sndDamage": 600.0,
-      "sndDamageShare": 0.21428571428571427,
-      "overloadDamage": 3800.0,
-      "overloadDamageShare": 0.27941176470588236,
-      "hpLifetimeDamage": 853000.0,
-      "hpLifetimeTeamDamage": 3714600.0,
-      "sndLifetimeDamage": 148000.0,
-      "sndLifetimeTeamDamage": 660700.0,
-      "overloadLifetimeDamage": 494600.0,
-      "overloadLifetimeTeamDamage": 2142800.0,
+      "hpMarginTotal": -11.132000000000009,
+      "hpMarginCount": 270,
+      "sndMarginTotal": -1.1102230246251565e-16,
+      "sndMarginCount": 218,
+      "overloadMarginTotal": 0.75,
+      "overloadMarginCount": 162,
+      "hpDamage": 2800.0,
+      "hpDamageShare": 0.18181818181818182,
+      "sndDamage": 1600.0,
+      "sndDamageShare": 0.38095238095238093,
+      "overloadDamage": 4000.0,
+      "overloadDamageShare": 0.31496062992125984,
+      "hpLifetimeDamage": 860000.0,
+      "hpLifetimeTeamDamage": 3746700.0,
+      "sndLifetimeDamage": 149600.0,
+      "sndLifetimeTeamDamage": 664900.0,
+      "overloadLifetimeDamage": 498600.0,
+      "overloadLifetimeTeamDamage": 2155500.0,
       "modeElo": {
-        "Hardpoint": 918.6450142379091,
-        "SND": 955.7927069608184,
-        "Overload": 958.4942216652165
+        "Hardpoint": 920.610529808284,
+        "SND": 958.6474738518483,
+        "Overload": 960.4474283722518
       }
     },
     "9": {
@@ -2052,129 +5876,129 @@
       }
     },
     "10": {
-      "elo": 971.9643319737792,
-      "lifetimeKills": 10592,
-      "lifetimeDeaths": 9619,
+      "elo": 973.9581355041394,
+      "lifetimeKills": 10704,
+      "lifetimeDeaths": 9712,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 6273,
-      "hpDeaths": 5530,
-      "sndKills": 993,
-      "sndDeaths": 1115,
-      "overloadKills": 3326,
-      "overloadDeaths": 2974,
-      "hpWins": 100,
-      "hpLosses": 99,
-      "sndWins": 85,
+      "hpKills": 6353,
+      "hpDeaths": 5591,
+      "sndKills": 996,
+      "sndDeaths": 1123,
+      "overloadKills": 3355,
+      "overloadDeaths": 2998,
+      "hpWins": 101,
+      "hpLosses": 100,
+      "sndWins": 86,
       "sndLosses": 75,
-      "overloadWins": 62,
+      "overloadWins": 63,
       "overloadLosses": 54,
-      "hpMarginTotal": 1.5090000000000008,
-      "hpMarginCount": 199,
-      "sndMarginTotal": 0.8333333333333321,
-      "sndMarginCount": 160,
-      "overloadMarginTotal": 1.875,
-      "overloadMarginCount": 116,
-      "hpDamage": 2300.0,
-      "hpDamageShare": 0.19327731092436976,
-      "sndDamage": 1000.0,
-      "sndDamageShare": 0.23255813953488372,
-      "overloadDamage": 3000.0,
-      "overloadDamageShare": 0.20408163265306123,
-      "hpLifetimeDamage": 612500.0,
-      "hpLifetimeTeamDamage": 2906500.0,
-      "sndLifetimeDamage": 96500.0,
-      "sndLifetimeTeamDamage": 505100.0,
-      "overloadLifetimeDamage": 324600.0,
-      "overloadLifetimeTeamDamage": 1563400.0,
+      "hpMarginTotal": 1.624000000000001,
+      "hpMarginCount": 201,
+      "sndMarginTotal": 1.1666666666666654,
+      "sndMarginCount": 161,
+      "overloadMarginTotal": 2.0,
+      "overloadMarginCount": 117,
+      "hpDamage": 3400.0,
+      "hpDamageShare": 0.22077922077922077,
+      "sndDamage": 300.0,
+      "sndDamageShare": 0.07142857142857142,
+      "overloadDamage": 2900.0,
+      "overloadDamageShare": 0.2283464566929134,
+      "hpLifetimeDamage": 620500.0,
+      "hpLifetimeTeamDamage": 2938600.0,
+      "sndLifetimeDamage": 96800.0,
+      "sndLifetimeTeamDamage": 509300.0,
+      "overloadLifetimeDamage": 327500.0,
+      "overloadLifetimeTeamDamage": 1576100.0,
       "modeElo": {
-        "Hardpoint": 958.4335743354201,
-        "SND": 977.598335305171,
-        "Overload": 987.066097378145
+        "Hardpoint": 960.4812717414901,
+        "SND": 979.6717975733927,
+        "Overload": 988.8604480868262
       }
     },
     "11": {
-      "elo": 905.4030987910483,
-      "lifetimeKills": 8769,
-      "lifetimeDeaths": 7869,
+      "elo": 903.1222479760017,
+      "lifetimeKills": 8868,
+      "lifetimeDeaths": 7959,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 5043,
-      "hpDeaths": 4444,
-      "sndKills": 850,
-      "sndDeaths": 936,
-      "overloadKills": 2876,
-      "overloadDeaths": 2489,
-      "hpWins": 96,
-      "hpLosses": 78,
+      "hpKills": 5108,
+      "hpDeaths": 4501,
+      "sndKills": 857,
+      "sndDeaths": 943,
+      "overloadKills": 2903,
+      "overloadDeaths": 2515,
+      "hpWins": 97,
+      "hpLosses": 79,
       "sndWins": 57,
-      "sndLosses": 84,
+      "sndLosses": 85,
       "overloadWins": 58,
-      "overloadLosses": 46,
-      "hpMarginTotal": 8.243000000000002,
-      "hpMarginCount": 174,
-      "sndMarginTotal": -15.66666666666666,
-      "sndMarginCount": 141,
-      "overloadMarginTotal": 0.375,
-      "overloadMarginCount": 104,
-      "hpDamage": 3400.0,
-      "hpDamageShare": 0.23776223776223776,
-      "sndDamage": 1000.0,
-      "sndDamageShare": 0.23255813953488372,
-      "overloadDamage": 3300.0,
-      "overloadDamageShare": 0.21710526315789475,
-      "hpLifetimeDamage": 478600.0,
-      "hpLifetimeTeamDamage": 2408900.0,
-      "sndLifetimeDamage": 80300.0,
-      "sndLifetimeTeamDamage": 407400.0,
-      "overloadLifetimeDamage": 273100.0,
-      "overloadLifetimeTeamDamage": 1372000.0,
+      "overloadLosses": 47,
+      "hpMarginTotal": 8.128000000000004,
+      "hpMarginCount": 176,
+      "sndMarginTotal": -15.999999999999995,
+      "sndMarginCount": 142,
+      "overloadMarginTotal": 0.25,
+      "overloadMarginCount": 105,
+      "hpDamage": 3000.0,
+      "hpDamageShare": 0.19736842105263158,
+      "sndDamage": 700.0,
+      "sndDamageShare": 0.21212121212121213,
+      "overloadDamage": 2700.0,
+      "overloadDamageShare": 0.20300751879699247,
+      "hpLifetimeDamage": 485100.0,
+      "hpLifetimeTeamDamage": 2442200.0,
+      "sndLifetimeDamage": 81000.0,
+      "sndLifetimeTeamDamage": 410700.0,
+      "overloadLifetimeDamage": 275800.0,
+      "overloadLifetimeTeamDamage": 1385300.0,
       "modeElo": {
-        "Hardpoint": 948.7358512556453,
-        "SND": 839.4732026446427,
-        "Overload": 922.3745561840292
+        "Hardpoint": 946.515499905286,
+        "SND": 836.8533735073242,
+        "Overload": 920.454304224431
       }
     },
     "12": {
-      "elo": 885.6290030474586,
-      "lifetimeKills": 14689,
-      "lifetimeDeaths": 13392,
+      "elo": 883.2782389872773,
+      "lifetimeKills": 14790,
+      "lifetimeDeaths": 13490,
       "mapKills": 0,
       "mapDeaths": 0,
-      "hpKills": 8615,
-      "hpDeaths": 7708,
-      "sndKills": 1394,
-      "sndDeaths": 1513,
-      "overloadKills": 4680,
-      "overloadDeaths": 4171,
-      "hpWins": 129,
-      "hpLosses": 147,
+      "hpKills": 8686,
+      "hpDeaths": 7775,
+      "sndKills": 1399,
+      "sndDeaths": 1521,
+      "overloadKills": 4705,
+      "overloadDeaths": 4194,
+      "hpWins": 130,
+      "hpLosses": 148,
       "sndWins": 115,
-      "sndLosses": 103,
+      "sndLosses": 104,
       "overloadWins": 62,
-      "overloadLosses": 100,
-      "hpMarginTotal": -7.193999999999999,
-      "hpMarginCount": 276,
-      "sndMarginTotal": 1.8333333333333335,
-      "sndMarginCount": 218,
-      "overloadMarginTotal": -10.125,
-      "overloadMarginCount": 162,
-      "hpDamage": 2200.0,
-      "hpDamageShare": 0.18487394957983194,
-      "sndDamage": 600.0,
-      "sndDamageShare": 0.21428571428571427,
-      "overloadDamage": 3600.0,
-      "overloadDamageShare": 0.24489795918367346,
-      "hpLifetimeDamage": 839600.0,
-      "hpLifetimeTeamDamage": 3944700.0,
-      "sndLifetimeDamage": 136200.0,
-      "sndLifetimeTeamDamage": 675000.0,
-      "overloadLifetimeDamage": 454500.0,
-      "overloadLifetimeTeamDamage": 2169000.0,
+      "overloadLosses": 101,
+      "hpMarginTotal": -7.308999999999999,
+      "hpMarginCount": 278,
+      "sndMarginTotal": 1.5000000000000002,
+      "sndMarginCount": 219,
+      "overloadMarginTotal": -10.25,
+      "overloadMarginCount": 163,
+      "hpDamage": 2800.0,
+      "hpDamageShare": 0.18421052631578946,
+      "sndDamage": 500.0,
+      "sndDamageShare": 0.15151515151515152,
+      "overloadDamage": 2500.0,
+      "overloadDamageShare": 0.18796992481203006,
+      "hpLifetimeDamage": 846700.0,
+      "hpLifetimeTeamDamage": 3978000.0,
+      "sndLifetimeDamage": 136700.0,
+      "sndLifetimeTeamDamage": 678300.0,
+      "overloadLifetimeDamage": 457000.0,
+      "overloadLifetimeTeamDamage": 2182300.0,
       "modeElo": {
-        "Hardpoint": 870.3030294984638,
-        "SND": 924.6030013565239,
-        "Overload": 858.2661187001988
+        "Hardpoint": 868.054923756225,
+        "SND": 921.8301894958585,
+        "Overload": 856.3182868201754
       }
     },
     "13": {
@@ -2388,6 +6212,6 @@
       }
     }
   },
-  "updatedAt": "2026-11-23T20:41:09.945954Z",
+  "updatedAt": "2026-11-25T00:20:59.615267Z",
   "eloModel": "model-r-kill25-v1"
 }

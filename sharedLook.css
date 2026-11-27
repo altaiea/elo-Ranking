@@ -228,8 +228,6 @@ select#monthlyMonthSelect { background: #0b0906; color: var(--text); border: 1px
 .comparison-label { font-size: 9.5px; min-width: 100px; }
 .is-phone .h2h-sections { zoom: var(--ui-zoom); }
 .is-phone .comparison-section { grid-column: 1 / -1; }
-/* MAPS AGAINST EACH OTHER (27 Nov 2026): the map record between two players, above the scored sections */
-.h2h-maps-note { color: var(--muted); font-size: 12px; line-height: 1.45; padding: 8px 2px 4px; }
 
 /* The fixed-width phone canvas keeps the desktop ranking order and readable spacing. */
 .is-phone #lbAlt { zoom: var(--ui-zoom); }

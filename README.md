@@ -54,7 +54,7 @@ The CODStats app depends on them:
 | `js/cardTape.js` | The player's numbers beside the card pop-up |
 | `js/modeModal.js` | The mode wheel that opens from a card's mode circle |
 | `js/streaks.js` | Win streaks per mode (the fire on a card) |
-| `js/headToHead.js` | Head-to-Head: maps against each other, then the scored Lifetime and mode sections |
+| `js/headToHead.js` | Head-to-Head: the scored Lifetime and mode sections, including the map wins against each other |
 | `js/headToHeadPicker.js` | Picking the two players from their cards ("fight night") |
 
 ## Match Day
@@ -111,8 +111,8 @@ Never edit these by hand: the next Export rewrites them.
 
 - `data/rebuilt-days.json`: the 462 maps from 29 May to 19 Sep 2026, rebuilt from the stats
   snapshots, with Model TR Elo (no score margin) and each day's opening leaderboard. The
-  site history starts on 20 Sep, so Monthly (May to September) and the Head-to-Head maps
-  box add these. It sits outside `history/`, so Export never touches it.
+  site history starts on 20 Sep, so Monthly (May to September) and the Head-to-Head map wins
+  against each other add these. It sits outside `history/`, so Export never touches it.
 
 ## Pictures, videos and tools
 
@@ -131,8 +131,8 @@ Never edit these by hand: the next Export rewrites them.
 
 ## Change log
 
-- **27 Nov 2026.** Model TR goes live. Head-to-Head gains "maps against each other",
-  Monthly goes back to May, and History shows the Model TR calculation in plain words.
+- **27 Nov 2026.** Model TR goes live. Head-to-Head scores the maps the two
+  played against each other (rebuilt maps included), Monthly goes back to May, and History shows the Model TR calculation in plain words.
   Tidy: `comparisons.js` → `headToHead.js`, `fightNight.js` → `headToHeadPicker.js`,
   `teams.js` → `lineup.js`, `duo-surround.css` → `duoNetwork.css`, `seamless.css` →
   `sharedLook.css`; about 130 lines of CSS for removed pages and the editor folders

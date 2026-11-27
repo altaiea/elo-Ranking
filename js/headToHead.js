@@ -1,10 +1,10 @@
 /* ======================================================
    HEAD-TO-HEAD TAB (Players > Head-to-Head)
-   Two players side by side: their cards, then
-   - MAPS AGAINST EACH OTHER: every map they played on opposite teams and who
-     won it (a record only, not scored),
-   - LIFETIME and one section per mode: each row gives 1 point to the better
-     player (half each for a tie), and the points add up to the big score.
+   Two players side by side: their cards, then LIFETIME and one section per mode.
+   Each scored row gives 1 point to the better player (half each for a tie), and the
+   points add up to the big score. Every map the two played on opposite teams (since
+   29 May, rebuilt maps included) is counted as rows in those same sections: the
+   map wins against each other in LIFETIME and per mode.
    The two players come from the hidden <select>s, filled by the card picker
    above (js/headToHeadPicker.js).
 ====================================================== */
@@ -35,19 +35,17 @@ let extraLoading = null;
 // ---------------------------
 // MAPS AGAINST EACH OTHER (27 Nov 2026)
 // ---------------------------
-// Every map two players played on opposite teams, and who won it, overall and per mode,
-// plus their record on the same team. Covers every map since 29 May 2026: the site history
-// (20 Sep on) and the 462 maps rebuilt from the stats snapshots (data/rebuilt-days.json).
-// Shown as a record only: it does not count toward the HEAD-TO-HEAD score.
-let pairRecords = null;        // "low-high" -> { against: {g, w, d, modes}, together: {...} }, w = the lower id's wins
+// Every map two players played on opposite teams, and who won it, overall and per mode
+// (g = maps, d = maps with a known winner, w = the lower id's wins). Covers every map since
+// 29 May 2026: the site history (20 Sep on) and the 462 maps rebuilt from the stats
+// snapshots (data/rebuilt-days.json). The per-mode wins are scored rows in the mode sections.
+let pairRecords = null;        // "low-high" -> { g, w, d, modes: { prefix: {g, w, d} } }
 let pairLoading = null;
-let firstSiteDate = null;
 
 function loadPairRecords() {
     if (pairLoading) return pairLoading;
     pairLoading = Promise.all([loadAllHistory(), loadRebuiltDays()]).then(([days, rebuilt]) => {
         const out = new Map(), seen = new Set();
-        const blank = () => ({ g: 0, w: 0, d: 0, modes: {} });
         const add = (rec, mode, won) => {
             mode = GAME_MODE_PREFIX[mode] || mode;          // "SND" -> "snd", keyed like MODES[].prefix
             const m = rec.modes[mode] || (rec.modes[mode] = { g: 0, w: 0, d: 0 });
@@ -56,19 +54,16 @@ function loadPairRecords() {
         };
         const pair = (x, y) => {
             const k = Math.min(x, y) + "-" + Math.max(x, y);
-            return out.get(k) || out.set(k, { against: blank(), together: blank() }).get(k);
+            return out.get(k) || out.set(k, { g: 0, w: 0, d: 0, modes: {} }).get(k);
         };
         const count = (id, mode, A, B, win) => {
             if (!id || seen.has(id)) return;
             seen.add(id);
             A.forEach(x => B.forEach(y => {              // opposite teams; "won" from the lower id's side
                 const lowOnA = Math.min(x, y) === x;
-                add(pair(x, y).against, mode, !win ? -1 : (win === 1) === lowOnA ? 1 : 0);
+                add(pair(x, y), mode, !win ? -1 : (win === 1) === lowOnA ? 1 : 0);
             }));
-            [[A, 1], [B, 2]].forEach(([team, w]) => team.forEach((x, i) => team.slice(i + 1).forEach(y =>
-                add(pair(x, y).together, mode, !win ? -1 : win === w ? 1 : 0))));
         };
-        days.forEach(day => { if (!firstSiteDate || day.date < firstSiteDate) firstSiteDate = day.date; });
         rebuilt.concat(days).forEach(day => (day.maps || []).forEach(map => {
             const g = map.game || {}, teams = g.teams || {};
             count(map.mapId, map.gameMode || g.gameMode, (teams.A || []).map(p => Number(p.playerId)),
@@ -82,36 +77,21 @@ function loadPairRecords() {
     return pairLoading;
 }
 
-// a's side of a pair record
-function sideOf(rec, a, b) {
-    const flip = a.id > b.id, mine = q => flip ? q.d - q.w : q.w;
-    const modes = {};
-    Object.entries(rec.modes).forEach(([k, q]) => { modes[k] = { g: q.g, w: mine(q), d: q.d }; });
-    return { g: rec.g, w: mine(rec), d: rec.d, modes };
+// a's wins and b's wins in a set of maps against each other (q = a record or one mode of it)
+function winsOf(q, a, b) {
+    return a.id < b.id ? [q.w, q.d - q.w] : [q.d - q.w, q.w];
 }
 
-function versusSection(a, b) {
-    if (!pairRecords) return "";
-    const rec = pairRecords.get(Math.min(a.id, b.id) + "-" + Math.max(a.id, b.id));
-    const vs = rec ? sideOf(rec.against, a, b) : { g: 0, w: 0, d: 0, modes: {} };
-    const tog = rec ? rec.together : { g: 0, w: 0, d: 0 };
-    const bw = q => q.d - q.w;
-    const rows = vs.g ? [
-        ["MAP WINS", vs.w, bw(vs)],
-        ["WIN %", vs.d ? vs.w / vs.d : 0, vs.d ? bw(vs) / vs.d : 0, "percent"],
-        ...MODES.map(mode => {
-            const m = vs.modes[mode.prefix] || { g: 0, w: 0, d: 0 };
-            return [`${mode.name.toUpperCase()} WINS (${m.g})`, m.w, bw(m)];
-        })
-    ] : [];
-    const together = tog.g
-        ? `Same team: ${tog.g} maps, ${tog.w}–${tog.d - tog.w} (${tog.d ? Math.round(100 * tog.w / tog.d) : 0}% won)`
-        : "Never on the same team";
-    return `<div class="comparison-section wide h2h-maps">
-        <div class="comparison-section-title">MAPS AGAINST EACH OTHER <span class="mode-score">${vs.g} maps · ${a.name} ${vs.w} — ${bw(vs)} ${b.name}</span></div>
-        <div class="cs-rows">${vs.g ? rows.map(r => row(...r)).join("") : `<div class="h2h-maps-note">Never on opposite teams.</div>`}</div>
-        <div class="h2h-maps-note">${together}. All maps since 29 May${firstSiteDate ? `; maps before ${firstSiteDate.slice(8, 10)}/${firstSiteDate.slice(5, 7)} are rebuilt from the stats snapshots` : ""}. Not counted in the score above.</div>
-    </div>`;
+// The two players' record on opposite teams, or null if they never met.
+function versus(a, b) {
+    const rec = pairRecords && pairRecords.get(Math.min(a.id, b.id) + "-" + Math.max(a.id, b.id));
+    return rec && rec.d ? rec : null;
+}
+
+// The scored row for one mode: who won more of the maps they played against each other.
+function versusRow(mode, a, b) {
+    const rec = versus(a, b), q = rec && rec.modes[mode.prefix];
+    return q && q.d ? [`MAP WINS VS EACH OTHER (${q.d})`, ...winsOf(q, a, b)] : null;
 }
 
 function loadExtraAverages() {
@@ -224,7 +204,8 @@ function modeSection(mode, a, b) {
         [mode.unitLabel, "avgModeUnit", "number", "higher"]
     ];
     const rows = metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]);
-    return section(mode.name.toUpperCase(), a, b, rows.concat(extraRows(mode.prefix, a, b)));
+    const against = versusRow(mode, a, b);
+    return section(mode.name.toUpperCase(), a, b, rows.concat(against ? [against] : [], extraRows(mode.prefix, a, b)));
 }
 
 function cardStage(p) {
@@ -270,13 +251,15 @@ function render() {
 
     const kd = p => Number(p.lifetimeDeaths || 0) === 0 ? Number(p.lifetimeKills || 0) : p.lifetimeKills / p.lifetimeDeaths;
     const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
+    const meetings = versus(a, b);
     const lifetime = section("LIFETIME", a, b, [
         ["KILLS", a.lifetimeKills, b.lifetimeKills],
         ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower"],
         ["K/D", kd(a), kd(b)],
         ["WINS", totalWins(a), totalWins(b)],
         ["LOSSES", totalLosses(a), totalLosses(b), "number", "lower"],
-        ["WIN RATE", winRate(a), winRate(b), "percent"]
+        ["WIN RATE", winRate(a), winRate(b), "percent"],
+        ...(meetings ? [[`MAP WINS VS EACH OTHER (${meetings.d})`, ...winsOf(meetings, a, b)]] : [])
     ], true);
     const modeResults = MODES.map(mode => modeSection(mode, a, b));
     const sections = [lifetime, ...modeResults];
@@ -296,7 +279,7 @@ function render() {
         </div>
 
         <!-- Lifetime runs the full width as one column; the three modes sit side by side under it -->
-        <div class="h2h-sections">${versusSection(a, b)}${sections.map(sec => sec.html).join("")}</div>
+        <div class="h2h-sections">${sections.map(sec => sec.html).join("")}</div>
     `;
 
     content.querySelectorAll(".comparison-card-stage").forEach(stage => {

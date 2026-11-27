@@ -123,7 +123,7 @@ function build() {
         teamA = [...picked].filter(([, t]) => t === "A").map(([id]) => byId(id));
         teamB = [...picked].filter(([, t]) => t === "B").map(([id]) => byId(id));
     }
-    showLineup(teamA, teamB, seriesCount);   // the line-up reveal, with the series chance for the Bo picked
+    showLineup(teamA, teamB);          // the line-up reveal
 }
 
 /* ---------------------------

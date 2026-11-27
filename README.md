@@ -62,7 +62,7 @@ The CODStats app depends on them:
 | File | What it does |
 | --- | --- |
 | `js/matchSetup.js` | The Match Day page: tap players, auto or manual teams, Bo5 / Bo7 / Bo9 |
-| `js/lineup.js` | The line-up pop-up: card deal, chemistry lines, the win chance panel |
+| `js/lineup.js` | The line-up pop-up: card deal, chemistry lines, each team's numbers; scales to fit the window |
 | `js/maps.js` | Rolls the map set (no repeats in a Bo5; none within a mode in a Bo7 or Bo9) |
 
 ## Knockout (Captain's Cup)

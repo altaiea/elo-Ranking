@@ -153,30 +153,6 @@ export function modeWinChances(teamA, teamB) {
     return out;
 }
 
-// Chance Team A wins a best-of series, from its chance on each map in the series' mode order
-// (config.js MAP_SET_PATTERNS). Maps are treated as independent: A wins the series when it wins
-// more than half of them, which is the same whether or not the last maps are played.
-const PATTERN_MODE = { hardpoint: "Hardpoint", snd: "SND", overload: "Overload" };
-export function seriesWinChance(modes, pattern) {
-    let dist = [1];                                  // dist[w] = chance A has won w maps so far
-    pattern.forEach(key => {
-        const p = modes[PATTERN_MODE[key]];
-        const next = new Array(dist.length + 1).fill(0);
-        dist.forEach((q, w) => { next[w] += q * (1 - p); next[w + 1] += q * p; });
-        dist = next;
-    });
-    const need = Math.floor(pattern.length / 2) + 1;
-    return dist.slice(need).reduce((a, b) => a + b, 0);
-}
-
-// Plain words for a win chance (the favourite's chance, 0.5 to 1).
-export function chanceWords(p) {
-    if (p < 0.53) return "Even game";
-    if (p < 0.60) return "Slight edge";
-    if (p < 0.70) return "Favoured";
-    return "Clear favourite";
-}
-
 export function teamStats(teamA, teamB) {
     const sum = team => team.reduce((s, p) => s + p.elo, 0);
     const eloA = sum(teamA);

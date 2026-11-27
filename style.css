@@ -1535,7 +1535,11 @@ html { -webkit-text-size-adjust: 100%; }
 .lineup-name { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 5px; padding: 2px 9px; white-space: nowrap; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #eafcff; background: rgba(0,18,24,.82); border: 1px solid rgba(242, 193, 78,.45); border-radius: 20px; box-shadow: 0 0 8px rgba(242, 193, 78,.25); }
 .lineup-num { font-size: 24px; }
 .lineup-cap { font-size: 11px; }
-.lineup-stats { gap: 26px; }
+/* each team's numbers: three even columns, centred under the board, clear of the bottom card's name */
+.lineup-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; width: 100%; max-width: 330px;
+  margin: 34px auto 4px; padding: 10px 0 2px; border-top: 1px solid rgba(242, 193, 78, .18); }
+.lineup-stats > div + div { border-left: 1px solid rgba(255, 255, 255, .08); }
+.lineup-stats .lineup-cap { margin-top: 5px; }
 .popup-card:has(.lineup-wrap) { padding: 34px 22px 22px; }
 .popup-card:has(.lineup-wrap) .popup-close { top: 6px; right: 10px; }
 
@@ -2001,16 +2005,3 @@ tr.ko-outrow::after { inset: 2px 0; }
 .koh-scale span { padding: 3px 9px; border-radius: 999px; border: 1px solid #3a3122; color: #cfc7b4; font-size: 12.5px; }
 .koh-scale b { color: #f2c14e; }
 
-/* Match Day win chance panel (Model TR) */
-.wc-panel { margin-top: 12px; padding: 12px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: rgba(0,0,0,.35); color: #ddd; }
-.wc-head { font-size: 17px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 8px; letter-spacing: .5px; }
-.wc-bar { display: flex; height: 26px; border-radius: 13px; overflow: hidden; font-size: 13px; font-weight: 700; }
-.wc-bar > div { display: flex; align-items: center; padding: 0 10px; color: #cfd8dc; background: #2b3138; white-space: nowrap; }
-.wc-bar .wc-b { flex: 1; justify-content: flex-end; }
-.wc-bar .wc-a { background: #3a4048; }
-.wc-bar .wc-on { background: #1f7a3c; color: #fff; }
-.wc-lines { margin-top: 8px; font-size: 13px; line-height: 1.6; text-align: center; }
-.wc-lines b { color: #fff; }
-.wc-modes { color: #a39a88; }
-.wc-modes span { margin-left: 10px; white-space: nowrap; }
-.wc-modes span b { color: #cfc6b3; font-weight: 600; }

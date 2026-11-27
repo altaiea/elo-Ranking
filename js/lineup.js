@@ -3,9 +3,9 @@
    The line-up popup (mini cards joined by lines coloured by chemistry) and
    its card-deal reveal. The player picker lives in matchSetup.js.
 ====================================================== */
-import { cardAssets, MAP_SET_PATTERNS } from "./config.js";
+import { cardAssets } from "./config.js";
 import { loadAllHistory } from "./data.js";
-import { buildChemistry, chanceWords, chemBand, chemKey, seriesWinChance, teamStats } from "./ratings.js";
+import { buildChemistry, chemBand, chemKey, teamStats } from "./ratings.js";
 import { closePopup, reduceMotion, showPopup } from "./ui.js";
 
 const EASE_OUT = "cubic-bezier(.2,.8,.2,1)";
@@ -58,50 +58,18 @@ function teamLineupBlock(label, team, avg, prob, cls) {
             </div>
             <div class="lineup-stats">
                 <div><span class="lineup-num">${avg.toFixed(1)}</span><span class="lineup-cap">Avg Elo</span></div>
-                <div><span class="lineup-num">${Math.round(prob * 100)}%</span><span class="lineup-cap">Per map</span></div>
+                <div><span class="lineup-num">${Math.round(prob * 100)}%</span><span class="lineup-cap">Win</span></div>
                 <div><span class="lineup-num chem-team">&ndash;</span><span class="lineup-cap">Chem</span></div>
             </div>
         </div>`;
 }
 
-// The win chance, said three ways: a split bar, plain words with "out of 10 maps", and the
-// chance of winning the whole series that was picked (Bo5 / Bo7 / Bo9). Per mode underneath.
-function winChanceHtml(t, seriesCount) {
-    const aFav = t.probA >= t.probB, fav = aFav ? "Team A" : "Team B";
-    const pFav = aFav ? t.probA : t.probB;
-    const pct = p => `${Math.round(p * 100)}%`;
-    const pattern = MAP_SET_PATTERNS[seriesCount] || MAP_SET_PATTERNS[7];
-    // The series line names whichever team is more likely to win the series. That is usually the
-    // per-map favourite, but not always: the series' mode order can favour the other team.
-    const sA = seriesWinChance(t.modes, pattern);
-    const seriesFav = sA >= 0.5 ? "Team A" : "Team B", sFav = Math.max(sA, 1 - sA);
-    const words = chanceWords(pFav);
-    const even = words === "Even game";
-    const lead = even ? "Even game" : `${words}: ${fav}`;
-    const outOf10 = Math.round(pFav * 10);
-    const modeRow = [["Hardpoint", "HP"], ["SND", "S&amp;D"], ["Overload", "OL"]].map(([m, l]) => {
-        const pa = t.modes[m];
-        return `<span><b>${l}</b> ${pct(pa)} &ndash; ${pct(1 - pa)}</span>`;
-    }).join("");
-    return `
-        <div class="wc-panel">
-            <div class="wc-head">${lead}</div>
-            <div class="wc-bar"><div class="wc-a${!even && aFav ? " wc-on" : ""}" style="width:${t.probA * 100}%">A ${pct(t.probA)}</div><div class="wc-b${!even && !aFav ? " wc-on" : ""}">${pct(t.probB)} B</div></div>
-            <div class="wc-lines">
-                <div>${outOf10 === 5 ? "Out of 10 maps, each team would win about <b>5</b>." : `Out of 10 maps, ${fav} would win about <b>${outOf10}</b>.`}</div>
-                <div>Bo${pattern.length}: ${seriesFav} wins the series <b>${pct(sFav)}</b> of the time.</div>
-                <div class="wc-modes">Team A &ndash; Team B by mode: ${modeRow}</div>
-            </div>
-        </div>`;
-}
-
-function teamLineupHtml(teamA, teamB, t, seriesCount) {
+function teamLineupHtml(teamA, teamB, t) {
     return `
         <div class="lineup-wrap">
             ${teamLineupBlock("Team A", teamA, t.avgA, t.probA, t.probA >= t.probB ? "lineup-fav" : "")}
             ${teamLineupBlock("Team B", teamB, t.avgB, t.probB, t.probB > t.probA ? "lineup-fav" : "")}
-        </div>
-        ${winChanceHtml(t, seriesCount)}`;
+        </div>`;
 }
 
 // each link runs between the middles of the two card edges that face each other
@@ -199,10 +167,6 @@ function playLineupFx() {
     if (!wrap) return;
     const teams = [...wrap.querySelectorAll(".lineup-team")];
     popup.classList.add("lineup-cine");
-    // The win chance panel is left out while the cinematic plays, so the scene keeps its own frame
-    // (a taller popup would crop the targets and the panel would cover the tilted table).
-    const panel = root.querySelector(".wc-panel");
-    if (panel) panel.style.display = "none";
 
     // ---- 1. measure everything while the layout is still flat
     const plan = teams.map(team => {
@@ -357,18 +321,6 @@ function playLineupFx() {
     deck.animate([{ translate: "0 80px", opacity: 0 }, { translate: "0 0", opacity: 1 }], { duration: 650, easing: EASE_OUT, fill: "backwards" });
     deck.animate([{ opacity: 1 }, { opacity: 1 }], { duration: dealAt(5) + 400 }).onfinish = () => deck.remove();   // removed once the last card has left
 
-    // ---- the win chance panel slides open under the table once the camera has landed
-    if (panel) setTimeout(() => {
-        panel.style.display = "";
-        const h = panel.offsetHeight;
-        panel.style.overflow = "hidden"; panel.style.boxSizing = "border-box";
-        panel.animate([
-            { height: "0px", marginTop: "0px", paddingTop: "0px", paddingBottom: "0px", opacity: 0 },
-            { height: h + "px", opacity: 0, offset: .55 },
-            { height: h + "px", opacity: 1 }
-        ], { duration: 750, easing: "ease-out" }).onfinish = () => { panel.style.overflow = ""; panel.style.boxSizing = ""; };
-    }, done);
-
     plan.forEach((P, ti) => {
         const { team, board, bb, cards } = P;
 
@@ -498,26 +450,22 @@ function addCloseCard(pop, arriveAt) {
 
 /* ---------------------------
    FIT TO THE WINDOW
-   The whole line-up pop-up (both teams, their numbers, the win chance panel and the cinematic)
+   The whole line-up pop-up (both teams, their numbers and the cinematic)
    is scaled down evenly until it fits the window, with a small margin. It never scales up.
    Runs on open and whenever the window is resized.
 ---------------------------- */
 function fitLineup(popup) {
-    const panel = document.querySelector("#popupContent .wc-panel");
-    const panelHidden = panel && panel.style.display === "none";
-    if (panelHidden) panel.style.display = "";            // measure with the panel, as it ends up
     const k = Math.min(1, innerHeight * 0.94 / popup.offsetHeight, innerWidth * 0.96 / popup.offsetWidth);
-    if (panelHidden) panel.style.display = "none";
     popup.style.setProperty("--fit", String(Math.max(0.3, k)));
 }
 
-export function showLineup(teamA, teamB, seriesCount = 7) {
+export function showLineup(teamA, teamB) {
     const stats = teamStats(teamA, teamB);
     const refit = () => {
         const pop = document.getElementById("popupCard");
         if (pop && document.querySelector("#popupContent .lineup-wrap")) fitLineup(pop);   // not after it closed
     };
-    showPopup(teamLineupHtml(teamA, teamB, stats, seriesCount), {
+    showPopup(teamLineupHtml(teamA, teamB, stats), {
         onOpen: pop => {
             fitLineup(pop);
             lineupEdges();

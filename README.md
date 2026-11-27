@@ -1,82 +1,142 @@
 # Elo Leaderboard site
 
-A static site (HTML, CSS and plain JavaScript modules, no build step). GitHub
-Pages serves the files exactly as they are in this folder, so publishing is
-still: export from CODStats, then push with GitHub Desktop.
+A static site: plain HTML, CSS and JavaScript modules, with no build step. GitHub Pages
+serves this folder exactly as it is, so publishing is: Export in CODStats, then push
+with GitHub Desktop.
 
-## Where things live
+The ratings are **Model TR** (TrueSkill + 25% kill share, with the score margin counted
+on maps from 20 Sep 2026). The app works them out on Export; the site only shows them.
 
-| Path | What it is |
+## Never rename or move these
+
+The CODStats app depends on them:
+
+- `index.html` and `script.js`: Export checks both exist before it writes anything.
+- `current_stats.json`, `previous_stats.json`, `daily_stats/`, `history/`, `knockout/`:
+  written by Export, committed by the app, and read back by the app's sync and its
+  built-in site preview.
+- `js/config.js`, `js/data.js`, `js/ratings.js`, `js/knockoutMvp.js`: the Three.js game
+  imports them by name.
+
+## Start-up and shared code
+
+| File | What it does |
 | --- | --- |
-| `index.html` | Page markup for every tab. Lists every `js/` file as a `modulepreload` so they all download at once: add a line there when you add a file |
-| `style.css` | All styling, in Knockout gold |
-| `script.js` | Entry file; it only loads `js/main.js`. Kept at this path because the CODStats exporter checks for it |
-| `js/main.js` | Start-up: loading screen, tabs, background loading of card pictures |
-| `js/config.js` | Player names, inactive players, card files, map pool, game modes. Edit this when someone joins |
-| `js/data.js` | Reads `current_stats.json` and `history/`. No page code |
-| `js/ratings.js` | Card ratings, team win chances, chemistry. No page code |
-| `js/tabs.js` | The four menu groups (Ranks, Match Day, Players, Knockout) and the switch under the title for the pages inside Ranks and Players |
-| `js/leaderboard.js`, `teams.js`, `history.js`, `duoNetwork.js`, `monthly.js`, `comparisons.js`, `maps.js` | One file per page or feature |
-| `js/cardHand.js`, `js/locker.js`, `locker.css` | The hand of cards (drag, flick, settle on a card), used at the top of Ranks (the Locker room) and on the Cards page |
-| `js/fightNight.js` | Head-to-Head: pick the two players from their cards |
-| `seamless.css` | Makes Monthly, History, Head-to-Head and Match Day look like the main leaderboard. Loads last; remove its `<link>` in `index.html` to switch it off |
-| `headers/` | The pictures beside the Ranks and Players titles (the file names are set in `js/tabs.js`) |
-| `js/duoNetwork.js` | The duo network: data, the full-screen pop-up, sliders and side panel. A small icon beside the Ranks title opens it. It gets everything ready in the background just after the site loads, so it opens instantly |
-| `js/duoNetwork3d.js` | The 3D drawing of the duo network: a neon globe you can spin, roll and zoom. Downloaded in the background after the page has loaded |
-| `vendor/three-duo.min.js` | three.js, the 3D library `duoNetwork3d.js` uses, cut down to the parts it needs. Not written by hand: do not edit |
-| `js/cardTape.js` | The tale of the tape: a player's numbers beside the card popup |
-| `js/matchSetup.js` | The Match Day tab: tap-to-pick players, Bo5/Bo7/Bo9 maps. Uses `teams.js` (line-up reveal) and `maps.js` (map sets) |
-| `js/layout.js`, `layout.css` | Side menu (bottom bar on phones) and the Knockout-style gold theme |
-| `js/playerCard.js`, `js/modeModal.js` | The card popup (float, flip, intro video) and the mode wheel |
-| `js/ui.js` | Shared helpers: formatting, colours, popup |
-| `js/knockout.js` | The Knockout tab (Captain's Cup): tiers, brackets, seeding table |
+| `index.html` | The markup for every tab. Lists every `js/` file as a `modulepreload` so they all download at once: add a line there when you add a file |
+| `script.js` | Three lines that load `js/main.js` |
+| `js/main.js` | Start-up: loading screen, wires every tab, then quietly loads card pictures |
+| `js/tabs.js` | The four menu groups (Ranks, Match Day, Players, Knockout) and the switch under the title. Remembers the open page in the address bar (`…/#cards`) |
+| `js/layout.js` | The side menu (a bar along the bottom on phones) and phone sizing |
+| `js/config.js` | Player names, inactive players, card and map files, game modes. **Edit this when someone joins** |
+| `js/data.js` | Reads `current_stats.json`, `history/` and `data/rebuilt-days.json`. No page code |
+| `js/ratings.js` | Card ratings, Match Day win chances (Model TR's own formula) and chemistry. No page code |
+| `js/ui.js` | Small shared helpers: number formatting, colours, the pop-up box |
+
+## Ranks
+
+| File | What it does |
+| --- | --- |
+| `js/leaderboard.js` | Podium and tiles, daily arrows, the mode ratings and ± shown when you click an Elo |
+| `js/locker.js` | The hand of cards at the top of Ranks (the Locker room) and on the Cards page |
+| `js/cardHand.js` | How a hand of cards moves: drag, flick, settle on a card |
+| `js/monthly.js` | Monthly rankings from May 2026. Also used for Captain's Cup seeding |
+| `js/monthWinner.js` | Last month's number one, who wears the wings |
+| `js/history.js` | History: days by week, every map, each player's Model TR calculation |
+| `js/duoNetwork.js` | The duo network pop-up (the icon beside the Ranks title): data, sliders, side panel |
+| `js/duoNetwork3d.js` | The 3D globe of the duo network, loaded in the background |
+| `vendor/three-duo.min.js` | three.js cut down to the parts the globe uses. Not hand-written: don't edit |
+
+## Players
+
+| File | What it does |
+| --- | --- |
+| `js/playerCard.js` | The card pop-up: float, flip, intro video, mode circles |
+| `js/cardTape.js` | The player's numbers beside the card pop-up |
+| `js/modeModal.js` | The mode wheel that opens from a card's mode circle |
+| `js/streaks.js` | Win streaks per mode (the fire on a card) |
+| `js/headToHead.js` | Head-to-Head: maps against each other, then the scored Lifetime and mode sections |
+| `js/headToHeadPicker.js` | Picking the two players from their cards ("fight night") |
+
+## Match Day
+
+| File | What it does |
+| --- | --- |
+| `js/matchSetup.js` | The Match Day page: tap players, auto or manual teams, Bo5 / Bo7 / Bo9 |
+| `js/lineup.js` | The line-up pop-up: card deal, chemistry lines, the win chance panel |
+| `js/maps.js` | Rolls the map set (no repeats in a Bo5; none within a mode in a Bo7 or Bo9) |
+
+## Knockout (Captain's Cup)
+
+| File | What it does |
+| --- | --- |
+| `js/knockout.js` | The Knockout tab: tiers, brackets, seeding table |
 | `js/knockoutRules.js` | Cup rules and bracket maths (tiers, seeding, 1.5x / 2x, +20). No page code |
-| `js/knockoutCards.js` | Stats for the Knockout card (cup maps only). No page code |
-| `js/knockoutCardsView.js`, `knockoutRulesView.js`, `knockoutHistoryView.js`, `knockoutPanels.js` | The three Knockout panels (Cards, Rules, History) and the code they share |
-| `js/knockoutData.js`, `js/knockoutMvp.js` | Reads `knockout/`; the carry and match rating behind the series MVP. No page code |
-| `js/monthWinner.js`, `js/streaks.js` | Last month's number one (the wings) and win streaks (the fire on a card) |
+| `js/knockoutData.js` | Reads `knockout/` |
+| `js/knockoutPanels.js` | Opens one of the Cards, Rules and History panels at a time |
+| `js/knockoutCardsView.js`, `js/knockoutCards.js` | The KO cards and their Cup-only stats |
+| `js/knockoutRulesView.js` | The Rules panel, written from the numbers in `knockoutRules.js` |
+| `js/knockoutHistoryView.js` | Every Cup series of the month, with match ratings and the MVP |
+| `js/knockoutMvp.js` | The carry and match rating behind the series MVP. No page code |
 
-`config.js`, `data.js`, `ratings.js` and `knockoutMvp.js` have no page code on purpose: the
-Three.js game can `import` them and show exactly the same names, numbers and
-ratings as the site.
+## Styles
 
-## Data files (written by the CODStats exporter)
+They load in this order (see `index.html`); later files win.
 
-- `current_stats.json`: every player's current Elo and lifetime stats.
+| File | What it does |
+| --- | --- |
+| `style.css` | Base styles: page, cards, pop-ups, History, Monthly, Head-to-Head, Knockout. A contents note sits at the top |
+| `matchSetup.css` | The Match Day page |
+| `layout.css` | Side menu, bottom bar and the gold theme |
+| `locker.css` | Ranks and Players page headers, card hands, the Black Ops One font |
+| `sharedLook.css` | Gives Monthly, History, Head-to-Head and Match Day the leaderboard's look |
+| `duoNetwork.css` | The duo network pop-up only |
+
+## Data written by Export
+
+Never edit these by hand: the next Export rewrites them.
+
+- `current_stats.json`: every player's Elo, mode ratings, ± and lifetime stats.
 - `history/index.json`: the list of days, `{ "days": [ { date, file, mapCount } ] }`.
-- `history/YYYY-MM-DD.json`: each map of that day with every player's Elo change
-  and the full calculation trace. Only opened when you click a day in History.
-- `history/summary.json`: the same history without the calculation traces
-  (about 30 times smaller). The leaderboard arrows, Teams chemistry, Duo network
-  and Monthly rankings use it. If it is missing or older than `index.json`, the
-  site reads the day files instead, so it can never show wrong numbers, only
-  load slower. Rebuild it with `python tools/build_history_summary.py`.
-- `knockout/YYYY-MM.json` and `knockout/index.json`: Captain's Cup results
-  (series played, winners, map ids). See `knockout/README.md`.
-- `daily_stats/`, `previous_stats.json`: kept for the exporter; the site does not read them.
+- `history/YYYY-MM-DD.json`: each map of that day with every player's Elo change and the
+  full Model TR calculation. Only opened when you click a day in History.
+- `history/summary.json`: the same history without the calculations (about 30 times
+  smaller). Most pages read this. If it is missing or older than `index.json`, the site
+  reads the day files instead, so it can never show wrong numbers, only load slower.
+  Rebuild it by hand with `python tools/build_history_summary.py`.
+- `knockout/YYYY-MM.json` and `knockout/index.json`: Captain's Cup results. See
+  `knockout/README.md`.
+- `daily_stats/`, `previous_stats.json`: kept for the app; the site does not read them.
 
-## Card pictures and intro videos
+## Fixed data
 
-The originals stay in `cards/` (`N_back.png`, `N_back.webp`, `N_intro.mp4`).
-The site loads smaller copies from `cards/web/`:
+- `data/rebuilt-days.json`: the 462 maps from 29 May to 19 Sep 2026, rebuilt from the stats
+  snapshots, with Model TR Elo (no score margin) and each day's opening leaderboard. The
+  site history starts on 20 Sep, so Monthly (May to September) and the Head-to-Head maps
+  box add these. It sits outside `history/`, so Export never touches it.
 
-- `N_thumb.webp` (300 px wide) for the card hands and team line-ups
-- `N_card.webp` (up to 840 x 1200) for the card popup
-- `N_intro.mp4` re-encoded without sound and set to start playing while it downloads
+## Pictures, videos and tools
 
-After adding or changing a card or intro, run `python tools/optimize_media.py`
-(needs Pillow and ffmpeg), then add the player to `js/config.js`.
-The originals are never downloaded by visitors; only `cards/web/` is.
+- `cards/web/`: the card pictures and intro videos the site loads (`N_thumb.webp`,
+  `N_card.webp`, `N_intro.mp4`).
+- `cards/`: the full-size originals (`N_back.png`, `N_back.webp`, `N_intro.mp4`) and the
+  streak fire. Visitors never download the originals.
+- `maps/`, `headers/`, `fonts/`, `knockout/hooded-warrior.webp`: map pictures, page header
+  art, the font and the Knockout art.
+- `wings.webp`, `card_wings.webp`, `wings_thumb.webp`, `gun.webp`, `target.svg`: the wings,
+  the line-up pistol and the firing-range target. `wings.png` and `gun.png` are the
+  originals the tools work from.
+- `tools/optimize_media.py`: after adding or changing a card or intro, run it (needs
+  Pillow and ffmpeg), then add the player to `js/config.js`.
+- `tools/make_card_wings.py`: makes `card_wings.webp` from the card template's wings.
 
-## Clean-up, 13 Nov 2026
+## Change log
 
-Removed because nothing used them (all still in git history): the old card carousel
-(`js/carousel.js`) and its click sound, the hidden hands image under the card popup,
-about 235 CSS rules for pages that no longer exist (the first team generator, the 2D duo
-network, the old maps page), `CircleC.png`, `hands.webp`, `headers/players.webp`,
-`headers/ranks.webp`, `assets/duo-gold-surround.svg` and `previous_stats_monthly_tab.json`.
-Every tab was screenshotted before and after: identical.
-
-Faster: `history/summary.json` is now downloaded once per visit instead of twice, and the
-font is WOFF2 (56 KB instead of 163 KB). Functions in `data.js` and `knockoutMvp.js` that the
-site itself does not call (`loadPlayers`, `carryRating`, ...) are kept for the game.
+- **27 Nov 2026.** Model TR goes live. Head-to-Head gains "maps against each other",
+  Monthly goes back to May, and History shows the Model TR calculation in plain words.
+  Tidy: `comparisons.js` → `headToHead.js`, `fightNight.js` → `headToHeadPicker.js`,
+  `teams.js` → `lineup.js`, `duo-surround.css` → `duoNetwork.css`, `seamless.css` →
+  `sharedLook.css`; about 130 lines of CSS for removed pages and the editor folders
+  (`.idea/`, `SpinCard.iml`) removed. Every tab screenshotted before and after.
+- **13 Nov 2026.** Removed the old card carousel, its click sound, about 235 unused CSS
+  rules and unused pictures (all still in git history). `history/summary.json` is
+  downloaded once per visit instead of twice, and the font is WOFF2.

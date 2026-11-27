@@ -1,5 +1,5 @@
 /* ======================================================
-   TEAMS & MAPS TAB (one page)
+   MATCH DAY TAB (teams and maps on one page)
    1. Tap players (no dropdowns). Auto: tap 8, get the fairest 4 v 4.
       Pick teams: choose Team A / Team B, then tap players into it.
    2. Roll a Bo5 / Bo7 / Bo9 map set.
@@ -9,7 +9,7 @@
 import { cardAssets, INACTIVE_PLAYER_IDS } from "./config.js";
 import { playerHasActivity } from "./data.js";
 import { bestSplit } from "./ratings.js";
-import { setupLineupClicks, showLineup } from "./teams.js";
+import { setupLineupClicks, showLineup } from "./lineup.js";
 import { renderMapSet } from "./maps.js";
 import { reduceMotion } from "./ui.js";
 
@@ -123,7 +123,7 @@ function build() {
         teamA = [...picked].filter(([, t]) => t === "A").map(([id]) => byId(id));
         teamB = [...picked].filter(([, t]) => t === "B").map(([id]) => byId(id));
     }
-    showLineup(teamA, teamB);          // your line-up reveal, unchanged
+    showLineup(teamA, teamB, seriesCount);   // the line-up reveal, with the series chance for the Bo picked
 }
 
 /* ---------------------------

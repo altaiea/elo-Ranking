@@ -1,7 +1,7 @@
 /* ======================================================
    RANKS / PLAYERS PAGES
    The switch under the title, the hand of cards (js/cardHand.js), the Locker
-   room and Cards page (js/locker.js), Fight night (js/fightNight.js) and the
+   room and Cards page (js/locker.js), the Head-to-Head picker (js/headToHeadPicker.js) and the
    tale of the tape beside the card popup (js/cardTape.js).
    --ui-zoom is set by js/layout.js: on a phone the site is drawn on a wide
    canvas, so text here is zoomed up to stay readable.

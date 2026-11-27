@@ -1,6 +1,20 @@
-/* ============================
-   ORIGINAL CSS
-============================ */
+/* ======================================================
+   BASE STYLES
+   The styles every page shares, then one section per feature. The other
+   stylesheets load after this one (see index.html):
+     layout.css       side menu, bottom bar on phones, the gold theme
+     locker.css       Ranks / Players page headers, card hands, the font
+     matchSetup.css   the Match Day page
+     sharedLook.css   gives Monthly, History, Head-to-Head and Match Day the leaderboard's look
+     duoNetwork.css   the duo network pop-up only
+
+   Sections in this file (each starts with a capitalised heading like this one):
+     page basics and the leaderboard table, the player card pop-up (card,
+     intro video, mode wheel, numbers, streak fire), menu tabs, card rating
+     colours, Match Day maps and the line-up pop-up, Head-to-Head, History,
+     Monthly, phones, and the Knockout tab at the end.
+====================================================== */
+
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background: #0d0d0f;
@@ -168,36 +182,11 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 ============================ */
 .elo-gold { color: #fafafa; font-weight: 800; }
 
-/* ============================
-   TEAM BUILDER
-============================ */
-
-.team-player {
-    padding: 6px;
-    background: #111;
-    color: #e6e6e6;
-    border: 1px solid #f2c14e;
-    width: 100%;
-}
-
-/* unified wrapper */
-#team-builder-wrapper {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
 
 /* ============================
-   MANUAL TEAM BUILDER
+   PLAYER CARD POP-UP: the dark backdrop and the card box
 ============================ */
 
-
-/* ============================
-   MODALS (GLOBAL)
-============================ */
 .modal {
     display: none;
     position: fixed;
@@ -208,7 +197,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 
-/* PLAYER MODAL ONLY — KEEP THIS */
+/* the card box inside the pop-up (321 x 500, the card's own size) */
+
 .modal-content {
     background: #1a1a20;
     margin: 10% auto;
@@ -267,13 +257,14 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     position: relative;
 }
 
-/*  SHOW BACK WHEN FLIPPED (your original behavior) */
+/* a flipped card shows its back */
+
 .card.flipped .back { opacity: 1; }
 
-/* INSERTED VIDEO — NOTHING ELSE CHANGED */
 /* ============================
-   DEFAULT VIDEO STYLE (ALL PLAYERS)
+   CARD INTRO VIDEO (plays on the back of the card)
 ============================ */
+
 .card-back-video {
     position: absolute;
     inset: 0;
@@ -338,7 +329,6 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .col2.row1 { left: 137px; top: 347px; }
 .col3.row1 { left: 224px; top: 308px; }
 
-/* PLAYER 16 — OVERALL RATING */
 
 /* ============================
    MODE STATS PANEL (wheel)
@@ -487,8 +477,9 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 /* ============================
-   TABS
+   MENU TABS (the side menu itself is in layout.css)
 ============================ */
+
 
 #tabs {
     text-align: center;
@@ -520,36 +511,10 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .tab-page { display: none; }
 #leaderboardPage { display: block; }
 
-/* Manual Team Builder Styling */
-.team-builder-section {
-    margin-top: 40px;
-    padding: 0;
-    background: none;
-    border: none;
-    border-radius: 0;
-}
-
-.team-label {
-    color: #f2c14e;
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-}
-
-/* Match your existing dropdown theme */
-
-/* Output boxes */
-
-/* ============================================================
-   CARDS TAB — ROTATING CAROUSEL (FULLY ISOLATED)
-============================================================ */
-
-/* COD-style dark background */
-
-/* COD-style spotlight */
-
 /* ============================
-   CARD RATING TIERS + SELECTION BURST
+   CARD RATING COLOURS (tiers) AND THE SELECTION BURST
 ============================ */
+
 
 /* Defaults for particle custom properties. JavaScript overrides these at runtime. */
 :root {
@@ -589,8 +554,9 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 
 /* ============================
-   MAPS TAB — MAP BUILDER
+   MATCH DAY MAPS (js/maps.js): the rolled map set as picture cards
 ============================ */
+
 
 /* Loading Spinner */
 .map-loading {
@@ -682,91 +648,10 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 .map-card-name { font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; color: #fff; }
 
 
-
 /* ============================
-   TEAM PANELS
+   POP-UP BOX (js/ui.js showPopup): used by the Match Day line-up
 ============================ */
 
-.team-panel {
-    margin-top: 20px;
-    padding: 12px;
-    background: #111218;
-    border-radius: 6px;
-    border: 1px solid #f2c14e33;
-    text-align: center;
-}
-
-/* ============================
-   TEAM TOGGLE BUTTON
-============================ */
-
-.team-toggle {
-    display: inline-block;
-    width: auto;
-    background: #f2c14e;
-    color: #000;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-}
-
-.team-toggle:hover {
-    background: #f2c14e;
-}
-
-/* ============================
-   COLLAPSIBLE SLIDE ANIMATION
-============================ */
-
-.team-content {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    margin-top: 12px;
-    transition:
-            max-height 0.45s ease,
-            opacity 0.35s ease;
-}
-
-.team-content.open {
-    max-height: 800px;
-    opacity: 1;
-}
-
-/* ============================
-   TEAM STRENGTH BARS
-============================ */
-
-.team-strength-wrapper {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.team-strength span {
-    color: #ffffff;
-    font-weight: 700;
-    margin-bottom: 6px;
-    display: block;
-    text-align: left;
-}
-
-/* ============================
-   BAR FILL + TEXT
-============================ */
-
-/* ============================
-   COLOUR CODING (WIN PROBABILITY)
-============================ */
-
-/* ============================
-   POPUP CARD (TEAM BUILDER)
-============================ */
 
 .popup-overlay {
     position: fixed;
@@ -808,38 +693,8 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================================
-   PLAYER COMPARISON TAB
+   HEAD-TO-HEAD TAB (js/headToHead.js, js/headToHeadPicker.js)
 ============================================================ */
 .comparison-page {
     width: min(1180px, 94%);
@@ -1578,7 +1433,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 
 
 /* ============================
-   PLAYER CARD ENTRANCE (carousel -> modal)
+   PLAYER CARD ENTRANCE: how the card pop-up arrives
 ============================ */
 .modal-content.modal-enter {
     animation: cardFlipIn 700ms cubic-bezier(.25,.8,.25,1) both;
@@ -1598,7 +1453,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
     .modal-content.modal-enter { animation: none; }
 }
 
-/* Maps tab on phones: tighter padding so two picture cards fit per row */
+/* Match Day maps on phones: tighter padding so two picture cards fit per row */
 @media (max-width: 600px) {
     .map-series-output { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
     .map-card.has-picture { min-height: 96px; padding: 6px 6px; }
@@ -1623,7 +1478,7 @@ input:checked + .small-slider:before { transform: translateX(18px); }
 @media (max-width: 520px) { .popup-card { width: auto; max-width: calc(100vw - 20px); box-sizing: border-box; padding: 18px 12px; } .lineup-wrap { gap: 6px; } .lineup-num { font-size: 15px; } .lineup-stats { gap: 10px; } }
 
 /* ============================
-   PHONES: one consistent layout (added)
+   PHONES: one consistent layout
 ============================ */
 html { -webkit-text-size-adjust: 100%; }
 @media (max-width: 600px) {
@@ -1638,11 +1493,6 @@ html { -webkit-text-size-adjust: 100%; }
     table { width: 100%; }
     th { padding: 10px 3px; font-size: 11px; letter-spacing: 0; }
     td { padding: 9px 3px; font-size: 13px; }
-
-    /* Cards tab: no huge empty area under the ring */
-
-    /* Teams */
-    .team-strength-wrapper { max-width: 100%; }
 }
 
 @media (max-width: 600px) {
@@ -1653,8 +1503,6 @@ html { -webkit-text-size-adjust: 100%; }
 }
 
 @media (max-width: 600px) {
-    .team-player { width: 100%; min-width: 0; font-size: 14px; }
-    .team-content.open { max-height: 1400px; }
     .final-head-to-head { flex-direction: column; align-items: center; }
     .final-head-to-head strong { font-size: 20px; }
 }
@@ -1776,10 +1624,8 @@ html { -webkit-text-size-adjust: 100%; }
 .chem-badge.chem-purple { color: #A855F7; box-shadow: 0 0 8px rgba(168,85,247,0.6); }
 .chem-badge.chem-none   { color: #8a929e; }
 /* ============================
-   DUO NETWORK (History tab)
+   HISTORY: days grouped into weeks
 ============================ */
-
-/* history grouped into weeks */
 .history-week { margin: 10px 0; }
 .history-week-head { width: 100%; background: #15151a; padding: 15px 18px; border: 1px solid #f2c14e; border-radius: 6px; cursor: pointer; color: #f2c14e; transition: 0.2s; display: flex; align-items: center; gap: 14px; font: inherit; text-align: left; }
 .history-week-head:hover { background: #f2c14e; color: #000; }
@@ -2152,3 +1998,17 @@ tr.ko-outrow::after { inset: 2px 0; }
 .koh-scale { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
 .koh-scale span { padding: 3px 9px; border-radius: 999px; border: 1px solid #3a3122; color: #cfc7b4; font-size: 12.5px; }
 .koh-scale b { color: #f2c14e; }
+
+/* Match Day win chance panel (Model TR) */
+.wc-panel { margin-top: 12px; padding: 12px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; background: rgba(0,0,0,.35); color: #ddd; }
+.wc-head { font-size: 17px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 8px; letter-spacing: .5px; }
+.wc-bar { display: flex; height: 26px; border-radius: 13px; overflow: hidden; font-size: 13px; font-weight: 700; }
+.wc-bar > div { display: flex; align-items: center; padding: 0 10px; color: #cfd8dc; background: #2b3138; white-space: nowrap; }
+.wc-bar .wc-b { flex: 1; justify-content: flex-end; }
+.wc-bar .wc-a { background: #3a4048; }
+.wc-bar .wc-on { background: #1f7a3c; color: #fff; }
+.wc-lines { margin-top: 8px; font-size: 13px; line-height: 1.6; text-align: center; }
+.wc-lines b { color: #fff; }
+.wc-modes { color: #a39a88; }
+.wc-modes span { margin-left: 10px; white-space: nowrap; }
+.wc-modes span b { color: #cfc6b3; font-weight: 600; }

@@ -1,3 +1,9 @@
+// ======================================================
+// KNOCKOUT PANELS
+// ======================================================
+// The Cards, Rules and History buttons on the Knockout tab each open a panel.
+// Only one is open at a time: opening one closes the others.
+
 const panels = ["koCards", "koRules", "koHistory"];
 
 export function showKnockoutPanel(selected) {

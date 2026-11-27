@@ -6,7 +6,8 @@
 // cards are not affected. No page code, so the Three.js game can import it.
 //
 // Carry uses the team-relative terms and weights of the previous Elo engine. Since 17 Nov 2026
-// the site's Elo is Model R + kill share, so this match rating is its own thing; the weights stay fixed.
+// the site's Elo has been Model R + kill share, and then Model TR (TrueSkill + kill share), so this match
+// rating is its own thing; the weights stay fixed.
 // (CODStats v4, codstats/elo/rules.py, KD_WEIGHT and DAMAGE_WEIGHT):
 //   KD carry     = your map KD - your team's average map KD  (SND KD capped at 4)
 //   Kill carry   = your share of your team's kills - 1 / team size

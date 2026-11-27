@@ -126,7 +126,7 @@ export function isPopupOpen() {
 export function setupPopup() {
     document.getElementById("popupClose").addEventListener("click", closePopup);
     // Plain popups close from the dark backdrop or Escape. A line-up adds its own
-    // corner card (see teams.js) and closes from the backdrop only once that is up.
+    // corner card (see lineup.js) and closes from the backdrop only once that is up.
     document.getElementById("popupOverlay").addEventListener("click", () => {
         const card = popupEl();
         if (!card.querySelector(".lineup-wrap") || card.querySelector(".fx-close")) closePopup();

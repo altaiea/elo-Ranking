@@ -1,5 +1,5 @@
 /* ======================================================
-   MAP SETS (used by the Teams & Maps tab)
+   MAP SETS (used by the Match Day tab)
    5 maps: no map repeats at all.
    7 / 9 maps: no map repeats within the same mode.
 ====================================================== */

@@ -3,9 +3,9 @@
    The line-up popup (mini cards joined by lines coloured by chemistry) and
    its card-deal reveal. The player picker lives in matchSetup.js.
 ====================================================== */
-import { cardAssets } from "./config.js";
+import { cardAssets, MAP_SET_PATTERNS } from "./config.js";
 import { loadAllHistory } from "./data.js";
-import { buildChemistry, chemBand, chemKey, teamStats } from "./ratings.js";
+import { buildChemistry, chanceWords, chemBand, chemKey, seriesWinChance, teamStats } from "./ratings.js";
 import { closePopup, reduceMotion, showPopup } from "./ui.js";
 
 const EASE_OUT = "cubic-bezier(.2,.8,.2,1)";
@@ -58,18 +58,50 @@ function teamLineupBlock(label, team, avg, prob, cls) {
             </div>
             <div class="lineup-stats">
                 <div><span class="lineup-num">${avg.toFixed(1)}</span><span class="lineup-cap">Avg Elo</span></div>
-                <div><span class="lineup-num">${(prob * 100).toFixed(1)}%</span><span class="lineup-cap">Win</span></div>
+                <div><span class="lineup-num">${Math.round(prob * 100)}%</span><span class="lineup-cap">Per map</span></div>
                 <div><span class="lineup-num chem-team">&ndash;</span><span class="lineup-cap">Chem</span></div>
             </div>
         </div>`;
 }
 
-function teamLineupHtml(teamA, teamB, t) {
+// The win chance, said three ways: a split bar, plain words with "out of 10 maps", and the
+// chance of winning the whole series that was picked (Bo5 / Bo7 / Bo9). Per mode underneath.
+function winChanceHtml(t, seriesCount) {
+    const aFav = t.probA >= t.probB, fav = aFav ? "Team A" : "Team B";
+    const pFav = aFav ? t.probA : t.probB;
+    const pct = p => `${Math.round(p * 100)}%`;
+    const pattern = MAP_SET_PATTERNS[seriesCount] || MAP_SET_PATTERNS[7];
+    // The series line names whichever team is more likely to win the series. That is usually the
+    // per-map favourite, but not always: the series' mode order can favour the other team.
+    const sA = seriesWinChance(t.modes, pattern);
+    const seriesFav = sA >= 0.5 ? "Team A" : "Team B", sFav = Math.max(sA, 1 - sA);
+    const words = chanceWords(pFav);
+    const even = words === "Even game";
+    const lead = even ? "Even game" : `${words}: ${fav}`;
+    const outOf10 = Math.round(pFav * 10);
+    const modeRow = [["Hardpoint", "HP"], ["SND", "S&amp;D"], ["Overload", "OL"]].map(([m, l]) => {
+        const pa = t.modes[m];
+        return `<span><b>${l}</b> ${pct(pa)} &ndash; ${pct(1 - pa)}</span>`;
+    }).join("");
+    return `
+        <div class="wc-panel">
+            <div class="wc-head">${lead}</div>
+            <div class="wc-bar"><div class="wc-a${!even && aFav ? " wc-on" : ""}" style="width:${t.probA * 100}%">A ${pct(t.probA)}</div><div class="wc-b${!even && !aFav ? " wc-on" : ""}">${pct(t.probB)} B</div></div>
+            <div class="wc-lines">
+                <div>${outOf10 === 5 ? "Out of 10 maps, each team would win about <b>5</b>." : `Out of 10 maps, ${fav} would win about <b>${outOf10}</b>.`}</div>
+                <div>Bo${pattern.length}: ${seriesFav} wins the series <b>${pct(sFav)}</b> of the time.</div>
+                <div class="wc-modes">Team A &ndash; Team B by mode: ${modeRow}</div>
+            </div>
+        </div>`;
+}
+
+function teamLineupHtml(teamA, teamB, t, seriesCount) {
     return `
         <div class="lineup-wrap">
             ${teamLineupBlock("Team A", teamA, t.avgA, t.probA, t.probA >= t.probB ? "lineup-fav" : "")}
             ${teamLineupBlock("Team B", teamB, t.avgB, t.probB, t.probB > t.probA ? "lineup-fav" : "")}
-        </div>`;
+        </div>
+        ${winChanceHtml(t, seriesCount)}`;
 }
 
 // each link runs between the middles of the two card edges that face each other
@@ -381,7 +413,7 @@ function playLineupFx() {
         });
         const nums = team.querySelectorAll(".lineup-num");
         if (nums[0]) countUp(nums[0], parseFloat(nums[0].textContent), 1, "", 900, base + 500);
-        if (nums[1]) countUp(nums[1], parseFloat(nums[1].textContent), 1, "%", 900, base + 500);
+        if (nums[1]) countUp(nums[1], parseFloat(nums[1].textContent), 0, "%", 900, base + 500);   // whole percent: decimals would claim a precision the model does not have
         if (team.classList.contains("lineup-fav")) {
             team.animate([
                 { boxShadow: "0 0 0 rgba(57,255,106,0)" },
@@ -438,9 +470,9 @@ function addCloseCard(pop, arriveAt) {
     });
 }
 
-export function showLineup(teamA, teamB) {
+export function showLineup(teamA, teamB, seriesCount = 7) {
     const stats = teamStats(teamA, teamB);
-    showPopup(teamLineupHtml(teamA, teamB, stats), {
+    showPopup(teamLineupHtml(teamA, teamB, stats, seriesCount), {
         onOpen: pop => {
             lineupEdges();
             if (!reduceMotion()) {

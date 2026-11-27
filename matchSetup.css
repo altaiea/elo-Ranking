@@ -1,5 +1,5 @@
 /* ======================================================
-   TEAMS & MAPS TAB (combined)
+   MATCH DAY TAB (js/matchSetup.js): player chips, teams, Bo5/7/9 and maps
 ====================================================== */
 .ms {
     --cyan: #f2c14e; --a: #f2c14e; --b: #ffb020; --line: rgba(242, 193, 78, .16);

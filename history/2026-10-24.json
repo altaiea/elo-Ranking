@@ -2,7 +2,7 @@
   "date": "2026-10-24",
   "openingStats": {
     "1": {
-      "elo": 1140.8385596933501,
+      "elo": 1196.6282488389074,
       "lifetimeKills": 16669,
       "lifetimeDeaths": 10244,
       "mapKills": 0,
@@ -40,13 +40,23 @@
       "overloadLifetimeDamage": 499100.0,
       "overloadLifetimeTeamDamage": 1712700.0,
       "modeElo": {
-        "Hardpoint": 1137.0083615147496,
-        "SND": 1122.5297607617726,
-        "Overload": 1172.269440997963
+        "Hardpoint": 1193.549831877407,
+        "SND": 1183.7624109520798,
+        "Overload": 1219.366746101438
+      },
+      "skill": {
+        "uncertainty": 25.7278025699204,
+        "maps": 521,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.502957923808083,
+          "SND": 29.816250317219307,
+          "Overload": 30.816441782186395
+        }
       }
     },
     "2": {
-      "elo": 1146.3386386313143,
+      "elo": 1180.489665945815,
       "lifetimeKills": 14301,
       "lifetimeDeaths": 8807,
       "mapKills": 0,
@@ -84,13 +94,23 @@
       "overloadLifetimeDamage": 452500.0,
       "overloadLifetimeTeamDamage": 1501400.0,
       "modeElo": {
-        "Hardpoint": 1123.108149475488,
-        "SND": 1199.8249835326058,
-        "Overload": 1112.4883765142636
+        "Hardpoint": 1162.8631270561461,
+        "SND": 1214.8106418647915,
+        "Overload": 1163.3498736114304
+      },
+      "skill": {
+        "uncertainty": 26.25776516721256,
+        "maps": 446,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 30.32302957012539,
+          "SND": 30.476207299434886,
+          "Overload": 31.507398840890893
+        }
       }
     },
     "3": {
-      "elo": 1134.5357740450956,
+      "elo": 1177.2633279920658,
       "lifetimeKills": 15467,
       "lifetimeDeaths": 8725,
       "mapKills": 0,
@@ -128,13 +148,23 @@
       "overloadLifetimeDamage": 487100.0,
       "overloadLifetimeTeamDamage": 1591300.0,
       "modeElo": {
-        "Hardpoint": 1161.626606366816,
-        "SND": 1102.1625450030122,
-        "Overload": 1133.0782515404255
+        "Hardpoint": 1185.723257663622,
+        "SND": 1169.1884649681117,
+        "Overload": 1174.0321461933013
+      },
+      "skill": {
+        "uncertainty": 25.410816034293287,
+        "maps": 490,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.260868313263643,
+          "SND": 29.581245661083027,
+          "Overload": 30.635181763197007
+        }
       }
     },
     "4": {
-      "elo": 1072.0328959878427,
+      "elo": 1083.6591914088922,
       "lifetimeKills": 7498,
       "lifetimeDeaths": 4643,
       "mapKills": 0,
@@ -172,13 +202,23 @@
       "overloadLifetimeDamage": 252200.0,
       "overloadLifetimeTeamDamage": 904600.0,
       "modeElo": {
-        "Hardpoint": 1085.5389651104865,
-        "SND": 1064.417266629027,
-        "Overload": 1059.6763872384543
+        "Hardpoint": 1090.3318331471878,
+        "SND": 1077.0326576498571,
+        "Overload": 1081.4621181848586
+      },
+      "skill": {
+        "uncertainty": 29.33656571312295,
+        "maps": 252,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 33.80535057744751,
+          "SND": 33.94124244491941,
+          "Overload": 34.70460072534645
+        }
       }
     },
     "5": {
-      "elo": 1154.329103446008,
+      "elo": 1176.3786126287928,
       "lifetimeKills": 15648,
       "lifetimeDeaths": 9438,
       "mapKills": 0,
@@ -216,13 +256,23 @@
       "overloadLifetimeDamage": 455900.0,
       "overloadLifetimeTeamDamage": 1605900.0,
       "modeElo": {
-        "Hardpoint": 1209.4900631488495,
-        "SND": 1082.364051058353,
-        "Overload": 1159.613570726404
+        "Hardpoint": 1200.016356782728,
+        "SND": 1141.6151125136953,
+        "Overload": 1183.9980376115896
+      },
+      "skill": {
+        "uncertainty": 25.991293058487642,
+        "maps": 493,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.87567711411342,
+          "SND": 30.165688067619378,
+          "Overload": 31.127023396232644
+        }
       }
     },
     "6": {
-      "elo": 1008.1741701343078,
+      "elo": 997.5547368233013,
       "lifetimeKills": 10442,
       "lifetimeDeaths": 7745,
       "mapKills": 0,
@@ -260,13 +310,23 @@
       "overloadLifetimeDamage": 331900.0,
       "overloadLifetimeTeamDamage": 1298200.0,
       "modeElo": {
-        "Hardpoint": 950.0849925888464,
-        "SND": 1059.115409326018,
-        "Overload": 1036.5057500991077
+        "Hardpoint": 973.0051695194675,
+        "SND": 1018.1729160075258,
+        "Overload": 1010.7705004399456
+      },
+      "skill": {
+        "uncertainty": 26.979306425881134,
+        "maps": 391,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.1733209285669,
+          "SND": 31.39868750953754,
+          "Overload": 32.22235953816878
+        }
       }
     },
     "7": {
-      "elo": 944.6193852155732,
+      "elo": 956.9689905673633,
       "lifetimeKills": 8706,
       "lifetimeDeaths": 7641,
       "mapKills": 0,
@@ -304,13 +364,23 @@
       "overloadLifetimeDamage": 271500.0,
       "overloadLifetimeTeamDamage": 1220200.0,
       "modeElo": {
-        "Hardpoint": 956.609473877797,
-        "SND": 908.6116468331948,
-        "Overload": 973.5535186219556
+        "Hardpoint": 969.0286567930501,
+        "SND": 938.7800326780101,
+        "Overload": 961.474487161802
+      },
+      "skill": {
+        "uncertainty": 26.872896875270015,
+        "maps": 372,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.15899245096895,
+          "SND": 31.231362783165384,
+          "Overload": 32.21101058009676
+        }
       }
     },
     "8": {
-      "elo": 936.8266759932189,
+      "elo": 935.3372902442763,
       "lifetimeKills": 12401,
       "lifetimeDeaths": 10635,
       "mapKills": 0,
@@ -348,13 +418,23 @@
       "overloadLifetimeDamage": 384700.0,
       "overloadLifetimeTeamDamage": 1673600.0,
       "modeElo": {
-        "Hardpoint": 896.9323812080906,
-        "SND": 970.1125442802278,
-        "Overload": 958.6027448915647
+        "Hardpoint": 921.7561403323793,
+        "SND": 948.961403454285,
+        "Overload": 939.6224408984315
+      },
+      "skill": {
+        "uncertainty": 25.66749224439399,
+        "maps": 516,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.492783831408552,
+          "SND": 29.73550859313317,
+          "Overload": 30.816158855635855
+        }
       }
     },
     "9": {
-      "elo": 1067.726761376603,
+      "elo": 1107.0933938122819,
       "lifetimeKills": 13364,
       "lifetimeDeaths": 10529,
       "mapKills": 0,
@@ -392,13 +472,23 @@
       "overloadLifetimeDamage": 399700.0,
       "overloadLifetimeTeamDamage": 1640600.0,
       "modeElo": {
-        "Hardpoint": 1053.3840193873948,
-        "SND": 1102.834898866676,
-        "Overload": 1043.982382159421
+        "Hardpoint": 1112.8090503443984,
+        "SND": 1112.352202160948,
+        "Overload": 1090.2920515820756
+      },
+      "skill": {
+        "uncertainty": 25.654352494051402,
+        "maps": 512,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.46699849005506,
+          "SND": 29.740518464699147,
+          "Overload": 30.824787063555174
+        }
       }
     },
     "10": {
-      "elo": 938.8530634793792,
+      "elo": 902.1827888585703,
       "lifetimeKills": 8585,
       "lifetimeDeaths": 7898,
       "mapKills": 0,
@@ -436,13 +526,23 @@
       "overloadLifetimeDamage": 256000.0,
       "overloadLifetimeTeamDamage": 1249500.0,
       "modeElo": {
-        "Hardpoint": 938.1643087029892,
-        "SND": 940.2190078603455,
-        "Overload": 938.1494146153819
+        "Hardpoint": 896.7697185273117,
+        "SND": 907.519920188228,
+        "Overload": 904.0177038371489
+      },
+      "skill": {
+        "uncertainty": 26.903179974931135,
+        "maps": 390,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.076766758722357,
+          "SND": 31.28780547317705,
+          "Overload": 32.201438481426386
+        }
       }
     },
     "11": {
-      "elo": 927.2972378828114,
+      "elo": 924.2493267333116,
       "lifetimeKills": 7118,
       "lifetimeDeaths": 6390,
       "mapKills": 0,
@@ -480,13 +580,23 @@
       "overloadLifetimeDamage": 216000.0,
       "overloadLifetimeTeamDamage": 1099800.0,
       "modeElo": {
-        "Hardpoint": 958.9830999439145,
-        "SND": 886.9590474812968,
-        "Overload": 928.9678919228581
+        "Hardpoint": 937.1455992800503,
+        "SND": 903.3531788998401,
+        "Overload": 931.0394175852817
+      },
+      "skill": {
+        "uncertainty": 26.954098546587208,
+        "maps": 342,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.202233758077817,
+          "SND": 31.53381471377938,
+          "Overload": 32.37584096620867
+        }
       }
     },
     "12": {
-      "elo": 923.0129676951963,
+      "elo": 905.0049292113968,
       "lifetimeKills": 11730,
       "lifetimeDeaths": 10718,
       "mapKills": 0,
@@ -524,13 +634,23 @@
       "overloadLifetimeDamage": 357700.0,
       "overloadLifetimeTeamDamage": 1724200.0,
       "modeElo": {
-        "Hardpoint": 933.3123953249618,
-        "SND": 935.1009123803585,
-        "Overload": 889.1741043232038
+        "Hardpoint": 904.74866627657,
+        "SND": 922.3572075902848,
+        "Overload": 881.7615590381279
+      },
+      "skill": {
+        "uncertainty": 25.708723163290863,
+        "maps": 527,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.49794283656872,
+          "SND": 29.763374117234946,
+          "Overload": 30.787782459597874
+        }
       }
     },
     "13": {
-      "elo": 785.9754932068857,
+      "elo": 750.7282474252918,
       "lifetimeKills": 2832,
       "lifetimeDeaths": 3509,
       "mapKills": 0,
@@ -568,13 +688,23 @@
       "overloadLifetimeDamage": 85300.0,
       "overloadLifetimeTeamDamage": 506700.0,
       "modeElo": {
-        "Hardpoint": 769.0449533541914,
-        "SND": 801.4710582030568,
-        "Overload": 793.3483643607773
+        "Hardpoint": 736.1022999348695,
+        "SND": 762.2256201532651,
+        "Overload": 759.674723322817
+      },
+      "skill": {
+        "uncertainty": 33.70326053058854,
+        "maps": 158,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 38.16389179460828,
+          "SND": 38.241942427014806,
+          "Overload": 38.752156458842215
+        }
       }
     },
     "14": {
-      "elo": 1091.1645098366644,
+      "elo": 1051.2999648145537,
       "lifetimeKills": 1349,
       "lifetimeDeaths": 731,
       "mapKills": 0,
@@ -612,13 +742,23 @@
       "overloadLifetimeDamage": 40300.0,
       "overloadLifetimeTeamDamage": 121900.0,
       "modeElo": {
-        "Hardpoint": 1096.5968498743027,
-        "SND": 1086.2763370537898,
-        "Overload": 1088.6845939345237
+        "Hardpoint": 1052.366012467866,
+        "SND": 1048.8703505160424,
+        "Overload": 1052.8194149960127
+      },
+      "skill": {
+        "uncertainty": 51.6867757275732,
+        "maps": 39,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 55.17424871698704,
+          "SND": 55.28873768008534,
+          "Overload": 55.40220627471337
+        }
       }
     },
     "15": {
-      "elo": 903.1243201033259,
+      "elo": 874.3514216240734,
       "lifetimeKills": 553,
       "lifetimeDeaths": 572,
       "mapKills": 0,
@@ -656,13 +796,23 @@
       "overloadLifetimeDamage": 20700.0,
       "overloadLifetimeTeamDamage": 99700.0,
       "modeElo": {
-        "Hardpoint": 895.911561311277,
-        "SND": 927.3884821828366,
-        "Overload": 882.1667696446103
+        "Hardpoint": 876.044597681887,
+        "SND": 876.323732874624,
+        "Overload": 868.808789512794
+      },
+      "skill": {
+        "uncertainty": 58.169821691029725,
+        "maps": 29,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 61.41474231286731,
+          "SND": 61.420755481461796,
+          "Overload": 61.48612716515799
+        }
       }
     },
     "16": {
-      "elo": 890.9936601445386,
+      "elo": 868.8098630711055,
       "lifetimeKills": 3194,
       "lifetimeDeaths": 2778,
       "mapKills": 0,
@@ -700,9 +850,19 @@
       "overloadLifetimeDamage": 105700.0,
       "overloadLifetimeTeamDamage": 514900.0,
       "modeElo": {
-        "Hardpoint": 898.2477682359366,
-        "SND": 882.522012489051,
-        "Overload": 890.3346977715739
+        "Hardpoint": 875.7396823150578,
+        "SND": 862.67414752841,
+        "Overload": 865.5099899229444
+      },
+      "skill": {
+        "uncertainty": 37.439739981442685,
+        "maps": 138,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 41.762429040793094,
+          "SND": 41.79358783478282,
+          "Overload": 42.11682280019842
+        }
       }
     }
   },
@@ -776,818 +936,1034 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1146.3386386313143,
-          "change": 0.11674202759490981,
-          "after": 1146.4553806589092,
+          "before": 1180.489665945815,
+          "change": 0.500412950380678,
+          "after": 1180.9900788961957,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1146.3386386313143,
-            "change": 0.11674202759490981,
-            "after": 1146.4553806589092,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1180.489665945815,
+            "change": 0.500412950380678,
+            "after": 1180.9900788961957,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.5447896300208
+                "result": 1041.3937597762556
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1065.168597811523,
-                  "otherTeam": 1042.6274158457418
+                  "ownTeam": 4168.731911159579,
+                  "otherTeam": 4156.838102522461
                 },
-                "result": 1065.168597811523
+                "result": 4168.731911159579
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5323939298437786
+                "result": 0.51759884059834
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": true
                 },
-                "result": 0.5625
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.25776516721256
                 },
-                "result": 0.4515910523433203
+                "result": 0.7207488226214935
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2966101694915254
                 },
-                "result": 0.021048735490578483
+                "result": 0.018399327056701144
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1112.4883765142636
+                  "before": 1163.3498736114304
                 },
-                "result": 1112.9610163020975
+                "result": 1164.0890217611086
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": 0.11154298992880012
+                "result": 0.48201362332422687
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": 0.005199037666172885
+                "result": 0.018399327056701144
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.11674202759490981
+                "result": 0.500412950380678
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.25776516721256
+                },
+                "result": 26.27415817268369
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 1112.4883765142636,
-            "change": 0.4726397878339412,
-            "after": 1112.9610163020975
+            "before": 1163.3498736114304,
+            "change": 0.739148149678158,
+            "after": 1164.0890217611086
           }
         },
         {
           "playerId": 5,
-          "before": 1154.329103446008,
-          "change": 0.1186325867463438,
-          "after": 1154.4477360327544,
+          "before": 1176.3786126287928,
+          "change": 0.49810871188060446,
+          "after": 1176.8767213406734,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1154.329103446008,
-            "change": 0.1186325867463438,
-            "after": 1154.4477360327544,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1176.3786126287928,
+            "change": 0.49810871188060446,
+            "after": 1176.8767213406734,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.5447896300208
+                "result": 1041.3937597762556
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1065.168597811523,
-                  "otherTeam": 1042.6274158457418
+                  "ownTeam": 4168.731911159579,
+                  "otherTeam": 4156.838102522461
                 },
-                "result": 1065.168597811523
+                "result": 4168.731911159579
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5323939298437786
+                "result": 0.51759884059834
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": true
                 },
-                "result": 0.5625
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.991293058487642
                 },
-                "result": 0.4515910523433203
+                "result": 0.7034353272553956
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.3135593220338983
                 },
-                "result": 0.02870282112351612
+                "result": 0.02508999144095611
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1159.613570726404
+                  "before": 1183.9980376115896
                 },
-                "result": 1160.0938645998708
+                "result": 1184.726562930286
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": 0.11154298992880012
+                "result": 0.4730187204396391
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": 0.007089596817508482
+                "result": 0.02508999144095611
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.1186325867463438
+                "result": 0.49810871188060446
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.991293058487642
+                },
+                "result": 26.008287322756612
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 1159.613570726404,
-            "change": 0.480293873466735,
-            "after": 1160.0938645998708
+            "before": 1183.9980376115896,
+            "change": 0.7285253186964837,
+            "after": 1184.726562930286
           }
         },
         {
           "playerId": 8,
-          "before": 936.8266759932189,
-          "change": 0.1101250705653456,
-          "after": 936.9368010637843,
+          "before": 935.3372902442763,
+          "change": 0.4573257646438833,
+          "after": 935.7946160089202,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 936.8266759932189,
-            "change": 0.1101250705653456,
-            "after": 936.9368010637843,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 935.3372902442763,
+            "change": 0.4573257646438833,
+            "after": 935.7946160089202,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.5447896300208
+                "result": 1041.3937597762556
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1065.168597811523,
-                  "otherTeam": 1042.6274158457418
+                  "ownTeam": 4168.731911159579,
+                  "otherTeam": 4156.838102522461
                 },
-                "result": 1065.168597811523
+                "result": 4168.731911159579
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5323939298437786
+                "result": 0.51759884059834
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": true
                 },
-                "result": 0.5625
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.66749224439399
                 },
-                "result": 0.4515910523433203
+                "result": 0.6894993931531331
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.23728813559322035
                 },
-                "result": -0.005740564224703221
+                "result": -0.005017998288191219
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 958.6027448915647
+                  "before": 939.6224408984315
                 },
-                "result": 959.0485953796833
+                "result": 940.3069222932963
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": 0.11154298992880012
+                "result": 0.46234376293193646
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": -0.0014179193635016957
+                "result": -0.005017998288191219
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.1101250705653456
+                "result": 0.4573257646438833
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.66749224439399
+                },
+                "result": 25.685322905233
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 958.6027448915647,
-            "change": 0.4458504881185945,
-            "after": 959.0485953796833
+            "before": 939.6224408984315,
+            "change": 0.6844813948648607,
+            "after": 940.3069222932963
           }
         },
         {
           "playerId": 12,
-          "before": 923.0129676951963,
-          "change": 0.10067227480863039,
-          "after": 923.1136399700049,
+          "before": 905.0049292113968,
+          "change": 0.4252012733634274,
+          "after": 905.4301304847602,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 923.0129676951963,
-            "change": 0.10067227480863039,
-            "after": 923.1136399700049,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 905.0049292113968,
+            "change": 0.4252012733634274,
+            "after": 905.4301304847602,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.5447896300208
+                "result": 1041.3937597762556
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1065.168597811523,
-                  "otherTeam": 1042.6274158457418
+                  "ownTeam": 4168.731911159579,
+                  "otherTeam": 4156.838102522461
                 },
-                "result": 1065.168597811523
+                "result": 4168.731911159579
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5323939298437786
+                "result": 0.51759884059834
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": true
                 },
-                "result": 0.5625
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.708723163290863
                 },
-                "result": 0.4515910523433203
+                "result": 0.6881954604983271
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.15254237288135594
                 },
-                "result": -0.04401099238939138
+                "result": -0.03847132020946603
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 889.1741043232038
+                  "before": 881.7615590381279
                 },
-                "result": 889.5816843831577
+                "result": 882.4112831784167
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": 0.11154298992880012
+                "result": 0.46367259357288065
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": -0.010870715120179671
+                "result": -0.03847132020946603
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.10067227480863039
+                "result": 0.4252012733634274
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.708723163290863
+                },
+                "result": 25.72639772862198
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 889.1741043232038,
-            "change": 0.4075800599539434,
-            "after": 889.5816843831577
+            "before": 881.7615590381279,
+            "change": 0.6497241402888676,
+            "after": 882.4112831784167
           }
         },
         {
           "playerId": 3,
-          "before": 1134.5357740450956,
-          "change": -0.10192721493490353,
-          "after": 1134.4338468301607,
+          "before": 1177.2633279920658,
+          "change": -0.40868415964769156,
+          "after": 1176.854643832418,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1134.5357740450956,
-            "change": -0.10192721493490353,
-            "after": 1134.4338468301607,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1177.2633279920658,
+            "change": -0.40868415964769156,
+            "after": 1176.854643832418,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.1268464414343
+                "result": 1049.3026245075703
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1042.6274158457418,
-                  "otherTeam": 1065.168597811523
+                  "ownTeam": 4156.838102522461,
+                  "otherTeam": 4168.731911159579
                 },
-                "result": 1042.6274158457418
+                "result": 4156.838102522461
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.46760607015622135
+                "result": 0.48240115940165995
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": false
                 },
-                "result": 0.4375
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.410816034293287
                 },
-                "result": -0.4515910523433203
+                "result": -0.6616677312153219
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.33620689655172414
                 },
-                "result": 0.03893026313304486
+                "result": 0.034030103333710586
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1133.0782515404255
+                  "before": 1174.0321461933013
                 },
-                "result": 1132.6655907512152
+                "result": 1173.4045085654195
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": -0.11154298992880012
+                "result": -0.44271426298125716
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": 0.00961577499386208
+                "result": 0.034030103333710586
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.10192721493490353
+                "result": -0.40868415964769156
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.410816034293287
+                },
+                "result": 25.42944477579961
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 1133.0782515404255,
-            "change": -0.4126607892103493,
-            "after": 1132.6655907512152
+            "before": 1174.0321461933013,
+            "change": -0.6276376278817679,
+            "after": 1173.4045085654195
           }
         },
         {
           "playerId": 7,
-          "before": 944.6193852155732,
-          "change": -0.11635087742570249,
-          "after": 944.5030343381475,
+          "before": 956.9689905673633,
+          "change": -0.5089407546865914,
+          "after": 956.4600498126767,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 944.6193852155732,
-            "change": -0.11635087742570249,
-            "after": 944.5030343381475,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 956.9689905673633,
+            "change": -0.5089407546865914,
+            "after": 956.4600498126767,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.1268464414343
+                "result": 1049.3026245075703
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1042.6274158457418,
-                  "otherTeam": 1065.168597811523
+                  "ownTeam": 4156.838102522461,
+                  "otherTeam": 4168.731911159579
                 },
-                "result": 1042.6274158457418
+                "result": 4156.838102522461
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.46760607015622135
+                "result": 0.48240115940165995
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": false
                 },
-                "result": 0.4375
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.872896875270015
                 },
-                "result": -0.4515910523433203
+                "result": -0.7314140924365677
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.20689655172413793
                 },
-                "result": -0.01946513156652243
+                "result": -0.017015051666855293
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 973.5535186219556
+                  "before": 961.474487161802
                 },
-                "result": 973.0824624380458
+                "result": 960.7260580176986
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": -0.11154298992880012
+                "result": -0.4919257030198385
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": -0.00480788749693104
+                "result": -0.017015051666855293
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.11635087742570249
+                "result": -0.5089407546865914
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.872896875270015
+                },
+                "result": 26.88776099779916
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 973.5535186219556,
-            "change": -0.4710561839098091,
-            "after": 973.0824624380458
+            "before": 961.474487161802,
+            "change": -0.7484291441033974,
+            "after": 960.7260580176986
           }
         },
         {
           "playerId": 9,
-          "before": 1067.726761376603,
-          "change": -0.11442772242708088,
-          "after": 1067.612333654176,
+          "before": 1107.0933938122819,
+          "change": -0.4619528244236335,
+          "after": 1106.6314409878582,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1067.726761376603,
-            "change": -0.11442772242708088,
-            "after": 1067.612333654176,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1107.0933938122819,
+            "change": -0.4619528244236335,
+            "after": 1106.6314409878582,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.1268464414343
+                "result": 1049.3026245075703
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1042.6274158457418,
-                  "otherTeam": 1065.168597811523
+                  "ownTeam": 4156.838102522461,
+                  "otherTeam": 4168.731911159579
                 },
-                "result": 1042.6274158457418
+                "result": 4156.838102522461
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.46760607015622135
+                "result": 0.48240115940165995
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": false
                 },
-                "result": 0.4375
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.654352494051402
                 },
-                "result": -0.4515910523433203
+                "result": -0.6699265191801609
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.22413793103448276
                 },
-                "result": -0.011679078939913455
+                "result": -0.010209031000113174
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1043.982382159421
+                  "before": 1090.2920515820756
                 },
-                "result": 1043.5191120281377
+                "result": 1089.6119160318954
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": -0.11154298992880012
+                "result": -0.451743793423503
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": -0.0028847324981586234
+                "result": -0.010209031000113174
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.11442772242708088
+                "result": -0.4619528244236335
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.654352494051402
+                },
+                "result": 25.672222670419714
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 1043.982382159421,
-            "change": -0.46327013128325234,
-            "after": 1043.5191120281377
+            "before": 1090.2920515820756,
+            "change": -0.6801355501802391,
+            "after": 1089.6119160318954
           }
         },
         {
           "playerId": 11,
-          "before": 927.2972378828114,
-          "change": -0.1134661449275427,
-          "after": 927.1837717378838,
+          "before": 924.2493267333116,
+          "change": -0.5014709615107904,
+          "after": 923.7478557718008,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 927.2972378828114,
-            "change": -0.1134661449275427,
-            "after": 927.1837717378838,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 924.2493267333116,
+            "change": -0.5014709615107904,
+            "after": 923.7478557718008,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Overload",
                   "modeWeight": 0.247
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.1268464414343
+                "result": 1049.3026245075703
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Overload ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1042.6274158457418,
-                  "otherTeam": 1065.168597811523
+                  "ownTeam": 4156.838102522461,
+                  "otherTeam": 4168.731911159579
                 },
-                "result": 1042.6274158457418
+                "result": 4156.838102522461
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 269.5293251256009
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.46760607015622135
+                "result": 0.48240115940165995
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.125,
                   "won": false
                 },
-                "result": 0.4375
+                "result": 0.7700056698780641
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.125
+                },
+                "result": 0.25
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -2.8018790035283496
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.954098546587208
                 },
-                "result": -0.4515910523433203
+                "result": -0.7388706606962991
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.23275862068965517
                 },
-                "result": -0.007786052626608974
+                "result": -0.006806020666742119
               },
               {
                 "name": "Overload rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 928.9678919228581
+                  "before": 931.0394175852817
                 },
-                "result": 928.5085148178882
+                "result": 930.2937409039188
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.247 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.247 x your part in the Overload extra",
                 "inputs": {},
-                "result": -0.11154298992880012
+                "result": -0.4946649408440844
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.247",
+                "formula": "kill share in skill + 0.247 x kill share in the Overload extra",
                 "inputs": {},
-                "result": -0.0019231549987724166
+                "result": -0.006806020666742119
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.1134661449275427
+                "result": -0.5014709615107904
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.954098546587208
+                },
+                "result": 26.968819004044388
               }
             ]
           },
           "mode": {
             "name": "Overload",
-            "before": 928.9678919228581,
-            "change": -0.4593771049699171,
-            "after": 928.5085148178882
+            "before": 931.0394175852817,
+            "change": -0.7456766813629656,
+            "after": 930.2937409039188
           }
         }
       ]
@@ -1661,818 +2037,1034 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1146.4553806589092,
-          "change": 0.9532460110167449,
-          "after": 1147.408626669926,
+          "before": 1180.9900788961957,
+          "change": 1.4844766919172798,
+          "after": 1182.474555588113,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1146.4553806589092,
-            "change": 0.9532460110167449,
-            "after": 1147.408626669926,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1180.9900788961957,
+            "change": 1.4844766919172798,
+            "after": 1182.474555588113,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.433246640092
+                "result": 1040.9234976011885
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1074.7880504210182,
-                  "otherTeam": 1028.437781312232
+                  "ownTeam": 4229.323362217741,
+                  "otherTeam": 4122.094881912226
                 },
-                "result": 1074.7880504210182
+                "result": 4229.323362217741
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5663104810082652
+                "result": 0.6551195445691893
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": true
                 },
-                "result": 0.75
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.27415817268369
                 },
-                "result": 2.755342784876022
+                "result": 1.9820217531244078
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2765957446808511
                 },
-                "result": 0.07328039321478787
+                "result": 0.030821981192428488
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1199.8249835326058
+                  "before": 1215.2327445970764
                 },
-                "result": 1202.6536067106965
+                "result": 1217.2455883313933
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": 0.9285505185032196
+                "result": 1.4536547107246673
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": 0.024695492513383512
+                "result": 0.030821981192428488
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.9532460110167449
+                "result": 1.4844766919172798
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.27415817268369
+                },
+                "result": 26.256808182423136
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 1199.8249835326058,
-            "change": 2.8286231780907656,
-            "after": 1202.6536067106965
+            "before": 1215.2327445970764,
+            "change": 2.0128437343169026,
+            "after": 1217.2455883313933
           }
         },
         {
           "playerId": 5,
-          "before": 1154.4477360327544,
-          "change": 0.9730024050272732,
-          "after": 1155.4207384377817,
+          "before": 1176.8767213406734,
+          "change": 1.483460956055751,
+          "after": 1178.3601822967291,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1154.4477360327544,
-            "change": 0.9730024050272732,
-            "after": 1155.4207384377817,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1176.8767213406734,
+            "change": 1.483460956055751,
+            "after": 1178.3601822967291,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.433246640092
+                "result": 1040.9234976011885
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1074.7880504210182,
-                  "otherTeam": 1028.437781312232
+                  "ownTeam": 4229.323362217741,
+                  "otherTeam": 4122.094881912226
                 },
-                "result": 1074.7880504210182
+                "result": 4229.323362217741
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5663104810082652
+                "result": 0.6551195445691893
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": true
                 },
-                "result": 0.75
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.008287322756612
                 },
-                "result": 2.755342784876022
+                "result": 1.9418851223137312
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2978723404255319
                 },
-                "result": 0.13190470778661806
+                "result": 0.055479566146371236
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1082.364051058353
+                  "before": 1142.03763968257
                 },
-                "result": 1085.2512985510157
+                "result": 1144.03500437103
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": 0.9285505185032196
+                "result": 1.4279813899093219
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": 0.04445188652409029
+                "result": 0.055479566146371236
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.9730024050272732
+                "result": 1.483460956055751
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.008287322756612
+                },
+                "result": 25.99227236032417
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 1082.364051058353,
-            "change": 2.887247492662709,
-            "after": 1085.2512985510157
+            "before": 1142.03763968257,
+            "change": 1.9973646884600385,
+            "after": 1144.03500437103
           }
         },
         {
           "playerId": 8,
-          "before": 936.9368010637843,
-          "change": 0.9334896170058755,
-          "after": 937.8702906807902,
+          "before": 935.7946160089202,
+          "change": 1.397035931055143,
+          "after": 937.1916519399754,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 936.9368010637843,
-            "change": 0.9334896170058755,
-            "after": 937.8702906807902,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 935.7946160089202,
+            "change": 1.397035931055143,
+            "after": 937.1916519399754,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.433246640092
+                "result": 1040.9234976011885
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1074.7880504210182,
-                  "otherTeam": 1028.437781312232
+                  "ownTeam": 4229.323362217741,
+                  "otherTeam": 4122.094881912226
                 },
-                "result": 1074.7880504210182
+                "result": 4229.323362217741
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5663104810082652
+                "result": 0.6551195445691893
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": true
                 },
-                "result": 0.75
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.685322905233
                 },
-                "result": 2.755342784876022
+                "result": 1.8870221515081056
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2553191489361702
                 },
-                "result": 0.014656078642957529
+                "result": 0.006164396238485679
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 970.1125442802278
+                  "before": 949.3442173455361
                 },
-                "result": 972.8825431437467
+                "result": 951.2374038932826
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": 0.9285505185032196
+                "result": 1.3908715348167482
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": 0.004939098502676688
+                "result": 0.006164396238485679
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.9334896170058755
+                "result": 1.397035931055143
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.685322905233
+                },
+                "result": 25.67136927372423
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 970.1125442802278,
-            "change": 2.7699988635189357,
-            "after": 972.8825431437467
+            "before": 949.3442173455361,
+            "change": 1.8931865477464953,
+            "after": 951.2374038932826
           }
         },
         {
           "playerId": 12,
-          "before": 923.1136399700049,
-          "change": 0.8544640409630802,
-          "after": 923.968104010968,
+          "before": 905.4301304847602,
+          "change": 1.303813417859942,
+          "after": 906.7339439026201,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 923.1136399700049,
-            "change": 0.8544640409630802,
-            "after": 923.968104010968,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 905.4301304847602,
+            "change": 1.303813417859942,
+            "after": 906.7339439026201,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1018.433246640092
+                "result": 1040.9234976011885
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1074.7880504210182,
-                  "otherTeam": 1028.437781312232
+                  "ownTeam": 4229.323362217741,
+                  "otherTeam": 4122.094881912226
                 },
-                "result": 1074.7880504210182
+                "result": 4229.323362217741
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5663104810082652
+                "result": 0.6551195445691893
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": true
                 },
-                "result": 0.75
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.72639772862198
                 },
-                "result": 2.755342784876022
+                "result": 1.89045666411837
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.1702127659574468
                 },
-                "result": -0.21984117964436348
+                "result": -0.09246594357728541
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 935.1009123803585
+                  "before": 922.7087605925585
                 },
-                "result": 937.6364139855901
+                "result": 924.5067513130996
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": 0.9285505185032196
+                "result": 1.3962793614372808
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": -0.07408647754015049
+                "result": -0.09246594357728541
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.8544640409630802
+                "result": 1.303813417859942
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.72639772862198
+                },
+                "result": 25.712004429004658
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 935.1009123803585,
-            "change": 2.535501605231616,
-            "after": 937.6364139855901
+            "before": 922.7087605925585,
+            "change": 1.7979907205410655,
+            "after": 924.5067513130996
           }
         },
         {
           "playerId": 3,
-          "before": 1134.4338468301607,
-          "change": -0.8404983141624598,
-          "after": 1133.5933485159983,
+          "before": 1176.854643832418,
+          "change": -1.2213526333007394,
+          "after": 1175.6332911991174,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1134.4338468301607,
-            "change": -0.8404983141624598,
-            "after": 1133.5933485159983,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1176.854643832418,
+            "change": -1.2213526333007394,
+            "after": 1175.6332911991174,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.2383894313632
+                "result": 1049.7728866826374
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1028.437781312232,
-                  "otherTeam": 1074.7880504210182
+                  "ownTeam": 4122.094881912226,
+                  "otherTeam": 4229.323362217741
                 },
-                "result": 1028.437781312232
+                "result": 4122.094881912226
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4336895189917348
+                "result": 0.3448804554308107
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": false
                 },
-                "result": 0.25
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.42944477579961
                 },
-                "result": -2.755342784876022
+                "result": -1.8075501748341445
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.3448275862068966
                 },
-                "result": 0.26128250546238146
+                "result": 0.10989630535507255
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1102.1625450030122
+                  "before": 1168.8516021984426
                 },
-                "result": 1099.6684847235986
+                "result": 1167.1539483289635
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": -0.9285505185032196
+                "result": -1.3312489386559454
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": 0.08805220434082256
+                "result": 0.10989630535507255
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.8404983141624598
+                "result": -1.2213526333007394
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.42944477579961
+                },
+                "result": 25.417462737322882
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 1102.1625450030122,
-            "change": -2.4940602794135884,
-            "after": 1099.6684847235986
+            "before": 1168.8516021984426,
+            "change": -1.6976538694791543,
+            "after": 1167.1539483289635
           }
         },
         {
           "playerId": 7,
-          "before": 944.5030343381475,
-          "change": -0.9685742477490749,
-          "after": 943.5344600903984,
+          "before": 956.4600498126767,
+          "change": -1.5331014687577635,
+          "after": 954.926948343919,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 944.5030343381475,
-            "change": -0.9685742477490749,
-            "after": 943.5344600903984,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 956.4600498126767,
+            "change": -1.5331014687577635,
+            "after": 954.926948343919,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.2383894313632
+                "result": 1049.7728866826374
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1028.437781312232,
-                  "otherTeam": 1074.7880504210182
+                  "ownTeam": 4122.094881912226,
+                  "otherTeam": 4229.323362217741
                 },
-                "result": 1028.437781312232
+                "result": 4122.094881912226
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4336895189917348
+                "result": 0.3448804554308107
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": false
                 },
-                "result": 0.25
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.88776099779916
                 },
-                "result": -2.755342784876022
+                "result": -2.013937729771084
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.20689655172413793
                 },
-                "result": -0.1187647752101734
+                "result": -0.04995286607048753
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 908.6116468331948
+                  "before": 938.3496492037829
                 },
-                "result": 905.7375392731086
+                "result": 936.2857586079413
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": -0.9285505185032196
+                "result": -1.4831486026872671
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": -0.040023729245828435
+                "result": -0.04995286607048753
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.9685742477490749
+                "result": -1.5331014687577635
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.88776099779916
+                },
+                "result": 26.86668554405267
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 908.6116468331948,
-            "change": -2.874107560086145,
-            "after": 905.7375392731086
+            "before": 938.3496492037829,
+            "change": -2.063890595841599,
+            "after": 936.2857586079413
           }
         },
         {
           "playerId": 9,
-          "before": 1067.612333654176,
-          "change": -0.9045362809556536,
-          "after": 1066.7077973732203,
+          "before": 1106.6314409878582,
+          "change": -1.3259026914965943,
+          "after": 1105.3055382963616,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1067.612333654176,
-            "change": -0.9045362809556536,
-            "after": 1066.7077973732203,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1106.6314409878582,
+            "change": -1.3259026914965943,
+            "after": 1105.3055382963616,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.2383894313632
+                "result": 1049.7728866826374
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1028.437781312232,
-                  "otherTeam": 1074.7880504210182
+                  "ownTeam": 4122.094881912226,
+                  "otherTeam": 4229.323362217741
                 },
-                "result": 1028.437781312232
+                "result": 4122.094881912226
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4336895189917348
+                "result": 0.3448804554308107
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": false
                 },
-                "result": 0.25
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.672222670419714
                 },
-                "result": -2.755342784876022
+                "result": -1.8272178834357917
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.27586206896551724
                 },
-                "result": 0.07125886512610399
+                "result": 0.029971719642292498
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1102.834898866676
+                  "before": 1111.9618179065933
                 },
-                "result": 1100.1508149469262
+                "result": 1110.1645717427998
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": -0.9285505185032196
+                "result": -1.3558744111387648
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": 0.02401423754749705
+                "result": 0.029971719642292498
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.9045362809556536
+                "result": -1.3259026914965943
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.672222670419714
+                },
+                "result": 25.658364876785743
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 1102.834898866676,
-            "change": -2.68408391974981,
-            "after": 1100.1508149469262
+            "before": 1111.9618179065933,
+            "change": -1.7972461637934884,
+            "after": 1110.1645717427998
           }
         },
         {
           "playerId": 11,
-          "before": 927.1837717378838,
-          "change": -1.0005932311457855,
-          "after": 926.183178506738,
+          "before": 923.7478557718008,
+          "change": -1.588430203332905,
+          "after": 922.1594255684679,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 927.1837717378838,
-            "change": -1.0005932311457855,
-            "after": 926.183178506738,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 923.7478557718008,
+            "change": -1.588430203332905,
+            "after": 922.1594255684679,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "SND",
                   "modeWeight": 0.337
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1040.2383894313632
+                "result": 1049.7728866826374
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' SND ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1028.437781312232,
-                  "otherTeam": 1074.7880504210182
+                  "ownTeam": 4122.094881912226,
+                  "otherTeam": 4229.323362217741
                 },
-                "result": 1028.437781312232
+                "result": 4122.094881912226
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.62217889288615
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4336895189917348
+                "result": 0.3448804554308107
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.5,
                   "won": false
                 },
-                "result": 0.25
+                "result": 0.5623262169446868
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.5
+                },
+                "result": 1.0
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -7.701385691064615
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.968819004044388
                 },
-                "result": -2.755342784876022
+                "result": -2.0526799030235945
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.1724137931034483
                 },
-                "result": -0.21377659537831203
+                "result": -0.08991515892687751
               },
               {
                 "name": "SND rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 886.9590474812968
+                  "before": 902.931812603407
                 },
-                "result": 883.9899281010424
+                "result": 900.7892175414565
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.337 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.337 x your part in the SND extra",
                 "inputs": {},
-                "result": -0.9285505185032196
+                "result": -1.4985150444060413
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.337",
+                "formula": "kill share in skill + 0.337 x kill share in the SND extra",
                 "inputs": {},
-                "result": -0.07204271264249117
+                "result": -0.08991515892687751
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -1.0005932311457855
+                "result": -1.588430203332905
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.968819004044388
+                },
+                "result": 26.947313971391544
               }
             ]
           },
           "mode": {
             "name": "SND",
-            "before": 886.9590474812968,
-            "change": -2.9691193802543694,
-            "after": 883.9899281010424
+            "before": 902.931812603407,
+            "change": -2.1425950619504874,
+            "after": 900.7892175414565
           }
         }
       ]
@@ -2546,818 +3138,1034 @@
       "elo": [
         {
           "playerId": 2,
-          "before": 1147.408626669926,
-          "change": 0.273440099301979,
-          "after": 1147.682066769228,
+          "before": 1182.474555588113,
+          "change": 0.6964462008047576,
+          "after": 1183.1710017889177,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1147.408626669926,
-            "change": 0.273440099301979,
-            "after": 1147.682066769228,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1182.474555588113,
+            "change": 0.6964462008047576,
+            "after": 1183.1710017889177,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1017.5046961215887
+                "result": 1039.5063008519664
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1076.6553388096618,
-                  "otherTeam": 1051.6611313980266
+                  "ownTeam": 4195.598913213849,
+                  "otherTeam": 4198.491941315096
                 },
-                "result": 1076.6553388096618
+                "result": 4195.598913213849
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5359076337436859
+                "result": 0.4956998541496519
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": true
                 },
-                "result": 0.5775
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.256808182423136
                 },
-                "result": 0.6238854938447119
+                "result": 0.8703479827462666
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.30357142857142855
                 },
-                "result": 0.03342243717025241
+                "result": 0.027530430987097346
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1123.108149475488
+                  "before": 1164.501139823804
                 },
-                "result": 1123.765457406503
+                "result": 1165.3990182375373
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.2595363654394002
+                "result": 0.6689157698177854
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.013903733862825002
+                "result": 0.027530430987097346
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.273440099301979
+                "result": 0.6964462008047576
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.256808182423136
+                },
+                "result": 26.26895240041826
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 1123.108149475488,
-            "change": 0.6573079310148842,
-            "after": 1123.765457406503
+            "before": 1164.501139823804,
+            "change": 0.8978784137334515,
+            "after": 1165.3990182375373
           }
         },
         {
           "playerId": 5,
-          "before": 1155.4207384377817,
-          "change": 0.2703503806660592,
-          "after": 1155.6910888184477,
+          "before": 1178.3601822967291,
+          "change": 0.6750135550496452,
+          "after": 1179.0351958517788,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1155.4207384377817,
-            "change": 0.2703503806660592,
-            "after": 1155.6910888184477,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1178.3601822967291,
+            "change": 0.6750135550496452,
+            "after": 1179.0351958517788,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1017.5046961215887
+                "result": 1039.5063008519664
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1076.6553388096618,
-                  "otherTeam": 1051.6611313980266
+                  "ownTeam": 4195.598913213849,
+                  "otherTeam": 4198.491941315096
                 },
-                "result": 1076.6553388096618
+                "result": 4195.598913213849
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5359076337436859
+                "result": 0.4956998541496519
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": true
                 },
-                "result": 0.5775
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.99227236032417
                 },
-                "result": 0.6238854938447119
+                "result": 0.8448583443701748
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2916666666666667
                 },
-                "result": 0.02599522891019634
+                "result": 0.021412557434409066
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1209.4900631488495
+                  "before": 1201.6611298883217
                 },
-                "result": 1210.1399438716044
+                "result": 1202.5274007901262
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.2595363654394002
+                "result": 0.6536009976152923
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.010814015226641677
+                "result": 0.021412557434409066
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.2703503806660592
+                "result": 0.6750135550496452
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.99227236032417
+                },
+                "result": 26.005162921938545
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 1209.4900631488495,
-            "change": 0.649880722754915,
-            "after": 1210.1399438716044
+            "before": 1201.6611298883217,
+            "change": 0.8662709018044552,
+            "after": 1202.5274007901262
           }
         },
         {
           "playerId": 8,
-          "before": 937.8702906807902,
-          "change": 0.24254291294039376,
-          "after": 938.1128335937306,
+          "before": 937.1916519399754,
+          "change": 0.6038457747281427,
+          "after": 937.7954977147035,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 937.8702906807902,
-            "change": 0.24254291294039376,
-            "after": 938.1128335937306,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 937.1916519399754,
+            "change": 0.6038457747281427,
+            "after": 937.7954977147035,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1017.5046961215887
+                "result": 1039.5063008519664
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1076.6553388096618,
-                  "otherTeam": 1051.6611313980266
+                  "ownTeam": 4195.598913213849,
+                  "otherTeam": 4198.491941315096
                 },
-                "result": 1076.6553388096618
+                "result": 4195.598913213849
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5359076337436859
+                "result": 0.4956998541496519
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": true
                 },
-                "result": 0.5775
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.67136927372423
                 },
-                "result": 0.6238854938447119
+                "result": 0.8235027738432115
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.18452380952380953
                 },
-                "result": -0.040849645430308515
+                "result": -0.03364830453978565
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 896.9323812080906
+                  "before": 923.2837989664127
                 },
-                "result": 897.515417056505
+                "result": 924.0736534357161
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.2595363654394002
+                "result": 0.6374940792680469
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.01699345249900834
+                "result": -0.03364830453978565
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.24254291294039376
+                "result": 0.6038457747281427
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.67136927372423
+                },
+                "result": 25.68524890517127
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 896.9323812080906,
-            "change": 0.5830358484143972,
-            "after": 897.515417056505
+            "before": 923.2837989664127,
+            "change": 0.78985446930335,
+            "after": 924.0736534357161
           }
         },
         {
           "playerId": 12,
-          "before": 923.968104010968,
-          "change": 0.2518120688488352,
-          "after": 924.2199160798168,
+          "before": 906.7339439026201,
+          "change": 0.6239350943133104,
+          "after": 907.3578789969334,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 923.968104010968,
-            "change": 0.2518120688488352,
-            "after": 924.2199160798168,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 906.7339439026201,
+            "change": 0.6239350943133104,
+            "after": 907.3578789969334,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1017.5046961215887
+                "result": 1039.5063008519664
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1076.6553388096618,
-                  "otherTeam": 1051.6611313980266
+                  "ownTeam": 4195.598913213849,
+                  "otherTeam": 4198.491941315096
                 },
-                "result": 1076.6553388096618
+                "result": 4195.598913213849
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.5359076337436859
+                "result": 0.4956998541496519
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": true
                 },
-                "result": 0.5775
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": 3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.712004429004658
                 },
-                "result": 0.6238854938447119
+                "result": 0.8237115838803005
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.22023809523809523
                 },
-                "result": -0.018568020650140238
+                "result": -0.015294683881720759
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 933.3123953249618
+                  "before": 906.1528445353108
                 },
-                "result": 933.9177127981563
+                "result": 906.9612614353093
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.2595363654394002
+                "result": 0.6392297781950054
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.007724296590458339
+                "result": -0.015294683881720759
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": 0.2518120688488352
+                "result": 0.6239350943133104
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.712004429004658
+                },
+                "result": 25.72570530053082
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 933.3123953249618,
-            "change": 0.6053174731945319,
-            "after": 933.9177127981563
+            "before": 906.1528445353108,
+            "change": 0.8084168999985195,
+            "after": 906.9612614353093
           }
         },
         {
           "playerId": 3,
-          "before": 1133.5933485159983,
-          "change": -0.24081142632212504,
-          "after": 1133.3525370896762,
+          "before": 1175.6332911991174,
+          "change": -0.571722682664813,
+          "after": 1175.0615685164526,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1133.5933485159983,
-            "change": -0.24081142632212504,
-            "after": 1133.3525370896762,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1175.6332911991174,
+            "change": -0.571722682664813,
+            "after": 1175.0615685164526,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1041.1669399498664
+                "result": 1051.1900834318594
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1051.6611313980266,
-                  "otherTeam": 1076.6553388096618
+                  "ownTeam": 4198.491941315096,
+                  "otherTeam": 4195.598913213849
                 },
-                "result": 1051.6611313980266
+                "result": 4198.491941315096
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4640923662563141
+                "result": 0.5043001458503481
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": false
                 },
-                "result": 0.4225
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.417462737322882
                 },
-                "result": -0.6238854938447119
+                "result": -0.7851485451724897
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.3221476510067114
                 },
-                "result": 0.045011872878058065
+                "result": 0.03707677730253379
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1161.626606366816
+                  "before": 1184.4071440956325
                 },
-                "result": 1161.0477327458493
+                "result": 1183.6590723277625
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.2595363654394002
+                "result": -0.6087994599674198
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.018724939117272153
+                "result": 0.03707677730253379
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.24081142632212504
+                "result": -0.571722682664813
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.417462737322882
+                },
+                "result": 25.43226719810459
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 1161.626606366816,
-            "change": -0.5788736209667604,
-            "after": 1161.0477327458493
+            "before": 1184.4071440956325,
+            "change": -0.7480717678699875,
+            "after": 1183.6590723277625
           }
         },
         {
           "playerId": 7,
-          "before": 943.5344600903984,
-          "change": -0.2582299743381782,
-          "after": 943.2762301160602,
+          "before": 954.926948343919,
+          "change": -0.6814880214747063,
+          "after": 954.2454603224443,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 943.5344600903984,
-            "change": -0.2582299743381782,
-            "after": 943.2762301160602,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 954.926948343919,
+            "change": -0.6814880214747063,
+            "after": 954.2454603224443,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1041.1669399498664
+                "result": 1051.1900834318594
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1051.6611313980266,
-                  "otherTeam": 1076.6553388096618
+                  "ownTeam": 4198.491941315096,
+                  "otherTeam": 4195.598913213849
                 },
-                "result": 1051.6611313980266
+                "result": 4198.491941315096
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4640923662563141
+                "result": 0.5043001458503481
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": false
                 },
-                "result": 0.4225
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.86668554405267
                 },
-                "result": -0.6238854938447119
+                "result": -0.8893155673627122
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2550335570469799
                 },
-                "result": 0.003140363224050576
+                "result": 0.0025867519048279504
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 956.609473877797
+                  "before": 967.3349696416598
                 },
-                "result": 955.9887287471763
+                "result": 966.448240826202
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.2595363654394002
+                "result": -0.6840747733795205
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": 0.0013063911012050396
+                "result": 0.0025867519048279504
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.2582299743381782
+                "result": -0.6814880214747063
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.86668554405267
+                },
+                "result": 26.876975294828608
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 956.609473877797,
-            "change": -0.6207451306206622,
-            "after": 955.9887287471763
+            "before": 967.3349696416598,
+            "change": -0.8867288154577864,
+            "after": 966.448240826202
           }
         },
         {
           "playerId": 9,
-          "before": 1066.7077973732203,
-          "change": -0.2704229579494495,
-          "after": 1066.4373744152708,
+          "before": 1105.3055382963616,
+          "change": -0.6419329243349239,
+          "after": 1104.6636053720267,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 1066.7077973732203,
-            "change": -0.2704229579494495,
-            "after": 1066.4373744152708,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 1105.3055382963616,
+            "change": -0.6419329243349239,
+            "after": 1104.6636053720267,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1041.1669399498664
+                "result": 1051.1900834318594
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1051.6611313980266,
-                  "otherTeam": 1076.6553388096618
+                  "ownTeam": 4198.491941315096,
+                  "otherTeam": 4195.598913213849
                 },
-                "result": 1051.6611313980266
+                "result": 4198.491941315096
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4640923662563141
+                "result": 0.5043001458503481
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": false
                 },
-                "result": 0.4225
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 25.658364876785743
                 },
-                "result": -0.6238854938447119
+                "result": -0.7961909655127285
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.2080536912751678
                 },
-                "result": -0.02616969353375469
+                "result": -0.021556265873566162
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 1053.3840193873948
+                  "before": 1111.3323452238324
                 },
-                "result": 1052.733964200016
+                "result": 1110.514597992446
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.2595363654394002
+                "result": -0.620376658461295
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.01088659251004195
+                "result": -0.021556265873566162
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.2704229579494495
+                "result": -0.6419329243349239
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 25.658364876785743
+                },
+                "result": 25.6722981456393
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 1053.3840193873948,
-            "change": -0.6500551873784843,
-            "after": 1052.733964200016
+            "before": 1111.3323452238324,
+            "change": -0.81774723138642,
+            "after": 1110.514597992446
           }
         },
         {
           "playerId": 11,
-          "before": 926.183178506738,
-          "change": -0.26868110314774185,
-          "after": 925.9144974035903,
+          "before": 922.1594255684679,
+          "change": -0.7040969964216401,
+          "after": 921.4553285720463,
           "calculationTrace": {
-            "rulesVersion": 3,
-            "model": "model-r-kill25-v1",
-            "before": 926.183178506738,
-            "change": -0.26868110314774185,
-            "after": 925.9144974035903,
+            "rulesVersion": 4,
+            "model": "model-tr-v2",
+            "before": 922.1594255684679,
+            "change": -0.7040969964216401,
+            "after": 921.4553285720463,
             "steps": [
               {
                 "name": "Model",
-                "formula": "Model R + 25% kill share: one rating per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
+                "formula": "Model TR: TrueSkill + 25% kill share; one skill plus a small extra per mode; overall = 41.6% HP + 33.7% SND + 24.7% OL",
                 "inputs": {
                   "mode": "Hardpoint",
                   "modeWeight": 0.416
                 },
-                "result": "model-r-kill25-v1"
+                "result": "model-tr-v2"
               },
               {
                 "name": "Opponent average Elo",
                 "formula": "average overall rating of the other team",
                 "inputs": {},
-                "result": 1041.1669399498664
+                "result": 1051.1900834318594
               },
               {
                 "name": "Team strength",
-                "formula": "1.25 x team average - 0.25 x weakest, in this mode (+ same-day line-up form)",
+                "formula": "sum of the 4 players' Hardpoint ratings (without Cup points)",
                 "inputs": {
-                  "ownTeam": 1051.6611313980266,
-                  "otherTeam": 1076.6553388096618
+                  "ownTeam": 4198.491941315096,
+                  "otherTeam": 4195.598913213849
                 },
-                "result": 1051.6611313980266
+                "result": 4198.491941315096
+              },
+              {
+                "name": "Luck and uncertainty",
+                "formula": "sqrt(8 x 90^2 + every player's uncertainty^2): how much one map can swing",
+                "inputs": {},
+                "result": 268.39296123571614
               },
               {
                 "name": "Expected result",
-                "formula": "1 / (1 + 10^(-(own strength - other strength) / 400))",
+                "formula": "Phi((own strength - other strength) / luck and uncertainty)",
                 "inputs": {},
-                "result": 0.4640923662563141
+                "result": 0.5043001458503481
               },
               {
-                "name": "Actual result",
-                "formula": "0.5 + 0.5 x margin for the winners, 0.5 - 0.5 x margin for the losers",
+                "name": "Surprise",
+                "formula": "TrueSkill v: big for an upset, small for an expected win",
                 "inputs": {
-                  "margin": 0.155,
                   "won": false
                 },
-                "result": 0.4225
+                "result": 0.8047593750272424
+              },
+              {
+                "name": "Margin factor",
+                "formula": "maps from 20 Sep: 2 x margin (6-0 or 250-50 = 2, a 1-point win ~0); before 20 Sep: 1",
+                "inputs": {
+                  "margin": 0.155
+                },
+                "result": 0.31
               },
               {
                 "name": "Team change (mode)",
-                "formula": "15 x (actual - expected); 0 when the winners would lose points",
+                "formula": "surprise x margin factor, same total for both teams (zero-sum): winners +, losers -",
+                "inputs": {},
+                "result": -3.3624206848399534
+              },
+              {
+                "name": "Your part",
+                "formula": "the team change split by how unsure we are about each player (newer = bigger part)",
                 "inputs": {
-                  "noChange": false
+                  "uncertaintyBefore": 26.947313971391544
                 },
-                "result": -0.6238854938447119
+                "result": -0.891765606792023
               },
               {
                 "name": "Kill share (mode)",
-                "formula": "25% of the team change moved toward a bigger share of the team's kills",
+                "formula": "25% of the average player change moved toward a bigger share of the team's kills",
                 "inputs": {
                   "shareOfTeamKills": 0.21476510067114093
                 },
-                "result": -0.021982542568353948
+                "result": -0.01810726333379558
               },
               {
                 "name": "Hardpoint rating",
-                "formula": "rating before + team change + kill share",
+                "formula": "rating before + your part + kill share",
                 "inputs": {
-                  "before": 958.9830999439145
+                  "before": 935.4174823539706
                 },
-                "result": 958.3372319075014
+                "result": 934.5076094838448
               },
               {
                 "name": "Base Elo",
-                "formula": "team change x 0.416 (the mode's weight in the overall rating)",
+                "formula": "your part in skill + 0.416 x your part in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.2595363654394002
+                "result": -0.6859897330878948
               },
               {
                 "name": "Damage adjustment",
-                "formula": "kill share x 0.416",
+                "formula": "kill share in skill + 0.416 x kill share in the Hardpoint extra",
                 "inputs": {},
-                "result": -0.009144737708435243
+                "result": -0.01810726333379558
               },
               {
                 "name": "Final change",
                 "formula": "Base Elo + Damage adjustment",
                 "inputs": {},
-                "result": -0.26868110314774185
+                "result": -0.7040969964216401
+              },
+              {
+                "name": "Uncertainty",
+                "formula": "+- of the overall rating after the map (smaller = surer)",
+                "inputs": {
+                  "before": 26.947313971391544
+                },
+                "result": 26.95746666123745
               }
             ]
           },
           "mode": {
             "name": "Hardpoint",
-            "before": 958.9830999439145,
-            "change": -0.6458680364130487,
-            "after": 958.3372319075014
+            "before": 935.4174823539706,
+            "change": -0.9098728701258096,
+            "after": 934.5076094838448
           }
         }
       ]
@@ -3365,7 +4173,7 @@
   ],
   "closingStats": {
     "1": {
-      "elo": 1140.8385596933501,
+      "elo": 1196.6282488389074,
       "lifetimeKills": 16669,
       "lifetimeDeaths": 10244,
       "mapKills": 0,
@@ -3403,13 +4211,23 @@
       "overloadLifetimeDamage": 499100.0,
       "overloadLifetimeTeamDamage": 1712700.0,
       "modeElo": {
-        "Hardpoint": 1137.0083615147496,
-        "SND": 1122.5297607617726,
-        "Overload": 1172.269440997963
+        "Hardpoint": 1193.549831877407,
+        "SND": 1183.7624109520798,
+        "Overload": 1219.366746101438
+      },
+      "skill": {
+        "uncertainty": 25.7278025699204,
+        "maps": 521,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.502957923808083,
+          "SND": 29.816250317219307,
+          "Overload": 30.816441782186395
+        }
       }
     },
     "2": {
-      "elo": 1147.682066769228,
+      "elo": 1183.1710017889177,
       "lifetimeKills": 14400,
       "lifetimeDeaths": 8864,
       "mapKills": 0,
@@ -3447,13 +4265,23 @@
       "overloadLifetimeDamage": 456000.0,
       "overloadLifetimeTeamDamage": 1513200.0,
       "modeElo": {
-        "Hardpoint": 1123.765457406503,
-        "SND": 1202.6536067106965,
-        "Overload": 1112.9610163020975
+        "Hardpoint": 1165.3990182375373,
+        "SND": 1217.7985485723036,
+        "Overload": 1165.857892037392
+      },
+      "skill": {
+        "uncertainty": 26.26895240041826,
+        "maps": 449,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 30.330164451866576,
+          "SND": 30.472324876831053,
+          "Overload": 31.51349735156115
+        }
       }
     },
     "3": {
-      "elo": 1133.3525370896762,
+      "elo": 1175.0615685164526,
       "lifetimeKills": 15564,
       "lifetimeDeaths": 8774,
       "mapKills": 0,
@@ -3491,13 +4319,23 @@
       "overloadLifetimeDamage": 491000.0,
       "overloadLifetimeTeamDamage": 1602900.0,
       "modeElo": {
-        "Hardpoint": 1161.0477327458493,
-        "SND": 1099.6684847235986,
-        "Overload": 1132.6655907512152
+        "Hardpoint": 1183.6590723277625,
+        "SND": 1166.707844172746,
+        "Overload": 1171.979153610882
+      },
+      "skill": {
+        "uncertainty": 25.43226719810459,
+        "maps": 493,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.27737091428761,
+          "SND": 29.587011150132447,
+          "Overload": 30.649848703299227
+        }
       }
     },
     "4": {
-      "elo": 1072.0328959878427,
+      "elo": 1083.6591914088922,
       "lifetimeKills": 7498,
       "lifetimeDeaths": 4643,
       "mapKills": 0,
@@ -3535,13 +4373,23 @@
       "overloadLifetimeDamage": 252200.0,
       "overloadLifetimeTeamDamage": 904600.0,
       "modeElo": {
-        "Hardpoint": 1085.5389651104865,
-        "SND": 1064.417266629027,
-        "Overload": 1059.6763872384543
+        "Hardpoint": 1090.3318331471878,
+        "SND": 1077.0326576498571,
+        "Overload": 1081.4621181848586
+      },
+      "skill": {
+        "uncertainty": 29.33656571312295,
+        "maps": 252,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 33.80535057744751,
+          "SND": 33.94124244491941,
+          "Overload": 34.70460072534645
+        }
       }
     },
     "5": {
-      "elo": 1155.6910888184477,
+      "elo": 1179.0351958517788,
       "lifetimeKills": 15748,
       "lifetimeDeaths": 9496,
       "mapKills": 0,
@@ -3579,13 +4427,23 @@
       "overloadLifetimeDamage": 459600.0,
       "overloadLifetimeTeamDamage": 1617700.0,
       "modeElo": {
-        "Hardpoint": 1210.1399438716044,
-        "SND": 1085.2512985510157,
-        "Overload": 1160.0938645998708
+        "Hardpoint": 1202.5274007901262,
+        "SND": 1144.5737798160626,
+        "Overload": 1186.4875843120374
+      },
+      "skill": {
+        "uncertainty": 26.005162921938545,
+        "maps": 496,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.885507843201648,
+          "SND": 30.164665644722906,
+          "Overload": 31.135562042901228
+        }
       }
     },
     "6": {
-      "elo": 1008.1741701343078,
+      "elo": 997.5547368233013,
       "lifetimeKills": 10442,
       "lifetimeDeaths": 7745,
       "mapKills": 0,
@@ -3623,13 +4481,23 @@
       "overloadLifetimeDamage": 331900.0,
       "overloadLifetimeTeamDamage": 1298200.0,
       "modeElo": {
-        "Hardpoint": 950.0849925888464,
-        "SND": 1059.115409326018,
-        "Overload": 1036.5057500991077
+        "Hardpoint": 973.0051695194675,
+        "SND": 1018.1729160075258,
+        "Overload": 1010.7705004399456
+      },
+      "skill": {
+        "uncertainty": 26.979306425881134,
+        "maps": 391,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.1733209285669,
+          "SND": 31.39868750953754,
+          "Overload": 32.22235953816878
+        }
       }
     },
     "7": {
-      "elo": 943.2762301160602,
+      "elo": 954.2454603224443,
       "lifetimeKills": 8774,
       "lifetimeDeaths": 7703,
       "mapKills": 0,
@@ -3667,13 +4535,23 @@
       "overloadLifetimeDamage": 273900.0,
       "overloadLifetimeTeamDamage": 1231800.0,
       "modeElo": {
-        "Hardpoint": 955.9887287471763,
-        "SND": 905.7375392731086,
-        "Overload": 973.0824624380458
+        "Hardpoint": 966.448240826202,
+        "SND": 935.7504695082081,
+        "Overload": 958.9274652408022
+      },
+      "skill": {
+        "uncertainty": 26.876975294828608,
+        "maps": 375,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.15955280807936,
+          "SND": 31.22004744014461,
+          "Overload": 32.21105658991479
+        }
       }
     },
     "8": {
-      "elo": 938.1128335937306,
+      "elo": 937.7954977147035,
       "lifetimeKills": 12472,
       "lifetimeDeaths": 10697,
       "mapKills": 0,
@@ -3711,13 +4589,23 @@
       "overloadLifetimeDamage": 387500.0,
       "overloadLifetimeTeamDamage": 1685400.0,
       "modeElo": {
-        "Hardpoint": 897.515417056505,
-        "SND": 972.8825431437467,
-        "Overload": 959.0485953796833
+        "Hardpoint": 924.0736534357161,
+        "SND": 951.70875032393,
+        "Overload": 941.9231134667259
+      },
+      "skill": {
+        "uncertainty": 25.68524890517127,
+        "maps": 519,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.506080428919756,
+          "SND": 29.738599539337685,
+          "Overload": 30.827867774454443
+        }
       }
     },
     "9": {
-      "elo": 1066.4373744152708,
+      "elo": 1104.6636053720267,
       "lifetimeKills": 13429,
       "lifetimeDeaths": 10599,
       "mapKills": 0,
@@ -3755,13 +4643,23 @@
       "overloadLifetimeDamage": 402300.0,
       "overloadLifetimeTeamDamage": 1652200.0,
       "modeElo": {
-        "Hardpoint": 1052.733964200016,
-        "SND": 1100.1508149469262,
-        "Overload": 1043.5191120281377
+        "Hardpoint": 1110.514597992446,
+        "SND": 1109.6478764070496,
+        "Overload": 1088.0088998299336
+      },
+      "skill": {
+        "uncertainty": 25.6722981456393,
+        "maps": 515,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.480496319511428,
+          "SND": 29.743682169786695,
+          "Overload": 30.836613967688052
+        }
       }
     },
     "10": {
-      "elo": 938.8530634793792,
+      "elo": 902.1827888585703,
       "lifetimeKills": 8585,
       "lifetimeDeaths": 7898,
       "mapKills": 0,
@@ -3799,13 +4697,23 @@
       "overloadLifetimeDamage": 256000.0,
       "overloadLifetimeTeamDamage": 1249500.0,
       "modeElo": {
-        "Hardpoint": 938.1643087029892,
-        "SND": 940.2190078603455,
-        "Overload": 938.1494146153819
+        "Hardpoint": 896.7697185273117,
+        "SND": 907.519920188228,
+        "Overload": 904.0177038371489
+      },
+      "skill": {
+        "uncertainty": 26.903179974931135,
+        "maps": 390,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.076766758722357,
+          "SND": 31.28780547317705,
+          "Overload": 32.201438481426386
+        }
       }
     },
     "11": {
-      "elo": 925.9144974035903,
+      "elo": 921.4553285720463,
       "lifetimeKills": 7182,
       "lifetimeDeaths": 6449,
       "mapKills": 0,
@@ -3843,13 +4751,23 @@
       "overloadLifetimeDamage": 218700.0,
       "overloadLifetimeTeamDamage": 1111400.0,
       "modeElo": {
-        "Hardpoint": 958.3372319075014,
-        "SND": 883.9899281010424,
-        "Overload": 928.5085148178882
+        "Hardpoint": 934.5076094838448,
+        "SND": 900.2317006194542,
+        "Overload": 928.42947335227
+      },
+      "skill": {
+        "uncertainty": 26.95746666123745,
+        "maps": 345,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 31.20236836666703,
+          "SND": 31.520570721374995,
+          "Overload": 32.375236237963016
+        }
       }
     },
     "12": {
-      "elo": 924.2199160798168,
+      "elo": 907.3578789969334,
       "lifetimeKills": 11793,
       "lifetimeDeaths": 10775,
       "mapKills": 0,
@@ -3887,13 +4805,23 @@
       "overloadLifetimeDamage": 359500.0,
       "overloadLifetimeTeamDamage": 1736000.0,
       "modeElo": {
-        "Hardpoint": 933.9177127981563,
-        "SND": 937.6364139855901,
-        "Overload": 889.5816843831577
+        "Hardpoint": 906.9612614353093,
+        "SND": 924.9992747102124,
+        "Overload": 883.9564318319965
+      },
+      "skill": {
+        "uncertainty": 25.72570530053082,
+        "maps": 530,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 29.510634131492868,
+          "SND": 29.76590127135615,
+          "Overload": 30.798981095159018
+        }
       }
     },
     "13": {
-      "elo": 785.9754932068857,
+      "elo": 750.7282474252918,
       "lifetimeKills": 2832,
       "lifetimeDeaths": 3509,
       "mapKills": 0,
@@ -3931,13 +4859,23 @@
       "overloadLifetimeDamage": 85300.0,
       "overloadLifetimeTeamDamage": 506700.0,
       "modeElo": {
-        "Hardpoint": 769.0449533541914,
-        "SND": 801.4710582030568,
-        "Overload": 793.3483643607773
+        "Hardpoint": 736.1022999348695,
+        "SND": 762.2256201532651,
+        "Overload": 759.674723322817
+      },
+      "skill": {
+        "uncertainty": 33.70326053058854,
+        "maps": 158,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 38.16389179460828,
+          "SND": 38.241942427014806,
+          "Overload": 38.752156458842215
+        }
       }
     },
     "14": {
-      "elo": 1091.1645098366644,
+      "elo": 1051.2999648145537,
       "lifetimeKills": 1349,
       "lifetimeDeaths": 731,
       "mapKills": 0,
@@ -3975,13 +4913,23 @@
       "overloadLifetimeDamage": 40300.0,
       "overloadLifetimeTeamDamage": 121900.0,
       "modeElo": {
-        "Hardpoint": 1096.5968498743027,
-        "SND": 1086.2763370537898,
-        "Overload": 1088.6845939345237
+        "Hardpoint": 1052.366012467866,
+        "SND": 1048.8703505160424,
+        "Overload": 1052.8194149960127
+      },
+      "skill": {
+        "uncertainty": 51.6867757275732,
+        "maps": 39,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 55.17424871698704,
+          "SND": 55.28873768008534,
+          "Overload": 55.40220627471337
+        }
       }
     },
     "15": {
-      "elo": 903.1243201033259,
+      "elo": 874.3514216240734,
       "lifetimeKills": 553,
       "lifetimeDeaths": 572,
       "mapKills": 0,
@@ -4019,13 +4967,23 @@
       "overloadLifetimeDamage": 20700.0,
       "overloadLifetimeTeamDamage": 99700.0,
       "modeElo": {
-        "Hardpoint": 895.911561311277,
-        "SND": 927.3884821828366,
-        "Overload": 882.1667696446103
+        "Hardpoint": 876.044597681887,
+        "SND": 876.323732874624,
+        "Overload": 868.808789512794
+      },
+      "skill": {
+        "uncertainty": 58.169821691029725,
+        "maps": 29,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 61.41474231286731,
+          "SND": 61.420755481461796,
+          "Overload": 61.48612716515799
+        }
       }
     },
     "16": {
-      "elo": 890.9936601445386,
+      "elo": 868.8098630711055,
       "lifetimeKills": 3194,
       "lifetimeDeaths": 2778,
       "mapKills": 0,
@@ -4063,12 +5021,22 @@
       "overloadLifetimeDamage": 105700.0,
       "overloadLifetimeTeamDamage": 514900.0,
       "modeElo": {
-        "Hardpoint": 898.2477682359366,
-        "SND": 882.522012489051,
-        "Overload": 890.3346977715739
+        "Hardpoint": 875.7396823150578,
+        "SND": 862.67414752841,
+        "Overload": 865.5099899229444
+      },
+      "skill": {
+        "uncertainty": 37.439739981442685,
+        "maps": 138,
+        "cupPoints": 0.0,
+        "modeUncertainty": {
+          "Hardpoint": 41.762429040793094,
+          "SND": 41.79358783478282,
+          "Overload": 42.11682280019842
+        }
       }
     }
   },
   "updatedAt": "2026-10-24T00:25:00.784190500Z",
-  "eloModel": "model-r-kill25-v1"
+  "eloModel": "model-tr-v2"
 }

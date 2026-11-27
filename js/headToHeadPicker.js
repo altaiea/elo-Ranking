@@ -1,8 +1,8 @@
 // ======================================================
-// FIGHT NIGHT (Head-to-Head page)
+// HEAD-TO-HEAD PICKER ("fight night", top of the Head-to-Head page)
 // ======================================================
-// Pick the two players from their cards. The two <select>s that
-// js/comparisons.js reads stay in the page (hidden) and hold the choice, so
+// Pick the two players from their cards: tap a slot, then a card. The two <select>s that
+// js/headToHead.js reads stay in the page (hidden) and hold the choice, so
 // the comparison itself is unchanged.
 
 import { CARD_PLAYER_IDS, cardAssets } from "./config.js";

@@ -103,33 +103,78 @@ export function ratingTierClass(overall) {
 
 /* ---------------------------
    TEAM MATHS (auto + manual builders)
-   The same prediction the site's Elo uses (Model R + kill share, 17 Nov 2026):
-   each mode is predicted from the players' rating in that mode, and a team's
-   strength is 1.25 x its average - 0.25 x its weakest player (one weak link
-   costs a team more than an average would show). Win chance in a mode =
-   1 / (1 + 10^(-(strength A - strength B) / 400)). The overall win chance is
-   the expected share of maps won on a usual night: 41.6% HP, 33.7% SND and
-   24.7% Overload, the same weights as the overall rating.
+   The same prediction the site's Elo uses (Model TR: TrueSkill + 25% kill share; the score
+   margin, counted from 20 Sep 2026, only changes how far ratings move, never the win chance).
+   Each mode is predicted from the players' rating in that mode, without their
+   Captain's Cup points (a reward, not skill). A team's strength is the sum of its
+   four players' ratings. Win chance in a mode = Phi(gap / spread), where Phi is
+   the normal curve and
+       spread = sqrt(8 x 90^2 + the 8 players' (uncertainty in that mode^2 + 1.25^2)).
+   90 is how much one map can swing per player (luck), the uncertainty is the
+   player's +- (bigger for newer players) and 1.25 is the little uncertainty the
+   model adds back every map. The overall win chance is the expected share of maps
+   won on a usual night: 41.6% HP, 33.7% SND and 24.7% Overload, the same weights
+   as the overall rating. These are exactly the engine's numbers
+   (codstats/model_tr.py, win_chance), from current_stats.json.
 ---------------------------- */
 export const MODE_WEIGHTS = { Hardpoint: 0.416, SND: 0.337, Overload: 0.247 };
+const LUCK = 90;                 // eloModel.beta in current_stats.json
+const DRIFT = 1.25;              // eloModel.tau
+const NEW_PLAYER_UNCERTAINTY = 103;   // 25 x sqrt(4^2 + 1^2): a player with no maps yet
 
 const modeRating = (p, mode) => {
     const value = Number(p?.modeElo?.[mode]);
-    return Number.isFinite(value) ? value : Number(p?.elo) || 0;     // no mode rating yet: use the overall
+    const rating = Number.isFinite(value) ? value : Number(p?.elo) || 0;     // no mode rating yet: use the overall
+    return rating - (Number(p?.skill?.cupPoints) || 0);
 };
 
-function teamStrength(team, mode) {
-    const values = team.map(p => modeRating(p, mode));
-    const mean = values.reduce((s, v) => s + v, 0) / values.length;
-    return 1.25 * mean - 0.25 * Math.min(...values);
+const modeUncertainty = (p, mode) => {
+    const value = Number(p?.skill?.modeUncertainty?.[mode]);
+    return Number.isFinite(value) ? value : NEW_PLAYER_UNCERTAINTY;
+};
+
+// The normal curve Phi(x) (Abramowitz & Stegun 7.1.26, within 1e-7 of the exact value).
+export function normalCdf(x) {
+    const z = Math.abs(x) / Math.SQRT2;
+    const t = 1 / (1 + 0.3275911 * z);
+    const erf = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z);
+    return x >= 0 ? 0.5 * (1 + erf) : 0.5 * (1 - erf);
 }
 
 export function modeWinChances(teamA, teamB) {
     const out = {};
+    const everyone = teamA.concat(teamB);
     Object.keys(MODE_WEIGHTS).forEach(mode => {
-        out[mode] = 1 / (1 + Math.pow(10, -(teamStrength(teamA, mode) - teamStrength(teamB, mode)) / 400));
+        const gap = teamA.reduce((s, p) => s + modeRating(p, mode), 0) - teamB.reduce((s, p) => s + modeRating(p, mode), 0);
+        const spread = Math.sqrt(everyone.length * LUCK * LUCK +
+            everyone.reduce((s, p) => s + modeUncertainty(p, mode) ** 2 + DRIFT * DRIFT, 0));
+        out[mode] = normalCdf(gap / spread);
     });
     return out;
+}
+
+// Chance Team A wins a best-of series, from its chance on each map in the series' mode order
+// (config.js MAP_SET_PATTERNS). Maps are treated as independent: A wins the series when it wins
+// more than half of them, which is the same whether or not the last maps are played.
+const PATTERN_MODE = { hardpoint: "Hardpoint", snd: "SND", overload: "Overload" };
+export function seriesWinChance(modes, pattern) {
+    let dist = [1];                                  // dist[w] = chance A has won w maps so far
+    pattern.forEach(key => {
+        const p = modes[PATTERN_MODE[key]];
+        const next = new Array(dist.length + 1).fill(0);
+        dist.forEach((q, w) => { next[w] += q * (1 - p); next[w + 1] += q * p; });
+        dist = next;
+    });
+    const need = Math.floor(pattern.length / 2) + 1;
+    return dist.slice(need).reduce((a, b) => a + b, 0);
+}
+
+// Plain words for a win chance (the favourite's chance, 0.5 to 1).
+export function chanceWords(p) {
+    if (p < 0.53) return "Even game";
+    if (p < 0.60) return "Slight edge";
+    if (p < 0.70) return "Favoured";
+    return "Clear favourite";
 }
 
 export function teamStats(teamA, teamB) {

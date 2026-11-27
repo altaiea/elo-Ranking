@@ -5,10 +5,18 @@
    1st, then 2nd, then 3rd, and so on.
 ====================================================== */
 import { getPlayerName } from "./config.js";
-import { loadAllHistory, loadHistoryIndex } from "./data.js";
+import { loadAllHistory, loadHistoryIndex, loadRebuiltDays } from "./data.js";
 import { formatElo, monthKeyOf, monthLabel, ordinal } from "./ui.js";
 
 const MIN_MAPS_FOR_RANKING = 10;
+
+// June to September 2026 (27 Nov 2026): the site history starts on 20 Sep, so the maps before it come
+// from data/rebuilt-days.json (rebuilt from the stats snapshots, Model TR Elo). Each day carries its own
+// opening leaderboard, so the months are worked out exactly as before.
+async function allDays() {
+    const [rebuilt, days] = await Promise.all([loadRebuiltDays(), loadAllHistory()]);
+    return rebuilt.concat(days);
+}
 
 function emptyRecord(playerId) {
     return {
@@ -164,7 +172,9 @@ async function renderMonth(monthKey) {
     content.classList.remove("monthly-empty");
     content.innerHTML = `<div class="monthly-loading">Loading ${monthLabel(monthKey)}…</div>`;
     try {
-        const monthly = buildMonthlyRankings(await loadAllHistory(), monthKey);
+        const days = await allDays();
+        const monthly = buildMonthlyRankings(days, monthKey);
+        const rebuilt = days.some(day => day.date.startsWith(`${monthKey}-`) && day.date < "2026-09-20");
         if (!monthly.records.length) {
             content.innerHTML = `<div class="monthly-empty">No maps in ${monthLabel(monthKey)}.</div>`;
             return;
@@ -172,7 +182,7 @@ async function renderMonth(monthKey) {
         const status = monthKey === monthKeyOf(new Date()) ? "In progress" : "Final";
         const more = r => MIN_MAPS_FOR_RANKING - r.mapsPlayed;
         content.innerHTML = `
-            <div class="monthly-summary"><span class="monthly-report-status">${status}</span> · ${monthly.mapCount} map${monthly.mapCount === 1 ? "" : "s"}</div>
+            <div class="monthly-summary"><span class="monthly-report-status">${status}</span> · ${monthly.mapCount} map${monthly.mapCount === 1 ? "" : "s"}${rebuilt ? (monthKey === "2026-09" ? " · maps before 20 Sep rebuilt from the stats snapshots" : " · rebuilt from the stats snapshots") : ""}</div>
             <div class="monthly-table-wrap">
                 <table class="monthly-table">
                     <thead><tr><th>Rank</th><th>Player</th><th>Maps in 1st</th><th>W/L</th><th>Peak Elo</th></tr></thead>
@@ -218,7 +228,7 @@ export async function showMonthlyRankings() {
     if (!root || shown) return;
     shown = true;
     try {
-        const days = await loadHistoryIndex();
+        const days = (await loadRebuiltDays()).concat(await loadHistoryIndex());
         const currentMonth = monthKeyOf(new Date());
         const months = [...new Set(days.map(day => String(day.date).slice(0, 7)))]
             .filter(month => /^\d{4}-\d{2}$/.test(month) && month <= currentMonth).sort().reverse();

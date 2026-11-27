@@ -146,6 +146,18 @@ export function loadAllHistory() {
     return summaryPromise;
 }
 
+// The 462 maps from 29 May to 19 Sep 2026, rebuilt from the stats snapshots (27 Nov 2026), oldest
+// first, in the same compact shape as loadAllHistory(), with Model TR Elo (no score margin before 20 Sep).
+// A fixed file outside history/, so Export never touches it. Only the Monthly tab (June to September)
+// and the head-to-head map record read it; the leaderboard, streaks, Cup and the rest of the site do not.
+let rebuiltPromise = null;
+export function loadRebuiltDays() {
+    if (!rebuiltPromise) {
+        rebuiltPromise = fetchJson("data/rebuilt-days.json").then(doc => doc.days || []).catch(() => []);
+    }
+    return rebuiltPromise;
+}
+
 // Opening Elo of the newest history day: the baseline for the daily arrows.
 // Uses summary.json when it is current, so the big day file is not needed.
 async function loadLatestOpeningElo() {

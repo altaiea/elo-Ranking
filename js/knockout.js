@@ -79,7 +79,7 @@ async function renderMonth(monthKey) {
     standingsBox.innerHTML = "";
 
     const [history, cup] = await Promise.all([loadAllHistory(), loadKnockoutMonth(monthKey)]);
-    // Months seeded before Model R (up to November 2026) carry the ranking they were really
+    // Months seeded before the site moved off Classic (up to November 2026) carry the ranking they were really
     // seeded from; later months are worked out from the history as before.
     const monthly = cup.seedRanking
         ? { ...cup.seedRanking, records: cup.seedRanking.records.map(r => ({ ...r, name: getPlayerName(r.playerId) })) }

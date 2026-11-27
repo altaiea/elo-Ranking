@@ -1,8 +1,9 @@
 /* ======================================================
    HISTORY TAB
    Days grouped by week; open a day to see every map, each player's Elo
-   change and the full calculation the Elo engine recorded (the Java engine before
-   30 Oct 2026, the CODStats v4 Python engine since).
+   change and the full calculation the Elo engine recorded. Export rewrites every
+   published map with Model TR (TrueSkill + 25% kill share, score margin from
+   20 Sep 2026), so every calculation here is a Model TR one.
 ====================================================== */
 import { getPlayerName } from "./config.js";
 import { loadHistoryDay, loadHistoryIndex } from "./data.js";
@@ -10,7 +11,7 @@ import { formatElo, formatHistoryDate, formatSignedElo } from "./ui.js";
 
 function formatTraceValue(value) {
     if (value === null || value === undefined) return "—";
-    if (typeof value === "number") return Number.isFinite(value) ? String(value) : "—";
+    if (typeof value === "number") return Number.isFinite(value) ? String(Number(value.toFixed(4))) : "—";
     if (typeof value === "boolean") return value ? "true" : "false";
     return String(value);
 }
@@ -270,16 +271,13 @@ function buildHistoryTeam(label, players, eloByPlayer, won) {
             });
 
             row.appendChild(actionCell);
-            tbody.appendChild(row);
-            tbody.appendChild(detailsRow);
+            tbody.append(row, detailsRow);
             return;
-        } else {
-            const unavailable = document.createElement("span");
-            unavailable.className = "history-trace-unavailable";
-            unavailable.textContent = "Not recorded";
-            actionCell.appendChild(unavailable);
         }
-
+        const unavailable = document.createElement("span");
+        unavailable.className = "history-trace-unavailable";
+        unavailable.textContent = "Not recorded";
+        actionCell.appendChild(unavailable);
         row.appendChild(actionCell);
         tbody.appendChild(row);
     });
@@ -317,20 +315,24 @@ function buildCalculationTrace(trace) {
         parent.appendChild(line);
     };
 
+    // The Model TR summary, in plain words. Step names are the ones codstats/model_tr.py records:
+    //   Base Elo          = this player's share of the team's change (overall Elo)
+    //   Damage adjustment = the 25% kill share (overall Elo); the name is kept from the older engines
+    const percentOf = value => typeof value === "number" ? `${Math.round(value * 100)}%` : undefined;
+    const timesOf = value => typeof value === "number" ? `×${value.toFixed(2)}` : undefined;
     const summary = document.createElement("div");
     summary.className = "history-calc-compact";
     addLine(summary, "Starting Elo", trace?.before, { elo: true });
-    addLine(summary, "Players Elo vs Enemy Team Average", `${formatElo(trace?.before)} vs ${formatElo(recorded("Opponent average Elo"))}`);
-    addLine(summary, "Base Elo", recorded("Base Elo"), { signed: true });
-    addLine(summary, "After map margin", recorded("Base after margin"), { signed: true });
-    addLine(summary, "KD adjustment", recorded("KD adjustment"), { signed: true });
-    addLine(summary, "Damage adjustment", recorded("Damage adjustment"), { signed: true });
-    // Recorded from Elo rules version 2 onwards; older maps simply skip these lines.
-    addLine(summary, "Winner guard scale", recorded("Winner guard scale"));
-    addLine(summary, "Leak share", recorded("Leak share"), { signed: true });
+    addLine(summary, "Your Elo vs the other team's average", `${formatElo(trace?.before)} vs ${formatElo(recorded("Opponent average Elo"))}`);
+    addLine(summary, "Win chance before the map", percentOf(recorded("Expected result")));
+    // Maps from 20 Sep 2026: a 6-0 counts x2, a 6-5 x0.33. Before 20 Sep: x1.
+    addLine(summary, "Score margin", timesOf(recorded("Margin factor")));
+    addLine(summary, "Your share of the team's change", recorded("Base Elo"), { signed: true });
+    addLine(summary, "Kill share", recorded("Damage adjustment"), { signed: true });
     // The published change is authoritative: display it rather than recomputing from rounded components.
     addLine(summary, "Total Elo change", trace?.change, { signed: true, final: true });
     addLine(summary, "Updated Elo", trace?.after, { elo: true, final: true });
+    addLine(summary, "± after the map", typeof recorded("Uncertainty") === "number" ? `±${Math.round(recorded("Uncertainty"))}` : undefined);
     container.appendChild(summary);
 
     const note = document.createElement("p");
@@ -384,7 +386,7 @@ function buildCalculationTrace(trace) {
         resultLabel.textContent = "Result";
         const resultValue = document.createElement("strong");
         resultValue.textContent = formatTraceValue(step?.result);
-        if (["Base Elo", "Base after margin", "KD adjustment", "Damage adjustment", "Leak share", "Final change"].includes(step?.name)) {
+        if (["Team change (mode)", "Your part", "Kill share (mode)", "Base Elo", "Damage adjustment", "Final change"].includes(step?.name)) {
             resultValue.classList.add(valueClass(step?.result));
         }
         result.append(resultLabel, resultValue);

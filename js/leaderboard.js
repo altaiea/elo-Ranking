@@ -1,6 +1,10 @@
 // ===============================
-// LEADERBOARD TAB
+// LEADERBOARD TAB (Ranks > Leaderboard)
 // ===============================
+// The podium (top 3) and a tile per player, built from current_stats.json:
+// Elo with today's change, W/L, record and K/D. Clicking a player opens their
+// card; clicking the Elo number shows the rating in each mode and the +-.
+// Players marked inactive in js/config.js are hidden unless "show inactive" is on.
 import { INACTIVE_PLAYER_IDS, cardAssets } from "./config.js";
 import { playerHasActivity, totalLosses, totalWins } from "./data.js";
 import { kdColor } from "./ui.js";
@@ -77,7 +81,7 @@ function renderTable() {
 // PODIUM AND TILES
 // ---------------------------
 // What you see: the top three as a podium, everyone else as a tile.
-// The table above is still filled in but hidden (seamless.css); the card hand reads it.
+// The table above is still filled in but hidden (sharedLook.css); the card hand reads it.
 function renderPodiumAndTiles(shown) {
     let box = document.getElementById("lbAlt");
     if (!box) {
@@ -139,9 +143,10 @@ function renderPodiumAndTiles(shown) {
 }
 
 // ---------------------------
-// RATING PER MODE (Model R, Nov 2026)
+// RATING PER MODE (Model TR)
 // ---------------------------
-// The overall Elo is 41.6% Hardpoint + 33.7% S&D + 24.7% Overload. Clicking it shows the three.
+// The overall Elo is 41.6% Hardpoint + 33.7% S&D + 24.7% Overload. Clicking it shows the three,
+// and the +- (how sure the rating is: about two times in three the real level is inside it).
 const MODE_ROWS = [["Hardpoint", "HP"], ["SND", "S&D"], ["Overload", "OL"]];
 let modePopup = null;
 
@@ -160,7 +165,9 @@ function toggleModeRatings(anchor) {
     modePopup.className = "lb-mode-elo";
     modePopup.dataset.player = String(id);
     modePopup.innerHTML = `<div class="lb-mode-elo-title">${p.name} · ${Math.round(p.elo)}</div>` +
-        MODE_ROWS.map(([key, label]) => `<div class="lb-mode-elo-row"><span>${label}</span><b>${Math.round(Number(modes[key]) || 0)}</b></div>`).join("");
+        MODE_ROWS.map(([key, label]) => `<div class="lb-mode-elo-row"><span>${label}</span><b>${Math.round(Number(modes[key]) || 0)}</b></div>`).join("") +
+        (Number.isFinite(Number(p.skill?.uncertainty))
+            ? `<div class="lb-mode-elo-row lb-mode-elo-sure"><span>±</span><b>${Math.round(Number(p.skill.uncertainty))}</b></div>` : "");
     document.body.appendChild(modePopup);
     const r = anchor.getBoundingClientRect();
     const w = modePopup.offsetWidth;

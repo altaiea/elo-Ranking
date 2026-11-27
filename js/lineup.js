@@ -189,6 +189,10 @@ function playLineupFx() {
     if (!wrap) return;
     const teams = [...wrap.querySelectorAll(".lineup-team")];
     popup.classList.add("lineup-cine");
+    // The win chance panel is left out while the cinematic plays, so the scene keeps its own frame
+    // (a taller popup would crop the targets and the panel would cover the tilted table).
+    const panel = root.querySelector(".wc-panel");
+    if (panel) panel.style.display = "none";
 
     // ---- 1. measure everything while the layout is still flat
     const plan = teams.map(team => {
@@ -342,6 +346,18 @@ function playLineupFx() {
     wrap.appendChild(deck);
     deck.animate([{ translate: "0 80px", opacity: 0 }, { translate: "0 0", opacity: 1 }], { duration: 650, easing: EASE_OUT, fill: "backwards" });
     deck.animate([{ opacity: 1 }, { opacity: 1 }], { duration: dealAt(5) + 400 }).onfinish = () => deck.remove();   // removed once the last card has left
+
+    // ---- the win chance panel slides open under the table once the camera has landed
+    if (panel) setTimeout(() => {
+        panel.style.display = "";
+        const h = panel.offsetHeight;
+        panel.style.overflow = "hidden"; panel.style.boxSizing = "border-box";
+        panel.animate([
+            { height: "0px", marginTop: "0px", paddingTop: "0px", paddingBottom: "0px", opacity: 0 },
+            { height: h + "px", opacity: 0, offset: .55 },
+            { height: h + "px", opacity: 1 }
+        ], { duration: 750, easing: "ease-out" }).onfinish = () => { panel.style.overflow = ""; panel.style.boxSizing = ""; };
+    }, done);
 
     plan.forEach((P, ti) => {
         const { team, board, bb, cards } = P;

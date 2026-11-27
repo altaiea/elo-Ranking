@@ -1542,6 +1542,8 @@ html { -webkit-text-size-adjust: 100%; }
 /* ---- Cinematic table scene ---- */
 .lineup-wings { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 6px; box-shadow: 0 3px 12px rgba(0,0,0,.75); }
 .popup-card.lineup-cine { overflow: hidden !important; }
+/* the line-up scales down evenly to fit a short window: js/lineup.js fitLineup sets --fit */
+.popup-card:has(.lineup-wrap) { max-height: none; transform: translate(-50%, -50%) scale(var(--fit, 1)); }
 .lineup-wrap.scene { position: relative; padding: 14px; border-radius: 10px; will-change: transform;
   background:
     radial-gradient(ellipse at 50% 30%, rgba(255,205,140,.20), transparent 62%),

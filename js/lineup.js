@@ -177,6 +177,16 @@ function countUp(el, to, decimals, suffix, dur, delay) {
     })(performance.now());
 }
 
+// The pop-up can be scaled down to fit a short window (fitLineup). Screen rectangles are then smaller
+// than the pixels the animations move in, so every measurement goes through this: a rectangle in
+// the pop-up's own pixels.
+function popupRect(el) {
+    const popup = document.getElementById("popupCard");
+    const k = popup.getBoundingClientRect().width / (popup.offsetWidth || 1) || 1;
+    const r = el.getBoundingClientRect();
+    return { left: r.left / k, top: r.top / k, right: r.right / k, bottom: r.bottom / k, width: r.width / k, height: r.height / k };
+}
+
 /* ---------------------------
    LINE-UP CINEMATIC
    One deck of 8 on a firing-range table; the camera follows each card as it
@@ -197,9 +207,9 @@ function playLineupFx() {
     // ---- 1. measure everything while the layout is still flat
     const plan = teams.map(team => {
         const board = team.querySelector(".lineup-board");
-        const bb = board.getBoundingClientRect();
+        const bb = popupRect(board);
         const cards = [...team.querySelectorAll(".lineup-card")].map(c => {
-            const r = c.getBoundingClientRect();
+            const r = popupRect(c);
             return { c, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height };
         });
         return { team, board, bb, cards };
@@ -240,7 +250,7 @@ function playLineupFx() {
     // ---- 3. camera: wide shot -> follows the dealt card -> stays on it while it turns -> pulls back out -> next card
     wrap.style.transformOrigin = "50% 55%";
     const lerp = (x, y, t) => x + (y - x) * t;
-    const wr0 = wrap.getBoundingClientRect();
+    const wr0 = popupRect(wrap);
     const wcx = wr0.left + wr0.width / 2, wcy = wr0.top + wr0.height / 2;
     const HW = wr0.width / 2, HH = wr0.height / 2;
     const cardsByDeal = [], evCards = [];
@@ -264,8 +274,8 @@ function playLineupFx() {
         const tl = P(-CW / 2, -CH * .55), tr = P(CW / 2, -CH * .55), bl = P(-CW / 2, CH * .45), br = P(CW / 2, CH * .45);
         return { ratio: (tr[0] - tl[0]) / (br[0] - bl[0]), top: (tl[1] + tr[1]) / 2 };
     };
-    const pr0 = popup.getBoundingClientRect();
-    const boardBottom = Math.min(...[...bdrop.querySelectorAll(".rs-board")].map(e => e.getBoundingClientRect().bottom)) - pr0.top;
+    const pr0 = popupRect(popup);
+    const boardBottom = Math.min(...[...bdrop.querySelectorAll(".rs-board")].map(e => popupRect(e).bottom)) - pr0.top;
     const bdOy = bdrop.offsetHeight * 0.3;
     const wideTop = project(66, 0, 57, 0.84).top;
     for (let i = 0; i <= N; i++) {
@@ -329,7 +339,7 @@ function playLineupFx() {
     wrap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500, fill: "backwards" });
 
     // ---- 4. one deck of 8 in the middle of the table; every card dealt comes off it
-    const wr = wrap.getBoundingClientRect();
+    const wr = popupRect(wrap);
     const cw = plan[0].cards[0].w, ch = plan[0].cards[0].h;
     const WW = wrap.offsetWidth, WH = wrap.offsetHeight;
     const deckLeft = (WW - cw) / 2, deckTop = WH - ch - 46;
@@ -466,12 +476,12 @@ function addCloseCard(pop, arriveAt) {
         const wrap = pop.querySelector(".lineup-wrap");
         const teams = [...wrap.querySelectorAll(".lineup-team")];
         const cards = CLOSE_ORDER.map(([ti, i]) => teams[ti].querySelectorAll(".lineup-card")[i]);
-        const bb = b.getBoundingClientRect(), target = { x: bb.left + bb.width / 2, y: bb.top + bb.height / 2 };
+        const bb = popupRect(b), target = { x: bb.left + bb.width / 2, y: bb.top + bb.height / 2 };
         wrap.querySelectorAll(".lineup-name, .lineup-stats, .lineup-lines, .lineup-title, .chem-badge").forEach(el =>
             el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, fill: "forwards" }));
         const dur = 600, stag = 80, t0 = 200, shrink = .12;
         cards.slice().reverse().forEach((c, n) => {
-            const r = c.getBoundingClientRect();
+            const r = popupRect(c);
             const dx = target.x - (r.left + r.width / 2), dy = target.y - (r.top + r.height / 2), side = n % 2 ? 1 : -1;
             c.animate([
                 { translate: "0 0", scale: "1", rotate: "0deg", opacity: 1 },
@@ -486,16 +496,42 @@ function addCloseCard(pop, arriveAt) {
     });
 }
 
+/* ---------------------------
+   FIT TO THE WINDOW
+   The whole line-up pop-up (both teams, their numbers, the win chance panel and the cinematic)
+   is scaled down evenly until it fits the window, with a small margin. It never scales up.
+   Runs on open and whenever the window is resized.
+---------------------------- */
+function fitLineup(popup) {
+    const panel = document.querySelector("#popupContent .wc-panel");
+    const panelHidden = panel && panel.style.display === "none";
+    if (panelHidden) panel.style.display = "";            // measure with the panel, as it ends up
+    const k = Math.min(1, innerHeight * 0.94 / popup.offsetHeight, innerWidth * 0.96 / popup.offsetWidth);
+    if (panelHidden) panel.style.display = "none";
+    popup.style.setProperty("--fit", String(Math.max(0.3, k)));
+}
+
 export function showLineup(teamA, teamB, seriesCount = 7) {
     const stats = teamStats(teamA, teamB);
+    const refit = () => {
+        const pop = document.getElementById("popupCard");
+        if (pop && document.querySelector("#popupContent .lineup-wrap")) fitLineup(pop);   // not after it closed
+    };
     showPopup(teamLineupHtml(teamA, teamB, stats, seriesCount), {
         onOpen: pop => {
+            fitLineup(pop);
             lineupEdges();
+            window.addEventListener("resize", refit);
             if (!reduceMotion()) {
                 const done = playLineupFx();
                 addCloseCard(pop, done || 8000);
             }
             chemEnsure().then(chemApply).catch(() => chemApply());
+        },
+        onClose: () => {
+            window.removeEventListener("resize", refit);
+            const pop = document.getElementById("popupCard");
+            if (pop) pop.style.removeProperty("--fit");
         }
     });
     return stats;

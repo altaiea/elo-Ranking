@@ -455,7 +455,9 @@ function addCloseCard(pop, arriveAt) {
    Runs on open and whenever the window is resized.
 ---------------------------- */
 function fitLineup(popup) {
-    const k = Math.min(1, innerHeight * 0.94 / popup.offsetHeight, innerWidth * 0.96 / popup.offsetWidth);
+    // On a phone the page is drawn wide and shrunk to the screen, so the line-up may grow to fill it.
+    const most = document.documentElement.classList.contains("phone-bar") ? 3 : 1;
+    const k = Math.min(most, innerHeight * 0.94 / popup.offsetHeight, innerWidth * 0.96 / popup.offsetWidth);
     popup.style.setProperty("--fit", String(Math.max(0.3, k)));
 }
 

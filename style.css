@@ -1825,7 +1825,7 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
     .ko-right .ko-match::before { left: -19px; width: 18px; }
 }
 
-/* Narrow: everything stacks, brackets scroll sideways inside their tier */
+/* Narrow: everything stacks (the brackets fold into two columns, below) */
 @container ko (max-width: 900px) {
     .ko-top { grid-template-columns: minmax(0, 1fr); }
     .ko-top .ko-standings { grid-column: 1; grid-row: 2; width: 100%; max-width: 560px; justify-self: center; }
@@ -1834,15 +1834,20 @@ table.ko-table { width: 100%; margin: 0 0 6px; background: none; border: 0; box-
     .ko-h { text-align: center; font-size: clamp(30px, 10cqi, 52px); }
     .ko-h em { font-size: clamp(18px, 5.5cqi, 30px); }
     .ko-q { font-size: clamp(13px, 3.6cqi, 18px); }
-    .ko-tier { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
-    .ko-bracket { min-width: min(760px, 100%); }
     .ko-rules-grid { grid-template-columns: minmax(0, 1fr); }
     .ko-card-grid { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
 }
 
-/* Phone width: brackets keep their size and scroll sideways */
-@container ko (max-width: 700px) {
-    .ko-bracket { min-width: 760px; }
+/* Tablet and phone width: each bracket folds into two columns, both halves' rounds side by side
+   and the final under them (the phone layout does the same, sharedLook.css .is-phone .ko-bracket) */
+@container ko (max-width: 900px) {
+    .ko-tier { overflow-x: visible; }
+    .ko-bracket { min-width: 0 !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 14px; }
+    .ko-col[data-round="0"] { order: 0; }
+    .ko-col[data-round="1"] { order: 1; }
+    .ko-col[data-round="2"] { order: 2; }
+    .ko-centre { order: 9; grid-column: 1 / -1; width: min(100%, 360px); justify-self: center; }
+    .ko-left .ko-match::after, .ko-right .ko-match::before { display: none; }
 }
 
 /* Very narrow: shrink the cards so a whole card always shows */

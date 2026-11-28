@@ -93,6 +93,17 @@ select#monthlyMonthSelect { background: #0b0906; color: var(--text); border: 1px
 .history-scoreboard th { background: none; color: var(--muted); font-size: 11.5px; font-weight: 700; letter-spacing: .14em; border-bottom: 1px solid var(--line); padding: 10px 8px; }
 .history-scoreboard td { border-bottom: 1px solid var(--line-soft); font-weight: 700; padding: 10px 8px; }
 .history-scoreboard td:first-child { color: var(--gold); padding-left: 10px; }
+/* fixed columns, so Team A's and Team B's tables line up */
+.history-scoreboard { table-layout: fixed; }
+.history-scoreboard th:first-child { width: 16%; }
+.history-scoreboard th:last-child { width: 160px; }
+@media (max-width: 1180px) {
+    .history-scoreboard { min-width: 0; }
+    .history-scoreboard th { letter-spacing: .06em; }
+    /* a tablet-wide window: the Elo meter makes way for the name and numbers */
+    html:not(.is-phone) .lb-bar { display: none; }
+    html:not(.is-phone) .lb-t-elo { grid-template-columns: 64px 58px; }
+}
 .history-scoreboard th:first-child { padding-left: 10px; }
 .history-player-row:hover { background: rgba(var(--gold-rgb), .045); }
 
@@ -197,7 +208,7 @@ select#monthlyMonthSelect { background: #0b0906; color: var(--text); border: 1px
 
 /* tiles: one line per player, each number with its label */
 .lb-tiles { display: grid; gap: 6px; }
-.lb-tile { display: grid; grid-template-columns: 34px 44px 150px 1fr 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
+.lb-tile { display: grid; grid-template-columns: 34px 44px minmax(80px, 150px) minmax(0, 1fr) 150px 70px; align-items: center; gap: 14px; padding: 5px 14px 5px 8px; border: 1px solid var(--line-soft); border-radius: 8px; background: rgba(0, 0, 0, .28); cursor: pointer; }
 .lb-tile:hover { background: rgba(var(--gold-rgb), .045); }
 .lb-t-rank { text-align: center; font: 400 20px "Black Ops One", "Segoe UI", sans-serif; color: var(--muted); }
 .lb-t-card { width: 44px; }
@@ -206,28 +217,36 @@ select#monthlyMonthSelect { background: #0b0906; color: var(--text); border: 1px
 .lb-mini { position: relative; display: block; aspect-ratio: 2 / 3; }
 .lb-mini img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
 .lb-t-name { color: var(--gold); font-weight: 900; letter-spacing: .04em; }
-.lb-t-elo { display: grid; grid-template-columns: 64px 58px 1fr; align-items: center; column-gap: 8px; }
+.lb-t-elo { display: grid; grid-template-columns: 64px 58px minmax(0, 1fr); align-items: center; column-gap: 8px; }
 .lb-t-elo b { font: 400 22px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
 .lb-t-elo > span:not(.lb-bar) { font-size: 12px; font-weight: 700; }
 /* the Elo meter: a framed row of blocks, filled up to the player's Elo (the top player fills all of them) */
-.lb-bar { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; max-width: 300px; padding: 3px; border: 1px solid var(--gold-deep); border-radius: 2px; }
+.lb-bar { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; max-width: 440px; padding: 3px; border: 1px solid var(--gold-deep); border-radius: 2px; }
 .lb-bar i { height: 12px; border: 1px solid rgba(var(--gold-rgb), .28); box-sizing: border-box; }
 .lb-bar i.on { border-color: var(--gold); background: linear-gradient(180deg, var(--gold-hi), var(--gold)); box-shadow: 0 0 6px rgba(var(--gold-rgb), .35); }
 .lb-t-stat { display: grid; }
 .lb-t-stat b { font-size: 15px; }
 .lb-t-stat em { font-style: normal; }
 
-/* ---------- Head-to-Head: Lifetime under the score as one column, then the three modes side by side ---------- */
-.h2h-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.comparison-section { border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 6px; }
+/* ---------- Head-to-Head: Lifetime under the score (its groups side by side), then the three modes side by side ---------- */
+.h2h-sections { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.comparison-section { border: 1px solid var(--line-soft); border-radius: 8px; padding: 0 10px 8px; }
 .comparison-section.wide { grid-column: 1 / -1; }
 .comparison-section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; padding: 10px 2px; }
-.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); }
-.comparison-row { grid-template-columns: 1fr auto 1fr; min-height: 34px; }
-.comparison-value { padding: 5px 8px; font-size: 14px; }
-.comparison-label { font-size: 9.5px; min-width: 100px; }
+.comparison-section-title .mode-score { float: none; margin-left: auto; color: var(--muted); white-space: nowrap; }
+.cs-group-title { padding: 12px 2px 4px; color: rgba(var(--gold-rgb), .7); font-size: 9.5px; font-weight: 800; letter-spacing: .18em; }
+.comparison-section.wide .cs-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+/* the label column is the same width on every row, so the numbers line up down the section */
+.comparison-row { grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr); min-height: 34px; }
+.cs-group .comparison-row:last-child { border-bottom: 0; }
+.comparison-value { padding: 5px 8px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.comparison-label { font-size: 9.5px; min-width: 0; line-height: 1.35; }
+.final-head-to-head span { letter-spacing: .16em; font-weight: 700; }
+/* a tablet-wide window: one mode per row, so the values have room */
+@media (max-width: 1180px) { .h2h-sections { grid-template-columns: minmax(0, 1fr); } }
 .is-phone .h2h-sections { zoom: var(--ui-zoom); }
 .is-phone .comparison-section { grid-column: 1 / -1; }
+.is-phone .comparison-section.wide .cs-groups { grid-template-columns: minmax(0, 1fr); }
 
 /* The fixed-width phone canvas keeps the desktop ranking order and readable spacing. */
 .is-phone #lbAlt { zoom: var(--ui-zoom); }
@@ -254,6 +273,13 @@ select#monthlyMonthSelect { background: #0b0906; color: var(--text); border: 1px
 .is-phone .history-scoreboard th, .is-phone .history-scoreboard td { padding: 8px 4px; }
 .is-phone .history-scoreboard th { font-size: 10px; letter-spacing: 0; }
 .is-phone .history-calc-btn { padding: 5px 6px; font-size: 9px; letter-spacing: .04em; white-space: normal; }
+/* phone: the Elo columns get the room, the counts less (same widths in both teams' tables) */
+.is-phone .history-scoreboard th:nth-child(1) { width: 14%; }
+.is-phone .history-scoreboard th:nth-child(2), .is-phone .history-scoreboard th:nth-child(4) { width: 7%; }
+.is-phone .history-scoreboard th:nth-child(3) { width: 9%; }
+.is-phone .history-scoreboard th:nth-child(5), .is-phone .history-scoreboard th:nth-child(7) { width: 13%; }
+.is-phone .history-scoreboard th:nth-child(6) { width: 11%; }
+.is-phone .history-scoreboard th:last-child { width: auto; }
 .is-phone .history-table-wrap, .is-phone .ko-tier { overflow-x: visible; }
 /* Knockout brackets on phones: five columns side by side squeezed the names to a letter. On a phone the
    two halves of the draw sit side by side round by round (first round, then semi-finals), with the final
@@ -314,3 +340,31 @@ html { -webkit-tap-highlight-color: transparent; }
 .lb-mode-elo-row b { font: 400 16px "Black Ops One", "Segoe UI", sans-serif; color: #fff; }
 .lb-mode-elo-sure { border-top: 1px solid rgba(255, 255, 255, .12); margin-top: 4px; padding-top: 4px; }
 .lb-mode-elo-sure b { font-size: 13px; color: #a39a88; }
+
+/* ---------- Formatting pass (27 Nov 2026) ---------- */
+/* mode circles that open the mode wheel (js/playerCard.js fillCard adds .mode-click) */
+.mode-click { cursor: pointer; transition: filter .15s; }
+.mode-click:hover { filter: brightness(1.25); }
+
+/* wide screens: the pages stop growing at 1440px and sit in the middle */
+.layout-side .shell > * { max-width: 1440px; margin-left: auto; margin-right: auto; }
+
+/* phones: the parts drawn outside the zoomed blocks */
+.is-phone .leaderboard-toolbar { zoom: var(--ui-zoom); }
+.is-phone .ko-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 6px; }
+.is-phone .ko-card-stage { zoom: .72; }
+/* the mode wheel pop-up at the phone's own size, wheel above the numbers */
+.is-phone .mp-panel { zoom: var(--ui-zoom); width: calc(94vw / var(--ui-zoom)); max-height: calc(90vh / var(--ui-zoom)); padding: 14px 14px 16px; }
+.is-phone .mp-body { flex-direction: column; gap: 12px; }
+.is-phone .mp-wheel, .is-phone .mp-detail { flex: none; width: 100%; }
+/* phones: buttons and menus big enough to tap (about 32px or more on the screen) */
+.is-phone .sub-tabs button { padding: 13px 16px; }
+.is-phone .gold-btn { padding: 13px 18px; }
+.is-phone .toggle-label { padding: 10px 0; }
+.is-phone .history-back-btn { padding: 12px 16px; }
+.is-phone .history-calc-btn { padding: 10px 4px; width: 100%; box-sizing: border-box; letter-spacing: .02em; }
+.is-phone #historyViewer summary { padding: 10px 0; }
+.is-phone select#monthlyMonthSelect, .is-phone .ko-month select { padding: 11px 10px; }
+.is-phone .mp-close { width: 44px; height: 44px; }
+.is-phone .ms-link { padding: 12px 4px; }
+.phone-bar .fx-close::after { content: ""; position: absolute; inset: -16px; }   /* the line-up's close card: a bigger tap area */

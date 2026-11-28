@@ -1,6 +1,7 @@
 /* ======================================================
    HEAD-TO-HEAD TAB (Players > Head-to-Head)
-   Two players side by side: their cards, then LIFETIME and one section per mode.
+   Two players side by side: their cards, then LIFETIME and one section per mode,
+   each with its rows under Record / Gunfights / Objective headings.
    Each scored row gives 1 point to the better player (half each for a tie), and the
    points add up to the big score. Every map the two played on opposite teams (since
    29 May, rebuilt maps included) is counted as rows in those same sections: the
@@ -20,14 +21,17 @@ let players = [];
 // Per-map averages of the extra stats the video parser reads (scoreboard photos
 // fill the same ones). Only maps where a player's stat was read count, and a row
 // is shown only when both players have it.
+//   [label, key, group]: group is where the row sits in the mode section (see GROUPS)
 const EXTRA_ROWS = {
-    hp: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["HILL TIME / MAP (S)", "time"],
-         ["CAPTURES / MAP", "captures"], ["OBJ KILLS / MAP", "objectiveKills"]],
-    snd: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["PLANTS / MAP", "plants"],
-          ["DEFUSES / MAP", "defuses"], ["OBJ KILLS / MAP", "objectiveKills"]],
-    overload: [["SCORE / MAP", "score"], ["OBJ SCORE / MAP", "objScore"], ["OVERLOADS / MAP", "overloads"],
-               ["OBJ KILLS / MAP", "objectiveKills"]]
+    hp: [["SCORE / MAP", "score", "obj"], ["OBJ SCORE / MAP", "objScore", "obj"], ["HILL TIME / MAP (S)", "time", "obj"],
+         ["CAPTURES / MAP", "captures", "obj"], ["OBJ KILLS / MAP", "objectiveKills", "fight"]],
+    snd: [["SCORE / MAP", "score", "obj"], ["OBJ SCORE / MAP", "objScore", "obj"], ["PLANTS / MAP", "plants", "obj"],
+          ["DEFUSES / MAP", "defuses", "obj"], ["OBJ KILLS / MAP", "objectiveKills", "fight"]],
+    overload: [["SCORE / MAP", "score", "obj"], ["OBJ SCORE / MAP", "objScore", "obj"], ["OVERLOADS / MAP", "overloads", "obj"],
+               ["OBJ KILLS / MAP", "objectiveKills", "fight"]]
 };
+// The small headings inside a section, in order.
+const GROUPS = { record: "RECORD", fight: "GUNFIGHTS", obj: "OBJECTIVE" };
 const GAME_MODE_PREFIX = { Hardpoint: "hp", SND: "snd", Overload: "overload" };
 let extraAverages = null;      // prefix -> playerId -> stat -> { total, maps }
 let extraLoading = null;
@@ -91,7 +95,7 @@ function versus(a, b) {
 // The scored row for one mode: who won more of the maps they played against each other.
 function versusRow(mode, a, b) {
     const rec = versus(a, b), q = rec && rec.modes[mode.prefix];
-    return q && q.d ? [`MAP WINS VS EACH OTHER (${q.d})`, ...winsOf(q, a, b)] : null;
+    return q && q.d ? [`MAP WINS VS EACH OTHER (${q.d})`, ...winsOf(q, a, b), "number", "higher", "record"] : null;
 }
 
 function loadExtraAverages() {
@@ -127,15 +131,20 @@ function extraRows(prefix, a, b) {
         return cell && cell.maps ? cell.total / cell.maps : null;
     };
     return (EXTRA_ROWS[prefix] || [])
-        .map(([label, key]) => [label, of(a, key), of(b, key)])
+        .map(([label, key, group]) => [label, of(a, key), of(b, key), group])
         .filter(([, x, y]) => x !== null && y !== null)
-        .map(([label, x, y]) => [label, x, y, "number", "higher"]);
+        .map(([label, x, y, group]) => [label, x, y, "avg", "higher", group]);
 }
 
 const num = (value, decimals = 2) => {
     const n = Number(value);
     if (!Number.isFinite(n)) return "0";
     return n.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: decimals });
+};
+// A per-map average, always to the same places for its size: 4,972 / 43.7 / 7.80
+const avg = value => {
+    const n = Number(value) || 0, size = Math.abs(n), places = size >= 100 ? 0 : size >= 10 ? 1 : 2;
+    return n.toLocaleString(undefined, { minimumFractionDigits: places, maximumFractionDigits: places });
 };
 const percent = value => `${(Number(value || 0) * 100).toFixed(1)}%`;
 const ratio = (kills, deaths) => Number(deaths || 0) === 0 ? num(kills) : num(Number(kills || 0) / Number(deaths));
@@ -163,7 +172,7 @@ function compareMetric(a, b, better) {
 }
 
 function row(label, a, b, type = "number", better = "higher") {
-    const numeric = type === "number" || type === "percent";
+    const numeric = type === "number" || type === "percent" || type === "avg";
     const av = numeric ? Number(a || 0) : String(a);
     const bv = numeric ? Number(b || 0) : String(b);
     let aBetter = false, bBetter = false;
@@ -171,7 +180,7 @@ function row(label, a, b, type = "number", better = "higher") {
         aBetter = better === "higher" ? av > bv : av < bv;
         bBetter = !aBetter;
     }
-    const format = v => type === "percent" ? percent(v) : type === "number" ? num(v) : v;
+    const format = v => type === "percent" ? percent(v) : type === "avg" ? avg(v) : type === "number" ? num(v) : v;
     return `<div class="comparison-row">
         <div class="comparison-value left ${aBetter ? "better" : ""}">${format(av)}</div>
         <div class="comparison-label">${label}</div>
@@ -179,16 +188,21 @@ function row(label, a, b, type = "number", better = "higher") {
     </div>`;
 }
 
-// One block of rows with a title and its score. wide = runs the full width (Lifetime).
-//   rows: [label, a's value, b's value, type, better]
+// One block of rows with a title and its score, the rows under small headings (GROUPS).
+// wide = runs the full width (Lifetime), its groups side by side.
+//   rows: [label, a's value, b's value, type, better, group]
 function section(title, a, b, rows, wide = false) {
     const scoreA = rows.reduce((sum, [, x, y, , better = "higher"]) => sum + compareMetric(x, y, better), 0);
     const scoreB = rows.length - scoreA;
+    const groups = Object.keys(GROUPS).map(g => [g, rows.filter(r => r[5] === g)]).filter(([, list]) => list.length);
     return {
         scoreA, scoreB,
         html: `<div class="comparison-section${wide ? " wide" : ""}">
             <div class="comparison-section-title">${title} <span class="mode-score">${a.name} ${num(scoreA, 1)} — ${num(scoreB, 1)} ${b.name}</span></div>
-            <div class="cs-rows">${rows.map(r => row(...r)).join("")}</div>
+            <div class="cs-groups">${groups.map(([g, list]) => `<div class="cs-group">
+                <div class="cs-group-title">${GROUPS[g]}</div>
+                ${list.map(r => row(...r.slice(0, 5))).join("")}
+            </div>`).join("")}</div>
         </div>`
     };
 }
@@ -197,15 +211,16 @@ function modeSection(mode, a, b) {
     const x = modeNumbers(a, mode);
     const y = modeNumbers(b, mode);
     const metrics = [
-        ["KILLS / MAP", "killsPerMap", "number", "higher"],
-        ["DEATHS / MAP", "deathsPerMap", "number", "lower"],
-        ["MAP WIN %", "mapWinRate", "percent", "higher"],
-        ["DAMAGE SHARE", "damageShare", "percent", "higher"],
-        [mode.unitLabel, "avgModeUnit", "number", "higher"]
+        ["MAP WIN %", "mapWinRate", "percent", "higher", "record"],
+        [mode.unitLabel, "avgModeUnit", "avg", "higher", "record"],
+        ["KILLS / MAP", "killsPerMap", "avg", "higher", "fight"],
+        ["DEATHS / MAP", "deathsPerMap", "avg", "lower", "fight"],
+        ["DAMAGE SHARE", "damageShare", "percent", "higher", "fight"]
     ];
-    const rows = metrics.map(([label, key, type, better]) => [label, x[key], y[key], type, better]);
+    const rows = metrics.map(([label, key, type, better, group]) => [label, x[key], y[key], type, better, group]);
     const against = versusRow(mode, a, b);
-    return section(mode.name.toUpperCase(), a, b, rows.concat(against ? [against] : [], extraRows(mode.prefix, a, b)));
+    if (against) rows.splice(1, 0, against);
+    return section(mode.name.toUpperCase(), a, b, rows.concat(extraRows(mode.prefix, a, b)));
 }
 
 function cardStage(p) {
@@ -253,13 +268,13 @@ function render() {
     const winRate = p => totalWins(p) / ((totalWins(p) + totalLosses(p)) || 1);
     const meetings = versus(a, b);
     const lifetime = section("LIFETIME", a, b, [
-        ["KILLS", a.lifetimeKills, b.lifetimeKills],
-        ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower"],
-        ["K/D", kd(a), kd(b)],
-        ["WINS", totalWins(a), totalWins(b)],
-        ["LOSSES", totalLosses(a), totalLosses(b), "number", "lower"],
-        ["WIN RATE", winRate(a), winRate(b), "percent"],
-        ...(meetings ? [[`MAP WINS VS EACH OTHER (${meetings.d})`, ...winsOf(meetings, a, b)]] : [])
+        ["WINS", totalWins(a), totalWins(b), "number", "higher", "record"],
+        ["LOSSES", totalLosses(a), totalLosses(b), "number", "lower", "record"],
+        ["WIN RATE", winRate(a), winRate(b), "percent", "higher", "record"],
+        ...(meetings ? [[`MAP WINS VS EACH OTHER (${meetings.d})`, ...winsOf(meetings, a, b), "number", "higher", "record"]] : []),
+        ["KILLS", a.lifetimeKills, b.lifetimeKills, "number", "higher", "fight"],
+        ["DEATHS", a.lifetimeDeaths, b.lifetimeDeaths, "number", "lower", "fight"],
+        ["K/D", kd(a), kd(b), "avg", "higher", "fight"]
     ], true);
     const modeResults = MODES.map(mode => modeSection(mode, a, b));
     const sections = [lifetime, ...modeResults];
@@ -275,10 +290,10 @@ function render() {
 
         <div class="comparison-score final-head-to-head ${totalA > totalB ? "a-winner" : totalB > totalA ? "b-winner" : "tie"}">
             <strong>${a.name} ${num(totalA, 1)} — ${num(totalB, 1)} ${b.name}</strong>
-            <span>HEAD-TO-HEAD</span>
+            <span>STATS WON ACROSS THE THREE MODES</span>
         </div>
 
-        <!-- Lifetime runs the full width as one column; the three modes sit side by side under it -->
+        <!-- Lifetime runs the full width (record and gunfights side by side); the three modes sit side by side under it -->
         <div class="h2h-sections">${sections.map(sec => sec.html).join("")}</div>
     `;
 

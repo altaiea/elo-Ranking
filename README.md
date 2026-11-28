@@ -26,7 +26,7 @@ The CODStats app depends on them:
 | `script.js` | Three lines that load `js/main.js` |
 | `js/main.js` | Start-up: loading screen, wires every tab, then quietly loads card pictures |
 | `js/tabs.js` | The four menu groups (Ranks, Match Day, Players, Knockout) and the switch under the title. Remembers the open page in the address bar (`…/#cards`) |
-| `js/layout.js` | The side menu (a bar along the bottom on phones) and phone sizing |
+| `js/layout.js` | The side menu (a bar along the bottom on phones) and the phone layout: every page's content zoomed back up to a readable size |
 | `js/config.js` | Player names, inactive players, card and map files, game modes. **Edit this when someone joins** |
 | `js/data.js` | Reads `current_stats.json`, `history/` and `data/rebuilt-days.json`. No page code |
 | `js/ratings.js` | Card ratings, Match Day win chances (Model TR's own formula) and chemistry. No page code |
@@ -54,7 +54,7 @@ The CODStats app depends on them:
 | `js/cardTape.js` | The player's numbers beside the card pop-up |
 | `js/modeModal.js` | The mode wheel that opens from a card's mode circle |
 | `js/streaks.js` | Win streaks per mode (the fire on a card) |
-| `js/headToHead.js` | Head-to-Head: the scored Lifetime and mode sections, including the map wins against each other |
+| `js/headToHead.js` | Head-to-Head: the scored Lifetime and mode sections (rows under Record / Gunfights / Objective), including the map wins against each other |
 | `js/headToHeadPicker.js` | Picking the two players from their cards ("fight night") |
 
 ## Match Day
@@ -131,6 +131,15 @@ Never edit these by hand: the next Export rewrites them.
 
 ## Change log
 
+- **27 Nov 2026, formatting pass.** Every tab and pop-up checked at six window sizes
+  (phone, small phone, tablet, short laptop, laptop, 1920 wide). Phones now use the
+  phone layout on every page (Ranks and Knockout text was about a third of normal size),
+  with bigger buttons and menus, a phone-sized mode wheel, the line-up filling the
+  screen and two Knock-out Cards per row. Tablet: the leaderboard, History tables and
+  Head-to-Head fit without sideways scrolling, and Knockout brackets fold into two
+  columns. Wide screens: pages stop at 1440px and sit in the middle. Mode circles that
+  open the wheel show a pointer. Head-to-Head groups its rows (Record, Gunfights,
+  Objective), shows Lifetime in two columns and rounds every average the same way.
 - **27 Nov 2026.** Model TR goes live. Head-to-Head scores the maps the two
   played against each other (rebuilt maps included), Monthly goes back to May, and History shows the Model TR calculation in plain words.
   Tidy: `comparisons.js` → `headToHead.js`, `fightNight.js` → `headToHeadPicker.js`,

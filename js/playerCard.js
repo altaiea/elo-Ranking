@@ -295,6 +295,7 @@ export function fillCard(card, p, players, { clickableModes = false, mvpBadge = 
         el.textContent = mode.rating;
         setRatingColor(el, mode.rating);
         el.onclick = clickableModes ? () => openModeModal(name, mode, p) : null;
+        el.classList.toggle("mode-click", clickableModes);   // pointer cursor (sharedLook.css)
     });
 
     card.querySelector(".back").style.backgroundImage = backgroundFor(p.id);

@@ -1,14 +1,15 @@
 // ======================================================
 // LAYOUT: side menu, and the bottom bar on phones
 // ======================================================
-// Phones show the desktop pages with the menu moved to a bar along the bottom
-// (.phone-bar), so the page is centred and only needs 1150px: index.html lays
-// it out 1150px wide and the phone shrinks it to fit its screen.
-// PHONE_LAYOUT = true brings back the separate phone layout (pages zoomed up
-// and restyled for the narrow screen).
-const PHONE_LAYOUT = false;
+// Phones get the menu as a bar along the bottom (.phone-bar). index.html lays the
+// page out 1150px wide and the phone shrinks it to fit its screen; the phone layout
+// (.is-phone) then zooms each page's content back up and restyles it for the narrow
+// screen, so text stays readable.
+// PHONE_LAYOUT = false shows the shrunk desktop pages instead, except on the pages in
+// PHONE_LAYOUT_PAGES. (Ranks and Knockout used that until 27 Nov 2026; their text came
+// out about a third of normal size on a phone.)
+const PHONE_LAYOUT = true;
 const PHONE_PAGE_WIDTH = 1150;   // keep in step with the viewport script in index.html
-// Pages that use the phone layout anyway (bigger, laid out for the narrow screen): Match Day and Players.
 const PHONE_LAYOUT_PAGES = new Set(["teamsPage", "cardsPage", "comparisonsPage"]);
 let openPage = null;
 let refit = () => {};

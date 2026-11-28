@@ -103,7 +103,7 @@ export function showPopup(html, { className = "", onOpen = null, onClose = null 
 function closePopupQuietly() {
     const card = popupEl();
     card.getAnimations().forEach(a => a.cancel());
-    card.querySelectorAll(".fx-close, .fx-backdrop, .fx-grain, .fx-bar").forEach(n => n.remove());
+    card.querySelectorAll(".fx-close, .fx-backdrop, .fx-grain, .fx-bar, .fx-cutscene, .fx-cover, .fx-vig, .fx-skipbtn, .fx-intro").forEach(n => n.remove());
     if (popupCloseHook) {
         const hook = popupCloseHook;
         popupCloseHook = null;

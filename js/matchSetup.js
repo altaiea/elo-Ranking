@@ -9,7 +9,7 @@
 import { cardAssets, INACTIVE_PLAYER_IDS } from "./config.js";
 import { playerHasActivity } from "./data.js";
 import { bestSplit } from "./ratings.js";
-import { setupLineupClicks, showLineup } from "./lineup.js";
+import { preloadLineupGame, setupLineupClicks, showLineup } from "./lineup.js";
 import { renderMapSet } from "./maps.js";
 import { reduceMotion } from "./ui.js";
 
@@ -161,7 +161,7 @@ export function setupMatchSetup() {
     $("msRoll").addEventListener("click", rollMaps);
     fitPhone();
     addEventListener("resize", fitPhone);
-    document.querySelector('[data-tab="teamsPage"]').addEventListener("click", () => requestAnimationFrame(fitPhone));
+    document.querySelector('[data-tab="teamsPage"]').addEventListener("click", () => { requestAnimationFrame(fitPhone); preloadLineupGame(); });
 }
 
 export function showMatchSetup(list) {

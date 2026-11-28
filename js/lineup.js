@@ -43,7 +43,7 @@ function teamLineupBlock(label, team, avg, prob, cls) {
         return `<span class="chem-badge" data-i="${a}" data-j="${b}" data-a="${team[a].id}" data-b="${team[b].id}" style="left:${x}%; top:${y}%;"></span>`;
     }).join("");
     const cards = team.map((p, i) => `
-        <div class="lineup-card" style="left:${LINEUP_SPOTS[i][0]}%; top:${LINEUP_SPOTS[i][1]}%;">
+        <div class="lineup-card" data-pid="${p.id}" style="left:${LINEUP_SPOTS[i][0]}%; top:${LINEUP_SPOTS[i][1]}%;">
             <img src="${cardAssets.thumb(p.id)}" alt="${p.name}" title="${p.name}" decoding="async">
             <img class="lineup-wings" src="${cardAssets.wingsThumb}" alt="">
             <span class="lineup-name">${p.name}</span>
@@ -134,10 +134,12 @@ function onLineupClick(e) {
     board.querySelectorAll(`.lineup-lines line[data-a="${a}"][data-b="${b}"]`).forEach(el => el.classList.add("sel"));
 }
 
-function countUp(el, to, decimals, suffix, dur, delay) {
-    const start = performance.now() + delay;
+function countUp(el, to, decimals, suffix, dur, delay, clock) {
+    // clock: optional () => ms, so the numbers can run on the same clock as an animation
+    const start = clock ? delay : performance.now() + delay;
     el.textContent = (0).toFixed(decimals) + suffix;
     (function tick(now) {
+        if (clock) now = clock();
         const t = Math.min(1, Math.max(0, (now - start) / dur));
         const e = 1 - Math.pow(1 - t, 3);
         el.textContent = (to * e).toFixed(decimals) + suffix;
@@ -403,6 +405,177 @@ function playLineupFx() {
     return done;
 }
 
+/* ======================================================
+   MATCH-DAY CUTSCENE (lineup_intro.mp4, then js/lineupGame.js in Three.js)
+   The intro video pulls back from the deck to the range table; on its last frame the 3D scene
+   takes over, deals the cards off that deck the same way as the CSS line-up, then the camera
+   climbs onto this flat line-up. Tap to skip. If WebGL, the module or the video is not ready
+   in time, the CSS line-up (playLineupFx) runs instead.
+====================================================== */
+const GAME_WAIT = 2500;       // ms to wait for the video and 3D scene before falling back to the CSS line-up
+let game = null, introUrl = null;
+
+// Load the 3D scene and the whole intro video early (when Match Day opens) so both can start the moment the line-up opens.
+export function preloadLineupGame() {
+    if (game || reduceMotion()) return;
+    game = import("./lineupGame.js")
+        .then(m => m.pickVideoSrc().then(src => fetch(src)).then(r => (r.ok ? r.blob() : Promise.reject(r.status))).then(b => { introUrl = URL.createObjectURL(b); return m; }))
+        .catch(() => null);
+}
+
+function startGame(pop, teamA, teamB, done) {
+    preloadLineupGame();
+    pop.classList.add("lineup-cine");
+    const cover = document.createElement("div"); cover.className = "fx-cover"; pop.appendChild(cover);
+    const faces = [...teamA, ...teamB].map(p => cardAssets.art(p.id)).concat(cardAssets.wingsThumb);   // full-size art: the 3D cards are seen at an angle
+    let settled = false;
+    const go = mod => {
+        if (settled) return; settled = true;
+        if (!pop.querySelector(".lineup-wrap")) { cover.remove(); return; }   // closed while loading
+        let ms = 0;
+        if (mod && introUrl) { try { ms = playGameFx(mod, cover); } catch (e) { console.error(e); ms = 0; } }
+        if (!ms) cover.remove();                                         // the cutscene lifts the cover itself once the video is playing
+        done(ms || playLineupFx());
+    };
+    setTimeout(() => go(null), GAME_WAIT);
+    game.then(m => m && m.prepareGame(faces).then(() => go(m))).catch(() => go(null));
+}
+
+function playGameFx(mod, cover) {
+    const root = document.getElementById("popupContent");
+    const popup = document.getElementById("popupCard");
+    const wrap = root.querySelector(".lineup-wrap");
+    if (!wrap) return 0;
+    const teams = [...wrap.querySelectorAll(".lineup-team")];
+    popup.classList.add("lineup-cine");
+    wrap.classList.add("scene");          // the wooden board the line-up ends on
+
+    // ---- the flat line-up, where every card ends up
+    // measured from the pop-up's inner edge, where the 3D canvas starts
+    const pr = popupRect(popup), pr0 = { left: pr.left + popup.clientLeft, top: pr.top + popup.clientTop }, wr0 = popupRect(wrap);
+    const CW = wrap.offsetWidth, CH = wrap.offsetHeight;
+    const O = { x: wr0.left - pr0.left + CW / 2, y: wr0.top - pr0.top + CH * .55 };
+    const box = el => { const r = popupRect(el); return [r.left - pr0.left, r.top - pr0.top, r.width, r.height]; };
+    const board = { wrap: box(wrap), teams: teams.map(box) };
+    const plan = teams.map(team => ({
+        team,
+        cards: [...team.querySelectorAll(".lineup-card")].map(c => {
+            const r = popupRect(c);
+            const cx = r.left - pr0.left + r.width / 2, cy = r.top - pr0.top + r.height / 2;
+            return { c, cx, cy, x: cx - O.x, y: cy - O.y, w: c.offsetWidth, h: c.offsetHeight };
+        })
+    }));
+    const cw = plan[0].cards[0].w, ch = plan[0].cards[0].h;
+    const deckY = (CH - ch - 46) + ch / 2 - CH * .55;
+
+    // ---- the timeline: the video, then the same deal, flip and climb as the CSS line-up
+    const VID = mod.VIDEO_MS, C0 = VID + 500;
+    const DEAL_ORDER = [[0, 0], [1, 0], [0, 1], [1, 2], [0, 2], [1, 1], [0, 3], [1, 3]];
+    const evOf = seq => seq < 2 ? seq : seq < 6 ? 2 + Math.floor((seq - 2) / 2) : seq - 2;
+    const dealIndex = (ti, i) => DEAL_ORDER.findIndex(([a, b]) => a === ti && b === i);
+    const SLIDE0 = 580, CYCLE0 = 1200, FLIP0 = 180, TURN0 = 60;
+    const spd = k => (k === 2 || k === 3) ? 0.5 : 1 / 1.2;
+    const SLIDE_OF = k => SLIDE0 * spd(k), CYCLE_OF = k => CYCLE0 * spd(k), TURN_OF = k => TURN0 * spd(k);
+    const FLIPT_OF = k => FLIP0 * spd(k) * 2;
+    const dealAt = k => { let t = C0; for (let j = 0; j < k; j++) t += CYCLE_OF(j); return t; };
+    const lastFlip = dealAt(5) + SLIDE_OF(5) + TURN_OF(5) + FLIPT_OF(5);
+    const RISE = lastFlip + 120, RISE_DUR = 1700;
+    const done = RISE + RISE_DUR;
+
+    const cards = [];
+    plan.forEach((P, ti) => P.cards.forEach((K, i) => {
+        const dealt = dealIndex(ti, i), ev = evOf(dealt), side = i % 2 ? 1 : -1, delay = dealAt(ev);
+        cards.push({
+            front: cardAssets.art(K.c.dataset.pid), back: cardAssets.wingsThumb, w: K.w, h: K.h,
+            x: K.x, y: K.y, flat: [K.cx, K.cy, K.w, K.h],
+            delay, slide: SLIDE_OF(ev), side,
+            flipAt: delay + SLIDE_OF(ev) + TURN_OF(ev), flipDur: FLIPT_OF(ev)
+        });
+    }));
+    const run = mod.runGame({ popup, cards, board, deckY, px: .064 / cw, shots: { video: VID, rise: RISE, done } });
+
+    // ---- the intro video, under the 3D canvas; everything below starts on its first frame
+    const vid = document.createElement("video");
+    vid.className = "fx-intro"; vid.muted = true; vid.playsInline = true; vid.preload = "auto"; vid.src = introUrl;
+    popup.appendChild(vid);
+    let begun = false;
+    const begin = skipVideo => {
+        if (begun) return; begun = true;
+        cover.remove();
+        if (!popup.isConnected || !wrap.isConnected) { run.stop(); vid.remove(); return; }
+        run.start();
+        vid.animate([{ opacity: 1 }, { opacity: 1 }], { duration: VID + 400 }).onfinish = () => vid.remove();
+        reveal();
+        // line the clock up with the video (it is usually a few frames in by now); if it could not play, start from its last frame
+        const lead = skipVideo ? VID : Math.min(VID, vid.currentTime * 1000);
+        if (skipVideo) vid.remove();
+        if (lead > 0) popup.getAnimations({ subtree: true }).forEach(a => { a.currentTime = (a.currentTime || 0) + lead; });
+    };
+    // the preloaded copy first; if the page may not play blob: media, the file itself (already in the cache)
+    vid.play().then(() => begin(false), () => { vid.src = mod.VIDEO_SRC; vid.play().then(() => begin(false), () => begin(true)); });
+    return done + 200;
+
+    function reveal() {
+
+        // ---- film look over the 3D: grain and letterbox bars that open as the camera climbs
+        const grain = document.createElement("div"); grain.className = "fx-grain"; popup.appendChild(grain);
+        grain.animate([{ opacity: .2 }, { opacity: .2, offset: .9 }, { opacity: 0 }], { duration: done + 400, fill: "forwards" }).onfinish = () => grain.remove();
+        const vig = document.createElement("div"); vig.className = "fx-vig"; popup.appendChild(vig);
+        vig.animate([{ opacity: 1 }, { opacity: 1, offset: RISE / done }, { opacity: 0 }], { duration: done, fill: "forwards" }).onfinish = () => vig.remove();
+        [0, 1].forEach(i => {
+            const b = document.createElement("div"); b.className = "fx-bar thin " + (i ? "bottom" : "top"); popup.appendChild(b);
+            b.animate([{ transform: "translateY(0)" }, { transform: "translateY(0)", offset: RISE / (RISE + 900) }, { transform: `translateY(${i ? 100 : -100}%)` }],
+                { duration: RISE + 900, easing: "ease-in-out", fill: "forwards" }).onfinish = () => b.remove();
+        });
+        // tap to skip: jump straight to the line-up
+        const skip = document.createElement("button"); skip.type = "button"; skip.className = "fx-skipbtn"; skip.textContent = "Skip";
+        popup.appendChild(skip);
+        skip.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 600, fill: "backwards" });
+        const skipAt = setTimeout(() => skip.remove(), RISE);
+        skip.addEventListener("click", () => {
+            clearTimeout(skipAt); skip.remove();
+            run.stop(); vid.remove();
+            popup.getAnimations({ subtree: true }).forEach(a => { try { a.finish(); } catch (_) { a.cancel(); } });
+            popup.querySelectorAll(".fx-grain, .fx-vig, .fx-bar").forEach(n => n.remove());
+        });
+
+        // ---- the page's own line-up, hidden behind the 3D until the hand-off, then lines, names and numbers.
+        // Every animation made in this same task starts on the same frame, so this empty one is the shared clock
+        // for the lines and numbers too (a slow first 3D frame would otherwise put them ahead of the cards).
+        const clk = wrap.animate([], { duration: done + 4000 });
+        const clock = () => clk.playState === "finished" ? done + 4000 : (clk.currentTime || 0);
+        plan.forEach((P, ti) => {
+            const team = P.team;
+            team.querySelector(".lineup-stats").animate([{ opacity: 0 }, { opacity: 0, offset: .99 }, { opacity: 1 }], { duration: done + 300, fill: "backwards" });
+            team.querySelector(".lineup-title").animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, delay: done, fill: "both" });
+            P.cards.forEach((K, i) => {
+                K.c.querySelector(".lineup-wings").style.display = "none";
+                K.c.animate([{ opacity: .01 }, { opacity: .01 }], { duration: done });   // not 0: keeps the cards painted and their images decoded behind the 3D, so the hand-off has nothing left to draw
+                K.c.querySelector(".lineup-name").animate([{ opacity: 0, translate: "0 -8px", scale: ".8" }, { opacity: 1, translate: "0 0", scale: "1" }],
+                    { duration: 450, delay: done + 120 + dealIndex(ti, i) * 55, easing: EASE_OUT, fill: "both" });
+            });
+            const base = done - 200 + ti * 120;
+            team.querySelectorAll(".lineup-lines line").forEach((ln, i) => {
+                const x1 = +ln.getAttribute("x1"), y1 = +ln.getAttribute("y1"), x2 = +ln.getAttribute("x2"), y2 = +ln.getAttribute("y2");
+                ln.setAttribute("x2", x1); ln.setAttribute("y2", y1);
+                const start = base + i * 150;
+                (function tick() {
+                    const now = clock(), t = Math.min(1, Math.max(0, (now - start) / 380)), e = 1 - Math.pow(1 - t, 3);
+                    ln.setAttribute("x2", x1 + (x2 - x1) * e); ln.setAttribute("y2", y1 + (y2 - y1) * e);
+                    if (t < 1) requestAnimationFrame(tick);
+                })();
+            });
+            const nums = team.querySelectorAll(".lineup-num");
+            if (nums[0]) countUp(nums[0], parseFloat(nums[0].textContent), 1, "", 900, base + 500, clock);
+            if (nums[1]) countUp(nums[1], parseFloat(nums[1].textContent), 0, "%", 900, base + 500, clock);
+            if (team.classList.contains("lineup-fav")) {
+                team.animate([{ boxShadow: "0 0 0 rgba(57,255,106,0)" }, { boxShadow: "0 0 30px rgba(57,255,106,.55)" }, { boxShadow: "0 0 14px rgba(57,255,106,.18)" }],
+                    { duration: 900, delay: base + 1300, easing: "ease-out", fill: "backwards" });
+            }
+        });
+    }
+}
+
 /* ---------------------------
    LINE-UP CLOSE BUTTON: a little wings card in the corner.
    Tapping it pulls all 8 cards into it, then the popup closes.
@@ -473,8 +646,7 @@ export function showLineup(teamA, teamB) {
             lineupEdges();
             window.addEventListener("resize", refit);
             if (!reduceMotion()) {
-                const done = playLineupFx();
-                addCloseCard(pop, done || 8000);
+                startGame(pop, teamA, teamB, done => addCloseCard(pop, done || 8000));
             }
             chemEnsure().then(chemApply).catch(() => chemApply());
         },

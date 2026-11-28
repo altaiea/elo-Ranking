@@ -63,6 +63,10 @@ The CODStats app depends on them:
 | --- | --- |
 | `js/matchSetup.js` | The Match Day page: tap players, auto or manual teams, Bo5 / Bo7 / Bo9 |
 | `js/lineup.js` | The line-up pop-up: card deal, chemistry lines, each team's numbers; scales to fit the window |
+| `js/lineupGame.js` | The cutscene before the line-up: the filmed intro, then 3D cards dealt onto the filmed table and the camera's climb into the line-up. Loaded in the background when Match Day opens |
+| `lineup_intro.mp4`, `lineup_intro_av1.mp4` | The cutscene's filmed intro (H.264 for every device; the smaller AV1 copy where the device decodes it in hardware) |
+| `lineup_plate.webp`, `lineup_plate_clean.webp` | The intro's last frame in HD, and the same with the deck painted out, laid over the 3D table |
+| `vendor/three-lineup.min.js` | three.js r187 cut down to the parts the cutscene uses. Not hand-written: don't edit |
 | `js/maps.js` | Rolls the map set (no repeats in a Bo5; none within a mode in a Bo7 or Bo9) |
 
 ## Knockout (Captain's Cup)
